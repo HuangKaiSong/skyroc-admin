@@ -11,7 +11,11 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
     /** - TanStack Router */
     setupRouterPlugins(),
     /** - React */
-    react(),
+    react({
+      babel: {
+        plugins: ['babel-plugin-react-compiler']
+      }
+    }),
     /** - Auto Import */
     setupAutoImport()
   ];
