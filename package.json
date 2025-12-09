@@ -43,6 +43,7 @@
     "antd": "^6.1.0",
     "dayjs": "^1.11.19",
     "i18next": "^25.7.2",
+    "nprogress": "^0.2.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
     "react-i18next": "^16.4.0"
@@ -54,6 +55,7 @@
     "@tanstack/react-router-devtools": "^1.140.0",
     "@tanstack/router-plugin": "^1.140.0",
     "@types/node": "^24.10.2",
+    "@types/nprogress": "^0.2.3",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@unocss/eslint-config": "^66.5.10",
