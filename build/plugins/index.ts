@@ -2,6 +2,7 @@ import { devtools } from '@tanstack/devtools-vite';
 import react from '@vitejs/plugin-react';
 import inspect from 'vite-plugin-inspect';
 import progress from 'vite-plugin-progress';
+import removeConsole from 'vite-plugin-remove-console';
 
 import { setupAutoImport } from './auto-import';
 import { setupHtmlPlugin } from './html';
@@ -27,6 +28,7 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
     setupAutoImport(viteEnv),
     progress(),
     setupHtmlPlugin(buildTime),
-    inspect()
+    inspect(),
+    removeConsole()
   ];
 }
