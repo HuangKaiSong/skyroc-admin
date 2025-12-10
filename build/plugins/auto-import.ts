@@ -1,5 +1,5 @@
 import AutoImport from 'unplugin-auto-import/vite';
-
+import IconsResolver from 'unplugin-icons/resolver';
 /**
  * TanStack Router 的 autoCodeSplitting 会把组件拆成虚拟模块
  * 虚拟模块 ID 格式：原文件路径?tsr-split=component
@@ -11,14 +11,24 @@ import AutoImport from 'unplugin-auto-import/vite';
  */
 const TSR_SPLIT_RE = /\.[tj]sx?(\?.*)?$/;
 
-export function setupAutoImport() {
+export function setupAutoImport(viteEnv: Env.ImportMeta) {
+  const { VITE_ICON_LOCAL_PREFIX, VITE_ICON_PREFIX } = viteEnv;
+  const collectionName = VITE_ICON_LOCAL_PREFIX.replace(`${VITE_ICON_PREFIX}-`, '');
+
   return AutoImport({
     dirs: ['src/hooks/**', 'src/components/**'],
     dts: 'src/types/auto-imports.d.ts',
-    dumpUnimportItems: true,
     imports: ['react', { from: 'react', imports: ['FC'], type: true }],
     include: [TSR_SPLIT_RE],
-    resolvers: [autoImportAntd]
+    resolvers: [
+      autoImportAntd,
+      IconsResolver({
+        componentPrefix: VITE_ICON_PREFIX,
+        customCollections: [collectionName],
+        extension: 'tsx',
+        prefix: VITE_ICON_PREFIX
+      })
+    ]
   });
 }
 
