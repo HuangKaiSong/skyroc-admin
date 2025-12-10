@@ -1,56 +1,88 @@
-import { Button } from 'antd';
-import { createElement } from 'react';
-
-import { globalConfig } from '@/config';
+import { destroyNotification, globalConfig, showNotification } from '@/config';
+import { router } from '@/features/router';
 
 import { $t } from '../locales';
-import { router } from '@/features/router';
+
+const UPDATE_NOTIFICATION_KEY = 'update-notification';
 
 export function setupAppVersionNotification() {
   // Update check interval in milliseconds
   const UPDATE_CHECK_INTERVAL = 3 * 60 * 1000;
 
-  const canAutoUpdateApp = import.meta.env.VITE_AUTOMATICALLY_DETECT_UPDATE === 'Y' && import.meta.env.PROD;
+  const canAutoUpdateApp = globalConfig.automaticallyDetectUpdate && import.meta.env.PROD;
 
   if (!canAutoUpdateApp) return;
 
   let isShow = false;
+  let updateInterval: ReturnType<typeof setInterval> | undefined;
 
-  document.addEventListener('visibilitychange', async () => {
-    const preConditions = [!isShow, document.visibilityState === 'visible'];
-
-    if (!preConditions.every(Boolean)) return;
+  const checkForUpdates = async () => {
+    if (isShow) return;
 
     const buildTime = await getHtmlBuildTime();
 
-    if (buildTime === BUILD_TIME) return;
+    // If failed to get build time or build time hasn't changed, no update is needed.
+    if (!buildTime || buildTime === BUILD_TIME) {
+      return;
+    }
 
     isShow = true;
 
     const handleCancel = () => {
-      globalConfig.notification?.destroy();
+      destroyNotification(UPDATE_NOTIFICATION_KEY);
     };
 
     const handleOk = () => {
-      router.navigate()
+      router.navigate({ to: '.' });
     };
 
-    globalConfig.notification?.open({
-      btn: <div className='flex gap-3 justify-end w-325px'>
-        <Button key='cancel' onClick={handleCancel}>
-          { $t('system.updateCancel') }
-        </Button>
-        <Button key='ok' onClick={location.reload()} type='primary'>
-          { $t('system.updateConfirm') }
-        </Button>
-      </div>,
+    showNotification({
+      actions: (
+        <div className="flex gap-3 justify-end w-325px">
+          <AButton
+            key="cancel"
+            onClick={handleCancel}
+          >
+            {$t('system.updateCancel')}
+          </AButton>
+          <AButton
+            key="ok"
+            type="primary"
+            onClick={handleOk}
+          >
+            {$t('system.updateConfirm')}
+          </AButton>
+        </div>
+      ),
       description: $t('system.updateContent'),
-      message: $t('system.updateTitle'),
+      key: UPDATE_NOTIFICATION_KEY,
       onClose() {
         isShow = false;
+      },
+      title: $t('system.updateTitle')
+    });
+  };
+
+  function startUpdateInterval() {
+    if (updateInterval) {
+      clearInterval(updateInterval);
+    }
+    updateInterval = setInterval(checkForUpdates, UPDATE_CHECK_INTERVAL);
+  }
+
+  // If updates should be checked, set up the visibility change listener and start the update interval
+  if (!isShow && document.visibilityState === 'visible') {
+    // Check for updates when the document is visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        checkForUpdates();
+        startUpdateInterval();
       }
     });
-  });
+
+    // Start the update interval
+    startUpdateInterval();
+  }
 }
 
 async function getHtmlBuildTime(): Promise<string | null> {

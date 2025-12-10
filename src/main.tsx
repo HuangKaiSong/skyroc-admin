@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 
 import App from './App';
 import { setupI18n } from './locales';
+import { setupAppVersionNotification } from './plugins/app';
 
 function setupApp() {
   const container = document.getElementById('root');
@@ -13,6 +14,8 @@ function setupApp() {
   root.render(<App />);
 
   setupI18n();
+
+  setupAppVersionNotification();
 }
 
 setupApp();
