@@ -3,6 +3,7 @@ import form from './form';
 import page from './page';
 import request from './request';
 import route from './route';
+import system from './system';
 import theme from './theme';
 
 const local: I18n.Schema['translation'] = {
@@ -33,15 +34,7 @@ const local: I18n.Schema['translation'] = {
   page,
   request,
   route,
-  system: {
-    errorReason: 'Cause Error',
-    reload: 'Reload Page',
-    title: 'SkyrocAdmin',
-    updateCancel: 'Later',
-    updateConfirm: 'Refresh immediately',
-    updateContent: 'A new version of the system has been detected. Do you want to refresh the page immediately?',
-    updateTitle: 'System Version Update Notification'
-  },
+  system,
   theme
 };
 

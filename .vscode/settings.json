@@ -34,6 +34,9 @@
   "i18n-ally.pathMatcher": "{locale}/{namespaces}.ts",
   "i18n-ally.localesPaths": ["src/locales/langs"],
   "prettier.enable": false,
+  "i18n-ally.parsers.typescript.compilerOptions": {
+    "moduleResolution": "node"
+  },
   "typescript.tsdk": "node_modules/typescript/lib",
   "unocss.root": ["./"],
   "i18n-ally.sourceLanguage": "zh-cn",

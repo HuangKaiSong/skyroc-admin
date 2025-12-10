@@ -33,6 +33,7 @@ function createConfig() {
         }
       ];
     },
+
     // ======Antd UI Config======
     /** - antd 消息实例 */
     get message(): MessageInstance {
