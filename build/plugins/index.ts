@@ -1,8 +1,10 @@
 import { devtools } from '@tanstack/devtools-vite';
 import react from '@vitejs/plugin-react';
+import inspect from 'vite-plugin-inspect';
 import progress from 'vite-plugin-progress';
 
 import { setupAutoImport } from './auto-import';
+import { setupHtmlPlugin } from './html';
 import { setupRouterPlugins } from './router';
 import { setupUnocss } from './unocss';
 import { setupUnPluginIcon } from './unplugin-icon';
@@ -20,9 +22,11 @@ export function setupVitePlugins(viteEnv: Env.ImportMeta, buildTime: string) {
         plugins: ['babel-plugin-react-compiler']
       }
     }),
-    // setupUnocss(viteEnv),
-    // ...setupUnPluginIcon(viteEnv),
-    setupAutoImport(),
-    progress()
+    setupUnocss(viteEnv),
+    ...setupUnPluginIcon(viteEnv),
+    setupAutoImport(viteEnv),
+    progress(),
+    setupHtmlPlugin(buildTime),
+    inspect()
   ];
 }
