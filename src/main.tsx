@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 
 import App from './App';
+import { setupI18n } from './locales';
 
 function setupApp() {
   const container = document.getElementById('root');
@@ -10,6 +11,8 @@ function setupApp() {
   const root = createRoot(container);
 
   root.render(<App />);
+
+  setupI18n();
 }
 
 setupApp();

@@ -10,3 +10,5 @@ export const router = createRouter({
   routeTree,
   scrollRestoration: true
 });
+
+export type RouterConfig = typeof router;
