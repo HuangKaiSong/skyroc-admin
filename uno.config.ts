@@ -14,12 +14,7 @@ export default defineConfig<Theme>({
     }
   },
   presets: [presetWind3({ dark: 'class' }), presetSkyrocAdmin()],
-  rules: [
-    [
-      /^h-calc\((.*)\)$/, // 匹配 h-clac(xxx) 的正则表达式
-      ([, d]) => ({ height: `calc(${d})px` }) // 生成对应的 CSS 样式
-    ]
-  ],
+  rules: [[/^h-calc\((.*)\)$/, ([, d]) => ({ height: `calc(${d})px` })]],
   shortcuts: {
     'card-wrapper': 'rd-8px shadow-sm'
   },
