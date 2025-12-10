@@ -7,11 +7,15 @@
 export {}
 declare global {
   const AApp: typeof import('antd').App
+  const AButton: typeof import('antd').Button
   const AConfigProvider: typeof import('antd').ConfigProvider
   const AWatermark: typeof import('antd').Watermark
   const Activity: typeof import('react').Activity
   const Fragment: typeof import('react').Fragment
+  const IconGridiconsFullscreen: typeof import('~icons/gridicons/fullscreen.tsx').default
+  const IconGridiconsFullscreenExit: typeof import('~icons/gridicons/fullscreen-exit.tsx').default
   const Suspense: typeof import('react').Suspense
+  const SvgIcon: typeof import('../components/SvgIcon').default
   const cache: typeof import('react').cache
   const cacheSignal: typeof import('react').cacheSignal
   const createContext: typeof import('react').createContext
