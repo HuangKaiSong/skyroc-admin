@@ -39,6 +39,8 @@
     "update-pkg": "sa update-pkg"
   },
   "dependencies": {
+    "@sa/color": "workspace:*",
+    "@sa/utils": "workspace:*",
     "@tanstack/react-router": "^1.140.0",
     "antd": "^6.1.0",
     "dayjs": "^1.11.19",
