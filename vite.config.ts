@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 import { defineConfig, loadEnv } from 'vite';
 
+import { createViteProxy } from './build/config/proxy';
 import { getBuildTime } from './build/config/time';
 import { setupVitePlugins } from './build/plugins';
 
@@ -11,7 +12,10 @@ export default defineConfig(configEnv => {
 
   const buildTime = getBuildTime();
 
+  const enableProxy = configEnv.command === 'serve' && !configEnv.isPreview;
+
   return {
+    base: viteEnv.VITE_BASE_URL,
     build: {
       rollupOptions: {
         output: {
@@ -65,6 +69,14 @@ export default defineConfig(configEnv => {
         }
       }
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "@/styles/scss/global.scss" as *;`,
+          api: 'modern-compiler'
+        }
+      }
+    },
     define: {
       BUILD_TIME: JSON.stringify(buildTime)
     },
@@ -82,6 +94,7 @@ export default defineConfig(configEnv => {
       host: '0.0.0.0',
       open: true,
       port: 9527,
+      proxy: createViteProxy(viteEnv, enableProxy),
       warmup: {
         clientFiles: ['./index.html', './src/{pages,components}/*']
       }

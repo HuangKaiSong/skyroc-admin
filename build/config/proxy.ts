@@ -28,12 +28,12 @@ export function createViteProxy(env: Env.ImportMeta, enable: boolean) {
   return proxy;
 }
 
-function createProxyItem(item: App.Service.ServiceConfigItem, enableLog: boolean) {
+function createProxyItem(item: Api.Service.ServiceConfigItem, enableLog: boolean) {
   const proxy: Record<string, ProxyOptions> = {};
 
   proxy[item.proxyPattern] = {
     changeOrigin: true,
-    configure: (_proxy: HttpProxy.Server, options: ProxyOptions) => {
+    configure: (_proxy: HttpProxy.ProxyServer, options: ProxyOptions) => {
       _proxy.on('proxyReq', (_proxyReq, req, _res) => {
         if (!enableLog) return;
 
