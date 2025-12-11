@@ -15,11 +15,15 @@ declare global {
   const AWatermark: typeof import('antd').Watermark
   const Activity: typeof import('react').Activity
   const ButtonIcon: typeof import('../components/ButtonIcon').default
+  const DarkModeContainer: typeof import('../components/DarkModeContainer').default
   const Fragment: typeof import('react').Fragment
   const IconGridiconsFullscreen: typeof import('~icons/gridicons/fullscreen.tsx').default
   const IconGridiconsFullscreenExit: typeof import('~icons/gridicons/fullscreen-exit.tsx').default
+  const IconLocalLogo: typeof import('~icons/local/logo.tsx').default
+  const PinToggler: typeof import('../components/PinToggler').default
   const Suspense: typeof import('react').Suspense
   const SvgIcon: typeof import('../components/SvgIcon').default
+  const SystemLogo: typeof import('../components/SystemLogo').default
   const cache: typeof import('react').cache
   const cacheSignal: typeof import('react').cacheSignal
   const createContext: typeof import('react').createContext
