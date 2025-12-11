@@ -38,7 +38,7 @@ export function setupAppVersionNotification() {
 
     showNotification({
       actions: (
-        <div className="flex gap-3 justify-end w-325px">
+        <div className="w-325px flex justify-end gap-3">
           <AButton
             key="cancel"
             onClick={handleCancel}

@@ -3,7 +3,6 @@ import sort from 'eslint-plugin-sort';
 
 export default defineConfig(
   {
-    ignores: ['ErrorBoundary.tsx'],
     prettierRules: {
       singleAttributePerLine: true,
       trailingCommas: 'none'
@@ -88,6 +87,7 @@ export default defineConfig(
 
       'sort/import-members': ['error', { caseSensitive: true, natural: true }],
       'sort/imports': ['off'],
+      'sort/object-properties': 'off',
       'sort/string-enums': ['error', { caseSensitive: false, natural: true }],
       'sort/string-unions': ['error', { caseSensitive: false, natural: true }],
       'sort/type-properties': ['warn', { caseSensitive: false, natural: true }],

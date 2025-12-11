@@ -52,15 +52,15 @@ export function createStorage<T extends object>(type: StorageType, storagePrefix
   return storage;
 }
 
-type LocalForage<T extends object> = Omit<typeof localforage, 'getItem' | 'setItem' | 'removeItem'> & {
+type LocalForage<T extends object> = Omit<typeof localforage, 'getItem' | 'removeItem' | 'setItem'> & {
   getItem<K extends keyof T>(key: K, callback?: (err: any, value: T[K] | null) => void): Promise<T[K] | null>;
 
-  setItem<K extends keyof T>(key: K, value: T[K], callback?: (err: any, value: T[K]) => void): Promise<T[K]>;
-
   removeItem(key: keyof T, callback?: (err: any) => void): Promise<void>;
+
+  setItem<K extends keyof T>(key: K, value: T[K], callback?: (err: any, value: T[K]) => void): Promise<T[K]>;
 };
 
-type LocalforageDriver = 'local' | 'indexedDB' | 'webSQL';
+type LocalforageDriver = 'indexedDB' | 'local' | 'webSQL';
 
 export function createLocalforage<T extends object>(driver: LocalforageDriver) {
   const driverMap: Record<LocalforageDriver, string> = {

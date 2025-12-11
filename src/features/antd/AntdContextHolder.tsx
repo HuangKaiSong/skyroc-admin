@@ -1,6 +1,6 @@
-import { initAntdProvider } from '@/config';
-
 import type { PropsWithChildren } from 'react';
+
+import { initAntdProvider } from '@/config';
 
 function ContextHolder() {
   const { message, modal, notification } = AApp.useApp();

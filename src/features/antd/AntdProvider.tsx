@@ -1,5 +1,6 @@
-import { globalConfig } from '@/config';
 import type { PropsWithChildren } from 'react';
+
+import { globalConfig } from '@/config';
 
 const AntdProvider = ({ children }: PropsWithChildren) => {
   return (
