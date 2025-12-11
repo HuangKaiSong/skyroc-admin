@@ -1,17 +1,16 @@
-import { RouterProvider } from '@tanstack/react-router';
-
 import AntdContextHolder from './features/antd/AntdContextHolder';
 import AntdProvider from './features/antd/AntdProvider';
-import { router } from './features/router';
+import JotaiProvider from './features/jotai/JotaiProvider';
+import RouterProvider from './features/router/RouterProvider';
 
-const App = () => {
-  return (
+const App = () => (
+  <JotaiProvider>
     <AntdProvider>
       <AntdContextHolder>
-        <RouterProvider router={router} />
+        <RouterProvider />
       </AntdContextHolder>
     </AntdProvider>
-  );
-};
+  </JotaiProvider>
+);
 
 export default App;
