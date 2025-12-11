@@ -2,12 +2,12 @@
 import { localStg } from '@/utils/storage';
 
 import { addThemeVarsToGlobal, createThemeToken, toggleAuxiliaryColorModes, toggleCssDarkMode } from './shared';
-import { useTheme } from './useTheme';
+import { useSettingsTheme } from './useSettingsTheme';
 
 const ThemeEffect = () => {
   /** Theme settings */
   const { colourWeaknessMode, darkMode, grayscaleMode, settings, themeColors, updateWatermarkTimer, watermark } =
-    useTheme();
+    useSettingsTheme();
 
   /** Cache theme settings */
   const cacheThemeSettings = () => {

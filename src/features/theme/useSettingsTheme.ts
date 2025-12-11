@@ -1,4 +1,5 @@
 import { getPaletteColorByNumber } from '@sa/color';
+import dayjs from 'dayjs';
 import { atom, useAtom } from 'jotai';
 import { useMemo } from 'react';
 
@@ -8,27 +9,7 @@ export const initThemeSettings = initThemeSettingsFn();
 
 const themeAtom = atom(initThemeSettings);
 
-/**
- * Format date
- */
-function formatDate(date: Date, format: string) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
-  const seconds = String(date.getSeconds()).padStart(2, '0');
-
-  return format
-    .replace('YYYY', String(year))
-    .replace('MM', month)
-    .replace('DD', day)
-    .replace('HH', hours)
-    .replace('mm', minutes)
-    .replace('ss', seconds);
-}
-
-export const useTheme = () => {
+export const useSettingsTheme = () => {
   /** Theme settings */
   const [settings, setSettings] = useAtom(themeAtom);
 
@@ -68,7 +49,7 @@ export const useTheme = () => {
   /** Watermark time date formatter */
   const formattedWatermarkTime = useMemo(() => {
     const { watermark } = settings;
-    return formatDate(watermarkTime, watermark.timeFormat);
+    return dayjs(watermarkTime).format(watermark.timeFormat);
   }, [watermarkTime, settings.watermark.timeFormat]);
 
   /** Watermark content */

@@ -1,12 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router';
 
 import { showNotification } from '@/config';
+import { router } from '@/features/router';
+import ThemeSchemaSegmented from '@/features/theme/ThemeSchemaSegmented';
+import ThemeSchemaSwitch from '@/features/theme/ThemeSchemaSwitch';
 import { $t } from '@/locales';
 
 import logo from '../logo.svg';
-
 import '../App.css';
-import { router } from '@/features/router';
 
 export const Route = createFileRoute('/')({
   component: App,
@@ -46,10 +47,6 @@ function App() {
         <IconGridiconsFullscreenExit />
         <IconGridiconsFullscreen />
 
-        <div className="flex text-400px text-primary">
-          <SvgIcon localIcon="expectation" />
-        </div>
-
         <p>
           Edit2 <code>src/routes/index.tsx</code> and save to reload.
         </p>
@@ -69,6 +66,8 @@ function App() {
         >
           Learn TanStack
         </a>
+        <ThemeSchemaSegmented />
+        <ThemeSchemaSwitch />
         <AButton
           onClick={() =>
             showNotification({

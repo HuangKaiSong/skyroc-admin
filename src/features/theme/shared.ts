@@ -7,6 +7,12 @@ import { localStg } from '@/utils/storage';
 import { overrideThemeSettings, themeSettings } from './settings';
 import { themeVars } from './vars';
 
+export const icons: Record<UnionKey.ThemeScheme, string> = {
+  dark: 'material-symbols:nightlight-rounded',
+  light: 'material-symbols:sunny',
+  auto: 'material-symbols:hdr-auto'
+};
+
 /** Dark mode class name */
 const DARK_CLASS = 'dark';
 
