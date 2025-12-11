@@ -1,10 +1,11 @@
+import { nanoid } from '@sa/utils';
 import axios, { AxiosError } from 'axios';
 import type { AxiosResponse, CreateAxiosDefaults, InternalAxiosRequestConfig } from 'axios';
 import axiosRetry from 'axios-retry';
-import { nanoid } from '@sa/utils';
+
+import { BACKEND_ERROR_CODE, REQUEST_ID_KEY } from './constant';
 import { createAxiosConfig, createDefaultOptions, createRetryOptions } from './options';
 import { transformResponse } from './shared';
-import { BACKEND_ERROR_CODE, REQUEST_ID_KEY } from './constant';
 import type {
   CustomAxiosRequestConfig,
   FlatRequestInstance,
@@ -92,11 +93,13 @@ function createCommonRequest<
   }
 
   return {
+    cancelAllRequest,
     instance,
-    opts,
-    cancelAllRequest
+    opts
   };
 }
+
+export type * from './type';
 
 /**
  * create a request instance
@@ -108,7 +111,7 @@ export function createRequest<ResponseData, ApiData, State extends Record<string
   axiosConfig?: CreateAxiosDefaults,
   options?: Partial<RequestOption<ResponseData, ApiData, State>>
 ) {
-  const { instance, opts, cancelAllRequest } = createCommonRequest<ResponseData, ApiData, State>(axiosConfig, options);
+  const { cancelAllRequest, instance, opts } = createCommonRequest<ResponseData, ApiData, State>(axiosConfig, options);
 
   const request: RequestInstance<ApiData, State> = async function request<
     T extends ApiData = ApiData,
@@ -143,7 +146,7 @@ export function createFlatRequest<ResponseData, ApiData, State extends Record<st
   axiosConfig?: CreateAxiosDefaults,
   options?: Partial<RequestOption<ResponseData, ApiData, State>>
 ) {
-  const { instance, opts, cancelAllRequest } = createCommonRequest<ResponseData, ApiData, State>(axiosConfig, options);
+  const { cancelAllRequest, instance, opts } = createCommonRequest<ResponseData, ApiData, State>(axiosConfig, options);
 
   const flatRequest: FlatRequestInstance<ResponseData, ApiData, State> = async function flatRequest<
     T extends ApiData = ApiData,
@@ -173,7 +176,5 @@ export function createFlatRequest<ResponseData, ApiData, State extends Record<st
 
   return flatRequest;
 }
-
 export { BACKEND_ERROR_CODE, REQUEST_ID_KEY };
-export type * from './type';
-export type { CreateAxiosDefaults, AxiosError };
+export type { AxiosError, CreateAxiosDefaults };

@@ -39,6 +39,7 @@
     "update-pkg": "sa update-pkg"
   },
   "dependencies": {
+    "@sa/axios": "workspace:*",
     "@sa/color": "workspace:*",
     "@sa/utils": "workspace:*",
     "@tanstack/react-router": "^1.140.0",

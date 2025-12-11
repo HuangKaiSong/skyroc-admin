@@ -1,12 +1,12 @@
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 export type ContentType =
-  | 'text/html'
-  | 'text/plain'
-  | 'multipart/form-data'
   | 'application/json'
+  | 'application/octet-stream'
   | 'application/x-www-form-urlencoded'
-  | 'application/octet-stream';
+  | 'multipart/form-data'
+  | 'text/html'
+  | 'text/plain';
 
 export type ResponseTransform<Input = any, Output = any> = (input: Input) => Output | Promise<Output>;
 
@@ -19,27 +19,6 @@ export interface RequestOption<
    * The default state
    */
   defaultState?: State;
-  /**
-   * transform the response data to the api data
-   *
-   * @param response Axios response
-   */
-  transform: ResponseTransform<AxiosResponse<ResponseData>, ApiData>;
-  /**
-   * transform the response data to the api data
-   *
-   * @deprecated use `transform` instead, will be removed in the next major version v3
-   * @param response Axios response
-   */
-  transformBackendResponse: ResponseTransform<AxiosResponse<ResponseData>, ApiData>;
-  /**
-   * The hook before request
-   *
-   * For example: You can add header token in this hook
-   *
-   * @param config Axios config
-   */
-  onRequest: (config: InternalAxiosRequestConfig) => InternalAxiosRequestConfig | Promise<InternalAxiosRequestConfig>;
   /**
    * The hook to check backend response is success or not
    *
@@ -66,14 +45,35 @@ export interface RequestOption<
    * @param error
    */
   onError: (error: AxiosError<ResponseData>) => void | Promise<void>;
+  /**
+   * The hook before request
+   *
+   * For example: You can add header token in this hook
+   *
+   * @param config Axios config
+   */
+  onRequest: (config: InternalAxiosRequestConfig) => InternalAxiosRequestConfig | Promise<InternalAxiosRequestConfig>;
+  /**
+   * transform the response data to the api data
+   *
+   * @param response Axios response
+   */
+  transform: ResponseTransform<AxiosResponse<ResponseData>, ApiData>;
+  /**
+   * transform the response data to the api data
+   *
+   * @deprecated use `transform` instead, will be removed in the next major version v3
+   * @param response Axios response
+   */
+  transformBackendResponse: ResponseTransform<AxiosResponse<ResponseData>, ApiData>;
 }
 
 interface ResponseMap {
-  blob: Blob;
-  text: string;
   arrayBuffer: ArrayBuffer;
-  stream: ReadableStream<Uint8Array>;
+  blob: Blob;
   document: Document;
+  stream: ReadableStream<Uint8Array>;
+  text: string;
 }
 export type ResponseType = keyof ResponseMap | 'json';
 

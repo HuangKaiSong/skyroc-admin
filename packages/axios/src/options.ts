@@ -1,6 +1,7 @@
 import type { CreateAxiosDefaults } from 'axios';
 import type { IAxiosRetryConfig } from 'axios-retry';
 import { stringify } from 'qs';
+
 import { isHttpSuccess } from './shared';
 import type { RequestOption } from './type';
 
@@ -11,12 +12,12 @@ export function createDefaultOptions<
 >(options?: Partial<RequestOption<ResponseData, ApiData, State>>) {
   const opts: RequestOption<ResponseData, ApiData, State> = {
     defaultState: {} as State,
-    transform: async response => response.data as unknown as ApiData,
-    transformBackendResponse: async response => response.data as unknown as ApiData,
-    onRequest: async config => config,
     isBackendSuccess: _response => true,
     onBackendFail: async () => {},
-    onError: async () => {}
+    onError: async () => {},
+    onRequest: async config => config,
+    transform: async response => response.data as unknown as ApiData,
+    transformBackendResponse: async response => response.data as unknown as ApiData
   };
 
   if (options?.transform) {
@@ -44,14 +45,14 @@ export function createAxiosConfig(config?: Partial<CreateAxiosDefaults>) {
   const TEN_SECONDS = 10 * 1000;
 
   const axiosConfig: CreateAxiosDefaults = {
-    timeout: TEN_SECONDS,
     headers: {
       'Content-Type': 'application/json'
     },
-    validateStatus: isHttpSuccess,
     paramsSerializer: params => {
       return stringify(params);
-    }
+    },
+    timeout: TEN_SECONDS,
+    validateStatus: isHttpSuccess
   };
 
   Object.assign(axiosConfig, config);
