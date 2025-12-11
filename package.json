@@ -40,6 +40,7 @@
   "dependencies": {
     "@sa/axios": "workspace:*",
     "@sa/color": "workspace:*",
+    "@sa/materials": "workspace:*",
     "@sa/utils": "workspace:*",
     "@tanstack/react-router": "^1.140.0",
     "ahooks": "^3.9.6",
