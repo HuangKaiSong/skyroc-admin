@@ -16,7 +16,7 @@ export function setupAutoImport(viteEnv: Env.ImportMeta) {
   const collectionName = VITE_ICON_LOCAL_PREFIX.replace(`${VITE_ICON_PREFIX}-`, '');
 
   return AutoImport({
-    dirs: ['src/hooks/**', 'src/components/**'],
+    dirs: ['src/hooks/**', 'src/components/**', 'src/config.ts'],
     dts: 'src/types/auto-imports.d.ts',
     imports: ['react', { from: 'react', imports: ['FC'], type: true }],
     include: [TSR_SPLIT_RE],

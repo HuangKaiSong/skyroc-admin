@@ -20,9 +20,30 @@ declare global {
   const cacheSignal: typeof import('react').cacheSignal
   const createContext: typeof import('react').createContext
   const createRef: typeof import('react').createRef
+  const destroyMessage: typeof import('../config').destroyMessage
+  const destroyNotification: typeof import('../config').destroyNotification
   const forwardRef: typeof import('react').forwardRef
+  const globalConfig: typeof import('../config').globalConfig
+  const initAntdProvider: typeof import('../config').initAntdProvider
   const lazy: typeof import('react').lazy
   const memo: typeof import('react').memo
+  const showConfirmModal: typeof import('../config').showConfirmModal
+  const showErrorMessage: typeof import('../config').showErrorMessage
+  const showErrorModal: typeof import('../config').showErrorModal
+  const showErrorNotification: typeof import('../config').showErrorNotification
+  const showInfoMessage: typeof import('../config').showInfoMessage
+  const showInfoModal: typeof import('../config').showInfoModal
+  const showInfoNotification: typeof import('../config').showInfoNotification
+  const showLoadingMessage: typeof import('../config').showLoadingMessage
+  const showMessage: typeof import('../config').showMessage
+  const showModal: typeof import('../config').showModal
+  const showNotification: typeof import('../config').showNotification
+  const showSuccessMessage: typeof import('../config').showSuccessMessage
+  const showSuccessModal: typeof import('../config').showSuccessModal
+  const showSuccessNotification: typeof import('../config').showSuccessNotification
+  const showWarningMessage: typeof import('../config').showWarningMessage
+  const showWarningModal: typeof import('../config').showWarningModal
+  const showWarningNotification: typeof import('../config').showWarningNotification
   const startTransition: typeof import('react').startTransition
   const use: typeof import('react').use
   const useActionState: typeof import('react').useActionState
