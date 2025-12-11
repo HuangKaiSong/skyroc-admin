@@ -1,61 +1,111 @@
 declare namespace I18n {
   type Theme = {
-    colourWeakness: string;
+    appearance: {
+      colourWeakness: string;
+      grayscale: string;
+      preset: {
+        apply: string;
+        applySuccess: string;
+        title: string;
+        [key: string]:
+          | {
+              desc: string;
+              name: string;
+            }
+          | string;
+      };
+      recommendColor: string;
+      recommendColorDesc: string;
+      themeColor: {
+        followPrimary: string;
+        title: string;
+      } & Record<Theme.ThemeColorKey, string>;
+      themeRadius: {
+        title: string;
+      };
+      themeSchema: { title: string } & Record<UnionKey.ThemeScheme, string>;
+    };
     configOperation: {
       copyConfig: string;
-      copyFailedMsg: string;
       copySuccessMsg: string;
       resetConfig: string;
       resetSuccessMsg: string;
     };
-    fixedHeaderAndTab: string;
-    footer: {
-      fixed: string;
-      height: string;
-      right: string;
-      visible: string;
-    };
-    grayscale: string;
-    header: {
-      breadcrumb: {
-        showIcon: string;
+    general: {
+      globalSearch: {
+        title: string;
         visible: string;
       };
-      height: string;
-    };
-    isOnlyExpandCurrentParentMenu: string;
-    layoutMode: { reverseHorizontalMix: string; title: string } & Record<UnionKey.ThemeLayoutMode, string>;
-    page: {
-      animate: string;
-      mode: { title: string } & Record<UnionKey.ThemePageAnimateMode, string>;
-    };
-    pageFunTitle: string;
-    recommendColor: string;
-    recommendColorDesc: string;
-    scrollMode: { title: string } & Record<UnionKey.ThemeScrollMode, string>;
-    sider: {
-      collapsedWidth: string;
-      inverted: string;
-      mixChildMenuWidth: string;
-      mixCollapsedWidth: string;
-      mixWidth: string;
-      width: string;
-    };
-    tab: {
-      cache: string;
-      height: string;
-      mode: { title: string } & Record<UnionKey.ThemeTabMode, string>;
-      visible: string;
-    };
-    themeColor: {
-      followPrimary: string;
+      multilingual: {
+        title: string;
+        visible: string;
+      };
       title: string;
-    } & Theme.ThemeColor;
-    themeDrawerTitle: string;
-    themeSchema: { title: string };
-    watermark: {
-      text: string;
-      visible: string;
+      watermark: {
+        enableTime: string;
+        enableUserName: string;
+        text: string;
+        timeFormat: string;
+        title: string;
+        visible: string;
+      };
     };
+    layout: {
+      content: {
+        fixedHeaderAndTab: string;
+        page: {
+          animate: string;
+          mode: { title: string } & Record<UnionKey.ThemePageAnimateMode, string>;
+        };
+        scrollMode: { tip: string; title: string } & Record<UnionKey.ThemeScrollMode, string>;
+        title: string;
+      };
+      footer: {
+        fixed: string;
+        height: string;
+        right: string;
+        title: string;
+        visible: string;
+      };
+      header: {
+        breadcrumb: {
+          showIcon: string;
+          visible: string;
+        };
+        height: string;
+        title: string;
+      };
+      layoutMode: { title: string } & Record<UnionKey.ThemeLayoutMode, string> & {
+          [K in `${UnionKey.ThemeLayoutMode}_detail`]: string;
+        };
+      sider: {
+        autoSelectFirstMenu: string;
+        autoSelectFirstMenuTip: string;
+        collapsedWidth: string;
+        inverted: string;
+        mixChildMenuWidth: string;
+        mixCollapsedWidth: string;
+        mixWidth: string;
+        title: string;
+        width: string;
+      };
+      tab: {
+        cache: string;
+        cacheTip: string;
+        closeByMiddleClick: string;
+        closeByMiddleClickTip: string;
+        height: string;
+        mode: { title: string } & Record<UnionKey.ThemeTabMode, string>;
+        title: string;
+        visible: string;
+      };
+    };
+    tabs: {
+      appearance: string;
+      general: string;
+      layout: string;
+      preset: string;
+    };
+    themeDrawerTitle: string;
   };
 }
