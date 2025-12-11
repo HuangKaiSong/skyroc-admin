@@ -2,18 +2,19 @@ import { locale } from 'dayjs';
 
 import 'dayjs/locale/zh-cn';
 import 'dayjs/locale/en';
-import { globalConfig } from '@/config';
 
 /**
  * Set dayjs locale
  *
  * @param lang
  */
-export function setDayjsLocale() {
+export function setDayjsLocale(lang: I18n.LangType = 'zh-CN') {
   const localMap = {
-    'en-US': 'en',
-    'zh-CN': 'zh-cn'
+    'zh-CN': 'zh-cn',
+    'en-US': 'en'
   } satisfies Record<I18n.LangType, string>;
 
-  locale(localMap[globalConfig.defaultLang]);
+  const l = lang || globalConfig.defaultLang;
+
+  locale(localMap[l]);
 }
