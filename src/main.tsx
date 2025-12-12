@@ -9,7 +9,7 @@ import './plugins/assets';
 import { setupNProgress } from './plugins/nprogress';
 
 function setupApp() {
-  const container = document.getElementById('root');
+  const container = document.getElementById('app');
 
   if (!container) return;
 
