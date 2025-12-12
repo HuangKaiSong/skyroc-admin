@@ -1,4 +1,6 @@
-import { useAuthStore } from '@/store/modules/auth';
+import { setAuth } from '@/features/auth/use-auth';
+import { globalStore } from '@/features/jotai/store';
+import { router } from '@/features/router';
 import { localStg } from '@/utils/storage';
 
 import { fetchRefreshToken } from '../api';
@@ -19,13 +21,13 @@ export async function handleRefreshToken() {
   const refreshToken = localStg.get('refreshToken') || '';
   try {
     const data = await fetchRefreshToken(refreshToken);
-    localStg.set('token', data.token);
-    localStg.set('refreshToken', data.refreshToken);
+
+    setAuth(data);
     return true;
   } catch {
-    const location = router.reactRouter.state.location;
+    const location = router.state.location;
     const fullPath = location.pathname + location.search + location.hash;
-    router.push('/login-out', { query: { redirect: fullPath } });
+    // router.navigate({ to: '/login-out', search: { redirect: fullPath } });
     return false;
   }
 }

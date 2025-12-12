@@ -9,14 +9,20 @@ declare global {
   const AApp: typeof import('antd').App
   const AButton: typeof import('antd').Button
   const ACard: typeof import('antd').Card
+  const ACheckbox: typeof import('antd').Checkbox
   const AConfigProvider: typeof import('antd').ConfigProvider
+  const ADivider: typeof import('antd').Divider
   const ADropdown: typeof import('antd').Dropdown
+  const AForm: typeof import('antd').Form
+  const AInput: typeof import('antd').Input
   const ASegmented: typeof import('antd').Segmented
+  const ASpace: typeof import('antd').Space
   const ATooltip: typeof import('antd').Tooltip
   const AWatermark: typeof import('antd').Watermark
   const Activity: typeof import('react').Activity
   const ButtonIcon: typeof import('../components/ButtonIcon').default
   const DarkModeContainer: typeof import('../components/DarkModeContainer').default
+  const ErrorBoundary: typeof import('../components/ErrorBoundary').default
   const ExceptionBase: typeof import('../components/ExceptionBase').default
   const FilpText: typeof import('../components/FilpText').default
   const Fragment: typeof import('react').Fragment
@@ -104,6 +110,7 @@ declare global {
   const useKeyPress: typeof import('ahooks').useKeyPress
   const useLatest: typeof import('ahooks').useLatest
   const useLayoutEffect: typeof import('react').useLayoutEffect
+  const useLoading: typeof import('../hooks/use-loading').default
   const useLocalStorageState: typeof import('ahooks').useLocalStorageState
   const useLockFn: typeof import('ahooks').useLockFn
   const useLongPress: typeof import('ahooks').useLongPress

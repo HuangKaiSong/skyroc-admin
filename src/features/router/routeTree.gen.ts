@@ -9,38 +9,72 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './../../pages/__root'
+import { Route as LoginLayoutRouteImport } from './../../pages/login/layout'
 import { Route as IndexRouteImport } from './../../pages/index'
+import { Route as LoginIndexRouteImport } from './../../pages/login/index'
+import { Route as LoginResetPwdRouteImport } from './../../pages/login/reset-pwd'
 
+const LoginLayoutRoute = LoginLayoutRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginIndexRoute = LoginIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LoginLayoutRoute,
+} as any)
+const LoginResetPwdRoute = LoginResetPwdRouteImport.update({
+  id: '/reset-pwd',
+  path: '/reset-pwd',
+  getParentRoute: () => LoginLayoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginLayoutRouteWithChildren
+  '/login/reset-pwd': typeof LoginResetPwdRoute
+  '/login/': typeof LoginIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login/reset-pwd': typeof LoginResetPwdRoute
+  '/login': typeof LoginIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/login': typeof LoginLayoutRouteWithChildren
+  '/login/reset-pwd': typeof LoginResetPwdRoute
+  '/login/': typeof LoginIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/login' | '/login/reset-pwd' | '/login/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/login/reset-pwd' | '/login'
+  id: '__root__' | '/' | '/login' | '/login/reset-pwd' | '/login/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoginLayoutRoute: typeof LoginLayoutRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginLayoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +82,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login/': {
+      id: '/login/'
+      path: '/'
+      fullPath: '/login/'
+      preLoaderRoute: typeof LoginIndexRouteImport
+      parentRoute: typeof LoginLayoutRoute
+    }
+    '/login/reset-pwd': {
+      id: '/login/reset-pwd'
+      path: '/reset-pwd'
+      fullPath: '/login/reset-pwd'
+      preLoaderRoute: typeof LoginResetPwdRouteImport
+      parentRoute: typeof LoginLayoutRoute
+    }
   }
 }
 
+interface LoginLayoutRouteChildren {
+  LoginResetPwdRoute: typeof LoginResetPwdRoute
+  LoginIndexRoute: typeof LoginIndexRoute
+}
+
+const LoginLayoutRouteChildren: LoginLayoutRouteChildren = {
+  LoginResetPwdRoute: LoginResetPwdRoute,
+  LoginIndexRoute: LoginIndexRoute,
+}
+
+const LoginLayoutRouteWithChildren = LoginLayoutRoute._addFileChildren(
+  LoginLayoutRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoginLayoutRoute: LoginLayoutRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
