@@ -7,6 +7,7 @@ export function setupRouterPlugins() {
       generatedRouteTree: './src/features/router/routeTree.gen.ts',
       routeFileIgnorePattern: '(?:^|/)(components|modules)(?:/|$)|(?:^|/)(loading|error|not-found)(?:.tsx?|$)',
       routesDirectory: './src/pages',
+      routeToken: 'layout',
       target: 'react'
     })
   ];
