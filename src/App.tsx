@@ -1,3 +1,4 @@
+import LazyAnimate from './features/animate/LazyMotion';
 import AntdContextHolder from './features/antd/AntdContextHolder';
 import AntdProvider from './features/antd/AntdProvider';
 import GlobalEffect from './features/effects/GlobalEffect';
@@ -8,8 +9,10 @@ const App = () => (
   <JotaiProvider>
     <AntdProvider>
       <AntdContextHolder>
-        <RouterProvider />
-        <GlobalEffect />
+        <LazyAnimate>
+          <RouterProvider />
+          <GlobalEffect />
+        </LazyAnimate>
       </AntdContextHolder>
     </AntdProvider>
   </JotaiProvider>
