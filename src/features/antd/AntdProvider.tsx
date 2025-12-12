@@ -26,8 +26,9 @@ const AntdProvider = ({ children }: PropsWithChildren) => {
         className="h-full"
         content={globalConfig.watermarkText}
         {...globalConfig.watermarkConfig}
-      />
-      {children}
+      >
+        {children}
+      </AWatermark>
     </AConfigProvider>
   );
 };
