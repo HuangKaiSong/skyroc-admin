@@ -4,6 +4,7 @@ import type { ModalFunc } from 'antd/es/modal/confirm';
 import type { HookAPI as ModalHookAPI } from 'antd/es/modal/useModal';
 import type { ArgsProps, NotificationInstance } from 'antd/es/notification/interface';
 
+import { themeSettings } from './features/theme/settings';
 import { localStg } from './utils/storage';
 
 const _ui = {
@@ -26,16 +27,26 @@ export function initAntdProvider(message: MessageInstance, modal: ModalHookAPI, 
 
 function createConfig() {
   return {
+    // ======System Config======
     /** - 是否自动检测更新 */
     automaticallyDetectUpdate: true,
 
     localIconPrefix: import.meta.env.VITE_ICON_LOCAL_PREFIX,
+
+    // ======Theme Config======
+    /** - 默认主题配置 */
+    get defaultThemeColor(): string {
+      return localStg.get('themeColor') || themeSettings.themeColor;
+    },
+    get defaultDarkMode(): boolean {
+      return localStg.get('darkMode') || themeSettings.themeScheme === 'dark';
+    },
+
     // ======Lang Config======
     /** - 默认语言配置 */
     get defaultLang(): I18n.LangType {
       return localStg.get('lang') || 'zh-CN';
     },
-
     /** - 默认语言选项 */
     get defaultLangOptions(): I18n.LangOption[] {
       return [
@@ -49,6 +60,7 @@ function createConfig() {
         }
       ];
     },
+
     // ======Antd UI Config======
     /** - antd 消息实例 */
     get message(): MessageInstance {
