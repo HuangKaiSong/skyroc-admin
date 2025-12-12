@@ -16,16 +16,16 @@ interface Props {
 }
 
 const DEFAULT_ANIMATION_DURATION = 400;
-const DEFAULT_ANIMATION_EASING = 'ease-out';
+const DEFAULT_ANIMATION_EASING = 'ease-in-out';
 
 const ThemeSchemaSwitch: FC<Props> = memo(({ showTooltip = true, tooltipPlacement = 'bottom', ...props }) => {
   const { t } = useTranslation();
 
-  const { darkMode, themeScheme, toggleThemeScheme } = useSettingsTheme();
+  const { themeScheme, toggleThemeScheme } = useSettingsTheme();
 
   const tooltipContent = showTooltip ? t('icon.themeSchema') : '';
 
-  const toggleDark: ButtonProps['onClick'] = event => {
+  const toggleDark: ButtonProps['onClick'] = async event => {
     const isAppearanceTransition = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (!isAppearanceTransition) {
@@ -33,9 +33,9 @@ const ThemeSchemaSwitch: FC<Props> = memo(({ showTooltip = true, tooltipPlacemen
       return;
     }
 
-    const transition = document.startViewTransition(() => {
+    await document.startViewTransition(() => {
       toggleThemeScheme();
-    });
+    }).ready;
 
     if (themeScheme === 'auto') return;
 
@@ -43,19 +43,18 @@ const ThemeSchemaSwitch: FC<Props> = memo(({ showTooltip = true, tooltipPlacemen
     const y = event.clientY;
     const endRadius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
 
-    transition.ready.then(() => {
-      const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`];
-      document.documentElement.animate(
-        {
-          clipPath: darkMode ? [...clipPath].reverse() : clipPath
-        },
-        {
-          duration: DEFAULT_ANIMATION_DURATION,
-          easing: DEFAULT_ANIMATION_EASING,
-          pseudoElement: darkMode ? '::view-transition-old(root)' : '::view-transition-new(root)'
-        }
-      );
-    });
+    const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`];
+
+    document.documentElement.animate(
+      {
+        clipPath
+      },
+      {
+        duration: DEFAULT_ANIMATION_DURATION,
+        easing: DEFAULT_ANIMATION_EASING,
+        pseudoElement: '::view-transition-new(root)'
+      }
+    );
   };
   return (
     <ButtonIcon
