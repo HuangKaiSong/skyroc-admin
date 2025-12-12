@@ -57,6 +57,10 @@ const Login = () => {
     navigate({ to: '/login/reset-pwd' });
   }
 
+  function goRegister() {
+    navigate({ to: '/login/register' });
+  }
+
   useKeyPress('enter', () => {
     form.submit();
   });
@@ -122,6 +126,7 @@ const Login = () => {
             <AButton
               block
               className="flex-1"
+              onClick={goRegister}
             >
               {t(loginModuleRecord.register) as string}
             </AButton>

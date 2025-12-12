@@ -69,11 +69,12 @@ declare global {
   const useAsyncEffect: typeof import('ahooks').useAsyncEffect
   const useBoolean: typeof import('ahooks').useBoolean
   const useCallback: typeof import('react').useCallback
+  const useCaptcha: typeof import('../hooks/use-captcha').useCaptcha
   const useClickAway: typeof import('ahooks').useClickAway
   const useContext: typeof import('react').useContext
   const useControllableValue: typeof import('ahooks').useControllableValue
   const useCookieState: typeof import('ahooks').useCookieState
-  const useCountDown: typeof import('ahooks').useCountDown
+  const useCountDown: typeof import('../hooks/use-count-down').default
   const useCounter: typeof import('ahooks').useCounter
   const useCreation: typeof import('ahooks').useCreation
   const useDebounce: typeof import('ahooks').useDebounce
