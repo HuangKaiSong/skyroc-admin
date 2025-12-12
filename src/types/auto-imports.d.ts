@@ -8,6 +8,7 @@ export {}
 declare global {
   const AApp: typeof import('antd').App
   const AButton: typeof import('antd').Button
+  const ACard: typeof import('antd').Card
   const AConfigProvider: typeof import('antd').ConfigProvider
   const ADropdown: typeof import('antd').Dropdown
   const ASegmented: typeof import('antd').Segmented
@@ -16,6 +17,7 @@ declare global {
   const Activity: typeof import('react').Activity
   const ButtonIcon: typeof import('../components/ButtonIcon').default
   const DarkModeContainer: typeof import('../components/DarkModeContainer').default
+  const FilpText: typeof import('../components/FilpText').default
   const Fragment: typeof import('react').Fragment
   const IconGridiconsFullscreen: typeof import('~icons/gridicons/fullscreen.tsx').default
   const IconGridiconsFullscreenExit: typeof import('~icons/gridicons/fullscreen-exit.tsx').default
@@ -24,6 +26,7 @@ declare global {
   const Suspense: typeof import('react').Suspense
   const SvgIcon: typeof import('../components/SvgIcon').default
   const SystemLogo: typeof import('../components/SystemLogo').default
+  const WaveBg: typeof import('../components/WaveBg').default
   const cache: typeof import('react').cache
   const cacheSignal: typeof import('react').cacheSignal
   const createContext: typeof import('react').createContext
