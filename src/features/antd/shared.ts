@@ -38,6 +38,7 @@ export function getAntdTheme(colors: Theme.ThemeColor, darkMode: boolean, tokens
       colorError: error,
       colorInfo: info,
       colorPrimary: primary,
+      borderRadius: 8,
       colorSuccess: success,
       colorWarning: warning
     }
