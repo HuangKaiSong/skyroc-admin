@@ -17,8 +17,15 @@ export const router = createRouter({
   defaultPendingMs: 10,
   defaultPendingMinMs: 1000,
   defaultStructuralSharing: true,
+  notFoundMode: 'root',
   routeTree,
   scrollRestoration: true
 });
 
 export type RouterConfig = typeof router;
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: RouterConfig;
+  }
+}
