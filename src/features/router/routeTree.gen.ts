@@ -9,15 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './../../pages/__root'
-import { Route as LoginLayoutRouteImport } from './../../pages/login/layout'
+import { Route as adminLayoutRouteImport } from './../../pages/(admin)/layout'
 import { Route as IndexRouteImport } from './../../pages/index'
-import { Route as LoginIndexRouteImport } from './../../pages/login/index'
-import { Route as LoginResetPwdRouteImport } from './../../pages/login/reset-pwd'
-import { Route as LoginRegisterRouteImport } from './../../pages/login/register'
+import { Route as authLoginOutRouteImport } from './../../pages/(auth)/login-out'
+import { Route as authLoginLayoutRouteImport } from './../../pages/(auth)/login/layout'
+import { Route as authLoginIndexRouteImport } from './../../pages/(auth)/login/index'
+import { Route as adminHomeIndexRouteImport } from './../../pages/(admin)/home/index'
+import { Route as authLoginResetPwdRouteImport } from './../../pages/(auth)/login/reset-pwd'
+import { Route as authLoginRegisterRouteImport } from './../../pages/(auth)/login/register'
+import { Route as authLoginCodeLoginRouteImport } from './../../pages/(auth)/login/code-login'
 
-const LoginLayoutRoute = LoginLayoutRouteImport.update({
-  id: '/login',
-  path: '/login',
+const adminLayoutRoute = adminLayoutRouteImport.update({
+  id: '/(admin)',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,69 +28,120 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LoginIndexRoute = LoginIndexRouteImport.update({
+const authLoginOutRoute = authLoginOutRouteImport.update({
+  id: '/(auth)/login-out',
+  path: '/login-out',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const authLoginLayoutRoute = authLoginLayoutRouteImport.update({
+  id: '/(auth)/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const authLoginIndexRoute = authLoginIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => LoginLayoutRoute,
+  getParentRoute: () => authLoginLayoutRoute,
 } as any)
-const LoginResetPwdRoute = LoginResetPwdRouteImport.update({
+const adminHomeIndexRoute = adminHomeIndexRouteImport.update({
+  id: '/home/',
+  path: '/home/',
+  getParentRoute: () => adminLayoutRoute,
+} as any)
+const authLoginResetPwdRoute = authLoginResetPwdRouteImport.update({
   id: '/reset-pwd',
   path: '/reset-pwd',
-  getParentRoute: () => LoginLayoutRoute,
+  getParentRoute: () => authLoginLayoutRoute,
 } as any)
-const LoginRegisterRoute = LoginRegisterRouteImport.update({
+const authLoginRegisterRoute = authLoginRegisterRouteImport.update({
   id: '/register',
   path: '/register',
-  getParentRoute: () => LoginLayoutRoute,
+  getParentRoute: () => authLoginLayoutRoute,
+} as any)
+const authLoginCodeLoginRoute = authLoginCodeLoginRouteImport.update({
+  id: '/code-login',
+  path: '/code-login',
+  getParentRoute: () => authLoginLayoutRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/login': typeof LoginLayoutRouteWithChildren
-  '/login/register': typeof LoginRegisterRoute
-  '/login/reset-pwd': typeof LoginResetPwdRoute
-  '/login/': typeof LoginIndexRoute
+  '/login': typeof authLoginLayoutRouteWithChildren
+  '/login-out': typeof authLoginOutRoute
+  '/login/code-login': typeof authLoginCodeLoginRoute
+  '/login/register': typeof authLoginRegisterRoute
+  '/login/reset-pwd': typeof authLoginResetPwdRoute
+  '/home': typeof adminHomeIndexRoute
+  '/login/': typeof authLoginIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/login/register': typeof LoginRegisterRoute
-  '/login/reset-pwd': typeof LoginResetPwdRoute
-  '/login': typeof LoginIndexRoute
+  '/login-out': typeof authLoginOutRoute
+  '/login/code-login': typeof authLoginCodeLoginRoute
+  '/login/register': typeof authLoginRegisterRoute
+  '/login/reset-pwd': typeof authLoginResetPwdRoute
+  '/home': typeof adminHomeIndexRoute
+  '/login': typeof authLoginIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/login': typeof LoginLayoutRouteWithChildren
-  '/login/register': typeof LoginRegisterRoute
-  '/login/reset-pwd': typeof LoginResetPwdRoute
-  '/login/': typeof LoginIndexRoute
+  '/(admin)': typeof adminLayoutRouteWithChildren
+  '/(auth)/login': typeof authLoginLayoutRouteWithChildren
+  '/(auth)/login-out': typeof authLoginOutRoute
+  '/(auth)/login/code-login': typeof authLoginCodeLoginRoute
+  '/(auth)/login/register': typeof authLoginRegisterRoute
+  '/(auth)/login/reset-pwd': typeof authLoginResetPwdRoute
+  '/(admin)/home/': typeof adminHomeIndexRoute
+  '/(auth)/login/': typeof authLoginIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/login/register' | '/login/reset-pwd' | '/login/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/login-out'
+    | '/login/code-login'
+    | '/login/register'
+    | '/login/reset-pwd'
+    | '/home'
+    | '/login/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login/register' | '/login/reset-pwd' | '/login'
+  to:
+    | '/'
+    | '/login-out'
+    | '/login/code-login'
+    | '/login/register'
+    | '/login/reset-pwd'
+    | '/home'
+    | '/login'
   id:
     | '__root__'
     | '/'
-    | '/login'
-    | '/login/register'
-    | '/login/reset-pwd'
-    | '/login/'
+    | '/(admin)'
+    | '/(auth)/login'
+    | '/(auth)/login-out'
+    | '/(auth)/login/code-login'
+    | '/(auth)/login/register'
+    | '/(auth)/login/reset-pwd'
+    | '/(admin)/home/'
+    | '/(auth)/login/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  LoginLayoutRoute: typeof LoginLayoutRouteWithChildren
+  adminLayoutRoute: typeof adminLayoutRouteWithChildren
+  authLoginLayoutRoute: typeof authLoginLayoutRouteWithChildren
+  authLoginOutRoute: typeof authLoginOutRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginLayoutRouteImport
+    '/(admin)': {
+      id: '/(admin)'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof adminLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -97,49 +151,93 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/login/': {
-      id: '/login/'
+    '/(auth)/login-out': {
+      id: '/(auth)/login-out'
+      path: '/login-out'
+      fullPath: '/login-out'
+      preLoaderRoute: typeof authLoginOutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(auth)/login': {
+      id: '/(auth)/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof authLoginLayoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(auth)/login/': {
+      id: '/(auth)/login/'
       path: '/'
       fullPath: '/login/'
-      preLoaderRoute: typeof LoginIndexRouteImport
-      parentRoute: typeof LoginLayoutRoute
+      preLoaderRoute: typeof authLoginIndexRouteImport
+      parentRoute: typeof authLoginLayoutRoute
     }
-    '/login/reset-pwd': {
-      id: '/login/reset-pwd'
+    '/(admin)/home/': {
+      id: '/(admin)/home/'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof adminHomeIndexRouteImport
+      parentRoute: typeof adminLayoutRoute
+    }
+    '/(auth)/login/reset-pwd': {
+      id: '/(auth)/login/reset-pwd'
       path: '/reset-pwd'
       fullPath: '/login/reset-pwd'
-      preLoaderRoute: typeof LoginResetPwdRouteImport
-      parentRoute: typeof LoginLayoutRoute
+      preLoaderRoute: typeof authLoginResetPwdRouteImport
+      parentRoute: typeof authLoginLayoutRoute
     }
-    '/login/register': {
-      id: '/login/register'
+    '/(auth)/login/register': {
+      id: '/(auth)/login/register'
       path: '/register'
       fullPath: '/login/register'
-      preLoaderRoute: typeof LoginRegisterRouteImport
-      parentRoute: typeof LoginLayoutRoute
+      preLoaderRoute: typeof authLoginRegisterRouteImport
+      parentRoute: typeof authLoginLayoutRoute
+    }
+    '/(auth)/login/code-login': {
+      id: '/(auth)/login/code-login'
+      path: '/code-login'
+      fullPath: '/login/code-login'
+      preLoaderRoute: typeof authLoginCodeLoginRouteImport
+      parentRoute: typeof authLoginLayoutRoute
     }
   }
 }
 
-interface LoginLayoutRouteChildren {
-  LoginRegisterRoute: typeof LoginRegisterRoute
-  LoginResetPwdRoute: typeof LoginResetPwdRoute
-  LoginIndexRoute: typeof LoginIndexRoute
+interface adminLayoutRouteChildren {
+  adminHomeIndexRoute: typeof adminHomeIndexRoute
 }
 
-const LoginLayoutRouteChildren: LoginLayoutRouteChildren = {
-  LoginRegisterRoute: LoginRegisterRoute,
-  LoginResetPwdRoute: LoginResetPwdRoute,
-  LoginIndexRoute: LoginIndexRoute,
+const adminLayoutRouteChildren: adminLayoutRouteChildren = {
+  adminHomeIndexRoute: adminHomeIndexRoute,
 }
 
-const LoginLayoutRouteWithChildren = LoginLayoutRoute._addFileChildren(
-  LoginLayoutRouteChildren,
+const adminLayoutRouteWithChildren = adminLayoutRoute._addFileChildren(
+  adminLayoutRouteChildren,
+)
+
+interface authLoginLayoutRouteChildren {
+  authLoginCodeLoginRoute: typeof authLoginCodeLoginRoute
+  authLoginRegisterRoute: typeof authLoginRegisterRoute
+  authLoginResetPwdRoute: typeof authLoginResetPwdRoute
+  authLoginIndexRoute: typeof authLoginIndexRoute
+}
+
+const authLoginLayoutRouteChildren: authLoginLayoutRouteChildren = {
+  authLoginCodeLoginRoute: authLoginCodeLoginRoute,
+  authLoginRegisterRoute: authLoginRegisterRoute,
+  authLoginResetPwdRoute: authLoginResetPwdRoute,
+  authLoginIndexRoute: authLoginIndexRoute,
+}
+
+const authLoginLayoutRouteWithChildren = authLoginLayoutRoute._addFileChildren(
+  authLoginLayoutRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  LoginLayoutRoute: LoginLayoutRouteWithChildren,
+  adminLayoutRoute: adminLayoutRouteWithChildren,
+  authLoginLayoutRoute: authLoginLayoutRouteWithChildren,
+  authLoginOutRoute: authLoginOutRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
