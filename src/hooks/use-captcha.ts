@@ -1,6 +1,6 @@
 import { REG_PHONE } from '@/constants/reg';
 
-import useCountDownTimer from './use-count-down';
+import useCountDownTimer from './use-count-down-timer';
 
 export function useCaptcha() {
   const { endLoading, loading, startLoading } = useLoading();
