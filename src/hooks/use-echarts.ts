@@ -107,15 +107,6 @@ export function useEcharts<T extends ECOption>(optionsFactory: () => T, hooks: C
     }
   } = hooks;
 
-  /**
-   * whether can render chart
-   *
-   * when domRef is ready and initialSize is valid
-   */
-  function canRender() {
-    return domRef.current && initialSize.width > 0 && initialSize.height > 0;
-  }
-
   /** is chart rendered */
   function isRendered() {
     return Boolean(domRef.current && chart.current);
@@ -190,24 +181,16 @@ export function useEcharts<T extends ECOption>(optionsFactory: () => T, hooks: C
     initialSize.width = w;
     initialSize.height = h;
 
-    // size is abnormal, destroy chart
-    if (!canRender()) {
-      await destroy();
-
-      return;
-    }
-
     // resize chart
     if (isRendered()) {
       resize();
+      return;
     }
 
     // render chart
     await render();
 
-    if (chart.current) {
-      await onUpdated?.(chart.current);
-    }
+    // Don't hide loading here - let it hide when data is actually loaded
   }
   useUnmount(() => {
     destroy();
@@ -223,6 +206,7 @@ export function useEcharts<T extends ECOption>(optionsFactory: () => T, hooks: C
 
   return {
     domRef,
+    chart,
     setOptions,
     updateOptions
   };
