@@ -1,23 +1,46 @@
 import type { ButtonProps, TooltipProps } from 'antd';
-import { type CSSProperties } from 'react';
+import clsx from 'clsx';
+import type { CSSProperties } from 'react';
 
+import type { ButtonLinkComponentProps } from './ButtonLink';
+import ButtonLink from './ButtonLink';
 import SvgIcon from './SvgIcon';
 
-interface Props extends Omit<ButtonProps, 'icon' | 'iconPosition'> {
+type BaseProps = {
   children?: React.ReactNode;
   /** Button class */
   className?: string;
+  /** Tooltip class names */
+  classNames?: {
+    button?: string;
+    icon?: string;
+    tooltip?: TooltipProps['classNames'];
+  };
   /** Iconify icon name */
   icon?: string;
-  style?: CSSProperties;
+  styles?: {
+    button?: ButtonProps['styles'];
+    icon?: CSSProperties;
+    tooltip?: TooltipProps['styles'];
+  };
+
   /** Tooltip content */
   tooltipContent?: string;
   /** Tooltip placement */
   tooltipPlacement?: TooltipProps['placement'];
+  /** Tooltip props */
+  tooltipProps?: Omit<TooltipProps, 'children' | 'classNames' | 'getPopupContainer' | 'placement' | 'title' | 'zIndex'>;
   /** Trigger tooltip on parent */
   triggerParent?: boolean;
+  /** z-index */
   zIndex?: number;
-}
+};
+
+type WithButtonProps = Omit<ButtonProps, 'icon' | 'iconPosition'> & BaseProps;
+
+type WithLinkProps = Partial<Omit<ButtonLinkComponentProps, 'icon' | 'iconPosition'>> & BaseProps;
+
+type Props = WithButtonProps | WithLinkProps;
 
 /** - 动态计算class */
 const computeClass = (className: string) => {
@@ -34,15 +57,15 @@ const computeClass = (className: string) => {
   return clsStr;
 };
 
-/** - 生成复用的button */
-
 const ButtonIcon = ({
   children,
   className = 'h-36px text-icon',
+  classNames,
   icon,
-  style,
+  styles,
   tooltipContent,
   tooltipPlacement = 'bottom',
+  tooltipProps,
   triggerParent,
   zIndex = 98,
   ...rest
@@ -53,27 +76,36 @@ const ButtonIcon = ({
     return triggerParent ? triggerNode.parentElement! : document.body;
   }
 
+  const Comp = 'to' in rest ? ButtonLink : AButton;
+
+  const typeProps = 'to' in rest ? { btnType: 'text' as const } : { type: 'text' as const };
+
   return (
     <ATooltip
+      classNames={classNames?.tooltip}
       getPopupContainer={getPopupContainer}
       placement={tooltipPlacement}
+      styles={styles?.tooltip}
       title={tooltipContent}
       zIndex={zIndex}
+      {...tooltipProps}
     >
-      <AButton
-        className={cls}
-        type="text"
+      <Comp
+        className={clsx(classNames?.button, cls)}
+        {...typeProps}
         {...rest}
+        styles={styles?.button}
       >
         <div className="flex-center gap-8px">
           {children || (
             <SvgIcon
+              className={classNames?.icon}
               icon={icon}
-              style={style}
+              style={styles?.icon}
             />
           )}
         </div>
-      </AButton>
+      </Comp>
     </ATooltip>
   );
 };

@@ -1,5 +1,5 @@
 import { createLink } from '@tanstack/react-router';
-import type { LinkComponent } from '@tanstack/react-router';
+import type { LinkComponent, LinkComponentProps } from '@tanstack/react-router';
 import { Button } from 'antd';
 import type { ButtonProps } from 'antd';
 import type { Ref } from 'react';
@@ -24,6 +24,8 @@ const ButtonLinkComponent = (props: ButtonLinkProps) => {
     />
   );
 };
+
+export type ButtonLinkComponentProps = LinkComponentProps<typeof ButtonLinkComponent>;
 
 const CreatedButtonLinkComponent = createLink(ButtonLinkComponent);
 

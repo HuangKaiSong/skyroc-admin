@@ -25,6 +25,7 @@ declare global {
   const AWatermark: typeof import('antd').Watermark
   const Activity: typeof import('react').Activity
   const ButtonIcon: typeof import('../components/ButtonIcon').default
+  const ButtonLink: typeof import('../components/ButtonLink').default
   const DarkModeContainer: typeof import('../components/DarkModeContainer').default
   const ErrorBoundary: typeof import('../components/ErrorBoundary').default
   const ExceptionBase: typeof import('../components/ExceptionBase').default
@@ -187,4 +188,7 @@ declare global {
   // @ts-ignore
   export type { ThemeName } from '../hooks/use-preferred-color-scheme'
   import('../hooks/use-preferred-color-scheme')
+  // @ts-ignore
+  export type { ButtonLinkComponentProps } from '../components/ButtonLink'
+  import('../components/ButtonLink')
 }
