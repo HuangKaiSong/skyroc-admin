@@ -12,6 +12,7 @@ declare global {
   const ACheckbox: typeof import('antd').Checkbox
   const ACol: typeof import('antd').Col
   const AConfigProvider: typeof import('antd').ConfigProvider
+  const ADescriptions: typeof import('antd').Descriptions
   const ADivider: typeof import('antd').Divider
   const ADropdown: typeof import('antd').Dropdown
   const AForm: typeof import('antd').Form
@@ -21,6 +22,7 @@ declare global {
   const ASegmented: typeof import('antd').Segmented
   const ASpace: typeof import('antd').Space
   const AStatistic: typeof import('antd').Statistic
+  const ATag: typeof import('antd').Tag
   const ATooltip: typeof import('antd').Tooltip
   const AWatermark: typeof import('antd').Watermark
   const Activity: typeof import('react').Activity
@@ -42,6 +44,7 @@ declare global {
   const Suspense: typeof import('react').Suspense
   const SvgIcon: typeof import('../components/SvgIcon').default
   const SystemLogo: typeof import('../components/SystemLogo').default
+  const TypingAnimation: typeof import('../components/TypingAnimation').TypingAnimation
   const WaveBg: typeof import('../components/WaveBg').default
   const cache: typeof import('react').cache
   const cacheSignal: typeof import('react').cacheSignal
