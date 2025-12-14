@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './../../pages/__root'
 import { Route as adminLayoutRouteImport } from './../../pages/(admin)/layout'
 import { Route as IndexRouteImport } from './../../pages/index'
+import { Route as errors500RouteImport } from './../../pages/(errors)/500'
+import { Route as errors404RouteImport } from './../../pages/(errors)/404'
+import { Route as errors403RouteImport } from './../../pages/(errors)/403'
 import { Route as authLoginOutRouteImport } from './../../pages/(auth)/login-out'
 import { Route as authLoginLayoutRouteImport } from './../../pages/(auth)/login/layout'
 import { Route as authLoginIndexRouteImport } from './../../pages/(auth)/login/index'
@@ -26,6 +29,21 @@ const adminLayoutRoute = adminLayoutRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const errors500Route = errors500RouteImport.update({
+  id: '/(errors)/500',
+  path: '/500',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const errors404Route = errors404RouteImport.update({
+  id: '/(errors)/404',
+  path: '/404',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const errors403Route = errors403RouteImport.update({
+  id: '/(errors)/403',
+  path: '/403',
   getParentRoute: () => rootRouteImport,
 } as any)
 const authLoginOutRoute = authLoginOutRouteImport.update({
@@ -68,6 +86,9 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof authLoginLayoutRouteWithChildren
   '/login-out': typeof authLoginOutRoute
+  '/403': typeof errors403Route
+  '/404': typeof errors404Route
+  '/500': typeof errors500Route
   '/login/code-login': typeof authLoginCodeLoginRoute
   '/login/register': typeof authLoginRegisterRoute
   '/login/reset-pwd': typeof authLoginResetPwdRoute
@@ -77,6 +98,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login-out': typeof authLoginOutRoute
+  '/403': typeof errors403Route
+  '/404': typeof errors404Route
+  '/500': typeof errors500Route
   '/login/code-login': typeof authLoginCodeLoginRoute
   '/login/register': typeof authLoginRegisterRoute
   '/login/reset-pwd': typeof authLoginResetPwdRoute
@@ -89,6 +113,9 @@ export interface FileRoutesById {
   '/(admin)': typeof adminLayoutRouteWithChildren
   '/(auth)/login': typeof authLoginLayoutRouteWithChildren
   '/(auth)/login-out': typeof authLoginOutRoute
+  '/(errors)/403': typeof errors403Route
+  '/(errors)/404': typeof errors404Route
+  '/(errors)/500': typeof errors500Route
   '/(auth)/login/code-login': typeof authLoginCodeLoginRoute
   '/(auth)/login/register': typeof authLoginRegisterRoute
   '/(auth)/login/reset-pwd': typeof authLoginResetPwdRoute
@@ -101,6 +128,9 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/login-out'
+    | '/403'
+    | '/404'
+    | '/500'
     | '/login/code-login'
     | '/login/register'
     | '/login/reset-pwd'
@@ -110,6 +140,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/login-out'
+    | '/403'
+    | '/404'
+    | '/500'
     | '/login/code-login'
     | '/login/register'
     | '/login/reset-pwd'
@@ -121,6 +154,9 @@ export interface FileRouteTypes {
     | '/(admin)'
     | '/(auth)/login'
     | '/(auth)/login-out'
+    | '/(errors)/403'
+    | '/(errors)/404'
+    | '/(errors)/500'
     | '/(auth)/login/code-login'
     | '/(auth)/login/register'
     | '/(auth)/login/reset-pwd'
@@ -133,6 +169,9 @@ export interface RootRouteChildren {
   adminLayoutRoute: typeof adminLayoutRouteWithChildren
   authLoginLayoutRoute: typeof authLoginLayoutRouteWithChildren
   authLoginOutRoute: typeof authLoginOutRoute
+  errors403Route: typeof errors403Route
+  errors404Route: typeof errors404Route
+  errors500Route: typeof errors500Route
 }
 
 declare module '@tanstack/react-router' {
@@ -149,6 +188,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(errors)/500': {
+      id: '/(errors)/500'
+      path: '/500'
+      fullPath: '/500'
+      preLoaderRoute: typeof errors500RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(errors)/404': {
+      id: '/(errors)/404'
+      path: '/404'
+      fullPath: '/404'
+      preLoaderRoute: typeof errors404RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(errors)/403': {
+      id: '/(errors)/403'
+      path: '/403'
+      fullPath: '/403'
+      preLoaderRoute: typeof errors403RouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(auth)/login-out': {
@@ -238,6 +298,9 @@ const rootRouteChildren: RootRouteChildren = {
   adminLayoutRoute: adminLayoutRouteWithChildren,
   authLoginLayoutRoute: authLoginLayoutRouteWithChildren,
   authLoginOutRoute: authLoginOutRoute,
+  errors403Route: errors403Route,
+  errors404Route: errors404Route,
+  errors500Route: errors500Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
