@@ -1,5 +1,4 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import z from 'zod';
+import { createFileRoute } from '@tanstack/react-router';
 
 import { loginModuleRecord } from '@/constants/app';
 import { useInitLogin } from '@/features/auth/use-login';
@@ -23,8 +22,6 @@ const Login = () => {
   const { t } = useTranslation();
 
   const [form] = AForm.useForm();
-
-  const navigate = useNavigate();
 
   const { loading, login } = useInitLogin();
 
@@ -53,23 +50,9 @@ const Login = () => {
     }
   ];
 
-  function goResetPwd() {
-    navigate({ to: '/login/reset-pwd' });
-  }
-
-  function goRegister() {
-    navigate({ to: '/login/register' });
-  }
-
-  function goCodeLogin() {
-    navigate({ to: '/login/code-login' });
-  }
-
   useKeyPress('enter', () => {
     form.submit();
   });
-
-  console.log('22');
 
   return (
     <>
@@ -104,12 +87,12 @@ const Login = () => {
           <div className="flex-y-center justify-between">
             <ACheckbox>{t('page.login.pwdLogin.rememberMe')}</ACheckbox>
 
-            <AButton
-              type="text"
-              onClick={goResetPwd}
+            <ButtonLink
+              btnType="text"
+              to="/login/reset-pwd"
             >
               {t('page.login.pwdLogin.forgetPassword')}
-            </AButton>
+            </ButtonLink>
           </div>
           <AButton
             block
@@ -123,20 +106,20 @@ const Login = () => {
             {t('common.confirm')}
           </AButton>
           <div className="flex-y-center justify-between gap-12px">
-            <AButton
+            <ButtonLink
               block
               className="flex-1"
-              onClick={goCodeLogin}
+              to="/login/code-login"
             >
               {t(loginModuleRecord['code-login']) as string}
-            </AButton>
-            <AButton
+            </ButtonLink>
+            <ButtonLink
               block
               className="flex-1"
-              onClick={goRegister}
+              to="/login/register"
             >
               {t(loginModuleRecord.register) as string}
-            </AButton>
+            </ButtonLink>
           </div>
           <ADivider className="!m-0 !text-14px !text-#666">{t('page.login.pwdLogin.otherAccountLogin')}</ADivider>
           <div className="flex-center gap-12px">
@@ -157,14 +140,6 @@ const Login = () => {
   );
 };
 
-const LoginSearchSchema = z.object({
-  redirect: z.string().startsWith('/').optional()
-});
-
 export const Route = createFileRoute('/(auth)/login/')({
-  component: Login,
-  staticData: {
-    constant: true
-  },
-  validateSearch: LoginSearchSchema
+  component: Login
 });

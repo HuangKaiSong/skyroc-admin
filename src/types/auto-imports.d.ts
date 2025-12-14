@@ -34,6 +34,7 @@ declare global {
   const IconGridiconsFullscreenExit: typeof import('~icons/gridicons/fullscreen-exit.tsx').default
   const IconLocalBanner: typeof import('~icons/local/banner.tsx').default
   const IconLocalLogo: typeof import('~icons/local/logo.tsx').default
+  const LookForward: typeof import('../components/LookForward').default
   const NumberTicker: typeof import('../components/NumberTicker').default
   const PinToggler: typeof import('../components/PinToggler').default
   const SkyrocAvatar: typeof import('../components/SkyrocAvatar').default
