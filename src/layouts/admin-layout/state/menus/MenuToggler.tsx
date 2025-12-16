@@ -1,8 +1,7 @@
 import ButtonIcon from '@/components/ButtonIcon';
 import SvgIcon from '@/components/SvgIcon';
-import { getSiderCollapse, toggleSiderCollapse } from '@/layouts/appStore';
 
-import { useSystemApp } from '../app/use-app';
+import { useAdminState } from '../use-admin-state';
 
 interface Props {
   /** Arrow style icon */
@@ -26,20 +25,21 @@ const icons: Record<NumberBool, Record<NumberBool, string>> = {
 const MenuToggler = ({ arrowIcon, className }: Props) => {
   const { t } = useTranslation();
 
-  const siderCollapse = useSystemApp();
-
-  const dispatch = useAppDispatch();
+  const { siderCollapse, toggleSiderCollapse } = useAdminState();
 
   const isArrowIcon = Number(arrowIcon || false) as NumberBool;
   const isCollapsed = Number(siderCollapse || false) as NumberBool;
+
   const icon = icons[isArrowIcon][isCollapsed];
+
+  const tooltipContent = siderCollapse ? t('icon.expand') : t('icon.collapse');
 
   return (
     <ButtonIcon
       className={className}
-      tooltipContent={siderCollapse ? t('icon.expand') : t('icon.collapse')}
+      tooltipContent={tooltipContent}
       tooltipPlacement="bottomLeft"
-      onClick={() => dispatch(toggleSiderCollapse())}
+      onClick={toggleSiderCollapse}
     >
       <SvgIcon icon={icon} />
     </ButtonIcon>
