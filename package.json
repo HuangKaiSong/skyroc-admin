@@ -92,6 +92,7 @@
     "gradient-string": "^3.0.0",
     "jotai-devtools": "^0.13.0",
     "kolorist": "^1.8.0",
+    "sass": "^1.96.0",
     "simple-git-hooks": "^2.13.1",
     "tsx": "4.21.0",
     "typescript": "5.9.3",
