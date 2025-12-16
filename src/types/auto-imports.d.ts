@@ -50,6 +50,7 @@ declare global {
   const LookForward: typeof import('../components/LookForward').default
   const NumberTicker: typeof import('../components/NumberTicker').default
   const PinToggler: typeof import('../components/PinToggler').default
+  const Portal: typeof import('../components/Portal').default
   const SkyrocAvatar: typeof import('../components/SkyrocAvatar').default
   const Suspense: typeof import('react').Suspense
   const SvgIcon: typeof import('../components/SvgIcon').default
