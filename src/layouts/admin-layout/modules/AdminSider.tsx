@@ -2,13 +2,9 @@ import DarkModeContainer from '@/components/DarkModeContainer.tsx';
 import { GLOBAL_SIDER_MENU_ID } from '@/constants/app';
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
 
-import GlobalLogo from './GlobalLogo';
+import AdminLogo from './AdminLogo';
 
 interface Props {
-  headerHeight: number;
-  inverted: boolean;
-  isHorizontalMix: boolean;
-  isVerticalMix: boolean;
   siderCollapse: boolean;
 }
 
@@ -32,7 +28,7 @@ const GlobalSider: FC<Props> = memo(({ siderCollapse }) => {
       inverted={darkMenu}
     >
       {showLogo && (
-        <GlobalLogo
+        <AdminLogo
           showTitle={!siderCollapse}
           style={{ height: `${headerHeight}px` }}
         />
