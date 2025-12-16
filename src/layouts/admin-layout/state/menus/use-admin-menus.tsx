@@ -58,6 +58,8 @@ export const useAdminMenus = () => {
 
   const isActiveFirstLevelMenuHasChildren = activeFirstLevelMenuKey ? Boolean(secondLevelMenus.length) : false;
 
+  const childLevelMenus = secondLevelMenus.find(menu => menu.key === activeFirstLevelMenuKey)?.children || [];
+
   /** - 可以手动指定菜单或者是默认当前路由的一级菜单 */
   function changeActiveFirstLevelMenuKey(key?: string) {
     const routeKey = key || getActiveFirstLevelMenuKey(route);
@@ -73,6 +75,7 @@ export const useAdminMenus = () => {
     selectedKey,
     route,
     firstLevelMenus,
+    childLevelMenus,
     activeFirstLevelMenuKey,
     isActiveFirstLevelMenuHasChildren,
     secondLevelMenus,

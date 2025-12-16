@@ -7,6 +7,7 @@
 export {}
 declare global {
   const AApp: typeof import('antd').App
+  const ABreadcrumb: typeof import('antd').Breadcrumb
   const AButton: typeof import('antd').Button
   const ACard: typeof import('antd').Card
   const ACheckbox: typeof import('antd').Checkbox
@@ -19,6 +20,7 @@ declare global {
   const AForm: typeof import('antd').Form
   const AInput: typeof import('antd').Input
   const AList: typeof import('antd').List
+  const AMenu: typeof import('antd').Menu
   const AModal: typeof import('antd').Modal
   const ARow: typeof import('antd').Row
   const ASegmented: typeof import('antd').Segmented

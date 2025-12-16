@@ -2,14 +2,14 @@ import DarkModeContainer from '@/components/DarkModeContainer.tsx';
 import { GLOBAL_SIDER_MENU_ID } from '@/constants/app';
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
 
+import { useAdminState } from '../state/use-admin-state';
+
 import AdminLogo from './AdminLogo';
 
-interface Props {
-  siderCollapse: boolean;
-}
-
-const GlobalSider: FC<Props> = memo(({ siderCollapse }) => {
+const GlobalSider = memo(() => {
   const { darkMode, header, layout, sider } = useSettingsTheme();
+
+  const { siderCollapse } = useAdminState();
 
   const isTopHybridSidebarFirst = layout.mode === 'top-hybrid-sidebar-first';
   const isTopHybridHeaderFirst = layout.mode === 'top-hybrid-header-first';

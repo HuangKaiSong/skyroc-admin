@@ -46,6 +46,8 @@ declare namespace Theme {
     };
     /** Whether info color is followed by the primary color */
     isInfoFollowPrimary: boolean;
+    /** Whether to only expand the current parent menu */
+    isOnlyExpandCurrentParentMenu: boolean;
     /** Layout */
     layout: {
       /** Layout mode */

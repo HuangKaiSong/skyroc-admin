@@ -1,13 +1,9 @@
-import { openThemeDrawer } from '@/layouts/appStore';
+import { useAdminState } from '@/layouts/admin-layout/state/use-admin-state';
 
 const ThemeButton = memo(() => {
   const { t } = useTranslation();
 
-  const dispatch = useAppDispatch();
-
-  function handleClick() {
-    dispatch(openThemeDrawer());
-  }
+  const { openThemeDrawer } = useAdminState();
 
   return (
     <ButtonIcon
@@ -15,7 +11,7 @@ const ThemeButton = memo(() => {
       className="px-12px"
       icon="majesticons:color-swatch-line"
       tooltipContent={t('icon.themeConfig')}
-      onClick={handleClick}
+      onClick={openThemeDrawer}
     />
   );
 });

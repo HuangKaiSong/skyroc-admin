@@ -1,27 +1,29 @@
+import { useLocation, useNavigate } from '@tanstack/react-router';
 import type { MenuProps } from 'antd';
 
-import { selectToken } from '@/features/auth/authStore';
-import { useRoute, useRouter } from '@/features/router';
-import { useUserInfoQuery } from '@/service/hooks';
+import { useAuth } from '@/features/auth/use-auth';
+import { useUserInfoQuery } from '@/service/api';
 
 const UserAvatar = memo(() => {
-  const token = useAppSelector(selectToken);
+  const { isLoggedIn } = useAuth();
 
   const { data: userInfo } = useUserInfoQuery();
 
   const { t } = useTranslation();
 
-  const { navigate, push } = useRouter();
+  const navigate = useNavigate();
 
-  const { fullPath } = useRoute();
+  const location = useLocation();
+
+  const fullPath = location.pathname + location.search + location.hash;
 
   function logout() {
-    window?.$modal?.confirm({
+    showConfirmModal({
       cancelText: t('common.cancel'),
       content: t('common.logoutConfirm'),
       okText: t('common.confirm'),
       onOk: () => {
-        push('/login-out', { query: { redirect: fullPath } });
+        navigate({ to: '/login-out', query: { redirect: fullPath } });
       },
       title: t('common.tip')
     });
@@ -31,12 +33,12 @@ const UserAvatar = memo(() => {
     if (key === '1') {
       logout();
     } else {
-      navigate('/user-center');
+      navigate({ to: '/user-center' });
     }
   }
 
   function loginOrRegister() {
-    navigate('/login');
+    navigate({ to: '/login' });
   }
 
   const items: MenuProps['items'] = [
@@ -69,25 +71,27 @@ const UserAvatar = memo(() => {
     }
   ];
 
-  return token ? (
-    <ADropdown
-      menu={{ items, onClick }}
-      placement="bottomRight"
-      trigger={['click']}
-    >
-      <div>
-        <ButtonIcon className="px-12px">
-          <SvgIcon
-            className="text-icon-large"
-            icon="ph:user-circle"
-          />
-          <span className="text-16px font-medium">{userInfo?.userName}</span>
-        </ButtonIcon>
-      </div>
-    </ADropdown>
-  ) : (
-    <AButton onClick={loginOrRegister}>{t('page.login.common.loginOrRegister')}</AButton>
-  );
+  if (isLoggedIn) {
+    return (
+      <ADropdown
+        menu={{ items, onClick }}
+        placement="bottomRight"
+        trigger={['click']}
+      >
+        <div>
+          <ButtonIcon className="px-12px">
+            <SvgIcon
+              className="text-icon-large"
+              icon="ph:user-circle"
+            />
+            <span className="text-16px font-medium">{userInfo?.userName}</span>
+          </ButtonIcon>
+        </div>
+      </ADropdown>
+    );
+  }
+
+  return <AButton onClick={loginOrRegister}>{t('page.login.common.loginOrRegister')}</AButton>;
 });
 
 export default UserAvatar;

@@ -21,6 +21,7 @@ export const themeSettings: Theme.ThemeSetting = {
     animate: true,
     animateMode: 'fade-slide'
   },
+  isOnlyExpandCurrentParentMenu: true,
   header: {
     height: 56,
     breadcrumb: {

@@ -1,5 +1,6 @@
-import { Outlet, createFileRoute } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 
+import AdminLayoutComponent from '@/layouts/admin-layout/AdminLayout';
 import { initMenus } from '@/layouts/admin-layout/state/menus/use-admin-menus';
 
 export const Route = createFileRoute('/(admin)')({
@@ -17,5 +18,5 @@ export const Route = createFileRoute('/(admin)')({
 });
 
 function AdminLayout() {
-  return <Outlet />;
+  return <AdminLayoutComponent />;
 }

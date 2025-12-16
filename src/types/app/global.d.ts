@@ -47,6 +47,15 @@ declare namespace App.Global {
   /** The global admin layout menu */
 
   namespace AdminLayout {
+    interface HeaderProps {
+      /** Whether to show the logo */
+      showLogo?: boolean;
+      /** Whether to show the menu */
+      showMenu?: boolean;
+      /** Whether to show the menu toggler */
+      showMenuToggler?: boolean;
+    }
+
     interface Menu {
       /** The menu children */
       children?: Menu[];
