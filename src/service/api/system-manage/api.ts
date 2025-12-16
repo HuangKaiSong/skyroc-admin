@@ -3,7 +3,7 @@ import { request } from '../../request';
 import { SYSTEM_MANAGE_URLS } from './urls';
 
 /** get role list */
-export function fetchGetRoleList(params?: Api.SystemManage.RoleSearchParams) {
+export function fetchGetRoleList(params: Api.SystemManage.RoleSearchParams) {
   return request<Api.SystemManage.RoleList>({
     method: 'get',
     params,
@@ -24,7 +24,7 @@ export function fetchGetAllRoles() {
 }
 
 /** get user list */
-export function fetchGetUserList(params?: Api.SystemManage.UserSearchParams) {
+export function fetchGetUserList(params: Api.SystemManage.UserSearchParams) {
   return request<Api.SystemManage.UserList>({
     method: 'get',
     params,

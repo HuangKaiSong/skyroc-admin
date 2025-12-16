@@ -18,7 +18,7 @@ import { SYSTEM_MANAGE_QUERY_KEYS } from './keys';
  *
  * @param params - Search parameters
  */
-export function useRoleListQuery(params?: Api.SystemManage.RoleSearchParams) {
+export function useRoleListQuery(params: Api.SystemManage.RoleSearchParams) {
   return useQuery({
     queryFn: () => fetchGetRoleList(params),
     queryKey: SYSTEM_MANAGE_QUERY_KEYS.ROLE_LIST(params)
@@ -47,7 +47,7 @@ export function useAllRolesQuery() {
  *
  * @param params - Search parameters
  */
-export function useUserListQuery(params?: Api.SystemManage.UserSearchParams) {
+export function useUserListQuery(params: Api.SystemManage.UserSearchParams) {
   return useQuery({
     queryFn: () => fetchGetUserList(params),
     queryKey: SYSTEM_MANAGE_QUERY_KEYS.USER_LIST(params)

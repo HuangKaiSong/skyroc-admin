@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { queryOptions, useMutation, useQuery } from '@tanstack/react-query';
 
 import { localStg } from '@/utils/storage';
 
@@ -19,6 +19,17 @@ export function useLoginMutation() {
   });
 }
 
+export const queryUserInfoOptions = (enabled: boolean = true) => {
+  return queryOptions({
+    enabled,
+    gcTime: Infinity,
+    queryFn: fetchGetUserInfo,
+    queryKey: AUTH_QUERY_KEYS.USER_INFO,
+    retry: false,
+    staleTime: Infinity
+  });
+};
+
 /**
  * Get user info query hook
  *
@@ -28,20 +39,9 @@ export function useLoginMutation() {
 export function useUserInfoQuery() {
   const hasToken = Boolean(localStg.get('token'));
 
-  return useQuery({
-    enabled: hasToken,
-    gcTime: Infinity,
-    placeholderData: () => ({
-      buttons: [],
-      roles: [],
-      userId: '',
-      userName: ''
-    }),
-    queryFn: fetchGetUserInfo,
-    queryKey: AUTH_QUERY_KEYS.USER_INFO,
-    retry: false,
-    staleTime: Infinity
-  });
+  const options = queryUserInfoOptions(hasToken);
+
+  return useQuery(options);
 }
 
 /**
