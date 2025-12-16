@@ -1,7 +1,5 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
-import '../App.css';
-
 export const Route = createFileRoute('/')({
   beforeLoad: ({ context }) => {
     if (context.isLoggedIn) {
@@ -11,6 +9,6 @@ export const Route = createFileRoute('/')({
     throw redirect({ to: '/login' });
   },
   staticData: {
-    icon: 'icon-home'
+    title: 'skyroc-admin'
   }
 });

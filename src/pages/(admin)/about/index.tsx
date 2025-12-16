@@ -106,5 +106,11 @@ const About = () => {
 };
 
 export const Route = createFileRoute('/(admin)/about/')({
-  component: About
+  component: About,
+  staticData: {
+    title: 'about',
+    i18nKey: 'route.about',
+    icon: 'fluent:book-information-24-regular',
+    order: 10
+  }
 });
