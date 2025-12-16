@@ -12,6 +12,10 @@ const Root = () => {
 
   useEffect(() => {
     globalConfig.nprogress.done();
+
+    return () => {
+      globalConfig.nprogress.start();
+    };
   }, [pathname]);
 
   return <Outlet />;
@@ -21,8 +25,6 @@ export const Route = createRootRouteWithContext<Router.RouterContext>()({
   component: Root,
   notFoundComponent: NotFound,
   beforeLoad: async ({ context }) => {
-    globalConfig.nprogress.start();
-
     const isInitInfo = Boolean(context.queryClient.getQueryData(AUTH_QUERY_KEYS.USER_INFO));
 
     const contextData = {} as Router.RouterContext;
