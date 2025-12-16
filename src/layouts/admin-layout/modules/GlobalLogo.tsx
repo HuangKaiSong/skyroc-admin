@@ -6,6 +6,7 @@ interface Props extends Omit<LinkProps, 'to'> {
   className?: string;
   /** Whether to show the title */
   showTitle?: boolean;
+  style?: React.CSSProperties;
 }
 const GlobalLogo: FC<Props> = memo(({ className, showTitle = true, ...props }) => {
   const { t } = useTranslation();
