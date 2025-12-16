@@ -3,6 +3,7 @@ import type { ArgsProps as MessageArgsProps, MessageInstance, TypeOpen } from 'a
 import type { ModalFunc } from 'antd/es/modal/confirm';
 import type { HookAPI as ModalHookAPI } from 'antd/es/modal/useModal';
 import type { ArgsProps, NotificationInstance } from 'antd/es/notification/interface';
+import type { NProgress } from 'nprogress';
 
 import { themeSettings } from './features/theme/settings';
 import { localStg } from './utils/storage';
@@ -10,6 +11,7 @@ import { localStg } from './utils/storage';
 const _ui = {
   message: null as MessageInstance | null,
   modal: null as ModalHookAPI | null,
+  nprogress: null as NProgress | null,
   notification: null as NotificationInstance | null
 };
 
@@ -25,6 +27,10 @@ export function initAntdProvider(message: MessageInstance, modal: ModalHookAPI, 
   _ui.notification = notification;
 }
 
+export function initNProgress(nprogress: NProgress) {
+  _ui.nprogress = nprogress;
+}
+
 function createConfig() {
   return {
     // ======System Config======
@@ -33,8 +39,25 @@ function createConfig() {
 
     /** - 是否开发环境 */
     isDev: import.meta.env.DEV,
+    /** - 生成菜单的布局 */
+    genMenuLayouts: ['/(admin)'] as string[],
+    /** - 默认首页 */
+    defaultHome: import.meta.env.VITE_ROUTE_HOME,
 
     localIconPrefix: import.meta.env.VITE_ICON_LOCAL_PREFIX,
+
+    defaultIcon: import.meta.env.VITE_MENU_ICON,
+
+    routeMode: import.meta.env.VITE_AUTH_ROUTE_MODE,
+
+    /** - nprogress 实例 */
+    get nprogress(): NProgress {
+      if (!_ui.nprogress) {
+        console.error('nprogress is not initialized, please call initNProgress function first');
+        throw new Error('nprogress is not initialized');
+      }
+      return _ui.nprogress;
+    },
 
     /// //////////////////////////////////////////////////////////////////////////////
     // ======Theme Config======
