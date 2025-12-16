@@ -1,5 +1,5 @@
 import avatar from '@/assets/imgs/skyroc.jpg';
-import { useUserInfo } from '@/service/hooks';
+import { useUserInfoQuery } from '@/service/api';
 
 interface StatisticData {
   id: number;
@@ -10,7 +10,7 @@ interface StatisticData {
 const HeaderBanner = () => {
   const { t } = useTranslation();
 
-  const { data: userInfo } = useUserInfo();
+  const { data: userInfo } = useUserInfoQuery();
 
   const statisticData: StatisticData[] = [
     {
