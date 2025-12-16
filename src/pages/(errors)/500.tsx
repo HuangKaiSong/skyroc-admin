@@ -7,5 +7,9 @@ const GeneralError = () => {
 };
 
 export const Route = createFileRoute('/(errors)/500')({
-  component: GeneralError
+  component: GeneralError,
+  staticData: {
+    title: '500',
+    i18nKey: 'route.500'
+  }
 });

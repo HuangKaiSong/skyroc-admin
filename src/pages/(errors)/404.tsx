@@ -7,5 +7,9 @@ const NotFound = () => {
 };
 
 export const Route = createFileRoute('/(errors)/404')({
-  component: NotFound
+  component: NotFound,
+  staticData: {
+    title: '404',
+    i18nKey: 'route.404'
+  }
 });

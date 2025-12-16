@@ -5,5 +5,9 @@ const NotAuth = () => {
 };
 
 export const Route = createFileRoute('/(errors)/403')({
-  component: NotAuth
+  component: NotAuth,
+  staticData: {
+    title: '403',
+    i18nKey: 'route.403'
+  }
 });
