@@ -7,7 +7,9 @@ import { initThemeSettingsFn } from './shared';
 
 export const initThemeSettings = initThemeSettingsFn();
 
-const themeAtom = atom(initThemeSettings);
+const themeAtom = atom(initThemeSettings, (get, set, update: Partial<Theme.ThemeSetting>) => {
+  set(themeAtom, { ...get(themeAtom), ...update });
+});
 
 /**
  *  -  reset function not completed
@@ -78,7 +80,7 @@ export const useSettingsTheme = () => {
    * @param themeScheme
    */
   const setThemeScheme = (themeScheme: UnionKey.ThemeScheme) => {
-    setSettings(prev => ({ ...prev, themeScheme }));
+    setSettings({ themeScheme });
   };
 
   /**
@@ -87,7 +89,7 @@ export const useSettingsTheme = () => {
    * @param isGrayscale
    */
   const setGrayscale = (isGrayscale: boolean) => {
-    setSettings(prev => ({ ...prev, grayscale: isGrayscale }));
+    setSettings({ grayscale: isGrayscale });
   };
 
   /**
@@ -96,7 +98,7 @@ export const useSettingsTheme = () => {
    * @param isColourWeakness
    */
   const setColourWeakness = (isColourWeakness: boolean) => {
-    setSettings(prev => ({ ...prev, colourWeakness: isColourWeakness }));
+    setSettings({ colourWeakness: isColourWeakness });
   };
 
   /** Toggle theme scheme */
@@ -126,18 +128,11 @@ export const useSettingsTheme = () => {
       colorValue = getPaletteColorByNumber(color, 500, true);
     }
 
-    setSettings(prev => {
-      if (key === 'primary') {
-        return { ...prev, themeColor: colorValue };
-      }
-      return {
-        ...prev,
-        otherColor: {
-          ...prev.otherColor,
-          [key]: colorValue
-        }
-      };
-    });
+    if (key === 'primary') {
+      setSettings({ themeColor: colorValue });
+    } else {
+      setSettings({ otherColor: { ...settings.otherColor, [key]: colorValue } });
+    }
   };
 
   /**
@@ -146,13 +141,12 @@ export const useSettingsTheme = () => {
    * @param mode Theme layout mode
    */
   const setThemeLayout = (mode: UnionKey.ThemeLayoutMode) => {
-    setSettings(prev => ({
-      ...prev,
+    setSettings({
       layout: {
-        ...prev.layout,
+        ...settings.layout,
         mode
       }
-    }));
+    });
   };
 
   /**
@@ -161,14 +155,15 @@ export const useSettingsTheme = () => {
    * @param enable Whether to enable user name watermark
    */
   const setWatermarkEnableUserName = (enable: boolean) => {
-    setSettings(prev => ({
-      ...prev,
+    const update = {
       watermark: {
-        ...prev.watermark,
+        ...settings.watermark,
         enableUserName: enable,
-        enableTime: enable ? false : prev.watermark.enableTime
+        enableTime: enable ? false : settings.watermark.enableTime
       }
-    }));
+    };
+
+    setSettings(update);
   };
 
   /**
@@ -177,14 +172,15 @@ export const useSettingsTheme = () => {
    * @param enable Whether to enable time watermark
    */
   const setWatermarkEnableTime = (enable: boolean) => {
-    setSettings(prev => ({
-      ...prev,
+    const update = {
       watermark: {
-        ...prev.watermark,
+        ...settings.watermark,
         enableTime: enable,
-        enableUserName: enable ? false : prev.watermark.enableUserName
+        enableUserName: enable ? false : settings.watermark.enableUserName
       }
-    }));
+    };
+
+    setSettings(update);
   };
 
   /** Only run timer when watermark is visible and time display is enabled */
@@ -220,6 +216,7 @@ export const useSettingsTheme = () => {
     updateWatermarkTimer,
     setThemeLayout,
     setWatermarkEnableUserName,
-    setWatermarkEnableTime
+    setWatermarkEnableTime,
+    setSettings
   };
 };
