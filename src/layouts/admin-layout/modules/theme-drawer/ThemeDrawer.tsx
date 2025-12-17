@@ -4,6 +4,9 @@ import { useAdminState } from '../../state/use-admin-state';
 
 import ConfigOperation from './modules/ConfigOperation';
 import Appearance from './modules/appearance';
+import ThemeGeneral from './modules/general/ThemeGeneral';
+import ThemeLayout from './modules/layout/ThemeLayout';
+import ThemePreset from './modules/preset/ThemePreset';
 
 const ThemeDrawer = () => {
   const { closeThemeDrawer, themeDrawerVisible } = useAdminState();
@@ -37,7 +40,11 @@ const ThemeDrawer = () => {
             value={activeTab}
             onChange={setActiveTab}
           />
+
           {activeTab === options[0] && <Appearance />}
+          {activeTab === options[1] && <ThemeLayout />}
+          {activeTab === options[2] && <ThemeGeneral />}
+          {activeTab === options[3] && <ThemePreset />}
         </div>
       </SimpleScrollbar>
     </ADrawer>
