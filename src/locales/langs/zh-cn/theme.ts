@@ -52,6 +52,14 @@ const theme: I18n.Schema['translation']['theme'] = {
       azir: {
         name: 'Azir的预设',
         desc: '是 Azir 比较喜欢的莫兰迪色系冷淡风'
+      },
+      skyroc: {
+        name: 'Skyroc预设',
+        desc: '专业主题配色，灵感来自 Skyroc 设计，充满活力的靛蓝主色'
+      },
+      shadcn: {
+        name: 'Shadcn预设',
+        desc: '现代优雅的主题，灵感来自 shadcn/ui 设计系统，采用中性色调'
       }
     }
   },

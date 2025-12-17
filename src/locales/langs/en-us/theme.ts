@@ -51,6 +51,14 @@ const theme: I18n.Schema['translation']['theme'] = {
       azir: {
         name: "Azir's Preset",
         desc: 'It is a cold and elegant preset that Azir likes'
+      },
+      skyroc: {
+        name: 'Skyroc Preset',
+        desc: 'Professional theme with vibrant indigo primary color, inspired by Skyroc design'
+      },
+      shadcn: {
+        name: 'Shadcn Preset',
+        desc: 'Modern and elegant theme inspired by shadcn/ui design system with neutral tones'
       }
     }
   },

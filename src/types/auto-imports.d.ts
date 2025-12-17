@@ -7,6 +7,7 @@
 export {}
 declare global {
   const AApp: typeof import('antd').App
+  const ABadge: typeof import('antd').Badge
   const ABreadcrumb: typeof import('antd').Breadcrumb
   const AButton: typeof import('antd').Button
   const ACard: typeof import('antd').Card
@@ -28,6 +29,7 @@ declare global {
   const AModal: typeof import('antd').Modal
   const ARow: typeof import('antd').Row
   const ASegmented: typeof import('antd').Segmented
+  const ASelect: typeof import('antd').Select
   const ASpace: typeof import('antd').Space
   const AStatistic: typeof import('antd').Statistic
   const ASwitch: typeof import('antd').Switch
@@ -51,6 +53,7 @@ declare global {
   const IconLocalLogo: typeof import('~icons/local/logo.tsx').default
   const IconMdiArrowDownThin: typeof import('~icons/mdi/arrow-down-thin.tsx').default
   const IconMdiArrowUpThin: typeof import('~icons/mdi/arrow-up-thin.tsx').default
+  const IconMdiInformationOutline: typeof import('~icons/mdi/information-outline.tsx').default
   const IconMdiKeyboardEsc: typeof import('~icons/mdi/keyboard-esc.tsx').default
   const IconMdiKeyboardReturn: typeof import('~icons/mdi/keyboard-return.tsx').default
   const IconUilSearch: typeof import('~icons/uil/search.tsx').default
