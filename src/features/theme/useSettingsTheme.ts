@@ -3,6 +3,8 @@ import dayjs from 'dayjs';
 import { atom, useAtom } from 'jotai';
 import { useMemo } from 'react';
 
+import { useUserInfoQuery } from '@/service/api';
+
 import { initThemeSettingsFn } from './shared';
 
 export const initThemeSettings = initThemeSettingsFn();
@@ -22,6 +24,8 @@ export const useSettingsTheme = () => {
   const osTheme = usePreferredColorScheme();
 
   const { now: watermarkTime, pause: pauseWatermarkTime, resume: resumeWatermarkTime } = useNow(1000);
+
+  const { data: userInfo } = useUserInfoQuery();
 
   /** Dark mode */
   const darkMode = useMemo(() => {
@@ -61,17 +65,21 @@ export const useSettingsTheme = () => {
   const watermarkContent = useMemo(() => {
     const { watermark } = settings;
 
+    if (!watermark.visible) return '';
+
+    let content = watermark.text;
+
     // Note: In React version, we might need to get userInfo from auth context
     // For now, we'll just use the watermark settings
-    // if (watermark.enableUserName && authStore.userInfo.userName) {
-    //   return authStore.userInfo.userName;
-    // }
-
-    if (watermark.enableTime) {
-      return formattedWatermarkTime;
+    if (watermark.enableUserName && userInfo?.userName) {
+      content = `${content} - ${userInfo.userName}`;
     }
 
-    return watermark.text;
+    if (watermark.enableTime) {
+      content = `${content} - ${formattedWatermarkTime}`;
+    }
+
+    return content;
   }, [settings.watermark, formattedWatermarkTime]);
 
   /**
@@ -158,8 +166,7 @@ export const useSettingsTheme = () => {
     const update = {
       watermark: {
         ...settings.watermark,
-        enableUserName: enable,
-        enableTime: enable ? false : settings.watermark.enableTime
+        enableUserName: enable
       }
     };
 
@@ -175,8 +182,7 @@ export const useSettingsTheme = () => {
     const update = {
       watermark: {
         ...settings.watermark,
-        enableTime: enable,
-        enableUserName: enable ? false : settings.watermark.enableUserName
+        enableTime: enable
       }
     };
 

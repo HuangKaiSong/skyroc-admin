@@ -46,6 +46,7 @@ declare namespace I18n {
       };
       title: string;
       watermark: {
+        enableCustomText: string;
         enableTime: string;
         enableUserName: string;
         text: string;

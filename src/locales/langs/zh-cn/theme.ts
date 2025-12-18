@@ -152,6 +152,7 @@ const theme: I18n.Schema['translation']['theme'] = {
       visible: '显示全屏水印',
       text: '自定义水印文本',
       enableUserName: '启用用户名水印',
+      enableCustomText: '启用自定义水印文本',
       enableTime: '显示当前时间',
       timeFormat: '时间格式'
     },

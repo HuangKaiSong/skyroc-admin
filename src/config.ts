@@ -1,4 +1,3 @@
-import type { WatermarkProps } from 'antd';
 import type { ArgsProps as MessageArgsProps, MessageInstance, TypeOpen } from 'antd/es/message/interface';
 import type { ModalFunc } from 'antd/es/modal/confirm';
 import type { HookAPI as ModalHookAPI } from 'antd/es/modal/useModal';
@@ -117,20 +116,7 @@ function createConfig() {
         throw new Error('notification is not initialized');
       }
       return _ui.notification;
-    },
-    /** - antd 水印配置 */
-    watermarkConfig: {
-      font: {
-        fontSize: 16
-      },
-      height: 128,
-      offset: [12, 60],
-      rotate: -15,
-      width: 240,
-      zIndex: 9999
-    } satisfies WatermarkProps,
-    /** - antd 水印文本 */
-    watermarkText: 'SkyrocAdmin'
+    }
   } as const;
 }
 

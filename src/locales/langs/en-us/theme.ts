@@ -155,6 +155,7 @@ const theme: I18n.Schema['translation']['theme'] = {
       visible: 'Watermark Full Screen Visible',
       text: 'Custom Watermark Text',
       enableUserName: 'Enable User Name Watermark',
+      enableCustomText: 'Enable Custom Watermark Text',
       enableTime: 'Show Current Time',
       timeFormat: 'Time Format'
     },

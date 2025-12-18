@@ -1,6 +1,8 @@
 declare namespace Theme {
   type ColorPaletteNumber = import('@sa/color').ColorPaletteNumber;
 
+  type WatermarkSettings = import('antd').WatermarkProps;
+
   /** Theme setting */
   interface ThemeSetting {
     /** colour weakness mode */
@@ -120,14 +122,19 @@ declare namespace Theme {
     };
     /** Watermark */
     watermark: {
+      /** Whether to use user id as watermark text */
+      enableCustomText: boolean;
       /** Whether to use current time as watermark text */
       enableTime: boolean;
       /** Whether to use user name as watermark text */
       enableUserName: boolean;
+      /** Watermark settings */
+      settings: WatermarkSettings;
       /** Watermark text */
       text: string;
       /** Time format for watermark text */
       timeFormat: string;
+
       /** Whether to show the watermark */
       visible: boolean;
     };

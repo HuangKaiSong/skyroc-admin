@@ -1,6 +1,5 @@
 import type { PropsWithChildren } from 'react';
 
-import { globalConfig } from '@/config';
 import { antdLocales } from '@/locales/antd';
 
 import { useLang } from '../lang/use-lang';
@@ -11,11 +10,9 @@ import { getAntdTheme } from './shared';
 const AntdProvider = ({ children }: PropsWithChildren) => {
   const { locale } = useLang();
 
-  const { darkMode, settings, themeColors, watermark } = useSettingsTheme();
+  const { darkMode, settings, themeColors, watermark, watermarkContent } = useSettingsTheme();
 
   const antdTheme = getAntdTheme(themeColors, darkMode, settings);
-
-  const watermarkContent = watermark.visible ? watermark.text || globalConfig.watermarkText : '';
 
   return (
     <AConfigProvider
@@ -27,7 +24,7 @@ const AntdProvider = ({ children }: PropsWithChildren) => {
       <AWatermark
         className="h-full"
         content={watermarkContent}
-        {...globalConfig.watermarkConfig}
+        {...watermark.settings}
       >
         {children}
       </AWatermark>

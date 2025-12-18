@@ -11,8 +11,6 @@ const WatermarkSettings = () => {
 
   const { setSettings, setWatermarkEnableTime, setWatermarkEnableUserName, watermark } = useSettingsTheme();
 
-  const isWatermarkTextVisible = watermark.visible && !watermark.enableUserName && !watermark.enableTime;
-
   const updateWatermark = (patch: Partial<typeof watermark>) => {
     setSettings({
       watermark: {
@@ -38,6 +36,10 @@ const WatermarkSettings = () => {
     updateWatermark({ timeFormat });
   };
 
+  const handleEnableCustomTextChange = (enable: boolean) => {
+    updateWatermark({ enableCustomText: enable });
+  };
+
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateWatermark({ text: e.target.value });
   };
@@ -51,7 +53,35 @@ const WatermarkSettings = () => {
         />
       </SettingItem>
 
+      <AnimatedItem
+        className="flex-col-stretch gap-12px"
+        itemKey="enableCustomText"
+        visible={watermark.visible}
+      >
+        <SettingItem label={t('theme.general.watermark.enableCustomText')}>
+          <ASwitch
+            checked={watermark.enableCustomText}
+            onChange={handleEnableCustomTextChange}
+          />
+        </SettingItem>
+      </AnimatedItem>
+
       <AnimatePresence mode="popLayout">
+        <AnimatedItem
+          itemKey="text"
+          visible={watermark.visible && watermark.enableCustomText}
+        >
+          <SettingItem label={t('theme.general.watermark.text')}>
+            <AInput
+              className="w-120px"
+              placeholder="SoybeanAdmin"
+              size="small"
+              value={watermark.text}
+              onChange={handleTextChange}
+            />
+          </SettingItem>
+        </AnimatedItem>
+
         <AnimatedItem
           className="flex-col-stretch gap-12px"
           itemKey="enableUserName"
@@ -88,21 +118,6 @@ const WatermarkSettings = () => {
               size="small"
               value={watermark.timeFormat}
               onChange={handleTimeFormatChange}
-            />
-          </SettingItem>
-        </AnimatedItem>
-
-        <AnimatedItem
-          itemKey="text"
-          visible={isWatermarkTextVisible}
-        >
-          <SettingItem label={t('theme.general.watermark.text')}>
-            <AInput
-              className="w-120px"
-              placeholder="SoybeanAdmin"
-              size="small"
-              value={watermark.text}
-              onChange={handleTextChange}
             />
           </SettingItem>
         </AnimatedItem>

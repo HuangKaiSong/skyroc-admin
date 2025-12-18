@@ -61,10 +61,21 @@ export const themeSettings: Theme.ThemeSetting = {
   },
   watermark: {
     visible: false,
-    text: 'SoybeanAdmin',
+    text: 'SkyrocAdmin',
+    enableCustomText: true,
     enableUserName: false,
     enableTime: false,
-    timeFormat: 'YYYY-MM-DD HH:mm'
+    timeFormat: 'YYYY-MM-DD HH:mm',
+    settings: {
+      font: {
+        fontSize: 16
+      },
+      height: 64,
+      offset: [12, 60],
+      rotate: -15,
+      width: 344,
+      zIndex: 9999
+    }
   },
   tokens: {
     light: {
