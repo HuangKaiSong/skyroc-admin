@@ -1,6 +1,9 @@
+import { AnimatePresence } from 'motion/react';
+
 import { watermarkTimeFormatOptions } from '@/constants/app';
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
 
+import AnimatedItem from '../../components/AnimatedItem';
 import SettingItem from '../../components/SettingItem';
 
 const WatermarkSettings = () => {
@@ -48,47 +51,62 @@ const WatermarkSettings = () => {
         />
       </SettingItem>
 
-      {watermark.visible && (
-        <>
+      <AnimatePresence mode="popLayout">
+        <AnimatedItem
+          className="flex-col-stretch gap-12px"
+          itemKey="enableUserName"
+          visible={watermark.visible}
+        >
           <SettingItem label={t('theme.general.watermark.enableUserName')}>
             <ASwitch
               checked={watermark.enableUserName}
               onChange={handleEnableUserNameChange}
             />
           </SettingItem>
+        </AnimatedItem>
 
+        <AnimatedItem
+          itemKey="enableTime"
+          visible={watermark.visible}
+        >
           <SettingItem label={t('theme.general.watermark.enableTime')}>
             <ASwitch
               checked={watermark.enableTime}
               onChange={handleEnableTimeChange}
             />
           </SettingItem>
+        </AnimatedItem>
 
-          {watermark.enableTime && (
-            <SettingItem label={t('theme.general.watermark.timeFormat')}>
-              <ASelect
-                className="w-210px"
-                options={watermarkTimeFormatOptions}
-                size="small"
-                value={watermark.timeFormat}
-                onChange={handleTimeFormatChange}
-              />
-            </SettingItem>
-          )}
+        <AnimatedItem
+          itemKey="timeFormat"
+          visible={watermark.visible && watermark.enableTime}
+        >
+          <SettingItem label={t('theme.general.watermark.timeFormat')}>
+            <ASelect
+              className="w-210px"
+              options={watermarkTimeFormatOptions}
+              size="small"
+              value={watermark.timeFormat}
+              onChange={handleTimeFormatChange}
+            />
+          </SettingItem>
+        </AnimatedItem>
 
-          {isWatermarkTextVisible && (
-            <SettingItem label={t('theme.general.watermark.text')}>
-              <AInput
-                className="w-120px"
-                placeholder="SoybeanAdmin"
-                size="small"
-                value={watermark.text}
-                onChange={handleTextChange}
-              />
-            </SettingItem>
-          )}
-        </>
-      )}
+        <AnimatedItem
+          itemKey="text"
+          visible={isWatermarkTextVisible}
+        >
+          <SettingItem label={t('theme.general.watermark.text')}>
+            <AInput
+              className="w-120px"
+              placeholder="SoybeanAdmin"
+              size="small"
+              value={watermark.text}
+              onChange={handleTextChange}
+            />
+          </SettingItem>
+        </AnimatedItem>
+      </AnimatePresence>
     </div>
   );
 };
