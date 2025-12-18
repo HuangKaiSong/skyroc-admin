@@ -26,7 +26,7 @@ import type {
   TooltipComponentOption
 } from 'echarts/components';
 import * as echarts from 'echarts/core';
-import { LabelLayout, UniversalTransition } from 'echarts/features';
+import { LabelLayout, LegacyGridContainLabel, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
 
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
@@ -54,6 +54,7 @@ echarts.use([
   GridComponent,
   DatasetComponent,
   TransformComponent,
+  LegacyGridContainLabel,
   ToolboxComponent,
   BarChart,
   LineChart,
