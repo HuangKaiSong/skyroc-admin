@@ -14,7 +14,7 @@ type Props = PropsWithChildren<{
 
 const AnimatedCollapse: FC<Props> = ({ children, className, duration = 0.2, ease = 'easeInOut', visible }: Props) => {
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
       {visible && (
         <motion.div
           animate={{ opacity: 1, height: 'auto' }}
