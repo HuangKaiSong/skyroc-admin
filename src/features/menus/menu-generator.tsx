@@ -1,9 +1,7 @@
 import type { AnyRoute } from '@tanstack/react-router';
-import { Translation } from 'react-i18next';
 
 import { globalConfig } from '@/config';
 import { routeTree } from '@/features/router/routeTree.gen';
-import { reactI18nextInstance } from '@/locales';
 
 function findLayoutRoute(layoutIds: Router.RouteId[]): AnyRoute[] {
   const menuRoutes: AnyRoute[] = [];
@@ -38,7 +36,12 @@ function transformRouteToMenu(
 
   const { i18nKey, icon = globalConfig.defaultIcon, localIcon, order = 0, title } = staticData;
 
-  const label = <Translation i18n={reactI18nextInstance}>{t => (i18nKey ? t(i18nKey) : title)}</Translation>;
+  const label = (
+    <I18nLabel
+      fallback={title}
+      i18nKey={i18nKey}
+    />
+  );
 
   const menu: App.Global.AdminLayout.Menu = {
     icon: (

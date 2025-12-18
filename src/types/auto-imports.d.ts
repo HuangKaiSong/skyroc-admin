@@ -46,6 +46,7 @@ declare global {
   const FilpText: typeof import('../components/FilpText').default
   const Fragment: typeof import('react').Fragment
   const FullScreen: typeof import('../components/FullScreen').default
+  const I18nLabel: typeof import('../components/I18nLabel').default
   const IconAntDesignEnterOutlined: typeof import('~icons/ant-design/enter-outlined.tsx').default
   const IconGridiconsFullscreen: typeof import('~icons/gridicons/fullscreen.tsx').default
   const IconGridiconsFullscreenExit: typeof import('~icons/gridicons/fullscreen-exit.tsx').default
