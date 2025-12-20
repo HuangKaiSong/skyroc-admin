@@ -1,5 +1,4 @@
 import { setAuth } from '@/features/auth/use-auth';
-import { globalStore } from '@/features/jotai/store';
 import { router } from '@/features/router';
 import { localStg } from '@/utils/storage';
 
