@@ -28,6 +28,13 @@ export const menuNodeCallback: MenuNodeCallback = (routeId, _routePath) => {
           type: 'divider',
           order: 9
         }
+      },
+      {
+        id: 'divider-2',
+        menu: {
+          type: 'divider',
+          order: 6
+        }
       }
     ];
   }
