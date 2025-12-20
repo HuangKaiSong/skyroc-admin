@@ -1,6 +1,5 @@
 import { transformColorWithOpacity } from '@sa/color';
 import { SimpleScrollbar } from '@sa/materials';
-import { useNavigate } from '@tanstack/react-router';
 import clsx from 'clsx';
 import { cloneElement } from 'react';
 
@@ -9,9 +8,12 @@ import MenuToggler from '@/layouts/admin-layout/state/menus/MenuToggler';
 import { useAdminMenus } from '@/layouts/admin-layout/state/menus/use-admin-menus';
 import { useAdminState } from '@/layouts/admin-layout/state/use-admin-state';
 
+import { FirstLevelMenuMode } from '../enum';
+
 interface Props {
   children?: React.ReactNode;
   inverted?: boolean;
+  mode?: FirstLevelMenuMode;
   onSelect?: () => void;
 }
 
@@ -21,8 +23,11 @@ interface MixMenuItemProps {
   inverted?: boolean;
   /** Menu item label */
   menu: App.Global.AdminLayout.Menu;
+  /** 菜单模式 */
+  mode: FirstLevelMenuMode;
   onClick?: () => void;
-  setActiveFirstLevelMenuKey: (key: string) => void;
+  /** 选择菜单回调 */
+  onSelectMenu: (key: string) => void;
 }
 
 function MixMenuItem(Props: MixMenuItemProps) {
@@ -31,14 +36,14 @@ function MixMenuItem(Props: MixMenuItemProps) {
     inverted,
     menu: { children, icon, key, label },
     onClick,
-    setActiveFirstLevelMenuKey
+    onSelectMenu
   } = Props;
 
   const { darkMode, themeColor } = useSettingsTheme();
 
   const { siderCollapse } = useAdminState();
 
-  const navigate = useNavigate();
+  const { routerPushByKey } = useAdminMenus();
 
   const selectedBgColor = getSelectedBgColor();
 
@@ -50,12 +55,12 @@ function MixMenuItem(Props: MixMenuItemProps) {
   }
 
   function handleSelectMixMenu() {
-    setActiveFirstLevelMenuKey(key);
+    onSelectMenu(key);
 
     if (children?.length) {
       if (onClick) onClick();
     } else {
-      navigate({ to: key });
+      routerPushByKey(key);
     }
   }
 
@@ -84,23 +89,42 @@ function MixMenuItem(Props: MixMenuItemProps) {
   );
 }
 
-const FirstLevelMenu: FC<Props> = memo(({ children, inverted, onSelect }) => {
-  const { activeFirstLevelMenuKey, changeActiveFirstLevelMenuKey, menus } = useAdminMenus();
+const FirstLevelMenu: FC<Props> = memo(({ children, inverted, mode = FirstLevelMenuMode.All, onSelect }) => {
+  const {
+    activeFirstLevelMenuKey,
+    activeSecondLevelMenuKey,
+    changeActiveFirstLevelMenuKey,
+    changeActiveSecondLevelMenuKey,
+    menus: allMenus,
+    secondLevelMenus
+  } = useAdminMenus();
+
+  const isFirst = mode === FirstLevelMenuMode.All;
+
+  const menus = isFirst ? allMenus : secondLevelMenus;
+
+  const activeKey = isFirst ? activeFirstLevelMenuKey : activeSecondLevelMenuKey;
+
+  // 根据模式选择对应的激活菜单函数
+  const handleSelectMenu = isFirst ? changeActiveFirstLevelMenuKey : changeActiveSecondLevelMenuKey;
 
   return (
     <div className="h-full flex-col-stretch flex-1-hidden">
       {children}
       <SimpleScrollbar>
-        {menus.map(item => (
-          <MixMenuItem
-            active={item.key === activeFirstLevelMenuKey}
-            inverted={inverted}
-            key={item.key}
-            menu={item}
-            setActiveFirstLevelMenuKey={changeActiveFirstLevelMenuKey}
-            onClick={onSelect}
-          />
-        ))}
+        {menus
+          .filter(item => item.type !== 'divider')
+          .map(item => (
+            <MixMenuItem
+              active={item.key === activeKey}
+              inverted={inverted}
+              key={item.key}
+              menu={item}
+              mode={mode}
+              onClick={onSelect}
+              onSelectMenu={handleSelectMenu}
+            />
+          ))}
       </SimpleScrollbar>
       <MenuToggler
         arrowIcon

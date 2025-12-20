@@ -25,3 +25,23 @@ export enum HorizontalMenuMode {
    */
   FirstLevel = 'first-level'
 }
+
+export enum FirstLevelMenuMode {
+  /**
+   * 一级菜单模式
+   *
+   * 仅显示一级菜单项
+   */
+  All = 'all',
+  /**
+   * 一级菜单模式
+   *
+   * 仅显示一级菜单项
+   */
+  /**
+   * 子级菜单模式
+   *
+   * 仅显示当前激活一级菜单下的子菜单
+   */
+  SecondLevel = 'second-level'
+}

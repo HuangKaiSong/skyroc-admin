@@ -1,4 +1,3 @@
-import { useNavigate } from '@tanstack/react-router';
 import type { MenuProps } from 'antd';
 import type { FC } from 'react';
 
@@ -12,8 +11,8 @@ interface Props {
   mode: HorizontalMenuMode;
 }
 
-function isHasChildren(menus: App.Global.AdminLayout.Menu[], key: string) {
-  return menus.some(item => item.key === key && item.children?.length);
+function findChildren(menus: App.Global.AdminLayout.Menu[], key: string) {
+  return menus.find(item => item.key === key)?.children || [];
 }
 
 const HorizontalMenu: FC<Props> = memo(props => {
@@ -21,11 +20,17 @@ const HorizontalMenu: FC<Props> = memo(props => {
 
   const { header } = useSettingsTheme();
 
-  const { changeActiveFirstLevelMenuKey, firstLevelMenus, menus, secondLevelMenus, selectedKey } = useAdminMenus();
-
-  const navigate = useNavigate();
-
-  const selectedKeys = mode === HorizontalMenuMode.FirstLevel ? [`/${selectedKey[0].split('/')[1]}`] : selectedKey;
+  const {
+    activeFirstLevelMenuKey,
+    changeActiveFirstLevelMenuKey,
+    changeActiveSecondLevelMenuKey,
+    firstLevelMenus,
+    menus,
+    routerPushByKey,
+    secondLevelMenus,
+    selectedKey,
+    setDrawerVisible
+  } = useAdminMenus();
 
   function getMenus() {
     if (mode === HorizontalMenuMode.All) {
@@ -38,11 +43,29 @@ const HorizontalMenu: FC<Props> = memo(props => {
 
   const allMenus = getMenus();
 
+  /**
+   * 处理菜单点击
+   * - FirstLevel 模式：选择一级菜单，如果有子菜单且 autoSelectFirstMenu 开启，自动选择最深层级菜单
+   * - 其他模式：直接跳转
+   */
   const handleClickMenu: MenuProps['onSelect'] = menuInfo => {
-    if (mode === HorizontalMenuMode.FirstLevel && isHasChildren(menus, menuInfo.key)) {
+    if (mode === HorizontalMenuMode.FirstLevel) {
       changeActiveFirstLevelMenuKey(menuInfo.key);
+
+      const children = findChildren(menus, menuInfo.key);
+
+      if (!children.length) {
+        routerPushByKey(menuInfo.key);
+      } else {
+        const child = children[0].children || [];
+
+        if (child.length) {
+          changeActiveSecondLevelMenuKey(children[0].key);
+          setDrawerVisible(true);
+        }
+      }
     } else {
-      navigate({ to: menuInfo.key });
+      routerPushByKey(menuInfo.key);
     }
   };
 
@@ -50,9 +73,9 @@ const HorizontalMenu: FC<Props> = memo(props => {
     <AMenu
       className="size-full transition-400 border-0!"
       inlineIndent={18}
-      items={allMenus}
+      items={allMenus as MenuProps['items']}
       mode="horizontal"
-      selectedKeys={selectedKeys}
+      selectedKeys={mode === HorizontalMenuMode.FirstLevel ? [activeFirstLevelMenuKey] : selectedKey}
       style={{ lineHeight: `${header.height}px` }}
       onSelect={handleClickMenu}
     />

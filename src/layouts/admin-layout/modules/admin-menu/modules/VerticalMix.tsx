@@ -10,21 +10,25 @@ import { useAdminState } from '@/layouts/admin-layout/state/use-admin-state';
 import AdminLogo from '../../AdminLogo';
 import FirstLevelMenu from '../components/FirstLevelMenu';
 import VerticalMenu from '../components/VerticalMenu';
+import { FirstLevelMenuMode } from '../enum';
 
-const VerticalMix = memo(() => {
+const VerticalMix = memo(({ mode = FirstLevelMenuMode.All }: { mode?: FirstLevelMenuMode }) => {
   const { t } = useTranslation();
 
-  const { changeActiveFirstLevelMenuKey, childLevelMenus } = useAdminMenus();
+  const { changeActiveFirstLevelMenuKey, childLevelMenus, drawerVisible, secondLevelMenus, setDrawerVisible } =
+    useAdminMenus();
 
   const { darkMode, header, sider } = useSettingsTheme();
 
   const { mixSiderFixed, toggleMixSiderFixed } = useAdminState();
 
-  const [drawerVisible, setDrawerVisible] = useState(false);
-
   const siderInverted = !darkMode && sider.inverted;
 
-  const hasMenus = childLevelMenus && childLevelMenus.length > 0;
+  const isFirst = mode === FirstLevelMenuMode.All;
+
+  const hasMenus = isFirst
+    ? secondLevelMenus && secondLevelMenus.length > 0
+    : childLevelMenus && childLevelMenus.length > 0;
 
   const showDrawer = hasMenus && (drawerVisible || mixSiderFixed);
 
@@ -35,7 +39,9 @@ const VerticalMix = memo(() => {
   function handleResetActiveMenu() {
     setDrawerVisible(false);
 
-    changeActiveFirstLevelMenuKey();
+    if (isFirst) {
+      changeActiveFirstLevelMenuKey();
+    }
   }
 
   return (
@@ -45,6 +51,7 @@ const VerticalMix = memo(() => {
     >
       <FirstLevelMenu
         inverted={siderInverted}
+        mode={mode}
         onSelect={handleSelectMixMenu}
       >
         <AdminLogo
@@ -79,10 +86,10 @@ const VerticalMix = memo(() => {
   );
 });
 
-const VerticalMixMenu = () => {
+const VerticalMixMenu = ({ mode }: { mode?: FirstLevelMenuMode }) => {
   return (
     <Portal container={GLOBAL_SIDER_MENU_ID}>
-      <VerticalMix />
+      <VerticalMix mode={mode} />
     </Portal>
   );
 };

@@ -1,45 +1,55 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { SimpleScrollbar } from '@sa/materials';
-import { useNavigate } from '@tanstack/react-router';
 import type { MenuProps } from 'antd';
+import clsx from 'clsx';
 
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
 import { useAdminMenus } from '@/layouts/admin-layout/state/menus/use-admin-menus';
 import { useAdminState } from '@/layouts/admin-layout/state/use-admin-state';
-import { buildMenuMap, getParentKeysByMenuMap } from '@/utils/menu';
 
 const VerticalMenu = memo(() => {
-  const { menus: allMenus, secondLevelMenus, selectedKey } = useAdminMenus();
-
-  const { isOnlyExpandCurrentParentMenu, layout } = useSettingsTheme();
-
-  const navigate = useNavigate();
-
-  const isMix = layout.mode.includes('mix');
-
-  const isVerticalMix = layout.mode === 'vertical-mix';
+  const {
+    childLevelMenus,
+    menus: allMenus,
+    openKeys,
+    route,
+    routerPushByKey,
+    secondLevelMenus,
+    selectedKey
+  } = useAdminMenus();
 
   const { siderCollapse } = useAdminState();
 
-  const inlineCollapsed = isVerticalMix ? false : siderCollapse;
+  const inlineCollapsed = siderCollapse;
 
-  const menus = isMix ? secondLevelMenus : allMenus;
+  const {
+    darkMode,
+    layout: { mode },
+    sider
+  } = useSettingsTheme();
 
-  // Build menu map for fast lookup (only rebuild when menus change)
-  const menuMap = useMemo(() => buildMenuMap(menus), [menus]);
+  const isVerticalMix = mode === 'vertical-mix';
 
-  // Get default open keys based on selected menu
-  const defaultOpenKeys = useMemo(() => {
-    if (!selectedKey[0]) return [];
-    return getParentKeysByMenuMap(menuMap, selectedKey[0]);
-  }, [selectedKey, menuMap]);
+  const isVerticalHybridHeaderFirst = mode === 'top-hybrid-header-first';
 
-  const [stateOpenKeys, setStateOpenKeys] = useState<string[]>(inlineCollapsed ? [] : defaultOpenKeys);
+  const isMix = mode.includes('first');
+
+  const [stateOpenKeys, setStateOpenKeys] = useState<string[]>(inlineCollapsed ? [] : openKeys);
+
+  const darkTheme = !darkMode && sider.inverted;
+
+  const menuTheme = darkTheme ? 'dark' : 'light';
+
+  const menus = isVerticalMix
+    ? secondLevelMenus
+    : isMix
+      ? isVerticalHybridHeaderFirst
+        ? secondLevelMenus
+        : childLevelMenus
+      : allMenus;
 
   const handleClickMenu: MenuProps['onSelect'] = menuInfo => {
-    console.log('menuInfo', menuInfo);
-
-    // navigate({ to: menuInfo.key });
+    routerPushByKey(menuInfo.key);
   };
 
   const onOpenChange: MenuProps['onOpenChange'] = keys => {
@@ -48,53 +58,34 @@ const VerticalMenu = memo(() => {
       return;
     }
 
-    const currentOpenKey = keys.find(key => !stateOpenKeys.includes(key));
-
-    // open
-    if (currentOpenKey && isOnlyExpandCurrentParentMenu) {
-      const currentMenu = menuMap.get(currentOpenKey);
-      const currentDepth = currentMenu?.depth || 0;
-
-      setStateOpenKeys(
-        keys.filter(key => {
-          const menu = menuMap.get(key);
-          return menu && menu.depth <= currentDepth;
-        })
-      );
-    } else {
-      // close
-      setStateOpenKeys(keys);
-    }
+    // close
+    setStateOpenKeys(keys);
   };
 
-  // Update open keys when route changes
   useEffect(() => {
-    if (inlineCollapsed || isVerticalMix) return;
-    if (!selectedKey[0]) return;
-
-    const openKeys = getParentKeysByMenuMap(menuMap, selectedKey[0]);
+    if (inlineCollapsed) return;
     setStateOpenKeys(openKeys);
-  }, [selectedKey, inlineCollapsed, isVerticalMix]);
+  }, [route.pathname, inlineCollapsed]);
 
-  // Update open keys when collapse state changes
-  useEffect(() => {
+  useUpdateEffect(() => {
     if (inlineCollapsed) {
       setStateOpenKeys([]);
-    } else if (!isVerticalMix) {
-      setStateOpenKeys(defaultOpenKeys);
+    } else {
+      setStateOpenKeys(openKeys);
     }
-  }, [isMix, inlineCollapsed]);
+  }, [inlineCollapsed]);
 
   return (
     <SimpleScrollbar>
       <AMenu
-        className="size-full transition-300 border-0!"
+        className={clsx('size-full transition-300 border-0!', { 'bg-container!': !darkTheme })}
         inlineCollapsed={inlineCollapsed}
         inlineIndent={18}
         items={menus as MenuProps['items']}
         mode="inline"
         openKeys={stateOpenKeys}
         selectedKeys={selectedKey}
+        theme={menuTheme}
         onOpenChange={onOpenChange}
         onSelect={handleClickMenu}
       />

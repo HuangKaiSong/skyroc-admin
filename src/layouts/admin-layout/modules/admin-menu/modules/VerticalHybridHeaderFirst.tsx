@@ -1,4 +1,4 @@
-import { HorizontalMenuMode } from '../enum';
+import { FirstLevelMenuMode, HorizontalMenuMode } from '../enum';
 
 import Horizontal from './Horizontal';
 import VerticalMixMenu from './VerticalMix';
@@ -10,7 +10,10 @@ const VerticalHybridHeaderFirst = () => {
       mode={HorizontalMenuMode.FirstLevel}
     />,
 
-    <VerticalMixMenu key="vertical-hybrid-header-first-vertical-mix" />
+    <VerticalMixMenu
+      key="vertical-hybrid-header-first-vertical-mix"
+      mode={FirstLevelMenuMode.SecondLevel}
+    />
   ];
 };
 
