@@ -4,6 +4,8 @@ declare namespace App.Global {
 
   type RoutePath = import('@/features/router/routeTree.gen').FileRoutesByTo;
 
+  type AntdMenu = NonNullable<import('antd').MenuProps['items']>[number];
+
   /** The global tab */
   type Tab = {
     /** The tab fixed index */
@@ -44,6 +46,17 @@ declare namespace App.Global {
     routePath: RoutePath;
   };
 
+  interface QuickReferenceMenu extends Api.Route.BackendRoute {
+    /** 菜单深度层级，从 0 开始 */
+    depth?: number;
+
+    /** 菜单的 key */
+    key: string;
+
+    /** 父级菜单的 key 列表 */
+    parentKeys?: string[];
+  }
+
   /** The global admin layout menu */
 
   namespace AdminLayout {
@@ -59,14 +72,6 @@ declare namespace App.Global {
     interface Menu {
       /** The menu children */
       children?: Menu[];
-      /**
-       * Menu depth level (using dot notation to avoid React DOM warning)
-       *
-       * @example
-       *   // Root menu: menu.depth = 1
-       *   // Second level: menu.depth = 2
-       */
-      depth: number;
       /** The menu i18n key */
       i18nKey?: I18n.I18nKey | null;
       /** The menu icon */
@@ -85,20 +90,16 @@ declare namespace App.Global {
        * @default 0
        */
       order?: number;
-      /**
-       * All parent menu keys joined by comma (using dot notation to avoid React DOM warning)
-       *
-       * Use `menu['parentkeys']?.split(',')` to convert back to array
-       *
-       * @example
-       *   // For menu structure: Dashboard > Analytics > Report
-       *   // Report's parent.keys would be: '/dashboard,/dashboard/analytics'
-       */
-      parentkeys?: string;
-      /** The tab route path */
-      path: RoutePath;
       /** The tooltip title */
       title?: string;
+      /**
+       * Menu type
+       *
+       * @default 'item'
+       */
+      type?: string;
     }
   }
+
+  type Menus = Map<Router.RouteId, AdminLayout.Menu[]>;
 }
