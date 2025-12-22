@@ -20,6 +20,7 @@ const AntdProvider = ({ children }: PropsWithChildren) => {
       card={{ styles: { body: { flex: 1, overflow: 'hidden', padding: '12px 16px ' } } }}
       locale={antdLocales[locale]}
       menu={{ classNames: { item: '!items-center !flex' } }}
+      modal={{ centered: true }}
       theme={antdTheme}
     >
       <AWatermark
