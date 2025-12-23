@@ -90,8 +90,7 @@ export default defineConfig(
       'sort/object-properties': 'off',
       'sort/string-enums': ['error', { caseSensitive: false, natural: true }],
       'sort/string-unions': ['error', { caseSensitive: false, natural: true }],
-      'sort/type-properties': ['warn', { caseSensitive: false, natural: true }],
-      'sort/type-properties': ['error', { caseSensitive: false, natural: true }]
+      'sort/type-properties': ['warn', { caseSensitive: false, natural: true }]
     }
   }
 );
