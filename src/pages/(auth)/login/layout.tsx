@@ -9,7 +9,25 @@ import Header from './modules/Header';
 
 const COLOR_WHITE = '#ffffff';
 
-const LoginLayout = () => {
+const LoginSearchSchema = z.object({
+  redirect: z.string().startsWith('/').optional()
+});
+
+export const Route = createFileRoute('/(auth)/login')({
+  component: LoginLayout,
+  validateSearch: LoginSearchSchema,
+  beforeLoad: ({ context, search }) => {
+    if (context.isLoggedIn) {
+      throw redirect({ to: search.redirect || globalConfig.defaultHome });
+    }
+  },
+  staticData: {
+    title: 'login',
+    i18nKey: 'route.login'
+  }
+});
+
+function LoginLayout() {
   const { darkMode, themeColor } = useSettingsTheme();
 
   const bgThemeColor = darkMode ? getPaletteColorByNumber(themeColor, 600) : themeColor;
@@ -61,22 +79,4 @@ const LoginLayout = () => {
       </ACard>
     </div>
   );
-};
-
-const LoginSearchSchema = z.object({
-  redirect: z.string().startsWith('/').optional()
-});
-
-export const Route = createFileRoute('/(auth)/login')({
-  component: LoginLayout,
-  validateSearch: LoginSearchSchema,
-  beforeLoad: ({ context, search }) => {
-    if (context.isLoggedIn) {
-      throw redirect({ to: search.redirect || globalConfig.defaultHome });
-    }
-  },
-  staticData: {
-    title: 'login',
-    i18nKey: 'route.login'
-  }
-});
+}
