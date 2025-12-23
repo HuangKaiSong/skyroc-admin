@@ -23,19 +23,19 @@ export function useNow(interval = 1000) {
     }
   }, [interval]);
 
-  useEffect(() => {
-    if (!pausedRef.current) {
-      timerRef.current = setInterval(() => {
-        setNow(new Date());
-      }, interval);
-    }
+  // useEffect(() => {
+  //   if (!pausedRef.current) {
+  //     timerRef.current = setInterval(() => {
+  //       setNow(new Date());
+  //     }, interval);
+  //   }
 
-    return () => {
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-      }
-    };
-  }, [interval]);
+  //   return () => {
+  //     if (timerRef.current) {
+  //       clearInterval(timerRef.current);
+  //     }
+  //   };
+  // }, [interval]);
 
   return { now, pause, resume };
 }

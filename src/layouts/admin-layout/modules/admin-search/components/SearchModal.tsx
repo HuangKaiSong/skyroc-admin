@@ -20,7 +20,7 @@ interface Props {
  * @param menus - menus
  * @param treeMap
  */
-function transformMenuToSearchMenus(menus: App.Global.AdminLayout.Menu[], treeMap: App.Global.AdminLayout.Menu[] = []) {
+function transformMenuToSearchMenus(menus: Menu.Menus[], treeMap: Menu.Menus[] = []) {
   if (menus && menus.length === 0) return [];
   return menus.reduce((acc, cur) => {
     acc.push(cur);
@@ -33,7 +33,7 @@ function transformMenuToSearchMenus(menus: App.Global.AdminLayout.Menu[], treeMa
 }
 
 const SearchModal = ({ onClose, show }: Props) => {
-  const [resultOptions, setResultOptions] = useState<App.Global.AdminLayout.Menu[]>([]);
+  const [resultOptions, setResultOptions] = useState<Menu.Menus[]>([]);
 
   const [activeRoute, setActiveRoute] = useState<string>('');
 

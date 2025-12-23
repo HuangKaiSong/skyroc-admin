@@ -27,7 +27,7 @@ export function getPathnameByIndex(pathname: string, index: number): string {
   return `/${sliced.join('/')}`;
 }
 
-export function getBreadcrumbsByRoute(route: Router.Route, menus: App.Global.Menu[]): BreadcrumbItem[] {
+export function getBreadcrumbsByRoute(route: Router.Route, menus: Menu.Menus[]): BreadcrumbItem[] {
   const breadcrumbs: BreadcrumbItem[] = [];
 
   const pathname = route.pathname;

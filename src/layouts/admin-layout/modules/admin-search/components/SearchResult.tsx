@@ -3,7 +3,7 @@ import clsx from 'clsx';
 interface Props {
   active: boolean;
   enter: () => void;
-  menu: App.Global.AdminLayout.Menu;
+  menu: Menu.Menus;
   setActiveRouteName: (name: string) => void;
 }
 
