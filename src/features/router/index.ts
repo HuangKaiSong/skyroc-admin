@@ -14,10 +14,11 @@ import { routeTree } from './routeTree.gen';
  */
 export const router = createRouter({
   context: {
-    token: undefined!,
+    initAuth: () => Promise.resolve(),
+    isAuthInitialized: false,
     isLoggedIn: false,
     queryClient,
-    info: undefined
+    userInfo: undefined
   },
   defaultPreload: 'intent',
   defaultPreloadStaleTime: 0,

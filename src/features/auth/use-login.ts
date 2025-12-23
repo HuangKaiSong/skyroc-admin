@@ -1,6 +1,6 @@
 import { useNavigate, useSearch } from '@tanstack/react-router';
 
-import { useLoginMutation, useUserInfoQuery, useUserRoutesQuery } from '@/service/api';
+import { useLoginMutation } from '@/service/api';
 import { localStg } from '@/utils/storage';
 
 import { useAuth } from './use-auth';
@@ -12,15 +12,11 @@ export function useInitLogin() {
 
   const { t } = useTranslation();
 
-  const { setAuth } = useAuth();
+  const { initAuth, setAuth } = useAuth();
 
   const navigate = useNavigate();
 
   const { mutate: toLogin } = useLoginMutation();
-
-  const { refetch: refetchUserInfo } = useUserInfoQuery();
-
-  const { refetch: refetchMenus } = useUserRoutesQuery();
 
   async function login(params: Api.Auth.LoginParams, redirect = true) {
     if (loading) return;
@@ -34,9 +30,7 @@ export function useInitLogin() {
       onSuccess: async data => {
         setAuth(data);
 
-        const { data: info } = await refetchUserInfo();
-
-        await refetchMenus();
+        const info = await initAuth();
 
         if (info) {
           const lastLoginUserId = localStg.get('lastLoginUserId');

@@ -18,7 +18,7 @@ import type { MenuNodeCallback } from './menu-generator';
  *
  * 用于在特定路由节点动态添加额外菜单
  */
-export const menuNodeCallback: MenuNodeCallback = (routeId, _routePath) => {
+export const menuNodeCallback: MenuNodeCallback = routeId => {
   // 在顶层（admin layout）添加分割线
   if (routeId === '/(admin)') {
     return [

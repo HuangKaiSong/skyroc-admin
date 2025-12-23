@@ -16,6 +16,11 @@ declare namespace Router {
     i18nKey?: I18n.I18nKey | null;
 
     /**
+     * Whether to cache the route
+     */
+    keepAlive?: boolean | null;
+
+    /**
      * Menu configuration of the route
      *
      * It controls how the route is displayed in the menu
@@ -44,8 +49,6 @@ declare namespace Router {
        */
       hide?: boolean | null;
 
-      i18nKey?: I18n.I18nKey | null;
-
       /**
        * Iconify icon
        *
@@ -61,62 +64,38 @@ declare namespace Router {
       localIcon?: string;
 
       /**
+       * Meta data of the menu
+       *
+       * It can be used to add meta data to the menu
+       */
+      meta?: { key: string; value: string }[] | null;
+
+      /**
        * The menu order
        *
        * Smaller value means higher priority
        */
       order?: number | null;
 
-      title?: string;
-
       /**
        * Menu type
        *
        * @default 'item'
        */
-      type?: 'divider' | 'group' | 'item';
+      type?: 'divider' | 'group';
     };
 
     /**
-     * Route behavior configuration
-     *
-     * It controls runtime behaviors of the route
+     * Required permissions to access the route
      */
-    route?: {
-      /**
-       * The outer link of the route
-       *
-       * If set, the route will be treated as an external link
-       */
-      iframeUrl?: string | null;
+    permissions?: string[];
 
-      /**
-       * Whether to cache the route
-       */
-      keepAlive?: boolean | null;
-
-      params?: { key: string; value: string }[];
-
-      /**
-       * Required permissions to access the route
-       */
-      permissions?: string[];
-
-      /**
-       * If set query parameters, it will be automatically carried
-       * when entering the route
-       */
-      query?: { key: string; value: string }[] | null;
-
-      /**
-       * Whether the route is required
-       *
-       * It can be used in permission or feature checks
-       */
-      requiresAuth?: boolean;
-
-      status?: Api.EnableStatus;
-    };
+    /**
+     * Whether the route is required
+     *
+     * It can be used in permission or feature checks
+     */
+    requiresAuth?: boolean;
 
     /**
      * Tabs behavior configuration
@@ -148,9 +127,10 @@ declare namespace Router {
   }
 
   interface RouterContext {
-    info?: Api.Auth.UserInfo;
+    initAuth: () => Promise<Api.Auth.UserInfo | null>;
+    isAuthInitialized: boolean;
     isLoggedIn: boolean;
     queryClient: QueryClient;
-    token: string;
+    userInfo?: Api.Auth.UserInfo;
   }
 }

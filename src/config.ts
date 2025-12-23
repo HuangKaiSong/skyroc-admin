@@ -4,6 +4,7 @@ import type { HookAPI as ModalHookAPI } from 'antd/es/modal/useModal';
 import type { ArgsProps, NotificationInstance } from 'antd/es/notification/interface';
 import type { NProgress } from 'nprogress';
 
+import { menuCategory } from './features/menus/menu-category';
 import { themeSettings } from './features/theme/settings';
 import { localStg } from './utils/storage';
 
@@ -39,7 +40,7 @@ function createConfig() {
     /** - 是否开发环境 */
     isDev: import.meta.env.DEV,
     /** - 生成菜单的布局 */
-    genMenuLayouts: ['/(admin)'] as Router.RouteId[],
+    genMenuLayouts: [menuCategory.admin.key],
     /** - 默认首页 */
     defaultHome: import.meta.env.VITE_ROUTE_HOME,
 

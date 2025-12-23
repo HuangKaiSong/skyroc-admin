@@ -11,11 +11,11 @@ interface Props {
   mode: HorizontalMenuMode;
 }
 
-function stripRootType(menus: App.Global.AdminLayout.Menu[]): App.Global.AdminLayout.Menu[] {
+function stripRootType(menus: Menu.CommonMenu[]): Menu.CommonMenu[] {
   return menus.filter(({ type: _ }) => _ !== 'divider').map(({ type: _, ...rest }) => rest);
 }
 
-function findChildren(menus: App.Global.AdminLayout.Menu[], key: string) {
+function findChildren(menus: Menu.CommonMenu[], key: string) {
   return menus.find(item => item.key === key)?.children || [];
 }
 

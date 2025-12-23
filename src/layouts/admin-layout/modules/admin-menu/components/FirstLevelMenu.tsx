@@ -22,7 +22,7 @@ interface MixMenuItemProps {
   active: boolean;
   inverted?: boolean;
   /** Menu item label */
-  menu: App.Global.AdminLayout.Menu;
+  menu: Menu.CommonMenu;
   /** 菜单模式 */
   mode: FirstLevelMenuMode;
   onClick?: () => void;

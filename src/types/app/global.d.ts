@@ -46,17 +46,6 @@ declare namespace App.Global {
     routePath: RoutePath;
   };
 
-  interface QuickReferenceMenu extends Api.Route.BackendRoute {
-    /** 菜单深度层级，从 0 开始 */
-    depth?: number;
-
-    /** 菜单的 key */
-    key: string;
-
-    /** 父级菜单的 key 列表 */
-    parentKeys?: string[];
-  }
-
   /** The global admin layout menu */
 
   namespace AdminLayout {
@@ -68,40 +57,5 @@ declare namespace App.Global {
       /** Whether to show the menu toggler */
       showMenuToggler?: boolean;
     }
-
-    interface Menu {
-      /** The menu children */
-      children?: Menu[];
-      /** The menu extra */
-      extra?: React.ReactNode;
-      /** The menu i18n key */
-      i18nKey?: I18n.I18nKey | null;
-      /** The menu icon */
-      icon?: React.ReactElement;
-      /**
-       * The menu key
-       *
-       * Equal to the route key
-       */
-      key: string;
-      /** The menu label */
-      label: React.ReactNode;
-      /**
-       * Menu order for sorting (using hyphen to avoid React DOM warning)
-       *
-       * @default 0
-       */
-      order?: number;
-      /** The tooltip title */
-      title?: string;
-      /**
-       * Menu type
-       *
-       * @default 'item'
-       */
-      type?: string;
-    }
   }
-
-  type Menus = Map<Router.RouteId, AdminLayout.Menu[]>;
 }

@@ -1,10 +1,10 @@
-import type { AnyRoute } from '@tanstack/react-router';
+/* eslint-disable complexity */
 import { useMatches, useNavigate } from '@tanstack/react-router';
 import { atom, useAtom } from 'jotai';
 
 import { globalStore } from '@/features/jotai/store';
-import { menuGenerator } from '@/features/menus/menu-generator';
-import { useUserRoutesQuery } from '@/service/api';
+import { menuCategory } from '@/features/menus/menu-category';
+import { useMenus } from '@/features/menus/use-menus';
 
 interface MenusAtom {
   activeFirstLevelMenuKey: string;
@@ -35,16 +35,13 @@ export const useAdminMenus = () => {
 
   const route = routes[routes.length - 1];
 
-  const { data: allMenus } = useUserRoutesQuery();
+  const { menus: allMenus, quickReferenceMenus: allQuickReferenceMenus } = useMenus();
 
-  const menus = allMenus?.get('/(admin)') || [];
+  const menus = allMenus?.get(menuCategory.admin.key) || [];
 
-  // 精准匹配当前菜单项（考虑 path、params、query）
-  const currentMenu = menuGenerator.findMenu(route.routeId as Router.RouteId, {
-    path: route.fullPath as Router.RoutePath,
-    params: route.params as Api.Route.BackendRoute['params'],
-    query: route.search as Api.Route.BackendRoute['query']
-  });
+  const quickReferenceMenus = allQuickReferenceMenus?.get(menuCategory.admin.key);
+
+  const currentMenu = quickReferenceMenus?.get(route.fullPath as Router.RoutePath);
 
   const { activeMenu, hide } = currentMenu?.menu || {};
 
@@ -69,19 +66,12 @@ export const useAdminMenus = () => {
   const childLevelMenus = secondLevelMenus.find(menu => menu.key === activeSecondLevelMenuKey)?.children || [];
 
   function routerPushByKey(key: string) {
-    const [routeId, id] = key.split(',');
-
-    const newRoute = menuGenerator.quickReferenceMap.get(routeId as Router.RouteId);
+    const newRoute = quickReferenceMenus?.get(key as Router.RoutePath);
 
     if (newRoute) {
-      const newRouteItem = newRoute.find(item => item.id === id);
-      if (newRouteItem) {
-        navigate({
-          to: newRouteItem.path as Router.RoutePath,
-          params: newRouteItem.params as Api.Route.BackendRoute['params'],
-          search: newRouteItem.query as AnyRoute['options']['search']
-        });
-      }
+      navigate({
+        to: newRoute.path
+      });
     }
   }
 
@@ -106,7 +96,7 @@ export const useAdminMenus = () => {
     // 如果没有子菜单，直接跳转
     const hasChildren = menus.find(item => item.key === key)?.children?.length;
     if (!hasChildren) {
-      routerPushByKey(key);
+      routerPushByKey(key as Router.RoutePath);
     }
   }
 
@@ -117,7 +107,7 @@ export const useAdminMenus = () => {
     // 如果没有子菜单，直接跳转
     const hasChildren = secondLevelMenus.find(item => item.key === key)?.children?.length;
     if (!hasChildren) {
-      routerPushByKey(key);
+      routerPushByKey(key as Router.RoutePath);
     }
   }
 

@@ -6,6 +6,8 @@
 declare namespace Api {
   type EnableStatus = import('@/enums').EnableStatus;
 
+  type MenuCategoryKey = import('@/features/menus/menu-category').MenuCategoryKey;
+
   namespace Route {
     /** 后端返回的完整路由结构 */
     interface BackendRouteResponse {
@@ -15,28 +17,16 @@ declare namespace Api {
       routes: BackendRoute[];
     }
 
-    interface BackendRoute {
+    interface BackendRoute extends Omit<Router.Meta, 'permissions'> {
       children?: BackendRoute[];
 
       id: string;
 
-      iframeUrl?: string | null;
-
-      menu?: Router.Meta['menu'];
-
-      params?: { key: string; value: string }[];
+      layout?: MenuCategoryKey;
 
       parentId?: string | null;
 
-      path?: Router.RoutePath;
-
-      query?: { key: string; value: string }[] | null;
-
-      routeId: Router.RouteId;
-
-      status?: EnableStatus;
-
-      tab?: Router.Meta['tab'];
+      path: Router.RoutePath;
     }
   }
 }
