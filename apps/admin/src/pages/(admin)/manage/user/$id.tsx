@@ -7,11 +7,9 @@ export const Route = createFileRoute('/(admin)/manage/user/$id')({
     i18nKey: 'route.manage_user_$id',
     menu: {
       hide: true,
-      activeMenu: '/(admin)/manage/user/,/(admin)/manage/user/'
+      activeMenu: '/manage/user'
     },
-    route: {
-      permissions: ['R_ADMIN']
-    }
+    permissions: ['R_ADMIN']
   }
 });
 

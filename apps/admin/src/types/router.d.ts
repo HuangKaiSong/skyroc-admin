@@ -34,7 +34,7 @@ declare namespace Router {
        *
        * It defines which menu should be activated when entering the route
        */
-      activeMenu?: string | null;
+      activeMenu?: RoutePath | null;
 
       /**
        * Extra menu

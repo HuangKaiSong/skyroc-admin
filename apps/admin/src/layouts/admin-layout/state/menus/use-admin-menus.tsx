@@ -1,9 +1,9 @@
 /* eslint-disable complexity */
 import { useMatches, useNavigate } from '@tanstack/react-router';
 import { atom, useAtom } from 'jotai';
-
 import { globalStore } from '@/features/jotai/store';
 import { menuCategory } from '@/features/menus/menu-category';
+import { normalizePath } from '@/features/menus/menu-generator';
 import { useMenus } from '@/features/menus/use-menus';
 
 interface MenusAtom {
@@ -41,13 +41,15 @@ export const useAdminMenus = () => {
 
   const quickReferenceMenus = allQuickReferenceMenus?.get(menuCategory.admin.key);
 
-  const currentMenu = quickReferenceMenus?.get(route.fullPath as Router.RoutePath);
+  const fullPath = normalizePath(route.fullPath) as Router.RoutePath;
+
+  const currentMenu = quickReferenceMenus?.get(fullPath);
 
   const { activeMenu, hide } = currentMenu?.menu || {};
 
-  const openKeys = currentMenu?.parentKeys || [];
-
   const routeName = (hide ? activeMenu : currentMenu?.key) || currentMenu?.key || '';
+
+  const openKeys = activeMenu ? getMenuInfoByPath(activeMenu)?.parentKeys || [] : currentMenu?.parentKeys || [];
 
   const selectedKey = [routeName];
 
@@ -89,30 +91,12 @@ export const useAdminMenus = () => {
     setMenuState({ activeSecondLevelMenuKey: routeKey });
   }
 
-  /** 选择一级菜单 */
-  function handleSelectFirstLevelMenu(key: string) {
-    changeActiveFirstLevelMenuKey(key);
-
-    // 如果没有子菜单，直接跳转
-    const hasChildren = menus.find(item => item.key === key)?.children?.length;
-    if (!hasChildren) {
-      routerPushByKey(key as Router.RoutePath);
-    }
-  }
-
-  /** 选择二级菜单 */
-  function handleSelectSecondLevelMenu(key: string) {
-    changeActiveSecondLevelMenuKey(key);
-
-    // 如果没有子菜单，直接跳转
-    const hasChildren = secondLevelMenus.find(item => item.key === key)?.children?.length;
-    if (!hasChildren) {
-      routerPushByKey(key as Router.RoutePath);
-    }
-  }
-
   function setDrawerVisible(visible: boolean) {
     setMenuState({ drawerVisible: visible });
+  }
+
+  function getMenuInfoByPath(path: Router.RoutePath) {
+    return quickReferenceMenus?.get(path);
   }
 
   return {
@@ -126,13 +110,14 @@ export const useAdminMenus = () => {
     isActiveSecondLevelMenuHasChildren,
     route,
     openKeys,
+    currentMenu,
+    activeMenu,
     selectedKey,
     drawerVisible,
     setDrawerVisible,
     routerPushByKey,
     changeActiveFirstLevelMenuKey,
     changeActiveSecondLevelMenuKey,
-    handleSelectFirstLevelMenu,
-    handleSelectSecondLevelMenu
+    getMenuInfoByPath
   };
 };

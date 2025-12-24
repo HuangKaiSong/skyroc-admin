@@ -1,9 +1,7 @@
-import type { AnyRoute } from '@tanstack/react-router';
 import { createElement } from 'react';
-
+import type { AnyRoute } from '@tanstack/react-router';
 import { globalConfig } from '@/config';
 import { routeTree } from '@/features/router/routeTree.gen';
-
 import { extras } from './extras';
 import type { MenuCategoryKey } from './menu-category';
 import { getMenuCategoryKey, menuCategory } from './menu-category';
@@ -19,6 +17,15 @@ import menuNodeCallback from './menu-config';
 export type MenuNodeCallback = (
   routeId: Router.RouteId
 ) => Partial<Omit<Api.Route.BackendRoute, 'layout' | 'parentId'>>[] | undefined;
+
+/**
+ * 规范化路径：去掉末尾的 /
+ * @param path - 原始路径
+ * @returns 规范化后的路径
+ */
+export function normalizePath(path: string): string {
+  return path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
+}
 
 function findLayoutRoute(layoutIds: Router.RouteId[]): AnyRoute[] {
   const menuRoutes: AnyRoute[] = [];
@@ -152,11 +159,13 @@ class MenuGenerator {
       type = 'item'
     } = menuInfo ?? {};
 
+    const normalizedPath = normalizePath(route.fullPath) as Router.RoutePath;
+
     const data = {
       id: route.id,
       routeId: route.id,
-      path: route.fullPath,
-      key: route.fullPath,
+      path: normalizedPath,
+      key: normalizedPath,
       i18nKey,
       parentKeys,
       depth,
@@ -165,7 +174,7 @@ class MenuGenerator {
       title
     };
 
-    quickReferenceMenuMap.set(route.fullPath, data);
+    quickReferenceMenuMap.set(normalizedPath, data);
 
     // 如果设置了 hideInMenu，直接返回 null，跳过该菜单及其所有子级
     if (hide) {
@@ -189,7 +198,7 @@ class MenuGenerator {
       ),
       type,
 
-      key: route.fullPath,
+      key: normalizedPath,
       // 保存 i18nKey 和 title，在渲染时动态翻译
       label: <BeyondHiding title={label} />,
       order: order ?? undefined,
@@ -209,7 +218,7 @@ class MenuGenerator {
         const childMenu = this.transformRouteToMenu(
           childRoute,
           quickReferenceMenuMap,
-          [...parentKeys, route.fullPath],
+          [...parentKeys, normalizedPath],
           depth + 1
         );
         if (childMenu) {

@@ -9,9 +9,7 @@ export const Route = createFileRoute('/(admin)/manage/user/')({
       icon: 'ic:round-manage-accounts',
       order: 1
     },
-    route: {
-      permissions: ['R_ADMIN']
-    }
+    permissions: ['R_ADMIN']
   }
 });
 

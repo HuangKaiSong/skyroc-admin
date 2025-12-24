@@ -1,22 +1,61 @@
 import type { BreadcrumbProps } from 'antd';
+import { Link } from '@tanstack/react-router';
+import { useAdminMenus } from '@/layouts/admin-layout/state/menus/use-admin-menus';
 
-import { useMixMenuContext } from '@/features/menu';
+const itemRender: BreadcrumbProps['itemRender'] = (currentRoute, _, items) => {
+  const isLast = currentRoute?.path === items[items.length - 1]?.path;
 
-import { getBreadcrumbsByRoute } from './breadcrumbShared.tsx';
+  return isLast ? (
+    <div className="flex-y-center text-base-text">{currentRoute.title}</div>
+  ) : (
+    <Link
+      className="flex-y-center hover:text-base-text!"
+      to={currentRoute.path}
+    >
+      {currentRoute.title}
+    </Link>
+  );
+};
 
-const GlobalBreadcrumb: FC<Omit<BreadcrumbProps, 'items'>> = props => {
-  const { allMenus: menus, route } = useMixMenuContext();
+const AdminBreadcrumb = () => {
+  const { activeMenu, currentMenu, getMenuInfoByPath, openKeys, selectedKey } = useAdminMenus();
 
-  const breadcrumb = useMemo(() => {
-    return getBreadcrumbsByRoute(route, menus);
-  }, [route, menus]);
+  const allBreadcrumb = [globalConfig.defaultHome, ...openKeys, ...selectedKey, activeMenu ? currentMenu?.key : null];
+
+  const breadcrumb = allBreadcrumb
+    .map(key => {
+      const menuInfo = getMenuInfoByPath(key as Router.RoutePath);
+
+      if (!menuInfo) return null;
+
+      return {
+        title: (
+          <>
+            <SvgIcon
+              className="mr-4px text-icon"
+              icon={menuInfo.menu?.icon || globalConfig.defaultIcon}
+              localIcon={menuInfo.menu?.localIcon}
+            />
+            <span>
+              <I18nLabel
+                fallback={menuInfo.title}
+                i18nKey={menuInfo.i18nKey}
+              />
+            </span>
+          </>
+        ),
+        path: menuInfo?.path
+      };
+    })
+    .filter(Boolean) as BreadcrumbProps['items'];
 
   return (
     <ABreadcrumb
-      {...props}
+      className="ml-12px"
+      itemRender={itemRender}
       items={breadcrumb}
     />
   );
 };
 
-export default GlobalBreadcrumb;
+export default AdminBreadcrumb;
