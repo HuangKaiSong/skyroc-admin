@@ -15,6 +15,7 @@ import { Route as errors500RouteImport } from './../../pages/(errors)/500'
 import { Route as errors404RouteImport } from './../../pages/(errors)/404'
 import { Route as errors403RouteImport } from './../../pages/(errors)/403'
 import { Route as authLoginOutRouteImport } from './../../pages/(auth)/login-out'
+import { Route as adminUserCenterRouteImport } from './../../pages/(admin)/user-center'
 import { Route as authLoginLayoutRouteImport } from './../../pages/(auth)/login/layout'
 import { Route as adminMultiMenuLayoutRouteImport } from './../../pages/(admin)/multi-menu/layout'
 import { Route as adminManageLayoutRouteImport } from './../../pages/(admin)/manage/layout'
@@ -72,6 +73,11 @@ const authLoginOutRoute = authLoginOutRouteImport.update({
   id: '/(auth)/login-out',
   path: '/login-out',
   getParentRoute: () => rootRouteImport,
+} as any)
+const adminUserCenterRoute = adminUserCenterRouteImport.update({
+  id: '/user-center',
+  path: '/user-center',
+  getParentRoute: () => adminLayoutRoute,
 } as any)
 const authLoginLayoutRoute = authLoginLayoutRouteImport.update({
   id: '/(auth)/login',
@@ -228,6 +234,7 @@ export interface FileRoutesByFullPath {
   '/manage': typeof adminManageLayoutRouteWithChildren
   '/multi-menu': typeof adminMultiMenuLayoutRouteWithChildren
   '/login': typeof authLoginLayoutRouteWithChildren
+  '/user-center': typeof adminUserCenterRoute
   '/login-out': typeof authLoginOutRoute
   '/403': typeof errors403Route
   '/404': typeof errors404Route
@@ -259,6 +266,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/user-center': typeof adminUserCenterRoute
   '/login-out': typeof authLoginOutRoute
   '/403': typeof errors403Route
   '/404': typeof errors404Route
@@ -293,6 +301,7 @@ export interface FileRoutesById {
   '/(admin)/manage': typeof adminManageLayoutRouteWithChildren
   '/(admin)/multi-menu': typeof adminMultiMenuLayoutRouteWithChildren
   '/(auth)/login': typeof authLoginLayoutRouteWithChildren
+  '/(admin)/user-center': typeof adminUserCenterRoute
   '/(auth)/login-out': typeof authLoginOutRoute
   '/(errors)/403': typeof errors403Route
   '/(errors)/404': typeof errors404Route
@@ -330,6 +339,7 @@ export interface FileRouteTypes {
     | '/manage'
     | '/multi-menu'
     | '/login'
+    | '/user-center'
     | '/login-out'
     | '/403'
     | '/404'
@@ -361,6 +371,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/user-center'
     | '/login-out'
     | '/403'
     | '/404'
@@ -394,6 +405,7 @@ export interface FileRouteTypes {
     | '/(admin)/manage'
     | '/(admin)/multi-menu'
     | '/(auth)/login'
+    | '/(admin)/user-center'
     | '/(auth)/login-out'
     | '/(errors)/403'
     | '/(errors)/404'
@@ -477,6 +489,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/login-out'
       preLoaderRoute: typeof authLoginOutRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/(admin)/user-center': {
+      id: '/(admin)/user-center'
+      path: '/user-center'
+      fullPath: '/user-center'
+      preLoaderRoute: typeof adminUserCenterRouteImport
+      parentRoute: typeof adminLayoutRoute
     }
     '/(auth)/login': {
       id: '/(auth)/login'
@@ -781,6 +800,7 @@ interface adminLayoutRouteChildren {
   adminExceptionLayoutRoute: typeof adminExceptionLayoutRouteWithChildren
   adminManageLayoutRoute: typeof adminManageLayoutRouteWithChildren
   adminMultiMenuLayoutRoute: typeof adminMultiMenuLayoutRouteWithChildren
+  adminUserCenterRoute: typeof adminUserCenterRoute
   adminAboutIndexRoute: typeof adminAboutIndexRoute
   adminHomeIndexRoute: typeof adminHomeIndexRoute
 }
@@ -789,6 +809,7 @@ const adminLayoutRouteChildren: adminLayoutRouteChildren = {
   adminExceptionLayoutRoute: adminExceptionLayoutRouteWithChildren,
   adminManageLayoutRoute: adminManageLayoutRouteWithChildren,
   adminMultiMenuLayoutRoute: adminMultiMenuLayoutRouteWithChildren,
+  adminUserCenterRoute: adminUserCenterRoute,
   adminAboutIndexRoute: adminAboutIndexRoute,
   adminHomeIndexRoute: adminHomeIndexRoute,
 }
