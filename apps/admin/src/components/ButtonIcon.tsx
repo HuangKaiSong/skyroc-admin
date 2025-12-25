@@ -1,7 +1,6 @@
+import type { CSSProperties } from 'react';
 import type { ButtonProps, TooltipProps } from 'antd';
 import clsx from 'clsx';
-import type { CSSProperties } from 'react';
-
 import type { ButtonLinkComponentProps } from './ButtonLink';
 import ButtonLink from './ButtonLink';
 import SvgIcon from './SvgIcon';
@@ -40,7 +39,7 @@ type WithButtonProps = Omit<ButtonProps, 'icon' | 'iconPosition'> & BaseProps;
 
 type WithLinkProps = Partial<Omit<ButtonLinkComponentProps, 'icon' | 'iconPosition'>> & BaseProps;
 
-type Props = WithButtonProps | WithLinkProps;
+export type ButtonIconProps = WithButtonProps | WithLinkProps;
 
 /** - 动态计算class */
 const computeClass = (className: string) => {
@@ -69,7 +68,7 @@ const ButtonIcon = ({
   triggerParent,
   zIndex = 98,
   ...rest
-}: Props) => {
+}: ButtonIconProps) => {
   const cls = computeClass(className);
 
   function getPopupContainer(triggerNode: HTMLElement) {
