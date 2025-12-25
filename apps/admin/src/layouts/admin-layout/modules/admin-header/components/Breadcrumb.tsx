@@ -20,10 +20,19 @@ const itemRender: BreadcrumbProps['itemRender'] = (currentRoute, _, items) => {
 const AdminBreadcrumb = () => {
   const { activeMenu, currentMenu, getMenuInfoByPath, openKeys, selectedKey } = useAdminMenus();
 
-  const allBreadcrumb = [globalConfig.defaultHome, ...openKeys, ...selectedKey, activeMenu ? currentMenu?.key : null];
+  const isHome = selectedKey[0] === globalConfig.defaultHome;
+
+  const allBreadcrumb = [
+    isHome ? null : globalConfig.defaultHome,
+    ...openKeys,
+    ...selectedKey,
+    activeMenu ? currentMenu?.key : null
+  ];
 
   const breadcrumb = allBreadcrumb
     .map(key => {
+      if (!key) return null;
+
       const menuInfo = getMenuInfoByPath(key as Router.RoutePath);
 
       if (!menuInfo) return null;
