@@ -38,6 +38,7 @@
     "update-pkg": "sa update-pkg"
   },
   "dependencies": {
+    "@better-scroll/core": "^2.5.1",
     "@sa/axios": "workspace:*",
     "@sa/color": "workspace:*",
     "@sa/materials": "workspace:*",
