@@ -10,7 +10,7 @@
     }
   },
   "dependencies": {
-    "@sa/utils": "workspace:*",
+    "@skyroc/utils": "workspace:*",
     "colord": "2.9.3"
   }
 }
