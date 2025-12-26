@@ -7,6 +7,7 @@ declare namespace Env {
   /** The router history mode */
   type RouterHistoryMode = 'hash' | 'history' | 'memory';
 
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   interface ImportMeta extends ImportMetaEnv {
     /** The description of the application */
     readonly VITE_APP_DESC: string;
@@ -108,4 +109,8 @@ declare namespace Env {
     /** Used to differentiate storage across different domains */
     readonly VITE_STORAGE_PREFIX?: string;
   }
+}
+
+interface ImportMeta {
+  readonly env: Env.ImportMeta;
 }
