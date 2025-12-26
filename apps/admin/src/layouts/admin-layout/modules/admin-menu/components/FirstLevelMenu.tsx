@@ -1,5 +1,5 @@
 import { transformColorWithOpacity } from '@sa/color';
-import { SimpleScrollbar } from '@sa/materials';
+import { ScrollArea } from '@skyroc/ui';
 import clsx from 'clsx';
 import { cloneElement } from 'react';
 
@@ -71,7 +71,7 @@ function MixMenuItem(Props: MixMenuItemProps) {
         'mx-4px mb-6px flex-col-center cursor-pointer rounded-8px bg-transparent px-4px py-8px transition-300 hover:bg-[rgb(0,0,0,0.08)]',
         { 'selected-mix-menu text-primary': active },
         { 'text-white:65 hover:text-white': inverted },
-        { '!bg-primary !text-white': active && inverted }
+        { 'bg-primary! text-white!': active && inverted }
       )}
       onClick={handleSelectMixMenu}
     >
@@ -115,7 +115,7 @@ const FirstLevelMenu: FC<Props> = memo(({ children, inverted, mode = FirstLevelM
   return (
     <div className="h-full flex-col-stretch flex-1-hidden">
       {children}
-      <SimpleScrollbar>
+      <ScrollArea className="flex-1">
         {menus
           .filter(item => item.type !== 'divider')
           .map(item => (
@@ -129,7 +129,7 @@ const FirstLevelMenu: FC<Props> = memo(({ children, inverted, mode = FirstLevelM
               onSelectMenu={handleSelectMenu}
             />
           ))}
-      </SimpleScrollbar>
+      </ScrollArea>
       <MenuToggler
         arrowIcon
         className={clsx({ 'text-white:88 !hover:text-white': inverted })}

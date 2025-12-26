@@ -1,4 +1,4 @@
-import { SimpleScrollbar } from '@sa/materials';
+import { ScrollArea } from '@skyroc/ui';
 import { AnimatePresence, motion } from 'motion/react';
 
 import { themeTabsOptions } from '@/constants/app';
@@ -36,7 +36,7 @@ const ThemeDrawer = () => {
       }
       onClose={closeThemeDrawer}
     >
-      <SimpleScrollbar>
+      <ScrollArea className="h-full">
         <div className="min-h-400px overflow-x-hidden px-24px pb-24px pt-8px">
           <ASegmented<string>
             classNames={{ root: 'w-full mb-16px', item: 'flex-1 py-2px font-500' }}
@@ -66,7 +66,7 @@ const ThemeDrawer = () => {
             </motion.div>
           </AnimatePresence>
         </div>
-      </SimpleScrollbar>
+      </ScrollArea>
     </ADrawer>
   );
 };

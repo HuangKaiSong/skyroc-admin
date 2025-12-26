@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { SimpleScrollbar } from '@sa/materials';
+import { ScrollArea } from '@skyroc/ui';
 import type { MenuProps } from 'antd';
 import clsx from 'clsx';
 
@@ -76,7 +76,7 @@ const VerticalMenu = memo(() => {
   }, [inlineCollapsed]);
 
   return (
-    <SimpleScrollbar>
+    <ScrollArea className="h-full">
       <AMenu
         className={clsx('size-full transition-300 border-0!', { 'bg-container!': !darkTheme })}
         inlineCollapsed={inlineCollapsed}
@@ -89,7 +89,7 @@ const VerticalMenu = memo(() => {
         onOpenChange={onOpenChange}
         onSelect={handleClickMenu}
       />
-    </SimpleScrollbar>
+    </ScrollArea>
   );
 });
 
