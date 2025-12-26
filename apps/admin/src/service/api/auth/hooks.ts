@@ -1,6 +1,6 @@
 import { queryOptions, useMutation, useQuery } from '@tanstack/react-query';
 
-import { localStg } from '@/utils/storage';
+import { useAuth } from '@/features/auth/use-auth';
 
 import { fetchGetUserInfo, fetchLogin, fetchRefreshToken } from './api';
 import { AUTH_MUTATION_KEYS, AUTH_QUERY_KEYS } from './keys';
@@ -37,9 +37,9 @@ export const queryUserInfoOptions = (enabled: boolean = true) => {
  *   const { data: userInfo, isLoading } = useUserInfoQuery();
  */
 export function useUserInfoQuery() {
-  const hasToken = Boolean(localStg.get('token'));
+  const { isLoggedIn } = useAuth();
 
-  const options = queryUserInfoOptions(hasToken);
+  const options = queryUserInfoOptions(isLoggedIn);
 
   return useQuery(options);
 }
