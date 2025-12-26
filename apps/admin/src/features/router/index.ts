@@ -16,6 +16,7 @@ import { routeTree } from './routeTree.gen';
 export const router = createRouter({
   context: {
     initAuth: () => Promise.resolve(null),
+    clearAuth: () => {},
     isAuthInitialized: false,
     isLoggedIn: false,
     queryClient,

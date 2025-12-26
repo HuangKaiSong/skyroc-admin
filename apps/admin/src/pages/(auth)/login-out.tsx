@@ -1,8 +1,6 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 import z from 'zod';
 
-import { clearAuth } from '@/features/auth/use-auth';
-
 const LoginOut = () => {
   return null;
 };
@@ -18,10 +16,10 @@ export const Route = createFileRoute('/(auth)/login-out')({
     title: 'login-out',
     i18nKey: 'route.login-out'
   },
-  beforeLoad: ({ search }) => {
+  beforeLoad: ({ context, search }) => {
     const redirectPath = search.redirect;
 
-    clearAuth();
+    context.clearAuth();
 
     throw redirect({ to: '/login', search: redirectPath ? { redirect: redirectPath } : undefined });
   }

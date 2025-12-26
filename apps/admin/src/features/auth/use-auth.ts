@@ -33,22 +33,6 @@ export const setAuth = (data: Api.Auth.LoginToken) => {
   localStg.set('refreshToken', data.refreshToken);
 };
 
-export function clearAuth() {
-  const userInfo = queryClient.getQueryData<Api.Auth.UserInfo>(AUTH_QUERY_KEYS.USER_INFO);
-
-  if (userInfo) {
-    localStg.set('lastLoginUserId', userInfo.userId);
-  }
-
-  queryClient.clear();
-
-  globalStore.set(authAtom, { token: '' });
-
-  clearAuthStorage();
-
-  cacheTabs();
-}
-
 export const useAuth = () => {
   const [state, setState] = useAtom(authAtom);
 
@@ -56,7 +40,7 @@ export const useAuth = () => {
 
   const userInfo = queryClient.getQueryData<Api.Auth.UserInfo>(AUTH_QUERY_KEYS.USER_INFO);
 
-  const { initMenus } = useMenus();
+  const { clearMenus, initMenus } = useMenus();
 
   async function initAuth() {
     try {
@@ -74,10 +58,27 @@ export const useAuth = () => {
     }
   }
 
+  function clearAuth() {
+    if (userInfo) {
+      localStg.set('lastLoginUserId', userInfo.userId);
+    }
+
+    queryClient.clear();
+
+    setState({ token: '' });
+
+    clearAuthStorage();
+
+    clearMenus();
+
+    cacheTabs();
+  }
+
   return {
     token: state.token,
     userInfo,
     isLoggedIn,
+    clearAuth,
     initMenus,
     initAuth,
     isAuthInitialized: state.initialized,

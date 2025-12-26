@@ -25,8 +25,13 @@ export const useMenus = () => {
     setMenusState({ menus: allMenus, quickReferenceMenus });
   }
 
+  function clearMenus() {
+    setMenusState(initState);
+  }
+
   return {
     ...menusState,
-    initMenus
+    initMenus,
+    clearMenus
   };
 };

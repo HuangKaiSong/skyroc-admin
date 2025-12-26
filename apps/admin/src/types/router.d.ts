@@ -127,6 +127,7 @@ declare namespace Router {
   }
 
   interface RouterContext {
+    clearAuth: () => void;
     initAuth: () => Promise<Api.Auth.UserInfo | null>;
     isAuthInitialized: boolean;
     isLoggedIn: boolean;
