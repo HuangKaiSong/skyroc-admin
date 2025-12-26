@@ -24,7 +24,7 @@ const ThemeSchemaSwitch: FC<Props> = memo(({ showTooltip = true, tooltipPlacemen
   const { themeScheme, toggleThemeScheme } = useSettingsTheme();
 
   const tooltipContent = showTooltip ? t('icon.themeSchema') : '';
-
+  const hoverAnimation = themeScheme === 'light' ? 'rotate' : 'scale';
   const toggleDark: ButtonProps['onClick'] = async event => {
     const isAppearanceTransition = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -58,6 +58,7 @@ const ThemeSchemaSwitch: FC<Props> = memo(({ showTooltip = true, tooltipPlacemen
   };
   return (
     <ButtonIcon
+      hoverAnimation={hoverAnimation}
       icon={icons[themeScheme]}
       tooltipContent={tooltipContent}
       {...props}

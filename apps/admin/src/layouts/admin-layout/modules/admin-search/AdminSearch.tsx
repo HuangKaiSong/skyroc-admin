@@ -22,6 +22,7 @@ const GlobalSearch = memo(() => {
     <>
       <ButtonIcon
         className="px-12px"
+        hoverAnimation="scale"
         tooltipContent={t('common.search')}
         onClick={toggle}
       >

@@ -34,6 +34,7 @@ const LangSwitch: FC<Props> = memo(({ className, showTooltip = true }) => {
       <div>
         <ButtonIcon
           className={className}
+          hoverAnimation="scale"
           icon="heroicons:language"
           tooltipContent={tooltipContent}
           tooltipPlacement="left"

@@ -219,7 +219,7 @@ declare global {
   export type { ThemeName } from '../hooks/use-preferred-color-scheme'
   import('../hooks/use-preferred-color-scheme')
   // @ts-ignore
-  export type { ButtonIconProps } from '../components/ButtonIcon'
+  export type { IconHoverAnimation, ButtonIconProps } from '../components/ButtonIcon'
   import('../components/ButtonIcon')
   // @ts-ignore
   export type { ButtonLinkComponentProps } from '../components/ButtonLink'

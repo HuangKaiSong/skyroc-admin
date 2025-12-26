@@ -9,6 +9,7 @@ const ThemeButton = memo(() => {
     <ButtonIcon
       triggerParent
       className="px-12px"
+      hoverAnimation="pulse"
       icon="majesticons:color-swatch-line"
       tooltipContent={t('icon.themeConfig')}
       onClick={openThemeDrawer}

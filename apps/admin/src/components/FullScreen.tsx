@@ -12,6 +12,7 @@ const FullScreen = ({ className, full, toggleFullscreen }: Props) => {
   return (
     <ButtonIcon
       className={className}
+      hoverAnimation="scale"
       tooltipContent={full ? t('icon.fullscreenExit') : t('icon.fullscreen')}
       onClick={toggleFullscreen}
     >
