@@ -25,8 +25,11 @@ export async function handleRefreshToken() {
     return true;
   } catch {
     const location = router.state.location;
-    const fullPath = location.pathname + location.search + location.hash;
-    // router.navigate({ to: '/login-out', search: { redirect: fullPath } });
+    const fullPath = location.href;
+
+    // 重定向到登录页
+    router.navigate({ to: '/login-out', search: { redirect: fullPath } });
+
     return false;
   }
 }

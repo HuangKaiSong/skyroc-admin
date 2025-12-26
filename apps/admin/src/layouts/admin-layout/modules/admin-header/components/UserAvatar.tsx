@@ -15,7 +15,7 @@ const UserAvatar = memo(() => {
 
   const location = useLocation();
 
-  const fullPath = location.pathname + location.search + location.hash;
+  const fullPath = location.href;
 
   function logout() {
     showConfirmModal({
@@ -23,7 +23,7 @@ const UserAvatar = memo(() => {
       content: t('common.logoutConfirm'),
       okText: t('common.confirm'),
       onOk: () => {
-        navigate({ to: '/login-out', query: { redirect: fullPath } });
+        navigate({ to: '/login-out', search: { redirect: fullPath } });
       },
       title: t('common.tip')
     });

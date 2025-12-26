@@ -17,9 +17,11 @@ export async function backEndFail(
   const responseCode = String(response.data.code);
 
   function handleLogout() {
-    const location = router.reactRouter.state.location;
-    const fullPath = location.pathname + location.search + location.hash;
-    router.push('/login-out', { query: { redirect: fullPath } });
+    const location = router.state.location;
+    const fullPath = location.href;
+
+    // 重定向到登录页
+    router.navigate({ to: '/login-out', search: { redirect: fullPath } });
   }
 
   function logoutAndCleanup() {
