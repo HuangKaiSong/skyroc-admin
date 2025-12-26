@@ -10,7 +10,6 @@
     "clean": "turbo run clean",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "lint-staged": "lint-staged",
     "lint:fix": "eslint . --fix",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck"
@@ -21,9 +20,5 @@
     "lint-staged": "^16.2.7",
     "simple-git-hooks": "^2.13.1",
     "turbo": "^2.7.1"
-  },
-  "simple-git-hooks": {},
-  "lint-staged": {
-    "*": "eslint --fix"
   }
 }

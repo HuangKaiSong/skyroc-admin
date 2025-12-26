@@ -1,5 +1,3 @@
-import AdminEffect from '@/layouts/admin-layout/state/AdminEffect';
-
 import LangEffect from '../lang/LangEffect';
 import ThemeEffect from '../theme/ThemeEffect';
 
@@ -8,7 +6,6 @@ const GlobalEffect = () => {
     <>
       <ThemeEffect />
       <LangEffect />
-      <AdminEffect />
     </>
   );
 };

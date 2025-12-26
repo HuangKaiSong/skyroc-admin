@@ -1,6 +1,6 @@
 declare namespace App.Global {
   /** The global dropdown key */
-  type DropdownKey = 'closeAll' | 'closeCurrent' | 'closeLeft' | 'closeOther' | 'closeRight';
+  type DropdownKey = 'closeAll' | 'closeCurrent' | 'closeLeft' | 'closeOther' | 'closeRight' | 'pin' | 'unpin';
 
   type AntdMenu = NonNullable<import('antd').MenuProps['items']>[number];
 
@@ -21,25 +21,20 @@ declare namespace App.Global {
     /** The tab id */
     id: string;
     /** The tab label */
-    label: React.ReactNode;
+    label: string;
     /**
      * Tab local icon
      *
      * Local icon
      */
     localIcon?: string;
-    /**
-     * The new tab label
-     *
-     * If set, the tab label will be replaced by this value
-     */
-    newLabel?: React.ReactNode;
+
     /**
      * The old tab label
      *
      * when reset the tab label, the tab label will be replaced by this value
      */
-    oldLabel?: React.ReactNode;
+    oldLabel?: string;
     /** The tab route path */
     routePath: Router.RoutePath;
   };

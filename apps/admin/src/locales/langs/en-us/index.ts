@@ -16,7 +16,9 @@ const local: I18n.Schema['translation'] = {
     closeCurrent: 'Close Current',
     closeLeft: 'Close Left',
     closeOther: 'Close Other',
-    closeRight: 'Close Right'
+    closeRight: 'Close Right',
+    pin: 'Pin Tab',
+    unpin: 'Unpin Tab'
   },
   form,
   icon: {

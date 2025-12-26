@@ -4,7 +4,7 @@
  * @param tabs Tabs
  * @param homeTab Home tab
  */
-export function getAllTabs(tabs: App.Global.Tab[], homeTab?: App.Global.Tab) {
+export function getAllTabs(tabs: App.Global.Tab[], homeTab: App.Global.Tab | null) {
   if (!homeTab) {
     return [];
   }
@@ -17,7 +17,7 @@ export function getAllTabs(tabs: App.Global.Tab[], homeTab?: App.Global.Tab) {
 
   const allTabs = [homeTab, ...fixedTabs, ...remainTabs];
 
-  return updateTabsLabel(allTabs);
+  return allTabs;
 }
 
 /**
@@ -60,14 +60,10 @@ export function getTabByMenuInfo(
     fullPath,
     fixedIndex: menuInfo.tab?.fixedIndex,
     i18nKey: menuInfo.i18nKey,
-    icon: menuInfo.menu?.icon,
+    icon: menuInfo.menu?.icon || globalConfig.defaultIcon,
     localIcon: menuInfo.menu?.localIcon,
-    label: (
-      <I18nLabel
-        fallback={menuInfo.title}
-        i18nKey={menuInfo.i18nKey}
-      />
-    )
+    label: menuInfo.title || '',
+    oldLabel: menuInfo.title
   };
 }
 
@@ -131,20 +127,6 @@ export function reorderFixedTabs(tabs: App.Global.Tab[]) {
   fixedTabs.forEach((t, i) => {
     t.fixedIndex = i;
   });
-}
-
-/**
- * Update tabs label
- *
- * @param tabs
- */
-function updateTabsLabel(tabs: App.Global.Tab[]) {
-  const updated = tabs.map(tab => ({
-    ...tab,
-    label: tab.newLabel || tab.oldLabel || tab.label
-  }));
-
-  return updated;
 }
 
 /**

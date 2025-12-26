@@ -1,8 +1,12 @@
 import { useNavigate } from '@tanstack/react-router';
 import { atom, useAtom } from 'jotai';
-import { localStg } from '@/utils/storage';
+
+import { globalStore } from '@/features/jotai/store';
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
-import { useAdminMenus } from './menus/use-admin-menus';
+import { localStg } from '@/utils/storage';
+
+import { useAdminMenus } from '../menus/use-admin-menus';
+
 import {
   extractTabsByAllRoutes,
   filterTabsByIds,
@@ -12,19 +16,19 @@ import {
   getTabIdByRoute,
   isTabInTabs,
   reorderFixedTabs
-} from './tabs/shared';
+} from './shared';
 
 interface TabState {
   /** Active tab id */
   activeTabId: string;
   /** Home tab */
-  homeTab?: App.Global.Tab;
+  homeTab: App.Global.Tab | null;
   /** All tabs (excluding home) */
   tabs: App.Global.Tab[];
 }
 
 const initialState: TabState = {
-  homeTab: undefined,
+  homeTab: null,
   tabs: [],
   activeTabId: ''
 };
@@ -32,6 +36,14 @@ const initialState: TabState = {
 const tabStateAtom = atom(initialState, (get, set, update: Partial<TabState>) => {
   set(tabStateAtom, { ...get(tabStateAtom), ...update });
 });
+
+/**
+ * Cache tabs to local storage
+ */
+export function cacheTabs() {
+  const { tabs } = globalStore.get(tabStateAtom);
+  localStg.set('globalTabs', tabs);
+}
 
 export const useAdminTab = () => {
   const [tabState, setTabState] = useAtom(tabStateAtom);
@@ -66,13 +78,22 @@ export const useAdminTab = () => {
   function initHomeTab(homeRoute: Router.RoutePath) {
     const routeInfo = getMenuInfoByPath(homeRoute);
 
-    if (!routeInfo) return;
+    if (!routeInfo) return null;
+
+    const info = {
+      fixedIndex: 0,
+      ...routeInfo?.tab
+    };
+
+    routeInfo.tab = info;
 
     if (routeInfo) {
       const homeTab = getTabByMenuInfo(routeInfo, homeRoute, homeRoute);
 
-      setTabState({ homeTab });
+      return homeTab;
     }
+
+    return null;
   }
 
   /**
@@ -84,13 +105,20 @@ export const useAdminTab = () => {
   function initTabStore() {
     const storageTabs = localStg.get('globalTabs');
 
+    const homeTab = initHomeTab(globalConfig.defaultHome);
+
+    let tabs: App.Global.Tab[] = [];
+
     if (cache && storageTabs) {
       const allRoutes = Array.from(quickReferenceMenus?.keys() || []);
 
       const extractedTabs = extractTabsByAllRoutes(allRoutes, storageTabs);
-
-      setTabState({ tabs: extractedTabs });
+      tabs = extractedTabs;
     }
+
+    setTabState({ tabs, homeTab });
+
+    addTab(route.fullPath, route.originPath);
   }
 
   /**
@@ -106,10 +134,14 @@ export const useAdminTab = () => {
 
     const tab = getTabByMenuInfo(routeInfo, routePath, fullPath);
 
-    const isHomeTab = tab.id === tabState.homeTab?.id;
+    const homeTabId = tabState.homeTab?.id;
 
-    if (!isHomeTab && !isTabInTabs(tab.id, tabState.tabs)) {
-      setTabState({ tabs: [...tabState.tabs, tab] });
+    const isHomeTab = homeTabId && homeTabId === tab.id;
+
+    const oldTabs = globalStore.get(tabStateAtom).tabs;
+
+    if (!isHomeTab && !isTabInTabs(tab.id, oldTabs)) {
+      setTabState({ tabs: [...oldTabs, tab] });
     }
 
     if (active) {
@@ -185,9 +217,7 @@ export const useAdminTab = () => {
    * @param tab
    */
   async function switchRouteByTab(tab: App.Global.Tab) {
-    navigate({ to: tab.fullPath }).then(() => {
-      setActiveTabId(tab.id);
-    });
+    navigate({ to: tab.fullPath });
   }
 
   /**
@@ -284,8 +314,8 @@ export const useAdminTab = () => {
     const tab = newTabs.find(item => item.id === id);
     if (!tab) return;
 
-    tab.oldLabel = tab.label;
-    tab.newLabel = label;
+    tab.i18nKey = label as I18n.I18nKey;
+
     setTabState({ tabs: newTabs });
   }
 
@@ -302,7 +332,7 @@ export const useAdminTab = () => {
     const tab = newTabs.find(item => item.id === id);
     if (!tab) return;
 
-    tab.newLabel = undefined;
+    tab.i18nKey = tab.oldLabel as I18n.I18nKey;
     setTabState({ tabs: newTabs });
   }
 
@@ -314,16 +344,9 @@ export const useAdminTab = () => {
   function isTabRetain(tabId: string) {
     if (tabId === tabState.homeTab?.id) return true;
 
-    const fixedTabIds = getFixedTabIds(tabState.tabs);
+    const fixedTabIds = getFixedTabIds(allTabs);
 
     return fixedTabIds.includes(tabId);
-  }
-
-  /**
-   * Cache tabs to local storage
-   */
-  function cacheTabs() {
-    localStg.set('globalTabs', tabState.tabs);
   }
 
   return {

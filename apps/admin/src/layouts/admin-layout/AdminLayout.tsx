@@ -1,6 +1,8 @@
 import type { LayoutMode } from '@sa/materials';
 import { AdminLayout as AdminLayoutComponent, LAYOUT_SCROLL_EL_ID } from '@sa/materials';
+
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
+
 import { LAYOUT_MODE_HORIZONTAL, LAYOUT_MODE_VERTICAL } from './constant';
 import GlobalContent from './modules/AdminContent';
 import GlobalFooter from './modules/AdminFooter';
@@ -12,6 +14,8 @@ import { useAdminMenus } from './state/menus/use-admin-menus';
 import { useAdminState } from './state/use-admin-state';
 
 const ThemeDrawer = lazy(() => import('./modules/theme-drawer/ThemeDrawer'));
+
+const AdminEffect = lazy(() => import('./state/AdminEffect'));
 
 const AdminLayout = () => {
   const { contentXScrollable, fullContent, isMobile, mixSiderFixed, siderCollapse, toggleSiderCollapse } =
@@ -65,8 +69,6 @@ const AdminLayout = () => {
     return finalWidth;
   }
 
-  console.log('2222333676766');
-
   return (
     <AdminLayoutComponent
       contentClass={contentXScrollable ? 'overflow-x-hidden' : ''}
@@ -99,6 +101,10 @@ const AdminLayout = () => {
 
       <Suspense fallback={null}>
         <ThemeDrawer />
+      </Suspense>
+
+      <Suspense fallback={null}>
+        <AdminEffect />
       </Suspense>
     </AdminLayoutComponent>
   );

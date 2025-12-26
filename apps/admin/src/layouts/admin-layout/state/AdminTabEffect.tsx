@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useAdminTab } from './use-admin-tab';
+import { useAdminTab } from './tabs/use-admin-tab';
 
 /**
  * Admin Tab Effect Component
@@ -8,7 +8,7 @@ import { useAdminTab } from './use-admin-tab';
  * This component handles tab caching on page unload
  * and should be mounted in the admin layout
  */
-export function AdminTabEffect() {
+const AdminTabEffect = () => {
   const { cacheTabs } = useAdminTab();
 
   useEffect(() => {
@@ -21,7 +21,10 @@ export function AdminTabEffect() {
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
-  }, [cacheTabs]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return null;
-}
+};
+
+export default AdminTabEffect;

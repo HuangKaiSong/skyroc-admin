@@ -2,6 +2,7 @@
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
 import { localStg } from '@/utils/storage';
 
+import AdminTabEffect from './AdminTabEffect';
 import { useAdminState } from './use-admin-state';
 
 const AdminEffect = () => {
@@ -42,7 +43,7 @@ const AdminEffect = () => {
     };
   }, []);
 
-  return null;
+  return <AdminTabEffect />;
 };
 
 export default AdminEffect;

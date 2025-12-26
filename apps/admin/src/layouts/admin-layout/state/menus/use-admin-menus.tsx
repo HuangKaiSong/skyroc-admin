@@ -1,6 +1,7 @@
 /* eslint-disable complexity */
 import { useNavigate } from '@tanstack/react-router';
 import { atom, useAtom } from 'jotai';
+
 import { globalStore } from '@/features/jotai/store';
 import { menuCategory } from '@/features/menus/menu-category';
 import { normalizePath } from '@/features/menus/menu-generator';
