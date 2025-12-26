@@ -4,6 +4,7 @@ import { useAtomsDevtools } from 'jotai-devtools';
 import LazyAnimate from './features/animate/LazyMotion';
 import AntdContextHolder from './features/antd/AntdContextHolder';
 import AntdProvider from './features/antd/AntdProvider';
+import { NotificationProvider } from './features/chat';
 import Devtools from './features/effects/Devtools';
 import GlobalEffect from './features/effects/GlobalEffect';
 import JotaiProvider from './features/jotai/JotaiProvider';
@@ -26,10 +27,12 @@ const App = () => (
   <Provider>
     <AntdProvider>
       <AntdContextHolder>
-        <LazyAnimate>
-          <RouterProvider />
-          <GlobalEffect />
-        </LazyAnimate>
+        <NotificationProvider>
+          <LazyAnimate>
+            <RouterProvider />
+            <GlobalEffect />
+          </LazyAnimate>
+        </NotificationProvider>
       </AntdContextHolder>
     </AntdProvider>
   </Provider>

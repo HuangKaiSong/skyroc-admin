@@ -1,0 +1,51 @@
+/* 通知按钮未读状态的持续摇摆动画 */
+.notification-button-unread {
+  animation: notification-swing 2s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes notification-swing {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  5%, 15% {
+    transform: rotate(15deg);
+  }
+  10%, 20% {
+    transform: rotate(-10deg);
+  }
+  25%, 35% {
+    transform: rotate(8deg);
+  }
+  30%, 40% {
+    transform: rotate(-6deg);
+  }
+  45% {
+    transform: rotate(4deg);
+  }
+  50% {
+    transform: rotate(-2deg);
+  }
+  55% {
+    transform: rotate(0deg);
+  }
+}
+
+/* 通知面板滚动条样式 */
+.notification-panel-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.notification-panel-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.notification-panel-scroll::-webkit-scrollbar-thumb {
+  background: var(--ant-color-border);
+  border-radius: 3px;
+}
+
+.notification-panel-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--ant-color-border-secondary);
+}
+

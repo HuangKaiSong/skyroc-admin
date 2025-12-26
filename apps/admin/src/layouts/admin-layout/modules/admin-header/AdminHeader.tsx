@@ -1,6 +1,7 @@
 import DarkModeContainer from '@/components/DarkModeContainer';
 import FullScreen from '@/components/FullScreen';
 import { GLOBAL_HEADER_MENU_ID } from '@/constants/app';
+import NotificationButton from '@/features/chat/NotificationButton';
 import LangSwitch from '@/features/lang/LangSwitch';
 import ThemeSchemaSwitch from '@/features/theme/ThemeSchemaSwitch';
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
@@ -93,6 +94,8 @@ const GlobalHeader = memo(() => {
         )}
 
         <LangSwitch className="px-12px" />
+
+        <NotificationButton className="px-12px" />
 
         <ThemeSchemaSwitch className="px-12px" />
 

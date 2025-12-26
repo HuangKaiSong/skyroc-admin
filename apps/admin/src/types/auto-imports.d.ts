@@ -7,6 +7,7 @@
 export {}
 declare global {
   const AApp: typeof import('antd').App
+  const AAvatar: typeof import('antd').Avatar
   const ABadge: typeof import('antd').Badge
   const ABreadcrumb: typeof import('antd').Breadcrumb
   const AButton: typeof import('antd').Button
@@ -27,12 +28,14 @@ declare global {
   const AList: typeof import('antd').List
   const AMenu: typeof import('antd').Menu
   const AModal: typeof import('antd').Modal
+  const APopconfirm: typeof import('antd').Popconfirm
   const ARow: typeof import('antd').Row
   const ASegmented: typeof import('antd').Segmented
   const ASelect: typeof import('antd').Select
   const ASpace: typeof import('antd').Space
   const AStatistic: typeof import('antd').Statistic
   const ASwitch: typeof import('antd').Switch
+  const ATabs: typeof import('antd').Tabs
   const ATag: typeof import('antd').Tag
   const ATooltip: typeof import('antd').Tooltip
   const AWatermark: typeof import('antd').Watermark
