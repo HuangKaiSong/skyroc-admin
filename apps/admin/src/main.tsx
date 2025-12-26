@@ -1,6 +1,5 @@
 import { createRoot } from 'react-dom/client';
 import { ErrorBoundary } from 'react-error-boundary';
-
 import App from './App';
 import FallbackRender from './components/ErrorBoundary.tsx';
 import { setupI18n } from './locales';
@@ -19,7 +18,7 @@ function setupApp() {
   const root = createRoot(container);
 
   root.render(
-    <ErrorBoundary fallbackRender={FallbackRender}>
+    <ErrorBoundary FallbackComponent={FallbackRender}>
       <App />
     </ErrorBoundary>
   );
