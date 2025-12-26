@@ -1,7 +1,7 @@
-import type { ComponentPropsWithoutRef, FC, Ref } from 'react';
 import type { Options } from '@better-scroll/core';
 import BScroll from '@better-scroll/core';
 import clsx from 'clsx';
+import type { ComponentPropsWithoutRef, FC, Ref } from 'react';
 
 interface Props extends ComponentPropsWithoutRef<'div'> {
   /**

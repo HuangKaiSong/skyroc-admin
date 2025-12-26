@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { ErrorBoundary } from 'react-error-boundary';
+
 import App from './App';
 import FallbackRender from './components/ErrorBoundary.tsx';
 import { setupI18n } from './locales';

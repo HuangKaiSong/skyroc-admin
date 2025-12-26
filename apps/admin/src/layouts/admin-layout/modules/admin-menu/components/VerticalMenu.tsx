@@ -42,13 +42,11 @@ const VerticalMenu = memo(() => {
 
   const menuTheme = darkTheme ? 'dark' : 'light';
 
-  const menus = isVerticalMix
-    ? secondLevelMenus
-    : isMix
-      ? isVerticalHybridHeaderFirst
-        ? secondLevelMenus
-        : childLevelMenus
-      : allMenus;
+  const menus = useMemo(() => {
+    if (isVerticalMix) return secondLevelMenus;
+    if (isMix) return isVerticalHybridHeaderFirst ? secondLevelMenus : childLevelMenus;
+    return allMenus;
+  }, [isVerticalMix, isMix, isVerticalHybridHeaderFirst, secondLevelMenus, childLevelMenus, allMenus]);
 
   const handleClickMenu: MenuProps['onSelect'] = menuInfo => {
     routerPushByKey(menuInfo.key);

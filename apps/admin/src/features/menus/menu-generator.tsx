@@ -1,7 +1,9 @@
-import { createElement } from 'react';
 import type { AnyRoute } from '@tanstack/react-router';
+import { createElement } from 'react';
+
 import { globalConfig } from '@/config';
 import { routeTree } from '@/features/router/routeTree.gen';
+
 import { extras } from './extras';
 import type { MenuCategoryKey } from './menu-category';
 import { getMenuCategoryKey, menuCategory } from './menu-category';

@@ -1,6 +1,7 @@
-import type { CSSProperties } from 'react';
 import type { ButtonProps, TooltipProps } from 'antd';
 import clsx from 'clsx';
+import type { CSSProperties } from 'react';
+
 import type { ButtonLinkComponentProps } from './ButtonLink';
 import ButtonLink from './ButtonLink';
 import SvgIcon from './SvgIcon';

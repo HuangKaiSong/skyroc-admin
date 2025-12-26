@@ -10,7 +10,6 @@
     "clean": "turbo run clean",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "lint:fix": "eslint . --fix",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck"
   },

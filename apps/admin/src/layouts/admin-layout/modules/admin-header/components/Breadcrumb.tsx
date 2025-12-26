@@ -1,5 +1,6 @@
-import type { BreadcrumbProps } from 'antd';
 import { Link } from '@tanstack/react-router';
+import type { BreadcrumbProps } from 'antd';
+
 import { useAdminMenus } from '@/layouts/admin-layout/state/menus/use-admin-menus';
 
 const itemRender: BreadcrumbProps['itemRender'] = (currentRoute, _, items) => {
