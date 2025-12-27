@@ -1,17 +1,37 @@
-import { TanStackDevtools } from '@tanstack/react-devtools';
-import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
-import { DevTools } from 'jotai-devtools';
+import { Suspense, lazy } from 'react';
 
 import { queryClient } from '@/service/queryClient';
 
 import { globalStore } from '../jotai/store';
 import { router } from '../router';
-import 'jotai-devtools/styles.css';
+
+// 动态导入所有 Devtools 相关的包
+const TanStackDevtools = lazy(() =>
+  import('@tanstack/react-devtools').then(mod => ({ default: mod.TanStackDevtools }))
+);
+
+const ReactQueryDevtoolsPanel = lazy(() =>
+  import('@tanstack/react-query-devtools').then(mod => ({ default: mod.ReactQueryDevtoolsPanel }))
+);
+
+const TanStackRouterDevtoolsPanel = lazy(() =>
+  import('@tanstack/react-router-devtools').then(mod => ({ default: mod.TanStackRouterDevtoolsPanel }))
+);
+
+const JotaiDevTools = lazy(async () => {
+  // 动态导入 CSS
+  await import('jotai-devtools/styles.css');
+  const mod = await import('jotai-devtools');
+  return { default: mod.DevTools };
+});
 
 const Devtools = () => {
+  if (!import.meta.env.DEV) {
+    return null;
+  }
+
   return (
-    <>
+    <Suspense fallback={null}>
       <TanStackDevtools
         config={{
           position: 'bottom-right'
@@ -19,16 +39,26 @@ const Devtools = () => {
         plugins={[
           {
             name: 'Tanstack Router',
-            render: <TanStackRouterDevtoolsPanel router={router} />
+            render: (
+              <Suspense fallback={<div>Loading Router Devtools...</div>}>
+                <TanStackRouterDevtoolsPanel router={router} />
+              </Suspense>
+            )
           },
           {
             name: 'TanStack Query',
-            render: <ReactQueryDevtoolsPanel client={queryClient} />
+            render: (
+              <Suspense fallback={<div>Loading Query Devtools...</div>}>
+                <ReactQueryDevtoolsPanel client={queryClient} />
+              </Suspense>
+            )
           }
         ]}
       />
-      <DevTools store={globalStore} />
-    </>
+      <Suspense fallback={null}>
+        <JotaiDevTools store={globalStore} />
+      </Suspense>
+    </Suspense>
   );
 };
 
