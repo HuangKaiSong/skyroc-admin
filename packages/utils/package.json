@@ -10,15 +10,15 @@
     }
   },
   "dependencies": {
-    "clsx": "^2.1.1",
-    "colord": "2.9.3",
-    "crypto-js": "4.2.0",
-    "klona": "2.0.6",
-    "localforage": "1.10.0",
-    "nanoid": "5.1.6",
-    "tailwind-merge": "^3.4.0"
+    "clsx": "catalog:utils",
+    "colord": "catalog:utils",
+    "crypto-js": "catalog:utils",
+    "klona": "catalog:utils",
+    "localforage": "catalog:utils",
+    "nanoid": "catalog:utils",
+    "tailwind-merge": "catalog:utils"
   },
   "devDependencies": {
-    "@types/crypto-js": "4.2.2"
+    "@types/crypto-js": "catalog:dev"
   }
 }

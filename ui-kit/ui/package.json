@@ -30,12 +30,7 @@
   ],
   "sideEffects": false,
   "exports": {
-    ".": {
-      "types": "./src/index.ts",
-      "default": "./src/index.ts",
-      "//default": "./dist/index.mjs",
-      "development": "./src/index.ts"
-    }
+    ".": "./src/index.ts"
   },
   "main": "./src/index.ts",
   "module": "./src/index.ts",
@@ -48,24 +43,17 @@
     "lint": "eslint . --fix",
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
-  "peerDependencies": {
-    "react": ">=19.0.0",
-    "react-dom": ">=19.0.0"
-  },
   "dependencies": {
-    "@radix-ui/react-scroll-area": "^1.2.10",
+    "@radix-ui/react-scroll-area": "catalog:ui-shared",
     "@sa/color": "workspace:*",
     "@skyroc/utils": "workspace:*",
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1",
-    "tailwind-variants": "^3.2.2"
+    "react": "catalog:core",
+    "react-dom": "catalog:core",
+    "tailwind-variants": "catalog:utils"
   },
   "devDependencies": {
-    "@soybeanjs/eslint-config": "^1.7.4",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
-    "rimraf": "^6.0.1",
-    "tsdown": "^0.18.2",
-    "typescript": "5.9.3"
+    "@soybeanjs/eslint-config": "catalog:dev",
+    "@types/react": "catalog:dev",
+    "@types/react-dom": "catalog:dev"
   }
 }
