@@ -86,13 +86,9 @@ export function useNotification() {
   // 显示浏览器通知
   const showBrowserNotification = useCallback(
     (notification: NotificationItem) => {
-      console.log('333', 444);
-
       if (!config.browserNotificationEnabled || isDoNotDisturbTime()) return;
       if (notificationPermission !== 'granted') return;
       if (notification.silent || notification.showBrowserNotification === false) return;
-
-      console.log('2222', Notification.permission);
 
       try {
         const browserNotification = new Notification(notification.title, {
@@ -107,7 +103,6 @@ export function useNotification() {
           }
           browserNotification.close();
         };
-        console.log('555', 666);
       } catch (error) {
         // eslint-disable-next-line no-console
         console.warn('显示浏览器通知失败:', error);

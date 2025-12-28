@@ -16,9 +16,13 @@ export function getAntdTheme(colors: Theme.ThemeColor, darkMode: boolean, settin
 
   const bgColor = transformColorWithOpacity(primary, darkMode ? 0.3 : 0.1, darkMode ? '#000000' : '#fff');
   const containerBgColor = darkMode ? tokens.dark?.colors?.container : tokens.light?.colors.container;
+  const layoutBgColor = darkMode ? tokens.dark?.colors?.layout : tokens.light?.colors.layout;
 
   const theme: ConfigProviderProps['theme'] = {
     algorithm: [darkMode ? darkAlgorithm : defaultAlgorithm],
+    cssVar: {
+      prefix: ''
+    },
     components: {
       Button: {
         controlHeightSM: 28
@@ -37,13 +41,27 @@ export function getAntdTheme(colors: Theme.ThemeColor, darkMode: boolean, settin
     },
     token: {
       colorBgContainer: containerBgColor,
+      colorBgLayout: layoutBgColor,
       colorError: error,
       colorInfo: info,
       fontSize: themeTextSize,
       colorPrimary: primary,
       borderRadius: themeRadius,
       colorSuccess: success,
-      colorWarning: warning
+      colorWarning: warning,
+      blue: '#3B82F6',
+      purple: '#8B5CF6',
+      cyan: '#06B6D4',
+      green: '#10B981',
+      magenta: '#D946EF',
+      pink: '#F472B6',
+      red: '#EF4444',
+      orange: '#F97316',
+      yellow: '#EAB308',
+      volcano: '#EA580C',
+      geekblue: '#4F46E5',
+      gold: '#D97706',
+      lime: '#84CC16'
     }
   };
 
