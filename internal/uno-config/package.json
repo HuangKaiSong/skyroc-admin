@@ -1,0 +1,25 @@
+{
+  "name": "@sa/uno-config",
+  "type": "module",
+  "version": "1.0.0",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": ["./src/*"]
+    }
+  },
+  "files": ["./dist"],
+  "dependencies": {
+    "@sa/color": "workspace:*",
+    "colord": "catalog:utils",
+    "glob": "^11.0.0"
+  },
+  "devDependencies": {
+    "unocss": "^66.5.11"
+  }
+}
