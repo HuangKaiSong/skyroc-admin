@@ -43,7 +43,7 @@
     "moduleResolution": "node"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "unocss.root": ["./"],
+  "unocss.root": ["./apps/admin"],
   "i18n-ally.sourceLanguage": "zh-cn",
   "files.readonlyInclude": {
     "**/routeTree.gen.ts": true
