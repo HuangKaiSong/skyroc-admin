@@ -1,8 +1,6 @@
 import type { AnyColor } from 'colord';
-
 import { getHex } from '../shared';
 import type { ColorPaletteNumber } from '../types';
-
 import { getAntDColorPalette } from './antd';
 import { getRecommendedColorPalette } from './recommend';
 
