@@ -54,7 +54,8 @@ export const textShortcuts: UserShortcuts = [
 /** Shadcn shortcuts */
 export const commonShortcuts: UserShortcuts = [
   {
-    'card-wrapper': 'rd-8px shadow-sm'
+    'card-wrapper': 'rd-8px shadow-sm',
+    card: 'bg-container radius-md shadow-sm border border-border text-base flex-col col-y-xxs items-stretch p-xs'
   }
 ];
 /** All shortcuts */
