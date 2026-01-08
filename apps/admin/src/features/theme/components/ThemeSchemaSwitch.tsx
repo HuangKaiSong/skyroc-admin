@@ -3,8 +3,8 @@ import type { CSSProperties } from 'react';
 
 import ButtonIcon from '@/components/ButtonIcon';
 
-import { icons } from './shared';
-import { useSettingsTheme } from './useSettingsTheme';
+import { icons } from '../shared';
+import { useSettingsTheme } from '../useSettingsTheme';
 
 interface Props {
   className?: string;

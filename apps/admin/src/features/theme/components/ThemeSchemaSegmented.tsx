@@ -1,7 +1,7 @@
 import type { SegmentedOptions } from 'antd/es/segmented';
 
-import { icons } from './shared';
-import { useSettingsTheme } from './useSettingsTheme';
+import { icons } from '../shared';
+import { useSettingsTheme } from '../useSettingsTheme';
 
 const ThemeMode = ['auto', 'dark', 'light'] satisfies UnionKey.ThemeScheme[];
 

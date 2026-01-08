@@ -4,15 +4,15 @@ export const themeSettings: Theme.ThemeSetting = {
   grayscale: false,
   colourWeakness: false,
   recommendColor: false,
-  themeColor: '#6366F1', // Indigo：比 #1677FF 更温和、耐看
+  themeColor: '#6366F1',
   themeRadius: 6,
   otherColor: {
-    info: '#0EA5E9', // Sky：更“清新”
-    success: '#10B981', // Emerald：不荧光、很干净
-    warning: '#F59E0B', // Amber：比纯黄耐看很多
-    error: '#F43F5E' // Rose：比纯红更优雅
+    info: '#0EA5E9',
+    success: '#10B981',
+    warning: '#F59E0B',
+    error: '#F43F5E'
   },
-  isInfoFollowPrimary: true,
+  isInfoFollowPrimary: false,
   themeTextSize: 14,
   layout: {
     mode: 'vertical',

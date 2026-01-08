@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { localStg } from '@/utils/storage';
 
-import { addThemeVarsToGlobal, createThemeToken, toggleAuxiliaryColorModes, toggleCssDarkMode } from './shared';
-import { useSettingsTheme } from './useSettingsTheme';
+import { addThemeVarsToGlobal, createThemeToken, toggleAuxiliaryColorModes, toggleCssDarkMode } from '../shared';
+import { useSettingsTheme } from '../useSettingsTheme';
 
 const ThemeEffect = () => {
   /** Theme settings */
