@@ -1,11 +1,19 @@
 import type { PropsWithChildren } from 'react';
 
+import { initAntdProvider } from '@/config';
 import { antdLocales } from '@/locales/antd';
 
 import { useLang } from '../lang/use-lang';
 import { useSettingsTheme } from '../theme/useSettingsTheme';
 
 import { getAntdTheme } from './shared';
+
+function ContextHolder() {
+  const { message, modal, notification } = AApp.useApp();
+
+  initAntdProvider(message, modal, notification);
+  return null;
+}
 
 const AntdProvider = ({ children }: PropsWithChildren) => {
   const { locale } = useLang();
@@ -23,13 +31,16 @@ const AntdProvider = ({ children }: PropsWithChildren) => {
       modal={{ centered: true }}
       theme={antdTheme}
     >
-      <AWatermark
-        className="h-full"
-        content={watermarkContent}
-        {...watermark.settings}
-      >
-        {children}
-      </AWatermark>
+      <AApp style={{ height: '100%' }}>
+        <ContextHolder />
+        <AWatermark
+          className="h-full"
+          content={watermarkContent}
+          {...watermark.settings}
+        >
+          {children}
+        </AWatermark>
+      </AApp>
     </AConfigProvider>
   );
 };

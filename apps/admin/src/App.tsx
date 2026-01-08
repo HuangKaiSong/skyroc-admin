@@ -3,7 +3,6 @@ import { useAtomsDevtools } from 'jotai-devtools';
 import { Suspense, lazy } from 'react';
 
 import LazyAnimate from './features/animate/LazyMotion';
-import AntdContextHolder from './features/antd/AntdContextHolder';
 import AntdProvider from './features/antd/AntdProvider';
 import { NotificationProvider } from './features/chat';
 import GlobalEffect from './features/effects/GlobalEffect';
@@ -38,14 +37,12 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
 const App = () => (
   <Provider>
     <AntdProvider>
-      <AntdContextHolder>
-        <NotificationProvider>
-          <LazyAnimate>
-            <RouterProvider />
-            <GlobalEffect />
-          </LazyAnimate>
-        </NotificationProvider>
-      </AntdContextHolder>
+      <NotificationProvider>
+        <LazyAnimate>
+          <RouterProvider />
+          <GlobalEffect />
+        </LazyAnimate>
+      </NotificationProvider>
     </AntdProvider>
   </Provider>
 );
