@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@skyroc/utils": "workspace:*",
-    "colord": "2.9.3"
+    "@types/culori": "^4.0.1",
+    "colord": "2.9.3",
+    "culori": "^4.0.2"
   }
 }
