@@ -3,7 +3,7 @@ import FullScreen from '@/components/FullScreen';
 import { GLOBAL_HEADER_MENU_ID } from '@/constants/app';
 import NotificationButton from '@/features/chat/NotificationButton';
 import LangSwitch from '@/features/lang/LangSwitch';
-import ThemeSchemaSwitch from '@/features/theme/ThemeSchemaSwitch';
+import ThemeSchemaSwitch from '@/features/theme/components/ThemeSchemaSwitch';
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
 
 import MenuToggler from '../../state/menus/MenuToggler';
@@ -65,7 +65,7 @@ const GlobalHeader = memo(() => {
   const { showLogo, showMenu, showMenuToggler } = HEADER_PROPS_CONFIG[mode];
 
   return (
-    <DarkModeContainer className="h-full flex-y-center px-12px shadow-header">
+    <DarkModeContainer className="px-12px flex-y-center h-full shadow-header">
       {showLogo && (
         <AdminLogo
           className="h-full"
@@ -76,13 +76,13 @@ const GlobalHeader = memo(() => {
       {showMenuToggler && <MenuToggler />}
 
       <div
-        className="h-full flex-y-center flex-1-hidden"
+        className="flex-y-center flex-1-hidden h-full"
         id={GLOBAL_HEADER_MENU_ID}
       >
         {!isMobile && !showMenu && <AdminBreadcrumb />}
       </div>
 
-      <div className="h-full flex-y-center justify-end gap-2">
+      <div className="flex-y-center gap-2 h-full justify-end">
         <AdminSearch />
 
         {!isMobile && (

@@ -1,5 +1,5 @@
 import LangEffect from '../lang/LangEffect';
-import ThemeEffect from '../theme/ThemeEffect';
+import ThemeEffect from '../theme/components/ThemeEffect';
 
 const GlobalEffect = () => {
   return (

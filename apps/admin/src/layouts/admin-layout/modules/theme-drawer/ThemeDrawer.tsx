@@ -37,7 +37,7 @@ const ThemeDrawer = () => {
       onClose={closeThemeDrawer}
     >
       <ScrollArea className="h-full">
-        <div className="min-h-400px overflow-x-hidden px-24px pb-24px pt-8px">
+        <div className="px-24px pb-24px pt-8px min-h-400px overflow-x-hidden">
           <ASegmented<string>
             classNames={{ root: 'w-full mb-16px', item: 'flex-1 py-2px font-500' }}
             options={options}

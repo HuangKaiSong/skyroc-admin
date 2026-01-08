@@ -1,4 +1,4 @@
-import ThemeSchemaSegmented from '@/features/theme/ThemeSchemaSegmented';
+import ThemeSchemaSegmented from '@/features/theme/components/ThemeSchemaSegmented';
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
 
 import SettingItem from '../../components/SettingItem';
