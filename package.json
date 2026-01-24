@@ -19,6 +19,7 @@
     "@dnd-kit/utilities": "^3.2.2"
   },
   "devDependencies": {
+    "@skyroc/tsconfig": "workspace:*",
     "@soybeanjs/eslint-config": "catalog:dev",
     "eslint": "catalog:dev",
     "rimraf": "catalog:dev",
