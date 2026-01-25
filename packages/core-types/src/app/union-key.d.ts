@@ -149,3 +149,5 @@ declare namespace UnionKey {
     | 'zoom-out-right'
     | 'zoom-out-up';
 }
+
+export type { UnionKey };

@@ -156,3 +156,5 @@ declare namespace Router {
     userInfo?: Api.Auth.UserInfo;
   }
 }
+
+export type { Router };

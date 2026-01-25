@@ -43,3 +43,5 @@ declare namespace Service {
     status: string;
   };
 }
+
+export type { Service };

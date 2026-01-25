@@ -1,43 +1,37 @@
-/** The storage namespace */
-declare namespace StorageType {
-  interface Session {
-    /** The theme color */
-    themeColor: string;
-    // /**
-    //  * the theme settings
-    //  */
-    // themeSettings: App.Theme.ThemeSetting;
-  }
-
-  interface Local {
-    /** The backup theme setting before is mobile */
-    backupThemeSettingBeforeIsMobile: {
-      layout: UnionKey.ThemeLayoutMode;
-      siderCollapse: boolean;
-    };
-    /** The dark mode */
-    darkMode: boolean;
-    /** The global tabs */
-    globalTabs: App.Global.Tab[];
-    /** The i18n language */
-    lang: I18n.LangType;
-    /** The last login user id */
-    lastLoginUserId: string;
-    /** Fixed sider with mix-menu */
-    mixSiderFixed: CommonType.YesOrNo;
+/**
+ * Admin app specific storage type extensions
+ *
+ * This file extends the base StorageType namespace from @skyroc/core-types
+ * using TypeScript's declaration merging feature.
+ *
+ * Base types are defined in: packages/core-types/src/app/storage.d.ts
+ */
+declare global {
+  namespace StorageType {
     /**
-     * The override theme flags
+     * Extend Session storage with admin-specific fields
      *
-     * The value is the build time of the project
+     * Base fields (from core-types): themeColor
      */
-    overrideThemeFlag: string;
-    /** The refresh token */
-    refreshToken: string;
-    /** The theme color */
-    themeColor: string;
-    /** The theme settings */
-    themeSettings: Theme.ThemeSetting;
-    /** The token */
-    token: string;
+    interface Session {
+      /** Admin user session ID (admin-specific) */
+      adminSessionId?: string;
+      /** Current workspace ID (admin-specific) */
+      workspaceId?: string;
+    }
+
+    /**
+     * Extend Local storage with admin-specific fields
+     *
+     * Base fields (from core-types): token, refreshToken, themeColor, lang, etc.
+     */
+    interface Local {
+      /** Admin dashboard layout preference (admin-specific) */
+      dashboardLayout?: 'grid' | 'list';
+      /** Recently viewed admin items (admin-specific) */
+      recentlyViewed?: string[];
+    }
   }
 }
+
+export {};

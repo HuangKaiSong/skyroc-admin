@@ -2,7 +2,12 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@skyroc/tsconfig/web-app.json",
   "compilerOptions": {
-    "types": ["unplugin-icons/types/react"]
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "~/*": ["./*"]
+    },
+    "types": ["unplugin-icons/types/react", "@skyroc/core-types/types"]
   },
   "include": ["./**/*.ts", "./**/*.tsx"]
 }

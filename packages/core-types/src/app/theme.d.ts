@@ -185,3 +185,5 @@ declare namespace Theme {
     colors: ThemeTokenColor & { [key: string]: string };
   };
 }
+
+export type { Theme };

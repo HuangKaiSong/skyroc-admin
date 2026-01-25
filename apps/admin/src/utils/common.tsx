@@ -20,7 +20,7 @@ export function transformRecordToOption<T extends Record<string, string>>(record
   return Object.entries(record).map(([value, label]) => ({
     label,
     value
-  })) as CommonType.Option<keyof T, T[keyof T]>[];
+  })) as Common.Option<keyof T, T[keyof T]>[];
 }
 
 /**
@@ -28,7 +28,7 @@ export function transformRecordToOption<T extends Record<string, string>>(record
  *
  * @param options
  */
-export function translateOptions(options: CommonType.Option<string, I18n.I18nKey>[]) {
+export function translateOptions(options: Common.Option<string, I18n.I18nKey>[]) {
   return options.map(option => ({
     ...option,
     label: <I18nLabel i18nKey={option.label} />

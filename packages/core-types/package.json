@@ -6,8 +6,10 @@
   "license": "MIT",
   "keywords": ["types", "typescript", "core"],
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index",
+    "./types": "./src/index.d.ts"
   },
+  "types": "./src/index",
   "typesVersions": {
     "*": {
       "*": ["./src/*"]

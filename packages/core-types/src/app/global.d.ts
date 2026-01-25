@@ -1,4 +1,4 @@
-declare namespace App.Global {
+declare namespace Global {
   /**
    * - The global dropdown key
    *
@@ -62,3 +62,5 @@ declare namespace App.Global {
     }
   }
 }
+
+export type { Global };
