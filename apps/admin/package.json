@@ -69,7 +69,7 @@
     "@iconify/types": "catalog:ui-shared",
     "@sa/scripts": "workspace:*",
     "@sa/uno-config": "workspace:*",
-    "@skyroc/core-types": "workspace:*",
+    "@skyroc/types": "workspace:*",
     "@soybeanjs/eslint-config": "catalog:dev",
     "@svgr/core": "catalog:web",
     "@svgr/plugin-jsx": "catalog:web",

@@ -1,12 +1,12 @@
 # 如何扩展全局类型
 
-本文档说明如何在具体项目中扩展 `@skyroc/core-types` 提供的全局类型定义。
+本文档说明如何在具体项目中扩展 `@core/types` 提供的全局类型定义。
 
 ## 核心概念:TypeScript 声明合并
 
 TypeScript 允许在不同文件中对同一个 namespace 或 interface 进行**声明合并**。这意味着:
 
-- 基础类型在 `@skyroc/core-types` 中定义
+- 基础类型在 `@core/types` 中定义
 - 项目特定的扩展在具体项目(如 `apps/admin`)中添加
 - TypeScript 自动合并这些声明,无需手动导入
 
@@ -184,7 +184,7 @@ recentlyViewed?: string[];
 ```json
 {
   "compilerOptions": {
-    "types": ["@skyroc/core-types/types"]
+    "types": ["@core/types/types"]
   }
 }
 ```

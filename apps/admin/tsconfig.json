@@ -7,7 +7,7 @@
       "@/*": ["./src/*"],
       "~/*": ["./*"]
     },
-    "types": ["unplugin-icons/types/react", "@skyroc/core-types/types"]
+    "types": ["unplugin-icons/types/react", "@skyroc/types/types"]
   },
   "include": ["./**/*.ts", "./**/*.tsx"]
 }

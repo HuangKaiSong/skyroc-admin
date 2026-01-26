@@ -1,5 +1,5 @@
 {
-  "name": "@skyroc/core-types",
+  "name": "@skyroc/types",
   "version": "1.0.0",
   "description": "全局类型定义 - 跨平台支持",
   "author": "",
@@ -9,7 +9,6 @@
     ".": "./src/index",
     "./types": "./src/index.d.ts"
   },
-  "types": "./src/index",
   "typesVersions": {
     "*": {
       "*": ["./src/*"]

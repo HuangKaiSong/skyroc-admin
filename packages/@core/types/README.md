@@ -1,10 +1,11 @@
-# @skyroc/core-types
+# @core/types
 
 > 全局类型定义 - 跨平台支持
 
 ## 📦 包信息
 
-- **包名**: `@skyroc/core-types`
+- **包名**: `@core/types`
+- **命名空间**: `@core/*`
 - **版本**: `1.0.0`
 - **平台**: Universal (Web)
 - **依赖**: 无
@@ -25,7 +26,7 @@
 ## 📐 目录结构
 
 ```
-@skyroc/core-types/
+@core/types/
 ├── src/
 │   ├── api/
 │   │   ├── auth.d.ts           # 认证相关类型
@@ -33,15 +34,15 @@
 │   │   ├── common.d.ts         # API 通用类型
 │   │   └── service.d.ts        # 服务配置类型
 │   ├── app/
+│   │   ├── common.d.ts         # 通用类型
 │   │   ├── global.d.ts         # 全局类型
+│   │   ├── menu.d.ts           # 菜单类型
+│   │   ├── router.d.ts         # 路由类型
+│   │   ├── storage.d.ts        # 存储类型
 │   │   ├── theme.d.ts          # 主题类型
 │   │   └── union-key.d.ts      # 联合类型key
 │   ├── locales/
 │   │   └── i18n.d.ts           # 国际化类型
-│   ├── common.d.ts             # 通用类型
-│   ├── menu.d.ts               # 菜单类型
-│   ├── router.d.ts             # 路由类型
-│   ├── storage.d.ts            # 存储类型
 │   └── index.ts                # 统一导出
 ├── package.json
 ├── tsconfig.json
@@ -54,7 +55,7 @@
 
 ```ts
 // 在 service 中使用
-import type { Api } from '@skyroc/core-types'
+import type { Api } from '@core/types'
 
 async function login(params: Api.Auth.LoginParams): Promise<Api.Service.Response<Api.Auth.LoginResponse>> {
   return axios.post('/auth/login', params)
@@ -65,7 +66,7 @@ async function login(params: Api.Auth.LoginParams): Promise<Api.Service.Response
 
 ```ts
 // 在主题包中使用
-import type { Theme } from '@skyroc/core-types'
+import type { Theme } from '@core/types'
 
 const themeSettings: Theme.ThemeSetting = {
   themeScheme: 'light',
@@ -78,12 +79,28 @@ const themeSettings: Theme.ThemeSetting = {
 
 ```ts
 // 在存储包中使用
-import type { StorageType } from '@skyroc/core-types'
+import type { StorageType } from '@core/types'
 
 // 扩展存储schema
-declare module '@skyroc/core-storage' {
+declare module '@core/storage' {
   interface StorageSchema extends StorageType.Local {}
 }
+```
+
+### 示例 4: 全局类型使用
+
+```ts
+// 无需导入,直接使用全局命名空间
+const option: Common.Option = {
+  label: 'Option 1',
+  value: '1'
+};
+
+const storage: StorageType.Local = {
+  token: 'xxx',
+  themeColor: '#1890ff',
+  // ...
+};
 ```
 
 ## 🔌 主要导出
@@ -99,12 +116,20 @@ declare module '@skyroc/core-storage' {
 - `Theme` - 主题配置类型
 - `UnionKey` - 联合类型键
 
-### 其他类型
-- `CommonType` - 通用工具类型
+### 全局命名空间
+- `Common` - 通用类型(Option, YesOrNo 等)
 - `Menu` - 菜单类型
 - `Router` - 路由类型
 - `StorageType` - 存储类型
 - `I18n` - 国际化类型
+
+## 🔗 相关包
+
+作为 `@core` 命名空间的一部分,相关包:
+- `@core/types` - 类型定义(当前包)
+- `@core/hooks` - React Hooks(规划中)
+- `@core/store` - 状态管理(规划中)
+- `@core/providers` - Context Providers(规划中)
 
 ---
 

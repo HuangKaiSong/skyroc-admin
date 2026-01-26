@@ -402,9 +402,9 @@ importers:
       '@sa/uno-config':
         specifier: workspace:*
         version: link:../../internal/uno-config
-      '@skyroc/core-types':
+      '@skyroc/types':
         specifier: workspace:*
-        version: link:../../packages/core-types
+        version: link:../../packages/@core/types
       '@soybeanjs/eslint-config':
         specifier: catalog:dev
         version: 1.7.4(@typescript-eslint/utils@8.50.1(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@unocss/eslint-config@66.5.10(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(eslint-plugin-react-hooks@7.0.1(eslint@9.39.2(jiti@2.6.1)))(eslint-plugin-react-refresh@0.4.26(eslint@9.39.2(jiti@2.6.1)))(eslint-plugin-react@7.37.5(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(svelte-eslint-parser@1.4.1)(typescript@5.9.3)
@@ -544,6 +544,8 @@ importers:
         specifier: ^66.5.11
         version: 66.5.11(postcss@8.5.6)(vite@7.2.7(@types/node@24.10.4)(jiti@2.6.1)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2))
 
+  packages/@core/types: {}
+
   packages/axios:
     dependencies:
       '@skyroc/utils':
@@ -577,8 +579,6 @@ importers:
       culori:
         specifier: ^4.0.2
         version: 4.0.2
-
-  packages/core-types: {}
 
   packages/materials:
     dependencies:
