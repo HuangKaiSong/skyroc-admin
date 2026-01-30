@@ -1,5 +1,5 @@
 {
-  "name": "@sa/color",
+  "name": "@skyroc/color",
   "version": "2.5.0",
   "exports": {
     ".": "./src/index.ts"

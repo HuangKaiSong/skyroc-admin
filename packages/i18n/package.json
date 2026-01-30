@@ -1,0 +1,29 @@
+{
+  "name": "@skyroc/i18n",
+  "version": "1.0.0",
+  "description": "Internationalization core logic - Cross-platform support (Web + React Native)",
+  "author": "",
+  "license": "MIT",
+  "keywords": ["i18n", "internationalization", "i18next", "jotai"],
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": ["./src/*"]
+    }
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "dependencies": {
+    "@skyroc/storage": "workspace:*",
+    "@skyroc/types": "workspace:*",
+    "i18next": "catalog:i18n",
+    "jotai": "catalog:core"
+  },
+  "devDependencies": {
+    "@skyroc/tsconfig": "workspace:*",
+    "react": "catalog:core"
+  }
+}

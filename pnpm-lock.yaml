@@ -317,21 +317,21 @@ importers:
       '@better-scroll/core':
         specifier: catalog:web
         version: 2.5.1
-      '@sa/axios':
+      '@skyroc/axios':
         specifier: workspace:*
-        version: link:../../packages/axios
-      '@sa/color':
+        version: link:../../packages/@core/axios
+      '@skyroc/color':
         specifier: workspace:*
-        version: link:../../packages/color
-      '@sa/materials':
+        version: link:../../packages/@core/color
+      '@skyroc/materials':
         specifier: workspace:*
-        version: link:../../packages/materials
+        version: link:../../packages/web/materials
       '@skyroc/ui':
         specifier: workspace:*
         version: link:../../ui-kit/ui
       '@skyroc/utils':
         specifier: workspace:*
-        version: link:../../packages/utils
+        version: link:../../packages/@core/utils
       '@tanstack/react-query':
         specifier: catalog:core
         version: 5.90.12(react@19.2.3)
@@ -396,12 +396,12 @@ importers:
       '@iconify/types':
         specifier: catalog:ui-shared
         version: 2.0.0
-      '@sa/scripts':
-        specifier: workspace:*
-        version: link:../../packages/scripts
       '@sa/uno-config':
         specifier: workspace:*
         version: link:../../internal/uno-config
+      '@skyroc/scripts':
+        specifier: workspace:*
+        version: link:../../packages/@core/scripts
       '@skyroc/types':
         specifier: workspace:*
         version: link:../../packages/@core/types
@@ -530,9 +530,9 @@ importers:
 
   internal/uno-config:
     dependencies:
-      '@sa/color':
+      '@skyroc/color':
         specifier: workspace:*
-        version: link:../../packages/color
+        version: link:../../packages/@core/color
       colord:
         specifier: catalog:utils
         version: 2.9.3
@@ -544,9 +544,7 @@ importers:
         specifier: ^66.5.11
         version: 66.5.11(postcss@8.5.6)(vite@7.2.7(@types/node@24.10.4)(jiti@2.6.1)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2))
 
-  packages/@core/types: {}
-
-  packages/axios:
+  packages/@core/axios:
     dependencies:
       '@skyroc/utils':
         specifier: workspace:*
@@ -565,7 +563,7 @@ importers:
         specifier: catalog:dev
         version: 6.14.0
 
-  packages/color:
+  packages/@core/color:
     dependencies:
       '@skyroc/utils':
         specifier: workspace:*
@@ -580,23 +578,7 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2
 
-  packages/materials:
-    dependencies:
-      '@sa/color':
-        specifier: workspace:*
-        version: link:../color
-      '@skyroc/ui':
-        specifier: workspace:*
-        version: link:../../ui-kit/ui
-      '@skyroc/utils':
-        specifier: workspace:*
-        version: link:../utils
-    devDependencies:
-      typed-css-modules:
-        specifier: 0.9.1
-        version: 0.9.1
-
-  packages/scripts:
+  packages/@core/scripts:
     devDependencies:
       '@soybeanjs/changelog':
         specifier: catalog:dev
@@ -626,7 +608,25 @@ importers:
         specifier: catalog:dev
         version: 4.0.3
 
-  packages/utils:
+  packages/@core/state:
+    dependencies:
+      '@skyroc/storage':
+        specifier: workspace:*
+        version: link:../../storage
+      jotai:
+        specifier: catalog:core
+        version: 2.16.0(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.7)(react@19.2.3)
+    devDependencies:
+      '@skyroc/tsconfig':
+        specifier: workspace:*
+        version: link:../../../internal/tsconfig
+      react:
+        specifier: catalog:core
+        version: 19.2.3
+
+  packages/@core/types: {}
+
+  packages/@core/utils:
     dependencies:
       clsx:
         specifier: catalog:utils
@@ -654,17 +654,65 @@ importers:
         specifier: catalog:dev
         version: 4.2.2
 
+  packages/i18n:
+    dependencies:
+      '@skyroc/storage':
+        specifier: workspace:*
+        version: link:../storage
+      '@skyroc/types':
+        specifier: workspace:*
+        version: link:../@core/types
+      i18next:
+        specifier: catalog:i18n
+        version: 25.7.3(typescript@5.9.3)
+      jotai:
+        specifier: catalog:core
+        version: 2.16.0(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.7)(react@19.2.3)
+    devDependencies:
+      '@skyroc/tsconfig':
+        specifier: workspace:*
+        version: link:../../internal/tsconfig
+      react:
+        specifier: catalog:core
+        version: 19.2.3
+
+  packages/storage:
+    dependencies:
+      '@skyroc/types':
+        specifier: workspace:*
+        version: link:../@core/types
+    devDependencies:
+      '@skyroc/tsconfig':
+        specifier: workspace:*
+        version: link:../../internal/tsconfig
+
+  packages/web/materials:
+    dependencies:
+      '@skyroc/color':
+        specifier: workspace:*
+        version: link:../../@core/color
+      '@skyroc/ui':
+        specifier: workspace:*
+        version: link:../../../ui-kit/ui
+      '@skyroc/utils':
+        specifier: workspace:*
+        version: link:../../@core/utils
+    devDependencies:
+      typed-css-modules:
+        specifier: 0.9.1
+        version: 0.9.1
+
   ui-kit/ui:
     dependencies:
       '@radix-ui/react-scroll-area':
         specifier: catalog:ui-shared
         version: 1.2.10(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      '@sa/color':
+      '@skyroc/color':
         specifier: workspace:*
-        version: link:../../packages/color
+        version: link:../../packages/@core/color
       '@skyroc/utils':
         specifier: workspace:*
-        version: link:../../packages/utils
+        version: link:../../packages/@core/utils
       react:
         specifier: catalog:core
         version: 19.2.3

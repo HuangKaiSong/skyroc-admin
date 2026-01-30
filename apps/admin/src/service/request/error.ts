@@ -1,5 +1,5 @@
-import type { RequestInstance } from '@sa/axios';
-import { BACKEND_ERROR_CODE } from '@sa/axios';
+import type { RequestInstance } from '../../../../../packages/@core/axios/src';
+import { BACKEND_ERROR_CODE } from '../../../../../packages/@core/axios/src';
 import type { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 
 import { router } from '@/features/router';

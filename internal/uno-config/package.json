@@ -15,7 +15,7 @@
   },
   "files": ["./dist"],
   "dependencies": {
-    "@sa/color": "workspace:*",
+    "@skyroc/color": "workspace:*",
     "colord": "catalog:utils",
     "glob": "^11.0.0"
   },

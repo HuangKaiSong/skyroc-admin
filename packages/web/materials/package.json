@@ -1,5 +1,5 @@
 {
-  "name": "@sa/materials",
+  "name": "@skyroc/materials",
   "version": "2.5.0",
   "exports": {
     ".": "./src/index.ts"
@@ -10,7 +10,7 @@
     }
   },
   "dependencies": {
-    "@sa/color": "workspace:*",
+    "@skyroc/color": "workspace:*",
     "@skyroc/ui": "workspace:*",
     "@skyroc/utils": "workspace:*"
   },
