@@ -13,9 +13,11 @@
     "clsx": "catalog:utils",
     "colord": "catalog:utils",
     "crypto-js": "catalog:utils",
+    "dayjs": "catalog:utils",
     "klona": "catalog:utils",
     "localforage": "catalog:utils",
     "nanoid": "catalog:utils",
+    "radash": "^12.1.1",
     "tailwind-merge": "catalog:utils"
   },
   "devDependencies": {
