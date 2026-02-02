@@ -1,59 +1,66 @@
-import { adjustLightness, generateOklchPaletteEx, mixColor } from '@skyroc/color';
+import { adjustLightness, generateDarkModePalette, mixColor } from '@skyroc/color';
 
 import type { ColorMap, GenerateColorMap, GenerateNeutralColorMap } from '../types';
 
 /** 暗色模式默认基础色 */
-export const DARK_BG_BASE = '#0A0A0A';
-export const DARK_TEXT_BASE = '#F5F5F5';
+export const DARK_BG_BASE = '#000';
+export const DARK_TEXT_BASE = '#FFFFFF';
 
 /**
  * 生成颜色调色板（暗色模式）
  *
- * 暗色模式下调色板的映射略有不同：
- * - 浅色（1-4）保持正常映射，用于背景和边框
- * - 交互色（5-7）使用更亮的颜色，因为暗色背景需要更高对比度
- * - 文字色（8-10）使用中等深度的颜色，避免太刺眼
+ * 使用 generateOklchPaletteEx 算法替代 antd 的 @ant-design/colors
+ * 参考 Ant Design 官方暗色算法，调色板映射需要特殊处理：
+ *
+ * 映射策略（参考 antd dark theme）：
+ * - 1-4: 使用浅色段（50-300），用于背景和边框
+ * - 5-7: 交叉映射中亮区（5→600, 6→500, 7→400），提升交互对比度
+ * - 8-10: 复用 5-7（8→600, 9→500, 10→400），用于文字色
  */
 export const generateColorPalettes: GenerateColorMap = (baseColor: string): ColorMap => {
-  const { palettes } = generateOklchPaletteEx(baseColor);
+  const { palettes } = generateDarkModePalette(baseColor);
+  const [p50, p100, p200, p300, p400, p500, p600, p700, p800, p900, p950] = palettes;
 
   return {
-    // antd 1-10 格式（暗色模式特殊映射）
-    1: palettes[0].hex, // 50 - 最浅背景
-    2: palettes[1].hex, // 100 - 背景悬停
-    3: palettes[2].hex, // 200 - 边框
-    4: palettes[3].hex, // 300 - 边框悬停
-    5: palettes[6].hex, // 600 - 悬停色（暗色模式使用更亮的）
-    6: palettes[5].hex, // 500 - 主色 ★
-    7: palettes[4].hex, // 400 - 激活色（暗色模式使用更亮的）
-    8: palettes[6].hex, // 600 - 文字悬停
-    9: palettes[5].hex, // 500 - 文字色
-    10: palettes[4].hex, // 400 - 文字激活
+    // antd 1-10 格式（暗色模式特殊映射，参考 antd 官方实现）
+    1: p50.hex, // 50 - 最浅背景
+    2: p100.hex, // 100 - 背景悬停
+    3: p200.hex, // 200 - 边框
+    4: p300.hex, // 300 - 边框悬停
+    5: p600.hex, // 600 - 悬停色（暗色模式需要更亮）
+    6: p500.hex, // 500 - 主色 ★
+    7: p400.hex, // 400 - 激活色（暗色模式需要更亮）
+    8: p600.hex, // 600 - 文字悬停
+    9: p500.hex, // 500 - 文字色
+    10: p400.hex, // 400 - 文字激活
     // Tailwind 50-950 格式（保持原始映射）
-    50: palettes[0].hex,
-    100: palettes[1].hex,
-    200: palettes[2].hex,
-    300: palettes[3].hex,
-    400: palettes[4].hex,
-    500: palettes[5].hex,
-    600: palettes[6].hex,
-    700: palettes[7].hex,
-    800: palettes[8].hex,
-    900: palettes[9].hex,
-    950: palettes[10].hex
+    50: p50.hex,
+    100: p100.hex,
+    200: p200.hex,
+    300: p300.hex,
+    400: p400.hex,
+    500: p500.hex,
+    600: p600.hex,
+    700: p700.hex,
+    800: p800.hex,
+    900: p900.hex,
+    950: p950.hex
   };
 };
 
 /**
  * 生成中性色调色板（暗色模式）
  *
- * 使用实色混合算法替代透明度方案
- * 暗色模式的层级方向与亮色模式相反：
- * - Layout(亮) → Container → Elevated(暗)
+ * 参考 Ant Design 官方暗色主题实现：
+ * - 使用实色混合算法（而非透明度）
+ * - 背景层级：Layout(基础) → Container(提升8) → Elevated(提升12)
+ * - 文字透明度：85% / 65% / 45% / 25%
+ * - 填充透明度：18% / 12% / 8% / 4%
+ * - 边框使用固定亮度提升（26 / 19）
  *
  * 基础色：
- * - colorBgBase: #0A0A0A (深黑)
- * - colorTextBase: #F5F5F5 (柔和白)
+ * - colorBgBase: #141414 (Ant Design 暗色背景)
+ * - colorTextBase: #FFFFFF (纯白)
  */
 export const generateNeutralColorPalettes: GenerateNeutralColorMap = (bgBaseColor: string, textBaseColor: string) => {
   const colorBgBase = bgBaseColor || DARK_BG_BASE;
@@ -65,7 +72,8 @@ export const generateNeutralColorPalettes: GenerateNeutralColorMap = (bgBaseColo
 
     /**
      * 文字颜色层级
-     * 暗色模式下，文字需要稍微降低亮度避免刺眼
+     * 参考 antd: 使用混合算法模拟透明度效果
+     * 85% / 65% / 45% / 25%
      */
     colorText: mixColor(colorBgBase, colorTextBase, 0.85), // 主要文字
     colorTextSecondary: mixColor(colorBgBase, colorTextBase, 0.65), // 次要文字
@@ -74,38 +82,40 @@ export const generateNeutralColorPalettes: GenerateNeutralColorMap = (bgBaseColo
 
     /**
      * 填充颜色层级
-     * 暗色模式下填充需要更高的对比度
+     * 参考 antd: 18% / 12% / 8% / 4%
+     * 用于按钮悬停、选中背景等
      */
-    colorFill: mixColor(colorBgBase, colorTextBase, 0.15), // 主要填充
-    colorFillSecondary: mixColor(colorBgBase, colorTextBase, 0.1), // 次要填充
-    colorFillTertiary: mixColor(colorBgBase, colorTextBase, 0.06), // 分割线背景
-    colorFillQuaternary: mixColor(colorBgBase, colorTextBase, 0.03), // 微弱填充
+    colorFill: mixColor(colorBgBase, colorTextBase, 0.18), // 主要填充
+    colorFillSecondary: mixColor(colorBgBase, colorTextBase, 0.12), // 次要填充
+    colorFillTertiary: mixColor(colorBgBase, colorTextBase, 0.08), // 分割线背景
+    colorFillQuaternary: mixColor(colorBgBase, colorTextBase, 0.04), // 微弱填充
 
     /**
      * 实色背景
-     * 用于浅色按钮、徽章等
+     * 参考 antd: 95% / 100% / 90%
+     * 用于深色按钮、徽章等
      */
-    colorBgSolid: colorTextBase, // 实色背景（白色）
-    colorBgSolidHover: mixColor(colorTextBase, colorBgBase, 0.1), // 实色悬停（稍暗）
-    colorBgSolidActive: mixColor(colorTextBase, colorBgBase, 0.2), // 实色激活（更暗）
+    colorBgSolid: mixColor(colorBgBase, colorTextBase, 0.95), // 实色背景
+    colorBgSolidHover: colorTextBase, // 实色悬停（纯白）
+    colorBgSolidActive: mixColor(colorBgBase, colorTextBase, 0.9), // 实色激活
 
     /**
      * 背景层级
-     * 暗色模式：Elevated(暗) → Container → Layout(亮)
-     * 与亮色模式相反，浮层更暗，底层更亮
+     * 参考 antd: Layout(0) → Container(8) → Elevated(12)
+     * 暗色模式下浮层需要更亮以体现层次
      */
-    colorBgLayout: adjustLightness(colorBgBase, 2), // 页面底层背景（稍亮）
-    colorBgContainer: adjustLightness(colorBgBase, 5), // 卡片、容器背景（更亮）
-    colorBgElevated: adjustLightness(colorBgBase, 8), // 弹窗、下拉框（最亮）
-    colorBgSpotlight: mixColor(colorBgBase, colorTextBase, 0.2), // 高亮聚焦
-    colorBgBlur: mixColor(colorBgBase, colorTextBase, 0.04), // 模糊背景
+    colorBgLayout: colorBgBase, // 页面底层背景（基础色）
+    colorBgContainer: adjustLightness(colorBgBase, 8), // 卡片、容器背景（提升8）
+    colorBgElevated: adjustLightness(colorBgBase, 12), // 弹窗、下拉框（提升12）
+    colorBgSpotlight: adjustLightness(colorBgBase, 26), // 高亮聚焦（提升26）
+    colorBgBlur: mixColor(colorBgBase, colorTextBase, 0.04), // 模糊背景（4%）
 
     /**
      * 边框颜色
-     * 暗色模式下边框需要更明显
+     * 参考 antd: 固定亮度提升 26 / 26 / 19
      */
-    colorBorder: mixColor(colorBgBase, colorTextBase, 0.2), // 主边框
-    colorBorderDisabled: mixColor(colorBgBase, colorTextBase, 0.12), // 禁用边框
-    colorBorderSecondary: mixColor(colorBgBase, colorTextBase, 0.1) // 次要边框、分割线
+    colorBorder: adjustLightness(colorBgBase, 26), // 主边框
+    colorBorderDisabled: adjustLightness(colorBgBase, 26), // 禁用边框（同主边框）
+    colorBorderSecondary: adjustLightness(colorBgBase, 19) // 次要边框、分割线
   };
 };

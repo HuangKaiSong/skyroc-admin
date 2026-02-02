@@ -1,8 +1,7 @@
 import { transformColorWithOpacity } from '@skyroc/color';
 import type { ConfigProviderProps } from 'antd';
-import { theme as antdTheme } from 'antd';
 
-import { derivative } from '../theme/antd-adapter';
+import { derivative, derivativeDark } from '../theme/antd-adapter';
 import { defaultPresetColors } from '../theme/antd-adapter/seed';
 
 /**
@@ -14,8 +13,6 @@ import { defaultPresetColors } from '../theme/antd-adapter/seed';
 export function getAntdTheme(colors: Theme.ThemeColor, darkMode: boolean, settings: Theme.ThemeSetting) {
   const { themeRadius, themeTextSize, tokens } = settings;
 
-  const { darkAlgorithm, defaultAlgorithm } = antdTheme;
-
   const { error, info, primary, success, warning } = colors;
 
   const bgColor = transformColorWithOpacity(primary, darkMode ? 0.3 : 0.1, darkMode ? '#000000' : '#fff');
@@ -24,15 +21,7 @@ export function getAntdTheme(colors: Theme.ThemeColor, darkMode: boolean, settin
   const borderColor = darkMode ? '#2E3138' : '#C6C6C8';
 
   const theme: ConfigProviderProps['theme'] = {
-    algorithm: [
-      darkMode
-        ? darkAlgorithm
-        : (a, b) => {
-            const c = derivative(a);
-
-            return derivative(a);
-          }
-    ],
+    algorithm: [darkMode ? derivativeDark : derivative],
     cssVar: {
       key: 'root',
       prefix: ''
