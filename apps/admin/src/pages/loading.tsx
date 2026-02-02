@@ -27,23 +27,23 @@ const GlobalLoading = memo(() => {
 
   return (
     <div
-      className="bg-layout fixed-center flex-col"
+      className="fixed-center flex-col bg-layout"
       style={{ '--primary-color': `${h} ${s}% ${l}%` } as React.CSSProperties}
     >
-      <SystemLogo className="text-primary size-128px" />
-      <div className="my-xl size-xxl">
-        <div className="h-full relative animate-spin">
+      <SystemLogo className="size-128px text-primary" />
+      <div className="my-4xl size-4xl">
+        <div className="relative h-full animate-spin">
           {loadingClasses.map(item => {
             return (
               <div
-                className={clsx('bg-primary size-ms absolute animate-pulse radius-lg', item)}
+                className={clsx('absolute size-md animate-pulse rounded-lg bg-primary', item)}
                 key={item}
               />
             );
           })}
         </div>
       </div>
-      <h2 className="text-t2 text-primary font-500">{t('system.title')}</h2>
+      <h2 className="text-2xl text-primary font-500">{t('system.title')}</h2>
     </div>
   );
 });

@@ -65,7 +65,7 @@ const GlobalHeader = memo(() => {
   const { showLogo, showMenu, showMenuToggler } = HEADER_PROPS_CONFIG[mode];
 
   return (
-    <DarkModeContainer className="px-12px flex-y-center h-full shadow-header">
+    <DarkModeContainer className="h-full flex-y-center px-12px shadow-header">
       {showLogo && (
         <AdminLogo
           className="h-full"
@@ -76,13 +76,13 @@ const GlobalHeader = memo(() => {
       {showMenuToggler && <MenuToggler />}
 
       <div
-        className="flex-y-center flex-1-hidden h-full"
+        className="h-full flex-y-center flex-1-hidden"
         id={GLOBAL_HEADER_MENU_ID}
       >
         {!isMobile && !showMenu && <AdminBreadcrumb />}
       </div>
 
-      <div className="flex-y-center gap-2 h-full justify-end">
+      <div className="h-full flex-y-center justify-end gap-2">
         <AdminSearch />
 
         {!isMobile && (

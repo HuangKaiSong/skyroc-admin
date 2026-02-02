@@ -300,7 +300,7 @@ export function presetSoybeanAdmin(): Preset<PresetWind3Theme> {
       fontSize: {
         xs: ['0.75rem', '1.125rem'], // 12px / 18px
         sm: ['0.875rem', '1.375rem'], // 14px / 22px
-        base: ['1rem', '1.5rem'], // 16px / 24px
+        md: ['1rem', '1.5rem'], // 16px / 24px
         lg: ['1.125rem', '1.625rem'], // 18px / 26px
         xl: ['1.25rem', '1.75rem'], // 20px / 28px
         '2xl': ['1.5rem', '2rem'], // 24px / 32px

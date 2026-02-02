@@ -21,7 +21,7 @@ const AdminLogo: FC<Props> = memo(({ className, showTitle = true, ...props }) =>
     >
       <SystemLogo className="text-32px text-primary" />
       <h2
-        className="pl-8px text-16px text-primary font-bold transition duration-300 ease-in-out"
+        className="pl-8px text-md text-primary font-bold transition duration-300 ease-in-out"
         style={{ display: showTitle ? 'block' : 'none' }}
       >
         {t('system.title')}
