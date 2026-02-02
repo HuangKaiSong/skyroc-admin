@@ -133,13 +133,358 @@ function RouteComponent() {
 
                 {/* 色阶 */}
                 <div className="grid grid-cols-10 gap-0.5 p-2">
-                  {[50, 100, 200, 300, 400, 500, 600, 700, 800, 900].map(shade => (
-                    <div
-                      className="h-6 rounded bg-blue-600 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
-                      key={shade}
-                      title={`${key}-${shade}`}
-                    />
-                  ))}
+                  {key === 'blue' && (
+                    <>
+                      <div
+                        className="h-6 rounded bg-blue-50 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="blue-50"
+                      />
+                      <div
+                        className="h-6 rounded bg-blue-100 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="blue-100"
+                      />
+                      <div
+                        className="h-6 rounded bg-blue-200 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="blue-200"
+                      />
+                      <div
+                        className="h-6 rounded bg-blue-300 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="blue-300"
+                      />
+                      <div
+                        className="h-6 rounded bg-blue-400 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="blue-400"
+                      />
+                      <div
+                        className="h-6 rounded bg-blue-500 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="blue-500"
+                      />
+                      <div
+                        className="h-6 rounded bg-blue-600 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="blue-600"
+                      />
+                      <div
+                        className="h-6 rounded bg-blue-700 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="blue-700"
+                      />
+                      <div
+                        className="h-6 rounded bg-blue-800 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="blue-800"
+                      />
+                      <div
+                        className="h-6 rounded bg-blue-900 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="blue-900"
+                      />
+                    </>
+                  )}
+                  {key === 'purple' && (
+                    <>
+                      <div
+                        className="h-6 rounded bg-purple-50 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="purple-50"
+                      />
+                      <div
+                        className="h-6 rounded bg-purple-100 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="purple-100"
+                      />
+                      <div
+                        className="h-6 rounded bg-purple-200 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="purple-200"
+                      />
+                      <div
+                        className="h-6 rounded bg-purple-300 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="purple-300"
+                      />
+                      <div
+                        className="h-6 rounded bg-purple-400 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="purple-400"
+                      />
+                      <div
+                        className="h-6 rounded bg-purple-500 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="purple-500"
+                      />
+                      <div
+                        className="h-6 rounded bg-purple-600 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="purple-600"
+                      />
+                      <div
+                        className="h-6 rounded bg-purple-700 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="purple-700"
+                      />
+                      <div
+                        className="h-6 rounded bg-purple-800 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="purple-800"
+                      />
+                      <div
+                        className="h-6 rounded bg-purple-900 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="purple-900"
+                      />
+                    </>
+                  )}
+                  {key === 'cyan' && (
+                    <>
+                      <div
+                        className="h-6 rounded bg-cyan-50 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="cyan-50"
+                      />
+                      <div
+                        className="h-6 rounded bg-cyan-100 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="cyan-100"
+                      />
+                      <div
+                        className="h-6 rounded bg-cyan-200 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="cyan-200"
+                      />
+                      <div
+                        className="h-6 rounded bg-cyan-300 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="cyan-300"
+                      />
+                      <div
+                        className="h-6 rounded bg-cyan-400 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="cyan-400"
+                      />
+                      <div
+                        className="h-6 rounded bg-cyan-500 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="cyan-500"
+                      />
+                      <div
+                        className="h-6 rounded bg-cyan-600 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="cyan-600"
+                      />
+                      <div
+                        className="h-6 rounded bg-cyan-700 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="cyan-700"
+                      />
+                      <div
+                        className="h-6 rounded bg-cyan-800 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="cyan-800"
+                      />
+                      <div
+                        className="h-6 rounded bg-cyan-900 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="cyan-900"
+                      />
+                    </>
+                  )}
+                  {key === 'green' && (
+                    <>
+                      <div
+                        className="h-6 rounded bg-green-50 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="green-50"
+                      />
+                      <div
+                        className="h-6 rounded bg-green-100 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="green-100"
+                      />
+                      <div
+                        className="h-6 rounded bg-green-200 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="green-200"
+                      />
+                      <div
+                        className="h-6 rounded bg-green-300 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="green-300"
+                      />
+                      <div
+                        className="h-6 rounded bg-green-400 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="green-400"
+                      />
+                      <div
+                        className="h-6 rounded bg-green-500 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="green-500"
+                      />
+                      <div
+                        className="h-6 rounded bg-green-600 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="green-600"
+                      />
+                      <div
+                        className="h-6 rounded bg-green-700 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="green-700"
+                      />
+                      <div
+                        className="h-6 rounded bg-green-800 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="green-800"
+                      />
+                      <div
+                        className="h-6 rounded bg-green-900 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="green-900"
+                      />
+                    </>
+                  )}
+                  {key === 'pink' && (
+                    <>
+                      <div
+                        className="h-6 rounded bg-pink-50 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="pink-50"
+                      />
+                      <div
+                        className="h-6 rounded bg-pink-100 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="pink-100"
+                      />
+                      <div
+                        className="h-6 rounded bg-pink-200 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="pink-200"
+                      />
+                      <div
+                        className="h-6 rounded bg-pink-300 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="pink-300"
+                      />
+                      <div
+                        className="h-6 rounded bg-pink-400 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="pink-400"
+                      />
+                      <div
+                        className="h-6 rounded bg-pink-500 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="pink-500"
+                      />
+                      <div
+                        className="h-6 rounded bg-pink-600 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="pink-600"
+                      />
+                      <div
+                        className="h-6 rounded bg-pink-700 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="pink-700"
+                      />
+                      <div
+                        className="h-6 rounded bg-pink-800 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="pink-800"
+                      />
+                      <div
+                        className="h-6 rounded bg-pink-900 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="pink-900"
+                      />
+                    </>
+                  )}
+                  {key === 'red' && (
+                    <>
+                      <div
+                        className="h-6 rounded bg-red-50 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="red-50"
+                      />
+                      <div
+                        className="h-6 rounded bg-red-100 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="red-100"
+                      />
+                      <div
+                        className="h-6 rounded bg-red-200 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="red-200"
+                      />
+                      <div
+                        className="h-6 rounded bg-red-300 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="red-300"
+                      />
+                      <div
+                        className="h-6 rounded bg-red-400 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="red-400"
+                      />
+                      <div
+                        className="h-6 rounded bg-red-500 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="red-500"
+                      />
+                      <div
+                        className="h-6 rounded bg-red-600 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="red-600"
+                      />
+                      <div
+                        className="h-6 rounded bg-red-700 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="red-700"
+                      />
+                      <div
+                        className="h-6 rounded bg-red-800 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="red-800"
+                      />
+                      <div
+                        className="h-6 rounded bg-red-900 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="red-900"
+                      />
+                    </>
+                  )}
+                  {key === 'orange' && (
+                    <>
+                      <div
+                        className="h-6 rounded bg-orange-50 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="orange-50"
+                      />
+                      <div
+                        className="h-6 rounded bg-orange-100 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="orange-100"
+                      />
+                      <div
+                        className="h-6 rounded bg-orange-200 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="orange-200"
+                      />
+                      <div
+                        className="h-6 rounded bg-orange-300 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="orange-300"
+                      />
+                      <div
+                        className="h-6 rounded bg-orange-400 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="orange-400"
+                      />
+                      <div
+                        className="h-6 rounded bg-orange-500 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="orange-500"
+                      />
+                      <div
+                        className="h-6 rounded bg-orange-600 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="orange-600"
+                      />
+                      <div
+                        className="h-6 rounded bg-orange-700 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="orange-700"
+                      />
+                      <div
+                        className="h-6 rounded bg-orange-800 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="orange-800"
+                      />
+                      <div
+                        className="h-6 rounded bg-orange-900 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="orange-900"
+                      />
+                    </>
+                  )}
+                  {key === 'yellow' && (
+                    <>
+                      <div
+                        className="h-6 rounded bg-yellow-50 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="yellow-50"
+                      />
+                      <div
+                        className="h-6 rounded bg-yellow-100 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="yellow-100"
+                      />
+                      <div
+                        className="h-6 rounded bg-yellow-200 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="yellow-200"
+                      />
+                      <div
+                        className="h-6 rounded bg-yellow-300 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="yellow-300"
+                      />
+                      <div
+                        className="h-6 rounded bg-yellow-400 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="yellow-400"
+                      />
+                      <div
+                        className="h-6 rounded bg-yellow-500 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="yellow-500"
+                      />
+                      <div
+                        className="h-6 rounded bg-yellow-600 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="yellow-600"
+                      />
+                      <div
+                        className="h-6 rounded bg-yellow-700 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="yellow-700"
+                      />
+                      <div
+                        className="h-6 rounded bg-yellow-800 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="yellow-800"
+                      />
+                      <div
+                        className="h-6 rounded bg-yellow-900 transition-transform hover:z-10 hover:scale-125 hover:shadow-md"
+                        title="yellow-900"
+                      />
+                    </>
+                  )}
                 </div>
 
                 {/* 标签 */}
