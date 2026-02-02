@@ -1,4 +1,5 @@
 import { Dropdown } from 'antd';
+import clsx from 'clsx';
 import type { CSSProperties } from 'react';
 
 import ButtonIcon from '@/components/ButtonIcon';
@@ -61,7 +62,7 @@ const NotificationButton: FC<Props> = memo(({ className, style }) => {
       open={open}
       placement="bottomRight"
       trigger={['click']}
-      dropdownRender={() => (
+      popupRender={() => (
         <NotificationPanel
           notifications={notifications}
           unreadCount={unreadCount}
@@ -73,29 +74,25 @@ const NotificationButton: FC<Props> = memo(({ className, style }) => {
       )}
       onOpenChange={handleOpenChange}
     >
-      <div
-        className={className}
-        style={style}
+      <ABadge
+        count={displayCount}
+        offset={[-4, 4]}
+        overflowCount={99}
+        size="small"
+        styles={{
+          indicator: {
+            boxShadow: hasUnread ? '0 0 0 1px var(--ant-color-bg-container)' : undefined
+          }
+        }}
       >
-        <ABadge
-          count={displayCount}
-          offset={[-4, 4]}
-          overflowCount={99}
-          size="small"
-          styles={{
-            indicator: {
-              boxShadow: hasUnread ? '0 0 0 1px var(--ant-color-bg-container)' : undefined
-            }
-          }}
-        >
-          <ButtonIcon
-            className={hasUnread ? 'notification-button-unread' : ''}
-            hoverAnimation={hoverAnimation}
-            icon="carbon:notification"
-            tooltipContent={t('notification.title')}
-          />
-        </ABadge>
-      </div>
+        <ButtonIcon
+          className={clsx(hasUnread ? 'notification-button-unread' : '', className)}
+          hoverAnimation={hoverAnimation}
+          icon="carbon:notification"
+          style={style}
+          tooltipContent={t('notification.title')}
+        />
+      </ABadge>
     </Dropdown>
   );
 });

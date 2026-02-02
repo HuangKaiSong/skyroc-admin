@@ -45,7 +45,7 @@ const fontSizes = [
 
 function RouteComponent() {
   return (
-    <div className="min-h-full from-slate-50 via-white to-indigo-50 bg-gradient-to-br p-6 dark:from-slate-900 dark:via-slate-800 dark:to-indigo-950">
+    <div className="min-h-full p-6">
       <div
         className="mx-auto space-y-10"
         style={{ maxWidth: '1280px' }}

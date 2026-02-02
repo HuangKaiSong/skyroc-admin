@@ -298,19 +298,19 @@ export function presetSoybeanAdmin(): Preset<PresetWind3Theme> {
         nprogress: 'var(--color-nprogress)'
       },
       fontSize: {
-        xs: ['0.75rem', '1.125rem'], // 12px / 18px
-        sm: ['0.875rem', '1.375rem'], // 14px / 22px
+        xs: ['var(--text-xs)', 'var(--line-height-xs)'], // 12px / 18px
+        sm: ['var(--text-sm)', 'var(--line-height-sm)'], // 14px / 22px
         md: ['var(--text-base)', 'var(--line-height-base)'], // 16px / 24px
-        lg: ['1.125rem', '1.625rem'], // 18px / 26px
-        xl: ['1.25rem', '1.75rem'], // 20px / 28px
-        '2xl': ['1.5rem', '2rem'], // 24px / 32px
-        '3xl': ['1.875rem', '2.375rem'], // 30px / 38px
-        '4xl': ['2.25rem', '2.75rem'], // 36px / 44px
-        '5xl': ['3rem', '3.5rem'], // 48px / 56px
-        '6xl': ['3.75rem', '4.25rem'], // 60px / 68px
-        '7xl': ['4.5rem', '5rem'], // 72px / 80px
-        '8xl': ['6rem', '6.5rem'], // 96px / 104px
-        '9xl': ['8rem', '8.5rem'] // 128px / 136px
+        lg: ['var(--text-lg)', 'var(--line-height-lg)'], // 18px / 26px
+        xl: ['var(--text-xl)', 'var(--line-height-xl)'], // 20px / 28px
+        '2xl': ['var(--text-2xl)', 'var(--line-height-2xl)'], // 24px / 32px
+        '3xl': ['var(--text-3xl)', 'var(--line-height-3xl)'], // 30px / 38px
+        '4xl': ['var(--text-4xl)', 'var(--line-height-4xl)'], // 36px / 44px
+        '5xl': ['var(--text-5xl)', 'var(--line-height-5xl)'], // 48px / 56px
+        '6xl': ['var(--text-6xl)', 'var(--line-height-6xl)'], // 60px / 68px
+        '7xl': ['var(--text-7xl)', 'var(--line-height-7xl)'], // 72px / 80px
+        '8xl': ['var(--text-8xl)', 'var(--line-height-8xl)'], // 96px / 104px
+        '9xl': [' var(--text-9xl)', 'var(--line-height-9xl)'] // 128px / 136px
       },
       lineHeight: {
         xs: '1.125rem', // 18px

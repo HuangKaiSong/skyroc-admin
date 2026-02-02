@@ -63,11 +63,11 @@ const computeClass = (className: string) => {
   let clsStr = className;
 
   if (!clsStr.includes('h-')) {
-    clsStr += ' h-32px';
+    clsStr += ' h-2xl';
   }
 
   if (!clsStr.includes('text-')) {
-    clsStr += ' text-icon';
+    clsStr += ' text-lg';
   }
 
   return clsStr;
@@ -75,7 +75,7 @@ const computeClass = (className: string) => {
 
 const ButtonIcon = ({
   children,
-  className = 'h-32px text-icon',
+  className = 'h-2xl text-lg',
   classNames,
   hoverAnimation,
   icon,
@@ -111,7 +111,7 @@ const ButtonIcon = ({
       {...tooltipProps}
     >
       <Comp
-        className={clsx(cls, 'px-6px!', classNames?.button)}
+        className={clsx(cls, classNames?.button)}
         {...typeProps}
         {...rest}
         styles={styles?.button}
