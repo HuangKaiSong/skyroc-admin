@@ -47,7 +47,7 @@ const UserAvatar = memo(() => {
       label: (
         <div className="flex-center gap-8px">
           <SvgIcon
-            className="text-icon"
+            className="text-lg"
             icon="ph:user-circle"
           />
           {t('common.userCenter')}
@@ -62,7 +62,7 @@ const UserAvatar = memo(() => {
       label: (
         <div className="flex-center gap-8px">
           <SvgIcon
-            className="text-icon"
+            className="text-lg"
             icon="ph:sign-out"
           />
           {t('common.logout')}
@@ -81,10 +81,10 @@ const UserAvatar = memo(() => {
         <div>
           <ButtonIcon className="px-12px">
             <SvgIcon
-              className="text-icon-large"
+              className="text-2xl"
               icon="ph:user-circle"
             />
-            <span className="text-16px font-medium">{userInfo?.userName}</span>
+            <span className="text-md font-medium">{userInfo?.userName}</span>
           </ButtonIcon>
         </div>
       </ADropdown>
