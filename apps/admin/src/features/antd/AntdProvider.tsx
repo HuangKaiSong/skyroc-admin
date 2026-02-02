@@ -34,7 +34,7 @@ const AntdProvider = ({ children }: PropsWithChildren) => {
       <AApp style={{ height: '100%' }}>
         <ContextHolder />
         <AWatermark
-          className="shadow-initial text-opacity-100 bg-opacity-100 h-full"
+          className="shadow-initial h-full bg-opacity-100 text-opacity-100"
           content={watermarkContent}
           {...watermark.settings}
         >

@@ -130,6 +130,7 @@ export function genFontMapToken(
   // 索引映射：xs=0, sm=1, base=2, lg=3, xl=4, 2xl=5, 3xl=6, 4xl=7, 5xl=8
   const fontSizes = fontSizePairs.map(pair => pair.size);
   const lineHeights = fontSizePairs.map(pair => pair.lineHeightRatio);
+  const lineHeightsPx = fontSizePairs.map(pair => pair.lineHeight);
 
   // SM = sm (index 1)
   const fontSizeSM = fontSizes[1];
@@ -162,6 +163,19 @@ export function genFontMapToken(
     Text7xl: fontSizes[10],
     Text8xl: fontSizes[11],
     Text9xl: fontSizes[12],
+    LineHeightXs: lineHeightsPx[0],
+    LineHeightSm: lineHeightsPx[1],
+    LineHeightBase: lineHeightsPx[2],
+    LineHeightLg: lineHeightsPx[3],
+    LineHeightXl: lineHeightsPx[4],
+    LineHeight2xl: lineHeightsPx[5],
+    LineHeight3xl: lineHeightsPx[6],
+    LineHeight4xl: lineHeightsPx[7],
+    LineHeight5xl: lineHeightsPx[8],
+    LineHeight6xl: lineHeightsPx[9],
+    LineHeight7xl: lineHeightsPx[10],
+    LineHeight8xl: lineHeightsPx[11],
+    LineHeight9xl: lineHeightsPx[12],
 
     // 标题字体大小（从大到小）
     fontSizeHeading1: fontSizes[8], // 5xl (48px)
