@@ -190,7 +190,7 @@ export type { LangType, I18nKey } from './types'
 **定位**: 主题核心逻辑（跨平台）
 
 **功能**:
-- 主题色计算（基于 `@sa/color`）
+- 主题色计算（基于 `@skyroc/color`）
 - 主题状态管理
 - 颜色模式切换（light/dark/auto）
 - 主题配置类型
@@ -203,7 +203,7 @@ export type { ThemeConfig, ThemeColors, ThemeMode } from './types'
 ```
 
 **依赖**:
-- `@sa/color`
+- `@skyroc/color`
 - `jotai`
 - `@skyroc/core-storage`
 - `@skyroc/core-types`
@@ -600,7 +600,7 @@ export type { MenuConfig, MenuItem } from './types'
 
 ---
 
-#### 📦 `@sa/color` (保持)
+#### 📦 `@skyroc/color` (保持)
 **当前功能**: 颜色工具
 
 **无需调整**
@@ -631,7 +631,7 @@ export type { MenuConfig, MenuItem } from './types'
                     ┌────────▼────────┐
                     │ @skyroc/utils   │
                     │ @sa/axios       │
-                    │ @sa/color       │
+                    │ @skyroc/color       │
                     └─────────────────┘
 ```
 
@@ -641,7 +641,7 @@ export type { MenuConfig, MenuItem } from './types'
 |-----|--------|------|
 | `@skyroc/core-auth` | `core-storage`, `core-types` | Universal |
 | `@skyroc/core-i18n` | `core-storage`, `core-types` | Universal |
-| `@skyroc/core-theme` | `@sa/color`, `core-storage` | Universal |
+| `@skyroc/core-theme` | `@skyroc/color`, `core-storage` | Universal |
 | `@skyroc/core-storage` | - | Universal |
 | `@skyroc/core-state` | `jotai` | Universal |
 | `@skyroc/core-types` | - | Universal |
@@ -822,7 +822,7 @@ migratePackage({
     // 工具包
     "@sa/axios": "workspace:*",
     "@skyroc/utils": "workspace:*",
-    "@sa/color": "workspace:*"
+    "@skyroc/color": "workspace:*"
   }
 }
 ```

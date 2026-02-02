@@ -1,4 +1,4 @@
-import { transformColorWithOpacity } from '@sa/color';
+import { transformColorWithOpacity } from '@skyroc/color';
 import type { ConfigProviderProps } from 'antd';
 import { theme as antdTheme } from 'antd';
 

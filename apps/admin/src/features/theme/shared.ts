@@ -1,4 +1,4 @@
-import { getColorPalette, getHsl } from '@sa/color';
+import { getColorPalette, getHsl } from '@skyroc/color';
 import defu from 'defu';
 
 import { toggleHtmlClass } from '@/utils/common';

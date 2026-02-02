@@ -1,4 +1,4 @@
-import { getPaletteColorByNumber, mixColor } from '@sa/color';
+import { getPaletteColorByNumber, mixColor } from '@skyroc/color';
 import { Outlet, createFileRoute, redirect, useLocation } from '@tanstack/react-router';
 import { AnimatePresence, motion } from 'motion/react';
 import z from 'zod';

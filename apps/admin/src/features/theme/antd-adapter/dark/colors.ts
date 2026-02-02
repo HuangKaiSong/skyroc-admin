@@ -1,4 +1,4 @@
-import { adjustLightness, generateOklchPaletteEx, mixColor } from '@sa/color';
+import { adjustLightness, generateOklchPaletteEx, mixColor } from '@skyroc/color';
 
 import type { ColorMap, GenerateColorMap, GenerateNeutralColorMap } from '../types';
 

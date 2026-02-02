@@ -1,4 +1,4 @@
-import { addColorAlpha, transformColorWithOpacity } from '@sa/color';
+import { addColorAlpha, transformColorWithOpacity } from '@skyroc/color';
 
 import type { PageTabCssVars, PageTabCssVarsProps } from '../../types';
 

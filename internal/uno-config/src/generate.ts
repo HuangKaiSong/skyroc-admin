@@ -1,5 +1,5 @@
 import { colord } from 'colord';
-import { getColorPalette } from '@sa/color';
+import { getColorPalette } from '@skyroc/color';
 import themes from './theme.json';
 import type {
   ColorOptions,

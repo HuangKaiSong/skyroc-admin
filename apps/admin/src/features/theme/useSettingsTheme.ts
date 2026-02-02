@@ -1,4 +1,4 @@
-import { getPaletteColorByNumber } from '@sa/color';
+import { getPaletteColorByNumber } from '@skyroc/color';
 import dayjs from 'dayjs';
 import { atom, useAtom } from 'jotai';
 import { useMemo } from 'react';

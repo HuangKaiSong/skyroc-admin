@@ -1,5 +1,5 @@
-import type { LayoutMode } from '@sa/materials';
-import { AdminLayout as AdminLayoutComponent, LAYOUT_SCROLL_EL_ID } from '@sa/materials';
+import type { LayoutMode } from '@skyroc/materials';
+import { AdminLayout as AdminLayoutComponent, LAYOUT_SCROLL_EL_ID } from '@skyroc/materials';
 
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
 

@@ -26,7 +26,7 @@ export { generateColorPalettes, generateNeutralColorPalettes, LIGHT_BG_BASE, LIG
 // 预设颜色
 export { defaultPresetColors, seedToken } from './seed';
 
-// 工具函数（从 @sa/color 重新导出）
+// 工具函数（从 @skyroc/color 重新导出）
 export { adjustLightness, darkenColor, lightenColor, mixColor } from './shared/colorAlgorithm';
 
 // 颜色映射

@@ -33,7 +33,7 @@ declare global {
      * - wrapper: the wrapper component's root element overflow
      * - content: the content component overflow
      */
-    type ThemeScrollMode = import('@sa/materials').LayoutScrollMode;
+    type ThemeScrollMode = import('@skyroc/materials').LayoutScrollMode;
 
     /** Page animate mode */
     type ThemePageAnimateMode =
@@ -51,7 +51,7 @@ declare global {
      * - chrome: chrome style
      * - button: button style
      */
-    type ThemeTabMode = import('@sa/materials').PageTabMode;
+    type ThemeTabMode = import('@skyroc/materials').PageTabMode;
 
     /** Unocss animate key */
     type UnoCssAnimateKey =

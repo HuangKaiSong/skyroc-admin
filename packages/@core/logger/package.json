@@ -1,0 +1,26 @@
+{
+  "name": "@skyroc/logger",
+  "version": "1.0.0",
+  "description": "Cross-platform logging system based on LogLayer - Web, React Native, Mini Program",
+  "author": "",
+  "license": "MIT",
+  "keywords": ["logger", "logging", "cross-platform", "react-native", "mini-program", "loglayer"],
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": ["./src/*"]
+    }
+  },
+  "dependencies": {
+    "loglayer": "^8.4.0",
+    "@loglayer/transport": "^2.3.13",
+    "serialize-error": "^11.0.0",
+    "idb": "^8.0.0",
+    "nanoid": "catalog:utils"
+  },
+  "devDependencies": {
+    "@skyroc/tsconfig": "workspace:*"
+  }
+}

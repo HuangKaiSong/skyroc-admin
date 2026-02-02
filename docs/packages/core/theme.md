@@ -8,7 +8,7 @@
 - **版本**: `1.0.0`
 - **平台**: Universal
 - **依赖**:
-  - `@sa/color` - 颜色计算
+  - `@skyroc/color` - 颜色计算
   - `jotai` - 状态管理
   - `@skyroc/core-storage` - 主题持久化
   - `defu` - 配置合并
@@ -196,7 +196,7 @@ export function useTheme() {
 
 ```ts
 // src/utils/palette.ts
-import { getColorPalette } from '@sa/color'
+import { getColorPalette } from '@skyroc/color'
 import type { ColorPalette } from '../types'
 
 export function createColorPalette(baseColor: string): ColorPalette {

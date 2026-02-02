@@ -1,5 +1,5 @@
 // @unocss-include
-import { getHsl } from '@sa/color';
+import { getHsl } from '@skyroc/color';
 import clsx from 'clsx';
 
 import SystemLogo from '@/components/SystemLogo';

@@ -1,4 +1,4 @@
-import { getPaletteColorByNumber } from '@sa/color';
+import { getPaletteColorByNumber } from '@skyroc/color';
 
 interface Props {
   /** Theme color */

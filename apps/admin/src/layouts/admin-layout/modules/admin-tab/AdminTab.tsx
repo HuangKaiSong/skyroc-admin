@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { PageTab } from '@sa/materials';
+import { PageTab } from '@skyroc/materials';
 import clsx from 'clsx';
 import { useEffect } from 'react';
 

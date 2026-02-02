@@ -1,4 +1,4 @@
-import { mixColor } from '@sa/color';
+import { mixColor } from '@skyroc/color';
 import type { MapToken, PresetColorType, SeedToken } from 'antd/lib/theme/interface';
 
 import { defaultPresetColors } from '../seed';

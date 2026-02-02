@@ -1,4 +1,4 @@
-import { transformColorWithOpacity } from '@sa/color';
+import { transformColorWithOpacity } from '@skyroc/color';
 import { ScrollArea } from '@skyroc/ui';
 import clsx from 'clsx';
 import { cloneElement } from 'react';
