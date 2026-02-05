@@ -1,0 +1,25 @@
+{
+  "name": "@skyroc/hooks",
+  "version": "1.0.0",
+  "description": "React hooks - platform-agnostic core with ./web subpath for browser hooks",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./web": "./src/web/index.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": ["./src/*"]
+    }
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "dependencies": {
+    "ahooks": "catalog:utils"
+  },
+  "devDependencies": {
+    "@skyroc/tsconfig": "workspace:*",
+    "react": "catalog:core"
+  }
+}
