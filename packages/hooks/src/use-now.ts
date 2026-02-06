@@ -1,33 +1,53 @@
-import { useRef, useState } from 'react';
+import { useCreation } from 'ahooks';
+import { Store, useStore } from './store';
 
 /**
- * Use current time with interval
+ * 当前时间状态引擎
  *
- * @param interval - update interval in milliseconds, defaults to 1000
+ * 管理定时器生命周期和时间状态更新，
+ * 外部通过 useNow hook 桥接 React 渲染。
+ */
+class NowStore extends Store<Date> {
+  /** 定时器 ID */
+  private timerId: ReturnType<typeof setInterval> | null = null;
+
+  /** 更新间隔（毫秒） */
+  private readonly interval: number;
+
+  constructor(interval: number) {
+    super(new Date());
+    this.interval = interval;
+  }
+
+  /** 暂停计时（箭头函数保证 this 绑定） */
+  pause = () => {
+    if (this.timerId) {
+      clearInterval(this.timerId);
+      this.timerId = null;
+    }
+  };
+
+  /** 恢复计时（箭头函数保证 this 绑定） */
+  resume = () => {
+    if (!this.timerId) {
+      this.timerId = setInterval(() => {
+        this.setState(new Date());
+      }, this.interval);
+    }
+  };
+}
+
+/**
+ * 当前时间 hook
+ *
+ * Class 管逻辑（NowStore），Hook 管渲染（useStore）。
+ *
+ * @param interval - 更新间隔（毫秒），默认 1000
  */
 export function useNow(interval = 1000) {
-  const [now, setNow] = useState(() => new Date());
+  const store = useCreation(() => new NowStore(interval), []);
 
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const now = useStore(store);
 
-  const pausedRef = useRef(false);
-
-  function pause() {
-    pausedRef.current = true;
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
-  }
-
-  function resume() {
-    pausedRef.current = false;
-    if (!timerRef.current) {
-      timerRef.current = setInterval(() => {
-        setNow(new Date());
-      }, interval);
-    }
-  }
-
-  return { now, pause, resume };
+  return { now, pause: store.pause, resume: store.resume };
 }

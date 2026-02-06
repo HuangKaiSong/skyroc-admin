@@ -21,41 +21,41 @@ class ArrayStore<T, K extends keyof T> extends Store<T[]> {
   }
 
   /** 直接更新状态 */
-  updateState(newState: T[] | ((prevState: T[]) => T[])) {
+  updateState = (newState: T[] | ((prevState: T[]) => T[])) => {
     if (typeof newState === 'function') {
       this.setState(prev => (newState as (prevState: T[]) => T[])(prev));
     } else {
       this.setState(newState);
     }
-  }
+  };
 
   /** 尾部追加（按 key 去重） */
-  push(...newItems: T[]) {
+  push = (...newItems: T[]) => {
     this.setState(prev => {
       const merged = [...prev, ...newItems];
       return merged.filter(
         (item, index, self) => index === self.findIndex(t => t[this.resolvedKey] === item[this.resolvedKey])
       );
     });
-  }
+  };
 
   /** 头部追加（按 key 去重） */
-  unshift(...newItems: T[]) {
+  unshift = (...newItems: T[]) => {
     this.setState(prev => {
       const merged = [...newItems, ...prev];
       return merged.filter(
         (item, index, self) => index === self.findIndex(t => t[this.resolvedKey] === item[this.resolvedKey])
       );
     });
-  }
+  };
 
   /** 按 key 移除元素 */
-  remove(itemKey: T[K]) {
+  remove = (itemKey: T[K]) => {
     this.setState(prev => prev.filter(i => i[this.resolvedKey] !== itemKey));
-  }
+  };
 
   /** 上移元素 */
-  up(itemKey: T[K]) {
+  up = (itemKey: T[K]) => {
     this.setState(prev => {
       const index = prev.findIndex(i => i[this.resolvedKey] === itemKey);
 
@@ -66,10 +66,10 @@ class ArrayStore<T, K extends keyof T> extends Store<T[]> {
 
       return next;
     });
-  }
+  };
 
   /** 下移元素 */
-  down(itemKey: T[K]) {
+  down = (itemKey: T[K]) => {
     this.setState(prev => {
       const index = prev.findIndex(i => i[this.resolvedKey] === itemKey);
 
@@ -80,52 +80,52 @@ class ArrayStore<T, K extends keyof T> extends Store<T[]> {
 
       return next;
     });
-  }
+  };
 
   /** 移除末尾元素 */
-  pop() {
+  pop = () => {
     this.setState(prev => prev.slice(0, -1));
-  }
+  };
 
   /** 移除首部元素 */
-  shift() {
+  shift = () => {
     this.setState(prev => prev.slice(1));
-  }
+  };
 
   /** 反转数组 */
-  reverse() {
+  reverse = () => {
     this.setState(prev => [...prev].reverse());
-  }
+  };
 
   /** 排序数组 */
-  sort(compareFn?: (a: T, b: T) => number) {
+  sort = (compareFn?: (a: T, b: T) => number) => {
     this.setState(prev => [...prev].sort(compareFn));
-  }
+  };
 
   /** 拼接数组 */
-  splice(start: number, deleteCount?: number, ...items: T[]) {
+  splice = (start: number, deleteCount?: number, ...items: T[]) => {
     const end = deleteCount ?? 0;
     this.setState(prev => {
       const next = [...prev];
       next.splice(start, end, ...items);
       return next;
     });
-  }
+  };
 
   /** 清空数组 */
-  clear() {
+  clear = () => {
     this.setState([]);
-  }
+  };
 
   /** 重置为初始状态 */
-  reset() {
+  reset = () => {
     this.setState(this.initialState);
-  }
+  };
 
   /** 按 key 查找元素（直接读取 class 内部状态，不依赖 React 渲染周期） */
-  findItem(elementKey: T[K]) {
+  findItem = (elementKey: T[K]) => {
     return this.state.find(item => item[this.resolvedKey] === elementKey);
-  }
+  };
 }
 
 /**
