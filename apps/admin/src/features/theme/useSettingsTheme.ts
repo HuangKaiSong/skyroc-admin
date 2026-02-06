@@ -1,5 +1,5 @@
 import { getPaletteColorByNumber } from '@skyroc/color';
-import { useNow, usePreferredColorScheme } from '@skyroc/hooks/web';
+import { useNow, useSystemTheme } from '@skyroc/hooks/web';
 import dayjs from 'dayjs';
 import { atom, useAtom } from 'jotai';
 import { useMemo } from 'react';
@@ -22,7 +22,7 @@ export const useSettingsTheme = () => {
   const [settings, setSettings] = useAtom(themeAtom);
 
   /** Preferred color scheme */
-  const osTheme = usePreferredColorScheme();
+  const osTheme = useSystemTheme();
 
   const { now: watermarkTime, pause: pauseWatermarkTime, resume: resumeWatermarkTime } = useNow(1000);
 
