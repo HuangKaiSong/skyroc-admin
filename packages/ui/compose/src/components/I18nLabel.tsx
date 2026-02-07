@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import type { i18n } from 'i18next';
+import type { ReactNode } from 'react';
 import { Translation } from 'react-i18next';
 
 interface I18nLabelProps {

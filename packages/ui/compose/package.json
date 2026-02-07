@@ -18,14 +18,7 @@
   "bugs": {
     "url": "https://github.com/soybeanjs/soybean-admin-react/issues"
   },
-  "keywords": [
-    "react",
-    "ui",
-    "components",
-    "composite",
-    "typescript",
-    "soybean-admin"
-  ],
+  "keywords": ["react", "ui", "components", "composite", "typescript", "soybean-admin"],
   "sideEffects": false,
   "exports": {
     ".": "./src/index.ts"

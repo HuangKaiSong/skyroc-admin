@@ -1,7 +1,6 @@
 import { SvgIcon } from '@skyroc/ui-compose';
 import { useNavigate } from '@tanstack/react-router';
 import { Button } from 'antd';
-import type { FC } from 'react';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -22,7 +21,7 @@ const iconMap: Record<ExceptionType, string> = {
   '404': 'not-found',
   '500': 'service-error'
 };
-const ExceptionBase: FC<Props> = memo(({ type }) => {
+const ExceptionBase = memo(({ type }: Props) => {
   const { t } = useTranslation();
 
   const nav = useNavigate();
@@ -45,5 +44,7 @@ const ExceptionBase: FC<Props> = memo(({ type }) => {
     </div>
   );
 });
+
+ExceptionBase.displayName = 'ExceptionBase';
 
 export default ExceptionBase;
