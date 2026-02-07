@@ -2,17 +2,15 @@ import { useMemo } from 'react';
 import { getPaletteColorByNumber } from '@skyroc/color';
 import { useNow, useSystemTheme } from '@skyroc/hooks/web';
 import { formatDateTime } from '@skyroc/utils';
-import { atom, useAtom } from 'jotai';
+import { atom, useAtom, useAtomValue } from 'jotai';
 import { defaultThemeSettings } from '../config/default';
 import type { ThemeColor, ThemeColorKey, ThemeLayoutMode, ThemeMode } from '../types';
 
 /** Theme settings atom - single source of truth */
 export const themeSettingsAtom = atom<Theme.ThemeSetting>(defaultThemeSettings);
 
-interface UseThemeOptions {
-  /** User name for watermark, optional */
-  userName?: string;
-}
+/** 用户名 atom — 由 AntdProvider 写入，useTheme 内部读取 */
+export const themeUserNameAtom = atom<string | undefined>(undefined);
 
 /**
  * Web theme hook
@@ -20,13 +18,11 @@ interface UseThemeOptions {
  * Provides theme state management with a simple single-atom approach.
  * Derived values (isDarkMode, themeColors, tokens) are computed via useMemo.
  *
- * This follows the pattern from apps/admin/src/features/theme/useSettingsTheme.ts
- *
- * @param options - Optional configuration
- * @param options.userName - User name for watermark display
+ * userName 通过 themeUserNameAtom 全局共享，
+ * 由 AntdProvider 自动写入，所有调用者无需传参即可获取完整的 watermarkContent。
  */
-export function useTheme(options: UseThemeOptions = {}) {
-  const { userName } = options;
+export function useTheme() {
+  const userName = useAtomValue(themeUserNameAtom);
 
   const [settings, setSettingsAtom] = useAtom(themeSettingsAtom);
 

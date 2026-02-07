@@ -1,7 +1,9 @@
 import type { ReactNode } from 'react';
+import { useEffect } from 'react';
 import { App, ConfigProvider, Watermark } from 'antd';
 import type { Locale } from 'antd/lib/locale';
-import { useTheme } from '../hooks';
+import { useSetAtom } from 'jotai';
+import { themeUserNameAtom, useTheme } from '../hooks';
 import { getAntdTheme } from './shared';
 import { initAntdUI } from './ui';
 
@@ -12,7 +14,7 @@ interface AntdProviderProps {
   /** antd 国际化 locale 对象 */
   locale?: Locale;
 
-  /** 用户名（用于水印显示） */
+  /** 用户名（用于水印显示，自动写入全局 atom） */
   userName?: string;
 }
 
@@ -31,12 +33,22 @@ function ContextHolder() {
  * Antd 统一 Provider
  *
  * 整合 ConfigProvider + App + Watermark + ContextHolder，
- * 内部自动通过 useTheme 获取主题状态，消费者只需传入 locale 和 userName。
+ * 内部自动通过 useTheme 获取主题状态。
+ *
+ * userName 通过 themeUserNameAtom 全局共享，
+ * 所有 useTheme 调用者都能获取到完整的 watermarkContent。
  */
 const AntdProvider = (props: AntdProviderProps) => {
   const { children, locale, userName } = props;
 
-  const { darkMode, settings, themeColors, watermark, watermarkContent } = useTheme({ userName });
+  // 将 userName 写入全局 atom，供所有 useTheme 调用者读取
+  const setUserName = useSetAtom(themeUserNameAtom);
+
+  useEffect(() => {
+    setUserName(userName);
+  }, [userName, setUserName]);
+
+  const { darkMode, settings, themeColors, watermark, watermarkContent } = useTheme();
 
   const antdTheme = getAntdTheme(themeColors, darkMode, settings);
 
@@ -52,7 +64,7 @@ const AntdProvider = (props: AntdProviderProps) => {
       <App style={{ height: '100%' }}>
         <ContextHolder />
         <Watermark
-          className="shadow-initial h-full "
+          className="shadow-initial h-full bg-opacity-100 text-opacity-100"
           content={watermarkContent}
           {...watermark.settings}
         >
