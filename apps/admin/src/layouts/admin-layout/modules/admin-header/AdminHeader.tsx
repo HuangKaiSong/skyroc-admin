@@ -4,7 +4,7 @@ import { DarkModeContainer } from '@skyroc/ui-compose';
 import { GLOBAL_HEADER_MENU_ID } from '@/constants/app';
 import NotificationButton from '@/features/chat/NotificationButton';
 import LangSwitch from '@/features/lang/LangSwitch';
-import ThemeSchemaSwitch from '@/features/theme/components/ThemeSchemaSwitch';
+import { ThemeSchemaSwitch } from '@skyroc/web-admin-theme';
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
 
 import MenuToggler from '../../state/menus/MenuToggler';
@@ -102,7 +102,10 @@ const GlobalHeader = memo(() => {
 
         <NotificationButton className="px-12px" />
 
-        <ThemeSchemaSwitch className="px-12px" />
+        <ThemeSchemaSwitch
+          className="px-12px"
+          tooltipContent={t('icon.themeSchema')}
+        />
 
         <ThemeButton />
 

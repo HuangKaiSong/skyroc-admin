@@ -1,46 +1,8 @@
+import { defaultThemeSettings, getAllPresets } from '@skyroc/web-admin-theme';
 import defu from 'defu';
 import { useMemo } from 'react';
 
-import { themeSettings } from '@/features/theme/settings';
 import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
-
-type ThemePresetProps = Pick<
-  Theme.ThemeSetting,
-  | 'colourWeakness'
-  | 'fixedHeaderAndTab'
-  | 'footer'
-  | 'grayscale'
-  | 'header'
-  | 'isInfoFollowPrimary'
-  | 'layout'
-  | 'otherColor'
-  | 'page'
-  | 'recommendColor'
-  | 'sider'
-  | 'tab'
-  | 'themeColor'
-  | 'themeRadius'
-  | 'themeScheme'
-  | 'themeTextSize'
-  | 'tokens'
-  | 'watermark'
-> & {
-  desc: string;
-  i18nkey?: string;
-  name: string;
-  order?: number;
-  version: string;
-};
-
-interface PresetWithId extends ThemePresetProps {
-  id: string;
-}
-
-// Import preset JSON files
-const presetModules = import.meta.glob<ThemePresetProps>('/src/features/theme/preset/*.json', {
-  eager: true,
-  import: 'default'
-});
 
 const ThemePreset = () => {
   const { t } = useTranslation();
@@ -55,25 +17,15 @@ const ThemePreset = () => {
     setWatermarkEnableUserName
   } = useSettingsTheme();
 
-  // Extract preset data
-  const presets = useMemo<PresetWithId[]>(() => {
-    return Object.entries(presetModules)
-      .map(([path, presetData]) => {
-        const fileName = path.split('/').pop()?.replace('.json', '') || '';
-        return {
-          id: fileName,
-          ...presetData
-        };
-      })
-      .sort((a, b) => {
-        // Sort by order field if available
-        const orderA = a.order ?? 999;
-        const orderB = b.order ?? 999;
-        return orderA - orderB;
-      });
+  // Get presets from package (sorted by order)
+  const presets = useMemo(() => {
+    return getAllPresets().map(preset => ({
+      id: preset.name.toLowerCase().replace(/\s+/g, '-'),
+      ...preset
+    }));
   }, []);
 
-  const getPresetName = (preset: ThemePresetProps): string => {
+  function getPresetName(preset: Theme.ThemePreset): string {
     if (!preset.i18nkey) return preset.name;
     try {
       const key = `${preset.i18nkey}.name` as I18n.I18nKey;
@@ -82,9 +34,9 @@ const ThemePreset = () => {
     } catch {
       return preset.name;
     }
-  };
+  }
 
-  const getPresetDesc = (preset: ThemePresetProps): string => {
+  function getPresetDesc(preset: Theme.ThemePreset): string {
     if (!preset.i18nkey) return preset.desc;
     try {
       const key = `${preset.i18nkey}.desc` as I18n.I18nKey;
@@ -93,10 +45,10 @@ const ThemePreset = () => {
     } catch {
       return preset.desc;
     }
-  };
+  }
 
-  const applyPreset = (preset: ThemePresetProps): void => {
-    const mergedPreset = defu(preset, themeSettings);
+  function applyPreset(preset: Theme.ThemePreset): void {
+    const mergedPreset = defu(preset, defaultThemeSettings);
     const { colourWeakness, grayscale, layout, themeScheme, watermark, ...rest } = mergedPreset;
 
     setThemeScheme(themeScheme);
@@ -119,7 +71,7 @@ const ThemePreset = () => {
     });
 
     showSuccessMessage(t('theme.appearance.preset.applySuccess'));
-  };
+  }
 
   return (
     <>
@@ -160,7 +112,7 @@ const ThemePreset = () => {
                   <div
                     className="border-white/30 rd-full h-12px w-12px cursor-pointer transition-transform hover:scale-110"
                     key={key}
-                    style={{ backgroundColor: color }}
+                    style={{ backgroundColor: color as string }}
                     title={key}
                   />
                 ))}

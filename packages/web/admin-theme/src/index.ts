@@ -1,3 +1,8 @@
+// Components
+export { default as ThemeEffect } from './components/ThemeEffect';
+export { default as ThemeSchemaSegmented } from './components/ThemeSchemaSegmented';
+export { default as ThemeSchemaSwitch } from './components/ThemeSchemaSwitch';
+
 // Config
 export { defaultThemeSettings, overrideThemeSettings, themeSchemeIcons } from './config';
 

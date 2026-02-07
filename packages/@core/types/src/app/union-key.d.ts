@@ -2,15 +2,6 @@
 declare global {
   namespace UnionKey {
     /**
-     * Theme scheme
-     *
-     * - auto: auto mode (follow system theme)
-     * - dark: dark mode (dark theme)
-     * - light: light mode (light theme)
-     */
-    type ThemeScheme = 'auto' | 'dark' | 'light';
-
-    /**
      * The layout mode
      *
      * - vertical: the vertical menu in left

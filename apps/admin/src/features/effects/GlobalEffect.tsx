@@ -1,5 +1,5 @@
 import LangEffect from '../lang/LangEffect';
-import ThemeEffect from '../theme/components/ThemeEffect';
+import { ThemeEffect } from '@skyroc/web-admin-theme';
 
 const GlobalEffect = () => {
   return (

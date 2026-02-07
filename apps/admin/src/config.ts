@@ -4,8 +4,9 @@ import type { HookAPI as ModalHookAPI } from 'antd/es/modal/useModal';
 import type { ArgsProps, NotificationInstance } from 'antd/es/notification/interface';
 import type { NProgress } from 'nprogress';
 
+import { defaultThemeSettings } from '@skyroc/web-admin-theme';
+
 import { menuCategory } from './features/menus/menu-category';
-import { themeSettings } from './features/theme/settings';
 import { localStg } from './utils/storage';
 
 const _ui = {
@@ -64,10 +65,10 @@ function createConfig() {
     /// //////////////////////////////////////////////////////////////////////////////
     /** - 默认主题配置 */
     get defaultThemeColor(): string {
-      return localStg.get('themeColor') || themeSettings.themeColor;
+      return localStg.get('themeColor') || defaultThemeSettings.themeColor;
     },
     get defaultDarkMode(): boolean {
-      return localStg.get('darkMode') || themeSettings.themeScheme === 'dark';
+      return localStg.get('darkMode') || defaultThemeSettings.themeScheme === 'dark';
     },
 
     /// //////////////////////////////////////////////////////////////////////////////
