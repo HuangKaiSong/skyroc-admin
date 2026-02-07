@@ -22,6 +22,8 @@ const GlobalHeader = memo(() => {
 
   const { isActiveFirstLevelMenuHasChildren } = useAdminMenus();
 
+  const { t } = useTranslation();
+
   const { layout, sider } = useSettingsTheme();
 
   const { isMobile } = useAdminState();
