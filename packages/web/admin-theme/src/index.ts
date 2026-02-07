@@ -31,6 +31,9 @@ export { default as ThemeSchemaSwitch } from './components/ThemeSchemaSwitch';
 // Config
 export { defaultThemeSettings, overrideThemeSettings, themeSchemeIcons } from './config';
 
+// Setup
+export { defineThemeOverrides, setupTheme } from './setup';
+
 // Hooks
 export { themeSettingsAtom, useTheme } from './hooks';
 export type { UseThemeReturn } from './hooks';
@@ -68,7 +71,6 @@ export {
   clearAuxiliaryColorModes,
   getDefaultThemeSettings,
   getThemeColors,
-  initThemeSettings,
   isDarkModeClass,
   mergeThemeSettings,
   toggleAuxiliaryColorModes,

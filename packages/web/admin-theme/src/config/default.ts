@@ -106,10 +106,3 @@ export const defaultThemeSettings: Theme.ThemeSetting = {
     }
   }
 };
-
-/**
- * Override theme settings
- *
- * Use this to override certain theme settings when publishing new version
- */
-export const overrideThemeSettings: Partial<Theme.ThemeSetting> = {};

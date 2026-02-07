@@ -1,5 +1,5 @@
 import defu from 'defu';
-import { defaultThemeSettings, overrideThemeSettings } from '../config/default';
+import { defaultThemeSettings } from '../config/default';
 import type { ThemeColor } from '../types';
 
 /**
@@ -24,37 +24,6 @@ export function mergeThemeSettings(
 ): Theme.ThemeSetting {
   if (!settings) return defaults;
   return defu(settings, defaults) as Theme.ThemeSetting;
-}
-
-/**
- * Initialize theme settings with override support
- *
- * Used in production to merge cached settings with override settings
- *
- * @param cachedSettings Cached settings from storage
- * @param overrideFlag Override flag to check if override has been applied
- * @param currentBuildTime Current build time for comparison
- * @returns Initialized theme settings and new override flag
- */
-export function initThemeSettings(
-  cachedSettings?: Partial<Theme.ThemeSetting> | null,
-  overrideFlag?: string | null,
-  currentBuildTime?: string
-): { newOverrideFlag?: string; settings: Theme.ThemeSetting } {
-  let settings = mergeThemeSettings(cachedSettings ?? undefined);
-
-  const isOverride = overrideFlag === currentBuildTime;
-
-  if (!isOverride && currentBuildTime) {
-    settings = defu(overrideThemeSettings, settings) as Theme.ThemeSetting;
-
-    return {
-      settings,
-      newOverrideFlag: currentBuildTime
-    };
-  }
-
-  return { settings };
 }
 
 /**
