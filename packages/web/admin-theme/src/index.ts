@@ -7,7 +7,7 @@ export type { UseThemeReturn } from './hooks';
 
 // Presets
 export { azir, compact, dark, defaultPreset, getAllPresets, getPreset, presets, shadcn } from './presets';
-export type { PresetName, ThemePreset, ThemePresetMeta } from './presets';
+export type { PresetName } from './presets';
 
 // Types
 export type {
@@ -22,6 +22,8 @@ export type {
   ThemeMode,
   ThemePageAnimateMode,
   ThemePaletteColor,
+  ThemePreset,
+  ThemePresetMeta,
   ThemeScrollMode,
   ThemeSettingToken,
   ThemeSettingTokenBoxShadow,

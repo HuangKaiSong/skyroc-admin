@@ -888,6 +888,12 @@ importers:
       '@skyroc/hooks':
         specifier: workspace:*
         version: link:../../hooks
+      '@skyroc/ui-antd':
+        specifier: workspace:*
+        version: link:../../ui/antd
+      '@skyroc/ui-compose':
+        specifier: workspace:*
+        version: link:../../ui/compose
       '@skyroc/utils':
         specifier: workspace:*
         version: link:../../@core/utils

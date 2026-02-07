@@ -1,9 +1,166 @@
 /** The theme namespace */
 declare global {
   namespace Theme {
-    type ColorPaletteNumber = import('@sa/color').ColorPaletteNumber;
+    /** Color palette number */
+    type ColorPaletteNumber = import('@skyroc/color').ColorPaletteNumber;
 
+    /** Watermark settings (Ant Design) */
     type WatermarkSettings = import('antd').WatermarkProps;
+
+    /**
+     * Theme mode
+     *
+     * - auto: follow system theme
+     * - dark: dark mode
+     * - light: light mode
+     */
+    type ThemeMode = 'auto' | 'dark' | 'light';
+
+    /**
+     * Theme layout mode
+     *
+     * - vertical: the vertical menu in left
+     * - horizontal: the horizontal menu in top
+     * - horizontal-mix: horizontal mixed layout
+     * - reversed-horizontal-mix: reversed horizontal mixed layout
+     * - vertical-mix: two vertical mixed menus in left
+     * - top-hybrid-sidebar-first: vertical first level menus in left and horizontal child level menus in top
+     * - top-hybrid-header-first: horizontal first level menus in top and vertical child level menus in left
+     */
+    type ThemeLayoutMode =
+      | 'horizontal'
+      | 'horizontal-mix'
+      | 'reversed-horizontal-mix'
+      | 'top-hybrid-header-first'
+      | 'top-hybrid-sidebar-first'
+      | 'vertical'
+      | 'vertical-mix';
+
+    /**
+     * Theme scroll mode
+     *
+     * - wrapper: the wrapper component's root element overflow
+     * - content: the content component overflow
+     */
+    type ThemeScrollMode = 'content' | 'wrapper';
+
+    /**
+     * Theme page animate mode
+     */
+    type ThemePageAnimateMode =
+      | 'fade'
+      | 'fade-bottom'
+      | 'fade-scale'
+      | 'fade-slide'
+      | 'none'
+      | 'zoom-fade'
+      | 'zoom-out';
+
+    /**
+     * Theme tab mode
+     *
+     * - chrome: chrome style
+     * - button: button style
+     */
+    type ThemeTabMode = 'button' | 'chrome';
+
+    /** Theme color key */
+    type ThemeColorKey = 'error' | 'info' | 'primary' | 'success' | 'warning';
+
+    /** Other color (without primary) */
+    interface OtherColor {
+      error: string;
+      info: string;
+      success: string;
+      warning: string;
+    }
+
+    /** Theme color (includes primary) */
+    interface ThemeColor extends OtherColor {
+      primary: string;
+    }
+
+    /** Theme icons mapping */
+    interface ThemeIcons {
+      auto: string;
+      dark: string;
+      light: string;
+    }
+
+    /** Base watermark settings - platform agnostic */
+    interface BaseWatermarkSettings {
+      /** Font settings */
+      font?: {
+        fontSize?: number;
+      };
+      /** Height */
+      height?: number;
+      /** Offset */
+      offset?: [number, number];
+      /** Rotate angle */
+      rotate?: number;
+      /** Width */
+      width?: number;
+      /** Z-index */
+      zIndex?: number;
+    }
+
+    /** Theme setting token color */
+    interface ThemeSettingTokenColor {
+      'base-text': string;
+      container: string;
+      inverted: string;
+      layout: string;
+      /** the progress bar color, if not set, will use the primary color */
+      nprogress?: string;
+    }
+
+    /** Theme setting token box shadow */
+    interface ThemeSettingTokenBoxShadow {
+      header: string;
+      sider: string;
+      tab: string;
+    }
+
+    /** Theme setting token */
+    interface ThemeSettingToken {
+      boxShadow: ThemeSettingTokenBoxShadow;
+      colors: ThemeSettingTokenColor;
+    }
+
+    /** Theme palette color - all color shades */
+    type ThemePaletteColor = {
+      [key in ThemeColorKey | `${ThemeColorKey}-${ColorPaletteNumber}`]: string;
+    };
+
+    /** Base token type */
+    type BaseToken = Record<string, Record<string, string>>;
+
+    /** Theme token color - palette + setting token color */
+    type ThemeTokenColor = ThemePaletteColor & ThemeSettingTokenColor;
+
+    /** Theme token CSS variables */
+    interface ThemeTokenCSSVars {
+      boxShadow: ThemeSettingTokenBoxShadow & { [key: string]: string };
+      colors: ThemeTokenColor & { [key: string]: string };
+    }
+
+    /** Theme preset metadata */
+    interface ThemePresetMeta {
+      /** Preset description */
+      desc: string;
+      /** i18n key for the preset name */
+      i18nkey: string;
+      /** Preset name */
+      name: string;
+      /** Display order */
+      order: number;
+      /** Preset version */
+      version: string;
+    }
+
+    /** Theme preset type */
+    type ThemePreset = ThemePresetMeta & Partial<ThemeSetting>;
 
     /** Theme setting */
     interface ThemeSetting {
@@ -53,9 +210,9 @@ declare global {
       /** Layout */
       layout: {
         /** Layout mode */
-        mode: UnionKey.ThemeLayoutMode;
+        mode: ThemeLayoutMode;
         /** Scroll mode */
-        scrollMode: UnionKey.ThemeScrollMode;
+        scrollMode: ThemeScrollMode;
       };
       /** Other color */
       otherColor: OtherColor;
@@ -64,7 +221,7 @@ declare global {
         /** Whether to show the page transition */
         animate: boolean;
         /** Page animate mode */
-        animateMode: UnionKey.ThemePageAnimateMode;
+        animateMode: ThemePageAnimateMode;
       };
       /** Whether to recommend color */
       recommendColor: boolean;
@@ -101,7 +258,7 @@ declare global {
         /** Tab height */
         height: number;
         /** Tab mode */
-        mode: UnionKey.ThemeTabMode;
+        mode: ThemeTabMode;
         /** Whether to show the tab */
         visible: boolean;
       };
@@ -110,7 +267,7 @@ declare global {
       /** Theme radius */
       themeRadius: number;
       /** Theme scheme */
-      themeScheme: UnionKey.ThemeScheme;
+      themeScheme: ThemeMode;
       /** Theme text size */
       themeTextSize: number;
       /** define some theme settings tokens, will transform to css variables */
@@ -139,53 +296,6 @@ declare global {
         visible: boolean;
       };
     }
-
-    interface OtherColor {
-      error: string;
-      info: string;
-      success: string;
-      warning: string;
-    }
-
-    interface ThemeColor extends OtherColor {
-      primary: string;
-    }
-
-    type ThemeColorKey = keyof ThemeColor;
-
-    type ThemePaletteColor = {
-      [key in ThemeColorKey | `${ThemeColorKey}-${ColorPaletteNumber}`]: string;
-    };
-
-    type BaseToken = Record<string, Record<string, string>>;
-
-    interface ThemeSettingTokenColor {
-      'base-text': string;
-      container: string;
-      inverted: string;
-      layout: string;
-      /** the progress bar color, if not set, will use the primary color */
-      nprogress?: string;
-    }
-
-    interface ThemeSettingTokenBoxShadow {
-      header: string;
-      sider: string;
-      tab: string;
-    }
-
-    interface ThemeSettingToken {
-      boxShadow: ThemeSettingTokenBoxShadow;
-      colors: ThemeSettingTokenColor;
-    }
-
-    type ThemeTokenColor = ThemePaletteColor & ThemeSettingTokenColor;
-
-    /** Theme token CSS variables */
-    type ThemeTokenCSSVars = {
-      boxShadow: ThemeSettingTokenBoxShadow & { [key: string]: string };
-      colors: ThemeTokenColor & { [key: string]: string };
-    };
   }
 }
 
