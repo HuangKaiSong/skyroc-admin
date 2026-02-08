@@ -4,7 +4,7 @@ import { Outlet, createFileRoute, redirect, useLocation } from '@tanstack/react-
 import { AnimatePresence, motion } from 'motion/react';
 import z from 'zod';
 
-import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 
 import Header from './modules/Header';
 

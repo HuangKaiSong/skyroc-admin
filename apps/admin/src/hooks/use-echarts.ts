@@ -1,3 +1,4 @@
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import { BarChart, GaugeChart, LineChart, PictorialBarChart, PieChart, RadarChart, ScatterChart } from 'echarts/charts';
 import type {
   BarSeriesOption,
@@ -28,8 +29,6 @@ import type {
 import * as echarts from 'echarts/core';
 import { LabelLayout, LegacyGridContainLabel, UniversalTransition } from 'echarts/features';
 import { CanvasRenderer } from 'echarts/renderers';
-
-import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
 
 export type ECOption = echarts.ComposeOption<
   | BarSeriesOption

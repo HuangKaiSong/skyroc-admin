@@ -1,6 +1,5 @@
 import { ButtonIcon } from '@skyroc/ui-antd';
-
-import { useSettingsTheme } from '../theme/useSettingsTheme';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 
 import { useLang } from './use-lang';
 

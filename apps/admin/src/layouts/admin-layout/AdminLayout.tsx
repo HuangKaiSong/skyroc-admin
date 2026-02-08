@@ -1,7 +1,7 @@
 import type { LayoutMode } from '@skyroc/materials';
 import { AdminLayout as AdminLayoutComponent, LAYOUT_SCROLL_EL_ID } from '@skyroc/materials';
 
-import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 
 import { LAYOUT_MODE_HORIZONTAL, LAYOUT_MODE_VERTICAL } from './constant';
 import GlobalContent from './modules/AdminContent';

@@ -1,9 +1,9 @@
-import classNames from 'clsx';
-
 import { PinToggler } from '@skyroc/ui-antd';
 import { DarkModeContainer, Portal } from '@skyroc/ui-compose';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
+import classNames from 'clsx';
+
 import { GLOBAL_SIDER_MENU_ID } from '@/constants/app';
-import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
 import { useAdminMenus } from '@/layouts/admin-layout/state/menus/use-admin-menus';
 import { useAdminState } from '@/layouts/admin-layout/state/use-admin-state';
 

@@ -2,7 +2,7 @@ import { defaultThemeSettings, getAllPresets } from '@skyroc/web-admin-theme';
 import defu from 'defu';
 import { useMemo } from 'react';
 
-import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 
 const ThemePreset = () => {
   const { t } = useTranslation();

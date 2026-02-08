@@ -1,4 +1,4 @@
-import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 
 import SettingItem from '../../components/SettingItem';
 

@@ -1,7 +1,7 @@
 import { AnimatePresence } from 'motion/react';
 
 import { watermarkTimeFormatOptions } from '@/constants/app';
-import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 
 import AnimatedItem from '../../components/AnimatedItem';
 import SettingItem from '../../components/SettingItem';

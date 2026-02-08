@@ -1,6 +1,6 @@
 import { useCopy } from '@skyroc/hooks/web';
 
-import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 
 const ConfigOperation = () => {
   const { t } = useTranslation();

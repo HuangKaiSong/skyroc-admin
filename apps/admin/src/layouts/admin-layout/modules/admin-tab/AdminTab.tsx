@@ -5,7 +5,7 @@ import { BetterScroll, DarkModeContainer, SvgIcon } from '@skyroc/ui-compose';
 import clsx from 'clsx';
 import { useEffect } from 'react';
 
-import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import { isPC } from '@/utils/agent';
 
 import { useAdminTab } from '../../state/tabs/use-admin-tab';

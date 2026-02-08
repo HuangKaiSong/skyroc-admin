@@ -35,7 +35,7 @@ export { defaultThemeSettings, overrideThemeSettings, themeSchemeIcons } from '.
 export { defineThemeOverrides, setupTheme } from './setup';
 
 // Hooks
-export { themeSettingsAtom, themeUserNameAtom, useTheme } from './hooks';
+export { themeSettingsAtom, themeUserNameAtom, useTheme, useTheme as useSettingsTheme } from './hooks';
 export type { UseThemeReturn } from './hooks';
 
 // Presets

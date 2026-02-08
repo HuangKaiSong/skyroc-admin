@@ -1,6 +1,6 @@
 import { Button, Switch, Tooltip } from 'antd';
 
-import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 
 import SettingItem from '../../components/SettingItem';
 

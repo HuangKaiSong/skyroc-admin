@@ -2,7 +2,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { atom, useAtom } from 'jotai';
 
 import { globalStore } from '@/features/jotai/store';
-import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import { localStg } from '@/utils/storage';
 
 import { useAdminMenus } from '../menus/use-admin-menus';

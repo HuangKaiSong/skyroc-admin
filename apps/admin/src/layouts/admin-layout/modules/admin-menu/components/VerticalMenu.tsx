@@ -3,7 +3,7 @@ import { ScrollArea } from '../../../../../../../../packages/ui/primitives/src';
 import type { MenuProps } from 'antd';
 import clsx from 'clsx';
 
-import { useSettingsTheme } from '@/features/theme/useSettingsTheme';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import { useAdminMenus } from '@/layouts/admin-layout/state/menus/use-admin-menus';
 import { useAdminState } from '@/layouts/admin-layout/state/use-admin-state';
 
