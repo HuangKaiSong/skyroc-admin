@@ -1,7 +1,7 @@
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import type { MenuProps } from 'antd';
 import type { FC } from 'react';
 
-import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import { useAdminMenus } from '@/layouts/admin-layout/state/menus/use-admin-menus';
 
 import { HorizontalMenuMode } from '../enum';

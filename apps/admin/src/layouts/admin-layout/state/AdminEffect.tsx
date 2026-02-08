@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useSettingsTheme } from '@skyroc/web-admin-theme';
+
 import { localStg } from '@/utils/storage';
 
 import AdminTabEffect from './AdminTabEffect';

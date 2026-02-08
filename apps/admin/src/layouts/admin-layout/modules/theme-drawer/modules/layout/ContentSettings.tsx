@@ -1,5 +1,6 @@
-import { themePageAnimationModeOptions, themeScrollModeOptions } from '@/constants/app';
 import { useSettingsTheme } from '@skyroc/web-admin-theme';
+
+import { themePageAnimationModeOptions, themeScrollModeOptions } from '@/constants/app';
 import { translateOptions } from '@/utils/common';
 
 import AnimatedCollapse from '../../components/AnimatedCollapse';

@@ -1,9 +1,10 @@
-import type { RequestInstance } from '../../../../../packages/@core/axios/src';
-import { BACKEND_ERROR_CODE } from '../../../../../packages/@core/axios/src';
 import type { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 
 import { router } from '@/features/router';
 import { $t } from '@/locales';
+
+import { BACKEND_ERROR_CODE } from '../../../../../packages/@core/axios/src';
+import type { RequestInstance } from '../../../../../packages/@core/axios/src';
 
 import { getAuthorization, handleExpiredRequest, showErrorMsg } from './shared';
 import type { RequestInstanceState } from './type';

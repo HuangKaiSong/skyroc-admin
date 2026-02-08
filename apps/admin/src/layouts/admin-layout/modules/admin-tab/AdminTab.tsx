@@ -2,10 +2,10 @@
 import { PageTab } from '@skyroc/materials';
 import { FullScreen, ReloadButton } from '@skyroc/ui-antd';
 import { BetterScroll, DarkModeContainer, SvgIcon } from '@skyroc/ui-compose';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import clsx from 'clsx';
 import { useEffect } from 'react';
 
-import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import { isPC } from '@/utils/agent';
 
 import { useAdminTab } from '../../state/tabs/use-admin-tab';

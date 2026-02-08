@@ -5,19 +5,24 @@
 }
 
 @keyframes notification-swing {
-  0%, 100% {
+  0%,
+  100% {
     transform: rotate(0deg);
   }
-  5%, 15% {
+  5%,
+  15% {
     transform: rotate(15deg);
   }
-  10%, 20% {
+  10%,
+  20% {
     transform: rotate(-10deg);
   }
-  25%, 35% {
+  25%,
+  35% {
     transform: rotate(8deg);
   }
-  30%, 40% {
+  30%,
+  40% {
     transform: rotate(-6deg);
   }
   45% {
@@ -48,4 +53,3 @@
 .notification-panel-scroll::-webkit-scrollbar-thumb:hover {
   background: var(--ant-color-border-secondary);
 }
-

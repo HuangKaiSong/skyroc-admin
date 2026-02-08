@@ -2,8 +2,6 @@
 @import './nprogress.css';
 @import './transition.css';
 
-
-
 html,
 body,
 #app {
@@ -17,7 +15,6 @@ html {
   font-size: var(--font-size);
   color: var(--color-text-base);
 }
-
 
 .ant-table-header::-webkit-scrollbar {
   background-color: transparent;

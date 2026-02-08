@@ -1,7 +1,6 @@
+import { ErrorBoundary } from '@skyroc/ui-antd';
 import type { ErrorComponentProps } from '@tanstack/react-router';
 import { useTranslation } from 'react-i18next';
-
-import { ErrorBoundary } from '@skyroc/ui-antd';
 
 const ErrorPage = (props: ErrorComponentProps) => {
   const { error, reset } = props;

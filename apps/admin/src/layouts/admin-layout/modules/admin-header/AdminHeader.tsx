@@ -1,11 +1,10 @@
 import { FullScreen } from '@skyroc/ui-antd';
 import { DarkModeContainer } from '@skyroc/ui-compose';
+import { ThemeSchemaSwitch, useSettingsTheme } from '@skyroc/web-admin-theme';
 
 import { GLOBAL_HEADER_MENU_ID } from '@/constants/app';
 import NotificationButton from '@/features/chat/NotificationButton';
 import LangSwitch from '@/features/lang/LangSwitch';
-import { ThemeSchemaSwitch } from '@skyroc/web-admin-theme';
-import { useSettingsTheme } from '@skyroc/web-admin-theme';
 
 import MenuToggler from '../../state/menus/MenuToggler';
 import { useAdminMenus } from '../../state/menus/use-admin-menus';

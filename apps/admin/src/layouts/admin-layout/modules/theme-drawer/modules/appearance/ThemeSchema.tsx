@@ -1,6 +1,4 @@
-import { ThemeSchemaSegmented } from '@skyroc/web-admin-theme';
-
-import { useSettingsTheme } from '@skyroc/web-admin-theme';
+import { ThemeSchemaSegmented, useSettingsTheme } from '@skyroc/web-admin-theme';
 
 import SettingItem from '../../components/SettingItem';
 import '@/styles/css/darkMode.css';

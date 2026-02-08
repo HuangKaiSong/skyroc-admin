@@ -1,12 +1,7 @@
-import { useEffect } from 'react';
 import { useSetAtom } from 'jotai';
+import { useEffect } from 'react';
 
-import {
-  disposeLogger,
-  initLogger,
-  loggerInitializedAtom,
-  loggerInstanceAtom,
-} from './index';
+import { disposeLogger, initLogger, loggerInitializedAtom, loggerInstanceAtom } from '.';
 
 interface LoggerProviderProps {
   /** 子组件 */

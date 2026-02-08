@@ -23,7 +23,7 @@ interface SortableItemProps {
  */
 const SortableItem: FC<SortableItemProps> = ({ index, item, onCheckChange }) => {
   // 使用 useSortable 获取拖拽属性
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
+  const { attributes, isDragging, listeners, setNodeRef, transform, transition } = useSortable({
     id: item.key // 每个可拖拽对象的唯一标识
   });
 
@@ -36,14 +36,14 @@ const SortableItem: FC<SortableItemProps> = ({ index, item, onCheckChange }) => 
 
   return (
     <div
+      className="h-36px flex items-center rd-4px px-8px transition-colors hover:bg-primary hover:bg-opacity-10"
       ref={setNodeRef}
-      className="flex items-center h-36px rd-4px px-8px hover:bg-primary hover:bg-opacity-10 transition-colors"
       style={style}
       {...attributes}
     >
       {/* 拖拽手柄 - 使用项目的图标系统 */}
       <span
-        className="mr-8px cursor-move text-icon flex items-center"
+        className="text-icon mr-8px flex cursor-move items-center"
         {...listeners}
       >
         <IconMdiDrag />
@@ -63,7 +63,7 @@ const SortableItem: FC<SortableItemProps> = ({ index, item, onCheckChange }) => 
 
 /**
  * 列设置拖拽内容组件
- * 
+ *
  * 支持：
  * - 列的显示/隐藏切换
  * - 拖拽排序
@@ -84,7 +84,7 @@ const DragContent: FC<DragContentProps> = ({ columns, setColumnChecks }) => {
    */
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
-    
+
     if (!over) return;
 
     // 如果拖拽开始和结束位置的 id 不同，则表示有重新排序
@@ -110,17 +110,28 @@ const DragContent: FC<DragContentProps> = ({ columns, setColumnChecks }) => {
   };
 
   return (
-    <div className="w-200px max-h-400px overflow-y-auto">
+    <div className="max-h-400px w-200px overflow-y-auto">
       {/* DndContext 相当于顶层的拖拽环境容器 */}
-      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+      <DndContext
+        sensors={sensors}
+        onDragEnd={handleDragEnd}
+      >
         {/*
           SortableContext 用于告诉 DnD Kit，这个区域内的一组元素可以"排序"；
           items 传入当前这批可排序对象的 key（或整个对象，但 key 必须唯一）；
           strategy 指定排序策略，如 verticalListSortingStrategy 适合竖直列表。
         */}
-        <SortableContext items={columns.map(item => item.key)} strategy={verticalListSortingStrategy}>
+        <SortableContext
+          items={columns.map(item => item.key)}
+          strategy={verticalListSortingStrategy}
+        >
           {columns.map((item, index) => (
-            <SortableItem index={index} item={item} key={item.key} onCheckChange={handleCheckChange} />
+            <SortableItem
+              index={index}
+              item={item}
+              key={item.key}
+              onCheckChange={handleCheckChange}
+            />
           ))}
         </SortableContext>
       </DndContext>
@@ -129,4 +140,3 @@ const DragContent: FC<DragContentProps> = ({ columns, setColumnChecks }) => {
 };
 
 export default DragContent;
-

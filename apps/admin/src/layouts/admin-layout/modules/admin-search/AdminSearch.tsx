@@ -1,8 +1,7 @@
 import { ButtonIcon } from '@skyroc/ui-antd';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import { useBoolean } from 'ahooks';
 import { Suspense } from 'react';
-
-import { useSettingsTheme } from '@skyroc/web-admin-theme';
 
 const SearchModal = lazy(() => import('./components/SearchModal'));
 

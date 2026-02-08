@@ -1,4 +1,5 @@
 import { Portal } from '@skyroc/ui-compose';
+
 import { GLOBAL_SIDER_MENU_ID } from '@/constants/app';
 
 import VerticalMenu from '../components/VerticalMenu';

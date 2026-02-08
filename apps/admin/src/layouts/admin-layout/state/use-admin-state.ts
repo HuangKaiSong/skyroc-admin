@@ -1,6 +1,6 @@
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import { atom, useAtom } from 'jotai';
 
-import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import { localStg } from '@/utils/storage';
 
 const initialState = {

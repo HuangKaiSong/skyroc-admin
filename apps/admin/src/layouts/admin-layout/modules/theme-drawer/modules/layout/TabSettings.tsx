@@ -1,5 +1,6 @@
-import { themeTabModeOptions } from '@/constants/app';
 import { useSettingsTheme } from '@skyroc/web-admin-theme';
+
+import { themeTabModeOptions } from '@/constants/app';
 import { translateOptions } from '@/utils/common';
 
 import AnimatedCollapse from '../../components/AnimatedCollapse';

@@ -1,6 +1,5 @@
-import type { CheckboxProps, ColorPickerProps } from 'antd';
-
 import { useSettingsTheme } from '@skyroc/web-admin-theme';
+import type { CheckboxProps, ColorPickerProps } from 'antd';
 
 import SettingItem from '../../components/SettingItem';
 

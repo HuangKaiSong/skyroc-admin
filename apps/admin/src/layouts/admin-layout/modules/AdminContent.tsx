@@ -2,7 +2,7 @@ import { Outlet } from '@tanstack/react-router';
 
 const GlobalContent = () => {
   return (
-    <div className="p-16px bg-layout grow h-full">
+    <div className="h-full grow bg-layout p-16px">
       <Outlet />
     </div>
   );

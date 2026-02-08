@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ScrollArea } from '../../../../../../../../packages/ui/primitives/src';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import type { MenuProps } from 'antd';
 import clsx from 'clsx';
 
-import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import { useAdminMenus } from '@/layouts/admin-layout/state/menus/use-admin-menus';
 import { useAdminState } from '@/layouts/admin-layout/state/use-admin-state';
+
+import { ScrollArea } from '../../../../../../../../packages/ui/primitives/src';
 
 const VerticalMenu = memo(() => {
   const {

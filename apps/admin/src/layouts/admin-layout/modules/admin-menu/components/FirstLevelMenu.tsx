@@ -1,13 +1,13 @@
 import { transformColorWithOpacity } from '@skyroc/color';
-import { ScrollArea } from '../../../../../../../../packages/ui/primitives/src';
+import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import clsx from 'clsx';
 import { cloneElement } from 'react';
 
-import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import MenuToggler from '@/layouts/admin-layout/state/menus/MenuToggler';
 import { useAdminMenus } from '@/layouts/admin-layout/state/menus/use-admin-menus';
 import { useAdminState } from '@/layouts/admin-layout/state/use-admin-state';
 
+import { ScrollArea } from '../../../../../../../../packages/ui/primitives/src';
 import { FirstLevelMenuMode } from '../enum';
 
 interface Props {

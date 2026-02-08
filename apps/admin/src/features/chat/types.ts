@@ -1,8 +1,8 @@
 /** 通知类型 */
-export type NotificationType = 'info' | 'success' | 'warning' | 'error' | 'message';
+export type NotificationType = 'error' | 'info' | 'message' | 'success' | 'warning';
 
 /** 通知优先级 */
-export type NotificationPriority = 'low' | 'normal' | 'high' | 'urgent';
+export type NotificationPriority = 'high' | 'low' | 'normal' | 'urgent';
 
 /** 通知项 */
 export interface NotificationItem {
@@ -20,10 +20,10 @@ export interface NotificationItem {
   priority?: NotificationPriority;
   /** 是否已读 */
   read: boolean;
-  /** 是否播放声音 */
-  silent?: boolean;
   /** 是否显示浏览器通知 */
   showBrowserNotification?: boolean;
+  /** 是否播放声音 */
+  silent?: boolean;
   /** 创建时间 */
   timestamp: number;
   /** 标题 */
@@ -34,18 +34,18 @@ export interface NotificationItem {
 
 /** 通知配置 */
 export interface NotificationConfig {
-  /** 是否启用声音 */
-  soundEnabled: boolean;
   /** 是否启用浏览器通知 */
   browserNotificationEnabled: boolean;
   /** 勿扰模式 */
   doNotDisturb: boolean;
   /** 勿扰模式时间范围 */
   doNotDisturbTime?: {
+    // HH:mm
+    end: string;
     start: string; // HH:mm
-    end: string; // HH:mm
   };
   /** 最大通知数量 */
   maxNotifications: number;
+  /** 是否启用声音 */
+  soundEnabled: boolean;
 }
-

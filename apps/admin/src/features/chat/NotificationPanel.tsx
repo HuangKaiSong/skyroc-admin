@@ -1,10 +1,9 @@
+import { ButtonIcon } from '@skyroc/ui-antd';
+import { DarkModeContainer } from '@skyroc/ui-compose';
 import { Empty, List, Tag } from 'antd';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-
-import { ButtonIcon } from '@skyroc/ui-antd';
-import { DarkModeContainer } from '@skyroc/ui-compose';
 
 import type { NotificationItem, NotificationType } from './types';
 

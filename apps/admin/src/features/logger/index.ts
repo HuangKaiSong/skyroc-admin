@@ -1,6 +1,6 @@
-import { atom } from 'jotai';
-import type { LoggerInstance, LogLevel } from '@skyroc/logger';
+import type { LogLevel, LoggerInstance } from '@skyroc/logger';
 import { createLogger } from '@skyroc/logger';
+import { atom } from 'jotai';
 
 /** 日志实例 atom */
 export const loggerInstanceAtom = atom<LoggerInstance | null>(null);
@@ -19,7 +19,7 @@ const LOGGER_CONFIG = {
   /** 白名单检查间隔（5 分钟） */
   whitelistCheckInterval: 5 * 60 * 1000,
   /** 批量上传大小 */
-  uploadBatchSize: 100,
+  uploadBatchSize: 100
 };
 
 /** 日志实例缓存 */
@@ -81,13 +81,16 @@ export const log = {
   error: async (message: string, error?: Error, data?: Record<string, any>) => {
     const logger = await getLogger();
     if (error) {
-      logger.withError(error).withMetadata(data ?? {}).error(message);
+      logger
+        .withError(error)
+        .withMetadata(data ?? {})
+        .error(message);
     } else if (data) {
       logger.withMetadata(data).error(message);
     } else {
       logger.error(message);
     }
-  },
+  }
 };
 
 /**
