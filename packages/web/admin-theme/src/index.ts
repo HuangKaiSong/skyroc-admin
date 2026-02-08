@@ -29,7 +29,7 @@ export { default as ThemeSchemaSegmented } from './components/ThemeSchemaSegment
 export { default as ThemeSchemaSwitch } from './components/ThemeSchemaSwitch';
 
 // Config
-export { defaultThemeSettings, overrideThemeSettings, themeSchemeIcons } from './config';
+export { defaultThemeSettings, themeSchemeIcons } from './config';
 
 // Setup
 export { defineThemeOverrides, setupTheme } from './setup';

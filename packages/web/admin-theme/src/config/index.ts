@@ -1,1 +1,1 @@
-export { defaultThemeSettings, overrideThemeSettings, themeSchemeIcons } from './default';
+export { defaultThemeSettings, themeSchemeIcons } from './default';
