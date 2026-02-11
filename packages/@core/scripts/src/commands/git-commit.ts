@@ -1,8 +1,6 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-
 import { prompt } from 'enquirer';
-
 import { locales } from '../locales';
 import type { Lang } from '../locales';
 import { execCommand } from '../shared';
