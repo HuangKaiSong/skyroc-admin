@@ -1,6 +1,5 @@
+import { REG_CODE_SIX, REG_EMAIL, REG_PHONE, REG_PWD, REG_USER_NAME } from '@skyroc/utils';
 import type { FormInstance, FormRule } from 'antd';
-
-import { REG_CODE_SIX, REG_EMAIL, REG_PHONE, REG_PWD, REG_USER_NAME } from '@/constants/reg';
 
 export function useFormRules() {
   const { t } = useTranslation();

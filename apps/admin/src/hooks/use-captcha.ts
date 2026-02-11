@@ -1,6 +1,5 @@
 import { useCountDownTimer, useLoading } from '@skyroc/hooks';
-
-import { REG_PHONE } from '@/constants/reg';
+import { REG_PHONE } from '@skyroc/utils';
 
 export function useCaptcha() {
   const { endLoading, loading, startLoading } = useLoading();

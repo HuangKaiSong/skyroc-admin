@@ -1,7 +1,7 @@
 import { ButtonLink } from '@skyroc/ui-antd';
+import { REG_PHONE } from '@skyroc/utils';
 import { createFileRoute } from '@tanstack/react-router';
 
-import { REG_PHONE } from '@/constants/reg';
 import { useFormRules } from '@/features/form/use-rules';
 import { useCaptcha } from '@/hooks/use-captcha';
 

@@ -1,16 +1,15 @@
 import { defineConfig } from 'vitest/config';
+import { baseCoverageConfig, baseTestConfig } from '../../internal/test-config/src';
 
+/**
+ * @skyroc/hooks 测试配置
+ *
+ * 继承根目录的共享配置，保持配置一致性
+ */
 export default defineConfig({
   test: {
-    globals: true,
-    environment: 'jsdom',
-    include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
+    ...baseTestConfig,
     setupFiles: ['./vitest.setup.ts'],
-    coverage: {
-      provider: 'v8',
-      enabled: true,
-      include: ['src/**/*.ts', 'src/**/*.tsx'],
-      exclude: ['**/*.test.ts', '**/*.test.tsx', '**/index.ts', '**/*.d.ts']
-    }
+    coverage: baseCoverageConfig
   }
 });

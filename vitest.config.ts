@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitest/config';
+import { COVERAGE_EXCLUDE, COVERAGE_PROVIDER, SOURCE_PATTERNS, TEST_ENVIRONMENT } from './internal/test-config/src';
 
 /**
  * 根目录 Vitest 配置
@@ -6,17 +7,37 @@ import { defineConfig } from 'vitest/config';
  * 所有子包的测试统一由根目录配置管理，
  * 各子包通过 include 模式自动发现测试文件。
  */
+
+// ==================== 常量配置 ====================
+
+/** 测试文件匹配模式（根目录视角） */
+const TEST_PATTERNS = ['packages/**/__tests__/**/*.test.ts', 'packages/**/__tests__/**/*.test.tsx'];
+
+/** 测试前置文件 */
+const SETUP_FILES = ['./packages/hooks/vitest.setup.ts'];
+
+/**
+ * 源文件匹配模式（根目录视角）
+ *
+ * 只覆盖有测试的包，避免无测试包产生大量 0% 噪音。
+ * 新包加测试后，在这里加一行即可。
+ */
+const TESTED_PACKAGES = ['packages/hooks'];
+const ROOT_SOURCE_PATTERNS = TESTED_PACKAGES.flatMap(pkg => SOURCE_PATTERNS.map(p => `${pkg}/${p}`));
+
+// ==================== Vitest 配置 ====================
+
 export default defineConfig({
   test: {
     globals: true,
-    environment: 'jsdom',
-    include: ['packages/**/src/**/*.test.ts', 'packages/**/src/**/*.test.tsx'],
-    setupFiles: ['./packages/hooks/vitest.setup.ts'],
+    environment: TEST_ENVIRONMENT,
+    include: TEST_PATTERNS,
+    setupFiles: SETUP_FILES,
     coverage: {
-      provider: 'v8',
+      provider: COVERAGE_PROVIDER,
       enabled: true,
-      include: ['packages/**/src/**/*.ts', 'packages/**/src/**/*.tsx'],
-      exclude: ['**/*.test.ts', '**/*.test.tsx', '**/index.ts', '**/*.d.ts', '**/vitest.setup.ts']
+      include: ROOT_SOURCE_PATTERNS,
+      exclude: COVERAGE_EXCLUDE
     }
   }
 });

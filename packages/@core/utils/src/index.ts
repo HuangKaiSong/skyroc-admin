@@ -8,4 +8,5 @@ export * from 'radash';
 
 export * from './array';
 
+export * from './reg';
 export * from './utils';
