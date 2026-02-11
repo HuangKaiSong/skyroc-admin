@@ -5,7 +5,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Skills Usage Rules (CRITICAL)
 
 ### Project Skills Overview
+
 This project has 11 skills located in `.claude/skills/`:
+
 1. code-simplifier
 2. component-refactoring
 3. doc-coauthoring
@@ -91,8 +93,8 @@ Code that violates these rules is considered **incorrect**, even if it works.
 
 #### ❌ `useCallback` — **forbidden**
 
-* `useCallback` must **never** appear in React component code.
-* Do **not** use it for:
+- `useCallback` must **never** appear in React component code.
+- Do **not** use it for:
 
 ---
 
@@ -102,13 +104,13 @@ Code that violates these rules is considered **incorrect**, even if it works.
 
 1. **Deriving a value from logic**
 
-   * The memoized result is a **value**, not a function.
-   * The logic is non-trivial and meaningful.
+   - The memoized result is a **value**, not a function.
+   - The logic is non-trivial and meaningful.
 
 2. **Official React guidance: expensive computation**
 
-   * The computation is demonstrably expensive.
-   * Not used preemptively or defensively.
+   - The computation is demonstrably expensive.
+   - Not used preemptively or defensively.
 
 Anything else is **over-optimization and forbidden**.
 
@@ -116,11 +118,11 @@ Anything else is **over-optimization and forbidden**.
 
 #### ❌ `react-hooks/exhaustive-deps`
 
-* Disabling `react-hooks/exhaustive-deps` is **not allowed by default**.
-* It may only be disabled when:
+- Disabling `react-hooks/exhaustive-deps` is **not allowed by default**.
+- It may only be disabled when:
 
-  * The dependency model is **fully understood**
-  * And the behavior is **intentional and documented**
+  - The dependency model is **fully understood**
+  - And the behavior is **intentional and documented**
 
 When disabled, it must be placed at the **top of the file**, not inline.
 
@@ -134,8 +136,8 @@ When disabled, it must be placed at the **top of the file**, not inline.
 
 #### 3.1 Component must be an arrow function
 
-* Components must **always** be defined as arrow functions.
-* PascalCase is mandatory.
+- Components must **always** be defined as arrow functions.
+- PascalCase is mandatory.
 
 ```ts
 const Portal = (props: PortalProps) => {
@@ -153,9 +155,9 @@ function Portal(props: PortalProps) {}
 
 #### 3.2 Props type must be explicitly defined
 
-* Every component must define a dedicated props type.
-* Use `interface` by default.
-* Do **not** inline props typing in the function signature.
+- Every component must define a dedicated props type.
+- Use `interface` by default.
+- Do **not** inline props typing in the function signature.
 
 ```ts
 interface PortalProps {
@@ -176,16 +178,16 @@ interface PortalProps {
 }
 ```
 
-* Every field **must** have a comment.
-* Comments explain **intent**, not obvious types.
+- Every field **must** have a comment.
+- Comments explain **intent**, not obvious types.
 
 ---
 
 #### 3.3 Props destructuring rule (very strict)
 
-* **Never destructure props in the function parameter**
-* Props must be destructured **inside the function**
-* It must be the **first line of the component body**
+- **Never destructure props in the function parameter**
+- Props must be destructured **inside the function**
+- It must be the **first line of the component body**
 
 ✅ Correct:
 
@@ -214,18 +216,18 @@ const Portal = ({
 
 Reason:
 
-* Keeps a single, predictable entry point
-* Easier debugging and refactoring
-* Prevents accidental prop shadowing
+- Keeps a single, predictable entry point
+- Easier debugging and refactoring
+- Prevents accidental prop shadowing
 
 ---
 
 ### 4. Internal function rules
 
-* Internal helper functions:
+- Internal helper functions:
 
-  * Must be declared as **function declarations**, not arrow functions
-  * Must be defined **inside the component**, unless reusable
+  - Must be declared as **function declarations**, not arrow functions
+  - Must be defined **inside the component**, unless reusable
 
 ```ts
 function findTargetElement() {
@@ -235,21 +237,21 @@ function findTargetElement() {
 
 Rationale:
 
-* Clear execution intent
-* Avoid unnecessary closures
-* Better stack traces
+- Clear execution intent
+- Avoid unnecessary closures
+- Better stack traces
 
 ---
 
 ### 5. State & ref intent separation
 
-* `useState` → **render-affecting state only**
-* `useRef` → **imperative, lifecycle-bound, or mutable state**
+- `useState` → **render-affecting state only**
+- `useRef` → **imperative, lifecycle-bound, or mutable state**
 
 If something:
 
-* Does not affect render → `useRef`
-* Affects render → `useState`
+- Does not affect render → `useRef`
+- Affects render → `useState`
 
 Never mix responsibilities.
 
@@ -257,17 +259,17 @@ Never mix responsibilities.
 
 ### 6. Effects must be intentional
 
-* `useEffect` must represent:
+- `useEffect` must represent:
 
-  * lifecycle binding
-  * external system sync
-  * DOM / imperative integration
+  - lifecycle binding
+  - external system sync
+  - DOM / imperative integration
 
 If an effect exists:
 
-* Its purpose must be obvious from reading it
-* Side effects must be localized
-* Cleanup must be present if resources are created
+- Its purpose must be obvious from reading it
+- Side effects must be localized
+- Cleanup must be present if resources are created
 
 ---
 
@@ -275,12 +277,12 @@ If an effect exists:
 
 The following component is considered **correct** under this workflow:
 
-* Arrow function component
-* Explicit props interface with comments
-* No `useCallback`
-* No unnecessary `useMemo`
-* Intentional effect
-* Clear ref vs state separation
+- Arrow function component
+- Explicit props interface with comments
+- No `useCallback`
+- No unnecessary `useMemo`
+- Intentional effect
+- Clear ref vs state separation
 
 (Your provided `Portal` implementation complies with these rules.)
 
@@ -288,9 +290,9 @@ The following component is considered **correct** under this workflow:
 
 ### 8. Philosophy (non-negotiable)
 
-* React is **not** about “preventing re-renders”
-* Hooks are **semantic tools**, not performance hacks
-* Readability > premature optimization
-* Architecture errors must not be patched with hooks
+- React is **not** about “preventing re-renders”
+- Hooks are **semantic tools**, not performance hacks
+- Readability > premature optimization
+- Architecture errors must not be patched with hooks
 
 If a hook feels “necessary”, question the design first.
