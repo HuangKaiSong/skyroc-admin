@@ -21,3 +21,6 @@ public/dist
 .temp
 yarn.lock
 package-lock.json
+
+#test
+coverage

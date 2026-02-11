@@ -10,8 +10,13 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    projects: ['vitest.config.ts'],
     include: ['packages/**/src/**/*.test.ts', 'packages/**/src/**/*.test.tsx'],
-    setupFiles: ['./packages/hooks/vitest.setup.ts']
+    setupFiles: ['./packages/hooks/vitest.setup.ts'],
+    coverage: {
+      provider: 'v8',
+      enabled: true,
+      include: ['packages/**/src/**/*.ts', 'packages/**/src/**/*.tsx'],
+      exclude: ['**/*.test.ts', '**/*.test.tsx', '**/index.ts', '**/*.d.ts', '**/vitest.setup.ts']
+    }
   }
 });
