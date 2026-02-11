@@ -652,6 +652,13 @@ importers:
       culori:
         specifier: ^4.0.2
         version: 4.0.2
+    devDependencies:
+      '@skyroc/config':
+        specifier: workspace:*
+        version: link:../../../internal/config
+      '@skyroc/tsconfig':
+        specifier: workspace:*
+        version: link:../../../internal/tsconfig
 
   packages/@core/logger:
     dependencies:

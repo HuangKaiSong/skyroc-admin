@@ -9,6 +9,14 @@
       "*": ["./src/*"]
     }
   },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@skyroc/config": "workspace:*",
+    "@skyroc/tsconfig": "workspace:*"
+  },
   "dependencies": {
     "@skyroc/utils": "workspace:*",
     "@types/culori": "^4.0.1",

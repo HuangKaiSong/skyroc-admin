@@ -43,7 +43,9 @@ export function getColorName(color: string) {
     return match;
   });
 
-  name = colorNames[cl][1];
+  if (!name && cl >= 0) {
+    name = colorNames[cl][1];
+  }
 
   return name;
 }
