@@ -10,7 +10,7 @@ import type { CoverageOptions, InlineConfig } from 'vitest/node';
 // ==================== 常量配置 ====================
 
 /** 测试环境 */
-export const TEST_ENVIRONMENT = 'jsdom';
+export const TEST_ENVIRONMENT = 'happy-dom';
 
 /** 覆盖率提供者 */
 export const COVERAGE_PROVIDER = 'v8';
