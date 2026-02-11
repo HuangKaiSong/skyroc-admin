@@ -1,8 +1,7 @@
 {
   "extends": "@skyroc/tsconfig/web.json",
   "compilerOptions": {
-    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-    "types": ["vitest/globals"]
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
   },
-  "include": ["src", "vitest.config.ts", "vitest.setup.ts"]
+  "include": ["src", "vitest.config.ts", "vitest.setup.ts", "__tests__"]
 }
