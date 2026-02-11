@@ -11,6 +11,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
+    "test:ui": "vitest --ui",
     "test:watch": "turbo run test:watch",
     "typecheck": "turbo run typecheck"
   },
@@ -28,6 +29,7 @@
     "@types/react": "catalog:dev",
     "@types/react-dom": "catalog:dev",
     "@vitest/coverage-v8": "catalog:dev",
+    "@vitest/ui": "^4.0.18",
     "eslint": "catalog:dev",
     "happy-dom": "catalog:dev",
     "rimraf": "catalog:dev",

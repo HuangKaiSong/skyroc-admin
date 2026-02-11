@@ -6,10 +6,31 @@ settings:
 
 catalogs:
   core:
+    '@tanstack/react-query':
+      specifier: ^5.90.12
+      version: 5.90.12
+    jotai:
+      specifier: ^2.16.0
+      version: 2.16.0
+    react:
+      specifier: ^19.2.1
+      version: 19.2.3
+    react-dom:
+      specifier: ^19.2.1
+      version: 19.2.3
+    react-error-boundary:
+      specifier: ^6.0.0
+      version: 6.0.0
     typescript:
       specifier: ^5.9.3
       version: 5.9.3
+    vite:
+      specifier: ^7.2.7
+      version: 7.2.7
   dev:
+    '@soybeanjs/changelog':
+      specifier: ^0.3.24
+      version: 0.3.24
     '@soybeanjs/eslint-config':
       specifier: ^1.7.4
       version: 1.7.4
@@ -19,18 +40,99 @@ catalogs:
     '@testing-library/react':
       specifier: ^16.3.2
       version: 16.3.2
+    '@types/crypto-js':
+      specifier: ^4.2.2
+      version: 4.2.2
+    '@types/node':
+      specifier: ^24.10.2
+      version: 24.10.4
+    '@types/nprogress':
+      specifier: ^0.2.3
+      version: 0.2.3
+    '@types/qs':
+      specifier: ^6.14.0
+      version: 6.14.0
     '@types/react':
       specifier: ^19.2.7
-      version: 19.2.14
+      version: 19.2.7
     '@types/react-dom':
       specifier: ^19.2.3
       version: 19.2.3
+    '@unocss/eslint-config':
+      specifier: ^66.5.10
+      version: 66.5.10
+    '@unocss/preset-icons':
+      specifier: ^66.5.10
+      version: 66.5.10
+    '@unocss/preset-uno':
+      specifier: ^66.5.10
+      version: 66.5.10
+    '@unocss/preset-wind3':
+      specifier: ^66.5.10
+      version: 66.5.10
+    '@unocss/transformer-directives':
+      specifier: ^66.5.10
+      version: 66.5.10
+    '@unocss/transformer-variant-group':
+      specifier: ^66.5.10
+      version: 66.5.10
     '@vitest/coverage-v8':
       specifier: ^4.0.18
       version: 4.0.18
+    babel-plugin-react-compiler:
+      specifier: ^1.0.0
+      version: 1.0.0
+    boxen:
+      specifier: ^8.0.1
+      version: 8.0.1
+    bumpp:
+      specifier: ^10.0.3
+      version: 10.0.3
+    c12:
+      specifier: ^2.0.4
+      version: 2.0.4
+    cac:
+      specifier: ^6.7.14
+      version: 6.7.14
+    enquirer:
+      specifier: ^2.4.1
+      version: 2.4.1
     eslint:
       specifier: ^9.39.2
       version: 9.39.2
+    eslint-plugin-react:
+      specifier: ^7.37.5
+      version: 7.37.5
+    eslint-plugin-react-hooks:
+      specifier: ^7.0.1
+      version: 7.0.1
+    eslint-plugin-react-refresh:
+      specifier: ^0.4.24
+      version: 0.4.26
+    eslint-plugin-sort:
+      specifier: ^4.0.0
+      version: 4.0.0
+    execa:
+      specifier: ^9.5.2
+      version: 9.5.2
+    fast-glob:
+      specifier: ^3.3.3
+      version: 3.3.3
+    gradient-string:
+      specifier: ^3.0.0
+      version: 3.0.0
+    happy-dom:
+      specifier: 20.6.1
+      version: 20.6.1
+    kolorist:
+      specifier: ^1.8.0
+      version: 1.8.0
+    npm-check-updates:
+      specifier: ^17.1.14
+      version: 17.1.14
+    picomatch:
+      specifier: ^4.0.3
+      version: 4.0.3
     rimraf:
       specifier: ^6.0.1
       version: 6.0.1
@@ -40,12 +142,154 @@ catalogs:
     tsdown:
       specifier: ^0.18.2
       version: 0.18.3
+    tsx:
+      specifier: ^4.21.0
+      version: 4.21.0
     turbo:
       specifier: ^2.7.1
       version: 2.7.2
+    unplugin-auto-import:
+      specifier: ^20.3.0
+      version: 20.3.0
+    unplugin-icons:
+      specifier: ^22.5.0
+      version: 22.5.0
+    vite-plugin-inspect:
+      specifier: ^11.3.3
+      version: 11.3.3
+    vite-plugin-remove-console:
+      specifier: ^2.2.0
+      version: 2.2.0
+    vite-plugin-svg-icons:
+      specifier: ^2.0.1
+      version: 2.0.1
     vitest:
       specifier: ^4.0.18
       version: 4.0.18
+  i18n:
+    i18next:
+      specifier: 25.7.2
+      version: 25.7.3
+    react-i18next:
+      specifier: 16.4.0
+      version: 16.5.0
+  ui-shared:
+    '@iconify/json':
+      specifier: ^2.2.416
+      version: 2.2.417
+    '@iconify/react':
+      specifier: ^6.0.2
+      version: 6.0.2
+    '@iconify/types':
+      specifier: ^2.0.0
+      version: 2.0.0
+    '@radix-ui/react-scroll-area':
+      specifier: 1.2.10
+      version: 1.2.10
+    '@radix-ui/react-tooltip':
+      specifier: 1.2.7
+      version: 1.2.7
+    motion:
+      specifier: ^12.23.26
+      version: 12.23.26
+    nprogress:
+      specifier: ^0.2.0
+      version: 0.2.0
+  utils:
+    ahooks:
+      specifier: ^3.9.6
+      version: 3.9.6
+    axios:
+      specifier: ^1.7.9
+      version: 1.13.2
+    axios-retry:
+      specifier: ^4.5.0
+      version: 4.5.0
+    clsx:
+      specifier: ^2.1.1
+      version: 2.1.1
+    colord:
+      specifier: ^2.9.3
+      version: 2.9.3
+    crypto-js:
+      specifier: ^4.2.0
+      version: 4.2.0
+    date-fns:
+      specifier: ^4.1.0
+      version: 4.1.0
+    dayjs:
+      specifier: ^1.11.19
+      version: 1.11.19
+    defu:
+      specifier: ^6.1.4
+      version: 6.1.4
+    klona:
+      specifier: ^2.0.6
+      version: 2.0.6
+    localforage:
+      specifier: ^1.10.0
+      version: 1.10.0
+    nanoid:
+      specifier: ^5.0.9
+      version: 5.1.6
+    qs:
+      specifier: ^6.14.0
+      version: 6.14.0
+    tailwind-merge:
+      specifier: ^3.4.0
+      version: 3.4.0
+    tailwind-variants:
+      specifier: ^3.2.2
+      version: 3.2.2
+    zod:
+      specifier: ^4.1.13
+      version: 4.2.1
+  web:
+    '@better-scroll/core':
+      specifier: ^2.5.1
+      version: 2.5.1
+    '@svgr/core':
+      specifier: ^8.1.0
+      version: 8.1.0
+    '@svgr/plugin-jsx':
+      specifier: ^8.1.0
+      version: 8.1.0
+    '@tanstack/devtools-vite':
+      specifier: ^0.3.12
+      version: 0.3.12
+    '@tanstack/react-devtools':
+      specifier: ^0.8.4
+      version: 0.8.4
+    '@tanstack/react-query-devtools':
+      specifier: ^5.91.1
+      version: 5.91.1
+    '@tanstack/react-router':
+      specifier: ^1.140.0
+      version: 1.143.4
+    '@tanstack/react-router-devtools':
+      specifier: ^1.140.0
+      version: 1.143.4
+    '@tanstack/router-plugin':
+      specifier: ^1.140.0
+      version: 1.143.4
+    '@unocss/vite':
+      specifier: ^66.5.10
+      version: 66.5.10
+    '@vitejs/plugin-react':
+      specifier: ^5.1.2
+      version: 5.1.2
+    antd:
+      specifier: ^6.1.0
+      version: 6.1.1
+    echarts:
+      specifier: ^6.0.0
+      version: 6.0.0
+    jotai-devtools:
+      specifier: ^0.13.0
+      version: 0.13.0
+    sass:
+      specifier: ^1.96.0
+      version: 1.97.1
 
 importers:
 
@@ -84,12 +328,15 @@ importers:
         version: 19.2.3(@types/react@19.2.14)
       '@vitest/coverage-v8':
         specifier: catalog:dev
-        version: 4.0.18(vitest@4.0.18(@types/node@24.10.4)(happy-dom@20.6.1)(jiti@2.6.1)(jsdom@28.0.0)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2))
+        version: 4.0.18(vitest@4.0.18)
+      '@vitest/ui':
+        specifier: ^4.0.18
+        version: 4.0.18(vitest@4.0.18)
       eslint:
         specifier: catalog:dev
         version: 9.39.2(jiti@2.6.1)
       happy-dom:
-        specifier: ^20.6.1
+        specifier: catalog:dev
         version: 20.6.1
       rimraf:
         specifier: catalog:dev
@@ -108,7 +355,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: catalog:dev
-        version: 4.0.18(@types/node@24.10.4)(happy-dom@20.6.1)(jiti@2.6.1)(jsdom@28.0.0)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2)
+        version: 4.0.18(@types/node@24.10.4)(@vitest/ui@4.0.18)(happy-dom@20.6.1)(jiti@2.6.1)(jsdom@28.0.0)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2)
 
   apps/admin:
     dependencies:
@@ -352,7 +599,7 @@ importers:
         version: link:../tsconfig
       vitest:
         specifier: catalog:dev
-        version: 4.0.18(@types/node@24.10.4)(happy-dom@20.6.1)(jiti@2.6.1)(jsdom@28.0.0)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2)
+        version: 4.0.18(@types/node@24.10.4)(@vitest/ui@4.0.18)(happy-dom@20.6.1)(jiti@2.6.1)(jsdom@28.0.0)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2)
 
   internal/tsconfig: {}
 
@@ -3143,6 +3390,11 @@ packages:
   '@vitest/spy@4.0.18':
     resolution: {integrity: sha512-cbQt3PTSD7P2OARdVW3qWER5EGq7PHlvE+QfzSC0lbwO+xnt7+XH06ZzFjFRgzUX//JmpxrCu92VdwvEPlWSNw==}
 
+  '@vitest/ui@4.0.18':
+    resolution: {integrity: sha512-CGJ25bc8fRi8Lod/3GHSvXRKi7nBo3kxh0ApW4yCjmrWmRmlT53B5E08XRSZRliygG0aVNxLrBEqPYdz/KcCtQ==}
+    peerDependencies:
+      vitest: 4.0.18
+
   '@vitest/utils@4.0.18':
     resolution: {integrity: sha512-msMRKLMVLWygpK3u2Hybgi4MNjcYJvwTb0Ru09+fOyCXIgT5raYP041DRRdiJiI3k/2U6SEbAETB3YtBrUkCFA==}
 
@@ -4141,6 +4393,9 @@ packages:
     peerDependenciesMeta:
       picomatch:
         optional: true
+
+  fflate@0.8.2:
+    resolution: {integrity: sha512-cPJU47OaAoCbg0pBvzsgpTPhmhqI5eJjh/JIu8tPj5q+T7iLvW/JAYUqmE7KOB4R1ZyEhzBaIQpQpardBF5z8A==}
 
   figures@6.1.0:
     resolution: {integrity: sha512-d+l3qxjSesT4V7v2fh+QnmFnUWv9lSpjarhShNTgBOfA0ttejbQUAlHLitbjkoRiDulW0OPoQPYIGhIC8ohejg==}
@@ -9084,7 +9339,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/coverage-v8@4.0.18(vitest@4.0.18(@types/node@24.10.4)(happy-dom@20.6.1)(jiti@2.6.1)(jsdom@28.0.0)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2))':
+  '@vitest/coverage-v8@4.0.18(vitest@4.0.18)':
     dependencies:
       '@bcoe/v8-coverage': 1.0.2
       '@vitest/utils': 4.0.18
@@ -9096,7 +9351,7 @@ snapshots:
       obug: 2.1.1
       std-env: 3.10.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.18(@types/node@24.10.4)(happy-dom@20.6.1)(jiti@2.6.1)(jsdom@28.0.0)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2)
+      vitest: 4.0.18(@types/node@24.10.4)(@vitest/ui@4.0.18)(happy-dom@20.6.1)(jiti@2.6.1)(jsdom@28.0.0)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2)
 
   '@vitest/expect@4.0.18':
     dependencies:
@@ -9131,6 +9386,17 @@ snapshots:
       pathe: 2.0.3
 
   '@vitest/spy@4.0.18': {}
+
+  '@vitest/ui@4.0.18(vitest@4.0.18)':
+    dependencies:
+      '@vitest/utils': 4.0.18
+      fflate: 0.8.2
+      flatted: 3.3.3
+      pathe: 2.0.3
+      sirv: 3.0.2
+      tinyglobby: 0.2.15
+      tinyrainbow: 3.0.3
+      vitest: 4.0.18(@types/node@24.10.4)(@vitest/ui@4.0.18)(happy-dom@20.6.1)(jiti@2.6.1)(jsdom@28.0.0)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2)
 
   '@vitest/utils@4.0.18':
     dependencies:
@@ -10420,6 +10686,8 @@ snapshots:
   fdir@6.5.0(picomatch@4.0.3):
     optionalDependencies:
       picomatch: 4.0.3
+
+  fflate@0.8.2: {}
 
   figures@6.1.0:
     dependencies:
@@ -12908,7 +13176,7 @@ snapshots:
       tsx: 4.21.0
       yaml: 2.8.2
 
-  vitest@4.0.18(@types/node@24.10.4)(happy-dom@20.6.1)(jiti@2.6.1)(jsdom@28.0.0)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2):
+  vitest@4.0.18(@types/node@24.10.4)(@vitest/ui@4.0.18)(happy-dom@20.6.1)(jiti@2.6.1)(jsdom@28.0.0)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2):
     dependencies:
       '@vitest/expect': 4.0.18
       '@vitest/mocker': 4.0.18(vite@7.2.7(@types/node@24.10.4)(jiti@2.6.1)(sass@1.97.1)(tsx@4.21.0)(yaml@2.8.2))
@@ -12932,6 +13200,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 24.10.4
+      '@vitest/ui': 4.0.18(vitest@4.0.18)
       happy-dom: 20.6.1
       jsdom: 28.0.0
     transitivePeerDependencies:
