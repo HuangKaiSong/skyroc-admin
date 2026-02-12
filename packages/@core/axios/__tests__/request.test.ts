@@ -347,6 +347,28 @@ describe('createRequest', () => {
     expect(data).toEqual({ ok: true });
   });
 
+  it('onRequest 返回 falsy 时应回退使用原始 config', async () => {
+    server.use(
+      http.get(`${BASE_URL}/api/falsy-hook`, () => {
+        return HttpResponse.json({ code: 200, data: { ok: true }, message: 'ok' });
+      })
+    );
+
+    const request = createRequest<BackendResponse, BackendResponse['data'], Record<string, unknown>>(
+      TEST_AXIOS_CONFIG,
+      {
+        isBackendSuccess: response => response.data.code === 200,
+        transform: async response => response.data.data,
+        // 返回 undefined（falsy），触发 || config 回退
+        onRequest: (() => undefined) as any
+      }
+    );
+
+    const data = await request({ url: '/api/falsy-hook' });
+
+    expect(data).toEqual({ ok: true });
+  });
+
   it('非 JSON 响应类型应直接返回原始数据而不经过 transform', async () => {
     server.use(
       http.get(`${BASE_URL}/api/text`, () => {

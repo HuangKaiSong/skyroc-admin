@@ -13,7 +13,7 @@ export default defineConfig({
     environment: 'node',
     coverage: {
       ...baseCoverageConfig,
-      exclude: COVERAGE_EXCLUDE.filter(p => p !== '**/index.ts')
+      exclude: [...COVERAGE_EXCLUDE.filter(p => p !== '**/index.ts'), '**/type.ts']
     }
   }
 });
