@@ -32,6 +32,7 @@
     "@vitest/ui": "^4.0.18",
     "eslint": "catalog:dev",
     "happy-dom": "catalog:dev",
+    "msw": "catalog:dev",
     "rimraf": "catalog:dev",
     "simple-git-hooks": "catalog:dev",
     "tsdown": "catalog:dev",

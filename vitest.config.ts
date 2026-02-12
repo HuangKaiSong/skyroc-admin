@@ -22,7 +22,7 @@ const SETUP_FILES = ['./packages/hooks/vitest.setup.ts', './packages/@core/utils
  * 只覆盖有测试的包，避免无测试包产生大量 0% 噪音。
  * 新包加测试后，在这里加一行即可。
  */
-const TESTED_PACKAGES = ['packages/hooks', 'packages/@core/utils', 'packages/@core/color'];
+const TESTED_PACKAGES = ['packages/hooks', 'packages/@core/utils', 'packages/@core/color', 'packages/@core/axios'];
 const ROOT_SOURCE_PATTERNS = TESTED_PACKAGES.flatMap(pkg => SOURCE_PATTERNS.map(p => `${pkg}/${p}`));
 
 // ==================== Vitest 配置 ====================

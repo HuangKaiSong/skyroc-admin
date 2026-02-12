@@ -9,6 +9,11 @@
       "*": ["./src/*"]
     }
   },
+  "scripts": {
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest"
+  },
   "dependencies": {
     "@skyroc/utils": "workspace:*",
     "axios": "catalog:utils",
@@ -16,6 +21,7 @@
     "qs": "catalog:utils"
   },
   "devDependencies": {
+    "@skyroc/config": "workspace:*",
     "@types/qs": "catalog:dev"
   }
 }
