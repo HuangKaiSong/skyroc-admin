@@ -6,19 +6,9 @@ export type { JotaiProviderProps } from './provider/JotaiProvider';
 export { globalStore, getAtomValue, setAtomValue, updateAtomValue } from './store/global';
 
 // Utils
-export { createAtomWithStorage, createAtomWithSessionStorage } from './utils/atom-with-storage';
-export { createAtomWithReset, RESET, atomWithReset } from './utils/atom-with-reset';
+export { atomWithPartial } from './utils/atom-with-partial';
+export { createAtomWithStorage } from './utils/atom-with-storage';
+export { registerStorage, getStorage } from './utils/storage-registry';
 
 // Types
-export * from './types';
-
-// Re-export from jotai
-export { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
-export {
-  atomWithDefault,
-  atomWithObservable,
-  atomWithReset,
-  atomWithStorage,
-  freezeAtom,
-  splitAtom
-} from 'jotai/utils';
+export type { AtomStorage } from './types';

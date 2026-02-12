@@ -13,11 +13,14 @@
       "*": ["./src/*"]
     }
   },
+  "scripts": {
+    "test": "vitest",
+    "test:watch": "vitest"
+  },
   "peerDependencies": {
     "react": ">=18.0.0"
   },
   "dependencies": {
-    "@skyroc/storage": "workspace:*",
     "jotai": "catalog:core"
   },
   "devDependencies": {

@@ -23,17 +23,14 @@ export function getAtomValue<T>(atom: Atom<T>): T {
 /**
  * Set atom value in non-hook environments
  */
-export function setAtomValue<T>(atom: WritableAtom<T, T, T>, value: T): void {
+export function setAtomValue<T>(atom: WritableAtom<T, [T], void>, value: T): void {
   globalStore.set(atom, value);
 }
 
 /**
  * Update atom value in non-hook environments
  */
-export function updateAtomValue<T>(
-  atom: WritableAtom<T, (prev: T) => T, (prev: T) => T>,
-  updater: (prev: T) => T
-): void {
+export function updateAtomValue<T>(atom: WritableAtom<T, [T], void>, updater: (prev: T) => T): void {
   const currentValue = globalStore.get(atom);
   globalStore.set(atom, updater(currentValue));
 }
