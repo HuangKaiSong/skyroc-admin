@@ -3,49 +3,28 @@ import type { AxiosResponse } from 'axios';
 import { getServiceBaseURL } from '@/utils/service';
 import { localStg } from '@/utils/storage';
 
-import { BACKEND_ERROR_CODE, createFlatRequest, createRequest } from '../../../../../packages/@core/axios/src';
-
-import { backEndFail, handleError } from './error';
-import { getAuthorization } from './shared';
-import type { RequestInstanceState } from './type';
+import { BACKEND_ERROR_CODE, createFlatRequest } from '../../../../../packages/@core/axios/src';
+import { createAppRequest } from '../../../../../packages/@core/service/src';
+import { antdAdapter } from '../adapter';
 
 const isHttpProxy = import.meta.env.DEV && import.meta.env.VITE_HTTP_PROXY === 'Y';
 const { baseURL, otherBaseURL } = getServiceBaseURL(import.meta.env, isHttpProxy);
 
-export const request = createRequest(
-  {
+export const request = createAppRequest({
+  adapter: antdAdapter,
+  axiosConfig: {
     baseURL,
     headers: {
       apifoxToken: 'XL299LiMEDZ0H5h3A29PxwQXdMJqWyY2'
     }
   },
-  {
-    defaultState: {
-      errMsgStack: [],
-      refreshTokenPromise: null
-    } as RequestInstanceState,
-    transform(response: AxiosResponse<Api.Service.Response<any>>) {
-      return response.data.data;
-    },
-    isBackendSuccess(response) {
-      // when the backend response code is "0000"(default), it means the request is success
-      // to change this logic by yourself, you can modify the `VITE_SERVICE_SUCCESS_CODE` in `.env` file
-      return String(response.data.code) === import.meta.env.VITE_SERVICE_SUCCESS_CODE;
-    },
-    async onBackendFail(response, instance) {
-      await backEndFail(response, instance, request);
-    },
-    onError(error) {
-      handleError(error, request);
-    },
-    async onRequest(config) {
-      const Authorization = getAuthorization();
-      Object.assign(config.headers, { Authorization });
-
-      return config;
-    }
+  codes: {
+    expiredToken: import.meta.env.VITE_SERVICE_EXPIRED_TOKEN_CODES?.split(',') || [],
+    logout: import.meta.env.VITE_SERVICE_LOGOUT_CODES?.split(',') || [],
+    modalLogout: import.meta.env.VITE_SERVICE_MODAL_LOGOUT_CODES?.split(',') || [],
+    success: import.meta.env.VITE_SERVICE_SUCCESS_CODE
   }
-);
+});
 
 export const demoRequest = createFlatRequest(
   {
@@ -56,20 +35,14 @@ export const demoRequest = createFlatRequest(
       return response.data.result;
     },
     isBackendSuccess(response) {
-      // when the backend response code is "200", it means the request is success
-      // you can change this logic by yourself
       return response.data.status === '200';
     },
     async onBackendFail(_response) {
       // when the backend response code is not "200", it means the request is fail
-      // for example: the token is expired, refresh token and retry request
     },
     onError(error) {
-      // when the request is fail, you can show error message
-
       let message = error.message;
 
-      // show backend error message
       if (error.code === BACKEND_ERROR_CODE) {
         message = error.response?.data?.message || message;
       }
@@ -79,7 +52,6 @@ export const demoRequest = createFlatRequest(
     async onRequest(config) {
       const { headers } = config;
 
-      // set token
       const token = localStg.get('token');
       const Authorization = token ? `Bearer ${token}` : null;
       Object.assign(headers, { Authorization });

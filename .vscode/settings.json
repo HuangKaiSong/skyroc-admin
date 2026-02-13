@@ -43,6 +43,7 @@
     "moduleResolution": "node"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
+  "vitest.configSearchPatternExclude": "**/packages/**",
   "unocss.root": ["./apps/admin"],
   "i18n-ally.sourceLanguage": "zh-cn",
   "files.readonlyInclude": {

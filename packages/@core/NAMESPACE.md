@@ -23,6 +23,7 @@ packages/@core/
 ├── state/       @skyroc/core-state    Jotai 状态管理封装（依赖 React）
 ├── logger/      @skyroc/logger        跨平台日志系统
 ├── scheduler/   @skyroc/scheduler     协作式任务调度（初始化、定时器、监听器统一管理）
+├── service/     @skyroc/service       平台无关请求 & 查询基础设施（Adapter 模式）
 └── scripts/     内部构建脚本
 ```
 
@@ -37,6 +38,7 @@ packages/@core/
 | `state` | Jotai 原子状态封装、全局 store、持久化 atom、storage registry | 是 |
 | `logger` | 基于 LogLayer 的日志系统，适配 Web / RN / 小程序，含上传、清理、白名单管理 | 无 |
 | `scheduler` | 协作式任务调度中枢，统一管理 init / periodic / listener 三类任务，支持依赖 DAG、重试、暂停恢复 | 无 |
+| `service` | 平台无关的请求 & 查询基础设施，通过 Adapter 模式注入 UI / Auth / 导航等平台差异 | 无 |
 
 ## 依赖方向
 
@@ -45,7 +47,7 @@ types（零依赖）
   ↑
 utils / color / axios（基础工具，互不依赖）
   ↑
-state / logger / scheduler（运行时系统，可依赖上层基础工具）
+state / logger / scheduler / service（运行时系统，可依赖上层基础工具）
 ```
 
 箭头表示"被依赖"方向。禁止同层或反向依赖。

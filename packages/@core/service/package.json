@@ -1,0 +1,26 @@
+{
+  "name": "@skyroc/service",
+  "version": "1.0.0",
+  "description": "Platform-agnostic request & query infrastructure with adapter pattern",
+  "exports": {
+    ".": "./src/index.ts",
+    "./query": "./src/query/index.ts"
+  },
+  "typesVersions": {
+    "*": {
+      "*": ["./src/*"]
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@skyroc/axios": "workspace:*",
+    "@tanstack/react-query": "catalog:core"
+  },
+  "devDependencies": {
+    "@skyroc/config": "workspace:*",
+    "@skyroc/tsconfig": "workspace:*"
+  }
+}
