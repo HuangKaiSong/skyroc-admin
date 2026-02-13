@@ -1,3 +1,4 @@
+/* eslint-disable max-params */
 import type { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import type { RequestInstance } from '@skyroc/axios';
 import { BACKEND_ERROR_CODE } from '@skyroc/axios';

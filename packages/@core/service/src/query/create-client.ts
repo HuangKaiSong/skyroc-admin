@@ -16,10 +16,10 @@ export function createQueryClient(options: CreateQueryClientOptions = {}) {
       queries: DEFAULT_QUERY_CONFIG
     },
     mutationCache: new MutationCache({
-      onError: onError ? (error: unknown) => onError(error) : undefined
+      onError
     }),
     queryCache: new QueryCache({
-      onError: onError ? (error: unknown) => onError(error) : undefined
+      onError
     })
   });
 }
