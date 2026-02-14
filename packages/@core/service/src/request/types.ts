@@ -29,12 +29,7 @@ export interface RequestAdapter {
   showErrorMessage(msg: string, onClose?: () => void): void;
 
   /** 展示错误弹窗（modal / dialog） */
-  showErrorModal(options: {
-    content: string;
-    maskClosable?: boolean;
-    onConfirm: () => void;
-    title: string;
-  }): void;
+  showErrorModal(options: { content: string; maskClosable?: boolean; onConfirm: () => void; title: string }): void;
 
   /** 国际化翻译 */
   t(key: string): string;
