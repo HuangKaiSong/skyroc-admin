@@ -1,35 +1,21 @@
 import type { ClassValue } from 'clsx';
 import type { ReactNode } from 'react';
 
-// ==================== Theme Types ====================
+// Re-export shared cross-platform types from @skyroc/ui-types
+export type {
+  AcceptableValue,
+  ClassValue,
+  MaybeArray,
+  ThemeAlign,
+  ThemeColor,
+  ThemeOrientation,
+  ThemeSize,
+  ThemeSide,
+  Value,
+  WithClassName
+} from '@skyroc/ui-types';
 
-/** Theme color variants */
-export type ThemeColor = 'accent' | 'carbon' | 'destructive' | 'info' | 'primary' | 'secondary' | 'success' | 'warning';
-
-/** Theme size variants */
-export type ThemeSize = '2xl' | 'lg' | 'md' | 'sm' | 'xl' | 'xs';
-
-/** Theme orientation */
-export type ThemeOrientation = 'horizontal' | 'vertical';
-
-/** Theme alignment */
-export type ThemeAlign = 'center' | 'end' | 'start';
-
-/** Theme side position */
-export type ThemeSide = 'bottom' | 'left' | 'right' | 'top';
-
-// ==================== Component Props ====================
-
-/** Props with className support */
-export interface WithClassName {
-  /** CSS class name */
-  className?: ClassValue;
-}
-
-/** Props with value support */
-export type Value = string;
-
-export type MaybeArray<T> = T | Array<T>;
+// ==================== Web-Specific Types ====================
 
 /** HTML element tag types */
 export type HTMLTag =
@@ -73,7 +59,7 @@ export type StyledComponentProps<T> = Omit<T, 'className'> & {
   /** CSS class name */
   className?: ClassValue;
   /** Component size variant */
-  size?: ThemeSize;
+  size?: import('@skyroc/ui-types').ThemeSize;
 };
 
 /** Props for components with leading and trailing slots */
@@ -88,11 +74,3 @@ export interface SlotProps {
 export type HTMLComponentProps<T extends keyof React.JSX.IntrinsicElements> = StyledComponentProps<
   React.ComponentPropsWithRef<T>
 >;
-
-// ==================== Utility Types ====================
-
-/** Acceptable value types for form inputs and data */
-export type AcceptableValue = string | number | bigint | Record<string, any> | null;
-
-/** Re-export ClassValue from clsx */
-export type { ClassValue };

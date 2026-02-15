@@ -17,7 +17,6 @@
     "react": ">=18.0.0"
   },
   "dependencies": {
-    "@skyroc/storage": "workspace:*",
     "@skyroc/types": "workspace:*",
     "i18next": "catalog:i18n",
     "jotai": "catalog:core"

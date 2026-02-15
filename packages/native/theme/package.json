@@ -1,0 +1,42 @@
+{
+  "name": "@skyroc/native-theme",
+  "type": "module",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Design tokens and NativeWind preset for React Native components",
+  "license": "MIT",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./preset": "./src/presets/nativewind-preset.ts",
+    "./tailwind": "./tailwind.config.ts"
+  },
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": ["dist", "tailwind.config.ts"],
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit --skipLibCheck"
+  },
+  "dependencies": {
+    "@skyroc/color": "workspace:*",
+    "@skyroc/ui-types": "workspace:*"
+  },
+  "devDependencies": {
+    "@skyroc/tsconfig": "workspace:*"
+  },
+  "peerDependencies": {
+    "nativewind": "^4.1.0",
+    "tailwindcss": "^3.4.0"
+  },
+  "peerDependenciesMeta": {
+    "nativewind": {
+      "optional": true
+    },
+    "tailwindcss": {
+      "optional": true
+    }
+  }
+}

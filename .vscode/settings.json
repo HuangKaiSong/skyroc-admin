@@ -53,6 +53,10 @@
     "**/routeTree.gen.ts": true
   },
 
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "tailwindCSS.classAttributes": ["class", "className", "headerClassName", "classNames"],
   // search
   "search.searchEditor.singleClickBehaviour": "peekDefinition",
   "search.followSymlinks": false,

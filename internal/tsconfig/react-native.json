@@ -1,13 +1,14 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "React Native",
+  "display": "React Native Package",
   "extends": "./base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "lib": ["ESNext"],
     "moduleResolution": "node",
+    "verbatimModuleSyntax": false,
     "allowSyntheticDefaultImports": true,
     "declaration": false,
-    "types": ["react-native"]
+    "types": ["react-native", "nativewind/types"]
   }
 }

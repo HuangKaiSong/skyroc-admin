@@ -1,0 +1,48 @@
+{
+  "name": "@skyroc/native-ui",
+  "type": "module",
+  "version": "0.1.0",
+  "private": false,
+  "description": "React Native component library with NativeWind styling",
+  "license": "MIT",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "typecheck": "tsc --noEmit --skipLibCheck"
+  },
+  "dependencies": {
+    "@skyroc/native-theme": "workspace:*",
+    "@skyroc/ui-types": "workspace:*",
+    "@skyroc/utils": "workspace:*",
+    "tailwind-variants": "catalog:utils"
+  },
+  "devDependencies": {
+    "@skyroc/tsconfig": "workspace:*",
+    "@testing-library/react-native": "catalog:native",
+    "@types/react": "catalog:dev",
+    "jest": "^29.7.0",
+    "react": "catalog:core",
+    "react-native": "catalog:native",
+    "react-test-renderer": "^18.3.1"
+  },
+  "peerDependencies": {
+    "nativewind": "^4.1.0",
+    "react": ">=18",
+    "react-native": ">=0.74"
+  },
+  "peerDependenciesMeta": {
+    "nativewind": {
+      "optional": false
+    }
+  }
+}

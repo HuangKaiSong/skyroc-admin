@@ -10,7 +10,8 @@
     "./node.json": "./node.json",
     "./web.json": "./web.json",
     "./web-app.json": "./web-app.json",
-    "./react-native.json": "./react-native.json"
+    "./react-native.json": "./react-native.json",
+    "./react-native-app.json": "./react-native-app.json"
   },
-  "files": ["base.json", "library.json", "node.json", "react-native.json", "web-app.json", "web.json"]
+  "files": ["base.json", "library.json", "node.json", "react-native.json", "react-native-app.json", "web-app.json", "web.json"]
 }

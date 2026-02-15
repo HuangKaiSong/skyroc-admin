@@ -10,8 +10,11 @@ import { COVERAGE_EXCLUDE, COVERAGE_PROVIDER, SOURCE_PATTERNS, TEST_ENVIRONMENT 
 
 // ==================== 常量配置 ====================
 
-/** 测试文件匹配模式（根目录视角） */
+/** 测试文件匹配模式（根目录视角，排除 native 包使用 Jest） */
 const TEST_PATTERNS = ['packages/**/__tests__/**/*.test.ts', 'packages/**/__tests__/**/*.test.tsx'];
+
+/** 排除 native 包（使用 Jest + react-native preset） */
+const TEST_EXCLUDE = ['packages/native/**'];
 
 /** 测试前置文件 */
 const SETUP_FILES = [
@@ -36,6 +39,7 @@ export default defineConfig({
     globals: true,
     environment: TEST_ENVIRONMENT,
     include: TEST_PATTERNS,
+    exclude: TEST_EXCLUDE,
     setupFiles: SETUP_FILES,
     coverage: {
       provider: COVERAGE_PROVIDER,
