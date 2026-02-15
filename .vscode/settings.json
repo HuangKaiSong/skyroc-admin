@@ -6,7 +6,8 @@
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "never"
+    "source.organizeImports": "never",
+    "source.sortMembers": "explicit"
   },
   "eslint.useFlatConfig": true,
   "editor.guides.bracketPairs": "active",
