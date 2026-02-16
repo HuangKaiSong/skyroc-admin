@@ -1,17 +1,5 @@
 import type { Preset, PresetWind3Theme, Rule } from 'unocss';
 import { allShortcuts } from './shortcuts';
-import themes from './theme.json';
-import type { PresetShadcnOptions, ThemeColorKey, ThemeConfig, ThemeConfigColor, ThemeOptions } from './types';
-
-export const builtinColors = themes.map(theme => theme.name) as ThemeConfigColor[];
-
-export const builtinColorMap = themes.reduce(
-  (acc, theme) => {
-    acc[theme.name as ThemeConfigColor] = theme.cssVars.light.primary;
-    return acc;
-  },
-  {} as Record<ThemeConfigColor, string>
-);
 
 export const builtinRadiuses = [0, 0.3, 0.5, 0.75, 1] as const;
 
@@ -479,5 +467,3 @@ export { textVariants };
 export { allShortcuts, flexShortcuts, positionShortcuts, textShortcuts } from './shortcuts';
 
 export default presetSoybeanAdmin;
-
-export type { PresetShadcnOptions, ThemeColorKey, ThemeConfig, ThemeConfigColor, ThemeOptions };
