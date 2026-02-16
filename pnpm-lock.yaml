@@ -54,7 +54,7 @@ catalogs:
       version: 6.14.0
     '@types/react':
       specifier: ^19.2.7
-      version: 19.2.7
+      version: 19.2.14
     '@types/react-dom':
       specifier: ^19.2.3
       version: 19.2.3
@@ -398,13 +398,13 @@ importers:
         version: link:../../packages/web/materials
       '@skyroc/ui':
         specifier: workspace:*
-        version: link:../../packages/ui/primitives
+        version: link:../../packages/web/ui/primitives
       '@skyroc/ui-antd':
         specifier: workspace:*
-        version: link:../../packages/ui/antd
+        version: link:../../packages/web/ui/antd
       '@skyroc/ui-compose':
         specifier: workspace:*
-        version: link:../../packages/ui/compose
+        version: link:../../packages/web/ui/compose
       '@skyroc/utils':
         specifier: workspace:*
         version: link:../../packages/@core/utils
@@ -1082,7 +1082,65 @@ importers:
         specifier: workspace:*
         version: link:../../../internal/tsconfig
 
-  packages/ui/antd:
+  packages/web/admin-theme:
+    dependencies:
+      '@skyroc/adapter-antd-theme':
+        specifier: workspace:*
+        version: link:../antd-theme
+      '@skyroc/color':
+        specifier: workspace:*
+        version: link:../../@core/color
+      '@skyroc/hooks':
+        specifier: workspace:*
+        version: link:../../hooks
+      '@skyroc/ui-antd':
+        specifier: workspace:*
+        version: link:../ui/antd
+      '@skyroc/ui-compose':
+        specifier: workspace:*
+        version: link:../ui/compose
+      '@skyroc/utils':
+        specifier: workspace:*
+        version: link:../../@core/utils
+      antd:
+        specifier: catalog:web
+        version: 6.1.1(date-fns@4.1.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      defu:
+        specifier: catalog:utils
+        version: 6.1.4
+      jotai:
+        specifier: catalog:core
+        version: 2.16.0(@babel/core@7.28.5)(@babel/template@7.28.6)(@types/react@19.2.14)(react@19.2.3)
+      react:
+        specifier: '>=19.0.0'
+        version: 19.2.3
+
+  packages/web/antd-theme:
+    dependencies:
+      '@skyroc/color':
+        specifier: workspace:*
+        version: link:../../@core/color
+      antd:
+        specifier: '>=5.0.0'
+        version: 6.1.1(date-fns@4.1.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+
+  packages/web/materials:
+    dependencies:
+      '@skyroc/color':
+        specifier: workspace:*
+        version: link:../../@core/color
+      '@skyroc/ui':
+        specifier: workspace:*
+        version: link:../ui/primitives
+      '@skyroc/utils':
+        specifier: workspace:*
+        version: link:../../@core/utils
+    devDependencies:
+      typed-css-modules:
+        specifier: 0.9.1
+        version: 0.9.1
+
+  packages/web/ui/antd:
     dependencies:
       '@iconify/react':
         specifier: catalog:ui-shared
@@ -1095,7 +1153,7 @@ importers:
         version: link:../compose
       '@skyroc/utils':
         specifier: workspace:*
-        version: link:../../@core/utils
+        version: link:../../../@core/utils
       '@tanstack/react-router':
         specifier: catalog:web
         version: 1.143.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -1125,7 +1183,7 @@ importers:
         specifier: catalog:dev
         version: 19.2.3(@types/react@19.2.7)
 
-  packages/ui/compose:
+  packages/web/ui/compose:
     dependencies:
       '@better-scroll/core':
         specifier: catalog:web
@@ -1135,13 +1193,13 @@ importers:
         version: 6.0.2(react@19.2.3)
       '@skyroc/color':
         specifier: workspace:*
-        version: link:../../@core/color
+        version: link:../../../@core/color
       '@skyroc/ui':
         specifier: workspace:*
         version: link:../primitives
       '@skyroc/utils':
         specifier: workspace:*
-        version: link:../../@core/utils
+        version: link:../../../@core/utils
       ahooks:
         specifier: catalog:utils
         version: 3.9.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
@@ -1177,7 +1235,7 @@ importers:
         specifier: catalog:dev
         version: 19.2.3(@types/react@19.2.7)
 
-  packages/ui/primitives:
+  packages/web/ui/primitives:
     dependencies:
       '@radix-ui/react-scroll-area':
         specifier: catalog:ui-shared
@@ -1187,13 +1245,13 @@ importers:
         version: 1.2.7(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@skyroc/color':
         specifier: workspace:*
-        version: link:../../@core/color
+        version: link:../../../@core/color
       '@skyroc/ui-types':
         specifier: workspace:*
-        version: link:../../shared/ui-types
+        version: link:../../../shared/ui-types
       '@skyroc/utils':
         specifier: workspace:*
-        version: link:../../@core/utils
+        version: link:../../../@core/utils
       react:
         specifier: catalog:core
         version: 19.2.3
@@ -1213,64 +1271,6 @@ importers:
       '@types/react-dom':
         specifier: catalog:dev
         version: 19.2.3(@types/react@19.2.7)
-
-  packages/web/admin-theme:
-    dependencies:
-      '@skyroc/adapter-antd-theme':
-        specifier: workspace:*
-        version: link:../antd-theme
-      '@skyroc/color':
-        specifier: workspace:*
-        version: link:../../@core/color
-      '@skyroc/hooks':
-        specifier: workspace:*
-        version: link:../../hooks
-      '@skyroc/ui-antd':
-        specifier: workspace:*
-        version: link:../../ui/antd
-      '@skyroc/ui-compose':
-        specifier: workspace:*
-        version: link:../../ui/compose
-      '@skyroc/utils':
-        specifier: workspace:*
-        version: link:../../@core/utils
-      antd:
-        specifier: catalog:web
-        version: 6.1.1(date-fns@4.1.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      defu:
-        specifier: catalog:utils
-        version: 6.1.4
-      jotai:
-        specifier: catalog:core
-        version: 2.16.0(@babel/core@7.28.5)(@babel/template@7.28.6)(@types/react@19.2.14)(react@19.2.3)
-      react:
-        specifier: '>=19.0.0'
-        version: 19.2.3
-
-  packages/web/antd-theme:
-    dependencies:
-      '@skyroc/color':
-        specifier: workspace:*
-        version: link:../../@core/color
-      antd:
-        specifier: '>=5.0.0'
-        version: 6.1.1(date-fns@4.1.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-
-  packages/web/materials:
-    dependencies:
-      '@skyroc/color':
-        specifier: workspace:*
-        version: link:../../@core/color
-      '@skyroc/ui':
-        specifier: workspace:*
-        version: link:../../ui/primitives
-      '@skyroc/utils':
-        specifier: workspace:*
-        version: link:../../@core/utils
-    devDependencies:
-      typed-css-modules:
-        specifier: 0.9.1
-        version: 0.9.1
 
 packages:
 
@@ -6162,9 +6162,6 @@ packages:
   copy-descriptor@0.1.1:
     resolution: {integrity: sha512-XgZ0pFcakEUlbwQEVNg3+QAis1FyTL3Qel9FYy8pSkQqoG3PNoT0bOCQtOXcOkur21r2Eq2kI+IE+gsmAEVlYw==}
     engines: {node: '>=0.10.0'}
-
-  core-js-compat@3.47.0:
-    resolution: {integrity: sha512-IGfuznZ/n7Kp9+nypamBhvwdwLsW6KC8IOaURw2doAK5e98AG3acVLdh0woOnEqCfUtS+Vu882JE4k/DAm3ItQ==}
 
   core-js-compat@3.48.0:
     resolution: {integrity: sha512-OM4cAF3D6VtH/WkLtWvyNC56EZVXsZdU3iqaMG2B4WvYrlqU831pc4UtG5yp0sE9z8Y02wVN7PjW5Zf9Gt0f1Q==}
@@ -17749,10 +17746,6 @@ snapshots:
 
   copy-descriptor@0.1.1: {}
 
-  core-js-compat@3.47.0:
-    dependencies:
-      browserslist: 4.28.1
-
   core-js-compat@3.48.0:
     dependencies:
       browserslist: 4.28.1
@@ -18523,7 +18516,7 @@ snapshots:
       change-case: 5.4.4
       ci-info: 4.3.1
       clean-regexp: 1.0.0
-      core-js-compat: 3.47.0
+      core-js-compat: 3.48.0
       eslint: 9.39.2(jiti@2.6.1)
       esquery: 1.6.0
       find-up-simple: 1.0.1

@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { themeTabsOptions } from '@/constants/app';
 import { translateOptions } from '@/utils/common';
 
-import { ScrollArea } from '../../../../../../../packages/ui/primitives/src';
+import { ScrollArea } from '../../../../../../../packages/web/ui/primitives/src/components';
 import { useAdminState } from '../../state/use-admin-state';
 
 import ConfigOperation from './modules/ConfigOperation';

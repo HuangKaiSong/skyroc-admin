@@ -3,7 +3,7 @@ packages:
   - "packages/*"
   - "packages/@core/*"
   - "packages/web/*"
-  - "packages/ui/*"
+  - "packages/web/ui/*"
   - "packages/native/*"
   - "packages/shared/*"
   - "internal/*"
