@@ -28,7 +28,11 @@ export function useTheme() {
 
   const { isDarkMode: systemIsDark } = useSystemTheme();
 
-  const { now: watermarkTime, pause: pauseWatermarkTime, resume: resumeWatermarkTime } = useNow({ interval: 1000 });
+  const {
+    now: watermarkTime,
+    pause: pauseWatermarkTime,
+    resume: resumeWatermarkTime
+  } = useNow({ interval: 1000, immediate: settings.watermark.visible });
 
   /** Dark mode */
   const darkMode = useMemo(() => {
