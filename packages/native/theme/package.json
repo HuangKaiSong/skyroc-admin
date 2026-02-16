@@ -20,13 +20,6 @@
     "clean": "rimraf dist",
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
-  "dependencies": {
-    "@skyroc/color": "workspace:*",
-    "@skyroc/ui-types": "workspace:*"
-  },
-  "devDependencies": {
-    "@skyroc/tsconfig": "workspace:*"
-  },
   "peerDependencies": {
     "nativewind": "^4.1.0",
     "tailwindcss": "^3.4.0"
@@ -38,5 +31,12 @@
     "tailwindcss": {
       "optional": true
     }
+  },
+  "dependencies": {
+    "@skyroc/color": "workspace:*",
+    "@skyroc/ui-types": "workspace:*"
+  },
+  "devDependencies": {
+    "@skyroc/tsconfig": "workspace:*"
   }
 }

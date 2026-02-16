@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react-native';
+import { fireEvent, render, screen } from '@testing-library/react-native';
 import { Button } from '../../src/components/button';
 
 describe('Button', () => {
@@ -16,14 +16,28 @@ describe('Button', () => {
 
   it('does not call onPress when disabled', () => {
     const onPress = jest.fn();
-    render(<Button disabled onPress={onPress}>Disabled</Button>);
+    render(
+      <Button
+        disabled
+        onPress={onPress}
+      >
+        Disabled
+      </Button>
+    );
     fireEvent.press(screen.getByText('Disabled'));
     expect(onPress).not.toHaveBeenCalled();
   });
 
   it('does not call onPress when loading', () => {
     const onPress = jest.fn();
-    render(<Button loading onPress={onPress}>Loading</Button>);
+    render(
+      <Button
+        loading
+        onPress={onPress}
+      >
+        Loading
+      </Button>
+    );
     // When loading, ActivityIndicator replaces text
     expect(screen.queryByText('Loading')).toBeNull();
   });

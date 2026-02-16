@@ -21,7 +21,12 @@ const Button = (props: ButtonProps) => {
 
   function renderChildren(): ReactNode {
     if (loading) {
-      return <ActivityIndicator color="currentColor" size="small" />;
+      return (
+        <ActivityIndicator
+          color="currentColor"
+          size="small"
+        />
+      );
     }
 
     if (typeof children === 'string') {

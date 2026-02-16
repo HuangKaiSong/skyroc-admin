@@ -1,8 +1,8 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
+import { Stack , useNavigationContainerRef, Slot } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
-
+import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import "../global.css"
 export const unstable_settings = {
@@ -12,19 +12,24 @@ export const unstable_settings = {
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
+  const navigationRef = useNavigationContainerRef();
+
+  useReactNavigationDevTools(navigationRef);
+
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack
         screenOptions={{
-          headerStyle: { backgroundColor: '#f5f5f5' },
-          headerTitleStyle: { fontWeight: '600' }
+          headerShown: false,
+          contentStyle: { flex: 1 },
+          animationMatchesGesture: true,
+          animation: 'slide_from_right',
+          orientation:'portrait'
         }}
       >
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="components" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+        <Slot />
       </Stack>
-      <StatusBar style="auto" />
+      <StatusBar animated style="auto" />
     </ThemeProvider>
   );
 }

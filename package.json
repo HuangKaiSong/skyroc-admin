@@ -39,5 +39,10 @@
     "turbo": "catalog:dev",
     "typescript": "catalog:core",
     "vitest": "catalog:dev"
+  },
+  "pnpm": {
+    "overrides": {
+      "lightningcss": "1.30.1"
+    }
   }
 }

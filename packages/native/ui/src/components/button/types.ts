@@ -7,7 +7,7 @@ import type { ButtonVariantProps } from './button-variants';
 export type ButtonSlots = 'label' | 'root';
 
 /** Button component props */
-export interface ButtonProps extends Omit<PressableProps, 'children' | 'disabled'>, ButtonVariantProps {
+export interface ButtonProps extends PressableProps, Omit<ButtonVariantProps, 'disabled'> {
   /** Button content */
   children?: ReactNode;
 

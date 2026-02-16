@@ -9,8 +9,8 @@ export type {
   ThemeAlign,
   ThemeColor,
   ThemeOrientation,
-  ThemeSize,
   ThemeSide,
+  ThemeSize,
   Value,
   WithClassName
 } from '@skyroc/ui-types';
