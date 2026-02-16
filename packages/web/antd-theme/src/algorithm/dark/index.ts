@@ -21,13 +21,11 @@ export { generateColorPalettes, generateNeutralColorPalettes };
  * 3. Custom colorPrimaryBg to optimize selected item background
  *
  * Generated content:
- * - antd format palettes: blue-1, blue1, ... blue-10, blue10
- * - Tailwind format palettes: blue-50, blue-100, ... blue-950
- * - Semantic colors: colorBlueBg, colorBlueHover, colorBlue, colorBlueActive, ...
+ * - Preset colors (blue, geekblue, etc.): palette vars only (blue-1 ... blue-10, blue-50 ... blue-950)
+ * - Functional colors (colorPrimary, colorInfo, etc.): palette vars + semantic colors (colorPrimaryBg, colorPrimaryHover, ...)
  * - Neutral color system: colorText, colorBgContainer, colorBorder, etc.
  */
 export default function derivativeDark(token: SeedToken, mapToken?: MapToken): MapToken {
-  // Generate palettes and semantic colors for all preset colors
   const colorPalettes = Object.keys(defaultPresetColors)
     .map(colorKey => {
       const baseColor = token[colorKey as keyof PresetColorType];
@@ -35,10 +33,16 @@ export default function derivativeDark(token: SeedToken, mapToken?: MapToken): M
       if (!baseColor) return {};
 
       const colors = generateColorPalettes(baseColor);
+      const isFunctionalColor = colorKey.startsWith('color');
 
+      // Preset colors: palette vars only, no semantic colors
+      if (!isFunctionalColor) {
+        return genPaletteVars(colorKey, colors);
+      }
+
+      // Functional colors: palette vars + semantic colors
       const result = genPaletteVars(colorKey, colors);
 
-      // Generate semantic colors: colorBlueBg, colorBlueHover, colorBlue, ...
       const capitalizedKey = colorKey.charAt(0).toUpperCase() + colorKey.slice(1);
       const semanticColors = genSemanticColors({
         colors,
@@ -46,7 +50,6 @@ export default function derivativeDark(token: SeedToken, mapToken?: MapToken): M
         name: capitalizedKey
       });
 
-      // Error color special handling
       if (colorKey === 'colorError') {
         result.colorErrorBgActive = colors[3];
         result.colorErrorBgFilledHover = mixColor(colors[1], colors[3], 0.5);

@@ -127,19 +127,20 @@ export function genSemanticColors({ colors, config, name }: GenSemanticColorsOpt
 
 /**
  * Generate palette variables (1-10 and 50-950)
+ *
+ * Only hyphenated format: name-1 to name-10 and name-50 to name-950
  */
 export function genPaletteVars(name: string, colors: ColorMap): Record<string, string> {
   const colorName = normalizeColorName(name);
 
   const result: Record<string, string> = {};
 
-  // antd format: name-1 to name-10 and name1 to name10
+  // antd format: name-1 to name-10
   for (const i of ANTD_INDEXES) {
     result[`${colorName}-${i}`] = colors[i] || '';
-    result[`${colorName}${i}`] = colors[i] || '';
   }
 
-  // Tailwind format: colorName-50 to colorName-950
+  // Tailwind format: name-50 to name-950
   for (const i of TAILWIND_INDEXES) {
     result[`${colorName}-${i}`] = colors[i] || '';
   }
