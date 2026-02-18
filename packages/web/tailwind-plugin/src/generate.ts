@@ -1,5 +1,5 @@
 import { mergeDeep } from '@unocss/core';
-import { colord, generateColorPalette } from '@skyroc/color';
+import { colord, getColorPalette } from '@skyroc/color';
 import themes from './theme.json';
 import type {
   ColorOptions,
@@ -150,6 +150,7 @@ function getColorCSSVars(color: FeedbackColorOfThemeCssVars): Record<string, str
     const key = item as CSSVarKey;
 
     if (!themeCSSVarKeys.includes(key)) {
+      // eslint-disable-next-line no-continue
       continue;
     }
 
@@ -158,7 +159,7 @@ function getColorCSSVars(color: FeedbackColorOfThemeCssVars): Record<string, str
     if (themeColorKeys.includes(key)) {
       const hsl = `hsl(${value.split(' ').join(', ')})`;
 
-      const colorPalette = generateColorPalette(hsl); // { 100: "#f0f", 200: "#e0e", ... }
+      const colorPalette = getColorPalette(hsl); // { 100: "#f0f", 200: "#e0e", ... }
 
       for (const [num, hex] of Object.entries(colorPalette)) {
         const { h, l, s } = colord(hex).toHsl();
