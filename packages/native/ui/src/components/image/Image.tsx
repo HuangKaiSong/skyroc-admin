@@ -1,6 +1,8 @@
-import { Image as ExpoImage } from 'expo-image';
 import { isString } from '@skyroc/utils';
+import { getImageComponent } from '../../primitives';
 import type { ImageProps } from './types';
+
+const ImageComponent = getImageComponent();
 
 const Image = (props: ImageProps) => {
   const { src, ...rest } = props;
@@ -8,7 +10,7 @@ const Image = (props: ImageProps) => {
   const source = isString(src) ? { uri: src } : src;
 
   return (
-    <ExpoImage
+    <ImageComponent
       source={source}
       {...rest}
     />

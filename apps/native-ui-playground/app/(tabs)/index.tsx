@@ -32,6 +32,10 @@ export default function HomeScreen() {
           <Text className={styles1.title}>Image</Text>
       </Link>
 
+      <Link href='/components/avatar'>
+          <Text className={styles1.title}>Avatar</Text>
+      </Link>
+
     </ParallaxScrollView>
   );
 }

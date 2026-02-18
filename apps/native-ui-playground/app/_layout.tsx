@@ -1,10 +1,18 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { registerImageComponent } from '@skyroc/native-ui';
 import { Stack , useNavigationContainerRef, Slot } from 'expo-router';
+import { Image as ExpoImage } from 'expo-image';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import "../global.css"
+import { styled } from 'nativewind';
+
+const RTImage=styled(ExpoImage)
+
+registerImageComponent(RTImage);
+
 export const unstable_settings = {
   anchor: '(tabs)',
 };
