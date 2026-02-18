@@ -129,4 +129,10 @@ export type ThemeColorKey =
 
 export interface SkyrocUIPluginOptions extends ThemeOptions {
   globals?: boolean;
+  /**
+   * 目标平台，native 模式下颜色变量输出为 hex，支持 opacity modifier
+   *
+   * @default 'web'
+   */
+  platform?: 'native' | 'web';
 }

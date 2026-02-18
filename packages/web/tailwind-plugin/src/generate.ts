@@ -143,7 +143,11 @@ function createBuiltinFeedbackColorTheme() {
   return feedbackColor;
 }
 
-function getColorCSSVars(color: FeedbackColorOfThemeCssVars): Record<string, string> {
+function hslToHex(hslValue: string) {
+  return colord(`hsl(${hslValue.split(' ').join(', ')})`).toHex();
+}
+
+function getColorCSSVars(color: FeedbackColorOfThemeCssVars, native = false): Record<string, string> {
   const result: Record<string, string> = {};
 
   for (const [item, value] of Object.entries(color)) {
@@ -154,16 +158,20 @@ function getColorCSSVars(color: FeedbackColorOfThemeCssVars): Record<string, str
       continue;
     }
 
-    result[`--${key}`] = value; // 原始变量，如 "--primary": "220 90% 55%"
+    result[`--${key}`] = native ? hslToHex(value) : value;
 
     if (themeColorKeys.includes(key)) {
       const hsl = `hsl(${value.split(' ').join(', ')})`;
 
-      const colorPalette = getColorPalette(hsl); // { 100: "#f0f", 200: "#e0e", ... }
+      const colorPalette = getColorPalette(hsl);
 
       for (const [num, hex] of Object.entries(colorPalette)) {
-        const { h, l, s } = colord(hex).toHsl();
-        result[`--${key}-${num}`] = `${h} ${s}% ${l}%`; // "--primary-100": "220 90% 95%"
+        if (native) {
+          result[`--${key}-${num}`] = hex;
+        } else {
+          const { h, l, s } = colord(hex).toHsl();
+          result[`--${key}-${num}`] = `${h} ${s}% ${l}%`;
+        }
       }
     }
   }
@@ -198,7 +206,7 @@ function createBuiltinSidebarColorTheme() {
   return sidebarColor;
 }
 
-export function generateCSSVars(theme: ThemeOptions, onlyOne = true): object {
+export function generateCSSVars(theme: ThemeOptions, onlyOne = true, native = false): object {
   const {
     color = 'default',
     darkSelector = '.dark',
@@ -224,9 +232,9 @@ export function generateCSSVars(theme: ThemeOptions, onlyOne = true): object {
 
     const darkThemeSelector = addThemeName ? `.theme-${themeName}${darkSelector}` : darkSelector;
 
-    const darkThemeCSSVars = getColorCSSVars({ ...feedbackColor.dark, ...dark, ...sidebar.dark });
+    const darkThemeCSSVars = getColorCSSVars({ ...feedbackColor.dark, ...dark, ...sidebar.dark }, native);
 
-    const lightThemeCSSVars = getColorCSSVars({ ...feedbackColor.light, ...light, ...sidebar.light });
+    const lightThemeCSSVars = getColorCSSVars({ ...feedbackColor.light, ...light, ...sidebar.light }, native);
 
     return {
       [themeSelector]: {

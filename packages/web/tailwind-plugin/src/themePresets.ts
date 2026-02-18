@@ -2,9 +2,9 @@ import { generateCSSVars, generateGlobalStyles } from './generate';
 import type { SkyrocUIPluginOptions } from './types';
 
 export function skyrocUITheme(options: SkyrocUIPluginOptions) {
-  const { globals = true, ...theme } = options;
+  const { globals = true, platform = 'web', ...theme } = options;
 
-  const cssVars = generateCSSVars(theme || {});
+  const cssVars = generateCSSVars(theme || {}, true, platform === 'native');
 
   const baseStyles = globals ? generateGlobalStyles() : '';
 

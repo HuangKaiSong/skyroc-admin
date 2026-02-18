@@ -32,9 +32,33 @@ export const skyrocUIPlugin = plugin.withOptions(
     },
   (options: SkyrocUIPluginOptions = {}) => {
     const r = typeof options.radius === 'number' ? options.radius : 0.5;
+    const isNative = options.platform === 'native';
 
     function toRem(value: number) {
       return `${Number.parseFloat(Math.max(0, value).toFixed(3))}rem`;
+    }
+
+    /** web: hsl(var(--xxx))，native: var(--xxx) */
+    function c(name: string) {
+      return isNative ? `var(--${name})` : `hsl(var(--${name}))`;
+    }
+
+    function colorScale(name: string) {
+      return {
+        50: c(`${name}-50`),
+        100: c(`${name}-100`),
+        200: c(`${name}-200`),
+        300: c(`${name}-300`),
+        400: c(`${name}-400`),
+        500: c(`${name}-500`),
+        600: c(`${name}-600`),
+        700: c(`${name}-700`),
+        800: c(`${name}-800`),
+        900: c(`${name}-900`),
+        950: c(`${name}-950`),
+        DEFAULT: c(name),
+        foreground: c(`${name}-foreground`)
+      };
     }
 
     return {
@@ -48,128 +72,44 @@ export const skyrocUIPlugin = plugin.withOptions(
           },
           colors: {
             accent: {
-              DEFAULT: 'hsl(var(--accent))',
-              foreground: 'hsl(var(--accent-foreground))'
+              DEFAULT: c('accent'),
+              foreground: c('accent-foreground')
             },
-            background: 'hsl(var(--background))',
-            border: 'hsl(var(--border))',
-            carbon: {
-              50: 'hsl(var(--carbon-50))',
-              100: 'hsl(var(--carbon-100))',
-              200: 'hsl(var(--carbon-200))',
-              300: 'hsl(var(--carbon-300))',
-              400: 'hsl(var(--carbon-400))',
-              500: 'hsl(var(--carbon-500))',
-              600: 'hsl(var(--carbon-600))',
-              700: 'hsl(var(--carbon-700))',
-              800: 'hsl(var(--carbon-800))',
-              900: 'hsl(var(--carbon-900))',
-              950: 'hsl(var(--carbon-950))',
-              DEFAULT: 'hsl(var(--carbon))',
-              foreground: 'hsl(var(--carbon-foreground))'
-            },
+            background: c('background'),
+            border: c('border'),
+            carbon: colorScale('carbon'),
             card: {
-              DEFAULT: 'hsl(var(--card))',
-              foreground: 'hsl(var(--card-foreground))'
+              DEFAULT: c('card'),
+              foreground: c('card-foreground')
             },
-            destructive: {
-              50: 'hsl(var(--destructive-50))',
-              100: 'hsl(var(--destructive-100))',
-              200: 'hsl(var(--destructive-200))',
-              300: 'hsl(var(--destructive-300))',
-              400: 'hsl(var(--destructive-400))',
-              500: 'hsl(var(--destructive-500))',
-              600: 'hsl(var(--destructive-600))',
-              700: 'hsl(var(--destructive-700))',
-              800: 'hsl(var(--destructive-800))',
-              900: 'hsl(var(--destructive-900))',
-              950: 'hsl(var(--destructive-950))',
-              DEFAULT: 'hsl(var(--destructive))',
-              foreground: 'hsl(var(--destructive-foreground))'
-            },
-            foreground: 'hsl(var(--foreground))',
-            info: {
-              50: 'hsl(var(--info-50))',
-              100: 'hsl(var(--info-100))',
-              200: 'hsl(var(--info-200))',
-              300: 'hsl(var(--info-300))',
-              400: 'hsl(var(--info-400))',
-              500: 'hsl(var(--info-500))',
-              600: 'hsl(var(--info-600))',
-              700: 'hsl(var(--info-700))',
-              800: 'hsl(var(--info-800))',
-              900: 'hsl(var(--info-900))',
-              950: 'hsl(var(--info-950))',
-              DEFAULT: 'hsl(var(--info))',
-              foreground: 'hsl(var(--info-foreground))'
-            },
-            input: 'hsl(var(--input))',
+            destructive: colorScale('destructive'),
+            foreground: c('foreground'),
+            info: colorScale('info'),
+            input: c('input'),
             muted: {
-              DEFAULT: 'hsl(var(--muted))',
-              foreground: 'hsl(var(--muted-foreground))'
+              DEFAULT: c('muted'),
+              foreground: c('muted-foreground')
             },
             popover: {
-              DEFAULT: 'hsl(var(--popover))',
-              foreground: 'hsl(var(--popover-foreground))'
+              DEFAULT: c('popover'),
+              foreground: c('popover-foreground')
             },
-            primary: {
-              50: 'hsl(var(--primary-50))',
-              100: 'hsl(var(--primary-100))',
-              200: 'hsl(var(--primary-200))',
-              300: 'hsl(var(--primary-300))',
-              400: 'hsl(var(--primary-400))',
-              500: 'hsl(var(--primary-500))',
-              600: 'hsl(var(--primary-600))',
-              700: 'hsl(var(--primary-700))',
-              800: 'hsl(var(--primary-800))',
-              900: 'hsl(var(--primary-900))',
-              950: 'hsl(var(--primary-950))',
-              DEFAULT: 'hsl(var(--primary))',
-              foreground: 'hsl(var(--primary-foreground))'
-            },
-            ring: 'hsl(var(--ring))',
+            primary: colorScale('primary'),
+            ring: c('ring'),
             secondary: {
-              DEFAULT: 'hsl(var(--secondary))',
-              foreground: 'hsl(var(--secondary-foreground))'
+              DEFAULT: c('secondary'),
+              foreground: c('secondary-foreground')
             },
-            'sidebar-accent': 'hsl(var(--sidebar-accent))',
-            'sidebar-accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-            'sidebar-background': 'hsl(var(--sidebar-background))',
-            'sidebar-border': 'hsl(var(--sidebar-border))',
-            'sidebar-foreground': 'hsl(var(--sidebar-foreground))',
-            'sidebar-primary': 'hsl(var(--sidebar-primary))',
-            'sidebar-primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-            'sidebar-ring': 'hsl(var(--sidebar-ring))',
-            success: {
-              50: 'hsl(var(--success-50))',
-              100: 'hsl(var(--success-100))',
-              200: 'hsl(var(--success-200))',
-              300: 'hsl(var(--success-300))',
-              400: 'hsl(var(--success-400))',
-              500: 'hsl(var(--success-500))',
-              600: 'hsl(var(--success-600))',
-              700: 'hsl(var(--success-700))',
-              800: 'hsl(var(--success-800))',
-              900: 'hsl(var(--success-900))',
-              950: 'hsl(var(--success-950))',
-              DEFAULT: 'hsl(var(--success))',
-              foreground: 'hsl(var(--success-foreground))'
-            },
-            warning: {
-              50: 'hsl(var(--warning-50))',
-              100: 'hsl(var(--warning-100))',
-              200: 'hsl(var(--warning-200))',
-              300: 'hsl(var(--warning-300))',
-              400: 'hsl(var(--warning-400))',
-              500: 'hsl(var(--warning-500))',
-              600: 'hsl(var(--warning-600))',
-              700: 'hsl(var(--warning-700))',
-              800: 'hsl(var(--warning-800))',
-              900: 'hsl(var(--warning-900))',
-              950: 'hsl(var(--warning-950))',
-              DEFAULT: 'hsl(var(--warning))',
-              foreground: 'hsl(var(--warning-foreground))'
-            }
+            'sidebar-accent': c('sidebar-accent'),
+            'sidebar-accent-foreground': c('sidebar-accent-foreground'),
+            'sidebar-background': c('sidebar-background'),
+            'sidebar-border': c('sidebar-border'),
+            'sidebar-foreground': c('sidebar-foreground'),
+            'sidebar-primary': c('sidebar-primary'),
+            'sidebar-primary-foreground': c('sidebar-primary-foreground'),
+            'sidebar-ring': c('sidebar-ring'),
+            success: colorScale('success'),
+            warning: colorScale('warning')
           },
           fontSize: {
             '2xs': ['0.625rem', 'calc(0.75 / 0.625)'],
