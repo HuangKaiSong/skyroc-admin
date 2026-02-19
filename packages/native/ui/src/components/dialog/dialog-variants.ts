@@ -3,7 +3,7 @@ import { tv } from 'tailwind-variants';
 /** Dialog 多 slot 样式变体 */
 export const dialogVariants = tv({
   slots: {
-    root: 'w-72 overflow-hidden rounded-2xl bg-background',
+    root: 'overflow-hidden rounded-2xl bg-background',
     header: 'px-6 pt-6',
     body: 'px-6 py-4',
     footer: 'flex-row',
@@ -25,10 +25,19 @@ export const dialogVariants = tv({
     hasTitle: {
       true: { body: 'pb-6 pt-2' },
       false: { body: 'py-6' }
+    },
+    theme: {
+      default: {},
+      'round-button': {
+        footer: 'gap-2 px-6 pb-4 pt-2',
+        divider: 'hidden',
+        dividerVertical: 'hidden'
+      }
     }
   },
   defaultVariants: {
     messageAlign: 'center',
-    hasTitle: false
+    hasTitle: false,
+    theme: 'default'
   }
 });

@@ -6,6 +6,7 @@ import type { ButtonProps } from './types';
 
 const Button = (props: ButtonProps) => {
   const {
+    block = false,
     children,
     className,
     color = 'primary',
@@ -21,7 +22,7 @@ const Button = (props: ButtonProps) => {
 
   const textClass = buttonTextVariants({ variant, color, size });
 
-  const buttonClass = buttonVariants({ variant, color, size, shape });
+  const buttonClass = buttonVariants({ variant, color, size, shape, block });
 
   return (
     <TextClassContext.Provider value={textClass}>

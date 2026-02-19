@@ -29,6 +29,9 @@ export const buttonVariants = tv({
       rounded: '',
       pill: 'rounded-full',
       circle: 'rounded-full'
+    },
+    block: {
+      true: 'w-full'
     }
   },
   compoundVariants: [
