@@ -60,6 +60,14 @@ export default function HomeScreen() {
           <Text className={styles1.title}>NavBar</Text>
       </Link>
 
+      <Link href='/components/sheet'>
+          <Text className={styles1.title}>Sheet</Text>
+      </Link>
+
+      <Link href='/components/action-sheet'>
+          <Text className={styles1.title}>ActionSheet</Text>
+      </Link>
+
       <Link href='/components/dialog'>
           <Text className={styles1.title}>Dialog</Text>
       </Link>

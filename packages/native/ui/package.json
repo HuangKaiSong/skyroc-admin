@@ -21,6 +21,7 @@
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "peerDependencies": {
+    "@gorhom/bottom-sheet": ">=5.0.0",
     "expo-image": ">=3.0.0",
     "nativewind": ">=4.1.0",
     "react": ">=18",
@@ -29,6 +30,9 @@
     "react-native-reanimated": ">=3.0.0"
   },
   "peerDependenciesMeta": {
+    "@gorhom/bottom-sheet": {
+      "optional": true
+    },
     "expo-image": {
       "optional": true
     },

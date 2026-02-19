@@ -221,6 +221,9 @@ catalogs:
     # 图标
     "@expo/vector-icons": ^15.0.3
 
+    # 底部面板
+    "@gorhom/bottom-sheet": ^5.1.2
+
     # 弹出层
     react-native-modal: 14.0.0-rc.1
 

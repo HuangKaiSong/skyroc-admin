@@ -1,6 +1,7 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { registerImageComponent, PortalHost } from '@skyroc/native-ui';
-import { Stack , useNavigationContainerRef, Slot } from 'expo-router';
+import { BottomSheetModalProvider, registerImageComponent, PortalHost } from '@skyroc/native-ui';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Slot, Stack , useNavigationContainerRef } from 'expo-router';
 import { Image as ExpoImage } from 'expo-image';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
@@ -26,24 +27,26 @@ export default function RootLayout() {
   useReactNavigationDevTools(navigationRef);
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <View className="flex-1">
-      <Stack
-        screenOptions={{
-          headerShown: false,
-          contentStyle: { flex: 1 },
-          animationMatchesGesture: true,
-          animation: 'slide_from_right',
-          orientation:'portrait'
-        }}
-      >
-        <Slot />
-      </Stack>
-
-        <StatusBar animated style="auto" />
-
-        <PortalHost />
-      </View>
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <BottomSheetModalProvider>
+          <View className="flex-1">
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                contentStyle: { flex: 1 },
+                animationMatchesGesture: true,
+                animation: 'slide_from_right',
+                orientation: 'portrait'
+              }}
+            >
+              <Slot />
+            </Stack>
+            <StatusBar animated style="auto" />
+            <PortalHost />
+          </View>
+        </BottomSheetModalProvider>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }

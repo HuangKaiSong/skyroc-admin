@@ -13,6 +13,7 @@
   "dependencies": {
     "@dev-plugins/react-navigation": "catalog:native",
     "@expo/vector-icons": "catalog:native",
+    "@gorhom/bottom-sheet": "catalog:native",
     "@react-navigation/bottom-tabs": "catalog:native",
     "@react-navigation/elements": "catalog:native",
     "@react-navigation/native": "catalog:native",
