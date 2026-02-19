@@ -1,3 +1,4 @@
+export * from './action-sheet';
 export * from './avatar';
 export * from './box';
 export * from './button';
@@ -9,6 +10,7 @@ export * from './input';
 export * from './navbar';
 export * from './popup';
 export * from './portal';
+export * from './sheet';
 export * from './space';
 export * from './text';
 export * from './toast';
