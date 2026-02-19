@@ -5,8 +5,8 @@ import type { ToastEntry } from './toast-manager';
 import { toastManager } from './toast-manager';
 import { toastPositionVariants } from './toast-variants';
 
-/** Toast 宿主组件，挂载在应用根节点，负责渲染所有 Toast 实例 */
-const ToastHost = () => {
+/** Toast 内部渲染逻辑，通过 Portal 自动挂载 */
+const ToastRenderer = () => {
   const entries = useStore(toastManager);
 
   function handleRemove(entry: ToastEntry) {
@@ -42,4 +42,4 @@ const ToastHost = () => {
   );
 };
 
-export { ToastHost };
+export { ToastRenderer };

@@ -9,6 +9,6 @@ export {
   showToast
 } from './function-call';
 export { Toast } from './Toast';
-export { ToastHost } from './ToastHost';
+export { ToastRenderer } from './ToastRenderer';
 export { toastPositionVariants, toastVariants } from './toast-variants';
 export type { ToastInstance, ToastOptions, ToastPosition, ToastProps, ToastType } from './types';

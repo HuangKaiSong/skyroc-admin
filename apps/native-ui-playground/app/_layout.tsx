@@ -1,5 +1,5 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { registerImageComponent, ToastHost } from '@skyroc/native-ui';
+import { registerImageComponent, PortalHost } from '@skyroc/native-ui';
 import { Stack , useNavigationContainerRef, Slot } from 'expo-router';
 import { Image as ExpoImage } from 'expo-image';
 import { StatusBar } from 'expo-status-bar';
@@ -42,7 +42,7 @@ export default function RootLayout() {
 
         <StatusBar animated style="auto" />
 
-        <ToastHost />
+        <PortalHost />
       </View>
     </ThemeProvider>
   );

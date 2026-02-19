@@ -1,5 +1,19 @@
+import { createElement } from 'react';
+import { mountPortal } from '../portal/mount-portal';
 import { toastManager } from './toast-manager';
+import { ToastRenderer } from './ToastRenderer';
 import type { ToastInstance, ToastOptions, ToastType } from './types';
+
+/** 是否已通过 Portal 自动挂载 ToastRenderer */
+let portalMounted = false;
+
+/** 确保 ToastRenderer 已挂载到 PortalHost */
+function ensurePortal() {
+  if (!portalMounted) {
+    mountPortal(createElement(ToastRenderer));
+    portalMounted = true;
+  }
+}
 
 /** 是否允许同时显示多个 Toast */
 let allowMultiple = false;
@@ -19,6 +33,7 @@ function parseOptions(options: ToastOptions | string): ToastOptions {
 
 /** 显示 Toast */
 function showToast(options: ToastOptions | string): ToastInstance {
+  ensurePortal();
   const parsed = parseOptions(options);
   const type = parsed.type ?? 'text';
   const typeDefaults = defaultOptionsMap.get(type) ?? {};
