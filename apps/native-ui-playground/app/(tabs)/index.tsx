@@ -48,6 +48,14 @@ export default function HomeScreen() {
           <Text className={styles1.title}>Space</Text>
       </Link>
 
+      <Link href='/components/popup'>
+          <Text className={styles1.title}>Popup</Text>
+      </Link>
+
+      <Link href='/components/dialog'>
+          <Text className={styles1.title}>Dialog</Text>
+      </Link>
+
     </ParallaxScrollView>
   );
 }
