@@ -41,7 +41,7 @@ const NavBar = (props: NavBarProps) => {
           <AntDesign
             color="#09090b"
             name="left"
-            size={18}
+            size={16}
           />
         )}
         {leftText ? <Text className="text-sm">{leftText}</Text> : null}
