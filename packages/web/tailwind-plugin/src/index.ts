@@ -71,35 +71,25 @@ export const skyrocUIPlugin = plugin.withOptions(
             xl: toRem(r + 0.25)
           },
           colors: {
-            accent: {
-              DEFAULT: c('accent'),
-              foreground: c('accent-foreground')
-            },
+            accent: c('accent'),
+            'accent-foreground': c('accent-foreground'),
             background: c('background'),
             border: c('border'),
             carbon: colorScale('carbon'),
-            card: {
-              DEFAULT: c('card'),
-              foreground: c('card-foreground')
-            },
+            card: c('card'),
+            'card-foreground': c('card-foreground'),
             destructive: colorScale('destructive'),
             foreground: c('foreground'),
             info: colorScale('info'),
             input: c('input'),
-            muted: {
-              DEFAULT: c('muted'),
-              foreground: c('muted-foreground')
-            },
-            popover: {
-              DEFAULT: c('popover'),
-              foreground: c('popover-foreground')
-            },
+            muted: c('muted'),
+            'muted-foreground': c('muted-foreground'),
+            popover: c('popover'),
+            'popover-foreground': c('popover-foreground'),
             primary: colorScale('primary'),
             ring: c('ring'),
-            secondary: {
-              DEFAULT: c('secondary'),
-              foreground: c('secondary-foreground')
-            },
+            secondary: c('secondary'),
+            'secondary-foreground': c('secondary-foreground'),
             'sidebar-accent': c('sidebar-accent'),
             'sidebar-accent-foreground': c('sidebar-accent-foreground'),
             'sidebar-background': c('sidebar-background'),

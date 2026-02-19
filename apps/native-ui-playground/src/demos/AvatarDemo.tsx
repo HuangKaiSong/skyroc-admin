@@ -1,14 +1,7 @@
 import { ScrollView, View } from 'react-native';
 import { Avatar, Text } from '@skyroc/native-ui';
-import {styled, useCssElement} from 'nativewind'
-import {Image} from 'expo-image'
-
-
-
 
 const AvatarDemo = () => {
-
-
   return (
     <ScrollView className="flex-1 bg-background p-6">
       {/* Sizes */}

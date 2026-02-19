@@ -1,5 +1,5 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { registerImageComponent } from '@skyroc/native-ui';
+import { registerImageComponent, ToastHost } from '@skyroc/native-ui';
 import { Stack , useNavigationContainerRef, Slot } from 'expo-router';
 import { Image as ExpoImage } from 'expo-image';
 import { StatusBar } from 'expo-status-bar';
@@ -8,6 +8,7 @@ import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import "../global.css"
 import { styled } from 'nativewind';
+import { View } from 'react-native';
 
 const RTImage=styled(ExpoImage)
 
@@ -26,6 +27,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <View className="flex-1">
       <Stack
         screenOptions={{
           headerShown: false,
@@ -37,7 +39,11 @@ export default function RootLayout() {
       >
         <Slot />
       </Stack>
-      <StatusBar animated style="auto" />
+
+        <StatusBar animated style="auto" />
+
+        <ToastHost />
+      </View>
     </ThemeProvider>
   );
 }
