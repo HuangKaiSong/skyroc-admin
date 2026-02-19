@@ -12,9 +12,7 @@ export const dialogVariants = tv({
     confirmButton: 'flex-1 items-center justify-center py-3',
     confirmButtonText: 'text-sm font-medium text-primary',
     cancelButton: 'flex-1 items-center justify-center py-3',
-    cancelButtonText: 'text-sm text-muted-foreground',
-    divider: 'h-px bg-border',
-    dividerVertical: 'w-px self-stretch bg-border'
+    cancelButtonText: 'text-sm text-muted-foreground'
   },
   variants: {
     messageAlign: {
@@ -29,9 +27,7 @@ export const dialogVariants = tv({
     theme: {
       default: {},
       'round-button': {
-        footer: 'gap-2 px-6 pb-4 pt-2',
-        divider: 'hidden',
-        dividerVertical: 'hidden'
+        footer: 'gap-2 px-6 pb-4 pt-2'
       }
     }
   },

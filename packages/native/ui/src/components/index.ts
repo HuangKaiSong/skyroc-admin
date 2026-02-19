@@ -3,6 +3,7 @@ export * from './box';
 export * from './button';
 export * from './cell';
 export * from './dialog';
+export * from './divider';
 export * from './image';
 export * from './input';
 export * from './popup';

@@ -52,6 +52,10 @@ export default function HomeScreen() {
           <Text className={styles1.title}>Popup</Text>
       </Link>
 
+      <Link href='/components/divider'>
+          <Text className={styles1.title}>Divider</Text>
+      </Link>
+
       <Link href='/components/dialog'>
           <Text className={styles1.title}>Dialog</Text>
       </Link>

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ActivityIndicator, Pressable, View } from 'react-native';
 import { cn } from '@skyroc/utils';
 import { Button } from '../button/Button';
+import { Divider } from '../divider/Divider';
 import { Text } from '../text/Typography';
 import { Popup } from '../popup/Popup';
 import type { DialogAction, DialogProps } from './types';
@@ -92,7 +93,7 @@ const Dialog = (props: DialogProps) => {
 
   const defaultFooter = (
     <>
-      <View className={slots.divider()} />
+      <Divider className="my-0" />
       <View className={slots.footer()}>
         {showCancelButton && (
           <Pressable
@@ -110,7 +111,12 @@ const Dialog = (props: DialogProps) => {
             )}
           </Pressable>
         )}
-        {showCancelButton && showConfirmButton && <View className={slots.dividerVertical()} />}
+        {showCancelButton && showConfirmButton && (
+          <Divider
+            className="mx-0"
+            orientation="vertical"
+          />
+        )}
         {showConfirmButton && (
           <Pressable
             className={cn(slots.confirmButton(), loading.confirm && 'opacity-50')}
