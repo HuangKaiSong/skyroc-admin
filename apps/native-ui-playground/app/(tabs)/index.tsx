@@ -80,6 +80,10 @@ export default function HomeScreen() {
           <Text className={styles1.title}>FloatingButton</Text>
       </Link>
 
+      <Link href='/components/back-top'>
+          <Text className={styles1.title}>BackTop</Text>
+      </Link>
+
     </ParallaxScrollView>
   );
 }

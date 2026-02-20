@@ -1,12 +1,16 @@
-import { Stack } from 'expo-router';
+import { useRouter } from 'expo-router';
+import { View } from 'react-native';
+import { NavBar } from '@skyroc/native-ui';
 import { ActionSheetDemo } from '@/src/demos/ActionSheetDemo';
 
 const ActionSheetPage = () => {
+  const router = useRouter();
+
   return (
-    <>
-      <Stack.Screen options={{ title: 'ActionSheet' }} />
+    <View className="flex-1 bg-background">
+      <NavBar leftArrow title="ActionSheet" onLeftPress={() => router.back()} />
       <ActionSheetDemo />
-    </>
+    </View>
   );
 };
 

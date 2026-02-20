@@ -1,12 +1,16 @@
-import { Stack } from 'expo-router';
+import { useRouter } from 'expo-router';
+import { View } from 'react-native';
+import { NavBar } from '@skyroc/native-ui';
 import { BadgeDemo } from '@/src/demos/BadgeDemo';
 
 const BadgePage = () => {
+  const router = useRouter();
+
   return (
-    <>
-      <Stack.Screen options={{ title: 'Badge' }} />
+    <View className="flex-1 bg-background">
+      <NavBar leftArrow title="Badge" onLeftPress={() => router.back()} />
       <BadgeDemo />
-    </>
+    </View>
   );
 };
 

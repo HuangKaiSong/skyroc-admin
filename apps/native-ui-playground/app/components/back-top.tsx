@@ -1,17 +1,17 @@
 import { useRouter } from 'expo-router';
 import { View } from 'react-native';
 import { NavBar } from '@skyroc/native-ui';
-import { SheetDemo } from '@/src/demos/SheetDemo';
+import { BackTopDemo } from '@/src/demos/BackTopDemo';
 
-const SheetPage = () => {
+const BackTopPage = () => {
   const router = useRouter();
 
   return (
     <View className="flex-1 bg-background">
-      <NavBar leftArrow title="Sheet" onLeftPress={() => router.back()} />
-      <SheetDemo />
+      <NavBar leftArrow title="BackTop" onLeftPress={() => router.back()} />
+      <BackTopDemo />
     </View>
   );
 };
 
-export default SheetPage;
+export default BackTopPage;

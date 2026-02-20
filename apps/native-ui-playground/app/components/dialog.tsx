@@ -1,12 +1,16 @@
-import { Stack } from 'expo-router';
+import { useRouter } from 'expo-router';
+import { View } from 'react-native';
+import { NavBar } from '@skyroc/native-ui';
 import { DialogDemo } from '@/src/demos/DialogDemo';
 
 const DialogPage = () => {
+  const router = useRouter();
+
   return (
-    <>
-      <Stack.Screen options={{ title: 'Dialog' }} />
+    <View className="flex-1 bg-background">
+      <NavBar leftArrow title="Dialog" onLeftPress={() => router.back()} />
       <DialogDemo />
-    </>
+    </View>
   );
 };
 

@@ -1,12 +1,16 @@
-import { Stack } from 'expo-router';
+import { useRouter } from 'expo-router';
+import { View } from 'react-native';
+import { NavBar } from '@skyroc/native-ui';
 import { InputDemo } from '@/src/demos/InputDemo';
 
 const InputPage = () => {
+  const router = useRouter();
+
   return (
-    <>
-      <Stack.Screen options={{ title: 'Input' }} />
+    <View className="flex-1 bg-background">
+      <NavBar leftArrow title="Input" onLeftPress={() => router.back()} />
       <InputDemo />
-    </>
+    </View>
   );
 };
 

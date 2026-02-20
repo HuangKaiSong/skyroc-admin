@@ -1,5 +1,6 @@
 export * from './action-sheet';
 export * from './avatar';
+export * from './back-top';
 export * from './badge';
 export * from './box';
 export * from './button';

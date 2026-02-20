@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Alert, ScrollView, View } from 'react-native';
-import { Button, NavBar, Text } from '@skyroc/native-ui';
+import {  NavBar, Text } from '@skyroc/native-ui';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
 const NavBarDemo = () => {
@@ -45,8 +45,8 @@ const NavBarDemo = () => {
         leftArrow
         right={(
           <View className="flex-row gap-4">
-            <AntDesign color="#09090b" name="search1" size={18} />
-            <AntDesign color="#09090b" name="ellipsis1" size={18} />
+            <AntDesign color="#09090b" name="search" size={18} />
+            <AntDesign color="#09090b" name="ellipsis" size={18} />
           </View>
         )}
         title="Title"
@@ -97,7 +97,7 @@ const NavBarDemo = () => {
         leftArrow
         title={(
           <View className="flex-row items-center gap-1">
-            <AntDesign color="#09090b" name="enviromento" size={16} />
+            <AntDesign color="#09090b" name="environment" size={16} />
             <Text className="text-base font-semibold">Shanghai</Text>
             <AntDesign color="#09090b" name="down" size={12} />
           </View>

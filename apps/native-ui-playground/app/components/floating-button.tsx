@@ -1,12 +1,16 @@
-import { Stack } from 'expo-router';
+import { useRouter } from 'expo-router';
+import { View } from 'react-native';
+import { NavBar } from '@skyroc/native-ui';
 import { FloatingButtonDemo } from '@/src/demos/FloatingButtonDemo';
 
 const FloatingButtonPage = () => {
+  const router = useRouter();
+
   return (
-    <>
-      <Stack.Screen options={{ title: 'FloatingButton' }} />
+    <View className="flex-1 bg-background">
+      <NavBar leftArrow title="FloatingButton" onLeftPress={() => router.back()} />
       <FloatingButtonDemo />
-    </>
+    </View>
   );
 };
 

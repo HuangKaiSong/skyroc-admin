@@ -1,12 +1,16 @@
-import { Stack } from 'expo-router';
+import { useRouter } from 'expo-router';
+import { View } from 'react-native';
+import { NavBar } from '@skyroc/native-ui';
 import { DividerDemo } from '@/src/demos/DividerDemo';
 
 const DividerPage = () => {
+  const router = useRouter();
+
   return (
-    <>
-      <Stack.Screen options={{ title: 'Divider' }} />
+    <View className="flex-1 bg-background">
+      <NavBar leftArrow title="Divider" onLeftPress={() => router.back()} />
       <DividerDemo />
-    </>
+    </View>
   );
 };
 

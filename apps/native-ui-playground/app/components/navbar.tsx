@@ -1,12 +1,16 @@
-import { Stack } from 'expo-router';
+import { useRouter } from 'expo-router';
+import { View } from 'react-native';
+import { NavBar } from '@skyroc/native-ui';
 import { NavBarDemo } from '@/src/demos/NavBarDemo';
 
 const NavBarPage = () => {
+  const router = useRouter();
+
   return (
-    <>
-      <Stack.Screen options={{ title: 'NavBar' }} />
+    <View className="flex-1 bg-background">
+      <NavBar leftArrow title="NavBar" onLeftPress={() => router.back()} />
       <NavBarDemo />
-    </>
+    </View>
   );
 };
 

@@ -45,9 +45,6 @@ export interface NavBarProps {
   /** 右侧文字 */
   rightText?: string;
 
-  /** 是否开启顶部安全区适配 */
-  safeAreaInsetTop?: boolean;
-
   /** 标题，支持字符串或自定义 ReactNode */
   title?: ReactNode;
 }
