@@ -27,6 +27,7 @@ const GROUPS: ComponentGroup[] = [
       { href: '/components/divider', icon: 'minus', iconColor: '#6b7280', iconBg: '#f9fafb', label: 'Divider' },
       { href: '/components/space', icon: 'column-width', iconColor: '#f59e0b', iconBg: '#fffbeb', label: 'Space' },
       { href: '/components/checkbox', icon: 'check-square', iconColor: '#22c55e', iconBg: '#f0fdf4', label: 'Checkbox' },
+      { href: '/components/radio', icon: 'check-circle', iconColor: '#6366f1', iconBg: '#eef2ff', label: 'Radio' },
     ],
   },
   {
@@ -89,7 +90,7 @@ const HomeScreen = () => {
 
         <View className="mt-5 flex-row gap-3">
           <View className="flex-1 rounded-2xl bg-white/15 p-4">
-            <Text className="text-2xl font-bold text-white">18</Text>
+            <Text className="text-2xl font-bold text-white">19</Text>
             <Text className="mt-0.5 text-xs text-white/70">组件总数</Text>
           </View>
           <View className="flex-1 rounded-2xl bg-white/15 p-4">
