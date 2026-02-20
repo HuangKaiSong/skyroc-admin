@@ -14,7 +14,6 @@ const INDICATOR_COLOR = '#fff';
 const Checkbox = (props: CheckboxProps) => {
   const {
     checked: checkedProp,
-    checkedColor,
     checkedIcon,
     children,
     className,
@@ -60,8 +59,6 @@ const Checkbox = (props: CheckboxProps) => {
   const resolvedShape = group?.shape ?? shape;
   const resolvedCheckedIcon = checkedIcon ?? group?.checkedIcon;
   const resolvedIndeterminateIcon = indeterminateIcon ?? group?.indeterminateIcon;
-  const resolvedCheckedColor = checkedColor ?? group?.checkedColor;
-
   const {
     control: controlCls,
     label: labelCls,
@@ -118,10 +115,7 @@ const Checkbox = (props: CheckboxProps) => {
         disabled={disabled}
         hitSlop={4}
         onPress={handleToggle}
-        style={[
-          { height: controlSize, width: controlSize },
-          isActive && resolvedCheckedColor ? { backgroundColor: resolvedCheckedColor } : undefined
-        ]}
+        style={{ height: controlSize, width: controlSize }}
       >
         <View className={controlCls()}>{renderIndicator()}</View>
       </Pressable>

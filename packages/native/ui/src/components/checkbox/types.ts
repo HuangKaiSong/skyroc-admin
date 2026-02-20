@@ -20,11 +20,8 @@ export interface CheckboxProps {
   /** Controlled checked state (boolean or 'indeterminate') */
   checked?: CheckedState;
 
-  /** Custom icon when checked, replaces default MaterialCommunityIcons */
+  /** Custom icon when checked, replaces default indicator */
   checkedIcon?: ReactNode;
-
-  /** Raw color string for checked state, overrides color prop */
-  checkedColor?: string;
 
   /** Label content */
   children?: ReactNode;
@@ -67,9 +64,6 @@ export interface CheckboxProps {
 }
 
 export interface CheckboxGroupProps {
-  /** Raw color string for checked state, applied to all children */
-  checkedColor?: string;
-
   /** Custom icon when checked, applied to all children */
   checkedIcon?: ReactNode;
 
@@ -114,9 +108,6 @@ export interface CheckboxGroupProps {
 }
 
 export interface CheckboxGroupContextValue {
-  /** Raw color string from group */
-  checkedColor?: string;
-
   /** Custom icon when checked */
   checkedIcon?: ReactNode;
 
@@ -154,9 +145,6 @@ export interface CheckboxCardProps {
 
   /** Custom icon when checked */
   checkedIcon?: ReactNode;
-
-  /** Raw color string for checked state */
-  checkedColor?: string;
 
   /** Position of the checkbox relative to card content */
   checkboxPosition?: CheckboxPosition;

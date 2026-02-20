@@ -11,7 +11,6 @@ const INDICATOR_COLOR = '#fff';
 const CheckboxCard = (props: CheckboxCardProps) => {
   const {
     checked: checkedProp,
-    checkedColor,
     checkedIcon,
     checkboxPosition = 'left',
     className,
@@ -73,12 +72,7 @@ const CheckboxCard = (props: CheckboxCardProps) => {
     }
 
     return (
-      <View
-        style={[
-          { height: controlSize, width: controlSize },
-          isActive && checkedColor ? { backgroundColor: checkedColor } : undefined
-        ]}
-      >
+      <View style={{ height: controlSize, width: controlSize }}>
         <View className={controlCls()}>
           {isActive ? (
             <Feather

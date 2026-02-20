@@ -8,7 +8,6 @@ import type { CheckboxGroupContextValue, CheckboxGroupProps } from './types';
 
 const CheckboxGroup = (props: CheckboxGroupProps) => {
   const {
-    checkedColor,
     checkedIcon,
     children,
     className,
@@ -48,7 +47,6 @@ const CheckboxGroup = (props: CheckboxGroupProps) => {
     }
 
     return {
-      checkedColor,
       checkedIcon,
       color,
       disabled,
@@ -60,7 +58,7 @@ const CheckboxGroup = (props: CheckboxGroupProps) => {
       size,
       toggle
     };
-  }, [value, setValue, checkedColor, checkedIcon, color, disabled, iconSize, indeterminateIcon, max, shape, size]);
+  }, [value, setValue, checkedIcon, color, disabled, iconSize, indeterminateIcon, max, shape, size]);
 
   return (
     <CheckboxGroupContext.Provider value={contextValue}>
