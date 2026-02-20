@@ -6,6 +6,7 @@ export * from './button';
 export * from './cell';
 export * from './dialog';
 export * from './divider';
+export * from './floating-button';
 export * from './image';
 export * from './input';
 export * from './navbar';

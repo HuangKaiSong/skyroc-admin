@@ -76,6 +76,10 @@ export default function HomeScreen() {
           <Text className={styles1.title}>Dialog</Text>
       </Link>
 
+      <Link href='/components/floating-button'>
+          <Text className={styles1.title}>FloatingButton</Text>
+      </Link>
+
     </ParallaxScrollView>
   );
 }
