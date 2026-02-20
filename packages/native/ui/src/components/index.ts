@@ -8,6 +8,7 @@ export * from './cell';
 export * from './checkbox';
 export * from './dialog';
 export * from './radio';
+export * from './switch';
 export * from './divider';
 export * from './floating-button';
 export * from './image';
