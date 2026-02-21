@@ -3,17 +3,23 @@ import type { TextInputProps } from 'react-native';
 import type { SlotClassNames } from '../../types';
 import type { InputVariantProps } from './input-variants';
 
-/** Input slot names for classNames override */
-export type InputSlots = 'input' | 'root';
+/** Input slot 名称 */
+export type InputSlots = 'clearable' | 'control' | 'root';
 
-/** Input component props */
+/** Input 组件属性 */
 export interface InputProps extends Omit<TextInputProps, 'editable' | 'style'>, InputVariantProps {
-  /** Override individual slot class names */
+  /** 覆盖各 slot 的 className */
   classNames?: SlotClassNames<InputSlots>;
 
-  /** Leading content (icon, label, etc.) */
+  /** 是否可清除，显示清除按钮 */
+  clearable?: boolean;
+
+  /** 左侧内容（图标、标签等） */
   leading?: ReactNode;
 
-  /** Trailing content (icon, button, etc.) */
+  /** 清除回调 */
+  onClear?: () => void;
+
+  /** 右侧内容（图标、按钮等） */
   trailing?: ReactNode;
 }

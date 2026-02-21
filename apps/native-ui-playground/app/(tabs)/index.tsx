@@ -39,7 +39,7 @@ const GROUPS: ComponentGroup[] = [
       { href: '/components/avatar', icon: 'user', iconColor: '#f43f5e', iconBg: '#fff1f2', label: 'Avatar' },
       { href: '/components/badge', icon: 'tag', iconColor: '#ef4444', iconBg: '#fef2f2', label: 'Badge' },
       { href: '/components/cell', icon: 'bars', iconColor: '#64748b', iconBg: '#f8fafc', label: 'Cell' },
-      { href: '/components/tag', icon: 'tago', iconColor: '#f97316', iconBg: '#fff7ed', label: 'Tag' },
+      { href: '/components/tag', icon: 'tag', iconColor: '#f97316', iconBg: '#fff7ed', label: 'Tag' },
     ],
   },
   {
