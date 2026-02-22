@@ -12,6 +12,7 @@ export * from './switch';
 export * from './tag';
 export * from './divider';
 export * from './floating-button';
+export * from './grid';
 export * from './image';
 export * from './input';
 export * from './navbar';
