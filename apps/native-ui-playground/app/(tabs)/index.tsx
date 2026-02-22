@@ -40,6 +40,7 @@ const GROUPS: ComponentGroup[] = [
       { href: '/components/badge', icon: 'tag', iconColor: '#ef4444', iconBg: '#fef2f2', label: 'Badge' },
       { href: '/components/cell', icon: 'bars', iconColor: '#64748b', iconBg: '#f8fafc', label: 'Cell' },
       { href: '/components/tag', icon: 'tag', iconColor: '#f97316', iconBg: '#fff7ed', label: 'Tag' },
+      { href: '/components/grid', icon: 'appstore', iconColor: '#0ea5e9', iconBg: '#f0f9ff', label: 'Grid' },
     ],
   },
   {
@@ -93,7 +94,7 @@ const HomeScreen = () => {
 
         <View className="mt-5 flex-row gap-3">
           <View className="flex-1 rounded-2xl bg-white/15 p-4">
-            <Text className="text-2xl font-bold text-white">22</Text>
+            <Text className="text-2xl font-bold text-white">23</Text>
             <Text className="mt-0.5 text-xs text-white/70">组件总数</Text>
           </View>
           <View className="flex-1 rounded-2xl bg-white/15 p-4">
