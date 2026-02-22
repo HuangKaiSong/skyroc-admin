@@ -17,6 +17,7 @@ export * from './image';
 export * from './input';
 export * from './navbar';
 export * from './picker';
+export * from './picker-group';
 export * from './popup';
 export * from './portal';
 export * from './sheet';

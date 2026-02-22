@@ -77,7 +77,6 @@ const CASCADE_DATA: PickerOption[] = [
 ];
 
 
-
 const PickerDemo = () => {
   const [sheetShow, setSheetShow] = useState(false);
   const [sheetValue, setSheetValue] = useState<string[]>(['orange']);
@@ -159,7 +158,6 @@ const PickerDemo = () => {
         loading={asyncLoading}
         showToolbar={false}
       />
-
 
     </ScrollView>
   );

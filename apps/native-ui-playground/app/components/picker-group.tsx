@@ -1,0 +1,18 @@
+import { useRouter } from 'expo-router';
+import { View } from 'react-native';
+import { NavBar } from '@skyroc/native-ui';
+
+import { PickerGroupDemo } from '@/src/demos/PickerGroupDemo';
+
+const PickerGroupPage = () => {
+  const router = useRouter();
+
+  return (
+    <View className="flex-1 bg-background">
+      <NavBar leftArrow title="PickerGroup" onLeftPress={() => router.back()} />
+      <PickerGroupDemo />
+    </View>
+  );
+};
+
+export default PickerGroupPage;

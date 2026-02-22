@@ -30,6 +30,7 @@ const GROUPS: ComponentGroup[] = [
       { href: '/components/radio', icon: 'check-circle', iconColor: '#6366f1', iconBg: '#eef2ff', label: 'Radio' },
       { href: '/components/switch', icon: 'swap', iconColor: '#14b8a6', iconBg: '#f0fdfa', label: 'Switch' },
       { href: '/components/picker', icon: 'select', iconColor: '#ec4899', iconBg: '#fdf2f8', label: 'Picker' },
+      { href: '/components/picker-group', icon: 'select', iconColor: '#d946ef', iconBg: '#fdf4ff', label: 'PickerGroup' },
     ],
   },
   {
@@ -94,7 +95,7 @@ const HomeScreen = () => {
 
         <View className="mt-5 flex-row gap-3">
           <View className="flex-1 rounded-2xl bg-white/15 p-4">
-            <Text className="text-2xl font-bold text-white">23</Text>
+            <Text className="text-2xl font-bold text-white">24</Text>
             <Text className="mt-0.5 text-xs text-white/70">组件总数</Text>
           </View>
           <View className="flex-1 rounded-2xl bg-white/15 p-4">
