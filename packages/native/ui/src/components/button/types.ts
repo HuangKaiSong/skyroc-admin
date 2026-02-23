@@ -24,4 +24,7 @@ export interface ButtonProps extends Omit<PressableProps, 'children'>, ButtonVar
 
   /** 加载状态，为 true 时显示 loading 指示器且不可点击 */
   loading?: boolean;
+
+  /** 自定义文字 className，合并到 TextClassContext */
+  textClassName?: string;
 }

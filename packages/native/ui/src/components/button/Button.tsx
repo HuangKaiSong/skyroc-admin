@@ -14,13 +14,14 @@ const Button = (props: ButtonProps) => {
     loading = false,
     shape = 'rounded',
     size = 'md',
+    textClassName,
     variant = 'solid',
     ...rest
   } = props;
 
   const isDisabled = disabled || loading;
 
-  const textClass = buttonTextVariants({ variant, color, size });
+  const textClass = cn(buttonTextVariants({ variant, color, size }), textClassName);
 
   const buttonClass = buttonVariants({ variant, color, size, shape, block });
 

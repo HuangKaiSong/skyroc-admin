@@ -15,6 +15,7 @@ export * from './divider';
 export * from './floating-button';
 export * from './grid';
 export * from './image';
+export * from './index-bar';
 export * from './input';
 export * from './navbar';
 export * from './pagination';
