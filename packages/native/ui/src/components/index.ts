@@ -28,6 +28,7 @@ export * from './popup';
 export * from './portal';
 export * from './share-sheet';
 export * from './sheet';
+export * from './swipe-cell';
 export * from './sidebar';
 export * from './space';
 export * from './text';

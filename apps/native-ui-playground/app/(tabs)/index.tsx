@@ -54,6 +54,7 @@ const GROUPS: ComponentGroup[] = [
       { href: '/components/action-sheet', icon: 'menu-unfold', iconColor: '#8b5cf6', iconBg: '#f5f3ff', label: 'ActionSheet' },
       { href: '/components/notify', icon: 'sound', iconColor: '#ef4444', iconBg: '#fef2f2', label: 'Notify' },
       { href: '/components/share-sheet', icon: 'share-alt', iconColor: '#06b6d4', iconBg: '#ecfeff', label: 'ShareSheet' },
+      { href: '/components/swipe-cell', icon: 'swap-left', iconColor: '#f59e0b', iconBg: '#fffbeb', label: 'SwipeCell' },
     ],
   },
   {
