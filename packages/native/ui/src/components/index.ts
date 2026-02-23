@@ -27,3 +27,4 @@ export * from './sidebar';
 export * from './space';
 export * from './text';
 export * from './toast';
+export * from './tree-select';
