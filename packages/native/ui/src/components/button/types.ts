@@ -22,9 +22,15 @@ export interface ButtonProps extends Omit<PressableProps, 'children'>, ButtonVar
   /** NativeWind 类名 */
   className?: string;
 
+  /** 前置内容（图标等），显示在文字之前 */
+  leading?: ReactNode;
+
   /** 加载状态，为 true 时显示 loading 指示器且不可点击 */
   loading?: boolean;
 
   /** 自定义文字 className，合并到 TextClassContext */
   textClassName?: string;
+
+  /** 后置内容（图标等），显示在文字之后 */
+  trailing?: ReactNode;
 }

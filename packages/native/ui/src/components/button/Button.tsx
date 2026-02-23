@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import { ActivityIndicator, Pressable } from 'react-native';
 import { cn, isString } from '@skyroc/utils';
 import { Text, TextClassContext } from '../text/Typography';
@@ -11,10 +12,12 @@ const Button = (props: ButtonProps) => {
     className,
     color = 'primary',
     disabled = false,
+    leading,
     loading = false,
     shape = 'rounded',
     size = 'md',
     textClassName,
+    trailing,
     variant = 'solid',
     ...rest
   } = props;
@@ -23,24 +26,25 @@ const Button = (props: ButtonProps) => {
 
   const textClass = cn(buttonTextVariants({ variant, color, size }), textClassName);
 
-  const buttonClass = buttonVariants({ variant, color, size, shape, block });
+  const slots = buttonVariants({ variant, color, size, shape, block });
 
   return (
     <TextClassContext.Provider value={textClass}>
       <Pressable
-        className={cn(buttonClass, isDisabled && 'opacity-50', className)}
+        className={cn(slots, isDisabled && 'opacity-50', className)}
         disabled={isDisabled}
         role="button"
         {...rest}
       >
         {loading && (
           <ActivityIndicator
-            className={textClass}
+            className={cn(textClass)}
             size="small"
           />
         )}
-
-        {isString(children) ? <Text>{children}</Text> : children}
+        {leading}
+        {isString(children) ? <Text className={textClass}>{children}</Text> : children}
+        {trailing}
       </Pressable>
     </TextClassContext.Provider>
   );
