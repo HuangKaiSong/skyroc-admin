@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 import { useState } from 'react';
-import { ActivityIndicator, Pressable, View } from 'react-native';
+import { View } from 'react-native';
 import { cn } from '@skyroc/utils';
 import { Button } from '../button/Button';
 import { Divider } from '../divider/Divider';
@@ -96,20 +96,17 @@ const Dialog = (props: DialogProps) => {
       <Divider className="my-0" />
       <View className={slots.footer()}>
         {showCancelButton && (
-          <Pressable
-            className={cn(slots.cancelButton(), loading.cancel && 'opacity-50')}
-            disabled={loading.cancel || loading.confirm}
+          <Button
+            className={slots.cancelButton()}
+            color="muted"
+            disabled={loading.confirm}
+            loading={loading.cancel}
+            shape="rounded"
+            variant="ghost"
             onPress={handleCancel}
           >
-            {loading.cancel ? (
-              <ActivityIndicator
-                className="text-muted-foreground"
-                size="small"
-              />
-            ) : (
-              <Text className={slots.cancelButtonText()}>{cancelButtonText}</Text>
-            )}
-          </Pressable>
+            {cancelButtonText}
+          </Button>
         )}
         {showCancelButton && showConfirmButton && (
           <Divider
@@ -118,20 +115,17 @@ const Dialog = (props: DialogProps) => {
           />
         )}
         {showConfirmButton && (
-          <Pressable
-            className={cn(slots.confirmButton(), loading.confirm && 'opacity-50')}
-            disabled={loading.cancel || loading.confirm}
+          <Button
+            className={slots.confirmButton()}
+            color="primary"
+            disabled={loading.cancel}
+            loading={loading.confirm}
+            shape="rounded"
+            variant="ghost"
             onPress={handleConfirm}
           >
-            {loading.confirm ? (
-              <ActivityIndicator
-                className="text-primary"
-                size="small"
-              />
-            ) : (
-              <Text className={slots.confirmButtonText()}>{confirmButtonText}</Text>
-            )}
-          </Pressable>
+            {confirmButtonText}
+          </Button>
         )}
       </View>
     </>

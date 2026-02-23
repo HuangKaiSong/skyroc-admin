@@ -9,9 +9,9 @@ export const dialogVariants = tv({
     footer: 'flex-row',
     title: 'text-center text-base font-semibold text-foreground',
     message: 'text-sm text-muted-foreground',
-    confirmButton: 'flex-1 items-center justify-center py-3',
+    confirmButton: 'flex-1 items-center justify-center py-2',
     confirmButtonText: 'text-sm font-medium text-primary',
-    cancelButton: 'flex-1 items-center justify-center py-3',
+    cancelButton: 'flex-1 items-center justify-center py-2',
     cancelButtonText: 'text-sm text-muted-foreground'
   },
   variants: {
