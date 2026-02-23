@@ -9,6 +9,7 @@ export * from './checkbox';
 export * from './dialog';
 export * from './radio';
 export * from './switch';
+export * from './tabs';
 export * from './tag';
 export * from './divider';
 export * from './floating-button';

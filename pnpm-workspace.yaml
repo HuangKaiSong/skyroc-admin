@@ -224,6 +224,9 @@ catalogs:
     # 底部面板
     "@gorhom/bottom-sheet": ^5.1.2
 
+    # 页面滑动
+    react-native-pager-view: 8.0.0
+
     # 弹出层
     react-native-modal: 14.0.0-rc.1
 

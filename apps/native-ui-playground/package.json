@@ -39,6 +39,7 @@
     "react-native": "catalog:native",
     "react-native-css": "catalog:native",
     "react-native-gesture-handler": "catalog:native",
+    "react-native-pager-view": "catalog:native",
     "react-native-reanimated": "catalog:native",
     "react-native-safe-area-context": "catalog:native",
     "react-native-screens": "catalog:native",
