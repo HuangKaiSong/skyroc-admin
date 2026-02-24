@@ -9,7 +9,7 @@ export const inputVariants = tv({
   slots: {
     clearable: 'items-center justify-center',
     control:
-      'flex-1 flex-row items-center bg-transparent text-foreground placeholder:text-muted-foreground m-0 p-0 h-full',
+      'flex-1 flex-row items-center bg-transparent text-foreground placeholder:text-muted-foreground m-0 p-0 h-full flex',
     root: 'flex-row items-center rounded-lg bg-background'
   },
   variants: {

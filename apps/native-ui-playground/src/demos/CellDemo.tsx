@@ -7,7 +7,7 @@ const CellDemo = () => {
   }
 
   return (
-    <ScrollView className="flex-1 bg-#000 p-6">
+    <ScrollView className="flex-1 bg-muted p-6">
       {/* Basic */}
       <Text className="mb-4 text-lg font-semibold">Basic</Text>
       <View className="mb-8">

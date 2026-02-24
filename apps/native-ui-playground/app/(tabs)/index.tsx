@@ -29,6 +29,7 @@ const GROUPS: ComponentGroup[] = [
       { href: '/components/checkbox', icon: 'check-square', iconColor: '#22c55e', iconBg: '#f0fdf4', label: 'Checkbox' },
       { href: '/components/radio', icon: 'check-circle', iconColor: '#6366f1', iconBg: '#eef2ff', label: 'Radio' },
       { href: '/components/switch', icon: 'swap', iconColor: '#14b8a6', iconBg: '#f0fdfa', label: 'Switch' },
+      { href: '/components/stepper', icon: 'plus-square', iconColor: '#0891b2', iconBg: '#ecfeff', label: 'Stepper' },
       { href: '/components/picker', icon: 'select', iconColor: '#ec4899', iconBg: '#fdf2f8', label: 'Picker' },
       { href: '/components/picker-group', icon: 'select', iconColor: '#d946ef', iconBg: '#fdf4ff', label: 'PickerGroup' },
       { href: '/components/tree-select', icon: 'cluster', iconColor: '#0d9488', iconBg: '#f0fdfa', label: 'TreeSelect' },
