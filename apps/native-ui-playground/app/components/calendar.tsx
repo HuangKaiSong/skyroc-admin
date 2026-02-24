@@ -1,0 +1,17 @@
+import { useRouter } from 'expo-router';
+import { View } from 'react-native';
+import { NavBar } from '@skyroc/native-ui';
+import { CalendarDemo } from '@/src/demos/CalendarDemo';
+
+const CalendarPage = () => {
+  const router = useRouter();
+
+  return (
+    <View className="flex-1 bg-background">
+      <NavBar leftArrow title="Calendar" onLeftPress={() => router.back()} />
+      <CalendarDemo />
+    </View>
+  );
+};
+
+export default CalendarPage;

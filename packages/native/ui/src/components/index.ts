@@ -5,6 +5,7 @@ export * from './back-top';
 export * from './badge';
 export * from './box';
 export * from './button';
+export * from './calendar';
 export * from './cell';
 export * from './checkbox';
 export * from './dialog';

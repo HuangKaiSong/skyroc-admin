@@ -37,6 +37,7 @@ const GROUPS: ComponentGroup[] = [
       { href: '/components/signature', icon: 'edit', iconColor: '#7c3aed', iconBg: '#f5f3ff', label: 'Signature' },
       { href: '/components/password-input', icon: 'lock', iconColor: '#e11d48', iconBg: '#fff1f2', label: 'PasswordInput' },
       { href: '/components/number-keyboard', icon: 'calculator', iconColor: '#0891b2', iconBg: '#ecfeff', label: 'NumberKeyboard' },
+      { href: '/components/calendar', icon: 'calendar', iconColor: '#f59e0b', iconBg: '#fffbeb', label: 'Calendar' },
     ],
   },
   {
