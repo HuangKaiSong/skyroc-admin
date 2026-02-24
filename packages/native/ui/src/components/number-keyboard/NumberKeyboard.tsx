@@ -166,7 +166,7 @@ const NumberKeyboard = (props: NumberKeyboardProps) => {
             onClose={handleClose}
           />
           <View className={cn(slots.body(), classNames?.body)}>
-            <View className={cn(theme === 'custom' ? 'flex-[3]' : 'flex-1', 'flex-row flex-wrap', classNames?.keys)}>
+            <View className={cn(theme === 'custom' ? 'flex-3' : 'flex-1', 'flex-row flex-wrap', classNames?.keys)}>
               {keys.map((key, i) => (
                 <NumberKeyboardKey
                   key={`${key.text}-${key.type}-${i}`}

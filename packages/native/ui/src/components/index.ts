@@ -34,6 +34,7 @@ export * from './portal';
 export * from './share-sheet';
 export * from './sheet';
 export * from './signature';
+export * from './slider';
 export * from './swipe-cell';
 export * from './sidebar';
 export * from './space';
