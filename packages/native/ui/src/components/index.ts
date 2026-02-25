@@ -40,5 +40,6 @@ export * from './sidebar';
 export * from './space';
 export * from './stepper';
 export * from './text';
+export * from './time-picker';
 export * from './toast';
 export * from './tree-select';

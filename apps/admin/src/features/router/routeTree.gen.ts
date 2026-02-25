@@ -247,18 +247,18 @@ export interface FileRoutesByFullPath {
   '/login/code-login': typeof authLoginCodeLoginRoute
   '/login/register': typeof authLoginRegisterRoute
   '/login/reset-pwd': typeof authLoginResetPwdRoute
-  '/about': typeof adminAboutIndexRoute
+  '/about/': typeof adminAboutIndexRoute
   '/exception/': typeof adminExceptionIndexRoute
-  '/home': typeof adminHomeIndexRoute
+  '/home/': typeof adminHomeIndexRoute
   '/manage/': typeof adminManageIndexRoute
   '/multi-menu/': typeof adminMultiMenuIndexRoute
   '/login/': typeof authLoginIndexRoute
   '/multi-menu/second/child': typeof adminMultiMenuSecondChildLayoutRouteWithChildren
   '/manage/user/$id': typeof adminManageUserIdRoute
   '/multi-menu/first/child': typeof adminMultiMenuFirstChildRoute
-  '/manage/menu': typeof adminManageMenuIndexRoute
-  '/manage/role': typeof adminManageRoleIndexRoute
-  '/manage/user': typeof adminManageUserIndexRoute
+  '/manage/menu/': typeof adminManageMenuIndexRoute
+  '/manage/role/': typeof adminManageRoleIndexRoute
+  '/manage/user/': typeof adminManageUserIndexRoute
   '/multi-menu/first/': typeof adminMultiMenuFirstIndexRoute
   '/multi-menu/second/': typeof adminMultiMenuSecondIndexRoute
   '/multi-menu/second/child/home': typeof adminMultiMenuSecondChildHomeRoute
@@ -352,18 +352,18 @@ export interface FileRouteTypes {
     | '/login/code-login'
     | '/login/register'
     | '/login/reset-pwd'
-    | '/about'
+    | '/about/'
     | '/exception/'
-    | '/home'
+    | '/home/'
     | '/manage/'
     | '/multi-menu/'
     | '/login/'
     | '/multi-menu/second/child'
     | '/manage/user/$id'
     | '/multi-menu/first/child'
-    | '/manage/menu'
-    | '/manage/role'
-    | '/manage/user'
+    | '/manage/menu/'
+    | '/manage/role/'
+    | '/manage/user/'
     | '/multi-menu/first/'
     | '/multi-menu/second/'
     | '/multi-menu/second/child/home'
@@ -549,7 +549,7 @@ declare module '@tanstack/react-router' {
     '/(admin)/home/': {
       id: '/(admin)/home/'
       path: '/home'
-      fullPath: '/home'
+      fullPath: '/home/'
       preLoaderRoute: typeof adminHomeIndexRouteImport
       parentRoute: typeof adminLayoutRoute
     }
@@ -563,7 +563,7 @@ declare module '@tanstack/react-router' {
     '/(admin)/about/': {
       id: '/(admin)/about/'
       path: '/about'
-      fullPath: '/about'
+      fullPath: '/about/'
       preLoaderRoute: typeof adminAboutIndexRouteImport
       parentRoute: typeof adminLayoutRoute
     }
@@ -640,21 +640,21 @@ declare module '@tanstack/react-router' {
     '/(admin)/manage/user/': {
       id: '/(admin)/manage/user/'
       path: '/user'
-      fullPath: '/manage/user'
+      fullPath: '/manage/user/'
       preLoaderRoute: typeof adminManageUserIndexRouteImport
       parentRoute: typeof adminManageLayoutRoute
     }
     '/(admin)/manage/role/': {
       id: '/(admin)/manage/role/'
       path: '/role'
-      fullPath: '/manage/role'
+      fullPath: '/manage/role/'
       preLoaderRoute: typeof adminManageRoleIndexRouteImport
       parentRoute: typeof adminManageLayoutRoute
     }
     '/(admin)/manage/menu/': {
       id: '/(admin)/manage/menu/'
       path: '/menu'
-      fullPath: '/manage/menu'
+      fullPath: '/manage/menu/'
       preLoaderRoute: typeof adminManageMenuIndexRouteImport
       parentRoute: typeof adminManageLayoutRoute
     }

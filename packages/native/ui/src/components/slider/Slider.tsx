@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import { useRef } from 'react';
 import { type LayoutChangeEvent, Pressable, View, type ViewStyle } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -228,11 +229,7 @@ const Slider = (props: SliderProps) => {
     );
   }
 
-  function renderThumb(
-    gesture: ReturnType<typeof Gesture.Pan>,
-    ratio: number,
-    customButton?: React.ReactNode
-  ) {
+  function renderThumb(gesture: ReturnType<typeof Gesture.Pan>, ratio: number, customButton?: React.ReactNode) {
     // Use transform to offset the thumb center — no layout side effects
     const thumbStyle: ViewStyle = vertical
       ? {
@@ -249,10 +246,8 @@ const Slider = (props: SliderProps) => {
         };
 
     return (
-      <GestureDetector  gesture={gesture}>
-        <Animated.View style={thumbStyle}>
-          {customButton || button || renderDefaultButton()}
-        </Animated.View>
+      <GestureDetector gesture={gesture}>
+        <Animated.View style={thumbStyle}>{customButton || button || renderDefaultButton()}</Animated.View>
       </GestureDetector>
     );
   }
@@ -349,7 +344,7 @@ const Slider = (props: SliderProps) => {
   return (
     <View
       className={className}
-      style={[containerStyle,{position:'relative',alignSelf:'flex-start'}]}
+      style={[containerStyle, { position: 'relative', alignSelf: 'flex-start' }]}
     >
       <Pressable
         disabled={!isInteractive()}
