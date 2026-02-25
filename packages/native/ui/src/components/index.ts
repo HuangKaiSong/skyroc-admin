@@ -7,6 +7,7 @@ export * from './box';
 export * from './button';
 export * from './calendar';
 export * from './cell';
+export * from './collapse';
 export * from './count-down';
 export * from './date-picker';
 export * from './checkbox';

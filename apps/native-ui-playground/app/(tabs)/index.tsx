@@ -58,6 +58,7 @@ const GROUPS: ComponentGroup[] = [
       { href: '/components/count-down', icon: 'hourglass', iconColor: '#ef4444', iconBg: '#fef2f2', label: 'CountDown' },
       { href: '/components/text-ellipsis', icon: 'ellipsis', iconColor: '#64748b', iconBg: '#f8fafc', label: 'TextEllipsis' },
       { href: '/components/rolling-text', icon: 'retweet', iconColor: '#8b5cf6', iconBg: '#f5f3ff', label: 'RollingText' },
+      { href: '/components/collapse', icon: 'down-square', iconColor: '#0891b2', iconBg: '#ecfeff', label: 'Collapse' },
     ],
   },
   {
