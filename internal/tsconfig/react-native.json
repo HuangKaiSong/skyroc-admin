@@ -9,6 +9,6 @@
     "verbatimModuleSyntax": false,
     "allowSyntheticDefaultImports": true,
     "declaration": false,
-    "types": ["react-native", "nativewind/types"]
+    "types": ["react-native"]
   }
 }

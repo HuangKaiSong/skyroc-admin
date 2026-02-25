@@ -1,0 +1,17 @@
+import { useRouter } from 'expo-router';
+import { View } from 'react-native';
+import { NavBar } from '@skyroc/native-ui';
+import { FieldDemo } from '@/src/demos/FieldDemo';
+
+const FieldPage = () => {
+  const router = useRouter();
+
+  return (
+    <View className="flex-1 bg-background">
+      <NavBar leftArrow title="Field" onLeftPress={() => router.back()} />
+      <FieldDemo />
+    </View>
+  );
+};
+
+export default FieldPage;

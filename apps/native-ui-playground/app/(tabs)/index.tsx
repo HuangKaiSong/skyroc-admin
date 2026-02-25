@@ -24,6 +24,8 @@ const GROUPS: ComponentGroup[] = [
       { href: '/components/button', icon: 'appstore', iconColor: '#3b82f6', iconBg: '#eff6ff', label: 'Button' },
       { href: '/components/text', icon: 'font-size', iconColor: '#8b5cf6', iconBg: '#f5f3ff', label: 'Text' },
       { href: '/components/input', icon: 'form', iconColor: '#06b6d4', iconBg: '#ecfeff', label: 'Input' },
+      { href: '/components/field', icon: 'profile', iconColor: '#0d9488', iconBg: '#f0fdfa', label: 'Field' },
+      { href: '/components/search', icon: 'search1', iconColor: '#f97316', iconBg: '#fff7ed', label: 'Search' },
       { href: '/components/divider', icon: 'minus', iconColor: '#6b7280', iconBg: '#f9fafb', label: 'Divider' },
       { href: '/components/space', icon: 'column-width', iconColor: '#f59e0b', iconBg: '#fffbeb', label: 'Space' },
       { href: '/components/checkbox', icon: 'check-square', iconColor: '#22c55e', iconBg: '#f0fdf4', label: 'Checkbox' },
@@ -53,6 +55,9 @@ const GROUPS: ComponentGroup[] = [
       { href: '/components/cell', icon: 'bars', iconColor: '#64748b', iconBg: '#f8fafc', label: 'Cell' },
       { href: '/components/tag', icon: 'tag', iconColor: '#f97316', iconBg: '#fff7ed', label: 'Tag' },
       { href: '/components/grid', icon: 'appstore', iconColor: '#0ea5e9', iconBg: '#f0f9ff', label: 'Grid' },
+      { href: '/components/count-down', icon: 'hourglass', iconColor: '#ef4444', iconBg: '#fef2f2', label: 'CountDown' },
+      { href: '/components/text-ellipsis', icon: 'ellipsis', iconColor: '#64748b', iconBg: '#f8fafc', label: 'TextEllipsis' },
+      { href: '/components/rolling-text', icon: 'retweet', iconColor: '#8b5cf6', iconBg: '#f5f3ff', label: 'RollingText' },
     ],
   },
   {
