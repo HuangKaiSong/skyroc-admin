@@ -227,6 +227,12 @@ catalogs:
     # 页面滑动
     react-native-pager-view: 8.0.0
 
+    # 验证码输入
+    react-native-confirmation-code-field: ^8.0.1
+
+    # Skia 图形引擎
+    "@shopify/react-native-skia": 2.2.12
+
     # 弹出层
     react-native-modal: 14.0.0-rc.1
 
