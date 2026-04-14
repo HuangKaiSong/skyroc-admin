@@ -48,6 +48,13 @@ describe('handleRefreshToken', () => {
     expect(result).toBe(true);
   });
 
+  it('uses empty string when getRefreshToken returns null', async () => {
+    const adapter = createMockAdapter({ getRefreshToken: vi.fn(() => null) });
+    await handleRefreshToken(adapter);
+
+    expect(adapter.fetchRefreshToken).toHaveBeenCalledWith('');
+  });
+
   it('redirects to login on failure', async () => {
     const adapter = createMockAdapter({
       fetchRefreshToken: vi.fn(async () => {

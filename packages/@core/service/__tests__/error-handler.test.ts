@@ -77,6 +77,37 @@ describe('backEndFail', () => {
     expect(request.state.errMsgStack).toContain('Session expired');
   });
 
+  it('modalLogout onConfirm triggers logoutAndCleanup', async () => {
+    const removeListenerSpy = vi.spyOn(window, 'removeEventListener');
+    const adapter = createMockAdapter();
+    const request = createMockRequest();
+    const instance = { request: vi.fn() } as any;
+    const response = createMockResponse('7777', 'Session expired');
+
+    await backEndFail(response, instance, request, adapter, TEST_CODES);
+
+    const modalCall = vi.mocked(adapter.showErrorModal).mock.calls[0]![0];
+    modalCall.onConfirm();
+
+    expect(adapter.redirectToLogin).toHaveBeenCalledWith('/dashboard');
+    expect(removeListenerSpy).toHaveBeenCalledWith('beforeunload', expect.any(Function));
+    expect(request.state.errMsgStack).not.toContain('Session expired');
+    removeListenerSpy.mockRestore();
+  });
+
+  it('modalLogout adds beforeunload listener in browser', async () => {
+    const addListenerSpy = vi.spyOn(window, 'addEventListener');
+    const adapter = createMockAdapter();
+    const request = createMockRequest();
+    const instance = { request: vi.fn() } as any;
+    const response = createMockResponse('7777', 'modal msg');
+
+    await backEndFail(response, instance, request, adapter, TEST_CODES);
+
+    expect(addListenerSpy).toHaveBeenCalledWith('beforeunload', expect.any(Function));
+    addListenerSpy.mockRestore();
+  });
+
   it('skips modal if message already in stack', async () => {
     const adapter = createMockAdapter();
     const request = createMockRequest({ errMsgStack: ['Session expired'] });
@@ -101,6 +132,33 @@ describe('backEndFail', () => {
     expect(adapter.setAuth).toHaveBeenCalled();
     expect(instance.request).toHaveBeenCalledWith(response.config);
     expect(result).toBe(retryResponse);
+  });
+
+  it('returns null when expired token refresh fails', async () => {
+    const adapter = createMockAdapter({
+      fetchRefreshToken: vi.fn(async () => {
+        throw new Error('refresh failed');
+      })
+    });
+    const request = createMockRequest();
+    const instance = { request: vi.fn() } as any;
+    const response = createMockResponse('9999');
+
+    const result = await backEndFail(response, instance, request, adapter, TEST_CODES);
+
+    expect(result).toBeNull();
+    expect(instance.request).not.toHaveBeenCalled();
+  });
+
+  it('initializes errMsgStack when undefined for modalLogout', async () => {
+    const adapter = createMockAdapter();
+    const request = createMockRequest({ errMsgStack: undefined as any });
+    const instance = { request: vi.fn() } as any;
+    const response = createMockResponse('7777', 'new msg');
+
+    await backEndFail(response, instance, request, adapter, TEST_CODES);
+
+    expect(adapter.showErrorModal).toHaveBeenCalled();
   });
 
   it('returns null for unknown codes', async () => {
@@ -166,5 +224,47 @@ describe('handleError', () => {
     handleError(error, request, adapter, TEST_CODES);
 
     expect(adapter.showErrorMessage).not.toHaveBeenCalled();
+  });
+
+  it('falls back to error.message when response.data.msg is missing', () => {
+    const adapter = createMockAdapter();
+    const request = createMockRequest();
+    const error = {
+      message: 'the backend request error',
+      code: BACKEND_ERROR_CODE,
+      response: { data: { code: '1234' } }
+    } as AxiosError<any>;
+
+    handleError(error, request, adapter, TEST_CODES);
+
+    expect(adapter.showErrorMessage).toHaveBeenCalledWith('the backend request error', expect.any(Function));
+  });
+
+  it('handles BACKEND_ERROR_CODE with no response data', () => {
+    const adapter = createMockAdapter();
+    const request = createMockRequest();
+    const error = {
+      message: 'fallback msg',
+      code: BACKEND_ERROR_CODE,
+      response: undefined
+    } as AxiosError<any>;
+
+    handleError(error, request, adapter, TEST_CODES);
+
+    expect(adapter.showErrorMessage).toHaveBeenCalledWith('fallback msg', expect.any(Function));
+  });
+
+  it('handles BACKEND_ERROR_CODE with no code in response', () => {
+    const adapter = createMockAdapter();
+    const request = createMockRequest();
+    const error = {
+      message: 'err',
+      code: BACKEND_ERROR_CODE,
+      response: { data: { msg: 'some msg' } }
+    } as AxiosError<any>;
+
+    handleError(error, request, adapter, TEST_CODES);
+
+    expect(adapter.showErrorMessage).toHaveBeenCalledWith('some msg', expect.any(Function));
   });
 });
