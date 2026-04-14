@@ -12,10 +12,7 @@ interface WhitelistManagerConfig {
   onWhitelisted?: () => void;
 }
 
-/**
- * 设备白名单管理器
- * 定期检查设备是否在白名单中，用于决定是否上传日志
- */
+/** 设备白名单管理器 定期检查设备是否在白名单中，用于决定是否上传日志 */
 export class WhitelistManager {
   /** 设备 ID */
   private deviceId: string;
@@ -41,8 +38,7 @@ export class WhitelistManager {
   constructor(config: WhitelistManagerConfig) {
     this.deviceId = config.deviceId;
     this.endpoint = config.endpoint;
-    this.checkInterval =
-      config.checkInterval ?? DEFAULT_WHITELIST_CHECK_INTERVAL;
+    this.checkInterval = config.checkInterval ?? DEFAULT_WHITELIST_CHECK_INTERVAL;
     this.onWhitelisted = config.onWhitelisted;
   }
 
@@ -81,9 +77,9 @@ export class WhitelistManager {
       const response = await fetch(this.endpoint, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ deviceId: this.deviceId }),
+        body: JSON.stringify({ deviceId: this.deviceId })
       });
 
       if (!response.ok) {
@@ -94,8 +90,7 @@ export class WhitelistManager {
 
       // 检查是否首次加入白名单
       const wasWhitelisted = this.isWhitelisted;
-      this.isWhitelisted =
-        data.enabled && data.deviceIds.includes(this.deviceId);
+      this.isWhitelisted = data.enabled && data.deviceIds.includes(this.deviceId);
 
       // 如果首次被加入白名单，触发回调
       if (!wasWhitelisted && this.isWhitelisted && this.onWhitelisted) {

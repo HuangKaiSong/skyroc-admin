@@ -72,7 +72,7 @@ interface ShareSheetResult {
   option: ShareSheetOption;
 }
 
-/** showShareSheet 函数调用选项 */
+/** ShowShareSheet 函数调用选项 */
 interface ShareSheetCallOptions extends Omit<ShareSheetProps, 'onUpdateShow' | 'show'> {
   /** 选项选中或取消后的通用回调 */
   callback?: (result: ShareSheetResult | null) => void;

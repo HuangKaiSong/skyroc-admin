@@ -44,6 +44,7 @@ docs/
 ### 已完成的包文档
 
 #### 核心包 (Core) - 7/7 ✅
+
 - [✅ core-auth](./packages/core/auth.md) - 认证核心逻辑
 - [✅ core-storage](./packages/core/storage.md) - 存储抽象层
 - [✅ core-theme](./packages/core/theme.md) - 主题核心逻辑
@@ -53,6 +54,7 @@ docs/
 - [✅ core-constants](./packages/core/constants.md) - 常量和枚举
 
 #### Web 包 - 6/6 ✅
+
 - [✅ web-router](./packages/web/router.md) - TanStack Router 封装
 - [✅ web-table](./packages/web/table.md) - Ant Design 表格功能
 - [✅ web-form](./packages/web/form.md) - Ant Design 表单增强
@@ -61,14 +63,17 @@ docs/
 - [✅ web-animate](./packages/web/animate.md) - 动画功能
 
 #### 适配器包 - 2/2 ✅
+
 - [✅ adapter-antd](./packages/adapter/antd.md) - Ant Design 主题适配
 - [✅ adapter-react-i18next](./packages/adapter/react-i18next.md) - react-i18next 适配
 
 #### 功能包 - 2/2 ✅
+
 - [✅ feature-notification](./packages/feature/notification.md) - 通知系统
 - [✅ feature-menu](./packages/feature/menu.md) - 菜单系统
 
 #### 内部工具包 - 1/1 ✅
+
 - [✅ tsconfig](./packages/internal/tsconfig.md) - TypeScript 配置
 
 ## 📝 文档完成情况
@@ -76,10 +81,12 @@ docs/
 ### 已完成文档 ✅
 
 **核心架构文档**:
+
 - ✅ [PACKAGE_SPLIT_ARCHITECTURE.md](../PACKAGE_SPLIT_ARCHITECTURE.md) - 完整的架构方案
 - ✅ [migration-guide.md](./migration-guide.md) - 5阶段迁移指南
 
 **包实现文档** (18/18):
+
 - ✅ 核心包 7个
 - ✅ Web 包 6个
 - ✅ 适配器包 2个
@@ -101,35 +108,45 @@ docs/
 # @skyroc/[package-name]
 
 ## 📦 包信息
+
 - 包名、版本、平台、依赖
 
 ## 🎯 职责定位
+
 - 核心职责
 - 不负责的内容
 
 ## 📐 目录结构
+
 - 文件组织
 
 ## 🔌 API 设计
+
 - 主要导出
 - 类型定义
 
 ## 🔨 核心实现
+
 - 关键代码示例
 
 ## 🌐 平台适配
+
 - Web / React Native 差异
 
 ## 💡 使用示例
+
 - 实际使用场景
 
 ## 🔄 从现有代码迁移
+
 - 迁移步骤
 
 ## 📝 待补充内容
+
 - 待完善的功能
 
 ## 🔗 相关文档
+
 - 关联文档链接
 ```
 
@@ -145,6 +162,7 @@ docs/
 ### 示例
 
 参考已创建的文档：
+
 - [core/auth.md](./packages/core/auth.md) - 较详细的实现说明
 - [core/storage.md](./packages/core/storage.md) - 平台适配示例
 - [web/router.md](./packages/web/router.md) - 简洁版文档
@@ -161,10 +179,10 @@ pnpm exec prettier --write docs/**/*.md
 
 ## 🔄 更新日志
 
-| 日期 | 更新内容 | 作者 |
-|-----|---------|------|
+| 日期       | 更新内容                       | 作者   |
+| ---------- | ------------------------------ | ------ |
 | 2026-01-25 | 初始化文档结构，创建核心包文档 | Claude |
-| - | 待补充 | - |
+| -          | 待补充                         | -      |
 
 ## 🤝 贡献指南
 

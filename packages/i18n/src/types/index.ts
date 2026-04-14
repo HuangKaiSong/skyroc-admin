@@ -1,11 +1,7 @@
-/**
- * Language type
- */
+/** Language type */
 export type LangType = 'zh-CN' | 'en-US' | 'ja-JP' | 'ko-KR';
 
-/**
- * Language option
- */
+/** Language option */
 export interface LangOption {
   /** Display label */
   label: string;
@@ -13,9 +9,7 @@ export interface LangOption {
   value: LangType;
 }
 
-/**
- * Language configuration
- */
+/** Language configuration */
 export interface LangConfig {
   /** Default language */
   defaultLang: LangType;
@@ -25,9 +19,7 @@ export interface LangConfig {
   fallbackLang: LangType;
 }
 
-/**
- * i18n configuration
- */
+/** I18n configuration */
 export interface I18nConfig {
   /** Current language */
   lng: LangType;
@@ -35,6 +27,6 @@ export interface I18nConfig {
   fallbackLng: LangType;
   /** Translation resources */
   resources: Record<LangType, unknown>;
-  /** i18next options */
+  /** I18next options */
   [key: string]: unknown;
 }

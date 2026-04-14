@@ -55,13 +55,13 @@
 
 每个平台需要实现的 6 类能力：
 
-| 能力 | 方法 | 说明 |
-|------|------|------|
-| UI 反馈 | `showErrorMessage` / `showErrorModal` | 错误提示的展示方式 |
-| Auth | `getToken` / `getRefreshToken` / `setAuth` / `resetAuth` | 认证信息的存取 |
-| Token 刷新 | `fetchRefreshToken` | 调用后端接口换取新 token |
-| 导航 | `getCurrentPath` / `redirectToLogin` | 路由跳转 |
-| i18n | `t` | 国际化翻译 |
+| 能力       | 方法                                                     | 说明                     |
+| ---------- | -------------------------------------------------------- | ------------------------ |
+| UI 反馈    | `showErrorMessage` / `showErrorModal`                    | 错误提示的展示方式       |
+| Auth       | `getToken` / `getRefreshToken` / `setAuth` / `resetAuth` | 认证信息的存取           |
+| Token 刷新 | `fetchRefreshToken`                                      | 调用后端接口换取新 token |
+| 导航       | `getCurrentPath` / `redirectToLogin`                     | 路由跳转                 |
+| i18n       | `t`                                                      | 国际化翻译               |
 
 ### ServiceCodes 配置
 
@@ -69,9 +69,9 @@
 
 ```ts
 interface ServiceCodes {
-  success: string;        // 成功码，如 '0000'
-  logout: string[];       // 直接登出码
-  modalLogout: string[];  // 弹窗确认后登出码
+  success: string; // 成功码，如 '0000'
+  logout: string[]; // 直接登出码
+  modalLogout: string[]; // 弹窗确认后登出码
   expiredToken: string[]; // token 过期码（触发刷新）
 }
 ```
@@ -115,14 +115,14 @@ export const antdAdapter: RequestAdapter = {
       maskClosable: options.maskClosable ?? false,
       onOk: () => options.onConfirm(),
       onCancel: () => options.onConfirm(),
-      title: options.title,
+      title: options.title
     });
   },
 
   // ---- Auth ----
   getToken: () => localStg.get('token') || null,
   getRefreshToken: () => localStg.get('refreshToken') || null,
-  setAuth: (tokens) => setAuth(tokens),
+  setAuth: tokens => setAuth(tokens),
   resetAuth() {
     localStg.remove('token');
     localStg.remove('refreshToken');
@@ -134,10 +134,10 @@ export const antdAdapter: RequestAdapter = {
 
   // ---- 导航 ----
   getCurrentPath: () => router.state.location.href,
-  redirectToLogin: (path) => router.navigate({ to: '/login-out', search: { redirect: path } }),
+  redirectToLogin: path => router.navigate({ to: '/login-out', search: { redirect: path } }),
 
   // ---- i18n ----
-  t: (key) => $t(key),
+  t: key => $t(key)
 };
 ```
 
@@ -154,12 +154,12 @@ export const request = createAppRequest({
     success: '0000',
     logout: ['8888', '8889'],
     modalLogout: ['7777', '7778'],
-    expiredToken: ['9999', '9998', '3333'],
+    expiredToken: ['9999', '9998', '3333']
   },
   axiosConfig: {
     baseURL: '/api',
-    headers: { 'X-Custom': 'value' },
-  },
+    headers: { 'X-Custom': 'value' }
+  }
 });
 ```
 
@@ -170,11 +170,11 @@ export const request = createAppRequest({
 import { createQueryClient } from '@skyroc/service/query';
 
 export const queryClient = createQueryClient({
-  onError: (error) => {
+  onError: error => {
     if (import.meta.env.DEV) {
       console.error('Query/Mutation error:', error);
     }
-  },
+  }
 });
 ```
 
@@ -193,11 +193,11 @@ const userInfo = await request<Api.Auth.UserInfo>({ url: '/user/info' });
 
 ```ts
 interface CreateRequestOptions {
-  adapter: RequestAdapter;          // 平台适配器
-  codes: ServiceCodes;              // 后端业务状态码
+  adapter: RequestAdapter; // 平台适配器
+  codes: ServiceCodes; // 后端业务状态码
   axiosConfig?: CreateAxiosDefaults; // axios 基础配置
   isBackendSuccess?: (response) => boolean; // 自定义成功判断
-  transform?: (response) => any;    // 自定义响应转换
+  transform?: (response) => any; // 自定义响应转换
 }
 ```
 
@@ -218,12 +218,12 @@ request.state.errMsgStack;
 
 #### 默认行为
 
-| 行为 | 默认实现 | 可覆盖 |
-|------|----------|--------|
-| 成功判断 | `response.data.code === codes.success` | `isBackendSuccess` |
-| 数据转换 | `response.data.data` | `transform` |
-| 请求拦截 | 自动注入 `Bearer {token}` | — |
-| 错误处理 | 根据 `codes` 分流（登出 / 弹窗 / 刷新 / toast） | — |
+| 行为     | 默认实现                                        | 可覆盖             |
+| -------- | ----------------------------------------------- | ------------------ |
+| 成功判断 | `response.data.code === codes.success`          | `isBackendSuccess` |
+| 数据转换 | `response.data.data`                            | `transform`        |
+| 请求拦截 | 自动注入 `Bearer {token}`                       | —                  |
+| 错误处理 | 根据 `codes` 分流（登出 / 弹窗 / 刷新 / toast） | —                  |
 
 #### 错误处理流程
 
@@ -242,32 +242,32 @@ request.state.errMsgStack;
 
 ```ts
 interface CreateQueryClientOptions {
-  onError?: (error: unknown) => void;  // 全局错误回调
+  onError?: (error: unknown) => void; // 全局错误回调
 }
 ```
 
 #### 默认配置
 
-| 配置项 | Query 默认值 | Mutation 默认值 |
-|--------|-------------|----------------|
-| `gcTime` | 10 分钟 | — |
-| `staleTime` | 30 秒 | — |
-| `retry` | 2 次 | 1 次 |
-| `retryDelay` | 指数退避（上限 30s） | 指数退避（上限 10s） |
-| `refetchOnWindowFocus` | `false` | — |
-| `refetchOnReconnect` | `true` | — |
-| `networkMode` | `'online'` | `'online'` |
+| 配置项                 | Query 默认值         | Mutation 默认值      |
+| ---------------------- | -------------------- | -------------------- |
+| `gcTime`               | 10 分钟              | —                    |
+| `staleTime`            | 30 秒                | —                    |
+| `retry`                | 2 次                 | 1 次                 |
+| `retryDelay`           | 指数退避（上限 30s） | 指数退避（上限 10s） |
+| `refetchOnWindowFocus` | `false`              | —                    |
+| `refetchOnReconnect`   | `true`               | —                    |
+| `networkMode`          | `'online'`           | `'online'`           |
 
 ### 内部工具函数（按需导出）
 
 ```ts
 import {
-  getAuthorization,     // 构造 'Bearer xxx' header
-  handleRefreshToken,   // 刷新 token 逻辑
+  getAuthorization, // 构造 'Bearer xxx' header
+  handleRefreshToken, // 刷新 token 逻辑
   handleExpiredRequest, // 并发安全的 token 刷新
-  showErrorMsg,         // 去重错误消息展示
-  backEndFail,          // 后端业务错误处理
-  handleError,          // 网络层错误处理
+  showErrorMsg, // 去重错误消息展示
+  backEndFail, // 后端业务错误处理
+  handleError // 网络层错误处理
 } from '@skyroc/service';
 ```
 
@@ -287,13 +287,11 @@ import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const rnAdapter: RequestAdapter = {
-  showErrorMessage: (msg) => Alert.alert('Error', msg),
-  showErrorModal: (opts) => Alert.alert(opts.title, opts.content, [
-    { text: 'OK', onPress: opts.onConfirm },
-  ]),
+  showErrorMessage: msg => Alert.alert('Error', msg),
+  showErrorModal: opts => Alert.alert(opts.title, opts.content, [{ text: 'OK', onPress: opts.onConfirm }]),
   getToken: () => AsyncStorage.getItem('token'),
   redirectToLogin: () => navigation.navigate('Login'),
-  t: (key) => i18n.t(key),
+  t: key => i18n.t(key)
   // ...
 };
 ```
@@ -307,8 +305,8 @@ import { cookies } from 'next/headers';
 
 export const nextAdapter: RequestAdapter = {
   getToken: () => cookies().get('token')?.value ?? null,
-  redirectToLogin: (path) => redirect(`/login?redirect=${path}`),
-  showErrorMessage: (msg) => toast.error(msg),  // sonner / react-hot-toast
+  redirectToLogin: path => redirect(`/login?redirect=${path}`),
+  showErrorMessage: msg => toast.error(msg) // sonner / react-hot-toast
   // ...
 };
 ```
@@ -323,7 +321,7 @@ const mockAdapter: RequestAdapter = {
   showErrorModal: vi.fn(),
   getToken: vi.fn(() => 'test-token'),
   redirectToLogin: vi.fn(),
-  t: vi.fn((key) => key),
+  t: vi.fn(key => key)
   // ...
 };
 
@@ -334,14 +332,14 @@ expect(mockAdapter.redirectToLogin).toHaveBeenCalled();
 
 ## 与改造前对比
 
-| 改造前 | 改造后 |
-|--------|--------|
-| error.ts 硬编码 `showErrorMessage`（antd 全局方法） | adapter.showErrorMessage — 平台自己决定怎么展示 |
-| shared.ts 硬编码 `localStg.get('token')` | adapter.getToken — 存储方式由平台决定 |
-| shared.ts 硬编码 `router.navigate` | adapter.redirectToLogin — 路由框架由平台决定 |
-| error.ts 从 `import.meta.env` 读取 codes | 显式传入 `ServiceCodes` — 可来自 env、配置文件或远程 |
-| queryClient.ts 直接 `new QueryClient` | `createQueryClient` 工厂 — 默认配置统一收口 |
-| 测试需要 mock antd + jotai + router + localStorage | mock 一个 adapter 对象即可 |
+| 改造前                                              | 改造后                                               |
+| --------------------------------------------------- | ---------------------------------------------------- |
+| error.ts 硬编码 `showErrorMessage`（antd 全局方法） | adapter.showErrorMessage — 平台自己决定怎么展示      |
+| shared.ts 硬编码 `localStg.get('token')`            | adapter.getToken — 存储方式由平台决定                |
+| shared.ts 硬编码 `router.navigate`                  | adapter.redirectToLogin — 路由框架由平台决定         |
+| error.ts 从 `import.meta.env` 读取 codes            | 显式传入 `ServiceCodes` — 可来自 env、配置文件或远程 |
+| queryClient.ts 直接 `new QueryClient`               | `createQueryClient` 工厂 — 默认配置统一收口          |
+| 测试需要 mock antd + jotai + router + localStorage  | mock 一个 adapter 对象即可                           |
 
 ## 设计原则
 

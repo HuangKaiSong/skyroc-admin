@@ -18,9 +18,7 @@ interface SortableItemProps {
   onCheckChange: (checked: boolean, index: number) => void;
 }
 
-/**
- * 单个可拖拽列项组件
- */
+/** 单个可拖拽列项组件 */
 const SortableItem: FC<SortableItemProps> = ({ index, item, onCheckChange }) => {
   // 使用 useSortable 获取拖拽属性
   const { attributes, isDragging, listeners, setNodeRef, transform, transition } = useSortable({
@@ -42,19 +40,12 @@ const SortableItem: FC<SortableItemProps> = ({ index, item, onCheckChange }) => 
       {...attributes}
     >
       {/* 拖拽手柄 - 使用项目的图标系统 */}
-      <span
-        className="text-icon mr-8px flex cursor-move items-center"
-        {...listeners}
-      >
+      <span className="text-icon mr-8px flex cursor-move items-center" {...listeners}>
         <IconMdiDrag />
       </span>
 
       {/* 复选框 */}
-      <Checkbox
-        checked={item.checked}
-        className="flex-1"
-        onChange={e => onCheckChange(e.target.checked, index)}
-      >
+      <Checkbox checked={item.checked} className="flex-1" onChange={e => onCheckChange(e.target.checked, index)}>
         {item.title}
       </Checkbox>
     </div>
@@ -64,10 +55,7 @@ const SortableItem: FC<SortableItemProps> = ({ index, item, onCheckChange }) => 
 /**
  * 列设置拖拽内容组件
  *
- * 支持：
- * - 列的显示/隐藏切换
- * - 拖拽排序
- * - 流畅的交互动画
+ * 支持： - 列的显示/隐藏切换 - 拖拽排序 - 流畅的交互动画
  */
 const DragContent: FC<DragContentProps> = ({ columns, setColumnChecks }) => {
   // 配置传感器，优化拖拽体验
@@ -79,9 +67,7 @@ const DragContent: FC<DragContentProps> = ({ columns, setColumnChecks }) => {
     })
   );
 
-  /**
-   * 拖拽结束时的回调
-   */
+  /** 拖拽结束时的回调 */
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
@@ -100,9 +86,7 @@ const DragContent: FC<DragContentProps> = ({ columns, setColumnChecks }) => {
     }
   };
 
-  /**
-   * 点击复选框时更改"checked"状态
-   */
+  /** 点击复选框时更改"checked"状态 */
   const handleCheckChange = (checked: boolean, index: number) => {
     const newColumns = [...columns];
     newColumns[index] = { ...newColumns[index], checked };
@@ -112,26 +96,15 @@ const DragContent: FC<DragContentProps> = ({ columns, setColumnChecks }) => {
   return (
     <div className="max-h-400px w-200px overflow-y-auto">
       {/* DndContext 相当于顶层的拖拽环境容器 */}
-      <DndContext
-        sensors={sensors}
-        onDragEnd={handleDragEnd}
-      >
+      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
         {/*
           SortableContext 用于告诉 DnD Kit，这个区域内的一组元素可以"排序"；
           items 传入当前这批可排序对象的 key（或整个对象，但 key 必须唯一）；
           strategy 指定排序策略，如 verticalListSortingStrategy 适合竖直列表。
         */}
-        <SortableContext
-          items={columns.map(item => item.key)}
-          strategy={verticalListSortingStrategy}
-        >
+        <SortableContext items={columns.map(item => item.key)} strategy={verticalListSortingStrategy}>
           {columns.map((item, index) => (
-            <SortableItem
-              index={index}
-              item={item}
-              key={item.key}
-              onCheckChange={handleCheckChange}
-            />
+            <SortableItem index={index} item={item} key={item.key} onCheckChange={handleCheckChange} />
           ))}
         </SortableContext>
       </DndContext>

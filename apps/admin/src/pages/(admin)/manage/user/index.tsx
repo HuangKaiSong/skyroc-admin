@@ -180,14 +180,8 @@ function RouteComponent() {
       </div>
 
       {/* 统计信息 */}
-      <Card
-        className="mb-24px"
-        title="📊 当前状态"
-      >
-        <Space
-          direction="vertical"
-          size="middle"
-        >
+      <Card className="mb-24px" title="📊 当前状态">
+        <Space direction="vertical" size="middle">
           <div className="flex-y-center gap-16px">
             <span className="text-$ant-color-text-secondary">总通知数：</span>
             <span className="text-20px text-$ant-color-primary font-semibold">{notifications.length}</span>
@@ -228,131 +222,72 @@ function RouteComponent() {
       </Card>
 
       {/* 基础通知类型 */}
-      <Card
-        className="mb-24px"
-        title="📮 基础通知类型"
-      >
+      <Card className="mb-24px" title="📮 基础通知类型">
         <p className="mb-16px text-$ant-color-text-secondary">通知系统支持 5 种基础类型，每种类型有不同的图标和颜色</p>
         <Space wrap>
           <Tooltip content="信息通知">
-            <AButton
-              icon={<span className="i-carbon-information-filled" />}
-              type="primary"
-              onClick={handleAddInfo}
-            >
+            <AButton icon={<span className="i-carbon-information-filled" />} type="primary" onClick={handleAddInfo}>
               信息通知
             </AButton>
           </Tooltip>
-          <AButton
-            icon={<span className="i-carbon-checkmark-filled" />}
-            type="primary"
-            onClick={handleAddSuccess}
-          >
+          <AButton icon={<span className="i-carbon-checkmark-filled" />} type="primary" onClick={handleAddSuccess}>
             成功通知
           </AButton>
-          <AButton
-            icon={<span className="i-carbon-warning-filled" />}
-            onClick={handleAddWarning}
-          >
+          <AButton icon={<span className="i-carbon-warning-filled" />} onClick={handleAddWarning}>
             警告通知
           </AButton>
-          <AButton
-            danger
-            icon={<span className="i-carbon-close-filled" />}
-            onClick={handleAddError}
-          >
+          <AButton danger icon={<span className="i-carbon-close-filled" />} onClick={handleAddError}>
             错误通知
           </AButton>
-          <AButton
-            icon={<span className="i-carbon-chat" />}
-            type="dashed"
-            onClick={handleAddMessage}
-          >
+          <AButton icon={<span className="i-carbon-chat" />} type="dashed" onClick={handleAddMessage}>
             消息通知
           </AButton>
         </Space>
       </Card>
 
       {/* 优先级演示 */}
-      <Card
-        className="mb-24px"
-        title="⚡ 优先级系统"
-      >
+      <Card className="mb-24px" title="⚡ 优先级系统">
         <p className="mb-16px text-$ant-color-text-secondary">
           支持 4 种优先级：低、普通、高、紧急。高优先级通知会显示彩色标签
         </p>
         <Space wrap>
           <AButton onClick={handleAddLowPriority}>低优先级</AButton>
-          <AButton
-            type="default"
-            onClick={handleAddInfo}
-          >
+          <AButton type="default" onClick={handleAddInfo}>
             普通优先级
           </AButton>
-          <AButton
-            type="primary"
-            onClick={handleAddWarning}
-          >
+          <AButton type="primary" onClick={handleAddWarning}>
             高优先级
           </AButton>
-          <AButton
-            danger
-            type="primary"
-            onClick={handleAddUrgent}
-          >
+          <AButton danger type="primary" onClick={handleAddUrgent}>
             🚨 紧急通知
           </AButton>
         </Space>
       </Card>
 
       {/* 特殊功能 */}
-      <Card
-        className="mb-24px"
-        title="🎯 特殊功能"
-      >
+      <Card className="mb-24px" title="🎯 特殊功能">
         <p className="mb-16px text-$ant-color-text-secondary">支持静音通知、禁用浏览器通知、带跳转链接等特殊功能</p>
         <Space wrap>
-          <AButton
-            icon={<span className="i-carbon-volume-mute" />}
-            onClick={handleAddSilent}
-          >
+          <AButton icon={<span className="i-carbon-volume-mute" />} onClick={handleAddSilent}>
             静音通知
           </AButton>
-          <AButton
-            icon={<span className="i-carbon-notification-off" />}
-            onClick={handleAddNoBrowser}
-          >
+          <AButton icon={<span className="i-carbon-notification-off" />} onClick={handleAddNoBrowser}>
             仅应用内通知
           </AButton>
-          <AButton
-            icon={<span className="i-carbon-link" />}
-            type="dashed"
-            onClick={handleAddWithLink}
-          >
+          <AButton icon={<span className="i-carbon-link" />} type="dashed" onClick={handleAddWithLink}>
             带跳转链接
           </AButton>
         </Space>
       </Card>
 
       {/* 批量操作 */}
-      <Card
-        className="mb-24px"
-        title="🎬 批量操作"
-      >
+      <Card className="mb-24px" title="🎬 批量操作">
         <p className="mb-16px text-$ant-color-text-secondary">一次性添加多条通知，或批量管理现有通知</p>
         <Space wrap>
-          <AButton
-            icon={<span className="i-carbon-add-alt" />}
-            type="primary"
-            onClick={handleAddMockNotifications}
-          >
+          <AButton icon={<span className="i-carbon-add-alt" />} type="primary" onClick={handleAddMockNotifications}>
             批量添加 8 条模拟通知
           </AButton>
-          <AButton
-            disabled={unreadCount === 0}
-            icon={<span className="i-carbon-checkmark" />}
-            onClick={markAllAsRead}
-          >
+          <AButton disabled={unreadCount === 0} icon={<span className="i-carbon-checkmark" />} onClick={markAllAsRead}>
             全部标记已读
           </AButton>
           <AButton
@@ -378,11 +313,7 @@ function RouteComponent() {
         <p className="mb-16px text-$ant-color-text-secondary">控制通知的声音、浏览器通知和勿扰模式</p>
         <Space wrap>
           {notificationPermission !== 'granted' && (
-            <AButton
-              icon={<span className="i-carbon-notification" />}
-              type="primary"
-              onClick={handleRequestPermission}
-            >
+            <AButton icon={<span className="i-carbon-notification" />} type="primary" onClick={handleRequestPermission}>
               请求浏览器通知权限
             </AButton>
           )}
@@ -412,14 +343,8 @@ function RouteComponent() {
       </Card>
 
       {/* 使用提示 */}
-      <Card
-        className="mt-24px"
-        title="💡 使用提示"
-      >
-        <Space
-          direction="vertical"
-          size="small"
-        >
+      <Card className="mt-24px" title="💡 使用提示">
+        <Space direction="vertical" size="small">
           <div className="flex gap-8px">
             <span className="text-$ant-color-primary">👉</span>
             <span>点击右上角的通知图标可以查看通知面板</span>

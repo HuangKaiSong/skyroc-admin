@@ -1,7 +1,7 @@
+import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { useEffect } from 'react';
 import { ActivityIndicator, Pressable, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { SIZE_THUMB_MAP, SIZE_TRACK_MAP, switchVariants } from './switch-variants';
 import type { SwitchProps } from './types';
 
@@ -81,12 +81,7 @@ const Switch = (props: SwitchProps) => {
       </Animated.View>
       <Animated.View style={[{ height: thumbSize, left: padding, top: padding, width: thumbSize }, thumbAnimStyle]}>
         <View className={thumbCls()}>
-          {loading ? (
-            <ActivityIndicator
-              className={indicatorCls()}
-              size={thumbSize * 0.6}
-            />
-          ) : null}
+          {loading ? <ActivityIndicator className={indicatorCls()} size={thumbSize * 0.6} /> : null}
           {!loading && children ? children : null}
         </View>
       </Animated.View>

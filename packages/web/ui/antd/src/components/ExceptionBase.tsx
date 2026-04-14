@@ -36,10 +36,7 @@ const ExceptionBase = memo((props: Props) => {
       <div className="flex text-400px text-primary">
         <SvgIcon localIcon={iconMap[type]} />
       </div>
-      <Button
-        type="primary"
-        onClick={handleClick}
-      >
+      <Button type="primary" onClick={handleClick}>
         {buttonText}
       </Button>
     </div>

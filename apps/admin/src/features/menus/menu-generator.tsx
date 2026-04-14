@@ -11,8 +11,7 @@ import type { MenuCategoryKey } from './menu-category';
 import { getMenuCategoryKey, menuCategory } from './menu-category';
 import menuNodeCallback from './menu-config';
 /**
- * 菜单节点回调函数类型
- * 用于在特定路由节点添加额外菜单
+ * 菜单节点回调函数类型 用于在特定路由节点添加额外菜单
  *
  * @param routeId - 当前路由 ID
  * @param routePath - 当前路由路径
@@ -24,6 +23,7 @@ export type MenuNodeCallback = (
 
 /**
  * 规范化路径：去掉末尾的 /
+ *
  * @param path - 原始路径
  * @returns 规范化后的路径
  */
@@ -50,12 +50,11 @@ function findLayoutRoute(layoutIds: Router.RouteId[]): AnyRoute[] {
   return menuRoutes;
 }
 
-/**
- * 菜单生成器
- */
+/** 菜单生成器 */
 class MenuGenerator {
   /**
    * 生成菜单
+   *
    * @param force - 是否强制重新生成，即使已经生成过
    */
   generate() {
@@ -88,9 +87,7 @@ class MenuGenerator {
     };
   }
 
-  /**
-   * 生成指定 layout 的菜单
-   */
+  /** 生成指定 layout 的菜单 */
   private generateLayoutMenus(layoutRoute: AnyRoute, quickReferenceMenuMap: Menu.QuickReferenceMenuMap) {
     // 3. 根据模式生成菜单
     let menus: Menu.CommonMenu[] = [];
@@ -185,21 +182,10 @@ class MenuGenerator {
       return null;
     }
 
-    const label = (
-      <I18nLabel
-        fallback={title}
-        i18nKey={i18nKey}
-      />
-    );
+    const label = <I18nLabel fallback={title} i18nKey={i18nKey} />;
 
     const menu: Menu.CommonMenu = {
-      icon: (
-        <SvgIcon
-          icon={icon}
-          localIcon={localIcon}
-          style={{ fontSize: '20px' }}
-        />
-      ),
+      icon: <SvgIcon icon={icon} localIcon={localIcon} style={{ fontSize: '20px' }} />,
       type,
 
       key: normalizedPath,
@@ -256,6 +242,7 @@ class MenuGenerator {
 
   /**
    * 将额外菜单配置转换为菜单对象，并记录到 quickReferenceMap
+   *
    * @param config - 额外菜单配置
    * @param parentKeys - 父级菜单的 key 列表
    * @param depth - 菜单深度层级
@@ -291,23 +278,12 @@ class MenuGenerator {
     };
     quickReferenceMenuMap.set(config.path as Router.RoutePath, data);
 
-    const menuLabel = (
-      <I18nLabel
-        fallback={config.title}
-        i18nKey={config.i18nKey}
-      />
-    );
+    const menuLabel = <I18nLabel fallback={config.title} i18nKey={config.i18nKey} />;
 
     const menu: Menu.CommonMenu = {
       key: config.path,
       label: <BeyondHiding title={menuLabel} />,
-      icon: (
-        <SvgIcon
-          icon={icon}
-          localIcon={localIcon}
-          style={{ fontSize: '20px' }}
-        />
-      ),
+      icon: <SvgIcon icon={icon} localIcon={localIcon} style={{ fontSize: '20px' }} />,
       order: order ?? undefined,
       title: menuLabel as unknown as string,
       type

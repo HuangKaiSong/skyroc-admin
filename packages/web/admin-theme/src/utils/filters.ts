@@ -14,9 +14,7 @@ export function toggleAuxiliaryColorModes(grayscaleMode = false, colourWeakness 
     .join(' ');
 }
 
-/**
- * Clear all auxiliary color modes
- */
+/** Clear all auxiliary color modes */
 export function clearAuxiliaryColorModes(): void {
   document.documentElement.style.filter = '';
 }

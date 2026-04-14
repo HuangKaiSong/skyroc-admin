@@ -12,10 +12,7 @@ export type DatePickerFilter = (
 ) => PickerOption[];
 
 /** Formatter function to customize the display of date options */
-export type DatePickerFormatter = (
-  type: DatePickerColumnType,
-  option: PickerOption
-) => PickerOption;
+export type DatePickerFormatter = (type: DatePickerColumnType, option: PickerOption) => PickerOption;
 
 /** Props for the inline DatePickerView component */
 export interface DatePickerViewProps extends Omit<PickerViewProps, 'columns' | 'fieldNames'> {

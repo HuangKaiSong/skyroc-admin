@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import type { ThemeColor, ThemeSize } from '@skyroc/ui-types';
+import type { ReactNode } from 'react';
 
 /** Checkbox icon shape */
 export type CheckboxShape = 'round' | 'square';

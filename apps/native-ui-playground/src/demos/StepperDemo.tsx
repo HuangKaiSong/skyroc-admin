@@ -1,6 +1,6 @@
+import { Cell, CellGroup, Stepper, Text } from '@skyroc/native-ui';
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { Cell, CellGroup, Stepper, Text } from '@skyroc/native-ui';
 
 const StepperDemo = () => {
   const [value, setValue] = useState(1);
@@ -73,7 +73,7 @@ const StepperDemo = () => {
           title="beforeChange"
           trailing={
             <Stepper
-              beforeChange={async (val) => {
+              beforeChange={async val => {
                 return val <= 5;
               }}
               defaultValue={1}

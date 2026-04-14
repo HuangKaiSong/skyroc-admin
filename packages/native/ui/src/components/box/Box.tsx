@@ -5,10 +5,7 @@ const Box = (props: BoxProps) => {
   const { children, className, ...rest } = props;
 
   return (
-    <View
-      className={className}
-      {...rest}
-    >
+    <View className={className} {...rest}>
       {children}
     </View>
   );

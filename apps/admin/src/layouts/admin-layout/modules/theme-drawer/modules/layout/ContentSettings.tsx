@@ -71,10 +71,7 @@ const ContentSettings = () => {
       </SettingItem>
 
       <SettingItem label={t('theme.layout.content.page.animate')}>
-        <ASwitch
-          checked={page.animate}
-          onChange={handlePageAnimateChange}
-        />
+        <ASwitch checked={page.animate} onChange={handlePageAnimateChange} />
       </SettingItem>
 
       <AnimatedCollapse visible={page.animate}>
@@ -91,10 +88,7 @@ const ContentSettings = () => {
 
       <AnimatedCollapse visible={isWrapperScrollMode}>
         <SettingItem label={t('theme.layout.content.fixedHeaderAndTab')}>
-          <ASwitch
-            checked={fixedHeaderAndTab}
-            onChange={handleFixedHeaderAndTabChange}
-          />
+          <ASwitch checked={fixedHeaderAndTab} onChange={handleFixedHeaderAndTabChange} />
         </SettingItem>
       </AnimatedCollapse>
     </div>

@@ -17,10 +17,7 @@ describe('Button', () => {
   it('does not call onPress when disabled', () => {
     const onPress = jest.fn();
     render(
-      <Button
-        disabled
-        onPress={onPress}
-      >
+      <Button disabled onPress={onPress}>
         Disabled
       </Button>
     );
@@ -31,10 +28,7 @@ describe('Button', () => {
   it('does not call onPress when loading', () => {
     const onPress = jest.fn();
     render(
-      <Button
-        loading
-        onPress={onPress}
-      >
+      <Button loading onPress={onPress}>
         Loading
       </Button>
     );

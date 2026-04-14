@@ -45,19 +45,9 @@ const VerticalMix = memo(({ mode = FirstLevelMenuMode.All }: { mode?: FirstLevel
   }
 
   return (
-    <div
-      className="h-full flex"
-      onMouseLeave={handleResetActiveMenu}
-    >
-      <FirstLevelMenu
-        inverted={siderInverted}
-        mode={mode}
-        onSelect={handleSelectMixMenu}
-      >
-        <AdminLogo
-          showTitle={false}
-          style={{ height: `${header.height}px` }}
-        />
+    <div className="h-full flex" onMouseLeave={handleResetActiveMenu}>
+      <FirstLevelMenu inverted={siderInverted} mode={mode} onSelect={handleSelectMixMenu}>
+        <AdminLogo showTitle={false} style={{ height: `${header.height}px` }} />
       </FirstLevelMenu>
       <div
         className="relative h-full transition-width-300"
@@ -68,10 +58,7 @@ const VerticalMix = memo(({ mode = FirstLevelMenuMode.All }: { mode?: FirstLevel
           inverted={siderInverted}
           style={{ width: showDrawer ? `${sider.mixChildMenuWidth}px` : '0px' }}
         >
-          <header
-            className="flex-y-center justify-between px-12px"
-            style={{ height: `${header.height}px` }}
-          >
+          <header className="flex-y-center justify-between px-12px" style={{ height: `${header.height}px` }}>
             <h2 className="text-16px text-primary font-bold">{t('system.title')}</h2>
             <PinToggler
               className={classNames({ 'text-white:88 !hover:text-white': siderInverted })}

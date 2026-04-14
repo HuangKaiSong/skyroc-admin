@@ -1,8 +1,8 @@
+import { Canvas, Fill, ImageFormat, Path, useCanvasRef } from '@shopify/react-native-skia';
+import { cn } from '@skyroc/utils';
 import { useImperativeHandle, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Canvas, Fill, ImageFormat, Path, useCanvasRef } from '@shopify/react-native-skia';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import { cn } from '@skyroc/utils';
 import { Button } from '../button/Button';
 import { signatureVariants } from './signature-variants';
 import type { SignatureProps } from './types';

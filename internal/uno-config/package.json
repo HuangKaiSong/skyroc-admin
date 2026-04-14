@@ -1,19 +1,23 @@
 {
   "name": "@sa/uno-config",
-  "type": "module",
   "version": "1.0.0",
+  "files": [
+    "./dist"
+  ],
+  "type": "module",
   "sideEffects": false,
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*"
+      ]
+    }
+  },
   "exports": {
     ".": {
       "import": "./src/index.ts"
     }
   },
-  "typesVersions": {
-    "*": {
-      "*": ["./src/*"]
-    }
-  },
-  "files": ["./dist"],
   "dependencies": {
     "@skyroc/color": "workspace:*",
     "colord": "catalog:utils",

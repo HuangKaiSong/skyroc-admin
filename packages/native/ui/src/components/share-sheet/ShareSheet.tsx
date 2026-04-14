@@ -1,5 +1,5 @@
-import { Pressable, View } from 'react-native';
 import { cn } from '@skyroc/utils';
+import { Pressable, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Divider } from '../divider/Divider';
 import { Sheet } from '../sheet/Sheet';
@@ -86,10 +86,7 @@ const ShareSheet = (props: ShareSheetProps) => {
       {cancelText ? (
         <>
           <View className={cn(slots.cancelGap(), classNames?.cancelGap)} />
-          <Pressable
-            className={cn(slots.cancel(), classNames?.cancel)}
-            onPress={handleCancel}
-          >
+          <Pressable className={cn(slots.cancel(), classNames?.cancel)} onPress={handleCancel}>
             <Text className="text-base text-foreground">{cancelText}</Text>
           </Pressable>
         </>

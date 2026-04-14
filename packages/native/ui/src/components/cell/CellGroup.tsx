@@ -1,6 +1,6 @@
+import { cn } from '@skyroc/utils';
 import { Children, cloneElement, isValidElement } from 'react';
 import { View } from 'react-native';
-import { cn } from '@skyroc/utils';
 import { Text } from '../text/Typography';
 import { cellGroupVariants } from './cell-variants';
 import type { CellGroupProps } from './types';

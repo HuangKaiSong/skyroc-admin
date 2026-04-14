@@ -1,12 +1,12 @@
-/* eslint-disable complexity */
-import { useContext } from 'react';
-import { Pressable, View } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn, isString } from '@skyroc/utils';
+/* eslint-disable complexity */
+import { useContext } from 'react';
+import { Pressable, View } from 'react-native';
 import { Text } from '../text/Typography';
-import { CheckboxGroupContext } from './CheckboxGroupContext';
 import { SIZE_CONTROL_MAP, SIZE_INNER_ICON_MAP, checkboxVariants } from './checkbox-variants';
+import { CheckboxGroupContext } from './CheckboxGroupContext';
 import type { CheckboxProps } from './types';
 
 const INDICATOR_COLOR = '#fff';
@@ -100,13 +100,7 @@ const Checkbox = (props: CheckboxProps) => {
       return resolvedCheckedIcon;
     }
 
-    return (
-      <Feather
-        color={INDICATOR_COLOR}
-        name={isIndeterminate ? 'minus' : 'check'}
-        size={innerIconSize}
-      />
-    );
+    return <Feather color={INDICATOR_COLOR} name={isIndeterminate ? 'minus' : 'check'} size={innerIconSize} />;
   }
 
   return (
@@ -121,10 +115,7 @@ const Checkbox = (props: CheckboxProps) => {
       </Pressable>
 
       {children ? (
-        <Pressable
-          disabled={disabled || labelDisabled}
-          onPress={handleLabelPress}
-        >
+        <Pressable disabled={disabled || labelDisabled} onPress={handleLabelPress}>
           {isString(children) ? <Text className={labelCls()}>{children}</Text> : <View>{children}</View>}
         </Pressable>
       ) : null}

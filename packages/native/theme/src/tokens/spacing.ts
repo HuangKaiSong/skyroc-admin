@@ -27,9 +27,7 @@ export const spacing = {
   24: '96px'
 } as const;
 
-/**
- * Radius scale for border-radius.
- */
+/** Radius scale for border-radius. */
 export const borderRadius = {
   none: '0px',
   sm: '4px',

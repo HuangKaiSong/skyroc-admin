@@ -1,6 +1,6 @@
-import { Pressable, View } from 'react-native';
-import { cn, isString } from '@skyroc/utils';
 import Octicons from '@expo/vector-icons/Octicons';
+import { cn, isString } from '@skyroc/utils';
+import { Pressable, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Text } from '../text/Typography';
 import { navBarVariants } from './navbar-variants';
@@ -39,13 +39,7 @@ const NavBar = (props: NavBarProps) => {
 
     return (
       <>
-        {leftArrow && (
-          <Octicons
-            color="#09090b"
-            name="chevron-left"
-            size={24}
-          />
-        )}
+        {leftArrow && <Octicons color="#09090b" name="chevron-left" size={24} />}
         {leftText ? <Text className="text-sm">{leftText}</Text> : null}
       </>
     );
@@ -67,11 +61,7 @@ const NavBar = (props: NavBarProps) => {
       <View className={cn(slots.root(), className)}>
         {/* Title - 绝对定位居中，不受两侧内容宽度影响 */}
         {title && (
-          <Pressable
-            className={cn(slots.title(), classNames?.title)}
-            disabled={!onTitlePress}
-            onPress={onTitlePress}
-          >
+          <Pressable className={cn(slots.title(), classNames?.title)} disabled={!onTitlePress} onPress={onTitlePress}>
             {isString(title) ? <Text className="text-base font-semibold text-foreground">{title}</Text> : title}
           </Pressable>
         )}

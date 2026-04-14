@@ -31,6 +31,7 @@
 ```
 
 特点：
+
 - 生成类型声明文件 (`.d.ts`)
 - 仅输出类型，不编译代码（使用 tsdown 或其他工具编译）
 - JSX 使用 `react-jsx` 模式
@@ -46,6 +47,7 @@
 ```
 
 特点：
+
 - 包含 Node.js 类型定义
 - 使用 `node` 模块解析策略
 - 不包含 DOM 相关类型
@@ -61,6 +63,7 @@
 ```
 
 特点：
+
 - 包含 DOM 类型库
 - 配置 Vite 客户端类型
 - JSX 使用 `react-jsx` 模式
@@ -82,6 +85,7 @@
 ```
 
 特点：
+
 - 继承自 `web.json`
 - 预配置路径别名
 - 适用于 Vite 应用
@@ -97,6 +101,7 @@
 ```
 
 特点：
+
 - 包含 React Native 类型
 - 使用 `node` 模块解析（React Native 要求）
 - 不包含 DOM 类型
@@ -138,10 +143,7 @@
     }
   },
   "include": ["src/**/*", "vite.config.ts"],
-  "references": [
-    { "path": "../../packages/core-auth" },
-    { "path": "../../packages/web-router" }
-  ]
+  "references": [{ "path": "../../packages/core-auth" }, { "path": "../../packages/web-router" }]
 }
 ```
 

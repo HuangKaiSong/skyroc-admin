@@ -15,12 +15,14 @@
 ## 🎯 职责定位
 
 **核心职责**:
+
 - Token 生命周期管理（获取、存储、清除）
 - 用户认证状态管理
 - 用户信息状态管理
 - 认证相关工具函数
 
 **不负责**:
+
 - ❌ HTTP 请求（由 `@sa/axios` 处理）
 - ❌ 路由守卫（由 `@skyroc/web-router` 处理）
 - ❌ UI 组件（由各应用自行实现）
@@ -55,21 +57,16 @@
 
 ```ts
 // Hooks
-export { useAuth } from './hooks/use-auth'
+export { useAuth } from './hooks/use-auth';
 
 // Actions
-export { setAuth, clearAuth, initAuth } from './actions'
+export { setAuth, clearAuth, initAuth } from './actions';
 
 // Utils
-export { getToken, isTokenValid, isTokenExpired } from './utils/token'
+export { getToken, isTokenValid, isTokenExpired } from './utils/token';
 
 // Types
-export type {
-  AuthState,
-  LoginToken,
-  UserInfo,
-  AuthConfig
-} from './types'
+export type { AuthState, LoginToken, UserInfo, AuthConfig } from './types';
 ```
 
 ### 类型定义
@@ -77,26 +74,26 @@ export type {
 ```ts
 // src/types/index.ts
 export interface AuthState {
-  token: string
-  initialized: boolean
+  token: string;
+  initialized: boolean;
 }
 
 export interface LoginToken {
-  token: string
-  refreshToken: string
+  token: string;
+  refreshToken: string;
 }
 
 export interface UserInfo {
-  userId: string
-  userName: string
-  roles: string[]
+  userId: string;
+  userName: string;
+  roles: string[];
   // ... 其他用户信息
 }
 
 export interface AuthConfig {
-  tokenKey?: string
-  refreshTokenKey?: string
-  storagePrefix?: string
+  tokenKey?: string;
+  refreshTokenKey?: string;
+  storagePrefix?: string;
 }
 ```
 
@@ -106,37 +103,34 @@ export interface AuthConfig {
 
 ```ts
 // src/atoms/auth.ts
-import { atom } from 'jotai'
-import { getToken } from '../utils/token'
+import { atom } from 'jotai';
+import { getToken } from '../utils/token';
 
-const initToken = getToken()
+const initToken = getToken();
 
 const initState: AuthState = {
   token: initToken,
   initialized: false
-}
+};
 
-export const authAtom = atom(
-  initState,
-  (get, set, update: Partial<AuthState>) => {
-    set(authAtom, { ...get(authAtom), ...update })
-  }
-)
+export const authAtom = atom(initState, (get, set, update: Partial<AuthState>) => {
+  set(authAtom, { ...get(authAtom), ...update });
+});
 ```
 
 ### 2. useAuth Hook
 
 ```ts
 // src/hooks/use-auth.ts
-import { useAtom } from 'jotai'
-import { authAtom } from '../atoms/auth'
-import { setAuth as setAuthAction } from '../actions/set-auth'
-import { clearAuth as clearAuthAction } from '../actions/clear-auth'
+import { useAtom } from 'jotai';
+import { authAtom } from '../atoms/auth';
+import { setAuth as setAuthAction } from '../actions/set-auth';
+import { clearAuth as clearAuthAction } from '../actions/clear-auth';
 
 export function useAuth() {
-  const [state, setState] = useAtom(authAtom)
+  const [state, setState] = useAtom(authAtom);
 
-  const isLoggedIn = Boolean(state.token)
+  const isLoggedIn = Boolean(state.token);
 
   return {
     // 状态
@@ -150,9 +144,9 @@ export function useAuth() {
 
     // 工具方法
     updateToken: (token: string) => {
-      setState({ token })
+      setState({ token });
     }
-  }
+  };
 }
 ```
 
@@ -160,18 +154,18 @@ export function useAuth() {
 
 ```ts
 // src/actions/set-auth.ts
-import { globalStore } from '@skyroc/core-state'
-import { storage } from '@skyroc/core-storage'
-import { authAtom } from '../atoms/auth'
-import type { LoginToken } from '../types'
+import { globalStore } from '@skyroc/core-state';
+import { storage } from '@skyroc/core-storage';
+import { authAtom } from '../atoms/auth';
+import type { LoginToken } from '../types';
 
 export function setAuth(data: LoginToken) {
   // 1. 更新状态
-  globalStore.set(authAtom, { token: data.token })
+  globalStore.set(authAtom, { token: data.token });
 
   // 2. 持久化存储
-  storage.set('token', data.token)
-  storage.set('refreshToken', data.refreshToken)
+  storage.set('token', data.token);
+  storage.set('refreshToken', data.refreshToken);
 }
 ```
 
@@ -179,17 +173,17 @@ export function setAuth(data: LoginToken) {
 
 ```ts
 // src/actions/clear-auth.ts
-import { globalStore } from '@skyroc/core-state'
-import { storage } from '@skyroc/core-storage'
-import { authAtom } from '../atoms/auth'
+import { globalStore } from '@skyroc/core-state';
+import { storage } from '@skyroc/core-storage';
+import { authAtom } from '../atoms/auth';
 
 export function clearAuth() {
   // 1. 清除状态
-  globalStore.set(authAtom, { token: '', initialized: false })
+  globalStore.set(authAtom, { token: '', initialized: false });
 
   // 2. 清除存储
-  storage.remove('token')
-  storage.remove('refreshToken')
+  storage.remove('token');
+  storage.remove('refreshToken');
 }
 ```
 
@@ -197,24 +191,24 @@ export function clearAuth() {
 
 ```ts
 // src/utils/token.ts
-import { storage } from '@skyroc/core-storage'
+import { storage } from '@skyroc/core-storage';
 
 export function getToken(): string {
-  return storage.get('token') || ''
+  return storage.get('token') || '';
 }
 
 export function getRefreshToken(): string {
-  return storage.get('refreshToken') || ''
+  return storage.get('refreshToken') || '';
 }
 
 export function isTokenExpired(token: string): boolean {
   // TODO: 实现 JWT 解析和过期检查
   // 可以使用 jwt-decode 或自己解析
-  return false
+  return false;
 }
 
 export function isTokenValid(token: string): boolean {
-  return Boolean(token) && !isTokenExpired(token)
+  return Boolean(token) && !isTokenExpired(token);
 }
 ```
 
@@ -239,18 +233,18 @@ function App() {
 
 ```tsx
 // apps/mobile-app/src/App.tsx
-import { JotaiProvider } from '@skyroc/core-state'
-import { useAuth } from '@skyroc/core-auth'
+import { JotaiProvider } from '@skyroc/core-state';
+import { useAuth } from '@skyroc/core-auth';
 // Storage adapter 已通过 @skyroc/core-storage/react-native 配置
 
 function App() {
-  const { isLoggedIn } = useAuth()
+  const { isLoggedIn } = useAuth();
 
   return (
     <View>
       <Text>{isLoggedIn ? 'Logged In' : 'Logged Out'}</Text>
     </View>
-  )
+  );
 }
 ```
 
@@ -334,11 +328,13 @@ apps/admin/src/features/auth/
 ### 迁移步骤
 
 1. **创建包结构**
+
 ```bash
 mkdir -p packages/core-auth/src/{atoms,hooks,actions,utils,types}
 ```
 
 2. **迁移 atom 定义**
+
 ```bash
 # 提取 authAtom
 # 从 apps/admin/src/features/auth/use-auth.ts
@@ -346,30 +342,34 @@ mkdir -p packages/core-auth/src/{atoms,hooks,actions,utils,types}
 ```
 
 3. **迁移 hooks**
+
 ```bash
 # 提取纯状态管理逻辑
 # 移除与 API、菜单等的耦合
 ```
 
 4. **迁移工具函数**
+
 ```bash
 cp apps/admin/src/features/auth/shared.ts \
    packages/core-auth/src/utils/token.ts
 ```
 
 5. **更新依赖**
+
 ```bash
 cd apps/admin
 pnpm add @skyroc/core-auth@workspace:*
 ```
 
 6. **更新导入**
+
 ```ts
 // 旧代码
-import { useAuth } from '@/features/auth/use-auth'
+import { useAuth } from '@/features/auth/use-auth';
 
 // 新代码
-import { useAuth } from '@skyroc/core-auth'
+import { useAuth } from '@skyroc/core-auth';
 ```
 
 ## 🧪 测试策略
@@ -378,31 +378,31 @@ import { useAuth } from '@skyroc/core-auth'
 
 ```ts
 // packages/core-auth/src/__tests__/use-auth.test.ts
-import { renderHook, act } from '@testing-library/react'
-import { useAuth } from '../hooks/use-auth'
+import { renderHook, act } from '@testing-library/react';
+import { useAuth } from '../hooks/use-auth';
 
 describe('useAuth', () => {
   it('should initialize with empty token', () => {
-    const { result } = renderHook(() => useAuth())
-    expect(result.current.isLoggedIn).toBe(false)
-  })
+    const { result } = renderHook(() => useAuth());
+    expect(result.current.isLoggedIn).toBe(false);
+  });
 
   it('should set auth correctly', () => {
-    const { result } = renderHook(() => useAuth())
+    const { result } = renderHook(() => useAuth());
 
     act(() => {
       result.current.setAuth({
         token: 'test-token',
         refreshToken: 'test-refresh-token'
-      })
-    })
+      });
+    });
 
-    expect(result.current.isLoggedIn).toBe(true)
-    expect(result.current.token).toBe('test-token')
-  })
+    expect(result.current.isLoggedIn).toBe(true);
+    expect(result.current.token).toBe('test-token');
+  });
 
   // ... 更多测试
-})
+});
 ```
 
 ## 📝 待补充内容

@@ -45,14 +45,19 @@ function App() {
 ## Available Exports
 
 ### Components
+
 Components will be added as the library develops.
 
 ### Hooks
+
 Custom React hooks for common UI patterns:
+
 - Import from `@soybean/ui/hooks`
 
 ### Utils
+
 Utility functions for component development:
+
 - Import from `@soybean/ui/utils`
 
 ## Development
@@ -97,6 +102,7 @@ ui-kit/ui/
 ### Build System
 
 This package uses [tsdown](https://github.com/sxzz/tsdown) for building:
+
 - Fast builds with esbuild
 - Automatic type generation
 - Tree-shakeable output

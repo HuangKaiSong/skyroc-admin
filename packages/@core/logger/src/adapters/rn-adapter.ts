@@ -10,10 +10,7 @@ interface LogIndex {
   timestamps: Record<string, number>;
 }
 
-/**
- * React Native 存储适配器
- * 使用 AsyncStorage 存储日志
- */
+/** React Native 存储适配器 使用 AsyncStorage 存储日志 */
 export class RNStorageAdapter extends BaseStorageAdapter {
   /** AsyncStorage 模块 */
   private AsyncStorage: any = null;
@@ -40,18 +37,13 @@ export class RNStorageAdapter extends BaseStorageAdapter {
 
       this.initialized = true;
     } catch (error) {
-      throw new Error(
-        `Failed to initialize RN storage adapter: ${(error as Error).message}`
-      );
+      throw new Error(`Failed to initialize RN storage adapter: ${(error as Error).message}`);
     }
   }
 
   /** 保存日志索引 */
   private async saveIndex(): Promise<void> {
-    await this.AsyncStorage.setItem(
-      RN_LOG_INDEX_KEY,
-      JSON.stringify(this.logIndex)
-    );
+    await this.AsyncStorage.setItem(RN_LOG_INDEX_KEY, JSON.stringify(this.logIndex));
   }
 
   /** 写入日志 */
@@ -71,9 +63,9 @@ export class RNStorageAdapter extends BaseStorageAdapter {
   async writeBatch(records: LogRecord[]): Promise<void> {
     await this.ensureInitialized();
 
-    const keyValuePairs: [string, string][] = records.map((record) => [
+    const keyValuePairs: [string, string][] = records.map(record => [
       `${RN_LOG_KEY_PREFIX}${record.id}`,
-      JSON.stringify(record),
+      JSON.stringify(record)
     ]);
 
     await this.AsyncStorage.multiSet(keyValuePairs);
@@ -91,7 +83,7 @@ export class RNStorageAdapter extends BaseStorageAdapter {
     await this.ensureInitialized();
 
     // 过滤符合时间范围的 ID
-    const filteredIds = this.logIndex.ids.filter((id) => {
+    const filteredIds = this.logIndex.ids.filter(id => {
       const timestamp = this.logIndex.timestamps[id];
       if (startTime !== undefined && timestamp < startTime) return false;
       if (endTime !== undefined && timestamp > endTime) return false;
@@ -102,9 +94,8 @@ export class RNStorageAdapter extends BaseStorageAdapter {
       return [];
     }
 
-    const keys = filteredIds.map((id) => `${RN_LOG_KEY_PREFIX}${id}`);
-    const pairs: [string, string | null][] =
-      await this.AsyncStorage.multiGet(keys);
+    const keys = filteredIds.map(id => `${RN_LOG_KEY_PREFIX}${id}`);
+    const pairs: [string, string | null][] = await this.AsyncStorage.multiGet(keys);
 
     const records: LogRecord[] = [];
     for (const [, value] of pairs) {
@@ -122,21 +113,17 @@ export class RNStorageAdapter extends BaseStorageAdapter {
   async deleteBeforeTime(time: number): Promise<number> {
     await this.ensureInitialized();
 
-    const idsToDelete = this.logIndex.ids.filter(
-      (id) => this.logIndex.timestamps[id] < time
-    );
+    const idsToDelete = this.logIndex.ids.filter(id => this.logIndex.timestamps[id] < time);
 
     if (idsToDelete.length === 0) {
       return 0;
     }
 
-    const keysToDelete = idsToDelete.map((id) => `${RN_LOG_KEY_PREFIX}${id}`);
+    const keysToDelete = idsToDelete.map(id => `${RN_LOG_KEY_PREFIX}${id}`);
     await this.AsyncStorage.multiRemove(keysToDelete);
 
     // 更新索引
-    this.logIndex.ids = this.logIndex.ids.filter(
-      (id) => !idsToDelete.includes(id)
-    );
+    this.logIndex.ids = this.logIndex.ids.filter(id => !idsToDelete.includes(id));
     for (const id of idsToDelete) {
       delete this.logIndex.timestamps[id];
     }
@@ -155,7 +142,7 @@ export class RNStorageAdapter extends BaseStorageAdapter {
   async clear(): Promise<void> {
     await this.ensureInitialized();
 
-    const keys = this.logIndex.ids.map((id) => `${RN_LOG_KEY_PREFIX}${id}`);
+    const keys = this.logIndex.ids.map(id => `${RN_LOG_KEY_PREFIX}${id}`);
     if (keys.length > 0) {
       await this.AsyncStorage.multiRemove(keys);
     }

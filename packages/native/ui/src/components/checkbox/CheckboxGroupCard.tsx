@@ -1,8 +1,8 @@
-import { View } from 'react-native';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
-import { CheckboxCard } from './CheckboxCard';
+import { View } from 'react-native';
 import { checkboxGroupVariants } from './checkbox-variants';
+import { CheckboxCard } from './CheckboxCard';
 import type { CheckboxGroupCardProps } from './types';
 
 const CheckboxGroupCard = (props: CheckboxGroupCardProps) => {

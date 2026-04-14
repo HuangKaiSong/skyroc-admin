@@ -5,15 +5,9 @@ import VerticalMixMenu from './VerticalMix';
 
 const VerticalHybridHeaderFirst = () => {
   return [
-    <Horizontal
-      key="vertical-hybrid-header-first-horizontal"
-      mode={HorizontalMenuMode.FirstLevel}
-    />,
+    <Horizontal key="vertical-hybrid-header-first-horizontal" mode={HorizontalMenuMode.FirstLevel} />,
 
-    <VerticalMixMenu
-      key="vertical-hybrid-header-first-vertical-mix"
-      mode={FirstLevelMenuMode.SecondLevel}
-    />
+    <VerticalMixMenu key="vertical-hybrid-header-first-vertical-mix" mode={FirstLevelMenuMode.SecondLevel} />
   ];
 };
 

@@ -10,8 +10,7 @@ import { fetchRefreshToken } from './api';
 /**
  * Antd 平台适配器
  *
- * 将 antd / jotai / tanstack-router 等平台依赖注入到 @skyroc/service，
- * 使核心请求逻辑保持平台无关。
+ * 将 antd / jotai / tanstack-router 等平台依赖注入到 @skyroc/service， 使核心请求逻辑保持平台无关。
  */
 export const antdAdapter: RequestAdapter = {
   getCurrentPath() {

@@ -1,8 +1,7 @@
 /**
  * 类型级测试
  *
- * 使用 vitest 内置的 expectTypeOf（底层 expect-type）在编译时验证类型推导。
- * 这些测试运行时无实际开销，但能防止类型定义的回归。
+ * 使用 vitest 内置的 expectTypeOf（底层 expect-type）在编译时验证类型推导。 这些测试运行时无实际开销，但能防止类型定义的回归。
  */
 import type { AxiosError, AxiosResponse } from 'axios';
 import { describe, expectTypeOf, it } from 'vitest';

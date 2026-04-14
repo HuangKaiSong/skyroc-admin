@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { ActivityIndicator, ScrollView, View } from 'react-native';
 import { Tabs, Text } from '@skyroc/native-ui';
 import type { TabItem } from '@skyroc/native-ui';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, ScrollView, View } from 'react-native';
 
 const BASIC_ITEMS: TabItem[] = [
   {
@@ -132,11 +132,7 @@ const TabsDemo = () => {
   const [controlledIndex, setControlledIndex] = useState(0);
 
   return (
-    <ScrollView
-      className="flex-1 bg-muted"
-      contentContainerClassName="pb-20"
-      showsVerticalScrollIndicator={false}
-    >
+    <ScrollView className="flex-1 bg-muted" contentContainerClassName="pb-20" showsVerticalScrollIndicator={false}>
       {/* Basic Line */}
       <Text className="px-6 pb-3 pt-6 text-lg font-semibold">Basic (Line)</Text>
       <View className="mx-4 h-52 overflow-hidden rounded-2xl bg-background">
@@ -176,15 +172,9 @@ const TabsDemo = () => {
       {/* Controlled */}
       <Text className="px-6 pb-3 pt-6 text-lg font-semibold">Controlled</Text>
       <View className="mx-4 h-52 overflow-hidden rounded-2xl bg-background">
-        <Tabs
-          activeIndex={controlledIndex}
-          items={BASIC_ITEMS}
-          onIndexChange={setControlledIndex}
-        />
+        <Tabs activeIndex={controlledIndex} items={BASIC_ITEMS} onIndexChange={setControlledIndex} />
       </View>
-      <Text className="px-6 pt-2 text-sm text-muted-foreground">
-        Current index: {controlledIndex}
-      </Text>
+      <Text className="px-6 pt-2 text-sm text-muted-foreground">Current index: {controlledIndex}</Text>
     </ScrollView>
   );
 };

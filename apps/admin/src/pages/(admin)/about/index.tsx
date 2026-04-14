@@ -24,12 +24,7 @@ const pkgJson: PkgJson = {
 const TagItem = ({ nameOrHref }: PkgVersionInfo) => <ATag color="blue">{nameOrHref}</ATag>;
 
 const Link = ({ label, nameOrHref }: PkgVersionInfo) => (
-  <a
-    className="text-primary"
-    href={nameOrHref}
-    rel="noopener noreferrer"
-    target="_blank"
-  >
+  <a className="text-primary" href={nameOrHref} rel="noopener noreferrer" target="_blank">
     {label}
   </a>
 );
@@ -86,17 +81,8 @@ const About = () => {
   const cardInfo = useGetCardInfo();
 
   return (
-    <ASpace
-      className="w-full"
-      orientation="vertical"
-      size={16}
-    >
-      <ACard
-        className="card-wrapper"
-        size="small"
-        title={t('page.about.title')}
-        variant="borderless"
-      >
+    <ASpace className="w-full" orientation="vertical" size={16}>
+      <ACard className="card-wrapper" size="small" title={t('page.about.title')} variant="borderless">
         <TypingAnimation className="h-54px text-12px">{t('page.about.introduction')}</TypingAnimation>
       </ACard>
 

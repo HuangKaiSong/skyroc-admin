@@ -13,12 +13,14 @@
 ## 🎯 职责定位
 
 **核心职责**:
+
 - 提供统一的 TypeScript 编译器配置
 - 支持多种项目类型（库、应用、Node 工具）
 - 支持跨平台开发（Web + React Native）
 - 确保类型安全和代码质量
 
 **设计原则**:
+
 - 严格的类型检查
 - 模块化配置继承
 - 平台差异化处理
@@ -89,6 +91,7 @@ base.json (基础配置)
 ```
 
 **关键特性**:
+
 - `noUncheckedIndexedAccess`: 索引访问返回 `T | undefined`，防止运行时错误
 - `verbatimModuleSyntax`: 严格的 import/export 语法，type-only imports 必须使用 `import type`
 - `isolatedModules`: 确保每个文件可独立编译（Vite/tsdown 要求）
@@ -114,12 +117,14 @@ base.json (基础配置)
 ```
 
 **适用场景**:
+
 - `@skyroc/core-*` 核心包
 - `@skyroc/web-*` Web 包（库形式）
 - `@skyroc/adapter-*` 适配器包
 - `@skyroc/feature-*` 功能包
 
 **编译流程**:
+
 ```bash
 # TypeScript 只生成 .d.ts 类型声明
 tsc --emitDeclarationOnly
@@ -146,6 +151,7 @@ tsdown src/index.ts
 ```
 
 **适用场景**:
+
 - `internal/uno-config` UnoCSS 配置
 - 构建工具
 - 脚本工具
@@ -171,11 +177,13 @@ tsdown src/index.ts
 ```
 
 **关键特性**:
+
 - 包含 DOM 类型库
 - Vite 客户端类型
 - `react-jsx` JSX 模式（自动引入 React）
 
 **适用场景**:
+
 - `@skyroc/web-router`
 - `@skyroc/web-table`
 - `@skyroc/web-form`
@@ -200,6 +208,7 @@ tsdown src/index.ts
 ```
 
 **适用场景**:
+
 - `apps/admin`
 - 其他 Vite 应用
 
@@ -223,6 +232,7 @@ tsdown src/index.ts
 ```
 
 **关键差异**:
+
 - 使用 `node` 模块解析（React Native Metro 要求）
 - 不包含 DOM 类型
 - 包含 React Native 类型
@@ -268,10 +278,7 @@ tsdown src/index.ts
       "@skyroc/web-*": ["../../packages/web-*/src"]
     }
   },
-  "include": [
-    "src/**/*",
-    "vite.config.ts"
-  ],
+  "include": ["src/**/*", "vite.config.ts"],
   "references": [
     { "path": "../../packages/core-auth" },
     { "path": "../../packages/core-theme" },
@@ -326,6 +333,7 @@ graph TD
 ```
 
 **简化规则**:
+
 1. **Node 工具** → `node.json`
 2. **库包（需要 .d.ts）** → `library.json`
 3. **Web 应用** → `web-app.json`
@@ -348,6 +356,7 @@ packages:
 ### 2. 迁移现有包
 
 **核心包迁移**:
+
 ```bash
 # packages/core-auth/tsconfig.json
 cat > packages/core-auth/tsconfig.json << 'EOF'
@@ -360,6 +369,7 @@ EOF
 ```
 
 **Web 包迁移**:
+
 ```bash
 # packages/web-router/tsconfig.json
 cat > packages/web-router/tsconfig.json << 'EOF'
@@ -371,6 +381,7 @@ EOF
 ```
 
 **应用迁移**:
+
 ```bash
 # apps/admin/tsconfig.json
 cat > apps/admin/tsconfig.json << 'EOF'
@@ -419,37 +430,37 @@ const item = arr[10] // 应该是 number | undefined
 
 ```typescript
 // 测试路径别名是否正确
-import { useAuth } from '@skyroc/core-auth'
-import { router } from '@skyroc/web-router'
+import { useAuth } from '@skyroc/core-auth';
+import { router } from '@skyroc/web-router';
 ```
 
 ## 📝 编译器选项详解
 
 ### 严格模式选项
 
-| 选项 | 作用 | 示例 |
-|-----|------|------|
-| `strict` | 启用所有严格检查 | - |
-| `strictNullChecks` | null/undefined 检查 | `let x: string = null` ❌ |
-| `noImplicitAny` | 禁止隐式 any | `function fn(x) {}` ❌ |
-| `noUncheckedIndexedAccess` | 索引返回可选类型 | `arr[0]` → `T \| undefined` |
+| 选项                       | 作用                | 示例                        |
+| -------------------------- | ------------------- | --------------------------- |
+| `strict`                   | 启用所有严格检查    | -                           |
+| `strictNullChecks`         | null/undefined 检查 | `let x: string = null` ❌   |
+| `noImplicitAny`            | 禁止隐式 any        | `function fn(x) {}` ❌      |
+| `noUncheckedIndexedAccess` | 索引返回可选类型    | `arr[0]` → `T \| undefined` |
 
 ### 模块选项
 
-| 选项 | 值 | 说明 |
-|-----|---|------|
-| `module` | `ESNext` | 使用最新 ES 模块 |
-| `moduleResolution` | `bundler` / `node` | bundler 用于 Vite，node 用于 RN |
-| `verbatimModuleSyntax` | `true` | type-only imports 必须用 `import type` |
+| 选项                   | 值                 | 说明                                   |
+| ---------------------- | ------------------ | -------------------------------------- |
+| `module`               | `ESNext`           | 使用最新 ES 模块                       |
+| `moduleResolution`     | `bundler` / `node` | bundler 用于 Vite，node 用于 RN        |
+| `verbatimModuleSyntax` | `true`             | type-only imports 必须用 `import type` |
 
 ### 代码质量选项
 
-| 选项 | 作用 |
-|-----|------|
-| `noUnusedLocals` | 检查未使用的局部变量 |
-| `noUnusedParameters` | 检查未使用的参数 |
-| `noFallthroughCasesInSwitch` | switch 必须有 break |
-| `noImplicitOverride` | 重写方法必须用 `override` |
+| 选项                         | 作用                      |
+| ---------------------------- | ------------------------- |
+| `noUnusedLocals`             | 检查未使用的局部变量      |
+| `noUnusedParameters`         | 检查未使用的参数          |
+| `noFallthroughCasesInSwitch` | switch 必须有 break       |
+| `noImplicitOverride`         | 重写方法必须用 `override` |
 
 ## 🎯 最佳实践
 
@@ -459,11 +470,11 @@ import { router } from '@skyroc/web-router'
 
 ```typescript
 // ✅ 正确
-import type { User } from './types'
-import { fetchUser } from './api'
+import type { User } from './types';
+import { fetchUser } from './api';
 
 // ❌ 错误（verbatimModuleSyntax: true 会报错）
-import { User, fetchUser } from './types'
+import { User, fetchUser } from './types';
 ```
 
 ### 2. 索引访问
@@ -472,16 +483,16 @@ import { User, fetchUser } from './types'
 
 ```typescript
 // noUncheckedIndexedAccess: true
-const arr = [1, 2, 3]
-const item = arr[0] // type: number | undefined
+const arr = [1, 2, 3];
+const item = arr[0]; // type: number | undefined
 
 // ✅ 正确
 if (item !== undefined) {
-  console.log(item * 2)
+  console.log(item * 2);
 }
 
 // ❌ 错误
-console.log(item * 2) // Error: 可能是 undefined
+console.log(item * 2); // Error: 可能是 undefined
 ```
 
 ### 3. 路径别名
@@ -509,12 +520,12 @@ console.log(item * 2) // Error: 可能是 undefined
 ```typescript
 // ❌ 错误 - 在核心包中使用 DOM API
 export function useLocalStorage() {
-  return window.localStorage // Error: window 不存在
+  return window.localStorage; // Error: window 不存在
 }
 
 // ✅ 正确 - 使用抽象层
 export function useStorage(adapter: StorageAdapter) {
-  return adapter.get('key')
+  return adapter.get('key');
 }
 ```
 

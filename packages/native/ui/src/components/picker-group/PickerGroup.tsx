@@ -1,6 +1,6 @@
+import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { useEffect, useRef, useState } from 'react';
 import { Pressable } from 'react-native';
-import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { Sheet } from '../sheet/Sheet';
 import { PickerGroupView } from './PickerGroupView';
 import type { PickerGroupProps } from './types';
@@ -88,12 +88,7 @@ const PickerGroup = (props: PickerGroupProps) => {
     <>
       {renderTrigger()}
 
-      <Sheet
-        closeable={false}
-        show={show}
-        showHandle={false}
-        onUpdateShow={onUpdateShow}
-      >
+      <Sheet closeable={false} show={show} showHandle={false} onUpdateShow={onUpdateShow}>
         <PickerGroupView
           activeTab={displayTab}
           cancelText={cancelText}

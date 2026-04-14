@@ -1,5 +1,5 @@
-import { ScrollView, View } from 'react-native';
 import { Space, Text } from '@skyroc/native-ui';
+import { ScrollView, View } from 'react-native';
 
 const SpaceDemo = () => {
   return (
@@ -80,7 +80,7 @@ const SpaceDemo = () => {
       {/* Custom Size */}
       <Text className="mb-4 text-lg font-semibold">Custom Size (20px)</Text>
       <View className="mb-8">
-        <Space >
+        <Space>
           <View className="size-12 rounded-md bg-primary" />
           <View className="size-12 rounded-md bg-primary" />
           <View className="size-12 rounded-md bg-primary" />

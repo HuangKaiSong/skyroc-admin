@@ -1,9 +1,9 @@
-import { useImperativeHandle, useRef } from 'react';
-import { View } from 'react-native';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
-import { CollapseContext } from './CollapseContext';
+import { useImperativeHandle, useRef } from 'react';
+import { View } from 'react-native';
 import { collapseVariants } from './collapse-variants';
+import { CollapseContext } from './CollapseContext';
 import type { CollapseItemName, CollapseItemRegistration, CollapseProps, CollapseToggleAllOptions } from './types';
 
 const Collapse = (props: CollapseProps) => {
@@ -15,7 +15,7 @@ const Collapse = (props: CollapseProps) => {
     defaultValue,
     onChange,
     ref,
-    value: valueProp,
+    value: valueProp
   } = props;
 
   const defaultVal = defaultValue ?? (accordion ? '' : []);
@@ -24,7 +24,7 @@ const Collapse = (props: CollapseProps) => {
     caller: 'Collapse',
     defaultProp: defaultVal,
     onChange,
-    prop: valueProp,
+    prop: valueProp
   });
 
   const itemsRef = useRef<CollapseItemRegistration[]>([]);
@@ -73,7 +73,7 @@ const Collapse = (props: CollapseProps) => {
         .map(item => item.name);
 
       setValue(names);
-    },
+    }
   }));
 
   const slots = collapseVariants({ border });

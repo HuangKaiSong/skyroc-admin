@@ -1,6 +1,4 @@
-/**
- * Route module query keys
- */
+/** Route module query keys */
 
 export const ROUTE_QUERY_KEYS = {
   CONSTANT_ROUTES: ['route', 'constantRoutes'],

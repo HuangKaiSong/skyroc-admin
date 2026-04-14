@@ -8,10 +8,8 @@ const DEFAULT_BASE_RETRY_DELAY = 1000;
 /**
  * 协作式任务调度中枢
  *
- * 核心思路：一个心跳 + 一个任务注册表 + 依赖关系声明
- * - init 任务：依赖满足后执行一次
- * - periodic 任务：依赖满足后按 interval 周期执行
- * - listener 任务：依赖满足后注册一次，stop 时自动 cleanup
+ * 核心思路：一个心跳 + 一个任务注册表 + 依赖关系声明 - init 任务：依赖满足后执行一次 - periodic 任务：依赖满足后按 interval 周期执行 - listener 任务：依赖满足后注册一次，stop 时自动
+ * cleanup
  *
  * 零框架依赖，Web / React Native / Node 均可使用
  */
@@ -184,7 +182,7 @@ class TaskHub {
     this.checkReady();
   }
 
-  /** init 任务调度：依赖满足 + 待执行 → 执行一次 */
+  /** Init 任务调度：依赖满足 + 待执行 → 执行一次 */
   private tickInit(task: TaskState): void {
     if (task.status === 'done' || task.status === 'running') return;
 
@@ -199,7 +197,7 @@ class TaskHub {
     this.execute(task);
   }
 
-  /** periodic 任务调度：依赖满足 + 间隔到了 → 再次执行 */
+  /** Periodic 任务调度：依赖满足 + 间隔到了 → 再次执行 */
   private tickPeriodic(task: TaskState, now: number): void {
     if (task.status === 'running') return;
     if (!this.depsResolved(task)) return;
@@ -211,7 +209,7 @@ class TaskHub {
     }
   }
 
-  /** listener 任务调度：依赖满足 + 待执行 → 注册一次 */
+  /** Listener 任务调度：依赖满足 + 待执行 → 注册一次 */
   private tickListener(task: TaskState): void {
     if (task.status === 'done' || task.status === 'running') return;
 

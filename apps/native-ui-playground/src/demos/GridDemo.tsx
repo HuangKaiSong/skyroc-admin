@@ -1,7 +1,7 @@
-import { Alert, ScrollView, View } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { Grid, Text } from '@skyroc/native-ui';
 import type { GridItemData } from '@skyroc/native-ui';
+import { Alert, ScrollView, View } from 'react-native';
 
 const BASIC_ITEMS: GridItemData[] = [
   { icon: <AntDesign color="#1989fa" name="picture" size={24} />, text: '图片' },
@@ -42,9 +42,21 @@ const BORDER_ITEMS: GridItemData[] = Array.from({ length: 8 }, (_, i) => ({
 }));
 
 const CLICKABLE_ITEMS: GridItemData[] = [
-  { icon: <AntDesign color="#1989fa" name="picture" size={24} />, onPress: () => Alert.alert('点击', '图片'), text: '图片' },
-  { icon: <AntDesign color="#1989fa" name="gift" size={24} />, onPress: () => Alert.alert('点击', '礼物'), text: '礼物' },
-  { icon: <AntDesign color="#1989fa" name="star" size={24} />, onPress: () => Alert.alert('点击', '收藏'), text: '收藏' }
+  {
+    icon: <AntDesign color="#1989fa" name="picture" size={24} />,
+    onPress: () => Alert.alert('点击', '图片'),
+    text: '图片'
+  },
+  {
+    icon: <AntDesign color="#1989fa" name="gift" size={24} />,
+    onPress: () => Alert.alert('点击', '礼物'),
+    text: '礼物'
+  },
+  {
+    icon: <AntDesign color="#1989fa" name="star" size={24} />,
+    onPress: () => Alert.alert('点击', '收藏'),
+    text: '收藏'
+  }
 ];
 
 const CUSTOM_ITEMS: GridItemData[] = [
@@ -72,11 +84,7 @@ const CUSTOM_ITEMS: GridItemData[] = [
 
 const GridDemo = () => {
   return (
-    <ScrollView
-      className="flex-1 bg-muted"
-      contentContainerClassName="p-6 pb-20"
-      showsVerticalScrollIndicator={false}
-    >
+    <ScrollView className="flex-1 bg-muted" contentContainerClassName="p-6 pb-20" showsVerticalScrollIndicator={false}>
       {/* Basic */}
       <Text className="mb-4 text-lg font-semibold">Basic</Text>
       <View className="mb-8 overflow-hidden rounded-xl bg-background">

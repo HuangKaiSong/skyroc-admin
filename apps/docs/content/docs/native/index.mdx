@@ -34,7 +34,9 @@ import { Button, Typography } from '@skyroc/native-ui';
 const App = () => {
   return (
     <>
-      <Typography size="2xl" weight="bold">Hello Skyroc</Typography>
+      <Typography size="2xl" weight="bold">
+        Hello Skyroc
+      </Typography>
       <Button color="primary" onPress={() => console.log('pressed')}>
         Get Started
       </Button>
@@ -52,6 +54,6 @@ import { nativewindPreset } from '@skyroc/native-theme/preset';
 
 export default {
   content: ['./src/**/*.{ts,tsx}'],
-  presets: [nativewindPreset],
+  presets: [nativewindPreset]
 };
 ```

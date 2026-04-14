@@ -3,8 +3,7 @@ import type { CreateAxiosDefaults } from '@skyroc/axios';
 /**
  * 平台适配器接口
  *
- * 不同平台（antd / RN / Next.js）实现此接口，
- * 使请求基础设施的错误处理、token 刷新、导航等逻辑可跨端复用。
+ * 不同平台（antd / RN / Next.js）实现此接口， 使请求基础设施的错误处理、token 刷新、导航等逻辑可跨端复用。
  */
 export interface RequestAdapter {
   /** 获取当前路由路径 */
@@ -44,7 +43,7 @@ export interface RequestAdapter {
  * 不同环境 / 后端可能使用不同的 code 体系
  */
 export interface ServiceCodes {
-  /** token 过期需要刷新的状态码 */
+  /** Token 过期需要刷新的状态码 */
   expiredToken: string[];
   /** 需要登出的状态码 */
   logout: string[];
@@ -63,11 +62,11 @@ export interface RequestInstanceState {
   [key: string]: unknown;
 }
 
-/** createAppRequest 工厂函数的配置项 */
+/** CreateAppRequest 工厂函数的配置项 */
 export interface CreateRequestOptions {
   /** 平台适配器 */
   adapter: RequestAdapter;
-  /** axios 基础配置 */
+  /** Axios 基础配置 */
   axiosConfig?: CreateAxiosDefaults;
   /** 后端业务状态码 */
   codes: ServiceCodes;

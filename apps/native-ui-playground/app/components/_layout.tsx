@@ -4,7 +4,7 @@ const ComponentsLayout = () => {
   return (
     <Stack
       screenOptions={{
-        headerShown: false,
+        headerShown: false
       }}
     />
   );

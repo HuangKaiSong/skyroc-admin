@@ -2,15 +2,15 @@ import { request } from '../../request';
 
 import { ROUTE_URLS } from './urls';
 
-/** get backend routes (完整路由结构) */
+/** Get backend routes (完整路由结构) */
 export function fetchGetBackendRoutes() {
   return request<Api.Route.BackendRouteResponse>({ url: ROUTE_URLS.GET_USER_ROUTES });
 }
 
 /**
- * whether the route is exist
+ * Whether the route is exist
  *
- * @param routeName route name
+ * @param routeName Route name
  */
 export function fetchIsRouteExist(routeName: string) {
   return request<boolean>({ params: { routeName }, url: ROUTE_URLS.IS_ROUTE_EXIST });

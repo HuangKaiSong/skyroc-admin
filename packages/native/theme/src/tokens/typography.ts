@@ -14,9 +14,7 @@ export const fontSize = {
   '4xl': ['36px', { lineHeight: '40px' }]
 } as const;
 
-/**
- * Font weight tokens.
- */
+/** Font weight tokens. */
 export const fontWeight = {
   thin: '100',
   extralight: '200',

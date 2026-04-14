@@ -1,6 +1,6 @@
 import { isArray, isDate, isObject } from 'radash';
-import { isNil } from './utils';
 import { arraysEqual } from './array';
+import { isNil } from './utils';
 
 export const shallowEqual = (a: any, b: any) => {
   if (Object.is(a, b)) return true;

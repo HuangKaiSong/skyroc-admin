@@ -30,8 +30,8 @@ function App() {
       theme={{
         algorithm: isDarkMode ? derivativeDark : derivative,
         token: {
-          colorPrimary: '#6366f1',
-        },
+          colorPrimary: '#6366f1'
+        }
       }}
     >
       <YourApp />
@@ -52,12 +52,7 @@ import { defaultPresetColors, seedToken } from '@skyroc/adapter-antd-theme';
 ### Using Token Generators
 
 ```tsx
-import {
-  genColorMapToken,
-  genFontMapToken,
-  genRadiusMapToken,
-  genSizeMapToken,
-} from '@skyroc/adapter-antd-theme';
+import { genColorMapToken, genFontMapToken, genRadiusMapToken, genSizeMapToken } from '@skyroc/adapter-antd-theme';
 
 // Generate individual token maps
 const fontTokens = genFontMapToken(16);

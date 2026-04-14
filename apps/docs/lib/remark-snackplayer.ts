@@ -4,7 +4,7 @@ import type { Code, Root } from 'mdast';
 import type { Node } from 'unist';
 import { visit } from 'unist-util-visit';
 
-/** monorepo 根目录，file 参数相对此路径解析 */
+/** Monorepo 根目录，file 参数相对此路径解析 */
 const MONOREPO_ROOT = resolve(process.cwd(), '../..');
 
 function parseParams(paramString = '') {
@@ -39,7 +39,7 @@ function toJsxNode(node: Code) {
 
   const name = params.name ? decodeURIComponent(params.name) : 'Example';
   const description = params.description ? decodeURIComponent(params.description) : 'Example usage';
-  const ext = params.ext ? decodeURIComponent(params.ext) : params.file?.split('.').pop() ?? 'tsx';
+  const ext = params.ext ? decodeURIComponent(params.ext) : (params.file?.split('.').pop() ?? 'tsx');
   const filename = `App.${ext}`;
   const files = encodeURIComponent(
     JSON.stringify({

@@ -1,18 +1,21 @@
 {
   "name": "@skyroc/ui-types",
-  "type": "module",
   "version": "0.1.0",
   "private": false,
   "description": "Shared UI type definitions for cross-platform components",
   "license": "MIT",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "type": "module",
   "sideEffects": false,
-  "exports": {
-    ".": "./src/index.ts"
-  },
   "main": "./src/index.ts",
   "module": "./src/index.ts",
   "types": "./src/index.ts",
-  "files": ["dist", "README.md"],
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "scripts": {
     "build": "tsdown",
     "clean": "rimraf dist",

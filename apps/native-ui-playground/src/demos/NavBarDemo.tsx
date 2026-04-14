@@ -1,7 +1,7 @@
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { NavBar, Text } from '@skyroc/native-ui';
 import { useState } from 'react';
 import { Alert, ScrollView, View } from 'react-native';
-import {  NavBar, Text } from '@skyroc/native-ui';
-import AntDesign from '@expo/vector-icons/AntDesign';
 
 const NavBarDemo = () => {
   const [title, setTitle] = useState('Page Title');
@@ -14,20 +14,11 @@ const NavBarDemo = () => {
 
       {/* Back Arrow */}
       <Text className="px-6 pb-4 pt-6 text-lg font-semibold">Back Arrow</Text>
-      <NavBar
-        leftArrow
-        title="Title"
-        onLeftPress={() => Alert.alert('Back')}
-      />
+      <NavBar leftArrow title="Title" onLeftPress={() => Alert.alert('Back')} />
 
       {/* Arrow + Text */}
       <Text className="px-6 pb-4 pt-6 text-lg font-semibold">Arrow + Text</Text>
-      <NavBar
-        leftArrow
-        leftText="Back"
-        title="Title"
-        onLeftPress={() => Alert.alert('Back')}
-      />
+      <NavBar leftArrow leftText="Back" title="Title" onLeftPress={() => Alert.alert('Back')} />
 
       {/* Right Text */}
       <Text className="px-6 pb-4 pt-6 text-lg font-semibold">Right Text</Text>
@@ -43,25 +34,19 @@ const NavBarDemo = () => {
       <Text className="px-6 pb-4 pt-6 text-lg font-semibold">Custom Right</Text>
       <NavBar
         leftArrow
-        right={(
+        right={
           <View className="flex-row gap-4">
             <AntDesign color="#09090b" name="search" size={18} />
             <AntDesign color="#09090b" name="ellipsis" size={18} />
           </View>
-        )}
+        }
         title="Title"
         onLeftPress={() => Alert.alert('Back')}
       />
 
       {/* Disabled */}
       <Text className="px-6 pb-4 pt-6 text-lg font-semibold">Disabled</Text>
-      <NavBar
-        leftArrow
-        leftDisabled
-        rightDisabled
-        rightText="Done"
-        title="Title"
-      />
+      <NavBar leftArrow leftDisabled rightDisabled rightText="Done" title="Title" />
 
       {/* Long Title (stays centered) */}
       <Text className="px-6 pb-4 pt-6 text-lg font-semibold">Long Left / Short Right</Text>
@@ -75,12 +60,7 @@ const NavBarDemo = () => {
 
       {/* No Border */}
       <Text className="px-6 pb-4 pt-6 text-lg font-semibold">No Border</Text>
-      <NavBar
-        border={false}
-        leftArrow
-        title="No Border"
-        onLeftPress={() => Alert.alert('Back')}
-      />
+      <NavBar border={false} leftArrow title="No Border" onLeftPress={() => Alert.alert('Back')} />
 
       {/* Dynamic Title */}
       <Text className="px-6 pb-4 pt-6 text-lg font-semibold">Click Title</Text>
@@ -95,13 +75,13 @@ const NavBarDemo = () => {
       <Text className="px-6 pb-4 pt-6 text-lg font-semibold">Custom Title</Text>
       <NavBar
         leftArrow
-        title={(
+        title={
           <View className="flex-row items-center gap-1">
             <AntDesign color="#09090b" name="environment" size={16} />
             <Text className="text-base font-semibold">Shanghai</Text>
             <AntDesign color="#09090b" name="down" size={12} />
           </View>
-        )}
+        }
         onLeftPress={() => Alert.alert('Back')}
       />
 

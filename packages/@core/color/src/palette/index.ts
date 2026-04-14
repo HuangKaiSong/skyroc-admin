@@ -7,10 +7,10 @@ import { getRecommendedColorPalette } from './recommend';
 export * from './oklch';
 
 /**
- * get color palette by provided color
+ * Get color palette by provided color
  *
  * @param color
- * @param recommended whether to get recommended color palette (the provided color may not be the main color)
+ * @param recommended Whether to get recommended color palette (the provided color may not be the main color)
  */
 export function getColorPalette(color: AnyColor, recommended = false) {
   const colorMap = new Map<ColorPaletteNumber, string>();
@@ -34,11 +34,11 @@ export function getColorPalette(color: AnyColor, recommended = false) {
 }
 
 /**
- * get color palette color by number
+ * Get color palette color by number
  *
- * @param color the provided color
- * @param number the color palette number
- * @param recommended whether to get recommended color palette (the provided color may not be the main color)
+ * @param color The provided color
+ * @param number The color palette number
+ * @param recommended Whether to get recommended color palette (the provided color may not be the main color)
  */
 export function getPaletteColorByNumber(color: AnyColor, number: ColorPaletteNumber, recommended = false) {
   const colorMap = getColorPalette(color, recommended);

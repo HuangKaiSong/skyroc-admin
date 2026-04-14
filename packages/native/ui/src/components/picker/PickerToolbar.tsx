@@ -1,5 +1,5 @@
-import { View } from 'react-native';
 import { cn } from '@skyroc/utils';
+import { View } from 'react-native';
 import { Button } from '../button/Button';
 import { Text } from '../text/Typography';
 import { pickerVariants } from './picker-variants';
@@ -12,30 +12,15 @@ const PickerToolbar = (props: PickerToolbarProps) => {
 
   return (
     <View className={cn(slots.toolbar(), classNames?.toolbar)}>
-      <Button
-        className={classNames?.cancel}
-        color="muted"
-        size="sm"
-        variant="ghost"
-        onPress={onCancel}
-      >
+      <Button className={classNames?.cancel} color="muted" size="sm" variant="ghost" onPress={onCancel}>
         {cancelText}
       </Button>
 
-      <Text
-        className={cn(slots.title(), classNames?.title)}
-        numberOfLines={1}
-      >
+      <Text className={cn(slots.title(), classNames?.title)} numberOfLines={1}>
         {title ?? ''}
       </Text>
 
-      <Button
-        className={classNames?.confirm}
-        color="primary"
-        size="sm"
-        variant="ghost"
-        onPress={onConfirm}
-      >
+      <Button className={classNames?.confirm} color="primary" size="sm" variant="ghost" onPress={onConfirm}>
         {confirmText}
       </Button>
     </View>

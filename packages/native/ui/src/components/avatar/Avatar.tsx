@@ -1,6 +1,6 @@
+import { cn, isString } from '@skyroc/utils';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { cn, isString } from '@skyroc/utils';
 import { Image } from '../image/Image';
 import { Text } from '../text/Typography';
 import { avatarFallbackTextSize, avatarVariants } from './avatar-variants';
@@ -30,13 +30,7 @@ const Avatar = (props: AvatarProps) => {
           {isString(fallback) ? <Text className={fallbackTextCls}>{fallback}</Text> : fallback}
         </View>
       ) : (
-        <Image
-          className={avatarCls}
-          contentFit="cover"
-          src={src}
-          onError={handleError}
-          {...imageProps}
-        />
+        <Image className={avatarCls} contentFit="cover" src={src} onError={handleError} {...imageProps} />
       )}
     </View>
   );

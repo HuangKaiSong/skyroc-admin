@@ -36,10 +36,10 @@ export function fetchRefreshToken(refreshToken: string) {
 }
 
 /**
- * return custom backend error
+ * Return custom backend error
  *
- * @param code error code
- * @param msg error message
+ * @param code Error code
+ * @param msg Error message
  */
 export function fetchCustomBackendError(code: string, msg: string) {
   return request({ params: { code, msg }, url: AUTH_URLS.ERROR });

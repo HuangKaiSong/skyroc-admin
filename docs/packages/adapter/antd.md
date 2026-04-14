@@ -15,6 +15,7 @@
 ## 🎯 职责定位
 
 **核心职责**:
+
 - 将 `@skyroc/core-theme` 的主题配置转换为 Ant Design 主题
 - 提供 AntdProvider 组件
 - 集成 Ant Design 的 App/ConfigProvider
@@ -40,14 +41,14 @@
 
 ```ts
 // Provider
-export { AntdProvider } from './provider/AntdProvider'
+export { AntdProvider } from './provider/AntdProvider';
 
 // Theme
-export { getAntdTheme } from './theme'
-export { antdColorAlgorithm } from './theme/algorithm'
+export { getAntdTheme } from './theme';
+export { antdColorAlgorithm } from './theme/algorithm';
 
 // Types
-export type { AntdThemeConfig } from './types'
+export type { AntdThemeConfig } from './types';
 ```
 
 ## 🔨 核心实现
@@ -56,19 +57,13 @@ export type { AntdThemeConfig } from './types'
 
 ```ts
 // src/theme/index.ts
-import { theme as antdTheme } from 'antd'
-import type { ThemeConfig } from '@skyroc/core-theme'
-import type { ThemeConfig as AntdThemeConfig } from 'antd'
+import { theme as antdTheme } from 'antd';
+import type { ThemeConfig } from '@skyroc/core-theme';
+import type { ThemeConfig as AntdThemeConfig } from 'antd';
 
-export function getAntdTheme(
-  themeColors: ThemeColors,
-  isDarkMode: boolean,
-  settings: ThemeSettings
-): AntdThemeConfig {
+export function getAntdTheme(themeColors: ThemeColors, isDarkMode: boolean, settings: ThemeSettings): AntdThemeConfig {
   return {
-    algorithm: isDarkMode
-      ? antdTheme.darkAlgorithm
-      : antdTheme.defaultAlgorithm,
+    algorithm: isDarkMode ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
 
     token: {
       colorPrimary: themeColors.primary,
@@ -78,7 +73,7 @@ export function getAntdTheme(
       colorError: themeColors.error,
 
       borderRadius: settings.radius,
-      fontSize: settings.fontSize,
+      fontSize: settings.fontSize
 
       // ... 更多 token 映射
     },
@@ -86,10 +81,10 @@ export function getAntdTheme(
     components: {
       Button: {
         // 按钮组件配置
-      },
+      }
       // ... 其他组件
     }
-  }
+  };
 }
 ```
 
@@ -97,28 +92,23 @@ export function getAntdTheme(
 
 ```tsx
 // src/provider/AntdProvider.tsx
-import { ConfigProvider, App as AntdApp } from 'antd'
-import { useTheme } from '@skyroc/core-theme'
-import { useLang } from '@skyroc/core-i18n'
-import { getAntdTheme } from '../theme'
-import { antdLocales } from './locales'
+import { ConfigProvider, App as AntdApp } from 'antd';
+import { useTheme } from '@skyroc/core-theme';
+import { useLang } from '@skyroc/core-i18n';
+import { getAntdTheme } from '../theme';
+import { antdLocales } from './locales';
 
 export function AntdProvider({ children }) {
-  const { colors, isDarkMode, config } = useTheme()
-  const { locale } = useLang()
+  const { colors, isDarkMode, config } = useTheme();
+  const { locale } = useLang();
 
-  const antdTheme = getAntdTheme(colors, isDarkMode, config)
+  const antdTheme = getAntdTheme(colors, isDarkMode, config);
 
   return (
-    <ConfigProvider
-      theme={antdTheme}
-      locale={antdLocales[locale]}
-    >
-      <AntdApp>
-        {children}
-      </AntdApp>
+    <ConfigProvider theme={antdTheme} locale={antdLocales[locale]}>
+      <AntdApp>{children}</AntdApp>
     </ConfigProvider>
-  )
+  );
 }
 ```
 
@@ -126,8 +116,8 @@ export function AntdProvider({ children }) {
 
 ```tsx
 // apps/web-admin/src/App.tsx
-import { AntdProvider } from '@skyroc/adapter-antd'
-import { JotaiProvider } from '@skyroc/core-state'
+import { AntdProvider } from '@skyroc/adapter-antd';
+import { JotaiProvider } from '@skyroc/core-state';
 
 function App() {
   return (
@@ -136,7 +126,7 @@ function App() {
         <YourApp />
       </AntdProvider>
     </JotaiProvider>
-  )
+  );
 }
 ```
 

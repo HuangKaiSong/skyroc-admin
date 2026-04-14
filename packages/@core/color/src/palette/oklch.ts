@@ -1,17 +1,13 @@
 /**
  * OKLCH Color Palette Generator - Professional Edition
  *
- * A world-class color palette generator inspired by Apple's Human Interface Guidelines.
- * Uses OKLCH color space for perceptually uniform color manipulation.
+ * A world-class color palette generator inspired by Apple's Human Interface Guidelines. Uses OKLCH color space for
+ * perceptually uniform color manipulation.
  *
- * Key features:
- * 1. OKLCH color space - perceptually uniform (unlike HSL)
- * 2. Data-driven lightness curve - based on actual Tailwind analysis
- * 3. Hue-aware chroma compensation - different curves for different hues
- * 4. WCAG contrast checking - ensures accessibility compliance
- * 5. Apple-style hue rotation - warm/cool color temperature shifts
- * 6. Precise gamut mapping - maximizes color vibrancy within sRGB
- *
+ * Key features: 1. OKLCH color space - perceptually uniform (unlike HSL) 2. Data-driven lightness curve - based on
+ * actual Tailwind analysis 3. Hue-aware chroma compensation - different curves for different hues 4. WCAG contrast
+ * checking - ensures accessibility compliance 5. Apple-style hue rotation - warm/cool color temperature shifts 6.
+ * Precise gamut mapping - maximizes color vibrancy within sRGB
  */
 
 import { displayable, formatHex, oklch, parse, wcagContrast } from 'culori';
@@ -20,9 +16,8 @@ import { getColorName } from '../shared';
 import type { ColorPalette, ColorPaletteFamily, ColorPaletteMatch, ColorPaletteNumber } from '../types';
 
 /**
- * Tailwind color palette numbers with their target lightness values
- * Based on actual analysis of Tailwind's official palettes in OKLCH space
- * These values are averaged from Blue, Red, and Green palettes
+ * Tailwind color palette numbers with their target lightness values Based on actual analysis of Tailwind's official
+ * palettes in OKLCH space These values are averaged from Blue, Red, and Green palettes
  */
 const PALETTE_CONFIG: { number: ColorPaletteNumber; targetL: number }[] = [
   { number: 50, targetL: 0.974 },
@@ -38,10 +33,7 @@ const PALETTE_CONFIG: { number: ColorPaletteNumber; targetL: number }[] = [
   { number: 950, targetL: 0.269 }
 ];
 
-/**
- * Hue ranges for different color families
- * Used for hue-specific chroma and lightness adjustments
- */
+/** Hue ranges for different color families Used for hue-specific chroma and lightness adjustments */
 const HUE_FAMILIES = {
   red: { start: 0, end: 40, peakL: 0.6, maxC: 0.25 },
   orange: { start: 40, end: 70, peakL: 0.7, maxC: 0.2 },
@@ -53,9 +45,7 @@ const HUE_FAMILIES = {
   pink: { start: 320, end: 360, peakL: 0.6, maxC: 0.24 }
 } as const;
 
-/**
- * Get the hue family for a given hue value
- */
+/** Get the hue family for a given hue value */
 function getHueFamily(hue: number): (typeof HUE_FAMILIES)[keyof typeof HUE_FAMILIES] {
   const normalizedHue = ((hue % 360) + 360) % 360;
 
@@ -68,10 +58,11 @@ function getHueFamily(hue: number): (typeof HUE_FAMILIES)[keyof typeof HUE_FAMIL
 }
 
 /**
- * Calculate hue-aware chroma compensation factor based on lightness
- * Different hues have different optimal lightness ranges for maximum chroma
+ * Calculate hue-aware chroma compensation factor based on lightness Different hues have different optimal lightness
+ * ranges for maximum chroma
  *
  * This is based on the actual shape of the sRGB gamut in OKLCH space:
+ *
  * - Yellow peaks at high lightness (~0.85)
  * - Blue/Purple peak at lower lightness (~0.55)
  * - Red/Green are in the middle (~0.6-0.65)
@@ -94,16 +85,12 @@ function getHueAwareChromaCompensation(lightness: number, hue: number): number {
   return 1 - 0.7 * normalized ** 1.5;
 }
 
-/**
- * Normalize hue to [0, 360) range
- */
+/** Normalize hue to [0, 360) range */
 function normalizeHue(h: number): number {
   return ((h % 360) + 360) % 360;
 }
 
-/**
- * Parse any color format to OKLCH
- */
+/** Parse any color format to OKLCH */
 function toOklch(color: string): Oklch | undefined {
   const parsed = parse(color);
   if (!parsed) return undefined;
@@ -111,9 +98,8 @@ function toOklch(color: string): Oklch | undefined {
 }
 
 /**
- * Convert OKLCH to hex with advanced gamut mapping
- * Uses binary search to find the maximum displayable chroma
- * This preserves more color vibrancy than simple clamping
+ * Convert OKLCH to hex with advanced gamut mapping Uses binary search to find the maximum displayable chroma This
+ * preserves more color vibrancy than simple clamping
  */
 function oklchToHex(color: Oklch): string {
   // First check if already displayable
@@ -144,9 +130,8 @@ function oklchToHex(color: Oklch): string {
 }
 
 /**
- * Calculate Apple-style hue rotation
- * Warm colors shift toward yellow when lighter, toward red when darker
- * Cool colors shift toward cyan when lighter, toward deep blue when darker
+ * Calculate Apple-style hue rotation Warm colors shift toward yellow when lighter, toward red when darker Cool colors
+ * shift toward cyan when lighter, toward deep blue when darker
  *
  * This mimics how colors appear under natural lighting conditions
  */
@@ -179,10 +164,12 @@ function getAppleHueShift(hue: number, lightness: number): number {
  * Generate a complete color palette from a single color
  *
  * Algorithm:
+ *
  * 1. Convert input to OKLCH
  * 2. Find the closest palette step based on lightness
  * 3. Calculate the base chroma using hue-aware compensation
  * 4. Generate all 11 steps with:
+ *
  *    - Target lightness from PALETTE_CONFIG
  *    - Chroma adjusted per-hue for optimal vibrancy
  *    - Apple-style hue rotation for natural appearance
@@ -313,39 +300,33 @@ export function getOklchPaletteColorByNumber(color: string, number: ColorPalette
   return palette.colorMap.get(number)!.hex;
 }
 
-/**
- * Advanced: Generate palette with custom configuration
- */
+/** Advanced: Generate palette with custom configuration */
 export interface OklchPaletteOptions {
   /**
    * Whether to apply Apple-style hue rotation
+   *
    * @default true
    */
   appleHueShift?: boolean;
   /**
    * Whether to apply chroma compensation
+   *
    * @default true
    */
   chromaCompensation?: boolean;
-  /**
-   * Custom lightness curve (11 values from light to dark)
-   */
+  /** Custom lightness curve (11 values from light to dark) */
   lightnessCurve?: number[];
-  /**
-   * Force the input color to be placed at this step
-   * If not specified, the closest step by lightness is used
-   */
+  /** Force the input color to be placed at this step If not specified, the closest step by lightness is used */
   forceStep?: ColorPaletteNumber;
   /**
    * Include OKLCH values in output
+   *
    * @default false
    */
   includeOklch?: boolean;
 }
 
-/**
- * Extended color palette with OKLCH values
- */
+/** Extended color palette with OKLCH values */
 export interface ColorPaletteWithOklch extends ColorPalette {
   /** OKLCH values as numbers */
   oklch: { l: number; c: number; h: number };
@@ -353,9 +334,7 @@ export interface ColorPaletteWithOklch extends ColorPalette {
   oklchCss: string;
 }
 
-/**
- * Extended palette family with OKLCH values
- */
+/** Extended palette family with OKLCH values */
 export interface ColorPaletteFamilyWithOklch extends Omit<ColorPaletteFamily, 'palettes'> {
   palettes: ColorPaletteWithOklch[];
   /** The step that best matches the input color */
@@ -366,10 +345,7 @@ export interface ColorPaletteFamilyWithOklch extends Omit<ColorPaletteFamily, 'p
   inputOklchCss: string;
 }
 
-/**
- * Format OKLCH values to CSS string
- * e.g. oklch(58.5% 0.204 277.1)
- */
+/** Format OKLCH values to CSS string e.g. oklch(58.5% 0.204 277.1) */
 function formatOklchCss(l: number, c: number, h: number): string {
   const lPercent = (l * 100).toFixed(2).replace(/\.?0+$/, '');
   const cValue = c.toFixed(3).replace(/\.?0+$/, '');
@@ -377,9 +353,7 @@ function formatOklchCss(l: number, c: number, h: number): string {
   return `oklch(${lPercent}% ${cValue} ${hValue})`;
 }
 
-/**
- * Generate palette with custom options
- */
+/** Generate palette with custom options */
 export function generateOklchPaletteAdvanced(color: string, options: OklchPaletteOptions = {}): ColorPaletteFamily {
   const { appleHueShift = true, chromaCompensation = true, forceStep, lightnessCurve } = options;
 
@@ -446,24 +420,24 @@ export function generateOklchPaletteAdvanced(color: string, options: OklchPalett
 }
 
 /**
- * Generate palette with OKLCH values included
- * The input color is preserved exactly at the matched step (not approximated)
+ * Generate palette with OKLCH values included The input color is preserved exactly at the matched step (not
+ * approximated)
+ *
+ * @example
+ *   ```ts
+ *   // Auto-detect step
+ *   const palette = generateOklchPaletteEx('#6366F1');
+ *   // palette.matchedStep === 500
+ *   // palette.palettes[5].hex === '#6366f1' (exact input preserved!)
+ *
+ *   // Force to 600
+ *   const palette600 = generateOklchPaletteEx('#6366F1', 600);
+ *   // palette600.palettes[6].hex === '#6366f1'
+ *   ```
  *
  * @param color - Input color (will be preserved exactly in output)
  * @param forceStep - Force input to this step (default: auto-detect, prefer 500 for mid-tones)
  * @returns Palette with OKLCH values for each color
- *
- * @example
- * ```ts
- * // Auto-detect step
- * const palette = generateOklchPaletteEx('#6366F1');
- * // palette.matchedStep === 500
- * // palette.palettes[5].hex === '#6366f1' (exact input preserved!)
- *
- * // Force to 600
- * const palette600 = generateOklchPaletteEx('#6366F1', 600);
- * // palette600.palettes[6].hex === '#6366f1'
- * ```
  */
 export function generateOklchPaletteEx(color: string, forceStep?: ColorPaletteNumber): ColorPaletteFamilyWithOklch {
   const inputOklchRaw = toOklch(color);
@@ -588,19 +562,13 @@ export function generateOklchPaletteEx(color: string, forceStep?: ColorPaletteNu
 // WCAG Accessibility & Dark Mode Support
 // ============================================================================
 
-/**
- * WCAG contrast level requirements
- */
+/** WCAG contrast level requirements */
 export type WcagLevel = 'AA' | 'AAA';
 
-/**
- * Text size for WCAG contrast calculation
- */
+/** Text size for WCAG contrast calculation */
 export type TextSize = 'normal' | 'large';
 
-/**
- * Contrast check result for a palette
- */
+/** Contrast check result for a palette */
 export interface PaletteContrastInfo {
   /** The palette with contrast information */
   palette: ColorPaletteFamily;
@@ -689,10 +657,7 @@ export function generateOklchPaletteWithContrast(color: string): PaletteContrast
   };
 }
 
-/**
- * Dark mode optimized lightness curve
- * Designed for better visibility on dark backgrounds
- */
+/** Dark mode optimized lightness curve Designed for better visibility on dark backgrounds */
 const DARK_MODE_LIGHTNESS: number[] = [
   0.18, // 50 - darkest
   0.25,
@@ -708,8 +673,7 @@ const DARK_MODE_LIGHTNESS: number[] = [
 ];
 
 /**
- * Generate a dark mode optimized palette
- * Inverts the lightness curve for better dark theme compatibility
+ * Generate a dark mode optimized palette Inverts the lightness curve for better dark theme compatibility
  *
  * @param color - Input color
  * @returns Dark mode optimized palette
@@ -723,8 +687,7 @@ export function generateDarkModePalette(color: string): ColorPaletteFamily {
 }
 
 /**
- * Find the best palette step for text on a given background color
- * Ensures WCAG AA compliance
+ * Find the best palette step for text on a given background color Ensures WCAG AA compliance
  *
  * @param paletteColor - Base color for the palette
  * @param backgroundColor - Background color to check against

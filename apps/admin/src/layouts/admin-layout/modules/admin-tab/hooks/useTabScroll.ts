@@ -24,9 +24,7 @@ export function useTabScroll(activeTabId: string) {
     };
   }, []);
 
-  /**
-   * Scroll to active tab
-   */
+  /** Scroll to active tab */
   async function scrollToActiveTab() {
     await new Promise(resolve => {
       setTimeout(resolve, 0);

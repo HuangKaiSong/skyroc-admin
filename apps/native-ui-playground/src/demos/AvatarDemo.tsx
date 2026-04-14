@@ -1,5 +1,5 @@
-import { ScrollView, View } from 'react-native';
 import { Avatar, Text } from '@skyroc/native-ui';
+import { ScrollView, View } from 'react-native';
 
 const AvatarDemo = () => {
   return (
@@ -7,7 +7,7 @@ const AvatarDemo = () => {
       {/* Sizes */}
       <Text className="mb-4 text-lg font-semibold">Sizes</Text>
       <View className="mb-8 flex-row items-end gap-3">
-        <Avatar className='w-5 h-5' size="xs" src="https://assets.skyroc.me/asset/logo.svg" />
+        <Avatar className="w-5 h-5" size="xs" src="https://assets.skyroc.me/asset/logo.svg" />
         <Avatar size="sm" src="https://assets.skyroc.me/asset/logo.png" />
 
         <Avatar size="md" src="https://picsum.photos/seed/av3/100" />
@@ -18,8 +18,6 @@ const AvatarDemo = () => {
 
       {/* Fallback - Initials */}
       <Text className="mb-4 text-lg font-semibold">Fallback (Initials)</Text>
-
-
 
       <View className="mb-8 flex-row items-end gap-3">
         <Avatar fallback="A" size="xs" />

@@ -1,5 +1,5 @@
-import { View } from 'react-native';
 import { useStore } from '@skyroc/hooks';
+import { View } from 'react-native';
 import { Notify } from './Notify';
 import { notifyManager } from './notify-manager';
 
@@ -20,11 +20,7 @@ const NotifyRenderer = () => {
       pointerEvents="box-none"
       style={entry.position === 'bottom' ? { bottom: 0 } : { top: 0 }}
     >
-      <Notify
-        {...entry}
-        show
-        onUpdateShow={() => handleClose()}
-      />
+      <Notify {...entry} show onUpdateShow={() => handleClose()} />
     </View>
   );
 };

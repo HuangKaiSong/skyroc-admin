@@ -37,9 +37,7 @@ const tabStateAtom = atom(initialState, (get, set, update: Partial<TabState>) =>
   set(tabStateAtom, { ...get(tabStateAtom), ...update });
 });
 
-/**
- * Cache tabs to local storage
- */
+/** Cache tabs to local storage */
 export function cacheTabs() {
   const { tabs } = globalStore.get(tabStateAtom);
   localStg.set('globalTabs', tabs);
@@ -56,9 +54,7 @@ export const useAdminTab = () => {
     tab: { cache }
   } = useSettingsTheme();
 
-  /**
-   * Get all tabs (including home tab and reordered by fixed index)
-   */
+  /** Get all tabs (including home tab and reordered by fixed index) */
   const allTabs = getAllTabs(tabState.tabs, tabState.homeTab);
 
   /**
@@ -174,9 +170,7 @@ export const useAdminTab = () => {
     }
   }
 
-  /**
-   * Remove active tab
-   */
+  /** Remove active tab */
   async function removeActiveTab() {
     await removeTab(tabState.activeTabId);
   }

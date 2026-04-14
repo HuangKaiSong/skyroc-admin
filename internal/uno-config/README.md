@@ -24,10 +24,7 @@ import { presetSoybeanAdmin } from '@sa/uno-config';
 import { defineConfig, presetWind4 } from 'unocss';
 
 export default defineConfig({
-  presets: [
-    presetWind4({ dark: 'class' }),
-    presetSoybeanAdmin()
-  ]
+  presets: [presetWind4({ dark: 'class' }), presetSoybeanAdmin()]
 });
 ```
 
@@ -55,10 +52,7 @@ export default defineConfig({
       'src/**/*.{ts,tsx}'
     ]
   },
-  presets: [
-    presetWind4({ dark: 'class' }),
-    presetSoybeanAdmin()
-  ]
+  presets: [presetWind4({ dark: 'class' }), presetSoybeanAdmin()]
 });
 ```
 
@@ -285,4 +279,3 @@ pnpm tsx example-scanner.ts
 ## License
 
 MIT
-

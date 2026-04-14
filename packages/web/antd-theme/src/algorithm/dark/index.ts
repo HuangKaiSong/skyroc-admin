@@ -1,12 +1,12 @@
 import { mixColor } from '@skyroc/color';
 import type { MapToken, PresetColorType, SeedToken } from 'antd/lib/theme/interface';
-import defaultAlgorithm from '../default';
 import { defaultPresetColors } from '../../seed';
 import genColorMapToken, {
   FUNCTIONAL_SEMANTIC_CONFIG,
   genPaletteVars,
   genSemanticColors
 } from '../../shared/genColorMapToken';
+import defaultAlgorithm from '../default';
 import { generateColorPalettes, generateNeutralColorPalettes } from './colors';
 
 // Export generator functions for external use
@@ -15,15 +15,13 @@ export { generateColorPalettes, generateNeutralColorPalettes };
 /**
  * Dark mode theme algorithm
  *
- * Reference Ant Design official dark theme implementation:
- * 1. Uses generateOklchPaletteEx algorithm to generate palettes (replaces @ant-design/colors)
- * 2. Special color mapping strategy (5→600, 6→500, 7→400)
- * 3. Custom colorPrimaryBg to optimize selected item background
+ * Reference Ant Design official dark theme implementation: 1. Uses generateOklchPaletteEx algorithm to generate
+ * palettes (replaces @ant-design/colors) 2. Special color mapping strategy (5→600, 6→500, 7→400) 3. Custom
+ * colorPrimaryBg to optimize selected item background
  *
- * Generated content:
- * - Preset colors (blue, geekblue, etc.): palette vars only (blue-1 ... blue-10, blue-50 ... blue-950)
- * - Functional colors (colorPrimary, colorInfo, etc.): palette vars + semantic colors (colorPrimaryBg, colorPrimaryHover, ...)
- * - Neutral color system: colorText, colorBgContainer, colorBorder, etc.
+ * Generated content: - Preset colors (blue, geekblue, etc.): palette vars only (blue-1 ... blue-10, blue-50 ...
+ * blue-950) - Functional colors (colorPrimary, colorInfo, etc.): palette vars + semantic colors (colorPrimaryBg,
+ * colorPrimaryHover, ...) - Neutral color system: colorText, colorBgContainer, colorBorder, etc.
  */
 export default function derivativeDark(token: SeedToken, mapToken?: MapToken): MapToken {
   const colorPalettes = Object.keys(defaultPresetColors)
@@ -78,8 +76,7 @@ export default function derivativeDark(token: SeedToken, mapToken?: MapToken): M
     ...colorMapToken,
 
     /**
-     * Dark mode special customization
-     * Reference Ant Design official implementation:
+     * Dark mode special customization Reference Ant Design official implementation:
      * https://github.com/ant-design/ant-design/issues/30524#issuecomment-871961867
      *
      * Uses colorPrimaryBorder as selected item background for better visual feedback

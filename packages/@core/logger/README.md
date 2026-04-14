@@ -31,7 +31,7 @@ const { logger, dispose } = await createLogger({
   // 白名单检查端点
   whitelistEndpoint: '/api/log/whitelist',
   // 日志上传端点
-  uploadEndpoint: '/api/log/upload',
+  uploadEndpoint: '/api/log/upload'
 });
 
 // 使用日志
@@ -64,18 +64,18 @@ logger.info('Hello, world!');
 
 ## 配置选项
 
-| 选项 | 类型 | 默认值 | 说明 |
-| --- | --- | --- | --- |
-| `platform` | `'web' \| 'react-native' \| 'mini-program'` | 自动检测 | 运行平台 |
-| `isDev` | `boolean` | 自动检测 | 是否开发模式 |
-| `retentionDays` | `number` | `7` | 日志保留天数 |
-| `whitelistEndpoint` | `string` | - | 白名单检查接口 |
-| `uploadEndpoint` | `string` | - | 日志上传接口 |
-| `whitelistCheckInterval` | `number` | `300000` (5分钟) | 白名单检查间隔 |
-| `uploadBatchSize` | `number` | `100` | 批量上传大小 |
-| `flushInterval` | `number` | `5000` | 日志刷新间隔 |
-| `enableStorageInDev` | `boolean` | `false` | 开发模式是否启用存储 |
-| `storageAdapter` | `IStorageAdapter` | - | 自定义存储适配器 |
+| 选项                     | 类型                                        | 默认值           | 说明                 |
+| ------------------------ | ------------------------------------------- | ---------------- | -------------------- |
+| `platform`               | `'web' \| 'react-native' \| 'mini-program'` | 自动检测         | 运行平台             |
+| `isDev`                  | `boolean`                                   | 自动检测         | 是否开发模式         |
+| `retentionDays`          | `number`                                    | `7`              | 日志保留天数         |
+| `whitelistEndpoint`      | `string`                                    | -                | 白名单检查接口       |
+| `uploadEndpoint`         | `string`                                    | -                | 日志上传接口         |
+| `whitelistCheckInterval` | `number`                                    | `300000` (5分钟) | 白名单检查间隔       |
+| `uploadBatchSize`        | `number`                                    | `100`            | 批量上传大小         |
+| `flushInterval`          | `number`                                    | `5000`           | 日志刷新间隔         |
+| `enableStorageInDev`     | `boolean`                                   | `false`          | 开发模式是否启用存储 |
+| `storageAdapter`         | `IStorageAdapter`                           | -                | 自定义存储适配器     |
 
 ## API 接口设计
 
@@ -197,7 +197,7 @@ class MyCustomAdapter extends BaseStorageAdapter {
 }
 
 const { logger } = await createLogger({
-  storageAdapter: new MyCustomAdapter(),
+  storageAdapter: new MyCustomAdapter()
 });
 ```
 
@@ -248,6 +248,7 @@ pnpm add @react-native-async-storage/async-storage
 ### 小程序
 
 支持以下小程序平台：
+
 - 微信小程序 (wx)
 - 支付宝小程序 (my)
 - 抖音小程序 (tt)

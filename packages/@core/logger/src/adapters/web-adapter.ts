@@ -14,10 +14,7 @@ interface LogDBSchema {
   };
 }
 
-/**
- * Web 存储适配器
- * 使用 IndexedDB 存储日志
- */
+/** Web 存储适配器 使用 IndexedDB 存储日志 */
 export class WebStorageAdapter extends BaseStorageAdapter {
   /** 数据库实例 */
   private db: IDBPDatabase<LogDBSchema> | null = null;

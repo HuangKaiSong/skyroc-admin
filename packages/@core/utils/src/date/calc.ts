@@ -5,6 +5,7 @@ import { dayjs } from './dayjs';
 
 /**
  * 日期转时间戳（毫秒）
+ *
  * @param date 日期输入
  */
 export function toTimestamp(date: DateInput): number {
@@ -14,6 +15,7 @@ export function toTimestamp(date: DateInput): number {
 
 /**
  * 日期转时间戳（秒）
+ *
  * @param date 日期输入
  */
 export function toUnixTimestamp(date: DateInput): number {
@@ -25,6 +27,7 @@ export function toUnixTimestamp(date: DateInput): number {
 
 /**
  * 日期加法
+ *
  * @param date 日期输入
  * @param value 增加的值
  * @param unit 单位：day/month/year/hour/minute/second
@@ -35,6 +38,7 @@ export function addDate(date: DateInput, value: number, unit: dayjs.ManipulateTy
 
 /**
  * 日期减法
+ *
  * @param date 日期输入
  * @param value 减少的值
  * @param unit 单位：day/month/year/hour/minute/second
@@ -45,6 +49,7 @@ export function subtractDate(date: DateInput, value: number, unit: dayjs.Manipul
 
 /**
  * 计算两个日期之间的差值
+ *
  * @param date1 日期1
  * @param date2 日期2
  * @param unit 单位：day/month/year/hour/minute/second
@@ -57,6 +62,7 @@ export function diffDate(date1: DateInput, date2: DateInput, unit: dayjs.Manipul
 
 /**
  * 获取相对时间描述（如：3天前、2小时后）
+ *
  * @param date 日期输入
  * @param baseDate 基准日期，默认当前时间
  */
@@ -71,6 +77,7 @@ export function fromNow(date: DateInput, baseDate?: DateInput): string {
 
 /**
  * 获取到某个时间的相对描述（如：3天后）
+ *
  * @param date 日期输入
  * @param baseDate 基准日期，默认当前时间
  */

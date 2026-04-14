@@ -1,6 +1,6 @@
+import { cn } from '@skyroc/utils';
 import { useState } from 'react';
 import { Pressable, Text, TextInput, View } from 'react-native';
-import { cn } from '@skyroc/utils';
 import { inputVariants } from './input-variants';
 import type { InputProps } from './types';
 
@@ -53,10 +53,7 @@ const Input = (props: InputProps) => {
         {...rest}
       />
       {clearable && value ? (
-        <Pressable
-          className={cn(slots.clearable(), classNames?.clearable)}
-          onPress={handleClear}
-        >
+        <Pressable className={cn(slots.clearable(), classNames?.clearable)} onPress={handleClear}>
           <Text className="text-muted-foreground">✕</Text>
         </Pressable>
       ) : null}

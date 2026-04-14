@@ -1,9 +1,9 @@
+import { cn } from '@skyroc/utils';
 import type { ViewStyle } from 'react-native';
 import { View } from 'react-native';
 import Modal from 'react-native-modal';
-import { cn } from '@skyroc/utils';
-import type { PopupPosition, PopupProps } from './types';
 import { popupAnimationMap, popupVariants } from './popup-variants';
+import type { PopupPosition, PopupProps } from './types';
 
 /** 根据弹出位置生成 Modal 容器样式 */
 function getContainerStyle(position: PopupPosition): ViewStyle {

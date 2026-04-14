@@ -1,9 +1,6 @@
 import type { IStorageAdapter, LogRecord } from '../types';
 
-/**
- * 存储适配器基类
- * 提供通用的接口定义和默认实现
- */
+/** 存储适配器基类 提供通用的接口定义和默认实现 */
 export abstract class BaseStorageAdapter implements IStorageAdapter {
   /** 是否已初始化 */
   protected initialized = false;

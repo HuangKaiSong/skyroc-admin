@@ -67,10 +67,7 @@ const Notify = (props: NotifyProps) => {
 
   return (
     <Animated.View style={animatedStyle}>
-      <Pressable
-        className={rootCls()}
-        onPress={handlePress}
-      >
+      <Pressable className={rootCls()} onPress={handlePress}>
         {position === 'top' && <View style={{ height: insets.top }} />}
         <View className={contentCls()}>
           <Text className={messageCls()}>{message}</Text>

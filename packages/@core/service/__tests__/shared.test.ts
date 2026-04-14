@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { RequestAdapter, RequestInstanceState } from '../src/request/types';
 import { getAuthorization, handleExpiredRequest, handleRefreshToken, showErrorMsg } from '../src/request/shared';
+import type { RequestAdapter, RequestInstanceState } from '../src/request/types';
 
 function createMockAdapter(overrides: Partial<RequestAdapter> = {}): RequestAdapter {
   return {
@@ -50,7 +50,9 @@ describe('handleRefreshToken', () => {
 
   it('redirects to login on failure', async () => {
     const adapter = createMockAdapter({
-      fetchRefreshToken: vi.fn(async () => { throw new Error('fail'); })
+      fetchRefreshToken: vi.fn(async () => {
+        throw new Error('fail');
+      })
     });
 
     const result = await handleRefreshToken(adapter);

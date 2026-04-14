@@ -15,9 +15,7 @@ export interface RequestOption<
   ApiData = ResponseData,
   State extends Record<string, unknown> = Record<string, unknown>
 > {
-  /**
-   * The default state
-   */
+  /** The default state */
   defaultState?: State;
   /**
    * The hook to check backend response is success or not
@@ -54,13 +52,13 @@ export interface RequestOption<
    */
   onRequest: (config: InternalAxiosRequestConfig) => InternalAxiosRequestConfig | Promise<InternalAxiosRequestConfig>;
   /**
-   * transform the response data to the api data
+   * Transform the response data to the api data
    *
    * @param response Axios response
    */
   transform: ResponseTransform<AxiosResponse<ResponseData>, ApiData>;
   /**
-   * transform the response data to the api data
+   * Transform the response data to the api data
    *
    * @deprecated use `transform` instead, will be removed in the next major version v3
    * @param response Axios response
@@ -87,12 +85,12 @@ export type CustomAxiosRequestConfig<R extends ResponseType = 'json'> = Omit<Axi
 
 export interface RequestInstanceCommon<State extends Record<string, unknown>> {
   /**
-   * cancel all request
+   * Cancel all request
    *
-   * if the request provide abort controller sign from config, it will not collect in the abort controller map
+   * If the request provide abort controller sign from config, it will not collect in the abort controller map
    */
   cancelAllRequest: () => void;
-  /** you can set custom state in the request instance */
+  /** You can set custom state in the request instance */
   state: State;
 }
 

@@ -2,23 +2,27 @@
   "name": "@skyroc/core-state",
   "version": "1.0.0",
   "description": "Jotai state management wrapper - Cross-platform support",
-  "author": "",
+  "keywords": [
+    "jotai",
+    "react",
+    "state",
+    "store"
+  ],
   "license": "MIT",
-  "keywords": ["jotai", "state", "store", "react"],
-  "exports": {
-    ".": "./src/index.ts"
-  },
+  "author": "",
   "typesVersions": {
     "*": {
-      "*": ["./src/*"]
+      "*": [
+        "./src/*"
+      ]
     }
+  },
+  "exports": {
+    ".": "./src/index.ts"
   },
   "scripts": {
     "test": "vitest",
     "test:watch": "vitest"
-  },
-  "peerDependencies": {
-    "react": ">=18.0.0"
   },
   "dependencies": {
     "jotai": "catalog:core"
@@ -26,5 +30,8 @@
   "devDependencies": {
     "@skyroc/tsconfig": "workspace:*",
     "react": "catalog:core"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
   }
 }

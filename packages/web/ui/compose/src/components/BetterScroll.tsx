@@ -40,15 +40,8 @@ const BetterScroll: FC<Props> = ({ children, className, options, ref, ...rest })
   });
 
   return (
-    <div
-      ref={bsWrapper}
-      {...rest}
-      className={clsx('h-full text-left', className)}
-    >
-      <div
-        className={clsx('inline-block', { 'h-full': !isScrollY })}
-        ref={bsContent}
-      >
+    <div ref={bsWrapper} {...rest} className={clsx('h-full text-left', className)}>
+      <div className={clsx('inline-block', { 'h-full': !isScrollY })} ref={bsContent}>
         {children}
       </div>
     </div>

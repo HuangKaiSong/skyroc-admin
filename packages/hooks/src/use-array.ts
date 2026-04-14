@@ -4,8 +4,7 @@ import { Store, useStore } from './store';
 /**
  * 数组状态引擎
  *
- * 所有数组操作逻辑集中在 class 中，
- * 外部通过 useArray hook 桥接 React 渲染。
+ * 所有数组操作逻辑集中在 class 中， 外部通过 useArray hook 桥接 React 渲染。
  */
 class ArrayStore<T, K extends keyof T> extends Store<T[]> {
   /** 初始状态（用于 reset） */

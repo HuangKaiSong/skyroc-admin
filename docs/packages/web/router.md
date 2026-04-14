@@ -14,6 +14,7 @@
 ## 🎯 职责定位
 
 **核心职责**:
+
 - Router 实例配置
 - 路由守卫（认证检查）
 - Query 参数序列化/解析
@@ -44,19 +45,19 @@
 
 ```ts
 // Router 实例
-export { router } from './config/router'
+export { router } from './config/router';
 
 // Hooks
-export { useRoute, useNavigate, useRouteParams } from './hooks'
+export { useRoute, useNavigate, useRouteParams } from './hooks';
 
 // Utils
-export { parseQuery, stringifyQuery } from './utils/query'
+export { parseQuery, stringifyQuery } from './utils/query';
 
 // Guards
-export { createAuthGuard } from './guards/auth-guard'
+export { createAuthGuard } from './guards/auth-guard';
 
 // Types
-export type { RouterConfig, RouteContext } from './types'
+export type { RouterConfig, RouteContext } from './types';
 ```
 
 ## 🔨 核心实现
@@ -65,9 +66,9 @@ export type { RouterConfig, RouteContext } from './types'
 
 ```ts
 // src/config/router.ts
-import { createRouter } from '@tanstack/react-router'
-import { parseQuery, stringifyQuery } from '../utils/query'
-import { routeTree } from './routeTree.gen' // 自动生成
+import { createRouter } from '@tanstack/react-router';
+import { parseQuery, stringifyQuery } from '../utils/query';
+import { routeTree } from './routeTree.gen'; // 自动生成
 
 export const router = createRouter({
   routeTree,
@@ -84,24 +85,24 @@ export const router = createRouter({
   context: {
     // 在应用层注入认证信息
   }
-})
+});
 
-export type RouterConfig = typeof router
+export type RouterConfig = typeof router;
 ```
 
 ### 2. Query 工具
 
 ```ts
 // src/utils/query.ts
-import qs from 'qs'
+import qs from 'qs';
 
 export function parseQuery(searchStr: string) {
-  if (!searchStr) return {}
+  if (!searchStr) return {};
 
   return qs.parse(searchStr, {
     ignoreQueryPrefix: true,
     comma: true
-  })
+  });
 }
 
 export function stringifyQuery(obj: Record<string, any>) {
@@ -109,7 +110,7 @@ export function stringifyQuery(obj: Record<string, any>) {
     addQueryPrefix: true,
     skipNulls: true,
     arrayFormat: 'comma'
-  })
+  });
 }
 ```
 
@@ -117,12 +118,12 @@ export function stringifyQuery(obj: Record<string, any>) {
 
 ```ts
 // src/guards/auth-guard.ts
-import { redirect } from '@tanstack/react-router'
-import type { LoaderContext } from '../types'
+import { redirect } from '@tanstack/react-router';
+import type { LoaderContext } from '../types';
 
 export function createAuthGuard() {
   return async ({ context, location }: LoaderContext) => {
-    const { isLoggedIn } = context
+    const { isLoggedIn } = context;
 
     if (!isLoggedIn && location.pathname !== '/login') {
       throw redirect({
@@ -130,9 +131,9 @@ export function createAuthGuard() {
         search: {
           redirect: location.href
         }
-      })
+      });
     }
-  }
+  };
 }
 ```
 
@@ -140,12 +141,12 @@ export function createAuthGuard() {
 
 ```ts
 // src/hooks/use-route.ts
-import { useLocation, useSearch, useParams } from '@tanstack/react-router'
+import { useLocation, useSearch, useParams } from '@tanstack/react-router';
 
 export function useRoute() {
-  const location = useLocation()
-  const search = useSearch({ from: '__root__' })
-  const params = useParams({ from: '__root__' })
+  const location = useLocation();
+  const search = useSearch({ from: '__root__' });
+  const params = useParams({ from: '__root__' });
 
   return {
     pathname: location.pathname,
@@ -153,7 +154,7 @@ export function useRoute() {
     params,
     searchStr: location.search,
     hash: location.hash
-  }
+  };
 }
 ```
 
@@ -163,20 +164,15 @@ export function useRoute() {
 
 ```tsx
 // apps/web-admin/src/main.tsx
-import { RouterProvider } from '@tanstack/react-router'
-import { router } from '@skyroc/web-router'
-import { useAuth } from '@skyroc/core-auth'
+import { RouterProvider } from '@tanstack/react-router';
+import { router } from '@skyroc/web-router';
+import { useAuth } from '@skyroc/core-auth';
 
 function App() {
-  const auth = useAuth()
+  const auth = useAuth();
 
   // 注入认证 context
-  return (
-    <RouterProvider
-      router={router}
-      context={{ ...auth }}
-    />
-  )
+  return <RouterProvider router={router} context={{ ...auth }} />;
 }
 ```
 
@@ -184,27 +180,27 @@ function App() {
 
 ```tsx
 // apps/web-admin/src/pages/__root.tsx
-import { createRootRoute } from '@tanstack/react-router'
-import { createAuthGuard } from '@skyroc/web-router'
+import { createRootRoute } from '@tanstack/react-router';
+import { createAuthGuard } from '@skyroc/web-router';
 
-const authGuard = createAuthGuard()
+const authGuard = createAuthGuard();
 
 export const Route = createRootRoute({
   beforeLoad: authGuard
-})
+});
 ```
 
 ### 示例 3: 使用 Query
 
 ```tsx
-import { useRoute } from '@skyroc/web-router'
+import { useRoute } from '@skyroc/web-router';
 
 function SearchPage() {
-  const { search } = useRoute()
+  const { search } = useRoute();
 
-  console.log(search.keyword) // 类型安全的 query 参数
+  console.log(search.keyword); // 类型安全的 query 参数
 
-  return <div>Search: {search.keyword}</div>
+  return <div>Search: {search.keyword}</div>;
 }
 ```
 

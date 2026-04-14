@@ -1,13 +1,13 @@
+import { cn } from '@skyroc/utils';
 /* eslint-disable complexity */
 import { useState } from 'react';
 import { View } from 'react-native';
-import { cn } from '@skyroc/utils';
 import { Button } from '../button/Button';
 import { Divider } from '../divider/Divider';
-import { Text } from '../text/Typography';
 import { Popup } from '../popup/Popup';
-import type { DialogAction, DialogProps } from './types';
+import { Text } from '../text/Typography';
 import { dialogVariants } from './dialog-variants';
+import type { DialogAction, DialogProps } from './types';
 
 /** 对话框组件 */
 const Dialog = (props: DialogProps) => {
@@ -108,12 +108,7 @@ const Dialog = (props: DialogProps) => {
             {cancelButtonText}
           </Button>
         )}
-        {showCancelButton && showConfirmButton && (
-          <Divider
-            className="mx-0"
-            orientation="vertical"
-          />
-        )}
+        {showCancelButton && showConfirmButton && <Divider className="mx-0" orientation="vertical" />}
         {showConfirmButton && (
           <Button
             className={slots.confirmButton()}
@@ -163,13 +158,7 @@ const Dialog = (props: DialogProps) => {
   );
 
   return (
-    <Popup
-      closeOnBackdropPress={false}
-      position="center"
-      className="w-[80%]"
-      show={show}
-      onUpdateShow={onUpdateShow}
-    >
+    <Popup closeOnBackdropPress={false} position="center" className="w-[80%]" show={show} onUpdateShow={onUpdateShow}>
       <View className={cn(slots.root(), className)}>
         {/* Header */}
         {hasTitle && (

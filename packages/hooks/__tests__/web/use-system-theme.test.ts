@@ -24,9 +24,7 @@ function createMatchMediaMock(initialDark = false) {
 
   function toggle(dark: boolean) {
     isDark = dark;
-    listeners.forEach(listener =>
-      listener({ matches: dark } as MediaQueryListEvent)
-    );
+    listeners.forEach(listener => listener({ matches: dark } as MediaQueryListEvent));
   }
 
   return { matchMediaMock, toggle, getListenerCount: () => listeners.length };

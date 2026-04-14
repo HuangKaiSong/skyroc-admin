@@ -19,11 +19,7 @@ const ComponentPreview = (props: ComponentPreviewProps) => {
 
   return (
     <div className="not-prose my-8 flex justify-center">
-      <PhoneFrame
-        height={height}
-        src={src}
-        title={`${component} preview`}
-      />
+      <PhoneFrame height={height} src={src} title={`${component} preview`} />
     </div>
   );
 };

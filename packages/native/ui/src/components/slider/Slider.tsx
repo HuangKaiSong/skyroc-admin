@@ -1,10 +1,10 @@
+import { useControllableState } from '@radix-ui/react-use-controllable-state';
 /* eslint-disable complexity */
 import { useRef } from 'react';
 import { type LayoutChangeEvent, Pressable, View, type ViewStyle } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { useSharedValue } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import type { SliderProps } from './types';
 
 const DEFAULT_ACTIVE_COLOR = '#1677ff';
@@ -342,16 +342,8 @@ const Slider = (props: SliderProps) => {
   const rightRatio = (rangeRight - min) / (max - min);
 
   return (
-    <View
-      className={className}
-      style={[containerStyle, { position: 'relative', alignSelf: 'flex-start' }]}
-    >
-      <Pressable
-        disabled={!isInteractive()}
-        onLayout={handleTrackLayout}
-        onPress={handleTrackPress}
-        style={trackStyle}
-      >
+    <View className={className} style={[containerStyle, { position: 'relative', alignSelf: 'flex-start' }]}>
+      <Pressable disabled={!isInteractive()} onLayout={handleTrackLayout} onPress={handleTrackPress} style={trackStyle}>
         {renderActiveBar()}
       </Pressable>
 

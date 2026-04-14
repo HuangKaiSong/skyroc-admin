@@ -25,11 +25,7 @@ const BeyondHiding = ({ className, style, title, ...props }: BeyondHidingProps) 
     }
   };
   return (
-    <Tooltip
-      open={isShow}
-      title={title}
-      {...props}
-    >
+    <Tooltip open={isShow} title={title} {...props}>
       <span
         className={className}
         ref={contentRef}

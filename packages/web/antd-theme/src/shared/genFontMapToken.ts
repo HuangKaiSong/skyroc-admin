@@ -3,24 +3,23 @@ import type { FontMapToken } from 'antd/lib/theme/interface';
 /**
  * Font size configuration
  *
- * Based on UnoCSS text rules, using rem units
- * Conversion: 1rem = 16px (browser default)
+ * Based on UnoCSS text rules, using rem units Conversion: 1rem = 16px (browser default)
  *
- * | Name    | rem      | px   | lineHeight rem | lineHeight px |
- * |---------|----------|------|----------------|---------------|
- * | xs      | 0.75     | 12   | 1.125          | 18            |
- * | sm      | 0.875    | 14   | 1.375          | 22            |
- * | base    | 1        | 16   | 1.5            | 24            |
- * | lg      | 1.125    | 18   | 1.625          | 26            |
- * | xl      | 1.25     | 20   | 1.75           | 28            |
- * | 2xl     | 1.5      | 24   | 2              | 32            |
- * | 3xl     | 1.875    | 30   | 2.375          | 38            |
- * | 4xl     | 2.25     | 36   | 2.75           | 44            |
- * | 5xl     | 3        | 48   | 3.5            | 56            |
- * | 6xl     | 3.75     | 60   | 4.25           | 68            |
- * | 7xl     | 4.5      | 72   | 5              | 80            |
- * | 8xl     | 6        | 96   | 6.5            | 104           |
- * | 9xl     | 8        | 128  | 8.5            | 136           |
+ * | Name | rem   | px  | lineHeight rem | lineHeight px |
+ * | ---- | ----- | --- | -------------- | ------------- |
+ * | xs   | 0.75  | 12  | 1.125          | 18            |
+ * | sm   | 0.875 | 14  | 1.375          | 22            |
+ * | base | 1     | 16  | 1.5            | 24            |
+ * | lg   | 1.125 | 18  | 1.625          | 26            |
+ * | xl   | 1.25  | 20  | 1.75           | 28            |
+ * | 2xl  | 1.5   | 24  | 2              | 32            |
+ * | 3xl  | 1.875 | 30  | 2.375          | 38            |
+ * | 4xl  | 2.25  | 36  | 2.75           | 44            |
+ * | 5xl  | 3     | 48  | 3.5            | 56            |
+ * | 6xl  | 3.75  | 60  | 4.25           | 68            |
+ * | 7xl  | 4.5   | 72  | 5              | 80            |
+ * | 8xl  | 6     | 96  | 6.5            | 104           |
+ * | 9xl  | 8     | 128 | 8.5            | 136           |
  */
 
 /** Font size table (rem) */
@@ -61,7 +60,8 @@ export type FontSizeKey = keyof typeof FONT_SIZES;
 
 /**
  * Convert rem to px
- * @param rem rem value
+ *
+ * @param rem Rem value
  * @param baseFontSize Base font size (default 16)
  */
 export function remToPx(rem: number, baseFontSize = 16): number {
@@ -70,6 +70,7 @@ export function remToPx(rem: number, baseFontSize = 16): number {
 
 /**
  * Calculate line height ratio
+ *
  * @param fontSize Font size (rem)
  * @param lineHeight Line height (rem)
  */
@@ -83,9 +84,7 @@ interface FontSizePair {
   size: number;
 }
 
-/**
- * Extended font map token with custom text sizes
- */
+/** Extended font map token with custom text sizes */
 export interface ExtendedFontMapToken extends FontMapToken {
   /** Base font height (px) */
   fontHeight: number;
@@ -151,6 +150,7 @@ export interface ExtendedFontMapToken extends FontMapToken {
 
 /**
  * Generate font size pairs
+ *
  * @param baseFontSize Base font size (px), default 16
  */
 export function genFontSizes(baseFontSize = 16): FontSizePair[] {
@@ -175,16 +175,9 @@ export function genFontSizes(baseFontSize = 16): FontSizePair[] {
  *
  * Based on UnoCSS font rules, generate Ant Design style font tokens
  *
- * Mapping:
- * - fontSizeSM: sm (14px)
- * - fontSize: base (16px)
- * - fontSizeLG: lg (18px)
- * - fontSizeXL: xl (20px)
- * - fontSizeHeading5: xl (20px)
- * - fontSizeHeading4: 2xl (24px)
- * - fontSizeHeading3: 3xl (30px)
- * - fontSizeHeading2: 4xl (36px)
- * - fontSizeHeading1: 5xl (48px)
+ * Mapping: - fontSizeSM: sm (14px) - fontSize: base (16px) - fontSizeLG: lg (18px) - fontSizeXL: xl (20px) -
+ * fontSizeHeading5: xl (20px) - fontSizeHeading4: 2xl (24px) - fontSizeHeading3: 3xl (30px) - fontSizeHeading2: 4xl
+ * (36px) - fontSizeHeading1: 5xl (48px)
  *
  * @param baseFontSize Base font size (px), default 16
  */

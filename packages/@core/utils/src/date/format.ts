@@ -4,6 +4,7 @@ import { dayjs } from './dayjs';
 
 /**
  * 格式化日期
+ *
  * @param date 日期输入
  * @param format 格式化模板，默认 YYYY-MM-DD
  */
@@ -14,6 +15,7 @@ export function formatDate(date: DateInput, format: string = DATE_FORMAT.DATE): 
 
 /**
  * 格式化日期时间
+ *
  * @param date 日期输入
  * @param format 格式化模板，默认 YYYY-MM-DD HH:mm:ss
  */
@@ -24,6 +26,7 @@ export function formatDateTime(date: DateInput, format: string = DATE_FORMAT.DAT
 
 /**
  * 格式化时间
+ *
  * @param date 日期输入
  * @param format 格式化模板，默认 HH:mm:ss
  */
@@ -34,6 +37,7 @@ export function formatTime(date: DateInput, format: string = DATE_FORMAT.TIME): 
 
 /**
  * 时间戳转日期字符串
+ *
  * @param timestamp 时间戳（毫秒或秒）
  * @param format 格式化模板
  */
@@ -46,6 +50,7 @@ export function fromTimestamp(timestamp: number, format: string = DATE_FORMAT.DA
 
 /**
  * 格式化持续时间（毫秒转为可读格式）
+ *
  * @param milliseconds 毫秒数
  * @param format 格式化模板
  */
@@ -55,6 +60,7 @@ export function formatDuration(milliseconds: number, format: string = 'HH:mm:ss'
 
 /**
  * 获取持续时间的人性化描述
+ *
  * @param milliseconds 毫秒数
  */
 export function humanizeDuration(milliseconds: number): string {

@@ -6,9 +6,8 @@ import { localStg } from '@/utils/storage';
 const langAtom = atom(globalConfig.defaultLang);
 
 /**
- *
- * - not complete
- * - updateTabsByLocale updateGlobalMenusByLocale updateDocumentTitleByLocale
+ * - Not complete
+ * - UpdateTabsByLocale updateGlobalMenusByLocale updateDocumentTitleByLocale
  */
 export const useLang = () => {
   const [locale, setLocale] = useAtom<I18n.LangType>(langAtom);

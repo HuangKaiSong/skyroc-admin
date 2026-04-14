@@ -1,8 +1,8 @@
-/* eslint-disable no-nested-ternary */
-import { Pressable, View } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn, isString } from '@skyroc/utils';
+/* eslint-disable no-nested-ternary */
+import { Pressable, View } from 'react-native';
 import { Text } from '../text/Typography';
 import {
   SIZE_CONTROL_MAP,
@@ -76,11 +76,7 @@ const RadioCard = (props: RadioCardProps) => {
         <View className={controlCls()}>
           {isChecked ? (
             shape === 'square' ? (
-              <Feather
-                color={INDICATOR_COLOR}
-                name="check"
-                size={innerIconSize}
-              />
+              <Feather color={INDICATOR_COLOR} name="check" size={innerIconSize} />
             ) : (
               <View style={{ height: dotSize, width: dotSize }}>
                 <View className={dotCls()} />
@@ -117,11 +113,7 @@ const RadioCard = (props: RadioCardProps) => {
   }
 
   return (
-    <Pressable
-      className={cn(cardCls(), className)}
-      disabled={disabled}
-      onPress={handleToggle}
-    >
+    <Pressable className={cn(cardCls(), className)} disabled={disabled} onPress={handleToggle}>
       {radioPosition === 'left' && renderRadio()}
       {renderContent()}
       {radioPosition === 'right' && renderRadio()}

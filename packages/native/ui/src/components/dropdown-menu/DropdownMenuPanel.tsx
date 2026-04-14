@@ -1,12 +1,12 @@
-import { Pressable, View } from 'react-native';
-import type { LayoutChangeEvent } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import { cn } from '@skyroc/utils';
+import { Pressable, View } from 'react-native';
+import type { LayoutChangeEvent } from 'react-native';
 import type { SharedValue } from 'react-native-reanimated';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
+import type { SlotClassNames } from '../../types/shared';
 import { Divider } from '../divider/Divider';
 import { Text } from '../text/Typography';
-import type { SlotClassNames } from '../../types/shared';
 import { dropdownMenuVariants } from './dropdown-menu-variants';
 import type { DropdownMenuDirection, DropdownMenuOption, DropdownMenuSlots } from './types';
 
@@ -134,13 +134,7 @@ const DropdownMenuPanel = (props: DropdownMenuPanelProps) => {
                     onPress={() => onOptionPress(option)}
                   >
                     <Text className={cn(optionSlots.optionText(), classNames?.optionText)}>{option.text}</Text>
-                    {selected && (
-                      <Feather
-                        color={'#000'}
-                        name="check"
-                        size={16}
-                      />
-                    )}
+                    {selected && <Feather color={'#000'} name="check" size={16} />}
                   </Pressable>
                 </View>
               );

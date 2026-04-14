@@ -8,7 +8,7 @@
 
 ## 完整数据流
 
-```
+````
 你写的 MDX                构建时 (Next.js build)              浏览器端
 ─────────────────    ─────────────────────────    ─────────────────────────
 
@@ -20,7 +20,7 @@ export default App;     data-snack-files="编码后代码"   ↓
 ```                     data-snack-name="Demo"        iframe 内: snack.expo.dev
                         ...                           ├─ 左侧：代码编辑器
                       />                              └─ 右侧：手机模拟器
-```
+````
 
 ---
 
@@ -72,7 +72,7 @@ export default App;     data-snack-files="编码后代码"   ↓
 ```ts
 export default defineConfig({
   mdxOptions: {
-    remarkPlugins: [remarkSnackPlayer]   // ← 挂载到 fumadocs 的 MDX 编译管道
+    remarkPlugins: [remarkSnackPlayer] // ← 挂载到 fumadocs 的 MDX 编译管道
   }
 });
 ```
@@ -154,32 +154,35 @@ export default () => (
 
 所有参数写在代码块的 meta 位置（` ```SnackPlayer ` 后面），格式为 URL query string：
 
-| 参数 | 说明 | 默认值 |
-|------|------|--------|
-| `name` | 播放器标题（需 URL 编码，空格用 `%20`） | `"Example"` |
-| `description` | 描述文字 | `"Example usage"` |
-| `dependencies` | 额外 npm 依赖，逗号分隔 | `""` |
-| `ext` | 文件扩展名 | `"tsx"` |
-| `platform` | 默认预览平台 | `"web"` |
-| `supportedPlatforms` | 可切换的平台 | `"ios,android,web"` |
-| `theme` | 初始主题（会被自动同步覆盖） | `"light"` |
-| `preview` | 是否显示预览面板 | `"true"` |
-| `loading` | iframe 加载策略 | `"lazy"` |
-| `deviceAppearance` | 模拟器外观 | `"light"` |
+| 参数                 | 说明                                    | 默认值              |
+| -------------------- | --------------------------------------- | ------------------- |
+| `name`               | 播放器标题（需 URL 编码，空格用 `%20`） | `"Example"`         |
+| `description`        | 描述文字                                | `"Example usage"`   |
+| `dependencies`       | 额外 npm 依赖，逗号分隔                 | `""`                |
+| `ext`                | 文件扩展名                              | `"tsx"`             |
+| `platform`           | 默认预览平台                            | `"web"`             |
+| `supportedPlatforms` | 可切换的平台                            | `"ios,android,web"` |
+| `theme`              | 初始主题（会被自动同步覆盖）            | `"light"`           |
+| `preview`            | 是否显示预览面板                        | `"true"`            |
+| `loading`            | iframe 加载策略                         | `"lazy"`            |
+| `deviceAppearance`   | 模拟器外观                              | `"light"`           |
 
 ### 示例
 
 只显示 iOS 和 Web：
+
 ````
 ```SnackPlayer name=iOS%20Only&supportedPlatforms=ios,web
 ````
 
 添加额外依赖：
+
 ````
 ```SnackPlayer dependencies=expo-linear-gradient,expo-blur
 ````
 
 使用 JavaScript（非 TypeScript）：
+
 ````
 ```SnackPlayer ext=js
 ````
@@ -188,12 +191,12 @@ export default () => (
 
 ## 限制
 
-| 限制 | 原因 | 解决方案 |
-|------|------|----------|
-| 不能 import 私有包 | Snack 是云端沙箱，只有 npm 公开包 | 发布到 npm，或在代码中内联实现 |
-| 首次加载稍慢 | embed.js + iframe + Snack 编译 | `loading=lazy` 延迟加载 |
-| 需要联网 | iframe 指向 snack.expo.dev | 离线环境用 `<ComponentPreview />` |
-| 主题切换闪烁 | iframe 需要销毁重建 | Expo Snack 的已知限制，无法规避 |
+| 限制               | 原因                              | 解决方案                          |
+| ------------------ | --------------------------------- | --------------------------------- |
+| 不能 import 私有包 | Snack 是云端沙箱，只有 npm 公开包 | 发布到 npm，或在代码中内联实现    |
+| 首次加载稍慢       | embed.js + iframe + Snack 编译    | `loading=lazy` 延迟加载           |
+| 需要联网           | iframe 指向 snack.expo.dev        | 离线环境用 `<ComponentPreview />` |
+| 主题切换闪烁       | iframe 需要销毁重建               | Expo Snack 的已知限制，无法规避   |
 
 ---
 

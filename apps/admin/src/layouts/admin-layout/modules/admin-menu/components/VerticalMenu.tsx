@@ -77,10 +77,7 @@ const VerticalMenu = memo(() => {
   }, [inlineCollapsed]);
 
   return (
-    <ScrollArea
-      className="h-full"
-      type="always"
-    >
+    <ScrollArea className="h-full" type="always">
       <AMenu
         className={clsx('h-full transition-300 border-0!', { 'bg-container!': !darkTheme })}
         inlineCollapsed={inlineCollapsed}

@@ -19,23 +19,14 @@ const DarkMode = () => {
       </div>
 
       <SettingItem label={t('theme.layout.sider.inverted')}>
-        <ASwitch
-          checked={sider.inverted}
-          onChange={handleSiderInvertedChange}
-        />
+        <ASwitch checked={sider.inverted} onChange={handleSiderInvertedChange} />
       </SettingItem>
       <SettingItem label={t('theme.appearance.grayscale')}>
-        <ASwitch
-          checked={grayscale}
-          onChange={setGrayscale}
-        />
+        <ASwitch checked={grayscale} onChange={setGrayscale} />
       </SettingItem>
 
       <SettingItem label={t('theme.appearance.colourWeakness')}>
-        <ASwitch
-          checked={colourWeakness}
-          onChange={setColourWeakness}
-        />
+        <ASwitch checked={colourWeakness} onChange={setColourWeakness} />
       </SettingItem>
     </div>
   );

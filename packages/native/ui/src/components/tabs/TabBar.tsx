@@ -1,8 +1,8 @@
+import { cn, isString } from '@skyroc/utils';
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import { cn, isString } from '@skyroc/utils';
 import type { LayoutRectangle } from 'react-native';
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { Text } from '../text/Typography';
 import { tabsVariants } from './tabs-variants';
 import type { TabBarProps } from './types';
@@ -48,11 +48,7 @@ const TabBar = (props: TabBarProps) => {
 
   return (
     <View className={cn(slots.tabBar(), classNames?.tabBar)}>
-      <ScrollView
-        ref={scrollViewRef}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-      >
+      <ScrollView ref={scrollViewRef} horizontal showsHorizontalScrollIndicator={false}>
         <View className={cn(slots.tabBarContent(), classNames?.tabBarContent)}>
           {items.map((item, index) => {
             const isActive = index === activeIndex;

@@ -14,6 +14,7 @@
 ## 🎯 职责定位
 
 **核心职责**:
+
 - 通知状态管理
 - 通知列表
 - 未读计数
@@ -39,10 +40,10 @@
 ## 🔌 API 设计
 
 ```ts
-export { useNotification } from './hooks/use-notification'
-export { NotificationPanel } from './components/NotificationPanel'
-export { NotificationButton } from './components/NotificationButton'
-export type { Notification } from './types'
+export { useNotification } from './hooks/use-notification';
+export { NotificationPanel } from './components/NotificationPanel';
+export { NotificationButton } from './components/NotificationButton';
+export type { Notification } from './types';
 ```
 
 ## 🔨 核心实现
@@ -51,39 +52,37 @@ export type { Notification } from './types'
 
 ```ts
 // src/atoms/notification.ts
-import { atom } from '@skyroc/core-state'
+import { atom } from '@skyroc/core-state';
 
-export const notificationAtom = atom<Notification[]>([])
+export const notificationAtom = atom<Notification[]>([]);
 
-export const unreadCountAtom = atom((get) => {
-  const notifications = get(notificationAtom)
-  return notifications.filter(n => !n.read).length
-})
+export const unreadCountAtom = atom(get => {
+  const notifications = get(notificationAtom);
+  return notifications.filter(n => !n.read).length;
+});
 ```
 
 ### useNotification Hook
 
 ```ts
 // src/hooks/use-notification.ts
-import { useAtom, useAtomValue } from '@skyroc/core-state'
-import { notificationAtom, unreadCountAtom } from '../atoms/notification'
+import { useAtom, useAtomValue } from '@skyroc/core-state';
+import { notificationAtom, unreadCountAtom } from '../atoms/notification';
 
 export function useNotification() {
-  const [notifications, setNotifications] = useAtom(notificationAtom)
-  const unreadCount = useAtomValue(unreadCountAtom)
+  const [notifications, setNotifications] = useAtom(notificationAtom);
+  const unreadCount = useAtomValue(unreadCountAtom);
 
   function markAsRead(id: string) {
-    setNotifications(notifications.map(n =>
-      n.id === id ? { ...n, read: true } : n
-    ))
+    setNotifications(notifications.map(n => (n.id === id ? { ...n, read: true } : n)));
   }
 
   function markAllAsRead() {
-    setNotifications(notifications.map(n => ({ ...n, read: true })))
+    setNotifications(notifications.map(n => ({ ...n, read: true })));
   }
 
   function deleteNotification(id: string) {
-    setNotifications(notifications.filter(n => n.id !== id))
+    setNotifications(notifications.filter(n => n.id !== id));
   }
 
   return {
@@ -92,23 +91,23 @@ export function useNotification() {
     markAsRead,
     markAllAsRead,
     deleteNotification
-  }
+  };
 }
 ```
 
 ## 💡 使用示例
 
 ```tsx
-import { useNotification, NotificationButton } from '@skyroc/feature-notification'
+import { useNotification, NotificationButton } from '@skyroc/feature-notification';
 
 function Header() {
-  const { unreadCount } = useNotification()
+  const { unreadCount } = useNotification();
 
   return (
     <div>
       <NotificationButton count={unreadCount} />
     </div>
-  )
+  );
 }
 ```
 

@@ -20,18 +20,18 @@ Store<S> 基类（纯逻辑）  +  useStore hook（React 桥接）
 
 ### `Store<S>` — 基类
 
-| 成员 | 访问级别 | 说明 |
-| --- | --- | --- |
-| `state` | `protected` | 当前状态，子类可读可写（但必须通过 `setState`） |
-| `subscribe` | `public` | 订阅状态变化，返回取消函数 |
-| `getSnapshot` | `public` | 获取当前状态快照 |
-| `setState(nextOrUpdater)` | `protected` | 统一状态更新入口，支持直接传值或 updater 函数 |
+| 成员                      | 访问级别    | 说明                                            |
+| ------------------------- | ----------- | ----------------------------------------------- |
+| `state`                   | `protected` | 当前状态，子类可读可写（但必须通过 `setState`） |
+| `subscribe`               | `public`    | 订阅状态变化，返回取消函数                      |
+| `getSnapshot`             | `public`    | 获取当前状态快照                                |
+| `setState(nextOrUpdater)` | `protected` | 统一状态更新入口，支持直接传值或 updater 函数   |
 
 ### `useStore(store, selector?)` — Hook
 
-| 参数 | 说明 |
-| --- | --- |
-| `store` | 任何满足 `Subscribable` 接口的对象 |
+| 参数               | 说明                                   |
+| ------------------ | -------------------------------------- |
+| `store`            | 任何满足 `Subscribable` 接口的对象     |
 | `selector`（可选） | 状态切片选择器，应返回原始值或稳定引用 |
 
 ### `Subscribable<S>` — 接口
@@ -119,8 +119,7 @@ class ArrayStore<T, K extends keyof T> extends Store<T[]> {
     this.setState(prev => {
       const merged = [...prev, ...newItems];
       return merged.filter(
-        (item, index, self) =>
-          index === self.findIndex(t => t[this.resolvedKey] === item[this.resolvedKey])
+        (item, index, self) => index === self.findIndex(t => t[this.resolvedKey] === item[this.resolvedKey])
       );
     });
   };
@@ -139,8 +138,12 @@ class ArrayStore<T, K extends keyof T> extends Store<T[]> {
     });
   };
 
-  clear = () => { this.setState([]); };
-  reset = () => { this.setState(this.initialState); };
+  clear = () => {
+    this.setState([]);
+  };
+  reset = () => {
+    this.setState(this.initialState);
+  };
   findItem = (key: T[K]) => this.state.find(item => item[this.resolvedKey] === key);
 
   // ... 更多方法：unshift, down, pop, shift, reverse, sort, splice
@@ -150,10 +153,7 @@ class ArrayStore<T, K extends keyof T> extends Store<T[]> {
 #### Hook 定义
 
 ```ts
-export default function useArray<T, K extends keyof T>(
-  initState: T[],
-  key?: K
-): [T[], ArrayStore<T, K>] {
+export default function useArray<T, K extends keyof T>(initState: T[], key?: K): [T[], ArrayStore<T, K>] {
   const store = useCreation(() => new ArrayStore(initState, key), []);
   const state = useStore(store);
   return [state, store];
@@ -164,10 +164,13 @@ export default function useArray<T, K extends keyof T>(
 
 ```tsx
 const TodoList = () => {
-  const [items, store] = useArray([
-    { id: 1, title: 'Learn React' },
-    { id: 2, title: 'Learn Store' },
-  ], 'id');
+  const [items, store] = useArray(
+    [
+      { id: 1, title: 'Learn React' },
+      { id: 2, title: 'Learn Store' }
+    ],
+    'id'
+  );
 
   return (
     <div>
@@ -179,9 +182,7 @@ const TodoList = () => {
           <button onClick={() => store.remove(item.id)}>删除</button>
         </div>
       ))}
-      <button onClick={() => store.push({ id: Date.now(), title: 'New' })}>
-        添加
-      </button>
+      <button onClick={() => store.push({ id: Date.now(), title: 'New' })}>添加</button>
       <button onClick={() => store.reset()}>重置</button>
     </div>
   );
@@ -267,12 +268,14 @@ type MyState = {
 // 2. 定义 Store（所有逻辑在这里）
 class MyStore extends Store<MyState> {
   constructor() {
-    super({ /* 初始状态 */ });
+    super({
+      /* 初始状态 */
+    });
   }
 
   // 公开方法必须用箭头函数
   doSomething = () => {
-    this.setState(prev => ({ ...prev, /* 更新 */ }));
+    this.setState(prev => ({ ...prev /* 更新 */ }));
   };
 }
 
@@ -297,7 +300,9 @@ type DashboardState = {
   loading: boolean;
 };
 
-class DashboardStore extends Store<DashboardState> { /* ... */ }
+class DashboardStore extends Store<DashboardState> {
+  /* ... */
+}
 
 // 只订阅 count，users 和 loading 变化不会触发重渲染
 const count = useStore(dashboardStore, s => s.count);

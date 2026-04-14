@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { ScrollView, View } from 'react-native';
 import { Button, DatePicker, DatePickerView, Text } from '@skyroc/native-ui';
 import type { DatePickerFilter, DatePickerFormatter } from '@skyroc/native-ui';
+import { useState } from 'react';
+import { ScrollView, View } from 'react-native';
 
 const DatePickerDemo = () => {
   const [sheetShow, setSheetShow] = useState(false);
@@ -30,18 +30,11 @@ const DatePickerDemo = () => {
     <ScrollView className="flex-1 bg-muted" contentContainerClassName="pb-20" showsVerticalScrollIndicator={false}>
       {/* Basic — year/month/day */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">Basic</Text>
-      <DatePickerView
-        defaultValue={['2026', '02', '25']}
-        showToolbar={false}
-      />
+      <DatePickerView defaultValue={['2026', '02', '25']} showToolbar={false} />
 
       {/* Year & Month only */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">Year & Month</Text>
-      <DatePickerView
-        columnsType={['year', 'month']}
-        defaultValue={['2026', '06']}
-        showToolbar={false}
-      />
+      <DatePickerView columnsType={['year', 'month']} defaultValue={['2026', '06']} showToolbar={false} />
 
       {/* Date range constraint */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">Date Range (2024-01-01 ~ 2026-12-31)</Text>
@@ -59,9 +52,7 @@ const DatePickerDemo = () => {
           <Button size="sm" onPress={() => setSheetShow(true)}>
             Select Date
           </Button>
-          <Text className="text-sm text-muted-foreground">
-            {sheetValue.join('-') || 'None'}
-          </Text>
+          <Text className="text-sm text-muted-foreground">{sheetValue.join('-') || 'None'}</Text>
         </View>
 
         <DatePicker
@@ -80,9 +71,7 @@ const DatePickerDemo = () => {
           <Button size="sm" onPress={() => setFormatterShow(true)}>
             Formatted Picker
           </Button>
-          <Text className="text-sm text-muted-foreground">
-            {formatterValue.join('-') || 'None'}
-          </Text>
+          <Text className="text-sm text-muted-foreground">{formatterValue.join('-') || 'None'}</Text>
         </View>
 
         <DatePicker
@@ -102,9 +91,7 @@ const DatePickerDemo = () => {
           <Button size="sm" onPress={() => setFilterShow(true)}>
             Filtered Picker
           </Button>
-          <Text className="text-sm text-muted-foreground">
-            {filterValue.join('-') || 'None'}
-          </Text>
+          <Text className="text-sm text-muted-foreground">{filterValue.join('-') || 'None'}</Text>
         </View>
 
         <DatePicker

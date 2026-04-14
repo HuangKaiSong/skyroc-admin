@@ -1,6 +1,6 @@
-import { Pressable, View } from 'react-native';
-import { cn, isString } from '@skyroc/utils';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { cn, isString } from '@skyroc/utils';
+import { Pressable, View } from 'react-native';
 import { Text } from '../text/Typography';
 import { cellVariants } from './cell-variants';
 import type { CellProps } from './types';
@@ -49,11 +49,7 @@ const Cell = (props: CellProps) => {
     }
     return (
       <View className="ml-1 self-center">
-        <AntDesign
-          name={arrowDirection}
-          size={12}
-          color="#6b7280"
-        />
+        <AntDesign name={arrowDirection} size={12} color="#6b7280" />
       </View>
     );
   }
@@ -72,11 +68,7 @@ const Cell = (props: CellProps) => {
 
   if (hasPress) {
     return (
-      <Pressable
-        className={cn(rootCls(), classNames?.root)}
-        disabled={disabled}
-        {...rest}
-      >
+      <Pressable className={cn(rootCls(), classNames?.root)} disabled={disabled} {...rest}>
         {content}
       </Pressable>
     );

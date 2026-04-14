@@ -3,14 +3,13 @@ declare global {
   namespace App.Global {
     /**
      * - The global dropdown key
-     *
-     * - closeAll: close all tabs
-     * - closeCurrent: close current tab
-     * - closeLeft: close left tabs
-     * - closeOther: close other tabs
-     * - closeRight: close right tabs
-     * - pin: pin tab
-     * - unpin: unpin tab
+     * - CloseAll: close all tabs
+     * - CloseCurrent: close current tab
+     * - CloseLeft: close left tabs
+     * - CloseOther: close other tabs
+     * - CloseRight: close right tabs
+     * - Pin: pin tab
+     * - Unpin: unpin tab
      */
     type DropdownKey = 'closeAll' | 'closeCurrent' | 'closeLeft' | 'closeOther' | 'closeRight' | 'pin' | 'unpin';
 
@@ -44,7 +43,7 @@ declare global {
       /**
        * The old tab label
        *
-       * when reset the tab label, the tab label will be replaced by this value
+       * When reset the tab label, the tab label will be replaced by this value
        */
       oldLabel?: string;
       /** The tab route path */

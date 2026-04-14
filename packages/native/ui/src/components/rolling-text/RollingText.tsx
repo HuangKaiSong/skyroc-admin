@@ -1,6 +1,6 @@
+import { cn } from '@skyroc/utils';
 import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { View } from 'react-native';
-import { cn } from '@skyroc/utils';
 import { RollingTextItem } from './RollingTextItem';
 import type { RollingTextProps, RollingTextRef } from './types';
 
@@ -51,7 +51,7 @@ const RollingText = forwardRef<RollingTextRef, RollingTextProps>((props, ref) =>
     startNum = 0,
     stopOrder = 'ltr',
     targetNum = 0,
-    textList = [],
+    textList = []
   } = props;
 
   const [rolling, setRolling] = useState(false);
@@ -69,7 +69,7 @@ const RollingText = forwardRef<RollingTextRef, RollingTextProps>((props, ref) =>
     },
     start: () => {
       setRolling(true);
-    },
+    }
   }));
 
   useEffect(() => {
@@ -85,7 +85,7 @@ const RollingText = forwardRef<RollingTextRef, RollingTextProps>((props, ref) =>
     const len = textList[0]?.length || 0;
     columns = Array.from({ length: len }, (_, i) => ({
       delay: getDelay(i, len),
-      figureArr: getTextArrByIdx(textList, i),
+      figureArr: getTextArrByIdx(textList, i)
     }));
   } else {
     const targetStr = String(targetNum);
@@ -96,7 +96,7 @@ const RollingText = forwardRef<RollingTextRef, RollingTextProps>((props, ref) =>
 
     columns = Array.from({ length: len }, (_, i) => ({
       delay: getDelay(i, len),
-      figureArr: getFigureArr(Number(startDigits[i]), Number(targetDigits[i])),
+      figureArr: getFigureArr(Number(startDigits[i]), Number(targetDigits[i]))
     }));
   }
 

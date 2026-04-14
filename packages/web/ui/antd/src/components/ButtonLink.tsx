@@ -16,13 +16,7 @@ interface ButtonLinkProps extends Omit<ButtonProps, 'type'> {
 const ButtonLinkComponent = (props: ButtonLinkProps) => {
   const { btnType, ref, ...rest } = props;
 
-  return (
-    <Button
-      type={btnType}
-      {...rest}
-      ref={ref}
-    />
-  );
+  return <Button type={btnType} {...rest} ref={ref} />;
 };
 
 export type ButtonLinkComponentProps = LinkComponentProps<typeof ButtonLinkComponent>;
@@ -30,12 +24,7 @@ export type ButtonLinkComponentProps = LinkComponentProps<typeof ButtonLinkCompo
 const CreatedButtonLinkComponent = createLink(ButtonLinkComponent);
 
 const ButtonLink: LinkComponent<typeof ButtonLinkComponent> = props => {
-  return (
-    <CreatedButtonLinkComponent
-      preload="intent"
-      {...props}
-    />
-  );
+  return <CreatedButtonLinkComponent preload="intent" {...props} />;
 };
 
 export default ButtonLink;

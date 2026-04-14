@@ -9,14 +9,8 @@ import Horizontal from './Horizontal';
 
 const HorizontalMix = () => {
   return [
-    <Horizontal
-      key="horizontal"
-      mode={HorizontalMenuMode.Child}
-    />,
-    <Portal
-      container={GLOBAL_SIDER_MENU_ID}
-      key="first-level-menu"
-    >
+    <Horizontal key="horizontal" mode={HorizontalMenuMode.Child} />,
+    <Portal container={GLOBAL_SIDER_MENU_ID} key="first-level-menu">
       <FirstLevelMenu key="first-level-menu" />
     </Portal>
   ];

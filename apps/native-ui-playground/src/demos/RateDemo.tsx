@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { ScrollView, View } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { Rate, Text } from '@skyroc/native-ui';
+import { useState } from 'react';
+import { ScrollView, View } from 'react-native';
 
 const RateDemo = () => {
   const [basicValue, setBasicValue] = useState(3);
@@ -44,14 +44,7 @@ const RateDemo = () => {
       {/* Custom Style */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">Custom Style</Text>
       <View className="bg-background px-4 py-4">
-        <Rate
-          color="#ffd21e"
-          count={6}
-          defaultValue={4}
-          gutter={8}
-          size={32}
-          voidColor="#eee"
-        />
+        <Rate color="#ffd21e" count={6} defaultValue={4} gutter={8} size={32} voidColor="#eee" />
       </View>
 
       {/* Readonly */}

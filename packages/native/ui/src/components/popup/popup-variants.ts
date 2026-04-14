@@ -1,5 +1,5 @@
-import { tv } from 'tailwind-variants';
 import type { ModalProps } from 'react-native-modal';
+import { tv } from 'tailwind-variants';
 import type { PopupPosition } from './types';
 
 /** Popup 内容区域样式变体 */

@@ -1,5 +1,5 @@
-import { View } from 'react-native';
 import { cn, isString } from '@skyroc/utils';
+import { View } from 'react-native';
 import { Text } from '../text/Typography';
 import { dividerVariants } from './divider-variants';
 import type { DividerProps } from './types';
@@ -28,33 +28,18 @@ const Divider = (props: DividerProps) => {
     const isRight = contentPosition === 'right';
 
     return (
-      <View
-        className={cn(slots.root(), className)}
-        role="separator"
-      >
-        <View
-          className={cn(slots.line(), isLeft && 'max-w-[10%]', lineClassName)}
-          {...rest}
-        />
+      <View className={cn(slots.root(), className)} role="separator">
+        <View className={cn(slots.line(), isLeft && 'max-w-[10%]', lineClassName)} {...rest} />
         {isString(children) ? <Text className={cn(slots.text(), textClassName)}>{children}</Text> : children}
-        <View
-          className={cn(slots.line(), isRight && 'max-w-[10%]', lineClassName)}
-          {...rest}
-        />
+        <View className={cn(slots.line(), isRight && 'max-w-[10%]', lineClassName)} {...rest} />
       </View>
     );
   }
 
   // 无内容：单条线
   return (
-    <View
-      className={cn(slots.root(), className)}
-      role="separator"
-    >
-      <View
-        className={cn(slots.line(), lineClassName)}
-        {...rest}
-      />
+    <View className={cn(slots.root(), className)} role="separator">
+      <View className={cn(slots.line(), lineClassName)} {...rest} />
     </View>
   );
 };

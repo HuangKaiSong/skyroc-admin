@@ -1,8 +1,8 @@
-import { ActivityIndicator, Pressable, View } from 'react-native';
 import { cn } from '@skyroc/utils';
-import { Text } from '../text/Typography';
+import { ActivityIndicator, Pressable, View } from 'react-native';
 import { Divider } from '../divider/Divider';
 import { Sheet } from '../sheet/Sheet';
+import { Text } from '../text/Typography';
 import { actionSheetVariants } from './action-sheet-variants';
 import type { ActionSheetAction, ActionSheetProps } from './types';
 
@@ -56,10 +56,7 @@ const ActionSheet = (props: ActionSheetProps) => {
           onPress={() => handleSelect(action, index)}
         >
           {action.loading ? (
-            <ActivityIndicator
-              className="text-muted-foreground"
-              size="small"
-            />
+            <ActivityIndicator className="text-muted-foreground" size="small" />
           ) : (
             <>
               <Text className={cn(slots.actionName(), classNames?.actionName)}>
@@ -76,13 +73,7 @@ const ActionSheet = (props: ActionSheetProps) => {
   }
 
   return (
-    <Sheet
-      closeable={closeable}
-      description={description}
-      show={show}
-      title={title}
-      onUpdateShow={onUpdateShow}
-    >
+    <Sheet closeable={closeable} description={description} show={show} title={title} onUpdateShow={onUpdateShow}>
       <View className={cn(slots.root(), className)}>
         {/* Actions */}
         {actions.map((action, index) => renderAction(action, index))}
@@ -91,10 +82,7 @@ const ActionSheet = (props: ActionSheetProps) => {
         {cancelText ? (
           <>
             <View className={cn(slots.cancelGap(), classNames?.cancelGap)} />
-            <Pressable
-              className={cn(slots.cancel(), classNames?.cancel)}
-              onPress={handleCancel}
-            >
+            <Pressable className={cn(slots.cancel(), classNames?.cancel)} onPress={handleCancel}>
               <Text className="text-base text-foreground">{cancelText}</Text>
             </Pressable>
           </>

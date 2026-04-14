@@ -1,6 +1,6 @@
 import { createElement } from 'react';
-import type { PortalHandle } from '../portal/types';
 import { mountPortal } from '../portal/mount-portal';
+import type { PortalHandle } from '../portal/types';
 import { ShareSheet } from './ShareSheet';
 import type { ShareSheetCallOptions, ShareSheetOption, ShareSheetResult } from './types';
 

@@ -1,6 +1,4 @@
-/**
- * System manage module query keys
- */
+/** System manage module query keys */
 
 export const SYSTEM_MANAGE_QUERY_KEYS = {
   ALL_PAGES: ['systemManage', 'allPages'] as const,

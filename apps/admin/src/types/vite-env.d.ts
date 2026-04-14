@@ -54,12 +54,12 @@ declare namespace Env {
      */
     readonly VITE_MENU_ICON: string;
     /**
-     * other backend service base url
+     * Other backend service base url
      *
-     * the value is a json
+     * The value is a json
      */
     readonly VITE_OTHER_SERVICE_BASE_URL: string;
-    /** show proxy url log in terminal */
+    /** Show proxy url log in terminal */
     readonly VITE_PROXY_LOG?: CommonType.YesOrNo;
     /**
      * The home route key
@@ -70,41 +70,41 @@ declare namespace Env {
     readonly VITE_ROUTE_HOME: Router.RoutePath;
     /** The router history mode */
     readonly VITE_ROUTER_HISTORY_MODE?: RouterHistoryMode;
-    /** backend service base url */
+    /** Backend service base url */
     readonly VITE_SERVICE_BASE_URL: string;
     /**
-     * token expired codes of backend service
+     * Token expired codes of backend service
      *
-     * when the code is received, it will refresh the token and resend the request
+     * When the code is received, it will refresh the token and resend the request
      *
-     * use "," to separate multiple codes
+     * Use "," to separate multiple codes
      */
     readonly VITE_SERVICE_EXPIRED_TOKEN_CODES: string;
     /**
-     * logout codes of backend service
+     * Logout codes of backend service
      *
-     * when the code is received, the user will be logged out and redirected to login page
+     * When the code is received, the user will be logged out and redirected to login page
      *
-     * use "," to separate multiple codes
+     * Use "," to separate multiple codes
      */
     readonly VITE_SERVICE_LOGOUT_CODES: string;
     /**
-     * modal logout codes of backend service
+     * Modal logout codes of backend service
      *
-     * when the code is received, the user will be logged out by displaying a modal
+     * When the code is received, the user will be logged out by displaying a modal
      *
-     * use "," to separate multiple codes
+     * Use "," to separate multiple codes
      */
     readonly VITE_SERVICE_MODAL_LOGOUT_CODES: string;
     /**
-     * success code of backend service
+     * Success code of backend service
      *
-     * when the code is received, the request is successful
+     * When the code is received, the request is successful
      */
     readonly VITE_SERVICE_SUCCESS_CODE: string;
     /** Whether to build with sourcemap */
     readonly VITE_SOURCE_MAP?: CommonType.YesOrNo;
-    /** when the route mode is static, the defined super role */
+    /** When the route mode is static, the defined super role */
     readonly VITE_STATIC_SUPER_ROLE: string;
     /** Used to differentiate storage across different domains */
     readonly VITE_STORAGE_PREFIX?: string;

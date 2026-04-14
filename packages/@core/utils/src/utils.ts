@@ -1,11 +1,7 @@
-/**
- * - No operation
- */
+/** - No operation */
 export function noop() {}
 
-/**
- * - Check if the value is null or undefined
- */
+/** - Check if the value is null or undefined */
 export function isNil(val: unknown): val is null | undefined {
   return val === null || val === undefined;
 }
@@ -14,7 +10,7 @@ export function isNil(val: unknown): val is null | undefined {
  * 检查传入的字符串是否为有效的HTTP或HTTPS URL。
  *
  * @param {string} url 要检查的字符串。
- * @return {boolean} 如果字符串是有效的HTTP或HTTPS URL，返回true，否则返回false。
+ * @returns {boolean} 如果字符串是有效的HTTP或HTTPS URL，返回true，否则返回false。
  */
 export function isHttpUrl(url?: string): boolean {
   if (!url) {
@@ -38,8 +34,7 @@ export function isWindow(value: any): value is Window {
 /**
  * 检查当前运行环境是否为Mac OS。
  *
- * 这个函数通过检查navigator.userAgent字符串来判断当前运行环境。
- * 如果userAgent字符串中包含"macintosh"或"mac os x"（不区分大小写），则认为当前环境是Mac OS。
+ * 这个函数通过检查navigator.userAgent字符串来判断当前运行环境。 如果userAgent字符串中包含"macintosh"或"mac os x"（不区分大小写），则认为当前环境是Mac OS。
  *
  * @returns {boolean} 如果当前环境是Mac OS，返回true，否则返回false。
  */
@@ -51,8 +46,7 @@ export function isMacOs(): boolean {
 /**
  * 检查当前运行环境是否为Windows OS。
  *
- * 这个函数通过检查navigator.userAgent字符串来判断当前运行环境。
- * 如果userAgent字符串中包含"windows"或"win32"（不区分大小写），则认为当前环境是Windows OS。
+ * 这个函数通过检查navigator.userAgent字符串来判断当前运行环境。 如果userAgent字符串中包含"windows"或"win32"（不区分大小写），则认为当前环境是Windows OS。
  *
  * @returns {boolean} 如果当前环境是Windows OS，返回true，否则返回false。
  */

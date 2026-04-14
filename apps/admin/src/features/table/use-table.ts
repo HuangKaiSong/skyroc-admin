@@ -20,12 +20,7 @@ import type {
 /**
  * Antd表格Hook
  *
- * 提供完整的表格功能，包括：
- * - 数据获取和分页
- * - 搜索参数管理
- * - URL参数同步
- * - 移动端适配
- * - 列管理
+ * 提供完整的表格功能，包括： - 数据获取和分页 - 搜索参数管理 - URL参数同步 - 移动端适配 - 列管理
  */
 export function useTable<A extends TableApiFn>(config: TableConfig<A>) {
   const { isMobile } = useAdminState();
@@ -129,17 +124,13 @@ export function useTable<A extends TableApiFn>(config: TableConfig<A>) {
     ...paginationConfig
   };
 
-  /**
-   * 重置搜索
-   */
+  /** 重置搜索 */
   function reset() {
     form.setFieldsValue(apiParams as NonNullable<Parameters<A>[0]>);
     resetSearchParams();
   }
 
-  /**
-   * 执行搜索
-   */
+  /** 执行搜索 */
   async function run(isResetCurrent: boolean = true) {
     const res = await form.validateFields();
 
@@ -153,9 +144,7 @@ export function useTable<A extends TableApiFn>(config: TableConfig<A>) {
     }
   }
 
-  /**
-   * 表格变化处理（分页、排序、筛选）
-   */
+  /** 表格变化处理（分页、排序、筛选） */
   function handleChange(...args: TableOnChange) {
     const [paginationContext, ...otherParams] = args;
 

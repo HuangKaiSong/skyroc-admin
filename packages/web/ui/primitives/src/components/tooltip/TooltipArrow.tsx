@@ -11,12 +11,7 @@ const TooltipArrow = (props: TooltipArrowProps) => {
 
   const mergedCls = cn(arrow(), className);
 
-  return (
-    <Arrow
-      className={mergedCls}
-      {...rest}
-    />
-  );
+  return <Arrow className={mergedCls} {...rest} />;
 };
 
 export default TooltipArrow;

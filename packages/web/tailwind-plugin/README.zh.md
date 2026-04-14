@@ -34,31 +34,28 @@ yarn add @skyroc/tailwind-plugin
 在 `tailwind.config.js` 中添加插件：
 
 ```js
-import { skyrocUIPlugin } from '@skyroc/tailwind-plugin'
+import { skyrocUIPlugin } from '@skyroc/tailwind-plugin';
 
 export default {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/skyroc-ui/dist/**/*.{js,ts,jsx,tsx}'
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/skyroc-ui/dist/**/*.{js,ts,jsx,tsx}'],
   plugins: [skyrocUIPlugin()]
-}
+};
 ```
 
 ### 带选项配置
 
 ```js
-import { skyrocUIPlugin } from '@skyroc/tailwind-plugin'
+import { skyrocUIPlugin } from '@skyroc/tailwind-plugin';
 
 export default {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   plugins: [
     skyrocUIPlugin({
-      color: 'blue',      // 主色调主题
-      radius: 0.5         // 圆角比例
+      color: 'blue', // 主色调主题
+      radius: 0.5 // 圆角比例
     })
   ]
-}
+};
 ```
 
 ## 配置选项
@@ -67,20 +64,20 @@ export default {
 
 可用的内置颜色主题：
 
-| 主题 | 主色调 |
-|------|--------|
-| `zinc` | 锌灰色 |
-| `slate` | 石板灰 |
-| `stone` | 石灰色 |
-| `gray` | 中性灰 |
+| 主题      | 主色调 |
+| --------- | ------ |
+| `zinc`    | 锌灰色 |
+| `slate`   | 石板灰 |
+| `stone`   | 石灰色 |
+| `gray`    | 中性灰 |
 | `neutral` | 纯中性 |
-| `red` | 红色 |
-| `rose` | 玫瑰粉 |
-| `orange` | 橙色 |
-| `green` | 绿色 |
-| `blue` | 蓝色 |
-| `yellow` | 黄色 |
-| `violet` | 紫罗兰 |
+| `red`     | 红色   |
+| `rose`    | 玫瑰粉 |
+| `orange`  | 橙色   |
+| `green`   | 绿色   |
+| `blue`    | 蓝色   |
+| `yellow`  | 黄色   |
+| `violet`  | 紫罗兰 |
 
 ### 圆角
 
@@ -92,46 +89,46 @@ export default {
 
 ### 基础颜色
 
-| 令牌 | 描述 |
-|------|------|
-| `background` | 页面背景 |
-| `foreground` | 默认文字颜色 |
-| `card` | 卡片背景 |
-| `card-foreground` | 卡片文字颜色 |
-| `popover` | 弹出框背景 |
+| 令牌                 | 描述           |
+| -------------------- | -------------- |
+| `background`         | 页面背景       |
+| `foreground`         | 默认文字颜色   |
+| `card`               | 卡片背景       |
+| `card-foreground`    | 卡片文字颜色   |
+| `popover`            | 弹出框背景     |
 | `popover-foreground` | 弹出框文字颜色 |
-| `muted` | 禁用/次要背景 |
-| `muted-foreground` | 次要文字颜色 |
-| `accent` | 强调色 |
-| `accent-foreground` | 强调色文字 |
-| `border` | 边框颜色 |
-| `input` | 输入框边框颜色 |
-| `ring` | 聚焦环颜色 |
+| `muted`              | 禁用/次要背景  |
+| `muted-foreground`   | 次要文字颜色   |
+| `accent`             | 强调色         |
+| `accent-foreground`  | 强调色文字     |
+| `border`             | 边框颜色       |
+| `input`              | 输入框边框颜色 |
+| `ring`               | 聚焦环颜色     |
 
 ### 语义颜色
 
 每个语义颜色都有完整的色阶（50-950）以及 `DEFAULT` 和 `foreground`：
 
-| 令牌 | 描述 |
-|------|------|
-| `primary` | 主品牌色 |
-| `secondary` | 次要颜色 |
+| 令牌          | 描述          |
+| ------------- | ------------- |
+| `primary`     | 主品牌色      |
+| `secondary`   | 次要颜色      |
 | `destructive` | 错误/危险颜色 |
-| `warning` | 警告颜色 |
-| `success` | 成功颜色 |
-| `info` | 信息颜色 |
-| `carbon` | 中性碳色 |
+| `warning`     | 警告颜色      |
+| `success`     | 成功颜色      |
+| `info`        | 信息颜色      |
+| `carbon`      | 中性碳色      |
 
 ### 侧边栏颜色
 
-| 令牌 | 描述 |
-|------|------|
-| `sidebar-background` | 侧边栏背景 |
-| `sidebar-foreground` | 侧边栏文字 |
-| `sidebar-primary` | 侧边栏主色 |
-| `sidebar-accent` | 侧边栏强调色 |
-| `sidebar-border` | 侧边栏边框 |
-| `sidebar-ring` | 侧边栏聚焦环 |
+| 令牌                 | 描述         |
+| -------------------- | ------------ |
+| `sidebar-background` | 侧边栏背景   |
+| `sidebar-foreground` | 侧边栏文字   |
+| `sidebar-primary`    | 侧边栏主色   |
+| `sidebar-accent`     | 侧边栏强调色 |
+| `sidebar-border`     | 侧边栏边框   |
+| `sidebar-ring`       | 侧边栏聚焦环 |
 
 ## 在组件中使用
 
@@ -141,11 +138,11 @@ export default {
   <button className="bg-primary text-primary-foreground">
     主要按钮
   </button>
-  
+
   <div className="bg-card border-border rounded-lg">
     卡片内容
   </div>
-  
+
   <span className="text-muted-foreground">
     次要文字
   </span>
@@ -197,14 +194,14 @@ skyrocUIPlugin(options?: SkyrocUIPluginOptions)
 
 ```ts
 import {
-  skyrocUIPlugin,      // 主插件
-  skyrocUITheme,       // 主题生成函数
-  presetSkyrocUI,      // 预设工具类
-  generateCSSVars,     // CSS 变量生成器
-  builtinColors,       // 内置颜色名称数组
-  builtinColorMap,     // 颜色名称到值的映射
-  builtinRadiuses      // 可用圆角值
-} from '@skyroc/tailwind-plugin'
+  skyrocUIPlugin, // 主插件
+  skyrocUITheme, // 主题生成函数
+  presetSkyrocUI, // 预设工具类
+  generateCSSVars, // CSS 变量生成器
+  builtinColors, // 内置颜色名称数组
+  builtinColorMap, // 颜色名称到值的映射
+  builtinRadiuses // 可用圆角值
+} from '@skyroc/tailwind-plugin';
 ```
 
 ### 类型
@@ -216,10 +213,9 @@ import type {
   ThemeConfigColor,
   ThemeColorKey,
   ThemeOptions
-} from '@skyroc/tailwind-plugin'
+} from '@skyroc/tailwind-plugin';
 ```
 
 ## 许可证
 
 [MIT](../../LICENSE) 许可证 © 2024-至今 [Ohh](https://github.com/Ohh-889)
-

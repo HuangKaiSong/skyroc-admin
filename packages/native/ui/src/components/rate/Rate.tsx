@@ -1,8 +1,8 @@
-import { useRef } from 'react';
-import { Pressable, View } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
+import { useRef } from 'react';
+import { Pressable, View } from 'react-native';
 import type { RateProps } from './types';
 
 /** 默认配色 */
@@ -22,12 +22,7 @@ interface RateItem {
   status: RateStatus;
 }
 
-function getRateStatus(
-  value: number,
-  index: number,
-  allowHalf: boolean,
-  readonly: boolean
-): RateItem {
+function getRateStatus(value: number, index: number, allowHalf: boolean, readonly: boolean): RateItem {
   if (value >= index) {
     return { fractional: 1, status: 'full' };
   }
@@ -133,13 +128,7 @@ const Rate = (props: RateProps) => {
     if (iconProp) {
       return iconProp;
     }
-    return (
-      <AntDesign
-        color={iconColor}
-        name="star"
-        size={iconSize}
-      />
-    );
+    return <AntDesign color={iconColor} name="star" size={iconSize} />;
   }
 
   function resolveVoidIcon(
@@ -155,13 +144,7 @@ const Rate = (props: RateProps) => {
     if (iconProp) {
       return iconProp;
     }
-    return (
-      <AntDesign
-        color={iconColor}
-        name="star"
-        size={iconSize}
-      />
-    );
+    return <AntDesign color={iconColor} name="star" size={iconSize} />;
   }
 
   function renderStar(index: number) {
@@ -175,10 +158,7 @@ const Rate = (props: RateProps) => {
     const isLast = index === count - 1;
 
     return (
-      <View
-        key={index}
-        style={!isLast ? { marginRight: gutter } : undefined}
-      >
+      <View key={index} style={!isLast ? { marginRight: gutter } : undefined}>
         <Pressable
           disabled={isUnselectable()}
           onPress={() => handleStarPress(index)}
@@ -244,9 +224,7 @@ const Rate = (props: RateProps) => {
   }
 
   return (
-    <View
-      className={cn('flex-row items-center', className)}
-    >
+    <View className={cn('flex-row items-center', className)}>
       {Array.from({ length: count }, (_, i) => renderStar(i))}
     </View>
   );

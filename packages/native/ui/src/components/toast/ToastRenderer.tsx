@@ -1,5 +1,5 @@
-import { View } from 'react-native';
 import { useStore } from '@skyroc/hooks';
+import { View } from 'react-native';
 import { Toast } from './Toast';
 import type { ToastEntry } from './toast-manager';
 import { toastManager } from './toast-manager';
@@ -17,10 +17,7 @@ const ToastRenderer = () => {
   if (entries.length === 0) return null;
 
   return (
-    <View
-      className="absolute inset-0 z-50"
-      pointerEvents="box-none"
-    >
+    <View className="absolute inset-0 z-50" pointerEvents="box-none">
       {entries.map(entry => {
         const hasForbid = entry.forbidClick ?? false;
 
@@ -30,11 +27,7 @@ const ToastRenderer = () => {
             className={toastPositionVariants({ position: entry.position ?? 'middle' })}
             pointerEvents={hasForbid ? 'auto' : 'box-none'}
           >
-            <Toast
-              {...entry}
-              show
-              onUpdateShow={() => handleRemove(entry)}
-            />
+            <Toast {...entry} show onUpdateShow={() => handleRemove(entry)} />
           </View>
         );
       })}

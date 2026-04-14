@@ -17,7 +17,7 @@ interface Props {
 /**
  * Transform menu to searchMenus
  *
- * @param menus - menus
+ * @param menus - Menus
  * @param treeMap
  */
 function transformMenuToSearchMenus(menus: Menu.Menus[], treeMap: Menu.Menus[] = []) {
@@ -74,12 +74,12 @@ const SearchModal = ({ onClose, show }: Props) => {
 
   const handleSearch = useDebounceFn(search, { wait: 300 });
 
-  /** key up */
+  /** Key up */
   function handleUp() {
     handleKeyPress(-1); // 方向 -1 表示向上
   }
 
-  /** key down */
+  /** Key down */
   function handleDown() {
     handleKeyPress(1); // 方向 1 表示向下
   }
@@ -102,7 +102,7 @@ const SearchModal = ({ onClose, show }: Props) => {
     setActiveRoute(activeKey);
   }
 
-  /** key enter */
+  /** Key enter */
   function handleEnter() {
     if (resultOptions.length === 0 || activeRoute === '') return;
     handleClose();
@@ -136,11 +136,7 @@ const SearchModal = ({ onClose, show }: Props) => {
           onInput={handleSearch.run}
         />
         {isMobile && (
-          <AButton
-            ghost
-            type="primary"
-            onClick={handleClose}
-          >
+          <AButton ghost type="primary" onClick={handleClose}>
             {t('common.cancel')}
           </AButton>
         )}

@@ -10,8 +10,7 @@ let registered: ImageComponentType | null = null;
 /**
  * 注册图片组件实现
  *
- * 应用层在入口调用，注入具体的图片组件（如 expo-image）。
- * 未注册时，组件库回退到 React Native 原生 Image。
+ * 应用层在入口调用，注入具体的图片组件（如 expo-image）。 未注册时，组件库回退到 React Native 原生 Image。
  */
 function registerImageComponent(component: ImageComponentType) {
   registered = component;

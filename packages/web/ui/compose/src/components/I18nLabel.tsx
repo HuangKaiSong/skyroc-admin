@@ -5,9 +5,9 @@ import { Translation } from 'react-i18next';
 interface I18nLabelProps {
   /** Fallback content when i18nKey is not provided */
   fallback?: ReactNode;
-  /** i18n instance (optional, uses default if not provided) */
+  /** I18n instance (optional, uses default if not provided) */
   i18n?: i18n;
-  /** i18n translation key */
+  /** I18n translation key */
   i18nKey?: string | null;
 }
 

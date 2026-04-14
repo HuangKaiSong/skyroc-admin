@@ -1,11 +1,11 @@
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { cn } from '@skyroc/utils';
 import { useEffect } from 'react';
 import { Pressable, View } from 'react-native';
 import type { LayoutChangeEvent } from 'react-native';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { cn } from '@skyroc/utils';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import { Text } from '../text/Typography';
 import type { SlotClassNames } from '../../types/shared';
+import { Text } from '../text/Typography';
 import { dropdownMenuVariants } from './dropdown-menu-variants';
 import type { DropdownMenuDirection, DropdownMenuItem, DropdownMenuSlots } from './types';
 
@@ -65,11 +65,7 @@ const AnimatedArrow = (props: AnimatedArrowProps) => {
 
   return (
     <Animated.View style={animStyle}>
-      <FontAwesome
-        color={active ? '#000' : '#999'}
-        name={direction === 'up' ? 'caret-up' : 'caret-down'}
-        size={14}
-      />
+      <FontAwesome color={active ? '#000' : '#999'} name={direction === 'up' ? 'caret-up' : 'caret-down'} size={14} />
     </Animated.View>
   );
 };
@@ -81,10 +77,7 @@ const DropdownMenuBar = (props: DropdownMenuBarProps) => {
   const slots = dropdownMenuVariants();
 
   return (
-    <View
-      className={cn(slots.bar(), classNames?.bar)}
-      onLayout={onLayout}
-    >
+    <View className={cn(slots.bar(), classNames?.bar)} onLayout={onLayout}>
       {items.map((item, index) => {
         const isActive = activeItemIndex === index;
         const titleSlots = dropdownMenuVariants({ active: isActive, disabled: Boolean(item.disabled) });
@@ -97,11 +90,7 @@ const DropdownMenuBar = (props: DropdownMenuBarProps) => {
             onPress={() => onTitlePress(index)}
           >
             <Text className={cn(titleSlots.titleText(), classNames?.titleText)}>{titleTexts[index]}</Text>
-            <AnimatedArrow
-              active={isActive}
-              direction={direction}
-              duration={duration}
-            />
+            <AnimatedArrow active={isActive} direction={direction} duration={duration} />
           </Pressable>
         );
       })}

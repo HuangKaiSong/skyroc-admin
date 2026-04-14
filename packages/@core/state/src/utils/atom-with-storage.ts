@@ -5,20 +5,20 @@ import { getStorage } from './storage-registry';
 /**
  * Create a persistent atom
  *
- * Resolves storage by name from the registry (default: 'local').
- * Pass `options.storage` directly to bypass the registry.
+ * Resolves storage by name from the registry (default: 'local'). Pass `options.storage` directly to bypass the
+ * registry.
  *
  * @example
- * ```ts
- * // Uses registered 'local' storage (default)
- * const themeAtom = createAtomWithStorage('theme', { mode: 'light' });
+ *   ```ts
+ *   // Uses registered 'local' storage (default)
+ *   const themeAtom = createAtomWithStorage('theme', { mode: 'light' });
  *
- * // Uses registered 'session' storage
- * const tabAtom = createAtomWithStorage('tab', 'home', { storageName: 'session' });
+ *   // Uses registered 'session' storage
+ *   const tabAtom = createAtomWithStorage('tab', 'home', { storageName: 'session' });
  *
- * // Bypass registry with a direct storage adapter
- * const customAtom = createAtomWithStorage('key', val, { storage: myAdapter });
- * ```
+ *   // Bypass registry with a direct storage adapter
+ *   const customAtom = createAtomWithStorage('key', val, { storage: myAdapter });
+ *   ```
  */
 export function createAtomWithStorage<T>(
   key: string,

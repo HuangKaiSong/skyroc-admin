@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
+import { useMemo } from 'react';
 import { PickerView } from '../picker/PickerView';
 import type { TimePickerColumnType, TimePickerViewProps } from './types';
 import { formatTimeValueRange, genTimeOptions, padZero, parseTime } from './utils';
@@ -102,7 +102,7 @@ const TimePickerView = (props: TimePickerViewProps) => {
 
   function handleChange(newValues: string[]) {
     // After changing, re-clamp because cascading constraints may apply
-    const newColumns = columnsType.map((type) => {
+    const newColumns = columnsType.map(type => {
       const tempValues = [...newValues];
 
       function getTempValue(t: TimePickerColumnType): number {
@@ -141,14 +141,7 @@ const TimePickerView = (props: TimePickerViewProps) => {
     setValue(clamped);
   }
 
-  return (
-    <PickerView
-      {...pickerProps}
-      columns={columns}
-      onChange={handleChange}
-      value={clampedValue}
-    />
-  );
+  return <PickerView {...pickerProps} columns={columns} onChange={handleChange} value={clampedValue} />;
 };
 
 export { TimePickerView };

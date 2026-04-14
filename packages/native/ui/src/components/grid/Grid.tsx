@@ -1,6 +1,6 @@
+import { cn, isString } from '@skyroc/utils';
 import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import { cn, isString } from '@skyroc/utils';
 import { Text } from '../text/Typography';
 import { GRID_BORDER_COLOR } from './constants';
 import { gridItemVariants } from './grid-variants';

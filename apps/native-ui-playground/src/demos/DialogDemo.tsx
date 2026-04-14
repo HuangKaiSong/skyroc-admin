@@ -1,12 +1,6 @@
+import { Button, Dialog, showConfirmDialog, showDialog, Text } from '@skyroc/native-ui';
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import {
-  Button,
-  Dialog,
-  showConfirmDialog,
-  showDialog,
-  Text
-} from '@skyroc/native-ui';
 
 function simulateAsync(ms = 2000): Promise<boolean> {
   return new Promise(resolve => {
@@ -86,22 +80,44 @@ const DialogDemo = () => {
       <Text className="mb-4 text-lg font-semibold">Declarative</Text>
       <View className="mb-8 gap-3">
         <Button onPress={() => setShowBasic(true)}>Basic Dialog</Button>
-        <Button variant="tonal" onPress={() => setShowConfirm(true)}>Confirm Dialog</Button>
-        <Button variant="tonal" onPress={() => setShowRoundV(true)}>Round Vertical</Button>
-        <Button variant="tonal" onPress={() => setShowRoundH(true)}>Round Horizontal</Button>
-        <Button variant="tonal" onPress={() => setShowAsync(true)}>Async Close</Button>
-        <Button variant="tonal" onPress={() => setShowAsyncRound(true)}>Async + Round</Button>
+        <Button variant="tonal" onPress={() => setShowConfirm(true)}>
+          Confirm Dialog
+        </Button>
+        <Button variant="tonal" onPress={() => setShowRoundV(true)}>
+          Round Vertical
+        </Button>
+        <Button variant="tonal" onPress={() => setShowRoundH(true)}>
+          Round Horizontal
+        </Button>
+        <Button variant="tonal" onPress={() => setShowAsync(true)}>
+          Async Close
+        </Button>
+        <Button variant="tonal" onPress={() => setShowAsyncRound(true)}>
+          Async + Round
+        </Button>
       </View>
 
       {/* Function Call */}
       <Text className="mb-4 text-lg font-semibold">Function Call</Text>
       <View className="mb-8 gap-3">
-        <Button variant="outline" onPress={handleFunctionAlert}>showDialog</Button>
-        <Button variant="outline" onPress={handleFunctionConfirm}>showConfirmDialog</Button>
-        <Button variant="outline" onPress={handleFunctionAsync}>Async Close</Button>
-        <Button variant="outline" onPress={handleFunctionRound}>Round Button</Button>
-        <Button variant="outline" onPress={handleFunctionAsyncRound}>Async + Round</Button>
-        <Button variant="outline" onPress={handleFunctionAsyncRoundH}>Async + Round Horizontal</Button>
+        <Button variant="outline" onPress={handleFunctionAlert}>
+          showDialog
+        </Button>
+        <Button variant="outline" onPress={handleFunctionConfirm}>
+          showConfirmDialog
+        </Button>
+        <Button variant="outline" onPress={handleFunctionAsync}>
+          Async Close
+        </Button>
+        <Button variant="outline" onPress={handleFunctionRound}>
+          Round Button
+        </Button>
+        <Button variant="outline" onPress={handleFunctionAsyncRound}>
+          Async + Round
+        </Button>
+        <Button variant="outline" onPress={handleFunctionAsyncRoundH}>
+          Async + Round Horizontal
+        </Button>
       </View>
 
       {/* Basic */}

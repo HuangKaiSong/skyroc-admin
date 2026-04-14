@@ -12,12 +12,14 @@
 ## 🎯 职责定位
 
 **核心职责**:
+
 - 提供全局类型定义
 - API 响应类型
 - 业务实体类型
 - 通用工具类型
 
 **设计原则**:
+
 - 零依赖
 - 类型优先
 - 模块化组织
@@ -48,19 +50,19 @@
 
 ```ts
 // API 类型
-export * from './api/auth'
-export * from './api/route'
-export * from './api/common'
+export * from './api/auth';
+export * from './api/route';
+export * from './api/common';
 
 // App 类型
-export * from './app/global'
-export * from './app/theme'
-export * from './app/union-key'
+export * from './app/global';
+export * from './app/theme';
+export * from './app/union-key';
 
 // 其他类型
-export * from './common'
-export * from './menu'
-export * from './storage'
+export * from './common';
+export * from './menu';
+export * from './storage';
 ```
 
 ## 🔨 核心实现
@@ -73,41 +75,41 @@ declare namespace Api {
   /** 通用的请求响应 */
   interface Response<T = any> {
     /** 状态码 */
-    code: number
+    code: number;
     /** 消息 */
-    message: string
+    message: string;
     /** 数据 */
-    data: T
+    data: T;
   }
 
   /** 分页请求参数 */
   interface PaginationParams {
     /** 当前页码 */
-    current: number
+    current: number;
     /** 每页条数 */
-    size: number
+    size: number;
   }
 
   /** 分页响应数据 */
   interface PaginationResult<T = any> {
     /** 当前页码 */
-    current: number
+    current: number;
     /** 每页条数 */
-    size: number
+    size: number;
     /** 总条数 */
-    total: number
+    total: number;
     /** 数据列表 */
-    records: T[]
+    records: T[];
   }
 
   /** 通用列表查询参数 */
   interface CommonSearchParams extends PaginationParams {
     /** 关键词 */
-    keyword?: string
+    keyword?: string;
     /** 开始时间 */
-    startTime?: string
+    startTime?: string;
     /** 结束时间 */
-    endTime?: string
+    endTime?: string;
   }
 }
 ```
@@ -120,31 +122,31 @@ declare namespace Api {
   namespace Auth {
     /** 登录token */
     interface LoginToken {
-      token: string
-      refreshToken: string
+      token: string;
+      refreshToken: string;
     }
 
     /** 用户信息 */
     interface UserInfo {
       /** 用户ID */
-      userId: string
+      userId: string;
       /** 用户名 */
-      userName: string
+      userName: string;
       /** 角色列表 */
-      roles: string[]
+      roles: string[];
       /** 按钮权限列表 */
-      buttons: string[]
+      buttons: string[];
     }
 
     /** 登录请求 */
     interface LoginRequest {
-      userName: string
-      password: string
+      userName: string;
+      password: string;
     }
 
     /** 登录响应 */
     interface LoginResponse extends LoginToken {
-      user: UserInfo
+      user: UserInfo;
     }
   }
 }
@@ -156,72 +158,72 @@ declare namespace Api {
 // src/app/theme.d.ts
 declare namespace Theme {
   /** 主题模式 */
-  type ThemeMode = 'light' | 'dark' | 'auto'
+  type ThemeMode = 'light' | 'dark' | 'auto';
 
   /** 主题颜色key */
-  type ThemeColorKey = 'primary' | 'info' | 'success' | 'warning' | 'error'
+  type ThemeColorKey = 'primary' | 'info' | 'success' | 'warning' | 'error';
 
   /** 主题颜色 */
   interface ThemeColor {
-    primary: string
-    info: string
-    success: string
-    warning: string
-    error: string
+    primary: string;
+    info: string;
+    success: string;
+    warning: string;
+    error: string;
   }
 
   /** 主题调色板颜色 */
   type ThemePaletteColor = {
-    [K in ThemeColorKey | `${ThemeColorKey}-${50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900}`]: string
-  }
+    [K in ThemeColorKey | `${ThemeColorKey}-${50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900}`]: string;
+  };
 
   /** 主题设置 */
   interface ThemeSetting {
     /** 主题模式 */
-    themeScheme: ThemeMode
+    themeScheme: ThemeMode;
     /** 是否灰度 */
-    grayscale: boolean
+    grayscale: boolean;
     /** 是否色弱模式 */
-    colourWeakness: boolean
+    colourWeakness: boolean;
     /** 推荐颜色 */
-    recommendColor: boolean
+    recommendColor: boolean;
     /** 主题颜色 */
-    themeColor: string
+    themeColor: string;
     /** 其他颜色 */
-    otherColor: ThemeColor
+    otherColor: ThemeColor;
     /** 是否跟随主色 */
-    isInfoFollowPrimary: boolean
+    isInfoFollowPrimary: boolean;
     /** 圆角 */
-    themeRadius: number
+    themeRadius: number;
     /** 字体大小 */
-    themeTextSize: number
+    themeTextSize: number;
     /** 布局配置 */
-    layout: LayoutSetting
+    layout: LayoutSetting;
     /** 页面配置 */
-    page: PageSetting
+    page: PageSetting;
     /** ... 更多配置 */
   }
 
   /** 布局设置 */
   interface LayoutSetting {
     /** 布局模式 */
-    mode: 'vertical' | 'horizontal' | 'vertical-mix'
+    mode: 'vertical' | 'horizontal' | 'vertical-mix';
     /** 滚动模式 */
-    scrollMode: 'content' | 'wrapper'
+    scrollMode: 'content' | 'wrapper';
   }
 
   /** 页面设置 */
   interface PageSetting {
     /** 是否开启动画 */
-    animate: boolean
+    animate: boolean;
     /** 动画模式 */
-    animateMode: 'fade' | 'fade-slide' | 'fade-bottom' | 'fade-scale' | 'zoom-fade' | 'zoom-out' | 'none'
+    animateMode: 'fade' | 'fade-slide' | 'fade-bottom' | 'fade-scale' | 'zoom-fade' | 'zoom-out' | 'none';
   }
 
   /** 主题Token CSS变量 */
   interface ThemeTokenCSSVars {
-    colors: Record<string, string>
-    boxShadow: Record<string, string>
+    colors: Record<string, string>;
+    boxShadow: Record<string, string>;
   }
 }
 ```
@@ -234,24 +236,24 @@ declare namespace Menu {
   /** 菜单项 */
   interface MenuItem {
     /** 菜单key */
-    key: string
+    key: string;
     /** 菜单名称 */
-    label: string
+    label: string;
     /** 路由路径 */
-    routePath?: string
+    routePath?: string;
     /** 图标 */
-    icon?: string
+    icon?: string;
     /** 子菜单 */
-    children?: MenuItem[]
+    children?: MenuItem[];
     /** 是否隐藏 */
-    hide?: boolean
+    hide?: boolean;
   }
 
   /** 菜单映射: layoutId -> 菜单列表 */
-  type Menus = Map<string, MenuItem[]>
+  type Menus = Map<string, MenuItem[]>;
 
   /** 快速引用菜单: menuKey -> 菜单项 */
-  type QuickReferenceMenus = Map<string, MenuItem>
+  type QuickReferenceMenus = Map<string, MenuItem>;
 }
 ```
 
@@ -263,23 +265,23 @@ declare namespace StorageType {
   /** 本地存储 */
   interface Local {
     /** Token */
-    token: string
+    token: string;
     /** 刷新Token */
-    refreshToken: string
+    refreshToken: string;
     /** 用户信息 */
-    userInfo: Api.Auth.UserInfo
+    userInfo: Api.Auth.UserInfo;
     /** 主题设置 */
-    themeSettings: Theme.ThemeSetting
+    themeSettings: Theme.ThemeSetting;
     /** 语言 */
-    lang: I18n.LangType
+    lang: I18n.LangType;
     /** 最后登录的用户ID */
-    lastLoginUserId: string
+    lastLoginUserId: string;
   }
 
   /** 会话存储 */
   interface Session {
     /** Tab缓存 */
-    tabs: any[]
+    tabs: any[];
   }
 }
 ```
@@ -290,14 +292,11 @@ declare namespace StorageType {
 // src/locales/i18n.d.ts
 declare namespace I18n {
   /** 支持的语言类型 */
-  type LangType = 'zh-CN' | 'en-US' | 'ja-JP' | 'ko-KR'
+  type LangType = 'zh-CN' | 'en-US' | 'ja-JP' | 'ko-KR';
 
   /** 翻译key (可通过脚本生成) */
-  type I18nKey =
-    | 'common.confirm'
-    | 'common.cancel'
-    | 'page.login.title'
-    // ... 更多key
+  type I18nKey = 'common.confirm' | 'common.cancel' | 'page.login.title';
+  // ... 更多key
 }
 ```
 
@@ -307,7 +306,7 @@ declare namespace I18n {
 // src/app/union-key.d.ts
 declare namespace UnionKey {
   /** 登录模块 */
-  type LoginModule = 'pwd-login' | 'code-login' | 'register' | 'reset-pwd' | 'bind-wechat'
+  type LoginModule = 'pwd-login' | 'code-login' | 'register' | 'reset-pwd' | 'bind-wechat';
 
   /** 主题布局模式 */
   type ThemeLayoutMode =
@@ -316,26 +315,19 @@ declare namespace UnionKey {
     | 'vertical-mix'
     | 'vertical-hybrid-header-first'
     | 'top-hybrid-sidebar-first'
-    | 'top-hybrid-header-first'
+    | 'top-hybrid-header-first';
 
   /** 主题滚动模式 */
-  type ThemeScrollMode = 'content' | 'wrapper'
+  type ThemeScrollMode = 'content' | 'wrapper';
 
   /** 主题Tab模式 */
-  type ThemeTabMode = 'chrome' | 'button' | 'slider'
+  type ThemeTabMode = 'chrome' | 'button' | 'slider';
 
   /** 主题页面动画模式 */
-  type ThemePageAnimateMode =
-    | 'fade-slide'
-    | 'fade'
-    | 'fade-bottom'
-    | 'fade-scale'
-    | 'zoom-fade'
-    | 'zoom-out'
-    | 'none'
+  type ThemePageAnimateMode = 'fade-slide' | 'fade' | 'fade-bottom' | 'fade-scale' | 'zoom-fade' | 'zoom-out' | 'none';
 
   /** 主题模式 */
-  type ThemeScheme = 'light' | 'dark' | 'auto'
+  type ThemeScheme = 'light' | 'dark' | 'auto';
 }
 ```
 
@@ -345,24 +337,24 @@ declare namespace UnionKey {
 // src/common.d.ts
 declare namespace CommonType {
   /** 是/否 */
-  type YesOrNo = 'Y' | 'N'
+  type YesOrNo = 'Y' | 'N';
 
   /** 可选项 */
   interface Option<T = string> {
-    label: string
-    value: T
+    label: string;
+    value: T;
   }
 
   /** 记录到选项 */
   type RecordToOption<T extends Record<string, string>> = {
-    label: string
-    value: keyof T
-  }[]
+    label: string;
+    value: keyof T;
+  }[];
 
   /** 策略 */
   interface StrategyAction {
-    condition: boolean
-    callback: () => void
+    condition: boolean;
+    callback: () => void;
   }
 }
 ```
@@ -373,10 +365,10 @@ declare namespace CommonType {
 
 ```ts
 // 在 service 中使用
-import type { Api } from '@skyroc/core-types'
+import type { Api } from '@skyroc/core-types';
 
 async function login(params: Api.Auth.LoginRequest): Promise<Api.Response<Api.Auth.LoginResponse>> {
-  return axios.post('/auth/login', params)
+  return axios.post('/auth/login', params);
 }
 ```
 
@@ -384,20 +376,20 @@ async function login(params: Api.Auth.LoginRequest): Promise<Api.Response<Api.Au
 
 ```ts
 // 在主题包中使用
-import type { Theme } from '@skyroc/core-types'
+import type { Theme } from '@skyroc/core-types';
 
 const themeSettings: Theme.ThemeSetting = {
   themeScheme: 'light',
-  themeColor: '#1890ff',
+  themeColor: '#1890ff'
   // ...
-}
+};
 ```
 
 ### 示例 3: 存储类型使用
 
 ```ts
 // 在存储包中使用
-import type { StorageType } from '@skyroc/core-types'
+import type { StorageType } from '@skyroc/core-types';
 
 // 扩展存储schema
 declare module '@skyroc/core-storage' {
@@ -409,16 +401,16 @@ declare module '@skyroc/core-storage' {
 
 ```ts
 // 使用联合类型
-import type { UnionKey } from '@skyroc/core-types'
+import type { UnionKey } from '@skyroc/core-types';
 
-const loginModule: UnionKey.LoginModule = 'pwd-login' // 类型安全
+const loginModule: UnionKey.LoginModule = 'pwd-login'; // 类型安全
 
 // 使用记录类型
 const record: Record<UnionKey.LoginModule, string> = {
   'pwd-login': 'Password Login',
-  'code-login': 'Code Login',
+  'code-login': 'Code Login'
   // TypeScript 会提示缺失的 key
-}
+};
 ```
 
 ## 🔄 从现有代码迁移
@@ -437,34 +429,39 @@ apps/admin/src/types/
 ### 迁移步骤
 
 1. **创建包结构**
+
 ```bash
 mkdir -p packages/core-types/src/{api,app,locales}
 ```
 
 2. **复制类型文件**
+
 ```bash
 cp -r apps/admin/src/types/* packages/core-types/src/
 ```
 
 3. **创建统一导出**
+
 ```ts
 // packages/core-types/src/index.ts
-export * from './api/auth'
-export * from './api/common'
-export * from './app/global'
+export * from './api/auth';
+export * from './api/common';
+export * from './app/global';
 // ...
 ```
 
 4. **更新应用引用**
+
 ```ts
 // 旧代码
-import type { Api } from '@/types/api'
+import type { Api } from '@/types/api';
 
 // 新代码
-import type { Api } from '@skyroc/core-types'
+import type { Api } from '@skyroc/core-types';
 ```
 
 5. **配置 TypeScript**
+
 ```json
 // tsconfig.json
 {
@@ -480,26 +477,20 @@ import type { Api } from '@skyroc/core-types'
 
 ```ts
 // packages/core-types/src/__tests__/types.test.ts
-import type { Api, Theme, Menu } from '../index'
+import type { Api, Theme, Menu } from '../index';
 
 // 类型断言测试
-type AssertEqual<T, U> = [T] extends [U] ? ([U] extends [T] ? true : false) : false
+type AssertEqual<T, U> = [T] extends [U] ? ([U] extends [T] ? true : false) : false;
 
 // 测试 API 响应类型
-type TestApiResponse = AssertEqual<
-  Api.Response<string>,
-  { code: number; message: string; data: string }
->
+type TestApiResponse = AssertEqual<Api.Response<string>, { code: number; message: string; data: string }>;
 
-const _testApiResponse: TestApiResponse = true
+const _testApiResponse: TestApiResponse = true;
 
 // 测试主题颜色类型
-type TestThemeColor = AssertEqual<
-  keyof Theme.ThemeColor,
-  'primary' | 'info' | 'success' | 'warning' | 'error'
->
+type TestThemeColor = AssertEqual<keyof Theme.ThemeColor, 'primary' | 'info' | 'success' | 'warning' | 'error'>;
 
-const _testThemeColor: TestThemeColor = true
+const _testThemeColor: TestThemeColor = true;
 ```
 
 ## 📝 待补充内容

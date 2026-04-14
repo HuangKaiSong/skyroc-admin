@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { ScrollView, View } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Feather from '@expo/vector-icons/Feather';
 import { Button, ShareSheet, Text } from '@skyroc/native-ui';
 import type { ShareSheetOption } from '@skyroc/native-ui';
+import { useState } from 'react';
+import { ScrollView, View } from 'react-native';
 
 const BASIC_OPTIONS: ShareSheetOption[] = [
   { icon: <AntDesign color="#0bc15f" name="wechat" size={24} />, name: '微信' },
@@ -41,34 +41,20 @@ const ShareSheetDemo = () => {
   const [showDesc, setShowDesc] = useState(false);
 
   return (
-    <ScrollView
-      className="flex-1 bg-muted"
-      contentContainerClassName="pb-20"
-      showsVerticalScrollIndicator={false}
-    >
+    <ScrollView className="flex-1 bg-muted" contentContainerClassName="pb-20" showsVerticalScrollIndicator={false}>
       {/* Basic */}
       <Text className="mb-3 mt-4 px-4 text-lg font-semibold">基础用法</Text>
       <View className="px-4">
         <Button onPress={() => setShowBasic(true)}>显示分享面板</Button>
       </View>
-      <ShareSheet
-        cancelText="取消"
-        options={BASIC_OPTIONS}
-        show={showBasic}
-        onUpdateShow={setShowBasic}
-      />
+      <ShareSheet cancelText="取消" options={BASIC_OPTIONS} show={showBasic} onUpdateShow={setShowBasic} />
 
       {/* Multi Row */}
       <Text className="mb-3 mt-6 px-4 text-lg font-semibold">多行选项</Text>
       <View className="px-4">
         <Button onPress={() => setShowMulti(true)}>显示分享面板</Button>
       </View>
-      <ShareSheet
-        cancelText="取消"
-        options={MULTI_ROW_OPTIONS}
-        show={showMulti}
-        onUpdateShow={setShowMulti}
-      />
+      <ShareSheet cancelText="取消" options={MULTI_ROW_OPTIONS} show={showMulti} onUpdateShow={setShowMulti} />
 
       {/* With Title */}
       <Text className="mb-3 mt-6 px-4 text-lg font-semibold">展示标题</Text>

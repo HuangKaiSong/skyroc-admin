@@ -39,7 +39,7 @@ export function useFormRules() {
     userName: [createRequiredRule(t('form.userName.required')), patternRules.userName]
   } satisfies Record<string, FormRule[]>;
 
-  /** the default required rule */
+  /** The default required rule */
   const defaultRequiredRule = createRequiredRule(t('form.required'));
 
   function createRequiredRule(message: string): FormRule {
@@ -49,7 +49,7 @@ export function useFormRules() {
     };
   }
 
-  /** create a rule for confirming the password */
+  /** Create a rule for confirming the password */
   function createConfirmPwdRule(from: FormInstance) {
     const confirmPwdRule: FormRule[] = [
       { message: t('form.confirmPwd.required'), required: true },

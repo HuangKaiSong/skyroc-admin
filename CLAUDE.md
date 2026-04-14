@@ -40,19 +40,19 @@ Skills are only used when the user explicitly instructs which one to use.
 
 When directed by the user, use skills according to these scenarios:
 
-| User Intent / Scenario | Skill                                        |
-| ---------------------- | -------------------------------------------- |
-| 写完代码后（统一收尾）            | `.claude/skills/code-simplifier`             |
-| 写文档 / 技术文档 / 方案文档      | `.claude/skills/doc-coauthoring`             |
-| 重构已有组件                 | `.claude/skills/component-refactoring`       |
+| User Intent / Scenario         | Skill                                        |
+| ------------------------------ | -------------------------------------------- |
+| 写完代码后（统一收尾）         | `.claude/skills/code-simplifier`             |
+| 写文档 / 技术文档 / 方案文档   | `.claude/skills/doc-coauthoring`             |
+| 重构已有组件                   | `.claude/skills/component-refactoring`       |
 | 遵循 / 对齐最佳实践            | `.claude/skills/vercel-react-best-practices` |
-| 完成较大的需求 / 系统级改动        | `.claude/skills/vercel-react-best-practices` |
-| 让我像设计师一样思考 UI / UX     | `.claude/skills/ui-ux-pro-max`               |
-| 开发一个明确的功能需求            | `.claude/skills/feature-dev`                 |
-| 我让你**主动**做代码审查         | `.claude/skills/frontend-code-review`        |
+| 完成较大的需求 / 系统级改动    | `.claude/skills/vercel-react-best-practices` |
+| 让我像设计师一样思考 UI / UX   | `.claude/skills/ui-ux-pro-max`               |
+| 开发一个明确的功能需求         | `.claude/skills/feature-dev`                 |
+| 我让你**主动**做代码审查       | `.claude/skills/frontend-code-review`        |
 | 前端视觉 / 界面设计            | `.claude/skills/frontend-design`             |
-| 前端测试 / 测试策略 / 测试用例     | `.claude/skills/frontend-testing`            |
-| 设计组件 / 项目 / 需求的架构      | `.claude/skills/senior-frontend`             |
+| 前端测试 / 测试策略 / 测试用例 | `.claude/skills/frontend-testing`            |
+| 设计组件 / 项目 / 需求的架构   | `.claude/skills/senior-frontend`             |
 
 ## Important Notes
 
@@ -103,12 +103,10 @@ Code that violates these rules is considered **incorrect**, even if it works.
 `useMemo` may appear **only** under the following conditions:
 
 1. **Deriving a value from logic**
-
    - The memoized result is a **value**, not a function.
    - The logic is non-trivial and meaningful.
 
 2. **Official React guidance: expensive computation**
-
    - The computation is demonstrably expensive.
    - Not used preemptively or defensively.
 
@@ -120,7 +118,6 @@ Anything else is **over-optimization and forbidden**.
 
 - Disabling `react-hooks/exhaustive-deps` is **not allowed by default**.
 - It may only be disabled when:
-
   - The dependency model is **fully understood**
   - And the behavior is **intentional and documented**
 
@@ -208,10 +205,7 @@ const Portal = (props: PortalProps) => {
 ❌ Forbidden:
 
 ```ts
-const Portal = ({
-  autoCreate = false,
-  children,
-}: PortalProps) => {}
+const Portal = ({ autoCreate = false, children }: PortalProps) => {};
 ```
 
 Reason:
@@ -225,7 +219,6 @@ Reason:
 ### 4. Internal function rules
 
 - Internal helper functions:
-
   - Must be declared as **function declarations**, not arrow functions
   - Must be defined **inside the component**, unless reusable
 
@@ -260,7 +253,6 @@ Never mix responsibilities.
 ### 6. Effects must be intentional
 
 - `useEffect` must represent:
-
   - lifecycle binding
   - external system sync
   - DOM / imperative integration

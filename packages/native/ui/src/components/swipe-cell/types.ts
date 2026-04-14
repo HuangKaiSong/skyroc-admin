@@ -9,7 +9,7 @@ type SwipeCellSide = 'left' | 'right';
 /** 关闭触发位置 */
 type SwipeCellPosition = 'cell' | 'left' | 'right';
 
-/** beforeClose 回调参数 */
+/** BeforeClose 回调参数 */
 interface SwipeCellBeforeCloseParams {
   /** 组件标识 */
   name: number | string;

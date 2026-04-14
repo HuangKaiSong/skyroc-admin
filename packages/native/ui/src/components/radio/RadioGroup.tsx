@@ -1,9 +1,9 @@
-import { useMemo } from 'react';
-import { View } from 'react-native';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
-import { RadioGroupContext } from './RadioGroupContext';
+import { useMemo } from 'react';
+import { View } from 'react-native';
 import { radioGroupVariants } from './radio-variants';
+import { RadioGroupContext } from './RadioGroupContext';
 import type { RadioGroupContextValue, RadioGroupProps } from './types';
 
 const RadioGroup = (props: RadioGroupProps) => {

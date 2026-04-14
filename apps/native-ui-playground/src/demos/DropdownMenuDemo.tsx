@@ -1,6 +1,6 @@
-import { ScrollView, View } from 'react-native';
 import { DropdownMenu, Text } from '@skyroc/native-ui';
 import type { DropdownMenuItem } from '@skyroc/native-ui';
+import { ScrollView, View } from 'react-native';
 
 const SORT_OPTIONS: DropdownMenuItem = {
   options: [
@@ -28,11 +28,7 @@ const DISABLED_OPTIONS: DropdownMenuItem = {
 
 const DropdownMenuDemo = () => {
   return (
-    <ScrollView
-      className="flex-1 bg-muted"
-      contentContainerClassName="pb-20"
-      showsVerticalScrollIndicator={false}
-    >
+    <ScrollView className="flex-1 bg-muted" contentContainerClassName="pb-20" showsVerticalScrollIndicator={false}>
       {/* Basic */}
       <Text className="mb-3 mt-4 px-4 text-lg font-semibold">基础用法</Text>
       <DropdownMenu items={[SORT_OPTIONS, FILTER_OPTIONS]} />
@@ -53,10 +49,7 @@ const DropdownMenuDemo = () => {
       {/* Direction Up */}
       <Text className="mb-3 mt-6 px-4 text-lg font-semibold">向上展开</Text>
       <View className="mt-40">
-        <DropdownMenu
-          direction="up"
-          items={[SORT_OPTIONS, FILTER_OPTIONS]}
-        />
+        <DropdownMenu direction="up" items={[SORT_OPTIONS, FILTER_OPTIONS]} />
       </View>
     </ScrollView>
   );

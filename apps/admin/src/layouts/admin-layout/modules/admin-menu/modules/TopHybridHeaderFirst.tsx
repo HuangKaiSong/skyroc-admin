@@ -7,10 +7,7 @@ const ReversedHorizontalMix = () => {
   return [
     <Vertical key="vertical" />,
 
-    <Horizontal
-      key="HopHybridHeaderFirst "
-      mode={HorizontalMenuMode.FirstLevel}
-    />
+    <Horizontal key="HopHybridHeaderFirst " mode={HorizontalMenuMode.FirstLevel} />
   ];
 };
 

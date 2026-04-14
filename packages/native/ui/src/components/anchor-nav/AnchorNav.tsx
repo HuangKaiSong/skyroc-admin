@@ -1,8 +1,8 @@
-import { useRef } from 'react';
-import { Pressable, SectionList, View } from 'react-native';
-import * as Haptics from 'expo-haptics';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
+import * as Haptics from 'expo-haptics';
+import { useRef } from 'react';
+import { Pressable, SectionList, View } from 'react-native';
 import type { SectionListData, ViewToken } from 'react-native';
 import { Divider } from '../divider/Divider';
 import { Sidebar } from '../sidebar/Sidebar';
@@ -133,11 +133,7 @@ const AnchorNav = (props: AnchorNavProps) => {
   return (
     <View style={height ? { height } : { flex: 1 }}>
       <View className={cn(slots.root(), className)}>
-        <Sidebar
-          activeIndex={activeIndex}
-          items={sidebarItems}
-          onIndexChange={handleSidebarPress}
-        />
+        <Sidebar activeIndex={activeIndex} items={sidebarItems} onIndexChange={handleSidebarPress} />
 
         <SectionList
           ref={listRef}

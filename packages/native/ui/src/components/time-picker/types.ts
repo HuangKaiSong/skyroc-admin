@@ -12,10 +12,7 @@ export type TimePickerFilter = (
 ) => PickerOption[];
 
 /** Formatter function to customize the display of time options */
-export type TimePickerFormatter = (
-  type: TimePickerColumnType,
-  option: PickerOption
-) => PickerOption;
+export type TimePickerFormatter = (type: TimePickerColumnType, option: PickerOption) => PickerOption;
 
 /** Props for the inline TimePickerView component */
 export interface TimePickerViewProps extends Omit<PickerViewProps, 'columns' | 'fieldNames'> {

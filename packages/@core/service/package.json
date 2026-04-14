@@ -2,14 +2,16 @@
   "name": "@skyroc/service",
   "version": "1.0.0",
   "description": "Platform-agnostic request & query infrastructure with adapter pattern",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*"
+      ]
+    }
+  },
   "exports": {
     ".": "./src/index.ts",
     "./query": "./src/query/index.ts"
-  },
-  "typesVersions": {
-    "*": {
-      "*": ["./src/*"]
-    }
   },
   "scripts": {
     "test": "vitest run",

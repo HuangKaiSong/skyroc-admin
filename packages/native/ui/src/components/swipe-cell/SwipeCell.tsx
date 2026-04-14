@@ -1,9 +1,9 @@
+import { cn } from '@skyroc/utils';
 import { useImperativeHandle, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { cn } from '@skyroc/utils';
 import { swipeCellVariants } from './swipe-cell-variants';
 import type { SwipeCellPosition, SwipeCellProps } from './types';
 
@@ -188,19 +188,13 @@ const SwipeCell = (props: SwipeCellProps) => {
   return (
     <View className={cn(slots.root(), classNames?.root)}>
       {leading ? (
-        <View
-          className={cn(slots.leading(), classNames?.leading)}
-          onLayout={handleLeadingLayout}
-        >
+        <View className={cn(slots.leading(), classNames?.leading)} onLayout={handleLeadingLayout}>
           {leading}
         </View>
       ) : null}
 
       {trailing ? (
-        <View
-          className={cn(slots.trailing(), classNames?.trailing)}
-          onLayout={handleTrailingLayout}
-        >
+        <View className={cn(slots.trailing(), classNames?.trailing)} onLayout={handleTrailingLayout}>
           {trailing}
         </View>
       ) : null}
@@ -208,12 +202,7 @@ const SwipeCell = (props: SwipeCellProps) => {
       <GestureDetector gesture={panGesture}>
         <Animated.View style={contentAnimatedStyle}>
           <View className={cn(slots.content(), classNames?.content)}>{children}</View>
-          {isOpen ? (
-            <Pressable
-              style={StyleSheet.absoluteFill}
-              onPress={handleContentPress}
-            />
-          ) : null}
+          {isOpen ? <Pressable style={StyleSheet.absoluteFill} onPress={handleContentPress} /> : null}
         </Animated.View>
       </GestureDetector>
     </View>

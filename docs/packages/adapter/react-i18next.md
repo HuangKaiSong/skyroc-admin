@@ -14,6 +14,7 @@
 ## 🎯 职责定位
 
 **核心职责**:
+
 - 连接 `@skyroc/core-i18n` 和 `react-i18next`
 - 提供 I18nProvider
 - 封装 useTranslation hook
@@ -34,8 +35,8 @@
 ## 🔌 API 设计
 
 ```ts
-export { I18nProvider } from './provider/I18nProvider'
-export { useTranslation } from './hooks/use-translation'
+export { I18nProvider } from './provider/I18nProvider';
+export { useTranslation } from './hooks/use-translation';
 ```
 
 ## 🔨 核心实现
@@ -44,23 +45,19 @@ export { useTranslation } from './hooks/use-translation'
 
 ```tsx
 // src/provider/I18nProvider.tsx
-import { I18nextProvider } from 'react-i18next'
-import { useEffect } from 'react'
-import { useLang } from '@skyroc/core-i18n'
-import i18n from 'i18next'
+import { I18nextProvider } from 'react-i18next';
+import { useEffect } from 'react';
+import { useLang } from '@skyroc/core-i18n';
+import i18n from 'i18next';
 
 export function I18nProvider({ children }) {
-  const { locale } = useLang()
+  const { locale } = useLang();
 
   useEffect(() => {
-    i18n.changeLanguage(locale)
-  }, [locale])
+    i18n.changeLanguage(locale);
+  }, [locale]);
 
-  return (
-    <I18nextProvider i18n={i18n}>
-      {children}
-    </I18nextProvider>
-  )
+  return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
 }
 ```
 
@@ -68,31 +65,31 @@ export function I18nProvider({ children }) {
 
 ```ts
 // src/hooks/use-translation.ts
-import { useTranslation as useI18nextTranslation } from 'react-i18next'
+import { useTranslation as useI18nextTranslation } from 'react-i18next';
 
 export function useTranslation() {
-  return useI18nextTranslation()
+  return useI18nextTranslation();
 }
 ```
 
 ## 💡 使用示例
 
 ```tsx
-import { I18nProvider } from '@skyroc/adapter-react-i18next'
-import { useTranslation } from '@skyroc/adapter-react-i18next'
+import { I18nProvider } from '@skyroc/adapter-react-i18next';
+import { useTranslation } from '@skyroc/adapter-react-i18next';
 
 function App() {
   return (
     <I18nProvider>
       <MyComponent />
     </I18nProvider>
-  )
+  );
 }
 
 function MyComponent() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  return <div>{t('common.welcome')}</div>
+  return <div>{t('common.welcome')}</div>;
 }
 ```
 

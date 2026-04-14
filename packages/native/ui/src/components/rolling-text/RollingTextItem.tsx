@@ -5,14 +5,7 @@ import type { RollingTextItemProps } from './types';
 
 /** 单列滚动项 */
 const RollingTextItem = (props: RollingTextItemProps) => {
-  const {
-    delay,
-    direction,
-    duration,
-    figureArr,
-    height,
-    isStart,
-  } = props;
+  const { delay, direction, duration, figureArr, height, isStart } = props;
 
   const animValue = useRef(new Animated.Value(0)).current;
 
@@ -32,7 +25,7 @@ const RollingTextItem = (props: RollingTextItemProps) => {
         delay,
         duration,
         toValue,
-        useNativeDriver: true,
+        useNativeDriver: true
       }).start();
     } else {
       // 重置到初始位置
@@ -48,10 +41,7 @@ const RollingTextItem = (props: RollingTextItemProps) => {
     <View style={{ height, overflow: 'hidden' }}>
       <Animated.View style={{ transform: [{ translateY: animValue }] }}>
         {displayArr.map((figure, index) => (
-          <View
-            key={`${figure}-${index}`}
-            style={{ alignItems: 'center', height, justifyContent: 'center' }}
-          >
+          <View key={`${figure}-${index}`} style={{ alignItems: 'center', height, justifyContent: 'center' }}>
             <Text className="text-lg font-medium text-foreground">{figure}</Text>
           </View>
         ))}

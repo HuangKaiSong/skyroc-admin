@@ -1,24 +1,24 @@
+import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { BottomSheetModalProvider, registerImageComponent, PortalHost } from '@skyroc/native-ui';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Slot, Stack , useNavigationContainerRef} from 'expo-router';
 import { Image as ExpoImage } from 'expo-image';
+import { Slot, Stack, useNavigationContainerRef } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
-import { useColorScheme } from '@/hooks/use-color-scheme';
 import { styled } from 'nativewind';
 import { View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useColorScheme } from '@/hooks/use-color-scheme';
 import 'react-native-reanimated';
-import "../global.css"
+import '../global.css';
 
-const RTImage=styled(ExpoImage)
+const RTImage = styled(ExpoImage);
 
 registerImageComponent(RTImage);
 
 export { ErrorFallback as ErrorBoundary } from '@/components/ErrorBoundary';
 
 export const unstable_settings = {
-  anchor: '(tabs)',
+  anchor: '(tabs)'
 };
 
 export default function RootLayout() {

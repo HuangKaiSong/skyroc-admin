@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { ScrollView, View } from 'react-native';
 import { Calendar, Text } from '@skyroc/native-ui';
 import type { DateType } from '@skyroc/native-ui';
+import { useState } from 'react';
+import { ScrollView, View } from 'react-native';
 
 const CalendarDemo = () => {
   const [singleDate, setSingleDate] = useState<DateType>(new Date());
@@ -21,15 +21,8 @@ const CalendarDemo = () => {
       {/* 基础用法 */}
       <Text className="mb-3 mt-4 px-4 text-lg font-semibold">基础用法</Text>
       <View className="px-4">
-        <Text className="mb-2 text-sm text-muted-foreground">
-          已选: {formatDate(singleDate)}
-        </Text>
-        <Calendar
-          mode="single"
-          date={singleDate}
-          locale="zh"
-          onChange={({ date }) => setSingleDate(date)}
-        />
+        <Text className="mb-2 text-sm text-muted-foreground">已选: {formatDate(singleDate)}</Text>
+        <Calendar mode="single" date={singleDate} locale="zh" onChange={({ date }) => setSingleDate(date)} />
       </View>
 
       {/* 日期范围 */}
@@ -53,15 +46,8 @@ const CalendarDemo = () => {
       {/* 多选模式 */}
       <Text className="mb-3 mt-6 px-4 text-lg font-semibold">多选模式</Text>
       <View className="px-4">
-        <Text className="mb-2 text-sm text-muted-foreground">
-          已选 {multiDates.length} 个日期
-        </Text>
-        <Calendar
-          mode="multiple"
-          dates={multiDates}
-          locale="zh"
-          onChange={({ dates }) => setMultiDates(dates)}
-        />
+        <Text className="mb-2 text-sm text-muted-foreground">已选 {multiDates.length} 个日期</Text>
+        <Calendar mode="multiple" dates={multiDates} locale="zh" onChange={({ dates }) => setMultiDates(dates)} />
       </View>
 
       {/* 限制日期范围 */}

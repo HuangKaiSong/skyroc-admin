@@ -1,7 +1,7 @@
-import { useRef } from 'react';
-import { ScrollView, View } from 'react-native';
 import { Button, RollingText, Text } from '@skyroc/native-ui';
 import type { RollingTextRef } from '@skyroc/native-ui';
+import { useRef } from 'react';
+import { ScrollView, View } from 'react-native';
 
 const RollingTextDemo = () => {
   const rollingRef = useRef<RollingTextRef>(null);
@@ -36,27 +36,25 @@ const RollingTextDemo = () => {
       {/* Text Mode */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">Text Mode</Text>
       <View className="bg-background items-center px-4 py-6">
-        <RollingText
-          ref={textRollingRef}
-          textList={['AAA', 'BBB', 'CCC', 'DDD', 'EEE']}
-        />
+        <RollingText ref={textRollingRef} textList={['AAA', 'BBB', 'CCC', 'DDD', 'EEE']} />
         <View className="mt-3 flex-row gap-2">
-          <Button size="sm" variant="outline" onPress={() => textRollingRef.current?.reset()}>Reset</Button>
+          <Button size="sm" variant="outline" onPress={() => textRollingRef.current?.reset()}>
+            Reset
+          </Button>
         </View>
       </View>
 
       {/* Manual Control */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">Manual Control</Text>
       <View className="bg-background items-center px-4 py-6">
-        <RollingText
-          ref={rollingRef}
-          autoStart={false}
-          startNum={0}
-          targetNum={5678}
-        />
+        <RollingText ref={rollingRef} autoStart={false} startNum={0} targetNum={5678} />
         <View className="mt-3 flex-row gap-2">
-          <Button size="sm" onPress={() => rollingRef.current?.start()}>Start</Button>
-          <Button size="sm" variant="outline" onPress={() => rollingRef.current?.reset()}>Reset</Button>
+          <Button size="sm" onPress={() => rollingRef.current?.start()}>
+            Start
+          </Button>
+          <Button size="sm" variant="outline" onPress={() => rollingRef.current?.reset()}>
+            Reset
+          </Button>
         </View>
       </View>
     </ScrollView>

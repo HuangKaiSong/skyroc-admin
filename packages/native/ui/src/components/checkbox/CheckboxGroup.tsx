@@ -1,9 +1,9 @@
-import { useMemo } from 'react';
-import { View } from 'react-native';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
-import { CheckboxGroupContext } from './CheckboxGroupContext';
+import { useMemo } from 'react';
+import { View } from 'react-native';
 import { checkboxGroupVariants } from './checkbox-variants';
+import { CheckboxGroupContext } from './CheckboxGroupContext';
 import type { CheckboxGroupContextValue, CheckboxGroupProps } from './types';
 
 const CheckboxGroup = (props: CheckboxGroupProps) => {

@@ -8,10 +8,7 @@ interface LoggerProviderProps {
   children: React.ReactNode;
 }
 
-/**
- * 日志系统 Provider
- * 在应用启动时初始化日志系统，在卸载时销毁
- */
+/** 日志系统 Provider 在应用启动时初始化日志系统，在卸载时销毁 */
 export const LoggerProvider = (props: LoggerProviderProps) => {
   const { children } = props;
 

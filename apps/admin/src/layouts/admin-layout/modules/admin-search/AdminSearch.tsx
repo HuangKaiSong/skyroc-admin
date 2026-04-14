@@ -20,20 +20,12 @@ const GlobalSearch = memo(() => {
 
   return (
     <>
-      <ButtonIcon
-        className="px-12px"
-        hoverAnimation="scale"
-        tooltipContent={t('common.search')}
-        onClick={toggle}
-      >
+      <ButtonIcon className="px-12px" hoverAnimation="scale" tooltipContent={t('common.search')} onClick={toggle}>
         <IconUilSearch />
       </ButtonIcon>
 
       <Suspense>
-        <SearchModal
-          show={show}
-          onClose={setFalse}
-        />
+        <SearchModal show={show} onClose={setFalse} />
       </Suspense>
     </>
   );

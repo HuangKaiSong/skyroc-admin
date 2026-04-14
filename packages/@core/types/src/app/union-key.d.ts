@@ -4,11 +4,11 @@ declare global {
     /**
      * The layout mode
      *
-     * - vertical: the vertical menu in left
-     * - horizontal: the horizontal menu in top
-     * - vertical-mix: two vertical mixed menus in left
-     * - top-hybrid-sidebar-first: the vertical first level menus in left and horizontal child level menus in top
-     * - top-hybrid-header-first: the horizontal first level menus in top and vertical child level menus in left
+     * - Vertical: the vertical menu in left
+     * - Horizontal: the horizontal menu in top
+     * - Vertical-mix: two vertical mixed menus in left
+     * - Top-hybrid-sidebar-first: the vertical first level menus in left and horizontal child level menus in top
+     * - Top-hybrid-header-first: the horizontal first level menus in top and vertical child level menus in left
      */
     type ThemeLayoutMode =
       | 'horizontal'
@@ -21,8 +21,8 @@ declare global {
     /**
      * The scroll mode when content overflow
      *
-     * - wrapper: the wrapper component's root element overflow
-     * - content: the content component overflow
+     * - Wrapper: the wrapper component's root element overflow
+     * - Content: the content component overflow
      */
     type ThemeScrollMode = import('@skyroc/materials').LayoutScrollMode;
 
@@ -39,8 +39,8 @@ declare global {
     /**
      * Tab mode
      *
-     * - chrome: chrome style
-     * - button: button style
+     * - Chrome: chrome style
+     * - Button: button style
      */
     type ThemeTabMode = import('@skyroc/materials').PageTabMode;
 

@@ -47,12 +47,7 @@ const PhoneFrame = (props: PhoneFrameProps) => {
         {device === 'android' && <div className={styles.statusBar} />}
 
         <div className={styles.screen}>
-          <iframe
-            className={styles.iframe}
-            src={src}
-            style={{ height }}
-            title={title}
-          />
+          <iframe className={styles.iframe} src={src} style={{ height }} title={title} />
         </div>
 
         {device === 'ios' && <div className={styles.homeBar} />}

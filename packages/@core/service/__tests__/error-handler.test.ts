@@ -1,9 +1,9 @@
-import { describe, expect, it, vi } from 'vitest';
-import type { AxiosError, AxiosResponse } from 'axios';
 import { BACKEND_ERROR_CODE } from '@skyroc/axios';
 import type { RequestInstance } from '@skyroc/axios';
-import type { RequestAdapter, RequestInstanceState, ServiceCodes } from '../src/request/types';
+import type { AxiosError, AxiosResponse } from 'axios';
+import { describe, expect, it, vi } from 'vitest';
 import { backEndFail, handleError } from '../src/request/error-handler';
+import type { RequestAdapter, RequestInstanceState, ServiceCodes } from '../src/request/types';
 
 const TEST_CODES: ServiceCodes = {
   success: '0000',

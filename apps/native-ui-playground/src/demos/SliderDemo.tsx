@@ -1,6 +1,6 @@
+import { Slider, Text } from '@skyroc/native-ui';
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { Slider, Text } from '@skyroc/native-ui';
 
 const SliderDemo = () => {
   const [basicValue, setBasicValue] = useState(50);
@@ -27,7 +27,9 @@ const SliderDemo = () => {
       <Text className="px-4 py-3 text-sm text-muted-foreground">Range</Text>
       <View className="bg-background px-4 py-4">
         <Slider range value={rangeValue} onChange={val => setRangeValue(val as [number, number])} />
-        <Text className="mt-2 text-sm text-muted-foreground">Value: {rangeValue[0]} - {rangeValue[1]}</Text>
+        <Text className="mt-2 text-sm text-muted-foreground">
+          Value: {rangeValue[0]} - {rangeValue[1]}
+        </Text>
       </View>
 
       {/* Step */}
@@ -53,11 +55,7 @@ const SliderDemo = () => {
       {/* Vertical */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">Vertical</Text>
       <View className="bg-background px-4 py-4" style={{ height: 200 }}>
-        <Slider
-          vertical
-          value={verticalValue}
-          onChange={val => setVerticalValue(val as number)}
-        />
+        <Slider vertical value={verticalValue} onChange={val => setVerticalValue(val as number)} />
         <Text className="mt-2 text-sm text-muted-foreground">Value: {verticalValue}</Text>
       </View>
 

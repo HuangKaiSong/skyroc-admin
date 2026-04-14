@@ -1,6 +1,6 @@
+import { Input } from '@skyroc/native-ui';
 import { useState } from 'react';
 import { ScrollView, Text, View } from 'react-native';
-import { Input } from '@skyroc/native-ui';
 
 const InputDemo = () => {
   const [value, setValue] = useState('');
@@ -49,14 +49,8 @@ const InputDemo = () => {
 
       <Text className="mb-4 text-lg font-semibold text-foreground">Leading & Trailing</Text>
       <View className="mb-8 gap-3">
-        <Input
-          leading={<Text className="text-muted-foreground">@</Text>}
-          placeholder="Username"
-        />
-        <Input
-          placeholder="Search..."
-          trailing={<Text className="text-muted-foreground">🔍</Text>}
-        />
+        <Input leading={<Text className="text-muted-foreground">@</Text>} placeholder="Username" />
+        <Input placeholder="Search..." trailing={<Text className="text-muted-foreground">🔍</Text>} />
         <Input
           leading={<Text className="text-muted-foreground">$</Text>}
           placeholder="0.00"
@@ -66,14 +60,8 @@ const InputDemo = () => {
 
       <Text className="mb-4 text-lg font-semibold text-foreground">Controlled</Text>
       <View className="mb-8 gap-3">
-        <Input
-          placeholder="Type something..."
-          value={value}
-          onChangeText={setValue}
-        />
-        <Text className="text-sm text-muted-foreground">
-          Value: {value || '(empty)'}
-        </Text>
+        <Input placeholder="Type something..." value={value} onChangeText={setValue} />
+        <Text className="text-sm text-muted-foreground">Value: {value || '(empty)'}</Text>
       </View>
     </ScrollView>
   );

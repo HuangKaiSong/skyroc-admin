@@ -74,10 +74,10 @@ interface ChartHooks {
 }
 
 /**
- * use echarts
+ * Use echarts
  *
- * @param optionsFactory echarts options factory function
- * @param darkMode dark mode
+ * @param optionsFactory Echarts options factory function
+ * @param darkMode Dark mode
  */
 export function useEcharts<T extends ECOption>(optionsFactory: () => T, hooks: ChartHooks = {}) {
   const { darkMode, settings } = useSettingsTheme();
@@ -107,15 +107,15 @@ export function useEcharts<T extends ECOption>(optionsFactory: () => T, hooks: C
     }
   } = hooks;
 
-  /** is chart rendered */
+  /** Is chart rendered */
   function isRendered() {
     return Boolean(domRef.current && chart.current);
   }
 
   /**
-   * update chart options
+   * Update chart options
    *
-   * @param callback callback function
+   * @param callback Callback function
    */
   async function updateOptions(callback: (opts: T, optsFactory: () => T) => ECOption = () => chartOptions.current) {
     if (!isRendered()) return;
@@ -137,7 +137,7 @@ export function useEcharts<T extends ECOption>(optionsFactory: () => T, hooks: C
     chart.current?.setOption(options);
   }
 
-  /** render chart */
+  /** Render chart */
   async function render() {
     if (!isRendered()) {
       const chartTheme = darkMode ? 'dark' : 'light';
@@ -150,12 +150,12 @@ export function useEcharts<T extends ECOption>(optionsFactory: () => T, hooks: C
     }
   }
 
-  /** resize chart */
+  /** Resize chart */
   function resize() {
     chart.current?.resize();
   }
 
-  /** destroy chart */
+  /** Destroy chart */
   async function destroy() {
     if (!chart.current) return;
 
@@ -164,7 +164,7 @@ export function useEcharts<T extends ECOption>(optionsFactory: () => T, hooks: C
     chart.current = null;
   }
 
-  /** change chart theme */
+  /** Change chart theme */
   async function changeTheme() {
     await destroy();
     await render();
@@ -172,10 +172,10 @@ export function useEcharts<T extends ECOption>(optionsFactory: () => T, hooks: C
   }
 
   /**
-   * render chart by size
+   * Render chart by size
    *
-   * @param w width
-   * @param h height
+   * @param w Width
+   * @param h Height
    */
   async function renderChartBySize(w: number, h: number) {
     initialSize.width = w;

@@ -1,17 +1,10 @@
-import { useMemo, useState } from 'react';
-import { ScrollView, View } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Feather from '@expo/vector-icons/Feather';
-import {
-  Button,
-  Checkbox,
-  CheckboxCard,
-  CheckboxGroup,
-  CheckboxGroupCard,
-  Text
-} from '@skyroc/native-ui';
+import { Button, Checkbox, CheckboxCard, CheckboxGroup, CheckboxGroupCard, Text } from '@skyroc/native-ui';
 import type { CheckedState } from '@skyroc/native-ui';
 import { ThemeColor } from '@skyroc/ui-types';
+import { useMemo, useState } from 'react';
+import { ScrollView, View } from 'react-native';
 
 const COLORS = ['primary', 'destructive', 'success', 'warning', 'info', 'accent', 'carbon', 'secondary'];
 const SIZES = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
@@ -70,11 +63,7 @@ const CheckboxDemo = () => {
   }
 
   return (
-    <ScrollView
-      className="flex-1 bg-muted"
-      contentContainerClassName="p-6 pb-20"
-      showsVerticalScrollIndicator={false}
-    >
+    <ScrollView className="flex-1 bg-muted" contentContainerClassName="p-6 pb-20" showsVerticalScrollIndicator={false}>
       {/* Basic */}
       <Text className="mb-4 text-lg font-semibold">Basic</Text>
       <View className="mb-8 gap-3">
@@ -87,7 +76,9 @@ const CheckboxDemo = () => {
       <View className="mb-8">
         <CheckboxGroup direction="horizontal">
           {COLORS.map(c => (
-            <Checkbox key={c} color={c as ThemeColor} defaultChecked name={c}>{c}</Checkbox>
+            <Checkbox key={c} color={c as ThemeColor} defaultChecked name={c}>
+              {c}
+            </Checkbox>
           ))}
         </CheckboxGroup>
       </View>
@@ -96,23 +87,33 @@ const CheckboxDemo = () => {
       <Text className="mb-4 text-lg font-semibold">Size</Text>
       <View className="mb-8 gap-3">
         {SIZES.map(s => (
-          <Checkbox key={s} defaultChecked size={s}>{s}</Checkbox>
+          <Checkbox key={s} defaultChecked size={s}>
+            {s}
+          </Checkbox>
         ))}
       </View>
 
       {/* Shape */}
       <Text className="mb-4 text-lg font-semibold">Shape</Text>
       <View className="mb-8 gap-3">
-        <Checkbox defaultChecked shape="round">Round (default)</Checkbox>
-        <Checkbox defaultChecked shape="square">Square</Checkbox>
+        <Checkbox defaultChecked shape="round">
+          Round (default)
+        </Checkbox>
+        <Checkbox defaultChecked shape="square">
+          Square
+        </Checkbox>
       </View>
 
       {/* States */}
       <Text className="mb-4 text-lg font-semibold">States</Text>
       <View className="mb-8 gap-3">
         <Checkbox checked={false}>Unchecked</Checkbox>
-        <Checkbox checked="indeterminate" shape="round">Indeterminate (round)</Checkbox>
-        <Checkbox checked="indeterminate" shape="square">Indeterminate (square)</Checkbox>
+        <Checkbox checked="indeterminate" shape="round">
+          Indeterminate (round)
+        </Checkbox>
+        <Checkbox checked="indeterminate" shape="square">
+          Indeterminate (square)
+        </Checkbox>
         <Checkbox defaultChecked>Checked</Checkbox>
       </View>
 
@@ -120,7 +121,9 @@ const CheckboxDemo = () => {
       <Text className="mb-4 text-lg font-semibold">Disabled</Text>
       <View className="mb-8 gap-3">
         <Checkbox disabled>Disabled</Checkbox>
-        <Checkbox defaultChecked disabled>Disabled & Checked</Checkbox>
+        <Checkbox defaultChecked disabled>
+          Disabled & Checked
+        </Checkbox>
       </View>
 
       {/* Label Position */}
@@ -136,21 +139,22 @@ const CheckboxDemo = () => {
         <Checkbox checked={controlled} onCheckedChange={setControlled}>
           {controlled ? 'Checked' : 'Unchecked'}
         </Checkbox>
-        <Button size="sm" onPress={() => setControlled(v => !v)}>Toggle</Button>
+        <Button size="sm" onPress={() => setControlled(v => !v)}>
+          Toggle
+        </Button>
       </View>
 
       {/* Group with Check All */}
       <Text className="mb-4 text-lg font-semibold">Group</Text>
       <View className="mb-8 gap-3">
-        <Checkbox
-          checked={checkAllState}
-          onCheckedChange={handleCheckAll}
-        >
+        <Checkbox checked={checkAllState} onCheckedChange={handleCheckAll}>
           Check All
         </Checkbox>
         <CheckboxGroup value={groupValue} onChange={setGroupValue}>
           {FRUIT_ITEMS.map(item => (
-            <Checkbox key={item.value} name={item.value}>{item.label}</Checkbox>
+            <Checkbox key={item.value} name={item.value}>
+              {item.label}
+            </Checkbox>
           ))}
         </CheckboxGroup>
       </View>
@@ -206,11 +210,7 @@ const CheckboxDemo = () => {
       {/* Card Group with Check All */}
       <Text className="mb-4 text-lg font-semibold">Card Group</Text>
       <View className="mb-8 gap-3">
-        <Checkbox
-          checked={cardCheckAllState}
-          color="info"
-          onCheckedChange={handleCardCheckAll}
-        >
+        <Checkbox checked={cardCheckAllState} color="info" onCheckedChange={handleCardCheckAll}>
           Check All
         </Checkbox>
         <CheckboxGroupCard
@@ -226,10 +226,7 @@ const CheckboxDemo = () => {
       {/* Custom Icon */}
       <Text className="mb-4 text-lg font-semibold">Custom Icon</Text>
       <View className="mb-8 gap-3">
-        <Checkbox
-          checkedIcon={<AntDesign color="#22c55e" name="like" size={20} />}
-          defaultChecked
-        >
+        <Checkbox checkedIcon={<AntDesign color="#22c55e" name="like" size={20} />} defaultChecked>
           Custom checked icon
         </Checkbox>
       </View>

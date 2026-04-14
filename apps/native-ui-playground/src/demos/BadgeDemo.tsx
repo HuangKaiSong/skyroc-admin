@@ -1,5 +1,5 @@
-import { ScrollView, View } from 'react-native';
 import { Avatar, Badge, Text } from '@skyroc/native-ui';
+import { ScrollView, View } from 'react-native';
 
 const BadgeDemo = () => {
   return (

@@ -1,37 +1,47 @@
 {
   "name": "@skyroc/ui-compose",
-  "type": "module",
   "version": "0.1.0",
   "private": false,
   "description": "Composite stateless UI components built on @skyroc/ui primitives",
+  "keywords": [
+    "components",
+    "composite",
+    "react",
+    "soybean-admin",
+    "typescript",
+    "ui"
+  ],
+  "homepage": "https://github.com/soybeanjs/soybean-admin-react/tree/main/packages/ui/compose",
+  "bugs": {
+    "url": "https://github.com/soybeanjs/soybean-admin-react/issues"
+  },
+  "license": "MIT",
   "author": {
     "name": "Soybean Admin Team",
     "url": "https://github.com/soybeanjs"
   },
-  "license": "MIT",
-  "homepage": "https://github.com/soybeanjs/soybean-admin-react/tree/main/packages/ui/compose",
   "repository": {
     "type": "git",
     "url": "https://github.com/soybeanjs/soybean-admin-react.git",
     "directory": "packages/ui/compose"
   },
-  "bugs": {
-    "url": "https://github.com/soybeanjs/soybean-admin-react/issues"
-  },
-  "keywords": ["react", "ui", "components", "composite", "typescript", "soybean-admin"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "type": "module",
   "sideEffects": false,
-  "exports": {
-    ".": "./src/index.ts"
-  },
   "main": "./src/index.ts",
   "module": "./src/index.ts",
   "types": "./src/index.ts",
-  "files": ["dist", "README.md"],
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "scripts": {
     "build": "tsdown",
     "clean": "rimraf dist",
     "dev": "tsdown --watch",
-    "lint": "eslint . --fix",
+    "lint": "oxlint --fix",
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
@@ -52,6 +62,7 @@
   "devDependencies": {
     "@soybeanjs/eslint-config": "catalog:dev",
     "@types/react": "catalog:dev",
-    "@types/react-dom": "catalog:dev"
+    "@types/react-dom": "catalog:dev",
+    "oxlint": "catalog:dev"
   }
 }

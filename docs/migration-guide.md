@@ -61,6 +61,7 @@ echo "✅ Package created: @skyroc/${PACKAGE_TYPE}-${PACKAGE_NAME}"
 ```
 
 使用:
+
 ```bash
 chmod +x scripts/create-package.sh
 ./scripts/create-package.sh types core
@@ -72,25 +73,29 @@ chmod +x scripts/create-package.sh
 **步骤**:
 
 1. 创建包
+
 ```bash
 ./scripts/create-package.sh types core
 ```
 
 2. 迁移类型文件
+
 ```bash
 cp -r apps/admin/src/types/* packages/core-types/src/
 ```
 
 3. 创建入口文件
+
 ```ts
 // packages/core-types/src/index.ts
-export * from './app/global'
-export * from './app/theme'
-export * from './common'
+export * from './app/global';
+export * from './app/theme';
+export * from './common';
 // ... 导出所有类型
 ```
 
 4. 在应用中使用
+
 ```bash
 cd apps/admin
 pnpm add @skyroc/core-types@workspace:*
@@ -99,13 +104,14 @@ pnpm add @skyroc/core-types@workspace:*
 ```ts
 // apps/admin/src/xxx.ts
 // 旧代码
-import type { User } from '@/types/common'
+import type { User } from '@/types/common';
 
 // 新代码
-import type { User } from '@skyroc/core-types'
+import type { User } from '@skyroc/core-types';
 ```
 
 5. 验证
+
 ```bash
 pnpm typecheck
 ```
@@ -125,6 +131,7 @@ pnpm typecheck
 见 [docs/packages/core/auth.md](./packages/core/auth.md)
 
 **关键点**:
+
 - 拆分纯状态管理逻辑
 - 移除对 API、菜单的依赖
 - 这些依赖放在应用层处理
@@ -134,6 +141,7 @@ pnpm typecheck
 见 [docs/packages/core/theme.md](./packages/core/theme.md)
 
 **关键点**:
+
 - 移除 DOM 操作（CSS 变量注入）
 - 保留纯主题计算逻辑
 - DOM 操作在应用层的 ThemeEffect 组件处理
@@ -141,11 +149,13 @@ pnpm typecheck
 ### 2.3 迁移 @skyroc/core-i18n
 
 **从**:
+
 ```
 apps/admin/src/features/lang/
 ```
 
 **到**:
+
 ```
 packages/core-i18n/src/
 ```
@@ -159,11 +169,13 @@ packages/core-i18n/src/
 ### 3.2 迁移 @skyroc/web-table
 
 **从**:
+
 ```
 apps/admin/src/features/table/
 ```
 
 **到**:
+
 ```
 packages/web-table/src/
 ```
@@ -210,11 +222,11 @@ pnpm test:coverage
 
 ```ts
 // scripts/update-imports.ts
-import { Project } from 'ts-morph'
+import { Project } from 'ts-morph';
 
 const project = new Project({
   tsConfigFilePath: 'tsconfig.json'
-})
+});
 
 // 查找所有 import from '@/features/auth'
 // 替换为 import from '@skyroc/core-auth'

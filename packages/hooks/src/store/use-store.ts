@@ -16,8 +16,7 @@ export interface Subscribable<S> {
 /**
  * 通用 Store 桥接 hook
  *
- * 职责：将 Store（class）连接到 React 渲染周期。
- * 内部通过 `useSyncExternalStore` 实现，hook 本身不包含任何业务逻辑。
+ * 职责：将 Store（class）连接到 React 渲染周期。 内部通过 `useSyncExternalStore` 实现，hook 本身不包含任何业务逻辑。
  *
  * @param store - 任何满足 Subscribable 接口的对象
  * @returns 当前状态快照
@@ -29,7 +28,7 @@ export function useStore<S>(store: Subscribable<S>): S;
  *
  * @param store - 任何满足 Subscribable 接口的对象
  * @param selector - 状态切片选择器（应返回原始值或稳定引用）
- * @returns selector 返回的状态切片
+ * @returns Selector 返回的状态切片
  */
 export function useStore<S, R>(store: Subscribable<S>, selector: (state: S) => R): R;
 

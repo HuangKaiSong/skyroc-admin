@@ -1,8 +1,8 @@
-import { View } from 'react-native';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
-import { RadioCard } from './RadioCard';
+import { View } from 'react-native';
 import { radioGroupVariants } from './radio-variants';
+import { RadioCard } from './RadioCard';
 import type { RadioGroupCardProps } from './types';
 
 const RadioGroupCard = (props: RadioGroupCardProps) => {

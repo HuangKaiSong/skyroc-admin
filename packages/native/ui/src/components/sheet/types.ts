@@ -1,16 +1,12 @@
-import type { ReactNode } from 'react';
 import type { BottomSheetModalProps } from '@gorhom/bottom-sheet';
+import type { ReactNode } from 'react';
 import type { SlotClassNames } from '../../types';
 
 /** Sheet 组件可覆盖的 slot 名称 */
 export type SheetSlots = 'body' | 'close' | 'description' | 'handle' | 'handleBar' | 'header' | 'root' | 'title';
 
 /** 从 BottomSheetModalProps 中排除的属性，由 Sheet 内部管理 */
-type SheetOmitProps =
-  | 'children'
-  | 'enableDynamicSizing'
-  | 'ref'
-  | 'snapPoints';
+type SheetOmitProps = 'children' | 'enableDynamicSizing' | 'ref' | 'snapPoints';
 
 /** Sheet 底部面板组件属性 */
 export interface SheetProps extends Omit<Partial<BottomSheetModalProps>, SheetOmitProps> {

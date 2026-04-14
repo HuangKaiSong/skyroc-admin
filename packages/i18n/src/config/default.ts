@@ -1,8 +1,6 @@
 import type { LangConfig } from '../types';
 
-/**
- * Default language configuration
- */
+/** Default language configuration */
 export const defaultLangConfig: LangConfig = {
   defaultLang: 'zh-CN',
   fallbackLang: 'en-US',

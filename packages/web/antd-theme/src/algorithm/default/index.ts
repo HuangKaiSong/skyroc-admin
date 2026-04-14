@@ -18,12 +18,12 @@ export { generateColorPalettes, generateNeutralColorPalettes };
 /**
  * Light mode theme algorithm
  *
- * Uses generateOklchPaletteEx algorithm to replace antd's default @ant-design/colors
- * Generates more modern design-compliant palettes
+ * Uses generateOklchPaletteEx algorithm to replace antd's default @ant-design/colors Generates more modern
+ * design-compliant palettes
  *
- * Generated content:
- * - Preset colors (blue, geekblue, etc.): palette vars only (blue-1 ... blue-10, blue-50 ... blue-950)
- * - Functional colors (colorPrimary, colorInfo, etc.): palette vars + semantic colors (colorPrimaryBg, colorPrimaryHover, ...)
+ * Generated content: - Preset colors (blue, geekblue, etc.): palette vars only (blue-1 ... blue-10, blue-50 ...
+ * blue-950) - Functional colors (colorPrimary, colorInfo, etc.): palette vars + semantic colors (colorPrimaryBg,
+ * colorPrimaryHover, ...)
  */
 export default function derivative(token: SeedToken): MapToken {
   const colorPalettes = Object.keys(defaultPresetColors)

@@ -1,7 +1,4 @@
-/**
- * i18n type definition
- * This file aggregates all i18n type definitions from separate module files
- */
+/** I18n type definition This file aggregates all i18n type definitions from separate module files */
 declare global {
   namespace I18n {
     type LangType = 'en-US' | 'zh-CN';

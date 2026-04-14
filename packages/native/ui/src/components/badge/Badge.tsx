@@ -1,7 +1,7 @@
+import { cn, isNil, isNumber } from '@skyroc/utils';
 import { isValidElement, useMemo } from 'react';
 import type { ViewStyle } from 'react-native';
 import { Text, View } from 'react-native';
-import { cn, isNil, isNumber } from '@skyroc/utils';
 import { badgeVariants } from './badge-variants';
 import type { BadgePosition, BadgeProps } from './types';
 
@@ -129,10 +129,7 @@ const Badge = (props: BadgeProps) => {
   }
 
   return (
-    <View
-      className={cn(slots.root(), className)}
-      {...rest}
-    >
+    <View className={cn(slots.root(), className)} {...rest}>
       {children}
       {renderBadge()}
     </View>

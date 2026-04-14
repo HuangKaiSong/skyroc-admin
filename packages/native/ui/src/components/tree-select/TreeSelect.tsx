@@ -1,7 +1,7 @@
-import { Pressable, ScrollView, View } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
+import { Pressable, ScrollView, View } from 'react-native';
 import { Sidebar } from '../sidebar/Sidebar';
 import { Text } from '../text/Typography';
 import { treeSelectVariants } from './tree-select-variants';
@@ -96,29 +96,16 @@ const TreeSelect = <T extends TreeSelectActiveId = TreeSelectActiveId>(props: Tr
       >
         <Text className={cn(itemSlots.contentItemText(), classNames?.contentItemText)}>{item.text}</Text>
 
-        {selected && (
-          <Feather
-            className={cn(slots.selectedIcon(), classNames?.selectedIcon)}
-            name="check"
-            size={16}
-          />
-        )}
+        {selected && <Feather className={cn(slots.selectedIcon(), classNames?.selectedIcon)} name="check" size={16} />}
       </Pressable>
     );
   }
 
   return (
     <View style={{ height, flexDirection: 'row', overflow: 'hidden' }}>
-      <Sidebar
-        activeIndex={mainActiveIndex}
-        items={sidebarItems}
-        onIndexChange={handleNavChange}
-      />
+      <Sidebar activeIndex={mainActiveIndex} items={sidebarItems} onIndexChange={handleNavChange} />
 
-      <ScrollView
-        className={cn(slots.content(), classNames?.content)}
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView className={cn(slots.content(), classNames?.content)} showsVerticalScrollIndicator={false}>
         {renderContent ? renderContent() : children.map(renderChildItem)}
       </ScrollView>
     </View>

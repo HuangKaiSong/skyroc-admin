@@ -1,8 +1,8 @@
-import { ActivityIndicator, View } from 'react-native';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
-import { TabBar } from './TabBar';
+import { ActivityIndicator, View } from 'react-native';
 import { Pager } from './Pager';
+import { TabBar } from './TabBar';
 import { tabsVariants } from './tabs-variants';
 import type { TabsProps } from './types';
 
@@ -40,13 +40,7 @@ const Tabs = (props: TabsProps) => {
 
   return (
     <View className={cn(slots.root(), className)}>
-      <TabBar
-        activeIndex={activeIndex}
-        classNames={classNames}
-        items={items}
-        onTabPress={setActiveIndex}
-        type={type}
-      />
+      <TabBar activeIndex={activeIndex} classNames={classNames} items={items} onTabPress={setActiveIndex} type={type} />
       <Pager
         activeIndex={activeIndex}
         classNames={classNames}

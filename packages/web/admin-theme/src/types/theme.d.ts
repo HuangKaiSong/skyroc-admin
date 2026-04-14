@@ -10,22 +10,22 @@ declare global {
     /**
      * Theme mode
      *
-     * - auto: follow system theme
-     * - dark: dark mode
-     * - light: light mode
+     * - Auto: follow system theme
+     * - Dark: dark mode
+     * - Light: light mode
      */
     type ThemeMode = 'auto' | 'dark' | 'light';
 
     /**
      * Theme layout mode
      *
-     * - vertical: the vertical menu in left
-     * - horizontal: the horizontal menu in top
-     * - horizontal-mix: horizontal mixed layout
-     * - reversed-horizontal-mix: reversed horizontal mixed layout
-     * - vertical-mix: two vertical mixed menus in left
-     * - top-hybrid-sidebar-first: vertical first level menus in left and horizontal child level menus in top
-     * - top-hybrid-header-first: horizontal first level menus in top and vertical child level menus in left
+     * - Vertical: the vertical menu in left
+     * - Horizontal: the horizontal menu in top
+     * - Horizontal-mix: horizontal mixed layout
+     * - Reversed-horizontal-mix: reversed horizontal mixed layout
+     * - Vertical-mix: two vertical mixed menus in left
+     * - Top-hybrid-sidebar-first: vertical first level menus in left and horizontal child level menus in top
+     * - Top-hybrid-header-first: horizontal first level menus in top and vertical child level menus in left
      */
     type ThemeLayoutMode =
       | 'horizontal'
@@ -39,14 +39,12 @@ declare global {
     /**
      * Theme scroll mode
      *
-     * - wrapper: the wrapper component's root element overflow
-     * - content: the content component overflow
+     * - Wrapper: the wrapper component's root element overflow
+     * - Content: the content component overflow
      */
     type ThemeScrollMode = 'content' | 'wrapper';
 
-    /**
-     * Theme page animate mode
-     */
+    /** Theme page animate mode */
     type ThemePageAnimateMode =
       | 'fade'
       | 'fade-bottom'
@@ -59,8 +57,8 @@ declare global {
     /**
      * Theme tab mode
      *
-     * - chrome: chrome style
-     * - button: button style
+     * - Chrome: chrome style
+     * - Button: button style
      */
     type ThemeTabMode = 'button' | 'chrome';
 
@@ -111,7 +109,7 @@ declare global {
       container: string;
       inverted: string;
       layout: string;
-      /** the progress bar color, if not set, will use the primary color */
+      /** The progress bar color, if not set, will use the primary color */
       nprogress?: string;
     }
 
@@ -149,7 +147,7 @@ declare global {
     interface ThemePresetMeta {
       /** Preset description */
       desc: string;
-      /** i18n key for the preset name */
+      /** I18n key for the preset name */
       i18nkey: string;
       /** Preset name */
       name: string;
@@ -164,7 +162,7 @@ declare global {
 
     /** Theme setting */
     interface ThemeSetting {
-      /** colour weakness mode */
+      /** Colour weakness mode */
       colourWeakness: boolean;
       /** Fixed header and tab */
       fixedHeaderAndTab: boolean;
@@ -182,7 +180,7 @@ declare global {
         /** Whether to show the footer */
         visible: boolean;
       };
-      /** grayscale mode */
+      /** Grayscale mode */
       grayscale: boolean;
       /** Header */
       header: {
@@ -270,7 +268,7 @@ declare global {
       themeScheme: ThemeMode;
       /** Theme text size */
       themeTextSize: number;
-      /** define some theme settings tokens, will transform to css variables */
+      /** Define some theme settings tokens, will transform to css variables */
       tokens: {
         dark?: {
           [K in keyof ThemeSettingToken]?: Partial<ThemeSettingToken[K]>;

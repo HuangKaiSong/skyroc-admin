@@ -38,7 +38,7 @@ import { storage } from '@skyroc/storage';
 registerStorage('local', {
   getItem: key => storage.get(key),
   setItem: (key, value) => storage.set(key, value),
-  removeItem: key => storage.remove(key),
+  removeItem: key => storage.remove(key)
 });
 
 // sessionStorage adapter
@@ -48,7 +48,7 @@ registerStorage('session', {
     return raw ? JSON.parse(raw) : null;
   },
   setItem: (key, value) => sessionStorage.setItem(key, JSON.stringify(value)),
-  removeItem: key => sessionStorage.removeItem(key),
+  removeItem: key => sessionStorage.removeItem(key)
 });
 ```
 
@@ -102,32 +102,32 @@ setAtomValue(authAtom, { ...getAtomValue(authAtom), token: newToken });
 
 ### Provider
 
-| Export | Description |
-|--------|-------------|
+| Export          | Description                       |
+| --------------- | --------------------------------- |
 | `JotaiProvider` | Provider 组件，内置 `globalStore` |
 
 ### Store
 
-| Export | Description |
-|--------|-------------|
-| `globalStore` | 全局 Jotai store 实例 |
-| `getAtomValue(atom)` | 非 Hook 环境读取 atom |
-| `setAtomValue(atom, value)` | 非 Hook 环境写入 atom |
+| Export                      | Description                 |
+| --------------------------- | --------------------------- |
+| `globalStore`               | 全局 Jotai store 实例       |
+| `getAtomValue(atom)`        | 非 Hook 环境读取 atom       |
+| `setAtomValue(atom, value)` | 非 Hook 环境写入 atom       |
 | `updateAtomValue(atom, fn)` | 非 Hook 环境函数式更新 atom |
 
 ### Utils
 
-| Export | Description |
-|--------|-------------|
+| Export                                    | Description                          |
+| ----------------------------------------- | ------------------------------------ |
 | `createAtomWithStorage(key, init, opts?)` | 创建持久化 atom（registry 解析存储） |
-| `atomWithPartial(init)` | 创建支持部分更新的 atom |
-| `registerStorage(name, adapter)` | 注册命名存储适配器 |
-| `getStorage(name)` | 获取已注册的存储适配器 |
+| `atomWithPartial(init)`                   | 创建支持部分更新的 atom              |
+| `registerStorage(name, adapter)`          | 注册命名存储适配器                   |
+| `getStorage(name)`                        | 获取已注册的存储适配器               |
 
 ### Types
 
-| Export | Description |
-|--------|-------------|
+| Export        | Description                                            |
+| ------------- | ------------------------------------------------------ |
 | `AtomStorage` | 存储适配器接口（`getItem` / `setItem` / `removeItem`） |
 
 ## License

@@ -1,6 +1,6 @@
+import { cn } from '@skyroc/utils';
 import { useRef, useState } from 'react';
 import { Pressable, TextInput, View } from 'react-native';
-import { cn } from '@skyroc/utils';
 import { Cell } from '../cell/Cell';
 import { Text } from '../text/Typography';
 import { fieldVariants } from './field-variants';
@@ -133,10 +133,7 @@ const Field = (props: FieldProps) => {
           </Pressable>
         ) : null}
         {label ? (
-          <Text
-            className={cn(slots.label(), classNames?.label)}
-            numberOfLines={1}
-          >
+          <Text className={cn(slots.label(), classNames?.label)} numberOfLines={1}>
             {label}
             {colon ? '：' : ''}
           </Text>
@@ -149,10 +146,7 @@ const Field = (props: FieldProps) => {
     if (!clearable || !value || disabled || !isFocused) return null;
 
     return (
-      <Pressable
-        className={cn(slots.clear(), classNames?.clear)}
-        onPress={handleClear}
-      >
+      <Pressable className={cn(slots.clear(), classNames?.clear)} onPress={handleClear}>
         <Text className="text-xs text-muted-foreground">✕</Text>
       </Pressable>
     );

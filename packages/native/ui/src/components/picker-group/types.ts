@@ -33,13 +33,7 @@ export interface PickerGroupItem {
 }
 
 /** Style slot names for PickerGroup */
-export type PickerGroupSlots =
-  | 'activeIndicator'
-  | 'root'
-  | 'tab'
-  | 'tabBar'
-  | 'tabText'
-  | 'toolbar';
+export type PickerGroupSlots = 'activeIndicator' | 'root' | 'tab' | 'tabBar' | 'tabText' | 'toolbar';
 
 /** Props for the inline PickerGroupView component */
 export interface PickerGroupViewProps {

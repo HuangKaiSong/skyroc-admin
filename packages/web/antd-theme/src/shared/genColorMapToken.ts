@@ -1,7 +1,7 @@
 import type { ColorMapToken, SeedToken } from 'antd/lib/theme/interface';
 import type { ColorMap, PaletteGenerators } from '../types';
 
-/** antd 1-10 indexes */
+/** Antd 1-10 indexes */
 export const ANTD_INDEXES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
 
 /** Tailwind style 50-950 indexes */
@@ -10,13 +10,8 @@ export const TAILWIND_INDEXES = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900
 /**
  * Semantic color mapping configuration
  *
- * Design principles:
- * - 1-2 (50-100): Background
- * - 3-4 (200-300): Border
- * - 5 (400): Hover
- * - 6 (500): Main color
- * - 7 (600): Active
- * - 5-7 (400-600): Text related
+ * Design principles: - 1-2 (50-100): Background - 3-4 (200-300): Border - 5 (400): Hover - 6 (500): Main color - 7
+ * (600): Active - 5-7 (400-600): Text related
  */
 export interface SemanticColorConfig {
   /** Active color */
@@ -76,12 +71,7 @@ interface GenSemanticColorsOptions {
   name: string;
 }
 
-/**
- * Normalize color name
- * - 'colorPrimary' → 'Primary'
- * - 'Primary' → 'Primary'
- * - 'primary' → 'Primary'
- */
+/** Normalize color name - 'colorPrimary' → 'Primary' - 'Primary' → 'Primary' - 'primary' → 'Primary' */
 function normalizeColorName(name: string): string {
   // Remove 'color' prefix
   let normalized = name.startsWith('color') ? name.slice(5) : name;
@@ -94,11 +84,11 @@ function normalizeColorName(name: string): string {
  * Generate semantic colors for a single color
  *
  * @example
- * // The following three calls are equivalent:
- * genSemanticColors({ name: 'colorPrimary', ... })
- * genSemanticColors({ name: 'Primary', ... })
- * genSemanticColors({ name: 'primary', ... })
- * // All generate: colorPrimary, colorPrimaryActive, colorPrimaryBg, ...
+ *   // The following three calls are equivalent:
+ *   genSemanticColors({ name: 'colorPrimary', ... })
+ *   genSemanticColors({ name: 'Primary', ... })
+ *   genSemanticColors({ name: 'primary', ... })
+ *   // All generate: colorPrimary, colorPrimaryActive, colorPrimaryBg, ...
  */
 export function genSemanticColors({ colors, config, name }: GenSemanticColorsOptions): Record<string, string> {
   let colorName = name;
@@ -151,8 +141,8 @@ export function genPaletteVars(name: string, colors: ColorMap): Record<string, s
 /**
  * Generate neutral color map token
  *
- * Only generates neutral colors (background, text, border, etc.)
- * Theme colors are generated in the derivative function by iterating defaultPresetColors
+ * Only generates neutral colors (background, text, border, etc.) Theme colors are generated in the derivative function
+ * by iterating defaultPresetColors
  */
 export default function genColorMapToken(
   seed: SeedToken,

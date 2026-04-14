@@ -24,20 +24,9 @@ const GlobalSider = memo(() => {
   const menuWrapperClass = showLogo ? 'flex-1-hidden' : 'h-full';
 
   return (
-    <DarkModeContainer
-      className="size-full flex-col-stretch shadow-sider"
-      inverted={darkMenu}
-    >
-      {showLogo && (
-        <AdminLogo
-          showTitle={!siderCollapse}
-          style={{ height: `${headerHeight}px` }}
-        />
-      )}
-      <div
-        className={menuWrapperClass}
-        id={GLOBAL_SIDER_MENU_ID}
-      />
+    <DarkModeContainer className="size-full flex-col-stretch shadow-sider" inverted={darkMenu}>
+      {showLogo && <AdminLogo showTitle={!siderCollapse} style={{ height: `${headerHeight}px` }} />}
+      <div className={menuWrapperClass} id={GLOBAL_SIDER_MENU_ID} />
     </DarkModeContainer>
   );
 });

@@ -16,10 +16,7 @@ interface StorageTransportConfig {
   flushInterval?: number;
 }
 
-/**
- * 本地存储传输器
- * 将日志缓冲后批量写入本地存储
- */
+/** 本地存储传输器 将日志缓冲后批量写入本地存储 */
 export class StorageTransport extends LoggerlessTransport {
   /** 存储适配器 */
   private adapter: IStorageAdapter;
@@ -53,11 +50,7 @@ export class StorageTransport extends LoggerlessTransport {
   shipToLogger(params: LogLayerTransportParams): LogLayerTransportParams {
     const { logLevel, messages, data, hasData } = params;
 
-    const record = this.createLogRecord(
-      logLevel as LogLevel,
-      messages,
-      hasData ? data : undefined
-    );
+    const record = this.createLogRecord(logLevel as LogLevel, messages, hasData ? data : undefined);
 
     this.buffer.push(record);
 
@@ -70,13 +63,9 @@ export class StorageTransport extends LoggerlessTransport {
   }
 
   /** 创建日志记录 */
-  private createLogRecord(
-    level: LogLevel,
-    messages: unknown[],
-    data?: Record<string, unknown>
-  ): LogRecord {
+  private createLogRecord(level: LogLevel, messages: unknown[], data?: Record<string, unknown>): LogRecord {
     const message = messages
-      .map((m) => {
+      .map(m => {
         if (typeof m === 'string') return m;
         if (m instanceof Error) return m.message;
         return JSON.stringify(m);
@@ -119,7 +108,7 @@ export class StorageTransport extends LoggerlessTransport {
       message,
       data: logData,
       context,
-      error,
+      error
     };
   }
 

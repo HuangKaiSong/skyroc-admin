@@ -10,10 +10,7 @@ const itemRender: BreadcrumbProps['itemRender'] = (currentRoute, _, items) => {
   return isLast ? (
     <div className="flex-y-center text-base-text">{currentRoute.title}</div>
   ) : (
-    <Link
-      className="flex-y-center hover:text-base-text!"
-      to={currentRoute.path}
-    >
+    <Link className="flex-y-center hover:text-base-text!" to={currentRoute.path}>
       {currentRoute.title}
     </Link>
   );
@@ -48,10 +45,7 @@ const AdminBreadcrumb = () => {
               localIcon={menuInfo.menu?.localIcon}
             />
             <span>
-              <I18nLabel
-                fallback={menuInfo.title}
-                i18nKey={menuInfo.i18nKey}
-              />
+              <I18nLabel fallback={menuInfo.title} i18nKey={menuInfo.i18nKey} />
             </span>
           </>
         ),
@@ -60,13 +54,7 @@ const AdminBreadcrumb = () => {
     })
     .filter(Boolean) as BreadcrumbProps['items'];
 
-  return (
-    <ABreadcrumb
-      className="ml-12px"
-      itemRender={itemRender}
-      items={breadcrumb}
-    />
-  );
+  return <ABreadcrumb className="ml-12px" itemRender={itemRender} items={breadcrumb} />;
 };
 
 export default AdminBreadcrumb;

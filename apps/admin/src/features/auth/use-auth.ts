@@ -22,9 +22,7 @@ const authAtom = atom(initState, (get, set, update: Partial<typeof initState>) =
   set(authAtom, { ...get(authAtom), ...update });
 });
 
-/**
- * - 为了在axios的拦截器中使用 单独使用`globalStore`的set方法进行操作
- */
+/** - 为了在axios的拦截器中使用 单独使用`globalStore`的set方法进行操作 */
 export const setAuth = (data: Api.Auth.LoginToken) => {
   globalStore.set(authAtom, { token: data.token });
 

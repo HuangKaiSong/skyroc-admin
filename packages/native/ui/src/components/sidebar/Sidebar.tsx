@@ -1,8 +1,8 @@
+import { useControllableState } from '@radix-ui/react-use-controllable-state';
+import { cn, isString } from '@skyroc/utils';
 import { useEffect, useRef } from 'react';
 import { Pressable, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import { useControllableState } from '@radix-ui/react-use-controllable-state';
-import { cn, isString } from '@skyroc/utils';
 import { Badge } from '../badge/Badge';
 import { Text } from '../text/Typography';
 import { sidebarVariants } from './sidebar-variants';
@@ -29,10 +29,7 @@ function renderItem(
       disabled={item.disabled}
       onPress={() => onPress(index)}
     >
-      <Badge
-        content={item.badge}
-        dot={item.dot}
-      >
+      <Badge content={item.badge} dot={item.dot}>
         {isString(item.title) ? (
           <Text className={cn(slots.itemText(), classNames?.itemText)}>{item.title}</Text>
         ) : (
@@ -89,10 +86,7 @@ const Sidebar = (props: SidebarProps) => {
       </Animated.View>
 
       {items.map((item, index) => (
-        <View
-          key={item.key}
-          onLayout={index === 0 ? e => handleFirstLayout(e.nativeEvent.layout.height) : undefined}
-        >
+        <View key={item.key} onLayout={index === 0 ? e => handleFirstLayout(e.nativeEvent.layout.height) : undefined}>
           {renderItem(item, index, ctx)}
         </View>
       ))}

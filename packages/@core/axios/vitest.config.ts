@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitest/config';
 import { COVERAGE_EXCLUDE, baseCoverageConfig, baseTestConfig } from '@skyroc/config/vitest';
+import { defineConfig } from 'vitest/config';
 
 /**
  * @skyroc/axios 测试配置

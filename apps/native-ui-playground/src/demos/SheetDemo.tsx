@@ -1,6 +1,6 @@
+import { Button, Sheet, Text } from '@skyroc/native-ui';
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { Button, Sheet, Text } from '@skyroc/native-ui';
 
 const SheetDemo = () => {
   const [showBasic, setShowBasic] = useState(false);
@@ -13,27 +13,26 @@ const SheetDemo = () => {
       <Text className="mb-4 text-lg font-semibold">Basic</Text>
       <View className="mb-8 gap-3">
         <Button onPress={() => setShowBasic(true)}>Basic Sheet</Button>
-        <Button variant="tonal" onPress={() => setShowTitle(true)}>With Title</Button>
-        <Button variant="tonal" onPress={() => setShowDesc(true)}>Title + Description</Button>
-        <Button variant="tonal" onPress={() => setShowNoClose(true)}>No Close Button</Button>
+        <Button variant="tonal" onPress={() => setShowTitle(true)}>
+          With Title
+        </Button>
+        <Button variant="tonal" onPress={() => setShowDesc(true)}>
+          Title + Description
+        </Button>
+        <Button variant="tonal" onPress={() => setShowNoClose(true)}>
+          No Close Button
+        </Button>
       </View>
 
       {/* Basic */}
-      <Sheet
-        show={showBasic}
-        onUpdateShow={setShowBasic}
-      >
+      <Sheet show={showBasic} onUpdateShow={setShowBasic}>
         <View className="items-center px-6 py-10">
           <Text className="text-base text-foreground">Sheet Content</Text>
         </View>
       </Sheet>
 
       {/* With Title */}
-      <Sheet
-        show={showTitle}
-        title="Sheet Title"
-        onUpdateShow={setShowTitle}
-      >
+      <Sheet show={showTitle} title="Sheet Title" onUpdateShow={setShowTitle}>
         <View className="items-center px-6 py-10">
           <Text className="text-base text-foreground">Custom content goes here</Text>
         </View>
@@ -52,12 +51,7 @@ const SheetDemo = () => {
       </Sheet>
 
       {/* No Close */}
-      <Sheet
-        closeable={false}
-        show={showNoClose}
-        title="No Close Button"
-        onUpdateShow={setShowNoClose}
-      >
+      <Sheet closeable={false} show={showNoClose} title="No Close Button" onUpdateShow={setShowNoClose}>
         <View className="items-center px-6 py-10">
           <Text className="mb-4 text-base text-foreground">Tap backdrop to close</Text>
         </View>

@@ -3,8 +3,7 @@ import { Store } from '../../src/store/store';
 /**
  * 用于测试的 Store 子类
  *
- * Store 的 setState / patchState 是 protected，
- * 暴露出来才能在测试中直接调用。
+ * Store 的 setState / patchState 是 protected， 暴露出来才能在测试中直接调用。
  */
 class TestStore<S> extends Store<S> {
   set(nextOrUpdater: S | ((prev: S) => S)) {

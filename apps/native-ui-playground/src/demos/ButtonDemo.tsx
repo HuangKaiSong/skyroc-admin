@@ -1,6 +1,6 @@
+import { Button, Text } from '@skyroc/native-ui';
 import { useState } from 'react';
 import { Alert, ScrollView, View } from 'react-native';
-import { Button, Text } from '@skyroc/native-ui';
 
 const ButtonDemo = () => {
   const [loading, setLoading] = useState(false);
@@ -15,10 +15,12 @@ const ButtonDemo = () => {
       {/* Variants */}
       <Text className="mb-4 text-lg font-semibold">Variants</Text>
       <View className="mb-8 gap-3">
-        <Button variant="solid" onPress={() => Alert.alert('Solid')}>Solid</Button>
+        <Button variant="solid" onPress={() => Alert.alert('Solid')}>
+          Solid
+        </Button>
         <Button variant="tonal">Tonal</Button>
         <Button variant="outline">Outline</Button>
-        <Button  variant="ghost">Ghost</Button>
+        <Button variant="ghost">Ghost</Button>
       </View>
 
       {/* Colors */}
@@ -35,11 +37,21 @@ const ButtonDemo = () => {
       {/* Tonal Colors */}
       <Text className="mb-4 text-lg font-semibold">Tonal Colors</Text>
       <View className="mb-8 gap-3">
-        <Button variant="tonal" color="primary">Primary</Button>
-        <Button variant="tonal" color="destructive">Destructive</Button>
-        <Button variant="tonal" color="success">Success</Button>
-        <Button variant="tonal" color="warning">Warning</Button>
-        <Button variant="tonal" color="info">Info</Button>
+        <Button variant="tonal" color="primary">
+          Primary
+        </Button>
+        <Button variant="tonal" color="destructive">
+          Destructive
+        </Button>
+        <Button variant="tonal" color="success">
+          Success
+        </Button>
+        <Button variant="tonal" color="warning">
+          Warning
+        </Button>
+        <Button variant="tonal" color="info">
+          Info
+        </Button>
       </View>
 
       {/* Sizes */}
@@ -55,7 +67,9 @@ const ButtonDemo = () => {
       <View className="mb-8 flex-row gap-3">
         <Button shape="rounded">Rounded</Button>
         <Button shape="pill">Pill</Button>
-        <Button shape="circle" size="icon"><Text>A</Text></Button>
+        <Button shape="circle" size="icon">
+          <Text>A</Text>
+        </Button>
       </View>
 
       {/* States */}

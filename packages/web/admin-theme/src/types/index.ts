@@ -1,9 +1,8 @@
 /**
  * Re-export types from the global Theme namespace
  *
- * This allows internal code (e.g. hooks, utils) to import types
- * via standard ES module imports while the actual definitions
- * live in the global Theme namespace (theme.d.ts).
+ * This allows internal code (e.g. hooks, utils) to import types via standard ES module imports while the actual
+ * definitions live in the global Theme namespace (theme.d.ts).
  */
 
 export type BaseToken = Theme.BaseToken;

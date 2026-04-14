@@ -3,8 +3,8 @@ import type { ThemeColor } from '@skyroc/ui-types';
 /**
  * Semantic color definitions aligned with ThemeColor.
  *
- * Each color maps to a CSS variable that gets resolved at runtime.
- * The palette numbers follow the same 50–950 scale as the Web theme.
+ * Each color maps to a CSS variable that gets resolved at runtime. The palette numbers follow the same 50–950 scale as
+ * the Web theme.
  */
 export const semanticColors: Record<ThemeColor, { DEFAULT: string; foreground: string }> = {
   accent: {
@@ -57,9 +57,7 @@ export const defaultLightColors: Record<ThemeColor, string> = {
   warning: '#f59e0b'
 };
 
-/**
- * Default color values (hex) for dark theme.
- */
+/** Default color values (hex) for dark theme. */
 export const defaultDarkColors: Record<ThemeColor, string> = {
   accent: '#a78bfa',
   carbon: '#a1a1aa',
@@ -71,9 +69,7 @@ export const defaultDarkColors: Record<ThemeColor, string> = {
   warning: '#fbbf24'
 };
 
-/**
- * Neutral / surface colors for layout.
- */
+/** Neutral / surface colors for layout. */
 export const surfaceColors = {
   background: {
     DEFAULT: 'hsl(var(--color-background) / <alpha-value>)',

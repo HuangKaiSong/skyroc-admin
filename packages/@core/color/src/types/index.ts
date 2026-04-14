@@ -1,52 +1,52 @@
 /**
- * the color palette number
+ * The color palette number
  *
- * the main color number is 500
+ * The main color number is 500
  */
 export type ColorPaletteNumber = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 950;
 
-/** the color palette */
+/** The color palette */
 export type ColorPalette = {
-  /** the color hex value */
+  /** The color hex value */
   hex: string;
   /**
-   * the color number
+   * The color number
    *
    * - 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 950
    */
   number: ColorPaletteNumber;
 };
 
-/** the color palette family */
+/** The color palette family */
 export type ColorPaletteFamily = {
-  /** the color palette family name */
+  /** The color palette family name */
   name: string;
-  /** the color palettes */
+  /** The color palettes */
   palettes: ColorPalette[];
 };
 
-/** the color palette with delta */
+/** The color palette with delta */
 export type ColorPaletteWithDelta = ColorPalette & {
   delta: number;
 };
 
-/** the color palette family with nearest palette */
+/** The color palette family with nearest palette */
 export type ColorPaletteFamilyWithNearestPalette = ColorPaletteFamily & {
   nearestLightnessPalette: ColorPaletteWithDelta;
   nearestPalette: ColorPaletteWithDelta;
 };
 
-/** the color palette match */
+/** The color palette match */
 export type ColorPaletteMatch = ColorPaletteFamily & {
-  /** the color map of the palette */
+  /** The color map of the palette */
   colorMap: Map<ColorPaletteNumber, ColorPalette>;
   /**
-   * the main color of the palette
+   * The main color of the palette
    *
-   * which number is 500
+   * Which number is 500
    */
   main: ColorPalette;
-  /** the match color of the palette */
+  /** The match color of the palette */
   match: ColorPalette;
 };
 

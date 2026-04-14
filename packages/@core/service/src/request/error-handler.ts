@@ -1,7 +1,7 @@
-/* eslint-disable max-params */
-import type { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import type { RequestInstance } from '@skyroc/axios';
 import { BACKEND_ERROR_CODE } from '@skyroc/axios';
+/* eslint-disable max-params */
+import type { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import { getAuthorization, handleExpiredRequest, showErrorMsg } from './shared';
 import type { RequestAdapter, RequestInstanceState, ServiceCodes } from './types';
 

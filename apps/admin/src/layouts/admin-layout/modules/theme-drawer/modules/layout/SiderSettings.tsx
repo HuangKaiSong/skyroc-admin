@@ -52,18 +52,9 @@ const SiderSettings = () => {
 
   return (
     <div className="flex-col-stretch gap-12px">
-      <AnimatedCollapse
-        className="flex-col-stretch gap-12px"
-        visible={layoutMode === 'vertical'}
-      >
+      <AnimatedCollapse className="flex-col-stretch gap-12px" visible={layoutMode === 'vertical'}>
         <SettingItem label={t('theme.layout.sider.width')}>
-          <AInputNumber
-            className="w-120px"
-            min={0}
-            step={1}
-            value={sider.width}
-            onChange={handleWidthChange}
-          />
+          <AInputNumber className="w-120px" min={0} step={1} value={sider.width} onChange={handleWidthChange} />
         </SettingItem>
 
         <SettingItem label={t('theme.layout.sider.collapsedWidth')}>
@@ -77,18 +68,9 @@ const SiderSettings = () => {
         </SettingItem>
       </AnimatedCollapse>
 
-      <AnimatedCollapse
-        className="flex-col-stretch gap-12px"
-        visible={isMixLayoutMode}
-      >
+      <AnimatedCollapse className="flex-col-stretch gap-12px" visible={isMixLayoutMode}>
         <SettingItem label={t('theme.layout.sider.mixWidth')}>
-          <AInputNumber
-            className="w-120px"
-            min={0}
-            step={1}
-            value={sider.mixWidth}
-            onChange={handleMixWidthChange}
-          />
+          <AInputNumber className="w-120px" min={0} step={1} value={sider.mixWidth} onChange={handleMixWidthChange} />
         </SettingItem>
 
         <SettingItem label={t('theme.layout.sider.mixCollapsedWidth')}>
@@ -123,10 +105,7 @@ const SiderSettings = () => {
             </ATooltip>
           }
         >
-          <ASwitch
-            checked={sider.autoSelectFirstMenu}
-            onChange={handleAutoSelectFirstMenuChange}
-          />
+          <ASwitch checked={sider.autoSelectFirstMenu} onChange={handleAutoSelectFirstMenuChange} />
         </SettingItem>
       </AnimatedCollapse>
     </div>

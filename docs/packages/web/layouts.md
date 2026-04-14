@@ -16,6 +16,7 @@
 ## 🎯 职责定位
 
 **核心职责**:
+
 - 提供管理后台布局框架
 - Header、Sider、Footer 组件
 - Tab 标签页管理
@@ -43,8 +44,8 @@
 ## 🔌 API 设计
 
 ```ts
-export { AdminLayout } from './admin-layout'
-export { useAdminState } from './admin-layout/state/use-admin-state'
+export { AdminLayout } from './admin-layout';
+export { useAdminState } from './admin-layout/state/use-admin-state';
 ```
 
 ## 🔨 核心实现
@@ -53,14 +54,14 @@ export { useAdminState } from './admin-layout/state/use-admin-state'
 
 ```tsx
 // src/admin-layout/index.tsx
-import { Layout } from 'antd'
-import { AdminHeader } from './modules/admin-header'
-import { AdminSider } from './modules/admin-sider'
-import { AdminTab } from './modules/admin-tab'
-import { AdminFooter } from './modules/admin-footer'
+import { Layout } from 'antd';
+import { AdminHeader } from './modules/admin-header';
+import { AdminSider } from './modules/admin-sider';
+import { AdminTab } from './modules/admin-tab';
+import { AdminFooter } from './modules/admin-footer';
 
 export function AdminLayout({ children }) {
-  const { settings } = useSettingsTheme()
+  const { settings } = useSettingsTheme();
 
   return (
     <Layout className="h-screen">
@@ -70,29 +71,27 @@ export function AdminLayout({ children }) {
         <AdminHeader />
         {settings.tab.visible && <AdminTab />}
 
-        <Layout.Content className="p-4">
-          {children}
-        </Layout.Content>
+        <Layout.Content className="p-4">{children}</Layout.Content>
 
         {settings.footer.visible && <AdminFooter />}
       </Layout>
     </Layout>
-  )
+  );
 }
 ```
 
 ## 💡 使用示例
 
 ```tsx
-import { AdminLayout } from '@skyroc/web-layouts'
-import { RouterProvider } from '@skyroc/web-router'
+import { AdminLayout } from '@skyroc/web-layouts';
+import { RouterProvider } from '@skyroc/web-router';
 
 function App() {
   return (
     <AdminLayout>
       <RouterProvider />
     </AdminLayout>
-  )
+  );
 }
 ```
 

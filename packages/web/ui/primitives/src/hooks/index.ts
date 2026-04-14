@@ -1,6 +1,7 @@
 /**
  * Hooks module
- * @description Custom React hooks for SoybeanAdmin UI components
+ *
+ * Custom React hooks for SoybeanAdmin UI components
  */
 
 // Custom hooks will be exported here

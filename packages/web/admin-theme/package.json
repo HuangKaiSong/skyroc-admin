@@ -3,49 +3,44 @@
   "version": "1.0.0",
   "private": true,
   "description": "Web Ant Design theme utilities - config, presets, hooks, CSS variables, dark mode, system theme detection",
-  "author": "",
-  "license": "MIT",
+  "keywords": [
+    "ant-design",
+    "antd",
+    "color-scheme",
+    "css-variables",
+    "dark-mode",
+    "hooks",
+    "oklch",
+    "react",
+    "system-theme",
+    "theme",
+    "theme-config",
+    "theme-presets",
+    "theme-utilities"
+  ],
   "homepage": "https://github.com/Ohh-889/skyroc-admin/tree/main/packages/web/antdtheme#readme",
+  "bugs": {
+    "url": "https://github.com/Ohh-889/skyroc-admin/issues"
+  },
+  "license": "MIT",
+  "author": "",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ohh-889/skyroc-admin.git",
     "directory": "packages/web/antdtheme"
   },
-  "bugs": {
-    "url": "https://github.com/Ohh-889/skyroc-admin/issues"
-  },
-  "keywords": [
-    "antd",
-    "ant-design",
-    "theme",
-    "theme-utilities",
-    "dark-mode",
-    "css-variables",
-    "system-theme",
-    "hooks",
-    "react",
-    "oklch",
-    "color-scheme",
-    "theme-config",
-    "theme-presets"
-  ],
   "sideEffects": false,
-  "exports": {
-    ".": "./src/index.ts",
-    "./types": "./src/types/theme.d.ts"
-  },
   "types": "./src/index.ts",
   "typesVersions": {
     "*": {
-      "*": ["./src/*"]
+      "*": [
+        "./src/*"
+      ]
     }
   },
-  "engines": {
-    "node": ">=20"
-  },
-  "peerDependencies": {
-    "antd": ">=6.0.0",
-    "react": ">=19.0.0"
+  "exports": {
+    ".": "./src/index.ts",
+    "./types": "./src/types/theme.d.ts"
   },
   "dependencies": {
     "@skyroc/adapter-antd-theme": "workspace:*",
@@ -57,5 +52,12 @@
     "antd": "catalog:web",
     "defu": "catalog:utils",
     "jotai": "catalog:core"
+  },
+  "peerDependencies": {
+    "antd": ">=6.0.0",
+    "react": ">=19.0.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

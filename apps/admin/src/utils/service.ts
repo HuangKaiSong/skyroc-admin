@@ -41,10 +41,10 @@ export function createServiceConfig(env: Env.ImportMeta) {
 }
 
 /**
- * get backend service base url
+ * Get backend service base url
  *
- * @param env - the current env
- * @param isProxy - if use proxy
+ * @param env - The current env
+ * @param isProxy - If use proxy
  */
 export function getServiceBaseURL(env: Env.ImportMeta, isProxy: boolean) {
   const { baseURL, other } = createServiceConfig(env);

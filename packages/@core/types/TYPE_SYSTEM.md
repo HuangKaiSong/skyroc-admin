@@ -29,6 +29,7 @@ export {};
 ### App 层命名空间
 
 #### `Common`
+
 - **文件**: `src/app/common.d.ts`
 - **用途**: 通用类型(Option, YesOrNo, EnableStatus 等)
 - **访问**: 全局直接使用,无需导入
@@ -38,6 +39,7 @@ const option: Common.Option = { label: 'Label', value: 'value' };
 ```
 
 #### `Theme`
+
 - **文件**: `src/app/theme.d.ts`
 - **用途**: 主题配置类型
 - **访问**: 全局直接使用
@@ -47,6 +49,7 @@ const themeSettings: Theme.ThemeSetting = { ... };
 ```
 
 #### `Menu`
+
 - **文件**: `src/app/menu.d.ts`
 - **用途**: 菜单类型
 - **访问**: 全局直接使用
@@ -56,6 +59,7 @@ const menu: Menu.CommonMenu = { ... };
 ```
 
 #### `Router`
+
 - **文件**: `src/app/router.d.ts`
 - **用途**: 路由类型
 - **访问**: 全局直接使用
@@ -65,6 +69,7 @@ const meta: Router.Meta = { ... };
 ```
 
 #### `App.Global`
+
 - **文件**: `src/app/global.d.ts`
 - **用途**: 全局应用类型
 - **访问**: 全局直接使用
@@ -74,6 +79,7 @@ const tab: App.Global.Tab = { ... };
 ```
 
 #### `UnionKey`
+
 - **文件**: `src/app/union-key.d.ts`
 - **用途**: 联合类型键
 - **访问**: 全局直接使用
@@ -83,6 +89,7 @@ type ThemeScheme = UnionKey.ThemeScheme; // 'light' | 'dark' | 'auto'
 ```
 
 #### `StorageType`
+
 - **文件**: `src/app/storage.d.ts`
 - **用途**: 存储类型
 - **访问**: 全局直接使用,支持项目扩展
@@ -94,6 +101,7 @@ const storage: StorageType.Local = { ... };
 ### API 层命名空间
 
 #### `Api.Service`
+
 - **文件**: `src/api/service.d.ts`
 - **用途**: 服务配置和响应类型
 - **访问**: 全局直接使用
@@ -103,6 +111,7 @@ const response: Api.Service.Response<DataType> = { ... };
 ```
 
 #### `Api.Auth`
+
 - **文件**: `src/api/auth.d.ts`
 - **用途**: 认证相关类型
 - **访问**: 全局直接使用
@@ -112,6 +121,7 @@ const loginParams: Api.Auth.LoginParams = { ... };
 ```
 
 #### `Api.Route`
+
 - **文件**: `src/api/route.d.ts`
 - **用途**: 路由 API 类型
 - **访问**: 全局直接使用
@@ -121,6 +131,7 @@ const routes: Api.Route.BackendRoute[] = [ ... ];
 ```
 
 #### `Api.Common`
+
 - **文件**: `src/api/common.d.ts`
 - **用途**: API 通用类型
 - **访问**: 全局直接使用
@@ -132,6 +143,7 @@ const params: Api.Common.PaginatingCommonParams = { ... };
 ### 国际化命名空间
 
 #### `I18n`
+
 - **文件**: `src/locales/i18n.d.ts`
 - **用途**: 国际化类型
 - **访问**: 全局直接使用

@@ -108,7 +108,7 @@ function useCountDown(options: UseCountDownOptions) {
 
   // 处理 AppState 变化（前后台切换）
   useEffect(() => {
-    const subscription = AppState.addEventListener('change', (nextState) => {
+    const subscription = AppState.addEventListener('change', nextState => {
       if (nextState === 'active' && countingRef.current) {
         // 从后台恢复，重新计算剩余时间并继续
         tick();

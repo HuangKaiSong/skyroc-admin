@@ -34,12 +34,7 @@ const GlobalLoading = memo(() => {
       <div className="my-4xl size-4xl">
         <div className="relative h-full animate-spin">
           {loadingClasses.map(item => {
-            return (
-              <div
-                className={clsx('absolute size-md animate-pulse rounded-lg bg-primary', item)}
-                key={item}
-              />
-            );
+            return <div className={clsx('absolute size-md animate-pulse rounded-lg bg-primary', item)} key={item} />;
           })}
         </div>
       </div>

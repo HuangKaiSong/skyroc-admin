@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
 import { createStore } from 'jotai';
+import { describe, expect, it } from 'vitest';
 import { atomWithPartial } from '../src/utils/atom-with-partial';
 
 describe('atomWithPartial', () => {

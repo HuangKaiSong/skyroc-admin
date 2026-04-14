@@ -100,26 +100,26 @@ export type ColorOptions =
 
 export interface ThemeOptions {
   /**
-   * theme color options
+   * Theme color options
    *
    * @default 'default'
    */
   color?: ColorOptions | false;
   /**
-   * dark theme selector
+   * Dark theme selector
    *
    * @default '.dark'
    */
   darkSelector?: string;
-  /** feedback color */
+  /** Feedback color */
   feedbackColor?: FeedbackColorOfThemeCssVarsVariant;
   /**
-   * theme radius
+   * Theme radius
    *
    * @default 0.5
    */
   radius?: number | false;
-  /** sidebar color */
+  /** Sidebar color */
   sidebar?: SidebarColorOfThemeCssVarsVariant;
 }
 

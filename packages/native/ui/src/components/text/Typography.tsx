@@ -1,7 +1,7 @@
-import { createContext, useContext } from 'react';
 import * as Slot from '@rn-primitives/slot';
-import { Text as RNText } from 'react-native';
 import { cn } from '@skyroc/utils';
+import { createContext, useContext } from 'react';
+import { Text as RNText } from 'react-native';
 import { textVariants } from './text-variants';
 import type { TextProps } from './types';
 
@@ -17,12 +17,7 @@ const Text = (props: TextProps) => {
 
   const textCls = cn(textVariants({ color, size, weight }), textClass, className);
 
-  return (
-    <Component
-      className={textCls}
-      {...rest}
-    />
-  );
+  return <Component className={textCls} {...rest} />;
 };
 
 export { Text, TextClassContext };

@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
 import { atom } from 'jotai';
+import { describe, expect, it } from 'vitest';
 import { getAtomValue, setAtomValue, updateAtomValue } from '../src/store/global';
 
 describe('global store', () => {

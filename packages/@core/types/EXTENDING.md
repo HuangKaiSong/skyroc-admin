@@ -100,6 +100,7 @@ recentlyViewed?: string[];
 ### ✅ DO - 正确做法
 
 1. **基础类型使用 `declare global`**
+
    ```typescript
    declare global {
      namespace StorageType {
@@ -110,6 +111,7 @@ recentlyViewed?: string[];
    ```
 
 2. **项目扩展也使用 `declare global`**
+
    ```typescript
    declare global {
      namespace StorageType {
@@ -129,15 +131,17 @@ recentlyViewed?: string[];
 ### ❌ DON'T - 错误做法
 
 1. **不要在项目扩展中重复基础字段**
+
    ```typescript
    // ❌ 错误:重复了 core-types 中已有的字段
    interface Local {
-     token: string;              // 已在 core-types 中定义
-     dashboardLayout?: string;   // ✅ 项目特定字段
+     token: string; // 已在 core-types 中定义
+     dashboardLayout?: string; // ✅ 项目特定字段
    }
    ```
 
 2. **不要使用 `export type`(会破坏全局声明)**
+
    ```typescript
    // ❌ 错误:导出为模块类型,无法全局访问
    declare namespace StorageType { ... }

@@ -3,12 +3,12 @@ import { AdminLayout as AdminLayoutComponent, LAYOUT_SCROLL_EL_ID } from '@skyro
 import { useSettingsTheme } from '@skyroc/web-admin-theme';
 
 import { LAYOUT_MODE_HORIZONTAL, LAYOUT_MODE_VERTICAL } from './constant';
-import GlobalContent from './modules/AdminContent';
-import GlobalFooter from './modules/AdminFooter';
-import GlobalSider from './modules/AdminSider';
 import AdminHeader from './modules/admin-header/AdminHeader';
 import AdminMenu from './modules/admin-menu/AdminMenu';
 import AdminTab from './modules/admin-tab/AdminTab';
+import GlobalContent from './modules/AdminContent';
+import GlobalFooter from './modules/AdminFooter';
+import GlobalSider from './modules/AdminSider';
 import { useAdminMenus } from './state/menus/use-admin-menus';
 import { useAdminState } from './state/use-admin-state';
 

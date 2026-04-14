@@ -1,5 +1,5 @@
-import type { AxiosResponse } from 'axios';
 import { createRequest } from '@skyroc/axios';
+import type { AxiosResponse } from 'axios';
 import { backEndFail, handleError } from './error-handler';
 import { getAuthorization } from './shared';
 import type { CreateRequestOptions, RequestInstanceState } from './types';
@@ -7,8 +7,7 @@ import type { CreateRequestOptions, RequestInstanceState } from './types';
 /**
  * 创建平台无关的请求实例
  *
- * 通过 adapter 注入平台差异（UI 反馈、认证、导航、i18n），
- * 使错误处理、token 刷新等逻辑可跨端复用。
+ * 通过 adapter 注入平台差异（UI 反馈、认证、导航、i18n）， 使错误处理、token 刷新等逻辑可跨端复用。
  */
 export function createAppRequest(options: CreateRequestOptions) {
   const { adapter, axiosConfig, codes } = options;

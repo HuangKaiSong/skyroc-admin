@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { ScrollView, View } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { CellGroup, Field, Text } from '@skyroc/native-ui';
+import { useState } from 'react';
+import { ScrollView, View } from 'react-native';
 
 const FieldDemo = () => {
   const [basic, setBasic] = useState('');
@@ -35,63 +35,23 @@ const FieldDemo = () => {
       {/* Basic Usage */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">基础用法</Text>
       <CellGroup>
-        <Field
-          label="文本"
-          placeholder="请输入文本"
-          value={basic}
-          onChangeText={setBasic}
-        />
+        <Field label="文本" placeholder="请输入文本" value={basic} onChangeText={setBasic} />
       </CellGroup>
 
       {/* Custom Type */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">自定义类型</Text>
       <CellGroup>
-        <Field
-          label="文本"
-          placeholder="请输入文本"
-          value={customType}
-          onChangeText={setCustomType}
-        />
-        <Field
-          label="手机号"
-          placeholder="请输入手机号"
-          type="tel"
-          value={phone}
-          onChangeText={setPhone}
-        />
-        <Field
-          label="整数"
-          placeholder="请输入整数"
-          type="digit"
-          value={digit}
-          onChangeText={setDigit}
-        />
-        <Field
-          label="数字"
-          placeholder="请输入数字"
-          type="number"
-          value={number}
-          onChangeText={setNumber}
-        />
-        <Field
-          label="密码"
-          placeholder="请输入密码"
-          type="password"
-          value={password}
-          onChangeText={setPassword}
-        />
+        <Field label="文本" placeholder="请输入文本" value={customType} onChangeText={setCustomType} />
+        <Field label="手机号" placeholder="请输入手机号" type="tel" value={phone} onChangeText={setPhone} />
+        <Field label="整数" placeholder="请输入整数" type="digit" value={digit} onChangeText={setDigit} />
+        <Field label="数字" placeholder="请输入数字" type="number" value={number} onChangeText={setNumber} />
+        <Field label="密码" placeholder="请输入密码" type="password" value={password} onChangeText={setPassword} />
       </CellGroup>
 
       {/* Clearable */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">可清除</Text>
       <CellGroup>
-        <Field
-          clearable
-          label="文本"
-          placeholder="请输入文本"
-          value={clearable}
-          onChangeText={setClearable}
-        />
+        <Field clearable label="文本" placeholder="请输入文本" value={clearable} onChangeText={setClearable} />
       </CellGroup>
 
       {/* Format Value */}
@@ -158,13 +118,7 @@ const FieldDemo = () => {
       {/* Error */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">错误提示</Text>
       <CellGroup>
-        <Field
-          error
-          label="用户名"
-          placeholder="请输入用户名"
-          value={errorField}
-          onChangeText={setErrorField}
-        />
+        <Field error label="用户名" placeholder="请输入用户名" value={errorField} onChangeText={setErrorField} />
         <Field
           errorMessage="手机号格式错误"
           label="手机号"
@@ -198,14 +152,7 @@ const FieldDemo = () => {
       {/* Required & Colon */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">必填星号与冒号</Text>
       <CellGroup>
-        <Field
-          colon
-          label="用户名"
-          placeholder="请输入用户名"
-          required
-          value={required}
-          onChangeText={setRequired}
-        />
+        <Field colon label="用户名" placeholder="请输入用户名" required value={required} onChangeText={setRequired} />
         <Field
           colon
           label="密码"
@@ -220,51 +167,22 @@ const FieldDemo = () => {
       {/* Label Align */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">标签对齐 - 顶部</Text>
       <CellGroup>
-        <Field
-          label="文本"
-          labelAlign="top"
-          placeholder="顶部对齐"
-          value={topLabel}
-          onChangeText={setTopLabel}
-        />
+        <Field label="文本" labelAlign="top" placeholder="顶部对齐" value={topLabel} onChangeText={setTopLabel} />
       </CellGroup>
 
       {/* Disabled & Readonly */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">禁用与只读</Text>
       <CellGroup>
-        <Field
-          disabled
-          label="禁用"
-          value={disabled}
-        />
-        <Field
-          disabled={false}
-          label="只读"
-          value={readonly}
-        />
+        <Field disabled label="禁用" value={disabled} />
+        <Field disabled={false} label="只读" value={readonly} />
       </CellGroup>
 
       {/* Input Align */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">输入框对齐</Text>
       <View className="bg-background">
-        <Field
-          inputAlign="left"
-          label="文本"
-          placeholder="左对齐"
-          value=""
-        />
-        <Field
-          inputAlign="center"
-          label="文本"
-          placeholder="居中对齐"
-          value=""
-        />
-        <Field
-          inputAlign="right"
-          label="文本"
-          placeholder="右对齐"
-          value=""
-        />
+        <Field inputAlign="left" label="文本" placeholder="左对齐" value="" />
+        <Field inputAlign="center" label="文本" placeholder="居中对齐" value="" />
+        <Field inputAlign="right" label="文本" placeholder="右对齐" value="" />
       </View>
     </ScrollView>
   );

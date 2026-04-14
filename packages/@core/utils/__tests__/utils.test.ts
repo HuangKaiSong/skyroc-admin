@@ -145,9 +145,7 @@ describe('isPC', () => {
   });
 
   it('Android userAgent 应返回 false', () => {
-    vi.spyOn(navigator, 'userAgent', 'get').mockReturnValue(
-      'Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36'
-    );
+    vi.spyOn(navigator, 'userAgent', 'get').mockReturnValue('Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36');
     expect(isPC()).toBe(false);
     vi.restoreAllMocks();
   });

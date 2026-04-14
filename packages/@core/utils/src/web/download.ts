@@ -10,6 +10,7 @@ const DEFAULT_FILENAME = 'downloaded_file';
 
 /**
  * 通过 URL 下载文件（尽量支持跨域：若 CORS 允许则 fetch->blob 下载；否则回退 openWindow）
+ *
  * @throws {Error} - 当 source 非法、或 fetch blob 失败且无法回退时抛出错误（通常不会）
  */
 export async function downloadFileFromUrl({ fileName, source, target = '_blank' }: DownloadOptions): Promise<void> {
@@ -50,12 +51,7 @@ export async function downloadFileFromUrl({ fileName, source, target = '_blank' 
   }
 }
 
-/**
- * 通过 Base64 / DataURL 下载文件
- * 支持：
- * - data:application/pdf;base64,...
- * - data:image/png;base64,...
- */
+/** 通过 Base64 / DataURL 下载文件 支持： - data:application/pdf;base64,... - data:image/png;base64,... */
 export function downloadFileFromBase64({ fileName, source }: DownloadOptions) {
   if (!source || typeof source !== 'string') {
     throw new Error('Invalid Base64 data.');
@@ -66,9 +62,7 @@ export function downloadFileFromBase64({ fileName, source }: DownloadOptions) {
   triggerDownload(source, resolvedFileName);
 }
 
-/**
- * 通过图片 URL 下载图片文件（canvas 转 base64）
- */
+/** 通过图片 URL 下载图片文件（canvas 转 base64） */
 export async function downloadFileFromImageUrl({ fileName, source }: DownloadOptions) {
   if (!source || typeof source !== 'string') {
     throw new Error('Invalid image URL.');
@@ -77,9 +71,7 @@ export async function downloadFileFromImageUrl({ fileName, source }: DownloadOpt
   downloadFileFromBase64({ fileName: fileName || resolveFileName(source), source: base64 });
 }
 
-/**
- * 通过 Blob 下载文件
- */
+/** 通过 Blob 下载文件 */
 export function downloadFileFromBlob({ fileName = DEFAULT_FILENAME, source }: DownloadOptions<Blob>): void {
   if (typeof window === 'undefined') return;
 
@@ -91,9 +83,7 @@ export function downloadFileFromBlob({ fileName = DEFAULT_FILENAME, source }: Do
   triggerDownload(url, fileName);
 }
 
-/**
- * 下载文件：支持 BlobPart（string / ArrayBuffer / Uint8Array 等）
- */
+/** 下载文件：支持 BlobPart（string / ArrayBuffer / Uint8Array 等） */
 export function downloadFileFromBlobPart({ fileName = DEFAULT_FILENAME, source }: DownloadOptions<BlobPart>): void {
   if (typeof window === 'undefined') return;
 
@@ -103,10 +93,7 @@ export function downloadFileFromBlobPart({ fileName = DEFAULT_FILENAME, source }
   triggerDownload(url, fileName);
 }
 
-/**
- * img url -> base64
- * 注意：跨域图片必须服务端允许 CORS，否则 canvas 会被污染导致 toDataURL 抛错
- */
+/** Img url -> base64 注意：跨域图片必须服务端允许 CORS，否则 canvas 会被污染导致 toDataURL 抛错 */
 export function urlToBase64(url: string, mineType?: string): Promise<string> {
   if (typeof window === 'undefined') {
     return Promise.reject(new Error('Not in browser environment.'));
@@ -155,6 +142,7 @@ export function urlToBase64(url: string, mineType?: string): Promise<string> {
 
 /**
  * 通用下载触发函数
+ *
  * @param href - 文件下载的 URL / data URL / blob URL
  * @param fileName - 下载文件名
  * @param revokeDelay - 清理 blob URL 的延迟时间 (毫秒)
@@ -197,9 +185,7 @@ export function triggerDownload(href: string, fileName: string | undefined, revo
   }
 }
 
-/**
- * 从 URL 里解析文件名（去掉 query/hash）
- */
+/** 从 URL 里解析文件名（去掉 query/hash） */
 function resolveFileName(url: string, override?: string): string {
   if (override) return override;
 
@@ -216,9 +202,7 @@ function resolveFileName(url: string, override?: string): string {
   }
 }
 
-/**
- * 解析 Content-Disposition 里的文件名（如果服务端提供）
- */
+/** 解析 Content-Disposition 里的文件名（如果服务端提供） */
 function getFileNameFromHeaders(headers: Headers): string | null {
   const cd = headers.get('content-disposition') || headers.get('Content-Disposition');
   if (!cd) return null;

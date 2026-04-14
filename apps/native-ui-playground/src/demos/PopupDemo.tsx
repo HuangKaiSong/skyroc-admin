@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { ScrollView, View } from 'react-native';
 import { Button, Popup, Text } from '@skyroc/native-ui';
 import type { PopupPosition } from '@skyroc/native-ui';
+import { useState } from 'react';
+import { ScrollView, View } from 'react-native';
 
 const PopupDemo = () => {
   const [show, setShow] = useState(false);
@@ -26,7 +26,6 @@ const PopupDemo = () => {
     setShowRound(val);
   }
 
-
   function handleCloseSwipe(val: boolean) {
     setShowSwipe(val);
   }
@@ -37,16 +36,26 @@ const PopupDemo = () => {
       <Text className="mb-4 text-lg font-semibold">Position</Text>
       <View className="mb-8 gap-3">
         <Button onPress={() => handleOpen('center')}>Center</Button>
-        <Button variant="tonal" onPress={() => handleOpen('top')}>Top</Button>
-        <Button variant="tonal" onPress={() => handleOpen('bottom')}>Bottom</Button>
-        <Button variant="tonal" onPress={() => handleOpen('left')}>Left</Button>
-        <Button variant="tonal" onPress={() => handleOpen('right')}>Right</Button>
+        <Button variant="tonal" onPress={() => handleOpen('top')}>
+          Top
+        </Button>
+        <Button variant="tonal" onPress={() => handleOpen('bottom')}>
+          Bottom
+        </Button>
+        <Button variant="tonal" onPress={() => handleOpen('left')}>
+          Left
+        </Button>
+        <Button variant="tonal" onPress={() => handleOpen('right')}>
+          Right
+        </Button>
       </View>
 
       {/* Round */}
       <Text className="mb-4 text-lg font-semibold">Round Corners</Text>
       <View className="mb-8 gap-3">
-        <Button variant="outline" onPress={handleOpenRound}>Bottom Round</Button>
+        <Button variant="outline" onPress={handleOpenRound}>
+          Bottom Round
+        </Button>
       </View>
 
       {/* Position Popup */}

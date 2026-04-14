@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
 import { getPaletteColorByNumber } from '@skyroc/color';
 import { useNow, useSystemTheme } from '@skyroc/hooks/web';
 import { formatDateTime } from '@skyroc/utils';
 import { atom, useAtom, useAtomValue } from 'jotai';
+import { useMemo } from 'react';
 import { defaultThemeSettings } from '../config/default';
 import type { ThemeColor, ThemeColorKey, ThemeLayoutMode, ThemeMode } from '../types';
 
@@ -15,11 +15,10 @@ export const themeUserNameAtom = atom<string | undefined>(undefined);
 /**
  * Web theme hook
  *
- * Provides theme state management with a simple single-atom approach.
- * Derived values (isDarkMode, themeColors, tokens) are computed via useMemo.
+ * Provides theme state management with a simple single-atom approach. Derived values (isDarkMode, themeColors, tokens)
+ * are computed via useMemo.
  *
- * userName 通过 themeUserNameAtom 全局共享，
- * 由 AntdProvider 自动写入，所有调用者无需传参即可获取完整的 watermarkContent。
+ * UserName 通过 themeUserNameAtom 全局共享， 由 AntdProvider 自动写入，所有调用者无需传参即可获取完整的 watermarkContent。
  */
 export function useTheme() {
   const userName = useAtomValue(themeUserNameAtom);
@@ -86,9 +85,7 @@ export function useTheme() {
     return content;
   }, [settings.watermark, userName, formattedWatermarkTime]);
 
-  /**
-   * Update settings with partial update
-   */
+  /** Update settings with partial update */
   function setSettings(update: Partial<Theme.ThemeSetting>) {
     setSettingsAtom(prev => ({ ...prev, ...update }));
   }
@@ -213,9 +210,7 @@ export function useTheme() {
     }
   }
 
-  /**
-   * Reset to default settings
-   */
+  /** Reset to default settings */
   function reset() {
     setSettingsAtom(defaultThemeSettings);
   }

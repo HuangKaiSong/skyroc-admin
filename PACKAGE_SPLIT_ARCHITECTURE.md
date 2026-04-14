@@ -18,6 +18,7 @@
 ### 1.1 当前项目分析
 
 **技术栈**:
+
 - React 19 + Vite 7
 - TanStack Router (路由)
 - Jotai (状态管理)
@@ -27,6 +28,7 @@
 - i18next (国际化)
 
 **现有包结构**:
+
 ```
 packages/
 ├── axios/          # HTTP 请求封装
@@ -56,13 +58,13 @@ apps/
 
 ### 2.1 分类标准
 
-| 分类 | 命名前缀 | 适用场景 | 依赖约束 |
-|-----|---------|---------|---------|
-| **Universal** | `@skyroc/core-*` | React + React Native | 禁止依赖 DOM/Web API |
-| **Web** | `@skyroc/web-*` | 仅 Web 应用 | 可依赖 DOM/Web API |
-| **Adapter** | `@skyroc/adapter-*` | UI库适配层 | 依赖特定 UI 库 |
-| **Feature** | `@skyroc/feature-*` | 业务功能模块 | 可依赖多个包 |
-| **Internal** | `@skyroc/internal-*` | 内部工具 | 开发时依赖 |
+| 分类          | 命名前缀             | 适用场景             | 依赖约束             |
+| ------------- | -------------------- | -------------------- | -------------------- |
+| **Universal** | `@skyroc/core-*`     | React + React Native | 禁止依赖 DOM/Web API |
+| **Web**       | `@skyroc/web-*`      | 仅 Web 应用          | 可依赖 DOM/Web API   |
+| **Adapter**   | `@skyroc/adapter-*`  | UI库适配层           | 依赖特定 UI 库       |
+| **Feature**   | `@skyroc/feature-*`  | 业务功能模块         | 可依赖多个包         |
+| **Internal**  | `@skyroc/internal-*` | 内部工具             | 开发时依赖           |
 
 ### 2.2 包架构分层
 
@@ -95,33 +97,38 @@ apps/
 ### 3.1 跨平台核心包 (Universal)
 
 #### 📦 `@skyroc/core-auth`
+
 **定位**: 认证核心逻辑（跨平台）
 
 **功能**:
+
 - Token 管理 (get/set/clear)
 - 认证状态管理 (Jotai atom)
 - 用户信息类型定义
 - Storage 抽象接口
 
 **导出**:
+
 ```ts
 // 状态管理
-export { authAtom, useAuth } from './hooks/use-auth'
-export { setAuth, clearAuth } from './actions'
+export { authAtom, useAuth } from './hooks/use-auth';
+export { setAuth, clearAuth } from './actions';
 
 // 工具函数
-export { getToken, isTokenExpired } from './utils'
+export { getToken, isTokenExpired } from './utils';
 
 // 类型
-export type { AuthState, UserInfo, LoginToken } from './types'
+export type { AuthState, UserInfo, LoginToken } from './types';
 ```
 
 **依赖**:
+
 - `jotai` (状态)
 - `@skyroc/core-storage` (存储)
 - `@skyroc/core-types` (类型)
 
 **文件结构**:
+
 ```
 @skyroc/core-auth/
 ├── src/
@@ -142,6 +149,7 @@ export type { AuthState, UserInfo, LoginToken } from './types'
 ```
 
 **平台适配**:
+
 - Web: 使用 `localStorage`
 - React Native: 使用 `AsyncStorage`
 - 通过 `@skyroc/core-storage` 抽象层实现
@@ -149,28 +157,33 @@ export type { AuthState, UserInfo, LoginToken } from './types'
 ---
 
 #### 📦 `@skyroc/core-i18n`
+
 **定位**: 国际化核心（跨平台）
 
 **功能**:
+
 - 语言切换逻辑
 - 语言状态管理
 - i18next 配置抽象
 - 翻译key类型安全
 
 **导出**:
+
 ```ts
-export { useLang, langAtom } from './hooks/use-lang'
-export { setLng, initI18n } from './config'
-export type { LangType, I18nKey } from './types'
+export { useLang, langAtom } from './hooks/use-lang';
+export { setLng, initI18n } from './config';
+export type { LangType, I18nKey } from './types';
 ```
 
 **依赖**:
+
 - `i18next`
 - `jotai`
 - `@skyroc/core-storage`
 - `@skyroc/core-types`
 
 **文件结构**:
+
 ```
 @skyroc/core-i18n/
 ├── src/
@@ -187,136 +200,149 @@ export type { LangType, I18nKey } from './types'
 ---
 
 #### 📦 `@skyroc/core-theme`
+
 **定位**: 主题核心逻辑（跨平台）
 
 **功能**:
+
 - 主题色计算（基于 `@skyroc/color`）
 - 主题状态管理
 - 颜色模式切换（light/dark/auto）
 - 主题配置类型
 
 **导出**:
+
 ```ts
-export { useTheme, themeAtom } from './hooks/use-theme'
-export { createThemeToken, getColorPalette } from './utils'
-export type { ThemeConfig, ThemeColors, ThemeMode } from './types'
+export { useTheme, themeAtom } from './hooks/use-theme';
+export { createThemeToken, getColorPalette } from './utils';
+export type { ThemeConfig, ThemeColors, ThemeMode } from './types';
 ```
 
 **依赖**:
+
 - `@skyroc/color`
 - `jotai`
 - `@skyroc/core-storage`
 - `@skyroc/core-types`
 
 **关键实现**:
+
 ```ts
 // src/utils/theme-token.ts
-export function createThemeToken(
-  colors: ThemeColors,
-  mode: 'light' | 'dark'
-) {
-  const palette = getColorPalette(colors.primary)
+export function createThemeToken(colors: ThemeColors, mode: 'light' | 'dark') {
+  const palette = getColorPalette(colors.primary);
 
   return {
     primary: palette[500],
-    'primary-50': palette[50],
+    'primary-50': palette[50]
     // ... 生成完整色阶
-  }
+  };
 }
 ```
 
 **平台差异**:
+
 - Web: 通过 CSS Variables 应用
 - React Native: 通过 Context/主题对象传递
 
 ---
 
 #### 📦 `@skyroc/core-storage`
+
 **定位**: 存储抽象层（跨平台）
 
 **功能**:
+
 - 统一的存储接口
 - 支持类型安全的 key-value 存储
 - 平台适配（localStorage / AsyncStorage）
 
 **导出**:
+
 ```ts
-export { createStorage, createLocalforage } from './factory'
-export type { Storage, StorageType, StorageAdapter } from './types'
+export { createStorage, createLocalforage } from './factory';
+export type { Storage, StorageType, StorageAdapter } from './types';
 ```
 
 **依赖**:
+
 - `localforage` (Web IndexedDB)
 - 无其他依赖（纯接口）
 
 **核心设计**:
+
 ```ts
 // src/types.ts
 export interface StorageAdapter {
-  getItem<T>(key: string): Promise<T | null>
-  setItem<T>(key: string, value: T): Promise<void>
-  removeItem(key: string): Promise<void>
-  clear(): Promise<void>
+  getItem<T>(key: string): Promise<T | null>;
+  setItem<T>(key: string, value: T): Promise<void>;
+  removeItem(key: string): Promise<void>;
+  clear(): Promise<void>;
 }
 
 // src/factory.ts
-export function createStorage<T extends Record<string, any>>(
-  adapter: StorageAdapter,
-  prefix: string = ''
-): Storage<T> {
+export function createStorage<T extends Record<string, any>>(adapter: StorageAdapter, prefix: string = ''): Storage<T> {
   return {
-    get: async (key) => adapter.getItem(`${prefix}${key}`),
-    set: async (key, value) => adapter.setItem(`${prefix}${key}`, value),
+    get: async key => adapter.getItem(`${prefix}${key}`),
+    set: async (key, value) => adapter.setItem(`${prefix}${key}`, value)
     // ...
-  }
+  };
 }
 ```
 
 **平台实现**:
+
 ```ts
 // Web adapter
-import { webStorageAdapter } from '@skyroc/core-storage/web'
+import { webStorageAdapter } from '@skyroc/core-storage/web';
 
 // React Native adapter
-import { asyncStorageAdapter } from '@skyroc/core-storage/react-native'
+import { asyncStorageAdapter } from '@skyroc/core-storage/react-native';
 ```
 
 ---
 
 #### 📦 `@skyroc/core-state`
+
 **定位**: Jotai 状态管理封装
 
 **功能**:
+
 - 全局 store 配置
 - 常用 atoms 工具
 - Devtools 集成
 
 **导出**:
+
 ```ts
-export { globalStore, JotaiProvider } from './provider'
-export { createAtomWithStorage } from './utils'
+export { globalStore, JotaiProvider } from './provider';
+export { createAtomWithStorage } from './utils';
 ```
 
 **依赖**:
+
 - `jotai`
 - `jotai-devtools` (dev)
 
 ---
 
 #### 📦 `@skyroc/core-types`
+
 **定位**: 全局类型定义
 
 **功能**:
+
 - 通用类型定义
 - API 响应类型
 - 业务枚举
 
 **导出**:
+
 ```ts
-export type * from './api'
-export type * from './common'
-export type * from './theme'
-export type * from './i18n'
+export type * from './api';
+export type * from './common';
+export type * from './theme';
+export type * from './i18n';
 ```
 
 **无依赖**
@@ -324,19 +350,22 @@ export type * from './i18n'
 ---
 
 #### 📦 `@skyroc/core-constants`
+
 **定位**: 常量和枚举
 
 **功能**:
+
 - 应用常量
 - 业务枚举
 - 正则表达式
 
 **导出**:
+
 ```ts
-export * from './app'
-export * from './business'
-export * from './regex'
-export * from './enums'
+export * from './app';
+export * from './business';
+export * from './regex';
+export * from './enums';
 ```
 
 **无依赖**
@@ -346,45 +375,53 @@ export * from './enums'
 ### 3.2 Web 专用包
 
 #### 📦 `@skyroc/web-router`
+
 **定位**: TanStack Router 路由封装（Web专用）
 
 **功能**:
+
 - Router 实例配置
 - 路由守卫
 - Query 参数解析/序列化
 - 路由 hooks
 
 **导出**:
+
 ```ts
-export { router } from './config'
-export { useRoute, useNavigate } from './hooks'
-export { parseQuery, stringifyQuery } from './utils'
-export type { RouterConfig } from './types'
+export { router } from './config';
+export { useRoute, useNavigate } from './hooks';
+export { parseQuery, stringifyQuery } from './utils';
+export type { RouterConfig } from './types';
 ```
 
 **依赖**:
+
 - `@tanstack/react-router`
 - `@skyroc/core-auth` (路由守卫)
 
 ---
 
 #### 📦 `@skyroc/web-table`
+
 **定位**: Ant Design 表格功能（Web专用）
 
 **功能**:
+
 - `useTable` hook
 - 分页、排序、筛选
 - URL 参数同步
 - 移动端适配
 
 **导出**:
+
 ```ts
-export { useTable, useTableScroll, useTableOperate } from './hooks'
-export { TableHeaderOperation, DragContent } from './components'
-export type { TableConfig, TableColumn } from './types'
+export { useTable, useTableScroll, useTableOperate } from './hooks';
+export { TableHeaderOperation, DragContent } from './components';
+export type { TableConfig, TableColumn } from './types';
 ```
 
 **依赖**:
+
 - `antd`
 - `@skyroc/web-router` (URL同步)
 - `@dnd-kit/core` (拖拽)
@@ -392,57 +429,69 @@ export type { TableConfig, TableColumn } from './types'
 ---
 
 #### 📦 `@skyroc/web-form`
+
 **定位**: Ant Design 表单功能（Web专用）
 
 **功能**:
+
 - 表单验证规则
 - 常用表单hooks
 
 **导出**:
+
 ```ts
-export { useRules } from './hooks/use-rules'
+export { useRules } from './hooks/use-rules';
 ```
 
 **依赖**:
+
 - `antd`
 - `@skyroc/core-i18n`
 
 ---
 
 #### 📦 `@skyroc/web-animate`
+
 **定位**: 动画功能（Web专用）
 
 **功能**:
+
 - Motion 动画特性
 - 页面切换动画
 
 **导出**:
+
 ```ts
-export { LazyMotion } from './components'
-export { animateFeature } from './config'
+export { LazyMotion } from './components';
+export { animateFeature } from './config';
 ```
 
 **依赖**:
+
 - `motion`
 
 ---
 
 #### 📦 `@skyroc/web-layouts`
+
 **定位**: 布局组件（Web专用）
 
 **功能**:
+
 - 管理后台布局
 - Header/Sider/Footer
 - Tab 标签页
 - 面包屑
 
 **导出**:
+
 ```ts
-export { AdminLayout } from './admin-layout'
-export { useAdminState } from './hooks'
+export { AdminLayout } from './admin-layout';
+export { useAdminState } from './hooks';
 ```
 
 **依赖**:
+
 - `antd`
 - `@skyroc/web-router`
 - `@skyroc/adapter-antd`
@@ -450,9 +499,11 @@ export { useAdminState } from './hooks'
 ---
 
 #### 📦 `@skyroc/web-components`
+
 **定位**: Web 通用组件
 
 **功能**:
+
 - Portal (传送门)
 - FullScreen (全屏)
 - BetterScroll (滚动)
@@ -460,13 +511,15 @@ export { useAdminState } from './hooks'
 - 等基础组件
 
 **导出**:
+
 ```ts
-export { Portal } from './portal'
-export { FullScreen } from './full-screen'
+export { Portal } from './portal';
+export { FullScreen } from './full-screen';
 // ...
 ```
 
 **依赖**:
+
 - `@better-scroll/core`
 - `@skyroc/core-theme`
 
@@ -475,63 +528,68 @@ export { FullScreen } from './full-screen'
 ### 3.3 适配器包 (Adapter)
 
 #### 📦 `@skyroc/adapter-antd`
+
 **定位**: Ant Design 主题适配器
 
 **功能**:
+
 - 将 `@skyroc/core-theme` 的主题配置转换为 Ant Design 主题
 - 提供 AntdProvider
 
 **导出**:
+
 ```ts
-export { AntdProvider } from './provider'
-export { getAntdTheme } from './theme'
-export { antdColorAlgorithm } from './algorithm'
+export { AntdProvider } from './provider';
+export { getAntdTheme } from './theme';
+export { antdColorAlgorithm } from './algorithm';
 ```
 
 **依赖**:
+
 - `antd`
 - `@skyroc/core-theme`
 - `@skyroc/core-i18n`
 
 **核心实现**:
+
 ```ts
 // src/theme.ts
-export function getAntdTheme(
-  themeColors: ThemeColors,
-  darkMode: boolean,
-  settings: ThemeSettings
-): ThemeConfig {
+export function getAntdTheme(themeColors: ThemeColors, darkMode: boolean, settings: ThemeSettings): ThemeConfig {
   return {
     algorithm: darkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
     token: {
       colorPrimary: themeColors.primary,
       borderRadius: settings.radius,
-      fontSize: settings.fontSize,
+      fontSize: settings.fontSize
       // ... 映射配置
     },
     components: {
       // ... 组件级配置
     }
-  }
+  };
 }
 ```
 
 ---
 
 #### 📦 `@skyroc/adapter-react-i18next`
+
 **定位**: react-i18next 适配器
 
 **功能**:
+
 - 连接 `@skyroc/core-i18n` 和 `react-i18next`
 - 提供 Provider 和 hooks
 
 **导出**:
+
 ```ts
-export { I18nProvider } from './provider'
-export { useTranslation } from './hooks'
+export { I18nProvider } from './provider';
+export { useTranslation } from './hooks';
 ```
 
 **依赖**:
+
 - `react-i18next`
 - `@skyroc/core-i18n`
 
@@ -540,42 +598,50 @@ export { useTranslation } from './hooks'
 ### 3.4 功能包 (Feature)
 
 #### 📦 `@skyroc/feature-notification`
+
 **定位**: 通知系统
 
 **功能**:
+
 - 通知状态管理
 - 通知组件
 - Mock 数据
 
 **导出**:
+
 ```ts
-export { NotificationProvider } from './provider'
-export { NotificationPanel, NotificationButton } from './components'
-export { useNotification } from './hooks'
+export { NotificationProvider } from './provider';
+export { NotificationPanel, NotificationButton } from './components';
+export { useNotification } from './hooks';
 ```
 
 **依赖**:
+
 - `@skyroc/core-state`
 - `antd` (可选，用于 Web)
 
 ---
 
 #### 📦 `@skyroc/feature-menu`
+
 **定位**: 菜单系统
 
 **功能**:
+
 - 菜单配置生成
 - 菜单状态管理
 - 图标映射
 
 **导出**:
+
 ```ts
-export { useMenus } from './hooks/use-menus'
-export { generateMenus, transformMenuToRoute } from './utils'
-export type { MenuConfig, MenuItem } from './types'
+export { useMenus } from './hooks/use-menus';
+export { generateMenus, transformMenuToRoute } from './utils';
+export type { MenuConfig, MenuItem } from './types';
 ```
 
 **依赖**:
+
 - `@skyroc/core-state`
 - `@skyroc/core-types`
 
@@ -584,23 +650,28 @@ export type { MenuConfig, MenuItem } from './types'
 ### 3.5 已有包优化
 
 #### 📦 `@skyroc/utils` (保持)
+
 **当前功能**: storage, crypto, nanoid, cn, klona
 
 **优化建议**:
+
 - 移除 `storage.ts`（迁移到 `@skyroc/core-storage`）
 - 保留纯工具函数
 
 ---
 
 #### 📦 `@sa/axios` (保持)
+
 **当前功能**: HTTP 请求封装
 
 **依赖调整**:
+
 - 依赖 `@skyroc/core-storage` (token获取)
 
 ---
 
 #### 📦 `@skyroc/color` (保持)
+
 **当前功能**: 颜色工具
 
 **无需调整**
@@ -637,25 +708,25 @@ export type { MenuConfig, MenuItem } from './types'
 
 ### 4.2 详细依赖矩阵
 
-| 包名 | 依赖包 | 平台 |
-|-----|--------|------|
-| `@skyroc/core-auth` | `core-storage`, `core-types` | Universal |
-| `@skyroc/core-i18n` | `core-storage`, `core-types` | Universal |
-| `@skyroc/core-theme` | `@skyroc/color`, `core-storage` | Universal |
-| `@skyroc/core-storage` | - | Universal |
-| `@skyroc/core-state` | `jotai` | Universal |
-| `@skyroc/core-types` | - | Universal |
-| `@skyroc/core-constants` | - | Universal |
-| `@skyroc/web-router` | `@tanstack/react-router`, `core-auth` | Web |
-| `@skyroc/web-table` | `antd`, `web-router` | Web |
-| `@skyroc/web-form` | `antd`, `core-i18n` | Web |
-| `@skyroc/web-animate` | `motion` | Web |
-| `@skyroc/web-layouts` | `antd`, `web-router`, `adapter-antd` | Web |
-| `@skyroc/web-components` | `@better-scroll/core`, `core-theme` | Web |
-| `@skyroc/adapter-antd` | `antd`, `core-theme`, `core-i18n` | Web |
-| `@skyroc/adapter-react-i18next` | `react-i18next`, `core-i18n` | Universal |
-| `@skyroc/feature-notification` | `core-state` | Universal |
-| `@skyroc/feature-menu` | `core-state`, `core-types` | Universal |
+| 包名                            | 依赖包                                | 平台      |
+| ------------------------------- | ------------------------------------- | --------- |
+| `@skyroc/core-auth`             | `core-storage`, `core-types`          | Universal |
+| `@skyroc/core-i18n`             | `core-storage`, `core-types`          | Universal |
+| `@skyroc/core-theme`            | `@skyroc/color`, `core-storage`       | Universal |
+| `@skyroc/core-storage`          | -                                     | Universal |
+| `@skyroc/core-state`            | `jotai`                               | Universal |
+| `@skyroc/core-types`            | -                                     | Universal |
+| `@skyroc/core-constants`        | -                                     | Universal |
+| `@skyroc/web-router`            | `@tanstack/react-router`, `core-auth` | Web       |
+| `@skyroc/web-table`             | `antd`, `web-router`                  | Web       |
+| `@skyroc/web-form`              | `antd`, `core-i18n`                   | Web       |
+| `@skyroc/web-animate`           | `motion`                              | Web       |
+| `@skyroc/web-layouts`           | `antd`, `web-router`, `adapter-antd`  | Web       |
+| `@skyroc/web-components`        | `@better-scroll/core`, `core-theme`   | Web       |
+| `@skyroc/adapter-antd`          | `antd`, `core-theme`, `core-i18n`     | Web       |
+| `@skyroc/adapter-react-i18next` | `react-i18next`, `core-i18n`          | Universal |
+| `@skyroc/feature-notification`  | `core-state`                          | Universal |
+| `@skyroc/feature-menu`          | `core-state`, `core-types`            | Universal |
 
 ---
 
@@ -668,6 +739,7 @@ export type { MenuConfig, MenuItem } from './types'
 **目标**: 创建核心跨平台包
 
 **任务清单**:
+
 - [ ] 创建 `@skyroc/core-types`
 - [ ] 创建 `@skyroc/core-constants`
 - [ ] 创建 `@skyroc/core-storage`
@@ -679,6 +751,7 @@ export type { MenuConfig, MenuItem } from './types'
 - [ ] 创建 `@skyroc/core-auth`
 
 **迁移脚本**:
+
 ```bash
 # 1. 创建包结构
 pnpm dlx create-workspace-package @skyroc/core-types
@@ -700,6 +773,7 @@ pnpm add @skyroc/core-constants@workspace:*
 #### 阶段 2: Web 专用包拆分 (2-3周)
 
 **任务清单**:
+
 - [ ] 创建 `@skyroc/web-router`
 - [ ] 创建 `@skyroc/web-table`
 - [ ] 创建 `@skyroc/web-form`
@@ -710,18 +784,21 @@ pnpm add @skyroc/core-constants@workspace:*
 #### 阶段 3: 适配器包拆分 (1周)
 
 **任务清单**:
+
 - [ ] 创建 `@skyroc/adapter-antd`
 - [ ] 创建 `@skyroc/adapter-react-i18next`
 
 #### 阶段 4: 功能包拆分 (1周)
 
 **任务清单**:
+
 - [ ] 创建 `@skyroc/feature-notification`
 - [ ] 创建 `@skyroc/feature-menu`
 
 #### 阶段 5: 优化和测试 (1周)
 
 **任务清单**:
+
 - [ ] 重构 `apps/admin` 使用新包
 - [ ] 集成测试
 - [ ] 性能测试
@@ -732,41 +809,40 @@ pnpm add @skyroc/core-constants@workspace:*
 创建 `scripts/migrate-package.ts`:
 
 ```ts
-import fs from 'fs-extra'
-import path from 'path'
+import fs from 'fs-extra';
+import path from 'path';
 
 interface MigrateConfig {
-  source: string          // apps/admin/src/features/auth
-  target: string          // packages/core-auth
-  packageName: string     // @skyroc/core-auth
-  dependencies: string[]  // ['jotai', '@skyroc/core-storage']
+  source: string; // apps/admin/src/features/auth
+  target: string; // packages/core-auth
+  packageName: string; // @skyroc/core-auth
+  dependencies: string[]; // ['jotai', '@skyroc/core-storage']
 }
 
 async function migratePackage(config: MigrateConfig) {
-  const { source, target, packageName, dependencies } = config
+  const { source, target, packageName, dependencies } = config;
 
   // 1. 创建包目录结构
-  await fs.ensureDir(path.join(target, 'src'))
+  await fs.ensureDir(path.join(target, 'src'));
 
   // 2. 复制源文件
-  await fs.copy(source, path.join(target, 'src'))
+  await fs.copy(source, path.join(target, 'src'));
 
   // 3. 生成 package.json
   const pkgJson = {
     name: packageName,
     version: '1.0.0',
     exports: { '.': './src/index.ts' },
-    dependencies: dependencies.reduce((acc, dep) => {
-      acc[dep] = dep.startsWith('@skyroc/') ? 'workspace:*' : 'catalog:*'
-      return acc
-    }, {} as Record<string, string>)
-  }
+    dependencies: dependencies.reduce(
+      (acc, dep) => {
+        acc[dep] = dep.startsWith('@skyroc/') ? 'workspace:*' : 'catalog:*';
+        return acc;
+      },
+      {} as Record<string, string>
+    )
+  };
 
-  await fs.writeJSON(
-    path.join(target, 'package.json'),
-    pkgJson,
-    { spaces: 2 }
-  )
+  await fs.writeJSON(path.join(target, 'package.json'), pkgJson, { spaces: 2 });
 
   // 4. 更新导入路径
   // TODO: 使用 AST 工具自动更新 import 语句
@@ -778,7 +854,7 @@ migratePackage({
   target: 'packages/core-auth',
   packageName: '@skyroc/core-auth',
   dependencies: ['jotai', '@skyroc/core-storage', '@skyroc/core-types']
-})
+});
 ```
 
 ---
@@ -828,6 +904,7 @@ migratePackage({
 ```
 
 使用方式:
+
 ```bash
 # 1. 复制模板
 cp -r templates/admin-starter apps/my-admin
@@ -843,6 +920,7 @@ pnpm dev
 #### 方案 B: 按需组合
 
 最小化启动:
+
 ```ts
 // apps/minimal-admin/src/main.tsx
 import { JotaiProvider } from '@skyroc/core-state'
@@ -898,6 +976,7 @@ function App() {
 ### 6.3 包依赖示例
 
 #### 示例 1: 只使用认证
+
 ```json
 {
   "dependencies": {
@@ -910,6 +989,7 @@ function App() {
 ```
 
 #### 示例 2: 完整后台管理
+
 ```json
 {
   "dependencies": {
@@ -947,6 +1027,7 @@ catalogs:
 ### 7.1 包开发规范
 
 #### 目录结构规范
+
 ```
 @skyroc/[package-name]/
 ├── src/
@@ -962,6 +1043,7 @@ catalogs:
 ```
 
 #### 导出规范
+
 ```ts
 // ❌ 避免默认导出
 export default function useAuth() {}
@@ -970,10 +1052,11 @@ export default function useAuth() {}
 export function useAuth() {}
 
 // ✅ 类型单独导出
-export type { AuthState, UserInfo }
+export type { AuthState, UserInfo };
 ```
 
 #### 依赖规范
+
 - **核心包**: 只能依赖其他核心包和第三方库
 - **Web包**: 可依赖核心包和Web相关库
 - **适配器包**: 可依赖核心包和对应UI库
@@ -982,28 +1065,30 @@ export type { AuthState, UserInfo }
 ### 7.2 类型安全
 
 #### 全局类型扩展
+
 ```ts
 // packages/core-types/src/global.d.ts
 declare global {
   namespace App {
     interface User {
-      id: string
-      name: string
+      id: string;
+      name: string;
     }
   }
 }
 
-export {}
+export {};
 ```
 
 #### 模块增强
+
 ```ts
 // packages/core-auth/src/types.ts
 declare module '@skyroc/core-storage' {
   interface StorageSchema {
-    token: string
-    refreshToken: string
-    userInfo: App.User
+    token: string;
+    refreshToken: string;
+    userInfo: App.User;
   }
 }
 ```
@@ -1039,7 +1124,7 @@ export const AUTH_METRICS = {
   LOGIN_TIME: 'auth.login.time',
   LOGOUT_TIME: 'auth.logout.time',
   TOKEN_REFRESH_TIME: 'auth.token-refresh.time'
-}
+};
 ```
 
 ---
@@ -1047,32 +1132,42 @@ export const AUTH_METRICS = {
 ## 8. FAQ
 
 ### Q1: 为什么要拆这么细？
+
 **A**:
+
 1. **按需加载**: 只引入需要的功能，减小bundle大小
 2. **职责清晰**: 每个包只做一件事，易于维护
 3. **复用性**: 可在不同项目间复用
 4. **团队协作**: 不同团队可并行开发不同包
 
 ### Q2: React Native 如何使用这些包？
+
 **A**:
+
 - 所有 `core-*` 包都支持 RN
 - 通过平台适配器（如 `@skyroc/core-storage/react-native`）处理平台差异
 - UI 部分需要替换为 RN 组件库（如使用 React Native Paper 替代 Ant Design）
 
 ### Q3: 如何处理包之间的循环依赖？
+
 **A**:
+
 - 严格遵循分层架构：core -> adapter -> feature -> app
 - 使用依赖注入模式
 - 通过事件总线解耦
 
 ### Q4: 包的版本如何管理？
+
 **A**:
+
 - 使用 pnpm catalog 统一版本
 - workspace 包使用 `workspace:*`
 - 第三方包使用 `catalog:*`
 
 ### Q5: 如何快速创建新包？
+
 **A**:
+
 ```bash
 # 使用脚手架工具
 pnpm create-package @skyroc/feature-xxx --template=feature
@@ -1089,13 +1184,13 @@ pnpm init
 
 ### 9.1 拆分收益
 
-| 维度 | 拆分前 | 拆分后 |
-|-----|--------|--------|
-| **启动新项目** | 复制整个 apps/admin（~5GB） | 组合需要的包（~500MB） |
-| **跨平台复用** | 无法复用 | 60% 代码可复用到 RN |
-| **Bundle 大小** | 全量打包（~2MB） | 按需引入（~800KB） |
-| **维护性** | 代码耦合，难以定位 | 职责清晰，易于维护 |
-| **团队协作** | 单一仓库冲突多 | 多包并行开发 |
+| 维度            | 拆分前                      | 拆分后                 |
+| --------------- | --------------------------- | ---------------------- |
+| **启动新项目**  | 复制整个 apps/admin（~5GB） | 组合需要的包（~500MB） |
+| **跨平台复用**  | 无法复用                    | 60% 代码可复用到 RN    |
+| **Bundle 大小** | 全量打包（~2MB）            | 按需引入（~800KB）     |
+| **维护性**      | 代码耦合，难以定位          | 职责清晰，易于维护     |
+| **团队协作**    | 单一仓库冲突多              | 多包并行开发           |
 
 ### 9.2 最佳实践
 

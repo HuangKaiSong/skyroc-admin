@@ -1,6 +1,8 @@
+import * as Haptics from 'expo-haptics';
 import { useEffect, useRef } from 'react';
 import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import { View } from 'react-native';
+import { ScrollView as GHScrollView } from 'react-native-gesture-handler';
 import type { SharedValue } from 'react-native-reanimated';
 import Animated, {
   scrollTo,
@@ -10,9 +12,7 @@ import Animated, {
   useDerivedValue,
   useSharedValue
 } from 'react-native-reanimated';
-import * as Haptics from 'expo-haptics';
 import { scheduleOnRN } from 'react-native-worklets';
-import { ScrollView as GHScrollView } from 'react-native-gesture-handler';
 import { Text } from '../text/Typography';
 import { pickerVariants } from './picker-variants';
 import type { PickerColumnProps, PickerOption } from './types';
@@ -58,10 +58,7 @@ const PickerColumnItem = (props: PickerColumnItemProps) => {
 
   return (
     <Animated.View style={[{ alignItems: 'center', height: itemHeight, justifyContent: 'center' }, animatedStyle]}>
-      <Text
-        className={slots.itemText()}
-        numberOfLines={1}
-      >
+      <Text className={slots.itemText()} numberOfLines={1}>
         {option.label}
       </Text>
     </Animated.View>

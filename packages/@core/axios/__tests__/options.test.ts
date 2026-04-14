@@ -1,6 +1,4 @@
-/**
- * @vitest-environment node
- */
+/** @vitest-environment node */
 import type { AxiosResponse } from 'axios';
 import { describe, expect, it } from 'vitest';
 import { createAxiosConfig, createDefaultOptions, createRetryOptions } from '../src/options';

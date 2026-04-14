@@ -135,14 +135,8 @@ const LineChart = () => {
     updateLocale();
   }, [locale]);
   return (
-    <ACard
-      className="card-wrapper"
-      variant="borderless"
-    >
-      <div
-        className="h-360px overflow-hidden"
-        ref={domRef}
-      />
+    <ACard className="card-wrapper" variant="borderless">
+      <div className="h-360px overflow-hidden" ref={domRef} />
     </ACard>
   );
 };

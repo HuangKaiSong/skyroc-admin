@@ -2,10 +2,7 @@ import { nanoid } from 'nanoid';
 import { DEVICE_ID_STORAGE_KEY } from '../constants';
 import type { Platform } from '../types';
 
-/**
- * 获取或生成设备 ID
- * 根据不同平台使用相应的存储方式持久化设备 ID
- */
+/** 获取或生成设备 ID 根据不同平台使用相应的存储方式持久化设备 ID */
 export async function getOrCreateDeviceId(platform: Platform): Promise<string> {
   const storedId = await getStoredDeviceId(platform);
   if (storedId) {

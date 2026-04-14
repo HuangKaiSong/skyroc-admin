@@ -1,6 +1,6 @@
+import { nanoid } from '@skyroc/utils';
 import axios, { AxiosError } from 'axios';
 import type { AxiosResponse, CreateAxiosDefaults, InternalAxiosRequestConfig } from 'axios';
-import { nanoid } from '@skyroc/utils';
 import axiosRetry from 'axios-retry';
 import { BACKEND_ERROR_CODE, REQUEST_ID_KEY } from './constant';
 import { createAxiosConfig, createDefaultOptions, createRetryOptions } from './options';
@@ -101,10 +101,10 @@ function createCommonRequest<
 export type * from './type';
 
 /**
- * create a request instance
+ * Create a request instance
  *
- * @param axiosConfig axios config
- * @param options request options
+ * @param axiosConfig Axios config
+ * @param options Request options
  */
 export function createRequest<ResponseData, ApiData, State extends Record<string, unknown>>(
   axiosConfig?: CreateAxiosDefaults,
@@ -134,12 +134,12 @@ export function createRequest<ResponseData, ApiData, State extends Record<string
 }
 
 /**
- * create a flat request instance
+ * Create a flat request instance
  *
  * The response data is a flat object: { data: any, error: AxiosError }
  *
- * @param axiosConfig axios config
- * @param options request options
+ * @param axiosConfig Axios config
+ * @param options Request options
  */
 export function createFlatRequest<ResponseData, ApiData, State extends Record<string, unknown>>(
   axiosConfig?: CreateAxiosDefaults,
@@ -177,3 +177,4 @@ export function createFlatRequest<ResponseData, ApiData, State extends Record<st
 }
 export { BACKEND_ERROR_CODE, REQUEST_ID_KEY };
 export type { AxiosError, CreateAxiosDefaults };
+export * from './type';

@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { ScrollView, View } from 'react-native';
 import { Text, TreeSelect } from '@skyroc/native-ui';
 import type { TreeSelectItem } from '@skyroc/native-ui';
+import { useState } from 'react';
+import { ScrollView, View } from 'react-native';
 
 const BASIC_ITEMS: TreeSelectItem[] = [
   {
@@ -56,11 +56,7 @@ const TreeSelectDemo = () => {
   const [multiMainIndex, setMultiMainIndex] = useState(0);
 
   return (
-    <ScrollView
-      className="flex-1 bg-muted"
-      contentContainerClassName="p-4 pb-20"
-      showsVerticalScrollIndicator={false}
-    >
+    <ScrollView className="flex-1 bg-muted" contentContainerClassName="p-4 pb-20" showsVerticalScrollIndicator={false}>
       {/* Basic - Radio */}
       <Text className="mb-3 text-lg font-semibold">Radio Mode</Text>
       <View className="mb-6 overflow-hidden rounded-2xl">

@@ -34,31 +34,28 @@ yarn add @skyroc/tailwind-plugin
 Add the plugin to your `tailwind.config.js`:
 
 ```js
-import { skyrocUIPlugin } from '@skyroc/tailwind-plugin'
+import { skyrocUIPlugin } from '@skyroc/tailwind-plugin';
 
 export default {
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-    './node_modules/skyroc-ui/dist/**/*.{js,ts,jsx,tsx}'
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './node_modules/skyroc-ui/dist/**/*.{js,ts,jsx,tsx}'],
   plugins: [skyrocUIPlugin()]
-}
+};
 ```
 
 ### With Options
 
 ```js
-import { skyrocUIPlugin } from '@skyroc/tailwind-plugin'
+import { skyrocUIPlugin } from '@skyroc/tailwind-plugin';
 
 export default {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   plugins: [
     skyrocUIPlugin({
-      color: 'blue',      // Primary color theme
-      radius: 0.5         // Border radius scale
+      color: 'blue', // Primary color theme
+      radius: 0.5 // Border radius scale
     })
   ]
-}
+};
 ```
 
 ## Configuration Options
@@ -67,20 +64,20 @@ export default {
 
 Available built-in color themes:
 
-| Theme | Primary Color |
-|-------|--------------|
-| `zinc` | Zinc gray |
-| `slate` | Slate gray |
-| `stone` | Stone gray |
-| `gray` | Neutral gray |
-| `neutral` | Pure neutral |
-| `red` | Red |
-| `rose` | Rose pink |
-| `orange` | Orange |
-| `green` | Green |
-| `blue` | Blue |
-| `yellow` | Yellow |
-| `violet` | Violet |
+| Theme     | Primary Color |
+| --------- | ------------- |
+| `zinc`    | Zinc gray     |
+| `slate`   | Slate gray    |
+| `stone`   | Stone gray    |
+| `gray`    | Neutral gray  |
+| `neutral` | Pure neutral  |
+| `red`     | Red           |
+| `rose`    | Rose pink     |
+| `orange`  | Orange        |
+| `green`   | Green         |
+| `blue`    | Blue          |
+| `yellow`  | Yellow        |
+| `violet`  | Violet        |
 
 ### Border Radius
 
@@ -92,46 +89,46 @@ The plugin provides semantic color tokens:
 
 ### Base Colors
 
-| Token | Description |
-|-------|-------------|
-| `background` | Page background |
-| `foreground` | Default text color |
-| `card` | Card background |
-| `card-foreground` | Card text color |
-| `popover` | Popover background |
-| `popover-foreground` | Popover text color |
-| `muted` | Muted/disabled background |
-| `muted-foreground` | Muted text color |
-| `accent` | Accent color |
-| `accent-foreground` | Accent text color |
-| `border` | Border color |
-| `input` | Input border color |
-| `ring` | Focus ring color |
+| Token                | Description               |
+| -------------------- | ------------------------- |
+| `background`         | Page background           |
+| `foreground`         | Default text color        |
+| `card`               | Card background           |
+| `card-foreground`    | Card text color           |
+| `popover`            | Popover background        |
+| `popover-foreground` | Popover text color        |
+| `muted`              | Muted/disabled background |
+| `muted-foreground`   | Muted text color          |
+| `accent`             | Accent color              |
+| `accent-foreground`  | Accent text color         |
+| `border`             | Border color              |
+| `input`              | Input border color        |
+| `ring`               | Focus ring color          |
 
 ### Semantic Colors
 
 Each semantic color has a full scale (50-950) plus `DEFAULT` and `foreground`:
 
-| Token | Description |
-|-------|-------------|
-| `primary` | Primary brand color |
-| `secondary` | Secondary color |
-| `destructive` | Error/danger color |
-| `warning` | Warning color |
-| `success` | Success color |
-| `info` | Information color |
-| `carbon` | Neutral carbon color |
+| Token         | Description          |
+| ------------- | -------------------- |
+| `primary`     | Primary brand color  |
+| `secondary`   | Secondary color      |
+| `destructive` | Error/danger color   |
+| `warning`     | Warning color        |
+| `success`     | Success color        |
+| `info`        | Information color    |
+| `carbon`      | Neutral carbon color |
 
 ### Sidebar Colors
 
-| Token | Description |
-|-------|-------------|
-| `sidebar-background` | Sidebar background |
-| `sidebar-foreground` | Sidebar text |
-| `sidebar-primary` | Sidebar primary color |
-| `sidebar-accent` | Sidebar accent |
-| `sidebar-border` | Sidebar border |
-| `sidebar-ring` | Sidebar focus ring |
+| Token                | Description           |
+| -------------------- | --------------------- |
+| `sidebar-background` | Sidebar background    |
+| `sidebar-foreground` | Sidebar text          |
+| `sidebar-primary`    | Sidebar primary color |
+| `sidebar-accent`     | Sidebar accent        |
+| `sidebar-border`     | Sidebar border        |
+| `sidebar-ring`       | Sidebar focus ring    |
 
 ## Usage in Components
 
@@ -141,11 +138,11 @@ Each semantic color has a full scale (50-950) plus `DEFAULT` and `foreground`:
   <button className="bg-primary text-primary-foreground">
     Primary Button
   </button>
-  
+
   <div className="bg-card border-border rounded-lg">
     Card content
   </div>
-  
+
   <span className="text-muted-foreground">
     Muted text
   </span>
@@ -197,14 +194,14 @@ skyrocUIPlugin(options?: SkyrocUIPluginOptions)
 
 ```ts
 import {
-  skyrocUIPlugin,      // Main plugin
-  skyrocUITheme,       // Theme generator function
-  presetSkyrocUI,      // Preset utilities
-  generateCSSVars,     // CSS variable generator
-  builtinColors,       // Array of built-in color names
-  builtinColorMap,     // Map of color names to values
-  builtinRadiuses      // Available radius values
-} from '@skyroc/tailwind-plugin'
+  skyrocUIPlugin, // Main plugin
+  skyrocUITheme, // Theme generator function
+  presetSkyrocUI, // Preset utilities
+  generateCSSVars, // CSS variable generator
+  builtinColors, // Array of built-in color names
+  builtinColorMap, // Map of color names to values
+  builtinRadiuses // Available radius values
+} from '@skyroc/tailwind-plugin';
 ```
 
 ### Types
@@ -216,10 +213,9 @@ import type {
   ThemeConfigColor,
   ThemeColorKey,
   ThemeOptions
-} from '@skyroc/tailwind-plugin'
+} from '@skyroc/tailwind-plugin';
 ```
 
 ## License
 
 [MIT](../../LICENSE) License © 2024-PRESENT [Ohh](https://github.com/Ohh-889)
-

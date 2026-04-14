@@ -39,17 +39,10 @@ export function setupAppVersionNotification() {
     showNotification({
       actions: (
         <div className="w-325px flex justify-end gap-3">
-          <AButton
-            key="cancel"
-            onClick={handleCancel}
-          >
+          <AButton key="cancel" onClick={handleCancel}>
             {$t('system.updateCancel')}
           </AButton>
-          <AButton
-            key="ok"
-            type="primary"
-            onClick={handleOk}
-          >
+          <AButton key="ok" type="primary" onClick={handleOk}>
             {$t('system.updateConfirm')}
           </AButton>
         </div>

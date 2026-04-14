@@ -7,13 +7,13 @@ import type { WritableAtom } from 'jotai';
  * Encapsulates the common pattern of merging partial state into existing state.
  *
  * @example
- * ```ts
- * const adminStateAtom = atomWithPartial({ siderCollapse: false, mixSiderFixed: false });
+ *   ```ts
+ *   const adminStateAtom = atomWithPartial({ siderCollapse: false, mixSiderFixed: false });
  *
- * // In component
- * const [state, setState] = useAtom(adminStateAtom);
- * setState({ siderCollapse: true }); // only updates siderCollapse
- * ```
+ *   // In component
+ *   const [state, setState] = useAtom(adminStateAtom);
+ *   setState({ siderCollapse: true }); // only updates siderCollapse
+ *   ```
  */
 export function atomWithPartial<T extends object>(initialValue: T): WritableAtom<T, [Partial<T>], void> {
   const baseAtom = atom(initialValue);

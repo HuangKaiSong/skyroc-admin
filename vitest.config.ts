@@ -1,11 +1,10 @@
-import { defineConfig } from 'vitest/config';
 import { COVERAGE_EXCLUDE, COVERAGE_PROVIDER, SOURCE_PATTERNS, TEST_ENVIRONMENT } from '@skyroc/config/vitest';
+import { defineConfig } from 'vitest/config';
 
 /**
  * 根目录 Vitest 配置
  *
- * 所有子包的测试统一由根目录配置管理，
- * 各子包通过 include 模式自动发现测试文件。
+ * 所有子包的测试统一由根目录配置管理， 各子包通过 include 模式自动发现测试文件。
  */
 
 // ==================== 常量配置 ====================
@@ -26,10 +25,17 @@ const SETUP_FILES = [
 /**
  * 源文件匹配模式（根目录视角）
  *
- * 只覆盖有测试的包，避免无测试包产生大量 0% 噪音。
- * 新包加测试后，在这里加一行即可。
+ * 只覆盖有测试的包，避免无测试包产生大量 0% 噪音。 新包加测试后，在这里加一行即可。
  */
-const TESTED_PACKAGES = ['packages/hooks', 'packages/@core/utils', 'packages/@core/color', 'packages/@core/axios', 'packages/@core/state', 'packages/@core/scheduler', 'packages/@core/service'];
+const TESTED_PACKAGES = [
+  'packages/hooks',
+  'packages/@core/utils',
+  'packages/@core/color',
+  'packages/@core/axios',
+  'packages/@core/state',
+  'packages/@core/scheduler',
+  'packages/@core/service'
+];
 const ROOT_SOURCE_PATTERNS = TESTED_PACKAGES.flatMap(pkg => SOURCE_PATTERNS.map(p => `${pkg}/${p}`));
 
 // ==================== Vitest 配置 ====================

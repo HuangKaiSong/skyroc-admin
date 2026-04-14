@@ -5,8 +5,7 @@ export type ThemeName = 'dark' | 'light';
 /**
  * Hook to detect system color scheme preference
  *
- * Uses the `prefers-color-scheme` media query to detect
- * whether the user prefers dark or light mode
+ * Uses the `prefers-color-scheme` media query to detect whether the user prefers dark or light mode
  */
 export function useSystemTheme() {
   const [isDarkMode, setIsDarkMode] = useState(() => {

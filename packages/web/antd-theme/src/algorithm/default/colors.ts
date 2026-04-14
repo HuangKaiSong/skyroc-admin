@@ -8,8 +8,8 @@ export const LIGHT_TEXT_BASE = '#1F1F1F';
 /**
  * Generate color palettes (light mode)
  *
- * Uses generateOklchPaletteEx algorithm instead of antd's @ant-design/colors
- * Outputs 11 colors (50-950), mapped to antd's 1-10 indexes
+ * Uses generateOklchPaletteEx algorithm instead of antd's @ant-design/colors Outputs 11 colors (50-950), mapped to
+ * antd's 1-10 indexes
  */
 export const generateColorPalettes: GenerateColorMap = (baseColor: string): ColorMap => {
   const { palettes } = generateOklchPaletteEx(baseColor);
@@ -43,15 +43,10 @@ export const generateColorPalettes: GenerateColorMap = (baseColor: string): Colo
 /**
  * Generate neutral color palettes (light mode)
  *
- * Uses solid color mixing algorithm instead of transparency
- * Advantages:
- * - Stable and predictable colors, not affected by background
- * - Precise contrast control
- * - Consistent with theme palette algorithm
+ * Uses solid color mixing algorithm instead of transparency Advantages: - Stable and predictable colors, not affected
+ * by background - Precise contrast control - Consistent with theme palette algorithm
  *
- * Base colors:
- * - colorBgBase: #FAFAFA (soft white)
- * - colorTextBase: #1F1F1F (dark gray)
+ * Base colors: - colorBgBase: #FAFAFA (soft white) - colorTextBase: #1F1F1F (dark gray)
  */
 export const generateNeutralColorPalettes: GenerateNeutralColorMap = (bgBaseColor: string, textBaseColor: string) => {
   const colorBgBase = bgBaseColor || LIGHT_BG_BASE;
@@ -62,45 +57,33 @@ export const generateNeutralColorPalettes: GenerateNeutralColorMap = (bgBaseColo
     colorTextBase,
 
     /**
-     * Text color levels
-     * Uses bgBase and textBase mixing to generate solid colors
-     * Higher ratio = closer to textBase (darker)
+     * Text color levels Uses bgBase and textBase mixing to generate solid colors Higher ratio = closer to textBase
+     * (darker)
      */
     colorText: mixColor(colorBgBase, colorTextBase, 0.88), // Primary text
     colorTextSecondary: mixColor(colorBgBase, colorTextBase, 0.65), // Secondary text
     colorTextTertiary: mixColor(colorBgBase, colorTextBase, 0.45), // Placeholder, disabled
     colorTextQuaternary: mixColor(colorBgBase, colorTextBase, 0.25), // Very weak text
 
-    /**
-     * Fill color levels
-     * For button hover, selected background, etc.
-     */
+    /** Fill color levels For button hover, selected background, etc. */
     colorFill: mixColor(colorBgBase, colorTextBase, 0.12), // Primary fill
     colorFillSecondary: mixColor(colorBgBase, colorTextBase, 0.06), // Secondary fill
     colorFillTertiary: mixColor(colorBgBase, colorTextBase, 0.04), // Divider background
     colorFillQuaternary: mixColor(colorBgBase, colorTextBase, 0.02), // Weak fill
 
-    /**
-     * Solid background
-     * For dark buttons, badges, etc.
-     */
+    /** Solid background For dark buttons, badges, etc. */
     colorBgSolid: colorTextBase, // Solid background
     colorBgSolidHover: mixColor(colorTextBase, colorBgBase, 0.15), // Solid hover (lighter)
     colorBgSolidActive: mixColor(colorTextBase, '#000000', 0.1), // Solid active (darker)
 
-    /**
-     * Background levels
-     * Layout(dark) → Container → Elevated(light)
-     */
+    /** Background levels Layout(dark) → Container → Elevated(light) */
     colorBgLayout: adjustLightness(colorBgBase, -3), // Page background (darker)
     colorBgContainer: colorBgBase, // Card, container background
     colorBgElevated: adjustLightness(colorBgBase, 2), // Popup, dropdown (lighter)
     colorBgSpotlight: mixColor(colorBgBase, colorTextBase, 0.85), // Spotlight focus
     colorBgBlur: 'transparent', // Blur background
 
-    /**
-     * Border colors
-     */
+    /** Border colors */
     colorBorder: mixColor(colorBgBase, colorTextBase, 0.15), // Primary border
     colorBorderDisabled: mixColor(colorBgBase, colorTextBase, 0.1), // Disabled border
     colorBorderSecondary: mixColor(colorBgBase, colorTextBase, 0.06) // Secondary border, divider

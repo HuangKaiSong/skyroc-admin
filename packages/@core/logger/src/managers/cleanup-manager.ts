@@ -10,10 +10,7 @@ interface CleanupManagerConfig {
   cleanupInterval?: number;
 }
 
-/**
- * 日志清理管理器
- * 定期清理过期日志
- */
+/** 日志清理管理器 定期清理过期日志 */
 export class CleanupManager {
   /** 存储适配器 */
   private adapter: IStorageAdapter;

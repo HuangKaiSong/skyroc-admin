@@ -7,6 +7,7 @@ import { fontSize, fontWeight } from '../tokens/typography';
  * NativeWind v4 preset that injects design tokens into Tailwind config.
  *
  * Usage in tailwind.config.ts:
+ *
  * ```ts
  * import { nativewindPreset } from '@skyroc/native-theme/preset';
  * export default { presets: [nativewindPreset] };

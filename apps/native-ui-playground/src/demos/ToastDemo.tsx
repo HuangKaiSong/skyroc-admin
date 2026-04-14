@@ -1,4 +1,3 @@
-import { ScrollView, View } from 'react-native';
 import {
   Button,
   closeToast,
@@ -8,6 +7,7 @@ import {
   showToast,
   Text
 } from '@skyroc/native-ui';
+import { ScrollView, View } from 'react-native';
 
 const ToastDemo = () => {
   function handleTextToast() {
@@ -61,24 +61,40 @@ const ToastDemo = () => {
       <Text className="mb-4 text-lg font-semibold">Basic Types</Text>
       <View className="mb-8 gap-3">
         <Button onPress={handleTextToast}>Text Toast</Button>
-        <Button color="success" onPress={handleSuccessToast}>Success Toast</Button>
-        <Button color="destructive" onPress={handleFailToast}>Fail Toast</Button>
-        <Button variant="outline" onPress={handleLoadingToast}>Loading Toast</Button>
+        <Button color="success" onPress={handleSuccessToast}>
+          Success Toast
+        </Button>
+        <Button color="destructive" onPress={handleFailToast}>
+          Fail Toast
+        </Button>
+        <Button variant="outline" onPress={handleLoadingToast}>
+          Loading Toast
+        </Button>
       </View>
 
       {/* Position */}
       <Text className="mb-4 text-lg font-semibold">Position</Text>
       <View className="mb-8 gap-3">
-        <Button variant="tonal" onPress={handleTopToast}>Top</Button>
-        <Button variant="tonal" onPress={handleBottomToast}>Bottom</Button>
+        <Button variant="tonal" onPress={handleTopToast}>
+          Top
+        </Button>
+        <Button variant="tonal" onPress={handleBottomToast}>
+          Bottom
+        </Button>
       </View>
 
       {/* Advanced */}
       <Text className="mb-4 text-lg font-semibold">Advanced</Text>
       <View className="mb-8 gap-3">
-        <Button variant="outline" onPress={handleLongToast}>Long Duration (5s)</Button>
-        <Button variant="outline" onPress={handleForbidClickToast}>Forbid Click</Button>
-        <Button variant="outline" onPress={handleCustomIconToast}>Custom Icon</Button>
+        <Button variant="outline" onPress={handleLongToast}>
+          Long Duration (5s)
+        </Button>
+        <Button variant="outline" onPress={handleForbidClickToast}>
+          Forbid Click
+        </Button>
+        <Button variant="outline" onPress={handleCustomIconToast}>
+          Custom Icon
+        </Button>
       </View>
     </ScrollView>
   );

@@ -5,14 +5,7 @@ import { Text } from '../text/Typography';
 import type { TextEllipsisProps, TextEllipsisRef } from './types';
 
 const TextEllipsis = forwardRef<TextEllipsisRef, TextEllipsisProps>((props, ref) => {
-  const {
-    collapseText = '',
-    content,
-    dots = '...',
-    expandText = '',
-    rows = 1,
-    ...rest
-  } = props;
+  const { collapseText = '', content, dots = '...', expandText = '', rows = 1, ...rest } = props;
 
   const [expanded, setExpanded] = useState(false);
   const [hasAction, setHasAction] = useState(false);
@@ -21,7 +14,7 @@ const TextEllipsis = forwardRef<TextEllipsisRef, TextEllipsisProps>((props, ref)
   useImperativeHandle(ref, () => ({
     toggle: (value?: boolean) => {
       setExpanded(prev => value ?? !prev);
-    },
+    }
   }));
 
   // 当 content 或 rows 变化时重置
@@ -51,11 +44,7 @@ const TextEllipsis = forwardRef<TextEllipsisRef, TextEllipsisProps>((props, ref)
 
   return (
     <View>
-      <Text
-        numberOfLines={expanded ? undefined : rows}
-        onTextLayout={handleTextLayout}
-        {...rest}
-      >
+      <Text numberOfLines={expanded ? undefined : rows} onTextLayout={handleTextLayout} {...rest}>
         {content}
         {!expanded && hasAction ? dots : ''}
       </Text>

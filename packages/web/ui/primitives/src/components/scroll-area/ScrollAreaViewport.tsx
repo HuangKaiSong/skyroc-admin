@@ -11,13 +11,7 @@ const ScrollAreaViewport = (props: ScrollAreaViewportProps) => {
 
   const mergedCls = cn(viewport(), className);
 
-  return (
-    <Viewport
-      className={mergedCls}
-      data-slot="scroll-area-viewport"
-      {...rest}
-    />
-  );
+  return <Viewport className={mergedCls} data-slot="scroll-area-viewport" {...rest} />;
 };
 
 ScrollAreaViewport.displayName = 'ScrollAreaViewport';

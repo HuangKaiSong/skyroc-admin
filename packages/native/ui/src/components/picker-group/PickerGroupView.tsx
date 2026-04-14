@@ -1,7 +1,7 @@
+import { useControllableState } from '@radix-ui/react-use-controllable-state';
+import { cn } from '@skyroc/utils';
 import { useRef } from 'react';
 import { Pressable, View } from 'react-native';
-import { cn } from '@skyroc/utils';
-import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { Button } from '../button/Button';
 import { PickerView } from '../picker/PickerView';
 import { Text } from '../text/Typography';
@@ -74,21 +74,11 @@ const PickerGroupView = (props: PickerGroupViewProps) => {
       {/* Toolbar */}
       {showToolbar ? (
         <View className={cn(slots.toolbar(), classNames?.toolbar)}>
-          <Button
-            color="muted"
-            size="sm"
-            variant="ghost"
-            onPress={handleCancel}
-          >
+          <Button color="muted" size="sm" variant="ghost" onPress={handleCancel}>
             {cancelText}
           </Button>
 
-          <Button
-            color="primary"
-            size="sm"
-            variant="ghost"
-            onPress={handleConfirmOrNext}
-          >
+          <Button color="primary" size="sm" variant="ghost" onPress={handleConfirmOrNext}>
             {isLastTab ? confirmText : nextStepText}
           </Button>
         </View>
@@ -130,7 +120,7 @@ const PickerGroupView = (props: PickerGroupViewProps) => {
             haptic={picker.haptic}
             itemHeight={picker.itemHeight}
             loading={picker.loading}
-            onChange={(values) => handlePickerChange(values, index)}
+            onChange={values => handlePickerChange(values, index)}
             showToolbar={false}
             value={allValues[index] ?? []}
             visibleCount={picker.visibleCount}

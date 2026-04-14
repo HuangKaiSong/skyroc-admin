@@ -7,8 +7,8 @@ import { translateOptions } from '@/utils/common';
 import { ScrollArea } from '../../../../../../../packages/web/ui/primitives/src/components';
 import { useAdminState } from '../../state/use-admin-state';
 
-import ConfigOperation from './modules/ConfigOperation';
 import Appearance from './modules/appearance';
+import ConfigOperation from './modules/ConfigOperation';
 import ThemeGeneral from './modules/general/ThemeGeneral';
 import ThemeLayout from './modules/layout/ThemeLayout';
 import ThemePreset from './modules/preset/ThemePreset';
@@ -29,12 +29,7 @@ const ThemeDrawer = () => {
       open={themeDrawerVisible}
       styles={{ body: { padding: 0 } }}
       title={t('theme.themeDrawerTitle')}
-      extra={
-        <ButtonIcon
-          icon="ant-design:close-outlined"
-          onClick={closeThemeDrawer}
-        />
-      }
+      extra={<ButtonIcon icon="ant-design:close-outlined" onClick={closeThemeDrawer} />}
       onClose={closeThemeDrawer}
     >
       <ScrollArea className="h-full">
@@ -46,10 +41,7 @@ const ThemeDrawer = () => {
             onChange={setActiveTab}
           />
 
-          <AnimatePresence
-            initial={false}
-            mode="wait"
-          >
+          <AnimatePresence initial={false} mode="wait">
             <motion.div
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -10 }}

@@ -1,6 +1,6 @@
+import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { useEffect, useState } from 'react';
 import { Pressable } from 'react-native';
-import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { Sheet } from '../sheet/Sheet';
 import { DatePickerView } from './DatePickerView';
 import type { DatePickerProps } from './types';
@@ -83,12 +83,7 @@ const DatePicker = (props: DatePickerProps) => {
     <>
       {renderTrigger()}
 
-      <Sheet
-        closeable={false}
-        show={show}
-        showHandle={false}
-        onUpdateShow={onUpdateShow}
-      >
+      <Sheet closeable={false} show={show} showHandle={false} onUpdateShow={onUpdateShow}>
         {show ? (
           <DatePickerView
             cancelText={cancelText}

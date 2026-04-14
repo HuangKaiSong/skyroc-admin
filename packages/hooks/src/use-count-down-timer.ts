@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import { useCountDown } from 'ahooks';
+import { useState } from 'react';
 
 /**
  * Countdown timer hook
  *
- * @param seconds - countdown seconds
+ * @param seconds - Countdown seconds
  */
 export default function useCountDownTimer(seconds: number) {
   const [fps, setFps] = useState(0);

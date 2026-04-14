@@ -1,6 +1,6 @@
+import { cn } from '@skyroc/utils';
 import type { ReactNode } from 'react';
 import { View } from 'react-native';
-import { cn } from '@skyroc/utils';
 import type { SlotClassNames } from '../../types/shared';
 import { Button } from '../button';
 import { numberKeyboardVariants } from './number-keyboard-variants';
@@ -33,7 +33,7 @@ const NumberKeyboardKey = (props: NumberKeyboardKeyProps) => {
 
   function renderContent() {
     if (keyConfig.type === 'delete') {
-      return renderDelete ? renderDelete() : (deleteButtonText || '⌫');
+      return renderDelete ? renderDelete() : deleteButtonText || '⌫';
     }
     return keyConfig.text || null;
   }

@@ -1,5 +1,5 @@
-import { Alert, ScrollView, View } from 'react-native';
 import { Cell, CellGroup, Text } from '@skyroc/native-ui';
+import { Alert, ScrollView, View } from 'react-native';
 
 const CellDemo = () => {
   function handlePress() {
@@ -27,12 +27,20 @@ const CellDemo = () => {
       <Text className="mb-4 text-lg font-semibold">Leading</Text>
       <View className="mb-8">
         <Cell
-          leading={<View className="size-8 items-center justify-center rounded-md bg-primary"><Text className="text-sm text-primary-foreground">A</Text></View>}
+          leading={
+            <View className="size-8 items-center justify-center rounded-md bg-primary">
+              <Text className="text-sm text-primary-foreground">A</Text>
+            </View>
+          }
           subtitle="Description"
           title="With Icon"
         />
         <Cell
-          leading={<View className="size-8 items-center justify-center rounded-full bg-secondary"><Text className="text-sm text-secondary-foreground">B</Text></View>}
+          leading={
+            <View className="size-8 items-center justify-center rounded-full bg-secondary">
+              <Text className="text-sm text-secondary-foreground">B</Text>
+            </View>
+          }
           title="With Avatar"
           trailing="Detail"
         />

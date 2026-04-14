@@ -132,10 +132,7 @@ const FirstLevelMenu: FC<Props> = memo(({ children, inverted, mode = FirstLevelM
             ))}
         </div>
       </ScrollArea>
-      <MenuToggler
-        arrowIcon
-        className={clsx({ 'text-white:88 !hover:text-white': inverted })}
-      />
+      <MenuToggler arrowIcon className={clsx({ 'text-white:88 !hover:text-white': inverted })} />
     </div>
   );
 });

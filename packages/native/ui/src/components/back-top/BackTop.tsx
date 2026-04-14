@@ -1,6 +1,6 @@
+import Octicons from '@expo/vector-icons/Octicons';
 import { useMemo } from 'react';
 import { useWindowDimensions } from 'react-native';
-import Octicons from '@expo/vector-icons/Octicons';
 import { scrollTo, useDerivedValue, useScrollOffset, useSharedValue } from 'react-native-reanimated';
 import { FloatingButton } from '../floating-button/FloatingButton';
 import type { BackTopProps } from './types';
@@ -55,13 +55,7 @@ const BackTop = (props: BackTopProps) => {
       size={size}
       visibleValue={visibleValue}
     >
-      {children || (
-        <Octicons
-          color="white"
-          name="chevron-up"
-          size={20}
-        />
-      )}
+      {children || <Octicons color="white" name="chevron-up" size={20} />}
     </FloatingButton>
   );
 };

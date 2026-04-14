@@ -1,5 +1,5 @@
-import { ScrollView, View } from 'react-native';
 import { Divider, Text } from '@skyroc/native-ui';
+import { ScrollView, View } from 'react-native';
 
 const DividerDemo = () => {
   return (
@@ -60,7 +60,9 @@ const DividerDemo = () => {
       <Text className="mb-4 text-lg font-semibold">Custom Style</Text>
       <View className="mb-8">
         <Divider lineClassName="bg-primary" />
-        <Divider lineClassName="bg-destructive" textClassName="text-destructive">Warning</Divider>
+        <Divider lineClassName="bg-destructive" textClassName="text-destructive">
+          Warning
+        </Divider>
       </View>
     </ScrollView>
   );

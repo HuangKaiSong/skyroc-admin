@@ -13,6 +13,7 @@
 ## 🎯 职责定位
 
 **核心职责**:
+
 - Motion 动画特性配置
 - 页面切换动画
 - 路由过渡动画
@@ -33,50 +34,43 @@
 ## 🔌 API 设计
 
 ```ts
-export { LazyMotion } from './components/LazyMotion'
-export { animateFeature } from './config/features'
+export { LazyMotion } from './components/LazyMotion';
+export { animateFeature } from './config/features';
 ```
 
 ## 🔨 核心实现
 
 ```tsx
 // src/components/LazyMotion.tsx
-import { LazyMotion as MotionLazy } from 'motion/react'
-import { animateFeature } from '../config/features'
+import { LazyMotion as MotionLazy } from 'motion/react';
+import { animateFeature } from '../config/features';
 
 export function LazyMotion({ children }) {
-  return (
-    <MotionLazy features={animateFeature}>
-      {children}
-    </MotionLazy>
-  )
+  return <MotionLazy features={animateFeature}>{children}</MotionLazy>;
 }
 ```
 
 ```ts
 // src/config/features.ts
-import { domAnimation } from 'motion/react'
+import { domAnimation } from 'motion/react';
 
-export const animateFeature = domAnimation
+export const animateFeature = domAnimation;
 ```
 
 ## 💡 使用示例
 
 ```tsx
-import { LazyMotion } from '@skyroc/web-animate'
-import { motion } from 'motion/react'
+import { LazyMotion } from '@skyroc/web-animate';
+import { motion } from 'motion/react';
 
 function App() {
   return (
     <LazyMotion>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         Content
       </motion.div>
     </LazyMotion>
-  )
+  );
 }
 ```
 

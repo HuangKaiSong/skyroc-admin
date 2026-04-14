@@ -1,16 +1,14 @@
 {
   "name": "kitchen-sink",
   "private": true,
-  "packageManager": "pnpm@10.4.1",
-  "engines": {
-    "node": ">=20"
-  },
   "scripts": {
     "build": "turbo run build",
     "clean": "turbo run clean",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
     "test:ui": "vitest --ui",
     "test:watch": "turbo run test:watch",
     "typecheck": "turbo run typecheck"
@@ -23,16 +21,16 @@
   "devDependencies": {
     "@skyroc/config": "workspace:*",
     "@skyroc/tsconfig": "workspace:*",
-    "@soybeanjs/eslint-config": "catalog:dev",
     "@testing-library/jest-dom": "catalog:dev",
     "@testing-library/react": "catalog:dev",
     "@types/react": "catalog:dev",
     "@types/react-dom": "catalog:dev",
     "@vitest/coverage-v8": "catalog:dev",
     "@vitest/ui": "^4.0.18",
-    "eslint": "catalog:dev",
     "happy-dom": "catalog:dev",
     "msw": "catalog:dev",
+    "oxfmt": "^0.45.0",
+    "oxlint": "catalog:dev",
     "rimraf": "catalog:dev",
     "simple-git-hooks": "catalog:dev",
     "tsdown": "catalog:dev",
@@ -40,6 +38,10 @@
     "typescript": "catalog:core",
     "vitest": "catalog:dev"
   },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@10.4.1",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@parcel/watcher",

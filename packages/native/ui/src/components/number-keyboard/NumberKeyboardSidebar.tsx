@@ -1,6 +1,6 @@
+import { cn } from '@skyroc/utils';
 import type { ReactNode } from 'react';
 import { View } from 'react-native';
-import { cn } from '@skyroc/utils';
 import type { SlotClassNames } from '../../types/shared';
 import { Button } from '../button';
 import { numberKeyboardVariants } from './number-keyboard-variants';
@@ -45,7 +45,7 @@ const NumberKeyboardSidebar = (props: NumberKeyboardSidebarProps) => {
           textClassName="text-lg"
           onPress={onDelete}
         >
-          {renderDelete ? renderDelete() : (deleteButtonText || '⌫')}
+          {renderDelete ? renderDelete() : deleteButtonText || '⌫'}
         </Button>
       ) : null}
       <Button

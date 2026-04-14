@@ -14,9 +14,7 @@ describe('TaskHub - 注册', () => {
   it('链式注册多个任务', () => {
     const hub = new TaskHub();
 
-    hub
-      .register({ name: 'a', type: 'init', run: vi.fn() })
-      .register({ name: 'b', type: 'init', run: vi.fn() });
+    hub.register({ name: 'a', type: 'init', run: vi.fn() }).register({ name: 'b', type: 'init', run: vi.fn() });
 
     expect(hub.snapshot()).toHaveLength(2);
   });
@@ -26,7 +24,7 @@ describe('TaskHub - 注册', () => {
 
     hub.registerAll([
       { name: 'a', type: 'init', run: vi.fn() },
-      { name: 'b', type: 'init', run: vi.fn() },
+      { name: 'b', type: 'init', run: vi.fn() }
     ]);
 
     expect(hub.snapshot()).toHaveLength(2);
@@ -108,13 +106,17 @@ describe('TaskHub - init 任务', () => {
       name: 'low',
       type: 'init',
       priority: 20,
-      run: () => { order.push('low'); },
+      run: () => {
+        order.push('low');
+      }
     });
     hub.register({
       name: 'high',
       type: 'init',
       priority: 1,
-      run: () => { order.push('high'); },
+      run: () => {
+        order.push('high');
+      }
     });
 
     hub.start();
@@ -134,13 +136,13 @@ describe('TaskHub - 依赖解析', () => {
     hub.register({
       name: 'a',
       type: 'init',
-      run: () => new Promise(resolve => setTimeout(resolve, 2000)),
+      run: () => new Promise(resolve => setTimeout(resolve, 2000))
     });
     hub.register({
       name: 'b',
       type: 'init',
       deps: ['a'],
-      run: runB,
+      run: runB
     });
 
     hub.start();
@@ -164,14 +166,16 @@ describe('TaskHub - 依赖解析', () => {
       run: async () => {
         await new Promise(resolve => setTimeout(resolve, 200));
         order.push('auth');
-      },
+      }
     });
     hub.register({
       name: 'permissions',
       type: 'init',
       priority: 2,
       deps: ['auth'],
-      run: () => { order.push('permissions'); },
+      run: () => {
+        order.push('permissions');
+      }
     });
 
     hub.start();
@@ -189,19 +193,25 @@ describe('TaskHub - 依赖解析', () => {
     hub.register({
       name: 'a',
       type: 'init',
-      run: () => { order.push('a'); },
+      run: () => {
+        order.push('a');
+      }
     });
     hub.register({
       name: 'b',
       type: 'init',
       deps: ['a'],
-      run: () => { order.push('b'); },
+      run: () => {
+        order.push('b');
+      }
     });
     hub.register({
       name: 'c',
       type: 'init',
       deps: ['b'],
-      run: () => { order.push('c'); },
+      run: () => {
+        order.push('c');
+      }
     });
 
     hub.start();
@@ -238,14 +248,14 @@ describe('TaskHub - periodic 任务', () => {
     hub.register({
       name: 'auth',
       type: 'init',
-      run: () => new Promise(resolve => setTimeout(resolve, 500)),
+      run: () => new Promise(resolve => setTimeout(resolve, 500))
     });
     hub.register({
       name: 'heartbeat',
       type: 'periodic',
       interval: 100,
       deps: ['auth'],
-      run,
+      run
     });
 
     hub.start();
@@ -290,7 +300,7 @@ describe('TaskHub - 重试', () => {
         if (callCount < 3) {
           throw new Error('fail');
         }
-      },
+      }
     });
 
     hub.start();
@@ -311,7 +321,9 @@ describe('TaskHub - 重试', () => {
     hub.register({
       name: 'broken',
       type: 'init',
-      run: () => { throw new Error('always fail'); },
+      run: () => {
+        throw new Error('always fail');
+      }
     });
 
     hub.start();
@@ -333,7 +345,7 @@ describe('TaskHub - 重试', () => {
       run: () => {
         callCount += 1;
         throw new Error('fail');
-      },
+      }
     });
 
     hub.start();

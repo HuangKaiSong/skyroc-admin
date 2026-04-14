@@ -1,9 +1,9 @@
+import { Text } from '@skyroc/native-ui';
+import type { ErrorBoundaryProps } from 'expo-router';
 import { Component } from 'react';
 import type { ErrorInfo, ReactNode } from 'react';
 import { Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text } from '@skyroc/native-ui';
-import type { ErrorBoundaryProps } from 'expo-router';
 
 /** Presentational fallback UI matching expo-router's ErrorBoundaryProps */
 const ErrorFallback = (props: ErrorBoundaryProps) => {
@@ -12,7 +12,9 @@ const ErrorFallback = (props: ErrorBoundaryProps) => {
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.content}>
-        <Text selectable style={styles.title}>Something went wrong</Text>
+        <Text selectable style={styles.title}>
+          Something went wrong
+        </Text>
 
         <TextInput
           allowFontScaling
@@ -25,10 +27,7 @@ const ErrorFallback = (props: ErrorBoundaryProps) => {
 
         <View style={styles.spacer} />
 
-        <Pressable
-          onPress={retry}
-          style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
-        >
+        <Pressable onPress={retry} style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}>
           <Text style={styles.buttonText}>Try Again</Text>
         </Pressable>
       </SafeAreaView>

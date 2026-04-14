@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
+import { useMemo } from 'react';
 import { PickerView } from '../picker/PickerView';
 import type { DatePickerColumnType, DatePickerViewProps } from './types';
 import { formatValueRange, genOptions, getMonthEndDay, padZero } from './utils';
@@ -106,7 +106,7 @@ const DatePickerView = (props: DatePickerViewProps) => {
 
   function handleChange(newValues: string[]) {
     // After changing, we need to re-clamp because cascading constraints may apply
-    const newColumns = columnsType.map((type) => {
+    const newColumns = columnsType.map(type => {
       // Rebuild columns with the new values to get accurate ranges
       const tempValues = [...newValues];
 
@@ -148,14 +148,7 @@ const DatePickerView = (props: DatePickerViewProps) => {
     setValue(clamped);
   }
 
-  return (
-    <PickerView
-      {...pickerProps}
-      columns={columns}
-      onChange={handleChange}
-      value={clampedValue}
-    />
-  );
+  return <PickerView {...pickerProps} columns={columns} onChange={handleChange} value={clampedValue} />;
 };
 
 export { DatePickerView };

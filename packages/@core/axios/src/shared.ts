@@ -8,7 +8,7 @@ export function getContentType(config: InternalAxiosRequestConfig) {
 }
 
 /**
- * check if http status is success
+ * Check if http status is success
  *
  * @param status
  */
@@ -18,9 +18,9 @@ export function isHttpSuccess(status: number) {
 }
 
 /**
- * is response json
+ * Is response json
  *
- * @param response axios response
+ * @param response Axios response
  */
 export function isResponseJson(response: AxiosResponse) {
   const { responseType } = response.config;

@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { ScrollView, View } from 'react-native';
 import { Button, Text, TimePicker, TimePickerView } from '@skyroc/native-ui';
 import type { TimePickerFilter, TimePickerFormatter } from '@skyroc/native-ui';
+import { useState } from 'react';
+import { ScrollView, View } from 'react-native';
 
 const TimePickerDemo = () => {
   const [sheetShow, setSheetShow] = useState(false);
@@ -30,10 +30,7 @@ const TimePickerDemo = () => {
     <ScrollView className="flex-1 bg-muted" contentContainerClassName="pb-20" showsVerticalScrollIndicator={false}>
       {/* Basic — hour/minute */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">Basic (Hour & Minute)</Text>
-      <TimePickerView
-        defaultValue={['12', '30']}
-        showToolbar={false}
-      />
+      <TimePickerView defaultValue={['12', '30']} showToolbar={false} />
 
       {/* Hour, Minute & Second */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">Hour, Minute & Second</Text>
@@ -45,12 +42,7 @@ const TimePickerDemo = () => {
 
       {/* Time range constraint */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">Time Range (09:00 ~ 18:00)</Text>
-      <TimePickerView
-        defaultValue={['12', '00']}
-        maxTime="18:00:00"
-        minTime="09:00:00"
-        showToolbar={false}
-      />
+      <TimePickerView defaultValue={['12', '00']} maxTime="18:00:00" minTime="09:00:00" showToolbar={false} />
 
       {/* With Sheet popup */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">Popup TimePicker</Text>
@@ -59,9 +51,7 @@ const TimePickerDemo = () => {
           <Button size="sm" onPress={() => setSheetShow(true)}>
             Select Time
           </Button>
-          <Text className="text-sm text-muted-foreground">
-            {sheetValue.join(':') || 'None'}
-          </Text>
+          <Text className="text-sm text-muted-foreground">{sheetValue.join(':') || 'None'}</Text>
         </View>
 
         <TimePicker
@@ -80,9 +70,7 @@ const TimePickerDemo = () => {
           <Button size="sm" onPress={() => setFormatterShow(true)}>
             Formatted Picker
           </Button>
-          <Text className="text-sm text-muted-foreground">
-            {formatterValue.join(':') || 'None'}
-          </Text>
+          <Text className="text-sm text-muted-foreground">{formatterValue.join(':') || 'None'}</Text>
         </View>
 
         <TimePicker
@@ -103,9 +91,7 @@ const TimePickerDemo = () => {
           <Button size="sm" onPress={() => setFilterShow(true)}>
             Filtered Picker
           </Button>
-          <Text className="text-sm text-muted-foreground">
-            {filterValue.join(':') || 'None'}
-          </Text>
+          <Text className="text-sm text-muted-foreground">{filterValue.join(':') || 'None'}</Text>
         </View>
 
         <TimePicker

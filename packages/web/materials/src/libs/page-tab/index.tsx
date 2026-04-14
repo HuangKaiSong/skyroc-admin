@@ -6,10 +6,10 @@ import type { ButtonTabProps } from '../../types';
 
 import ButtonTab from './ButtonTab';
 import ChromeTab from './ChromeTab';
+import { ACTIVE_COLOR, createTabCssVars } from './shared';
 import SliderTab from './SliderTab';
 import SvgClose from './SvgClose';
 import styles from './index.module.css';
-import { ACTIVE_COLOR, createTabCssVars } from './shared';
 
 type PageTabProps = Omit<ButtonTabProps, 'onMouseUp'>;
 
@@ -56,14 +56,7 @@ const PageTab: FC<PageTabProps> = ({
     if (handleClose) handleClose();
   }
 
-  const suffixComponent =
-    suffix ||
-    (closable && (
-      <SvgClose
-        className={styles['svg-close']}
-        onClick={closeTab}
-      />
-    ));
+  const suffixComponent = suffix || (closable && <SvgClose className={styles['svg-close']} onClick={closeTab} />);
 
   return (
     <ActiveTabComponent

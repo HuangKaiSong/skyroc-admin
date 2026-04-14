@@ -104,7 +104,7 @@ function RouteComponent() {
       message: '信息通知',
       description: '这是一条重要的信息提示',
       placement: 'topRight',
-      duration:0
+      duration: 0
     });
   };
 
@@ -274,7 +274,8 @@ function RouteComponent() {
           </Button>
         </Space>
         <div className="mt-4 p-3 text-sm bg-green-50  rounded-md text-green-800 ">
-          <strong>提示：</strong>Notification 组件用于较为复杂的通知内容，默认在右上角显示，包含标题和描述，4.5 秒后自动消失。
+          <strong>提示：</strong>Notification 组件用于较为复杂的通知内容，默认在右上角显示，包含标题和描述，4.5
+          秒后自动消失。
         </div>
       </Card>
 

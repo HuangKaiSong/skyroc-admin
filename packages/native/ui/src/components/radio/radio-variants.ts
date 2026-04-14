@@ -1,5 +1,5 @@
-import { tv } from 'tailwind-variants';
 import type { ThemeSize } from '@skyroc/ui-types';
+import { tv } from 'tailwind-variants';
 
 /** Maps size preset to control (circle/square) pixel size */
 export const SIZE_CONTROL_MAP: Record<ThemeSize, number> = {

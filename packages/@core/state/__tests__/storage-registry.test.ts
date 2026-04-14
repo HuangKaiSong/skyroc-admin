@@ -19,9 +19,7 @@ describe('storage-registry', () => {
   });
 
   it('未注册的名称抛出错误', () => {
-    expect(() => getStorage('not-registered')).toThrowError(
-      '[core-state] Storage "not-registered" is not registered'
-    );
+    expect(() => getStorage('not-registered')).toThrowError('[core-state] Storage "not-registered" is not registered');
   });
 
   it('同名注册会覆盖前一个', () => {

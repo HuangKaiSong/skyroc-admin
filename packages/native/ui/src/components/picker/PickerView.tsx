@@ -1,10 +1,10 @@
+import { useControllableState } from '@radix-ui/react-use-controllable-state';
+import { cn } from '@skyroc/utils';
 import { useMemo } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import { cn } from '@skyroc/utils';
-import { useControllableState } from '@radix-ui/react-use-controllable-state';
+import { DEFAULT_ITEM_HEIGHT, DEFAULT_VISIBLE_COUNT, pickerVariants } from './picker-variants';
 import { PickerColumn } from './PickerColumn';
 import { PickerToolbar } from './PickerToolbar';
-import { DEFAULT_ITEM_HEIGHT, DEFAULT_VISIBLE_COUNT, pickerVariants } from './picker-variants';
 import type { PickerViewProps } from './types';
 import { assignDefaultFieldNames, ensureSelectedValues, normalizeColumns } from './utils';
 
@@ -119,10 +119,7 @@ const PickerView = (props: PickerViewProps) => {
 
         {loading ? (
           <View className={cn(slots.loading(), classNames?.loading)}>
-            <ActivityIndicator
-              className="text-muted-foreground"
-              size="large"
-            />
+            <ActivityIndicator className="text-muted-foreground" size="large" />
           </View>
         ) : null}
       </View>

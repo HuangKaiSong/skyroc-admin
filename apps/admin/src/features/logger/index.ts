@@ -27,6 +27,7 @@ let loggerInstance: LoggerInstance | null = null;
 
 /**
  * 初始化日志系统
+ *
  * @returns 日志实例
  */
 export async function initLogger(): Promise<LoggerInstance> {
@@ -38,18 +39,13 @@ export async function initLogger(): Promise<LoggerInstance> {
   return loggerInstance;
 }
 
-/**
- * 获取日志实例
- * 如果未初始化，会自动初始化
- */
+/** 获取日志实例 如果未初始化，会自动初始化 */
 export async function getLogger() {
   const instance = await initLogger();
   return instance.logger;
 }
 
-/**
- * 快捷日志方法
- */
+/** 快捷日志方法 */
 export const log = {
   debug: async (message: string, data?: Record<string, any>) => {
     const logger = await getLogger();
@@ -95,6 +91,7 @@ export const log = {
 
 /**
  * 创建带上下文的日志记录器
+ *
  * @param context 上下文名称
  */
 export async function createContextLogger(context: string) {
@@ -102,9 +99,7 @@ export async function createContextLogger(context: string) {
   return logger.withContext({ module: context });
 }
 
-/**
- * 手动上传日志
- */
+/** 手动上传日志 */
 export async function uploadLogs() {
   if (!loggerInstance) {
     return undefined;
@@ -112,9 +107,7 @@ export async function uploadLogs() {
   return loggerInstance.uploadLogs();
 }
 
-/**
- * 销毁日志实例
- */
+/** 销毁日志实例 */
 export function disposeLogger() {
   if (loggerInstance) {
     loggerInstance.dispose();

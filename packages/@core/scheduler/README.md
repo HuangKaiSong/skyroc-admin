@@ -24,10 +24,10 @@ TaskHub 的答案：**一个心跳 + 一个任务注册表 + 依赖关系声明*
 
 ### 三种任务类型
 
-| 类型 | 行为 | 典型场景 |
-|------|------|----------|
-| `init` | 依赖满足后执行**一次** | 认证、加载配置、初始化路由 |
-| `periodic` | 依赖满足后按 `interval` **周期执行** | 心跳、数据上报、token 刷新 |
+| 类型       | 行为                                        | 典型场景                     |
+| ---------- | ------------------------------------------- | ---------------------------- |
+| `init`     | 依赖满足后执行**一次**                      | 认证、加载配置、初始化路由   |
+| `periodic` | 依赖满足后按 `interval` **周期执行**        | 心跳、数据上报、token 刷新   |
 | `listener` | 依赖满足后注册**一次**，stop 时自动 cleanup | resize、网络状态、页面可见性 |
 
 ### 调度模型
@@ -69,7 +69,7 @@ const hub = new TaskHub({
   },
   onTaskError: (name, err) => {
     console.error(`任务 ${name} 失败:`, err);
-  },
+  }
 });
 
 // ---- 1. 初始化任务（有依赖链）----
@@ -80,7 +80,7 @@ hub.register({
   priority: 1,
   run: async () => {
     await authService.init();
-  },
+  }
 });
 
 hub.register({
@@ -90,7 +90,7 @@ hub.register({
   deps: ['auth'],
   run: async () => {
     await permissionService.load();
-  },
+  }
 });
 
 hub.register({
@@ -100,7 +100,7 @@ hub.register({
   deps: ['permissions'],
   run: async () => {
     await routerService.initDynamicRoutes();
-  },
+  }
 });
 
 // ---- 2. 周期任务 ----
@@ -112,7 +112,7 @@ hub.register({
   deps: ['auth'],
   run: () => {
     api.heartbeat();
-  },
+  }
 });
 
 hub.register({
@@ -121,7 +121,7 @@ hub.register({
   interval: 60_000,
   run: () => {
     analytics.flush();
-  },
+  }
 });
 
 // ---- 3. 监听器任务 ----
@@ -136,7 +136,7 @@ hub.register({
   cleanup: () => {
     window.removeEventListener('online', handleOnline);
     window.removeEventListener('offline', handleOffline);
-  },
+  }
 });
 
 // ---- 启动 ----
@@ -154,11 +154,11 @@ hub.stop();
 
 ```ts
 interface TaskHubOptions {
-  tickInterval?: number;    // 心跳间隔（ms），默认 1000
-  maxRetries?: number;      // 失败重试次数，默认 3，设为 0 禁用
-  baseRetryDelay?: number;  // 重试基础延迟（ms），实际延迟 = base * 2^retryCount，默认 1000
+  tickInterval?: number; // 心跳间隔（ms），默认 1000
+  maxRetries?: number; // 失败重试次数，默认 3，设为 0 禁用
+  baseRetryDelay?: number; // 重试基础延迟（ms），实际延迟 = base * 2^retryCount，默认 1000
   onTaskError?: (taskName: string, error: unknown) => void;
-  onReady?: () => void;     // 所有 init 任务完成时触发
+  onReady?: () => void; // 所有 init 任务完成时触发
 }
 ```
 
@@ -168,21 +168,19 @@ interface TaskHubOptions {
 
 ```ts
 interface TaskDef {
-  name: string;                       // 唯一标识
+  name: string; // 唯一标识
   type: 'init' | 'periodic' | 'listener';
-  priority?: number;                  // 数字越小越先执行，默认 10
-  deps?: string[];                    // 依赖的任务名
-  interval?: number;                  // 周期间隔（ms），仅 periodic
-  run: () => void | Promise<void>;   // 执行体
-  cleanup?: () => void;               // 清理函数
+  priority?: number; // 数字越小越先执行，默认 10
+  deps?: string[]; // 依赖的任务名
+  interval?: number; // 周期间隔（ms），仅 periodic
+  run: () => void | Promise<void>; // 执行体
+  cleanup?: () => void; // 清理函数
 }
 ```
 
 ```ts
 // 链式
-hub
-  .register({ name: 'a', type: 'init', run: initA })
-  .register({ name: 'b', type: 'init', deps: ['a'], run: initB });
+hub.register({ name: 'a', type: 'init', run: initA }).register({ name: 'b', type: 'init', deps: ['a'], run: initB });
 
 // 批量
 hub.registerAll([taskA, taskB, taskC]);
@@ -265,14 +263,14 @@ hub.register({ name: 'heartbeat', type: 'periodic', interval: 30000, deps: ['aut
 
 ## 与传统方式对比
 
-| N 个 setInterval | TaskHub |
-|---|---|
-| 各自独立，互不感知 | 中枢统一感知所有任务 |
-| 清理困难，容易遗漏 | `stop()` 一次清理全部 |
-| 无法表达依赖关系 | `deps` 天然支持 DAG |
-| 无法暂停/恢复 | `pause()` / `resume()` |
-| 无法观测状态 | `snapshot()` 随时看全貌 |
-| 定时器数量随业务膨胀 | 永远只有 1 个 timer |
+| N 个 setInterval     | TaskHub                 |
+| -------------------- | ----------------------- |
+| 各自独立，互不感知   | 中枢统一感知所有任务    |
+| 清理困难，容易遗漏   | `stop()` 一次清理全部   |
+| 无法表达依赖关系     | `deps` 天然支持 DAG     |
+| 无法暂停/恢复        | `pause()` / `resume()`  |
+| 无法观测状态         | `snapshot()` 随时看全貌 |
+| 定时器数量随业务膨胀 | 永远只有 1 个 timer     |
 
 ## 设计原则
 

@@ -1,12 +1,11 @@
-import { useEffect } from 'react';
 import { useCreation } from 'ahooks';
+import { useEffect } from 'react';
 import { Store, useStore } from './store';
 
 /**
  * 当前时间状态引擎
  *
- * 管理定时器生命周期和时间状态更新，
- * 外部通过 useNow hook 桥接 React 渲染。
+ * 管理定时器生命周期和时间状态更新， 外部通过 useNow hook 桥接 React 渲染。
  */
 class NowStore extends Store<Date> {
   /** 定时器 ID */

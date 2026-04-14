@@ -1,34 +1,25 @@
 {
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-  ],
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
+    "source.fixAll.oxc": "always",
     "source.organizeImports": "never",
-    "source.sortMembers": "explicit"
+    "source.sortMembers": "always"
   },
-  "eslint.useFlatConfig": true,
   "editor.guides.bracketPairs": "active",
-  "editor.formatOnSave": false,
-  "eslint.validate": [
-    "html",
-    "css",
-    "scss",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "jsonc"
-  ],
+  "editor.formatOnSave": true,
+  "oxc.fmt.configPath": ".oxfmtrc.json",
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     "package.json": "package-lock.json, pnpm*, .editorconfig,.gitattributes,.gitignore,.npmrc,tsconfig.json",
     ".env": ".env*",
     "vite.config.ts": "*.config.ts,*.config.js",
     "README.md": "README*,LICENSE,CHANGELOG*,vercel.json"
+  },
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "i18n-ally.displayLanguage": "zh-cn",
   "i18n-ally.enabledParsers": ["ts"],

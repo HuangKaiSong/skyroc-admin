@@ -212,29 +212,35 @@ internal/
 ## 主要技术栈
 
 ### 核心框架
+
 - React 19.2.1
 - TypeScript 5.9.3
 - Vite 7.2.7
 
 ### 状态管理
+
 - Jotai 2.16.0
 - TanStack Query 5.90.12
 
 ### 路由
+
 - TanStack Router 1.140.0
 
 ### UI 组件
+
 - Ant Design 6.1.0
 - Radix UI
 - Motion (动画库)
 
 ### 样式方案
+
 - UnoCSS 66.5.10
 - Sass 1.96.0
 - Tailwind Merge
 - Tailwind Variants
 
 ### 工具库
+
 - Axios (网络请求)
 - dayjs / date-fns (日期处理)
 - i18next (国际化)
@@ -244,6 +250,7 @@ internal/
 - localforage (本地存储)
 
 ### 开发工具
+
 - ESLint 9.39.2
 - Turbo 2.7.1
 - pnpm 10.4.1
@@ -252,10 +259,10 @@ internal/
 
 项目使用 pnpm workspace 管理，包含四个主要工作区：
 
-1. **apps/***: 应用程序，包含完整的前端应用
-2. **packages/***: 可复用的公共包
-3. **ui-kit/***: UI 组件库
-4. **internal/***: 内部工具和配置包
+1. **apps/\***: 应用程序，包含完整的前端应用
+2. **packages/\***: 可复用的公共包
+3. **ui-kit/\***: UI 组件库
+4. **internal/\***: 内部工具和配置包
 
 ## 可用脚本
 

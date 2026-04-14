@@ -63,7 +63,7 @@ function createConfig() {
 
     routeMode: import.meta.env.VITE_AUTH_ROUTE_MODE,
 
-    /** - nprogress 实例 */
+    /** - Nprogress 实例 */
     get nprogress(): NProgress {
       if (!_nprogress.instance) {
         console.error('nprogress is not initialized, please call initNProgress function first');

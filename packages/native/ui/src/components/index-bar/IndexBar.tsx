@@ -1,7 +1,7 @@
+import { cn } from '@skyroc/utils';
+import * as Haptics from 'expo-haptics';
 import { useRef, useState } from 'react';
 import { SectionList, View } from 'react-native';
-import * as Haptics from 'expo-haptics';
-import { cn } from '@skyroc/utils';
 import type { ViewToken } from 'react-native';
 import { Button } from '../button/Button';
 import { Divider } from '../divider/Divider';

@@ -1,5 +1,5 @@
-import { ScrollView, View } from 'react-native';
 import { Button, showNotify, Text } from '@skyroc/native-ui';
+import { ScrollView, View } from 'react-native';
 
 const NotifyDemo = () => {
   function handleBasic() {
@@ -27,11 +27,7 @@ const NotifyDemo = () => {
   }
 
   return (
-    <ScrollView
-      className="flex-1 bg-muted"
-      contentContainerClassName="pb-20"
-      showsVerticalScrollIndicator={false}
-    >
+    <ScrollView className="flex-1 bg-muted" contentContainerClassName="pb-20" showsVerticalScrollIndicator={false}>
       {/* Basic */}
       <Text className="mb-3 mt-4 px-4 text-lg font-semibold">基础用法</Text>
       <View className="px-4">

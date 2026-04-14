@@ -1,6 +1,4 @@
-/**
- * Auth module query and mutation keys
- */
+/** Auth module query and mutation keys */
 
 export const AUTH_QUERY_KEYS = {
   USER_INFO: ['auth', 'userInfo'] as const

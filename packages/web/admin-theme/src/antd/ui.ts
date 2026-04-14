@@ -55,6 +55,7 @@ function getNotification(): NotificationInstance {
 
 /**
  * 显示通知
+ *
  * @param config - 通知配置
  * @returns 通知实例
  */
@@ -64,6 +65,7 @@ export function showNotification(config: ArgsProps) {
 
 /**
  * 销毁通知
+ *
  * @param key - 通知的唯一标识,不传则销毁所有通知
  */
 export function destroyNotification(key?: React.Key) {
@@ -72,6 +74,7 @@ export function destroyNotification(key?: React.Key) {
 
 /**
  * 显示成功通知
+ *
  * @param config - 通知配置
  * @returns 通知实例
  */
@@ -81,6 +84,7 @@ export function showSuccessNotification(config: ArgsProps) {
 
 /**
  * 显示错误通知
+ *
  * @param config - 通知配置
  * @returns 通知实例
  */
@@ -90,6 +94,7 @@ export function showErrorNotification(config: ArgsProps) {
 
 /**
  * 显示信息通知
+ *
  * @param config - 通知配置
  * @returns 通知实例
  */
@@ -99,6 +104,7 @@ export function showInfoNotification(config: ArgsProps) {
 
 /**
  * 显示警告通知
+ *
  * @param config - 通知配置
  * @returns 通知实例
  */
@@ -112,6 +118,7 @@ export function showWarningNotification(config: ArgsProps) {
 
 /**
  * 显示消息
+ *
  * @param config - 消息配置
  * @returns 消息实例
  */
@@ -121,6 +128,7 @@ export function showMessage(config: MessageArgsProps) {
 
 /**
  * 销毁消息
+ *
  * @param key - 消息的唯一标识,不传则销毁所有消息
  */
 export function destroyMessage(key?: React.Key) {
@@ -129,6 +137,7 @@ export function destroyMessage(key?: React.Key) {
 
 /**
  * 显示成功消息
+ *
  * @param args - 消息配置参数
  * @returns 消息实例
  */
@@ -138,6 +147,7 @@ export const showSuccessMessage: TypeOpen = (...args) => {
 
 /**
  * 显示错误消息
+ *
  * @param args - 消息配置参数
  * @returns 消息实例
  */
@@ -147,6 +157,7 @@ export const showErrorMessage: TypeOpen = (...args) => {
 
 /**
  * 显示信息消息
+ *
  * @param args - 消息配置参数
  * @returns 消息实例
  */
@@ -156,6 +167,7 @@ export const showInfoMessage: TypeOpen = (...args) => {
 
 /**
  * 显示警告消息
+ *
  * @param args - 消息配置参数
  * @returns 消息实例
  */
@@ -165,6 +177,7 @@ export const showWarningMessage: TypeOpen = (...args) => {
 
 /**
  * 显示加载消息
+ *
  * @param args - 消息配置参数
  * @returns 消息实例
  */
@@ -178,6 +191,7 @@ export const showLoadingMessage: TypeOpen = (...args) => {
 
 /**
  * 显示模态框
+ *
  * @param args - 模态框配置参数
  * @returns 模态框实例
  */
@@ -187,6 +201,7 @@ export const showModal: ModalFunc = (...args) => {
 
 /**
  * 显示确认模态框
+ *
  * @param args - 模态框配置参数
  * @returns 模态框实例
  */
@@ -196,6 +211,7 @@ export const showConfirmModal: ModalFunc = (...args) => {
 
 /**
  * - 显示信息模态框
+ *
  * @param args - 模态框配置参数
  * @returns 模态框实例
  */
@@ -205,6 +221,7 @@ export const showInfoModal: ModalFunc = (...args) => {
 
 /**
  * 显示成功模态框
+ *
  * @param args - 模态框配置参数
  * @returns 模态框实例
  */
@@ -214,6 +231,7 @@ export const showSuccessModal: ModalFunc = (...args) => {
 
 /**
  * 显示错误模态框
+ *
  * @param args - 模态框配置参数
  * @returns 模态框实例
  */
@@ -223,6 +241,7 @@ export const showErrorModal: ModalFunc = (...args) => {
 
 /**
  * 显示警告模态框
+ *
  * @param args - 模态框配置参数
  * @returns 模态框实例
  */

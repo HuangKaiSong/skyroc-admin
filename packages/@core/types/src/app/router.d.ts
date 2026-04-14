@@ -17,9 +17,7 @@ declare global {
        */
       i18nKey?: I18n.I18nKey | null;
 
-      /**
-       * Whether to cache the route
-       */
+      /** Whether to cache the route */
       keepAlive?: boolean | null;
 
       /**
@@ -88,9 +86,7 @@ declare global {
         type?: 'divider' | 'group';
       };
 
-      /**
-       * Required permissions to access the route
-       */
+      /** Required permissions to access the route */
       permissions?: string[];
 
       /**
@@ -106,17 +102,13 @@ declare global {
        * It controls how the route behaves in the tabs system
        */
       tab?: {
-        /**
-         * If set, the route will be fixed in tabs,
-         * and the value is the order of fixed tabs
-         */
+        /** If set, the route will be fixed in tabs, and the value is the order of fixed tabs */
         fixedIndex?: number | null;
 
         /**
          * Whether to allow multiple tabs for the same route
          *
-         * By default, the same route path will use one tab,
-         * even with different query parameters
+         * By default, the same route path will use one tab, even with different query parameters
          */
         multi?: boolean | null;
       };
@@ -130,9 +122,7 @@ declare global {
     }
 
     interface RouterContext {
-      /**
-       * Clear authentication information
-       */
+      /** Clear authentication information */
       clearAuth: () => void;
       /**
        * Initialize authentication information
@@ -140,21 +130,13 @@ declare global {
        * @returns The user information
        */
       initAuth: () => Promise<Api.Auth.UserInfo | null>;
-      /**
-       * Whether the authentication information has been initialized
-       */
+      /** Whether the authentication information has been initialized */
       isAuthInitialized: boolean;
-      /**
-       * Whether the user is logged in
-       */
+      /** Whether the user is logged in */
       isLoggedIn: boolean;
-      /**
-       * Query client
-       */
+      /** Query client */
       queryClient: QueryClient;
-      /**
-       * User information
-       */
+      /** User information */
       userInfo?: Api.Auth.UserInfo;
     }
   }

@@ -3,9 +3,7 @@ import { Store } from '../../src/store/store';
 import { useStore } from '../../src/store/use-store';
 import type { Subscribable } from '../../src/store/use-store';
 
-/**
- * 测试用 Store 子类，暴露 setState
- */
+/** 测试用 Store 子类，暴露 setState */
 class CounterStore extends Store<number> {
   increment = () => {
     this.setState(prev => prev + 1);
@@ -16,9 +14,7 @@ class CounterStore extends Store<number> {
   };
 }
 
-/**
- * 测试用对象状态 Store
- */
+/** 测试用对象状态 Store */
 class ProfileStore extends Store<{ age: number; name: string }> {
   setName = (name: string) => {
     this.patchState({ name });

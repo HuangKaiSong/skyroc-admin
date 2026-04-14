@@ -1,6 +1,6 @@
+import { cn } from '@skyroc/utils';
 import { useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { cn } from '@skyroc/utils';
 import { Image } from './Image';
 import type { ImageFallbackProps } from './types';
 
@@ -37,12 +37,7 @@ const ImageFallback = (props: ImageFallbackProps) => {
 
       {shouldShowLoading && (
         <View className="absolute inset-0 items-center justify-center bg-muted">
-          {loadingSlot || (
-            <ActivityIndicator
-              className="text-muted-foreground"
-              size="small"
-            />
-          )}
+          {loadingSlot || <ActivityIndicator className="text-muted-foreground" size="small" />}
         </View>
       )}
 

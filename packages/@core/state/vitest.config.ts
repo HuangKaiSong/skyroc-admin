@@ -1,5 +1,5 @@
-import { defineConfig } from 'vitest/config';
 import { baseCoverageConfig, baseTestConfig } from '@skyroc/config/vitest';
+import { defineConfig } from 'vitest/config';
 
 /**
  * @skyroc/core-state 测试配置

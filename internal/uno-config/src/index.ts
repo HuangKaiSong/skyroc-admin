@@ -45,23 +45,10 @@ function buildAntdMainPalette(name: string) {
 /**
  * Create color palette with semantic color variables for a single color
  *
- * @description
- * 调色板阶层设计：
- * - 50-200: 浅色区（背景、填充、装饰性边框）
- * - 300-400: 过渡区（交互反馈、次要状态）
- * - 500: 主色区（默认按钮、链接、图标）
- * - 600-700: 深色区（激活状态、强调）
- * - 800-950: 极深区（深色模式适配）
- *
- * 语义化颜色映射：
- * - bg (50): 背景色 - 极浅，不干扰内容
- * - bg-hover (100): 背景悬停色
- * - border (200): 边框色 - 可见但不抢眼
- * - border-hover (300): 边框悬停色
- * - hover (400): 悬停色 - 比主色浅，表示"即将激活"
- * - text (500): 文字色 - 使用主色
- * - active (600): 激活色 - 比主色深，表示"已被按下"
- * - text-active (700): 文字激活色
+ * 调色板阶层设计： - 50-200: 浅色区（背景、填充、装饰性边框） - 300-400: 过渡区（交互反馈、次要状态） - 500: 主色区（默认按钮、链接、图标） - 600-700: 深色区（激活状态、强调） -
+ * 800-950: 极深区（深色模式适配） 语义化颜色映射： - bg (50): 背景色 - 极浅，不干扰内容 - bg-hover (100): 背景悬停色 - border (200): 边框色 - 可见但不抢眼 -
+ * border-hover (300): 边框悬停色 - hover (400): 悬停色 - 比主色浅，表示"即将激活" - text (500): 文字色 - 使用主色 - active (600): 激活色 -
+ * 比主色深，表示"已被按下" - text-active (700): 文字激活色
  *
  * @param name - Color name (e.g., 'primary', 'success')
  */
@@ -98,13 +85,9 @@ function createColorsPalette(name: string) {
 /**
  * Create color palette variables for all theme colors
  *
- * @description
- * Generate nested color objects for each theme color:
- * - primary: { DEFAULT, 50, 100, ..., foreground, hover, active, ... }
- * - success: { DEFAULT, 50, 100, ..., foreground, hover, active, ... }
- * - etc.
- *
- * This allows using classes like `text-primary-50`, `bg-success-100`, etc.
+ * Generate nested color objects for each theme color: - primary: { DEFAULT, 50, 100, ..., foreground, hover, active,
+ * ... } - success: { DEFAULT, 50, 100, ..., foreground, hover, active, ... } - etc. This allows using classes like
+ * `text-primary-50`, `bg-success-100`, etc.
  */
 function createColorPaletteVars() {
   const colorPaletteVar: Record<string, Record<string, string>> = {};

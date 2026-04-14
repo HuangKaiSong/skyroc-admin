@@ -9,12 +9,7 @@ const Image = (props: ImageProps) => {
 
   const source = isString(src) ? { uri: src } : src;
 
-  return (
-    <ImageComponent
-      source={source}
-      {...rest}
-    />
-  );
+  return <ImageComponent source={source} {...rest} />;
 };
 
 export { Image };

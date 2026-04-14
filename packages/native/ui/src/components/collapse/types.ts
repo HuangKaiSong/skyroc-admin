@@ -23,7 +23,7 @@ export interface CollapseProps {
   /** 值变化回调 */
   onChange?: (value: CollapseItemName | CollapseItemName[]) => void;
 
-  /** ref */
+  /** Ref */
   ref?: Ref<CollapseRef>;
 
   /** 当前展开的面板名称（受控） */
@@ -36,7 +36,7 @@ export interface CollapseRef {
   toggleAll: (options?: CollapseToggleAllOptions | boolean) => void;
 }
 
-/** toggleAll 选项 */
+/** ToggleAll 选项 */
 export interface CollapseToggleAllOptions {
   /** 是否展开 */
   expanded?: boolean;
@@ -74,7 +74,7 @@ export interface CollapseItemProps {
   /** 是否只读 */
   readonly?: boolean;
 
-  /** ref */
+  /** Ref */
   ref?: Ref<CollapseItemRef>;
 
   /** 标题尺寸 */

@@ -1,18 +1,14 @@
-/**
- * Represents a cleanup function that can be called to unsubscribe from a subscription
- */
+/** Represents a cleanup function that can be called to unsubscribe from a subscription */
 export type Teardown = { unsubscribe: () => void };
 
-/**
- * Basic observer interface that can receive values
- */
+/** Basic observer interface that can receive values */
 export interface Observer<T> {
   next: (value: T) => void;
 }
 
 /**
- * Subject interface that extends Observer with additional functionality
- * A Subject is both an Observable (can be subscribed to) and an Observer (can emit values)
+ * Subject interface that extends Observer with additional functionality A Subject is both an Observable (can be
+ * subscribed to) and an Observer (can emit values)
  */
 export interface Subject<T> extends Observer<T> {
   /** Indicates whether the subject is closed for new subscriptions */
@@ -30,16 +26,17 @@ export interface Subject<T> extends Observer<T> {
 }
 
 /**
- * - Creates a new Subject that can be used to emit values to multiple observers
- * Implements a simplified version of RxJS Subject pattern
+ * - Creates a new Subject that can be used to emit values to multiple observers Implements a simplified version of RxJS
+ *   Subject pattern
+ *
  * @example
- * const bus = createSubject<string>();
- * const a = bus.subscribe(v => console.log('A:', v));
- * const b = bus.subscribe({ next: v => console.log('B:', v) });
- * bus.next('hello');   // A: hello / B: hello
- * a.unsubscribe();
- * bus.next('world');   // B: world
- * bus.complete();
+ *   const bus = createSubject<string>();
+ *   const a = bus.subscribe(v => console.log('A:', v));
+ *   const b = bus.subscribe({ next: v => console.log('B:', v) });
+ *   bus.next('hello'); // A: hello / B: hello
+ *   a.unsubscribe();
+ *   bus.next('world'); // B: world
+ *   bus.complete();
  */
 export function createSubject<T>(): Subject<T> {
   // Set to store all active observers
@@ -48,8 +45,8 @@ export function createSubject<T>(): Subject<T> {
   let _closed = false;
 
   /**
-   * Subscribes to the subject with either an Observer object or a next function
-   * Returns a teardown object that can be used to unsubscribe
+   * Subscribes to the subject with either an Observer object or a next function Returns a teardown object that can be
+   * used to unsubscribe
    */
   const subscribe = (obsOrFn: Observer<T> | ((v: T) => void)): Teardown => {
     // If subject is closed, return a no-op unsubscribe
@@ -68,8 +65,8 @@ export function createSubject<T>(): Subject<T> {
   };
 
   /**
-   * Emits a new value to all observers
-   * Takes a snapshot of observers to avoid issues if collection is modified during iteration
+   * Emits a new value to all observers Takes a snapshot of observers to avoid issues if collection is modified during
+   * iteration
    */
   const next = (value: T) => {
     if (_closed || observers.size === 0) return;
@@ -84,16 +81,12 @@ export function createSubject<T>(): Subject<T> {
     }
   };
 
-  /**
-   * Removes all observers without closing the subject
-   */
+  /** Removes all observers without closing the subject */
   const unsubscribe = () => {
     observers.clear();
   };
 
-  /**
-   * Marks the subject as completed and removes all observers
-   */
+  /** Marks the subject as completed and removes all observers */
   const complete = () => {
     _closed = true;
     observers.clear();

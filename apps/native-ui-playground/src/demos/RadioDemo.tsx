@@ -1,15 +1,8 @@
+import Feather from '@expo/vector-icons/Feather';
+import { Button, Radio, RadioCard, RadioGroup, RadioGroupCard, Text } from '@skyroc/native-ui';
+import { ThemeColor } from '@skyroc/ui-types';
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import Feather from '@expo/vector-icons/Feather';
-import {
-  Button,
-  Radio,
-  RadioCard,
-  RadioGroup,
-  RadioGroupCard,
-  Text
-} from '@skyroc/native-ui';
-import { ThemeColor } from '@skyroc/ui-types';
 
 const COLORS = ['primary', 'destructive', 'success', 'warning', 'info', 'accent', 'carbon', 'secondary'];
 const SIZES = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
@@ -57,7 +50,7 @@ const RadioDemo = () => {
       <Text className="mb-4 text-lg font-semibold">Basic</Text>
       <View className="mb-8 gap-3">
         <Radio defaultChecked>Radio</Radio>
-        <Radio >Unchecked</Radio>
+        <Radio>Unchecked</Radio>
       </View>
 
       {/* Color */}
@@ -75,22 +68,30 @@ const RadioDemo = () => {
       <Text className="mb-4 text-lg font-semibold">Size</Text>
       <View className="mb-8 gap-3">
         {SIZES.map(s => (
-          <Radio key={s} defaultChecked size={s}>{s}</Radio>
+          <Radio key={s} defaultChecked size={s}>
+            {s}
+          </Radio>
         ))}
       </View>
 
       {/* Shape */}
       <Text className="mb-4 text-lg font-semibold">Shape</Text>
       <View className="mb-8 gap-3">
-        <Radio defaultChecked shape="round">Round (default)</Radio>
-        <Radio defaultChecked shape="square">Square</Radio>
+        <Radio defaultChecked shape="round">
+          Round (default)
+        </Radio>
+        <Radio defaultChecked shape="square">
+          Square
+        </Radio>
       </View>
 
       {/* Disabled */}
       <Text className="mb-4 text-lg font-semibold">Disabled</Text>
       <View className="mb-8 gap-3">
         <Radio disabled>Disabled</Radio>
-        <Radio defaultChecked disabled>Disabled & Checked</Radio>
+        <Radio defaultChecked disabled>
+          Disabled & Checked
+        </Radio>
       </View>
 
       {/* Label Position */}
@@ -106,7 +107,9 @@ const RadioDemo = () => {
         <Radio checked={controlled} onCheckedChange={setControlled}>
           {controlled ? 'Checked' : 'Unchecked'}
         </Radio>
-        <Button size="sm" onPress={() => setControlled(v => !v)}>Toggle</Button>
+        <Button size="sm" onPress={() => setControlled(v => !v)}>
+          Toggle
+        </Button>
       </View>
 
       {/* RadioGroup */}
@@ -114,7 +117,9 @@ const RadioDemo = () => {
       <View className="mb-8 gap-3">
         <RadioGroup value={groupValue} onChange={setGroupValue}>
           {FRUIT_ITEMS.map(item => (
-            <Radio key={item.value} name={item.value}>{item.label}</Radio>
+            <Radio key={item.value} name={item.value}>
+              {item.label}
+            </Radio>
           ))}
         </RadioGroup>
         <Text className="text-sm text-muted-foreground">Selected: {groupValue}</Text>

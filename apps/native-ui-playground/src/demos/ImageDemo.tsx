@@ -1,5 +1,5 @@
-import { ScrollView, View } from 'react-native';
 import { Image, ImageFallback, Text } from '@skyroc/native-ui';
+import { ScrollView, View } from 'react-native';
 
 const ImageDemo = () => {
   return (
@@ -7,31 +7,15 @@ const ImageDemo = () => {
       {/* Basic */}
       <Text className="mb-4 text-lg font-semibold">Basic</Text>
       <View className="mb-8 gap-3">
-        <Image
-          className="h-48 w-full rounded-xl"
-          contentFit="cover"
-          src="https://picsum.photos/seed/basic/800/400"
-        />
+        <Image className="h-48 w-full rounded-xl" contentFit="cover" src="https://picsum.photos/seed/basic/800/400" />
       </View>
 
       {/* Shapes */}
       <Text className="mb-4 text-lg font-semibold">Shapes</Text>
       <View className="mb-8 flex-row gap-3">
-        <Image
-          className="h-20 w-20 rounded-lg"
-          contentFit="cover"
-          src="https://picsum.photos/seed/square/200"
-        />
-        <Image
-          className="h-20 w-20 rounded-full"
-          contentFit="cover"
-          src="https://picsum.photos/seed/circle/200"
-        />
-        <Image
-          className="h-20 w-32 rounded-xl"
-          contentFit="cover"
-          src="https://picsum.photos/seed/rect/320/200"
-        />
+        <Image className="h-20 w-20 rounded-lg" contentFit="cover" src="https://picsum.photos/seed/square/200" />
+        <Image className="h-20 w-20 rounded-full" contentFit="cover" src="https://picsum.photos/seed/circle/200" />
+        <Image className="h-20 w-32 rounded-xl" contentFit="cover" src="https://picsum.photos/seed/rect/320/200" />
       </View>
 
       {/* Content Fit */}

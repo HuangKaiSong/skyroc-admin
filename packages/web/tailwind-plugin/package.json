@@ -1,22 +1,26 @@
 {
   "name": "@skyroc/tailwind-plugin",
-  "type": "module",
   "version": "0.0.1",
+  "files": [
+    "./dist"
+  ],
+  "type": "module",
   "sideEffects": false,
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*"
+      ]
+    }
+  },
   "exports": {
     ".": {
       "import": "./src/index.ts"
     }
   },
-  "typesVersions": {
-    "*": {
-      "*": ["./src/*"]
-    }
-  },
-  "files": ["./dist"],
   "scripts": {
     "build": "tsup",
-    "lint": "eslint . --fix"
+    "lint": "oxlint --fix"
   },
   "dependencies": {
     "@skyroc/color": "workspace:*",

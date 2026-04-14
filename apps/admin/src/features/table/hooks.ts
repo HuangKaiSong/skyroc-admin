@@ -9,9 +9,7 @@ import type {
   TableDataWithIndex
 } from './types';
 
-/**
- * 核心表格Hook - 处理数据获取、分页、列管理等
- */
+/** 核心表格Hook - 处理数据获取、分页、列管理等 */
 export function useHookTable<
   A extends TableApiFn,
   T = GetTableData<A>,
@@ -63,9 +61,7 @@ export function useHookTable<
   // 是否是首次加载
   const isFirstLoad = useRef(true);
 
-  /**
-   * 获取表格数据
-   */
+  /** 获取表格数据 */
   const getData = useCallback(async () => {
     setLoading(true);
 
@@ -101,16 +97,12 @@ export function useHookTable<
     }
   }, [apiFn, searchParams, transformer, transformParams]);
 
-  /**
-   * 更新搜索参数
-   */
+  /** 更新搜索参数 */
   const updateSearchParams = useCallback((params: Partial<Parameters<A>[0]>) => {
     setSearchParams(prev => ({ ...prev, ...params }));
   }, []);
 
-  /**
-   * 重置搜索参数
-   */
+  /** 重置搜索参数 */
   const resetSearchParams = useCallback(() => {
     setSearchParams({
       ...apiParams,
@@ -119,9 +111,7 @@ export function useHookTable<
     } as Partial<Parameters<A>[0]>);
   }, [apiParams]);
 
-  /**
-   * 重新加载列
-   */
+  /** 重新加载列 */
   const reloadColumns = useCallback(() => {
     const newColumns = columnsFactory();
     const newChecks = getColumnChecks(newColumns);

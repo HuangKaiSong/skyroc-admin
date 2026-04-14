@@ -16,6 +16,7 @@
 ## 🎯 职责定位
 
 **核心职责**:
+
 - 提供完整的表格解决方案
 - 数据获取和分页管理
 - URL 参数同步
@@ -48,80 +49,74 @@
 
 ```ts
 // Hooks
-export { useTable } from './hooks/use-table'
-export { useHookTable } from './hooks/use-hook-table'
-export { useTableScroll } from './hooks/use-table-scroll'
-export { useTableOperate } from './hooks/use-table-operate'
+export { useTable } from './hooks/use-table';
+export { useHookTable } from './hooks/use-hook-table';
+export { useTableScroll } from './hooks/use-table-scroll';
+export { useTableOperate } from './hooks/use-table-operate';
 
 // Components
-export { TableHeaderOperation } from './components/TableHeaderOperation'
-export { DragContent } from './components/DragContent'
+export { TableHeaderOperation } from './components/TableHeaderOperation';
+export { DragContent } from './components/DragContent';
 
 // Types
-export type {
-  TableConfig,
-  TableColumn,
-  TableApiFn,
-  TableColumnCheck,
-  CustomTableProps
-} from './types'
+export type { TableConfig, TableColumn, TableApiFn, TableColumnCheck, CustomTableProps } from './types';
 ```
 
 ### 类型定义
 
 ```ts
 // src/types/index.ts
-import type { TableProps, TablePaginationConfig } from 'antd'
+import type { TableProps, TablePaginationConfig } from 'antd';
 
 /** 表格API函数类型 */
-export type TableApiFn = (params: any) => Promise<any>
+export type TableApiFn = (params: any) => Promise<any>;
 
 /** 表格列定义 */
 export type TableColumn<T = any> = {
-  key: string
-  title: string
-  dataIndex?: keyof T
+  key: string;
+  title: string;
+  dataIndex?: keyof T;
   // ... Ant Design Column 属性
-}
+};
 
 /** 列检查（用于显示/隐藏） */
 export interface TableColumnCheck {
-  key: string
-  title: string
-  checked: boolean
+  key: string;
+  title: string;
+  checked: boolean;
 }
 
 /** 表格配置 */
 export interface TableConfig<A extends TableApiFn> {
   /** API 函数 */
-  apiFn: A
+  apiFn: A;
   /** API 默认参数 */
-  apiParams?: Partial<Parameters<A>[0]>
+  apiParams?: Partial<Parameters<A>[0]>;
   /** 列定义工厂函数 */
-  columns: () => TableColumn[]
+  columns: () => TableColumn[];
   /** 是否立即加载 */
-  immediate?: boolean
+  immediate?: boolean;
   /** 是否同步到 URL */
-  isChangeURL?: boolean
+  isChangeURL?: boolean;
   /** 分页配置 */
-  pagination?: TablePaginationConfig
+  pagination?: TablePaginationConfig;
   /** Row Key */
-  rowKey?: string
+  rowKey?: string;
   /** 表格变化回调 */
-  onChange?: (...args: any[]) => any
+  onChange?: (...args: any[]) => any;
   /** 参数转换 */
-  transformParams?: (params: Parameters<A>[0]) => any
+  transformParams?: (params: Parameters<A>[0]) => any;
 }
 
 /** 带索引的表格数据 */
-export type TableDataWithIndex<T> = T & { index: number }
+export type TableDataWithIndex<T> = T & { index: number };
 
 /** 自定义表格Props */
 export interface CustomTableProps<A extends TableApiFn> extends TableProps {
-  columns: TableColumn[]
-  dataSource: TableDataWithIndex<any>[]
-  loading: boolean
-  pagination: TablePaginationConfig
+  columns: TableColumn[];
+  dataSource: TableDataWithIndex<any>[];
+  loading: boolean;
+  pagination: TablePaginationConfig;
 }
 ```
 
@@ -131,11 +126,11 @@ export interface CustomTableProps<A extends TableApiFn> extends TableProps {
 
 ```ts
 // src/hooks/use-table.ts
-import { Form } from 'antd'
-import { parseQuery } from '@skyroc/web-router'
-import { useRoute } from '@skyroc/web-router'
-import { useHookTable } from './use-hook-table'
-import type { TableConfig } from '../types'
+import { Form } from 'antd';
+import { parseQuery } from '@skyroc/web-router';
+import { useRoute } from '@skyroc/web-router';
+import { useHookTable } from './use-hook-table';
+import type { TableConfig } from '../types';
 
 /**
  * Ant Design 表格 Hook
@@ -148,8 +143,8 @@ import type { TableConfig } from '../types'
  * - 列管理
  */
 export function useTable<A extends TableApiFn>(config: TableConfig<A>) {
-  const { isMobile } = useAdminState()
-  const route = useRoute()
+  const { isMobile } = useAdminState();
+  const route = useRoute();
 
   const {
     apiFn,
@@ -162,12 +157,12 @@ export function useTable<A extends TableApiFn>(config: TableConfig<A>) {
     rowKey = 'id',
     transformParams,
     ...rest
-  } = config
+  } = config;
 
-  const [form] = Form.useForm<Parameters<A>[0]>()
+  const [form] = Form.useForm<Parameters<A>[0]>();
 
   // 从URL中解析查询参数
-  const query = parseQuery(route.searchStr) as Parameters<A>[0]
+  const query = parseQuery(route.searchStr) as Parameters<A>[0];
 
   // 使用核心Hook
   const {
@@ -188,41 +183,41 @@ export function useTable<A extends TableApiFn>(config: TableConfig<A>) {
     apiFn,
     apiParams: { ...apiParams, ...query },
     columns: columnsFactory,
-    getColumnChecks: (cols) => {
+    getColumnChecks: cols => {
       return cols
         .filter(col => col.key)
         .map(col => ({
           key: col.key as string,
           title: col.title as string,
           checked: true
-        }))
+        }));
     },
     getColumns: (cols, checks) => {
-      const columnMap = new Map(cols.map(col => [col.key, col]))
+      const columnMap = new Map(cols.map(col => [col.key, col]));
       return checks
         .filter(check => check.checked)
         .map(check => columnMap.get(check.key))
-        .filter(Boolean)
+        .filter(Boolean);
     },
     immediate,
     isChangeURL,
-    transformer: (res) => {
-      const { current = 1, records = [], size = 10, total: totalNum = 0 } = res || {}
+    transformer: res => {
+      const { current = 1, records = [], size = 10, total: totalNum = 0 } = res || {};
 
       const recordsWithIndex = records.map((item, index) => ({
         ...item,
         index: (current - 1) * size + index + 1
-      }))
+      }));
 
       return {
         data: recordsWithIndex,
         pageNum: current,
         pageSize: size,
         total: totalNum
-      }
+      };
     },
     transformParams
-  })
+  });
 
   // 分页配置（支持移动端）
   const pagination: TablePaginationConfig = {
@@ -233,44 +228,44 @@ export function useTable<A extends TableApiFn>(config: TableConfig<A>) {
     showSizeChanger: true,
     pageSizeOptions: ['10', '15', '20', '25', '30'],
     ...paginationConfig
-  }
+  };
 
   // 重置搜索
   function reset() {
-    form.setFieldsValue(apiParams)
-    resetSearchParams()
+    form.setFieldsValue(apiParams);
+    resetSearchParams();
   }
 
   // 执行搜索
   async function run(isResetCurrent = true) {
-    const values = await form.validateFields()
+    const values = await form.validateFields();
 
     if (values) {
       if (isResetCurrent) {
-        updateSearchParams({ ...values, current: 1 })
+        updateSearchParams({ ...values, current: 1 });
       } else {
-        updateSearchParams(values)
+        updateSearchParams(values);
       }
     }
   }
 
   // 表格变化处理
   function handleChange(...args: any[]) {
-    const [paginationContext, ...otherParams] = args
+    const [paginationContext, ...otherParams] = args;
 
     let params = {
       current: paginationContext.current,
       size: paginationContext.pageSize
-    }
+    };
 
     if (onChangeCallback) {
-      const customParams = onChangeCallback(paginationContext, ...otherParams)
+      const customParams = onChangeCallback(paginationContext, ...otherParams);
       if (customParams) {
-        params = customParams
+        params = customParams;
       }
     }
 
-    updateSearchParams(params)
+    updateSearchParams(params);
   }
 
   return {
@@ -310,7 +305,7 @@ export function useTable<A extends TableApiFn>(config: TableConfig<A>) {
       rowKey,
       ...rest
     }
-  }
+  };
 }
 ```
 
@@ -318,7 +313,7 @@ export function useTable<A extends TableApiFn>(config: TableConfig<A>) {
 
 ```ts
 // src/hooks/use-hook-table.ts
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 /**
  * 核心表格Hook - 处理数据获取、分页、列管理等
@@ -333,66 +328,60 @@ export function useHookTable(config) {
     immediate = true,
     transformer,
     transformParams
-  } = config
+  } = config;
 
   // 数据状态
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [empty, setEmpty] = useState(false)
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [empty, setEmpty] = useState(false);
 
   // 分页状态
-  const [pageNum, setPageNum] = useState(1)
-  const [pageSize, setPageSize] = useState(10)
-  const [total, setTotal] = useState(0)
+  const [pageNum, setPageNum] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [total, setTotal] = useState(0);
 
   // 搜索参数
   const [searchParams, setSearchParams] = useState({
     ...apiParams,
     current: 1,
     size: 10
-  })
+  });
 
   // 列管理
-  const allColumns = useMemo(() => columnsFactory(), [columnsFactory])
-  const [columnChecks, setColumnChecks] = useState(() =>
-    getColumnChecks(allColumns)
-  )
-  const columns = useMemo(
-    () => getColumns(allColumns, columnChecks),
-    [allColumns, columnChecks, getColumns]
-  )
+  const allColumns = useMemo(() => columnsFactory(), [columnsFactory]);
+  const [columnChecks, setColumnChecks] = useState(() => getColumnChecks(allColumns));
+  const columns = useMemo(() => getColumns(allColumns, columnChecks), [allColumns, columnChecks, getColumns]);
 
-  const isFirstLoad = useRef(true)
+  const isFirstLoad = useRef(true);
 
   // 获取数据
   const getData = useCallback(async () => {
-    setLoading(true)
+    setLoading(true);
 
     try {
-      const params = transformParams ? transformParams(searchParams) : searchParams
-      const res = await apiFn(params)
+      const params = transformParams ? transformParams(searchParams) : searchParams;
+      const res = await apiFn(params);
 
-      const { data: list, pageNum: current, pageSize: size, total: totalNum } =
-        transformer(res)
+      const { data: list, pageNum: current, pageSize: size, total: totalNum } = transformer(res);
 
-      setData(list)
-      setPageNum(current)
-      setPageSize(size)
-      setTotal(totalNum)
-      setEmpty(list.length === 0)
+      setData(list);
+      setPageNum(current);
+      setPageSize(size);
+      setTotal(totalNum);
+      setEmpty(list.length === 0);
     } catch (error) {
-      console.error('Failed to fetch table data:', error)
-      setData([])
-      setEmpty(true)
+      console.error('Failed to fetch table data:', error);
+      setData([]);
+      setEmpty(true);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }, [apiFn, searchParams, transformer, transformParams])
+  }, [apiFn, searchParams, transformer, transformParams]);
 
   // 更新搜索参数
-  const updateSearchParams = useCallback((params) => {
-    setSearchParams(prev => ({ ...prev, ...params }))
-  }, [])
+  const updateSearchParams = useCallback(params => {
+    setSearchParams(prev => ({ ...prev, ...params }));
+  }, []);
 
   // 重置搜索参数
   const resetSearchParams = useCallback(() => {
@@ -400,18 +389,18 @@ export function useHookTable(config) {
       ...apiParams,
       current: 1,
       size: 10
-    })
-  }, [apiParams])
+    });
+  }, [apiParams]);
 
   // 监听搜索参数变化
   useEffect(() => {
     if (isFirstLoad.current && !immediate) {
-      isFirstLoad.current = false
-      return
+      isFirstLoad.current = false;
+      return;
     }
 
-    getData()
-  }, [searchParams, getData, immediate])
+    getData();
+  }, [searchParams, getData, immediate]);
 
   return {
     columnChecks,
@@ -427,7 +416,7 @@ export function useHookTable(config) {
     setColumnChecks,
     total,
     updateSearchParams
-  }
+  };
 }
 ```
 
@@ -435,67 +424,54 @@ export function useHookTable(config) {
 
 ```tsx
 // src/components/TableHeaderOperation.tsx
-import { Button, Popover, Checkbox } from 'antd'
-import { SettingOutlined, ReloadOutlined } from '@ant-design/icons'
-import type { TableColumnCheck } from '../types'
+import { Button, Popover, Checkbox } from 'antd';
+import { SettingOutlined, ReloadOutlined } from '@ant-design/icons';
+import type { TableColumnCheck } from '../types';
 
 interface TableHeaderOperationProps {
   /** 列检查列表 */
-  columnChecks: TableColumnCheck[]
+  columnChecks: TableColumnCheck[];
   /** 列检查变化 */
-  onColumnChecksChange: (checks: TableColumnCheck[]) => void
+  onColumnChecksChange: (checks: TableColumnCheck[]) => void;
   /** 刷新 */
-  onRefresh?: () => void
+  onRefresh?: () => void;
 }
 
-export function TableHeaderOperation({
-  columnChecks,
-  onColumnChecksChange,
-  onRefresh
-}: TableHeaderOperationProps) {
+export function TableHeaderOperation({ columnChecks, onColumnChecksChange, onRefresh }: TableHeaderOperationProps) {
   // 处理单列切换
   function handleCheckChange(key: string, checked: boolean) {
-    const newChecks = columnChecks.map(item =>
-      item.key === key ? { ...item, checked } : item
-    )
-    onColumnChecksChange(newChecks)
+    const newChecks = columnChecks.map(item => (item.key === key ? { ...item, checked } : item));
+    onColumnChecksChange(newChecks);
   }
 
   // 全选/取消全选
   function handleCheckAll(checked: boolean) {
-    const newChecks = columnChecks.map(item => ({ ...item, checked }))
-    onColumnChecksChange(newChecks)
+    const newChecks = columnChecks.map(item => ({ ...item, checked }));
+    onColumnChecksChange(newChecks);
   }
 
-  const checkedCount = columnChecks.filter(item => item.checked).length
-  const allChecked = checkedCount === columnChecks.length
-  const indeterminate = checkedCount > 0 && checkedCount < columnChecks.length
+  const checkedCount = columnChecks.filter(item => item.checked).length;
+  const allChecked = checkedCount === columnChecks.length;
+  const indeterminate = checkedCount > 0 && checkedCount < columnChecks.length;
 
   const content = (
     <div className="w-200px">
       <div className="mb-2">
-        <Checkbox
-          checked={allChecked}
-          indeterminate={indeterminate}
-          onChange={(e) => handleCheckAll(e.target.checked)}
-        >
+        <Checkbox checked={allChecked} indeterminate={indeterminate} onChange={e => handleCheckAll(e.target.checked)}>
           列展示
         </Checkbox>
       </div>
       <div className="space-y-2">
         {columnChecks.map(item => (
           <div key={item.key}>
-            <Checkbox
-              checked={item.checked}
-              onChange={(e) => handleCheckChange(item.key, e.target.checked)}
-            >
+            <Checkbox checked={item.checked} onChange={e => handleCheckChange(item.key, e.target.checked)}>
               {item.title}
             </Checkbox>
           </div>
         ))}
       </div>
     </div>
-  )
+  );
 
   return (
     <div className="flex gap-2">
@@ -508,7 +484,7 @@ export function TableHeaderOperation({
         <Button icon={<SettingOutlined />}>列设置</Button>
       </Popover>
     </div>
-  )
+  );
 }
 ```
 
@@ -517,55 +493,42 @@ export function TableHeaderOperation({
 ### 示例 1: 基本使用
 
 ```tsx
-import { useTable, TableHeaderOperation } from '@skyroc/web-table'
-import { Table } from 'antd'
+import { useTable, TableHeaderOperation } from '@skyroc/web-table';
+import { Table } from 'antd';
 
 function UserTable() {
-  const {
-    tableProps,
-    columnChecks,
-    setColumnChecks,
-    getData
-  } = useTable({
+  const { tableProps, columnChecks, setColumnChecks, getData } = useTable({
     apiFn: fetchUserList,
     columns: () => [
       { key: 'id', title: 'ID', dataIndex: 'id' },
       { key: 'name', title: '姓名', dataIndex: 'name' },
       { key: 'email', title: '邮箱', dataIndex: 'email' }
     ]
-  })
+  });
 
   return (
     <div>
-      <TableHeaderOperation
-        columnChecks={columnChecks}
-        onColumnChecksChange={setColumnChecks}
-        onRefresh={getData}
-      />
+      <TableHeaderOperation columnChecks={columnChecks} onColumnChecksChange={setColumnChecks} onRefresh={getData} />
       <Table {...tableProps} />
     </div>
-  )
+  );
 }
 ```
 
 ### 示例 2: 带搜索表单
 
 ```tsx
-import { useTable } from '@skyroc/web-table'
-import { Form, Input, Button, Table } from 'antd'
+import { useTable } from '@skyroc/web-table';
+import { Form, Input, Button, Table } from 'antd';
 
 function UserTable() {
-  const {
-    form,
-    searchProps,
-    tableProps
-  } = useTable({
+  const { form, searchProps, tableProps } = useTable({
     apiFn: fetchUserList,
     apiParams: { status: 1 },
     columns: () => [
       // ... columns
     ]
-  })
+  });
 
   return (
     <div>
@@ -581,7 +544,7 @@ function UserTable() {
 
       <Table {...tableProps} />
     </div>
-  )
+  );
 }
 ```
 

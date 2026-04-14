@@ -1,24 +1,46 @@
 {
   "name": "@skyroc/native-ui",
-  "type": "module",
   "version": "0.1.0",
   "private": false,
   "description": "React Native component library with NativeWind styling",
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "type": "module",
   "sideEffects": false,
-  "exports": {
-    ".": "./src/index.ts"
-  },
   "main": "./src/index.ts",
   "module": "./src/index.ts",
   "types": "./src/index.ts",
-  "files": ["dist"],
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "scripts": {
     "build": "tsdown",
     "clean": "rimraf dist",
     "test": "jest",
     "test:watch": "jest --watch",
     "typecheck": "tsc --noEmit --skipLibCheck"
+  },
+  "dependencies": {
+    "@radix-ui/react-use-controllable-state": "^1.2.2",
+    "@rn-primitives/slot": "^1.2.0",
+    "@skyroc/hooks": "workspace:*",
+    "@skyroc/native-theme": "workspace:*",
+    "@skyroc/ui-types": "workspace:*",
+    "@skyroc/utils": "workspace:*",
+    "react": "catalog:core",
+    "react-native-modal": "catalog:native",
+    "react-native-ui-datepicker": "^3.1.2",
+    "tailwind-variants": "catalog:utils"
+  },
+  "devDependencies": {
+    "@skyroc/tsconfig": "workspace:*",
+    "@testing-library/react-native": "catalog:native",
+    "@types/react": "catalog:dev",
+    "jest": "^29.7.0",
+    "react-native": "catalog:native",
+    "react-test-renderer": "^18.3.1"
   },
   "peerDependencies": {
     "@gorhom/bottom-sheet": "^5.1.2",
@@ -60,25 +82,5 @@
     "react-native-reanimated": {
       "optional": true
     }
-  },
-  "dependencies": {
-    "@radix-ui/react-use-controllable-state": "^1.2.2",
-    "@rn-primitives/slot": "^1.2.0",
-    "@skyroc/hooks": "workspace:*",
-    "@skyroc/native-theme": "workspace:*",
-    "@skyroc/ui-types": "workspace:*",
-    "@skyroc/utils": "workspace:*",
-    "react": "catalog:core",
-    "react-native-modal": "catalog:native",
-    "react-native-ui-datepicker": "^3.1.2",
-    "tailwind-variants": "catalog:utils"
-  },
-  "devDependencies": {
-    "@skyroc/tsconfig": "workspace:*",
-    "@testing-library/react-native": "catalog:native",
-    "@types/react": "catalog:dev",
-    "jest": "^29.7.0",
-    "react-native": "catalog:native",
-    "react-test-renderer": "^18.3.1"
   }
 }

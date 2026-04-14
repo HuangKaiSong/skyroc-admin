@@ -1,13 +1,13 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { View } from 'react-native';
-import type { LayoutChangeEvent } from 'react-native';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
 import * as Haptics from 'expo-haptics';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { View } from 'react-native';
+import type { LayoutChangeEvent } from 'react-native';
 import { useSharedValue, withTiming } from 'react-native-reanimated';
+import { dropdownMenuVariants } from './dropdown-menu-variants';
 import { DropdownMenuBar } from './DropdownMenuBar';
 import { DropdownMenuPanel } from './DropdownMenuPanel';
-import { dropdownMenuVariants } from './dropdown-menu-variants';
 import type { DropdownMenuOption, DropdownMenuProps } from './types';
 
 const DropdownMenu = (props: DropdownMenuProps) => {

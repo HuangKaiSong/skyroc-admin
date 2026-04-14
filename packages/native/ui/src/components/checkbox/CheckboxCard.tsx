@@ -1,7 +1,7 @@
-import { Pressable, View } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn, isString } from '@skyroc/utils';
+import { Pressable, View } from 'react-native';
 import { Text } from '../text/Typography';
 import { SIZE_CONTROL_MAP, SIZE_INNER_ICON_MAP, checkboxCardVariants, checkboxVariants } from './checkbox-variants';
 import type { CheckboxCardProps } from './types';
@@ -75,11 +75,7 @@ const CheckboxCard = (props: CheckboxCardProps) => {
       <View style={{ height: controlSize, width: controlSize }}>
         <View className={controlCls()}>
           {isActive ? (
-            <Feather
-              color={INDICATOR_COLOR}
-              name={isIndeterminate ? 'minus' : 'check'}
-              size={innerIconSize}
-            />
+            <Feather color={INDICATOR_COLOR} name={isIndeterminate ? 'minus' : 'check'} size={innerIconSize} />
           ) : null}
         </View>
       </View>
@@ -111,11 +107,7 @@ const CheckboxCard = (props: CheckboxCardProps) => {
   }
 
   return (
-    <Pressable
-      className={cn(cardCls(), className)}
-      disabled={disabled}
-      onPress={handleToggle}
-    >
+    <Pressable className={cn(cardCls(), className)} disabled={disabled} onPress={handleToggle}>
       {checkboxPosition === 'left' && renderCheckbox()}
       {renderContent()}
       {checkboxPosition === 'right' && renderCheckbox()}

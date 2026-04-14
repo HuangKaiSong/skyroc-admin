@@ -1,8 +1,8 @@
-import { type FC } from 'react';
 import classNames from 'clsx';
+import { type FC } from 'react';
 import type { AdminLayoutProps } from '../../types';
-import style from './index.module.css';
 import { LAYOUT_MAX_Z_INDEX, LAYOUT_SCROLL_EL_ID, createLayoutCssVars } from './shared';
+import style from './index.module.css';
 
 // eslint-disable-next-line complexity
 const AdminLayout: FC<AdminLayoutProps> = ({
@@ -105,10 +105,7 @@ const AdminLayout: FC<AdminLayoutProps> = ({
   const footerDisplay = !fullContent && fixedFooter ? 'block' : 'none';
 
   return (
-    <section
-      className={classNames('relative h-full', commonClass)}
-      style={cssVar}
-    >
+    <section className={classNames('relative h-full', commonClass)} style={cssVar}>
       <section
         id={isWrapperScroll ? scrollElId : ''}
         className={classNames('h-full flex flex-col', scrollWrapperClass, commonClass, {

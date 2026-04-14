@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { ScrollView, View } from 'react-native';
 import { Button, Switch, Text } from '@skyroc/native-ui';
 import { ThemeColor } from '@skyroc/ui-types';
+import { useState } from 'react';
+import { ScrollView, View } from 'react-native';
 
 const COLORS = ['primary', 'destructive', 'success', 'warning', 'info', 'accent', 'carbon', 'secondary'];
 const SIZES = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
@@ -12,11 +12,7 @@ const SwitchDemo = () => {
   const [loading, setLoading] = useState(true);
 
   return (
-    <ScrollView
-      className="flex-1 bg-muted"
-      contentContainerClassName="p-6 pb-20"
-      showsVerticalScrollIndicator={false}
-    >
+    <ScrollView className="flex-1 bg-muted" contentContainerClassName="p-6 pb-20" showsVerticalScrollIndicator={false}>
       {/* Basic */}
       <Text className="mb-4 text-lg font-semibold">Basic</Text>
       <View className="mb-8 flex-row items-center gap-4">
@@ -79,7 +75,9 @@ const SwitchDemo = () => {
           <Switch checked={controlled} onCheckedChange={setControlled} />
           <Text className="text-sm">{controlled ? 'ON' : 'OFF'}</Text>
         </View>
-        <Button size="sm" onPress={() => setControlled(v => !v)}>Toggle</Button>
+        <Button size="sm" onPress={() => setControlled(v => !v)}>
+          Toggle
+        </Button>
       </View>
     </ScrollView>
   );

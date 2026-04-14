@@ -13,12 +13,14 @@
 ## 🎯 职责定位
 
 **核心职责**:
+
 - 提供全局类型定义
 - API 响应类型
 - 业务实体类型
 - 通用工具类型
 
 **设计原则**:
+
 - 零依赖
 - 类型优先
 - 模块化组织
@@ -55,10 +57,10 @@
 
 ```ts
 // 在 service 中使用
-import type { Api } from '@core/types'
+import type { Api } from '@core/types';
 
 async function login(params: Api.Auth.LoginParams): Promise<Api.Service.Response<Api.Auth.LoginResponse>> {
-  return axios.post('/auth/login', params)
+  return axios.post('/auth/login', params);
 }
 ```
 
@@ -66,20 +68,20 @@ async function login(params: Api.Auth.LoginParams): Promise<Api.Service.Response
 
 ```ts
 // 在主题包中使用
-import type { Theme } from '@core/types'
+import type { Theme } from '@core/types';
 
 const themeSettings: Theme.ThemeSetting = {
   themeScheme: 'light',
-  themeColor: '#1890ff',
+  themeColor: '#1890ff'
   // ...
-}
+};
 ```
 
 ### 示例 3: 存储类型使用
 
 ```ts
 // 在存储包中使用
-import type { StorageType } from '@core/types'
+import type { StorageType } from '@core/types';
 
 // 扩展存储schema
 declare module '@core/storage' {
@@ -98,7 +100,7 @@ const option: Common.Option = {
 
 const storage: StorageType.Local = {
   token: 'xxx',
-  themeColor: '#1890ff',
+  themeColor: '#1890ff'
   // ...
 };
 ```
@@ -106,17 +108,20 @@ const storage: StorageType.Local = {
 ## 🔌 主要导出
 
 ### API 类型
+
 - `Api.Auth` - 认证相关类型
 - `Api.Route` - 路由相关类型
 - `Api.Common` - 通用 API 类型
 - `Api.Service` - 服务配置类型
 
 ### App 类型
+
 - `App.Global` - 全局应用类型
 - `Theme` - 主题配置类型
 - `UnionKey` - 联合类型键
 
 ### 全局命名空间
+
 - `Common` - 通用类型(Option, YesOrNo 等)
 - `Menu` - 菜单类型
 - `Router` - 路由类型
@@ -126,6 +131,7 @@ const storage: StorageType.Local = {
 ## 🔗 相关包
 
 作为 `@core` 命名空间的一部分,相关包:
+
 - `@core/types` - 类型定义(当前包)
 - `@core/hooks` - React Hooks(规划中)
 - `@core/store` - 状态管理(规划中)

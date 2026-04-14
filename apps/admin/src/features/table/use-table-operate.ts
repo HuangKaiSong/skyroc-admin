@@ -6,10 +6,7 @@ import type { TableData, TableOperateType } from './types';
 /**
  * 表格操作Hook
  *
- * 提供表格常用操作功能：
- * - 添加/编辑抽屉管理
- * - 表格行选择
- * - 删除操作
+ * 提供表格常用操作功能： - 添加/编辑抽屉管理 - 表格行选择 - 删除操作
  */
 export function useTableOperate<T extends TableData = TableData>(
   data: T[],
@@ -27,9 +24,7 @@ export function useTableOperate<T extends TableData = TableData>(
   // 表单实例
   const [form] = Form.useForm<T>();
 
-  /**
-   * 处理添加操作
-   */
+  /** 处理添加操作 */
   function handleAdd() {
     setOperateType('add');
     openDrawer();
@@ -40,6 +35,7 @@ export function useTableOperate<T extends TableData = TableData>(
 
   /**
    * 处理编辑操作
+   *
    * @param idOrData - 数据ID或完整数据对象
    */
   function handleEdit(idOrData: T['id'] | T) {
@@ -61,9 +57,7 @@ export function useTableOperate<T extends TableData = TableData>(
   /** 选中的行keys */
   const [checkedRowKeys, setCheckedRowKeys] = useState<React.Key[]>([]);
 
-  /**
-   * 行选择变化处理
-   */
+  /** 行选择变化处理 */
   function onSelectChange(keys: React.Key[]) {
     setCheckedRowKeys(keys);
   }
@@ -77,34 +71,26 @@ export function useTableOperate<T extends TableData = TableData>(
     type: 'checkbox'
   };
 
-  /**
-   * 关闭抽屉
-   */
+  /** 关闭抽屉 */
   function onClose() {
     closeDrawer();
     form.resetFields();
   }
 
-  /**
-   * 批量删除完成后的回调
-   */
+  /** 批量删除完成后的回调 */
   async function onBatchDeleted() {
     window.$message?.success(t('common.deleteSuccess'));
     setCheckedRowKeys([]);
     await getData(false);
   }
 
-  /**
-   * 单个删除完成后的回调
-   */
+  /** 单个删除完成后的回调 */
   async function onDeleted() {
     window.$message?.success(t('common.deleteSuccess'));
     await getData(false);
   }
 
-  /**
-   * 提交表单
-   */
+  /** 提交表单 */
   async function handleSubmit() {
     const res = await form.validateFields();
 

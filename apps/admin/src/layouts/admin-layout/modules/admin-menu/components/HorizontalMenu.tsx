@@ -49,11 +49,7 @@ const HorizontalMenu: FC<Props> = memo(props => {
 
   const strippedMenus = stripRootType(allMenus);
 
-  /**
-   * 处理菜单点击
-   * - FirstLevel 模式：选择一级菜单，如果有子菜单且 autoSelectFirstMenu 开启，自动选择最深层级菜单
-   * - 其他模式：直接跳转
-   */
+  /** 处理菜单点击 - FirstLevel 模式：选择一级菜单，如果有子菜单且 autoSelectFirstMenu 开启，自动选择最深层级菜单 - 其他模式：直接跳转 */
   const handleClickMenu: MenuProps['onSelect'] = menuInfo => {
     if (mode === HorizontalMenuMode.FirstLevel) {
       changeActiveFirstLevelMenuKey(menuInfo.key);

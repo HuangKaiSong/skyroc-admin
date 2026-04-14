@@ -2,16 +2,22 @@
   "name": "@skyroc/types",
   "version": "1.0.0",
   "description": "全局类型定义 - 跨平台支持",
-  "author": "",
+  "keywords": [
+    "core",
+    "types",
+    "typescript"
+  ],
   "license": "MIT",
-  "keywords": ["types", "typescript", "core"],
+  "author": "",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*"
+      ]
+    }
+  },
   "exports": {
     ".": "./src/index",
     "./types": "./src/index.d.ts"
-  },
-  "typesVersions": {
-    "*": {
-      "*": ["./src/*"]
-    }
   }
 }

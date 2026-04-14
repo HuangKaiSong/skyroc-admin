@@ -25,7 +25,7 @@ interface CommandArg {
   /** Execute additional command after bumping and before git commit. Defaults to 'pnpm sa changelog' */
   execute?: string;
   /**
-   * display lang of cli
+   * Display lang of cli
    *
    * @default 'en-us'
    */

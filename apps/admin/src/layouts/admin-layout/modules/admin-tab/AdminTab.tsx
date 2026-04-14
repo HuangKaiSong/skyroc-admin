@@ -72,29 +72,16 @@ const AdminTab = () => {
 
   return (
     <DarkModeContainer className="size-full flex-y-center px-16px shadow-tab">
-      <div
-        className="h-full flex-1-hidden"
-        ref={bsWrapper}
-      >
+      <div className="h-full flex-1-hidden" ref={bsWrapper}>
         <BetterScroll
           options={{ click: !isPCFlag, scrollX: true, scrollY: false }}
           ref={bsScrollRef}
           onClick={removeFocus}
         >
-          <div
-            className={clsx('h-full flex pr-18px', tabWrapperClass)}
-            ref={tabRef}
-          >
+          <div className={clsx('h-full flex pr-18px', tabWrapperClass)} ref={tabRef}>
             {tabs.map((tab, index) => (
-              <TabContextMenu
-                disabledKeys={getContextMenuDisabledKeys(tab.id, index)}
-                key={tab.id}
-                tab={tab}
-              >
-                <div
-                  className={tabSettings.mode === 'slider' ? 'h-full' : undefined}
-                  id={tab.id}
-                >
+              <TabContextMenu disabledKeys={getContextMenuDisabledKeys(tab.id, index)} key={tab.id} tab={tab}>
+                <div className={tabSettings.mode === 'slider' ? 'h-full' : undefined} id={tab.id}>
                   <PageTab
                     active={tab.id === activeTabId}
                     activeColor={themeColor}
@@ -121,11 +108,7 @@ const AdminTab = () => {
         </BetterScroll>
       </div>
 
-      <ReloadButton
-        isReload={isReload}
-        tooltipContent={t('icon.reload')}
-        onClick={handleReloadPage}
-      />
+      <ReloadButton isReload={isReload} tooltipContent={t('icon.reload')} onClick={handleReloadPage} />
 
       <FullScreen
         enterTooltip={t('icon.fullscreen')}

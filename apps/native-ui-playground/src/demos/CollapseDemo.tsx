@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
-import { ScrollView, View } from 'react-native';
 import { Button, Collapse, CollapseItem, Text } from '@skyroc/native-ui';
 import type { CollapseRef } from '@skyroc/native-ui';
+import { useRef, useState } from 'react';
+import { ScrollView, View } from 'react-native';
 
 const CollapseDemo = () => {
   const [basicValue, setBasicValue] = useState<(number | string)[]>([]);
@@ -66,9 +66,15 @@ const CollapseDemo = () => {
       {/* Toggle All */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">Toggle All</Text>
       <View className="flex-row gap-2 px-4 pb-3">
-        <Button size="sm" onPress={() => collapseRef.current?.toggleAll(true)}>Expand All</Button>
-        <Button size="sm" variant="outline" onPress={() => collapseRef.current?.toggleAll(false)}>Collapse All</Button>
-        <Button size="sm" variant="outline" onPress={() => collapseRef.current?.toggleAll()}>Toggle All</Button>
+        <Button size="sm" onPress={() => collapseRef.current?.toggleAll(true)}>
+          Expand All
+        </Button>
+        <Button size="sm" variant="outline" onPress={() => collapseRef.current?.toggleAll(false)}>
+          Collapse All
+        </Button>
+        <Button size="sm" variant="outline" onPress={() => collapseRef.current?.toggleAll()}>
+          Toggle All
+        </Button>
       </View>
       <Collapse ref={collapseRef}>
         <CollapseItem name="1" title="Title 1">

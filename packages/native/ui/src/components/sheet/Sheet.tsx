@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useRef } from 'react';
-import { Pressable, View } from 'react-native';
-import { cn } from '@skyroc/utils';
+import AntDesign from '@expo/vector-icons/AntDesign';
 import { BottomSheetBackdrop, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import type { BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
-import AntDesign from '@expo/vector-icons/AntDesign';
+import { cn } from '@skyroc/utils';
+import { useCallback, useEffect, useRef } from 'react';
+import { Pressable, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Text } from '../text/Typography';
 import { sheetVariants } from './sheet-variants';
@@ -86,15 +86,8 @@ const Sheet = (props: SheetProps) => {
             <View className={cn(slots.header(), classNames?.header)}>
               {title ? <Text className={cn(slots.title(), classNames?.title)}>{title}</Text> : null}
               {closeable && (
-                <Pressable
-                  className={cn(slots.close(), classNames?.close)}
-                  onPress={handleClose}
-                >
-                  <AntDesign
-                    color="#333"
-                    name="close"
-                    size={12}
-                  />
+                <Pressable className={cn(slots.close(), classNames?.close)} onPress={handleClose}>
+                  <AntDesign color="#333" name="close" size={12} />
                 </Pressable>
               )}
             </View>

@@ -1,7 +1,7 @@
+import { Button } from '@skyroc/native-ui';
 import { useState } from 'react';
 import { Alert, ScrollView, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { Button } from '@skyroc/native-ui';
 
 const ButtonSnackDemo = () => {
   const [loading, setLoading] = useState(false);
@@ -17,7 +17,9 @@ const ButtonSnackDemo = () => {
         <ScrollView style={{ flex: 1, padding: 16 }}>
           <Text style={styles.sectionTitle}>Variants</Text>
           <View style={styles.section}>
-            <Button variant="solid" onPress={() => Alert.alert('Solid')}>Solid</Button>
+            <Button variant="solid" onPress={() => Alert.alert('Solid')}>
+              Solid
+            </Button>
             <Button variant="outline">Outline</Button>
             <Button variant="ghost">Ghost</Button>
           </View>

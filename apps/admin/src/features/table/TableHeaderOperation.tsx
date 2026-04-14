@@ -34,24 +34,20 @@ interface TableHeaderOperationProps {
 /**
  * 表格头部操作栏组件
  *
- * 提供常用的表格操作功能：
- * - 添加按钮
- * - 批量删除按钮
- * - 刷新按钮
- * - 列设置（显示/隐藏、拖拽排序）
+ * 提供常用的表格操作功能： - 添加按钮 - 批量删除按钮 - 刷新按钮 - 列设置（显示/隐藏、拖拽排序）
  *
  * @example
- * ```tsx
- * <TableHeaderOperation
- *   columns={columnChecks}
- *   setColumnChecks={setColumnChecks}
- *   add={handleAdd}
- *   onDelete={handleBatchDelete}
- *   disabledDelete={checkedRowKeys.length === 0}
- *   refresh={getData}
- *   loading={loading}
- * />
- * ```
+ *   ```tsx
+ *   <TableHeaderOperation
+ *     columns={columnChecks}
+ *     setColumnChecks={setColumnChecks}
+ *     add={handleAdd}
+ *     onDelete={handleBatchDelete}
+ *     disabledDelete={checkedRowKeys.length === 0}
+ *     refresh={getData}
+ *     loading={loading}
+ *   />;
+ *   ```
  */
 const TableHeaderOperation: FC<TableHeaderOperationProps> = ({
   add,
@@ -69,11 +65,7 @@ const TableHeaderOperation: FC<TableHeaderOperationProps> = ({
   const { t } = useTranslation();
 
   return (
-    <Space
-      wrap
-      align={itemAlign}
-      className="lt-sm:w-200px"
-    >
+    <Space wrap align={itemAlign} className="lt-sm:w-200px">
       {/* 前缀内容 */}
       {prefix}
 
@@ -82,23 +74,14 @@ const TableHeaderOperation: FC<TableHeaderOperationProps> = ({
         <>
           {/* 添加按钮 */}
           {add && (
-            <Button
-              ghost
-              icon={<IconIcRoundPlus className="text-icon" />}
-              size="small"
-              type="primary"
-              onClick={add}
-            >
+            <Button ghost icon={<IconIcRoundPlus className="text-icon" />} size="small" type="primary" onClick={add}>
               {t('common.add')}
             </Button>
           )}
 
           {/* 批量删除按钮 */}
           {onDelete && (
-            <Popconfirm
-              title={t('common.confirmDelete')}
-              onConfirm={onDelete}
-            >
+            <Popconfirm title={t('common.confirmDelete')} onConfirm={onDelete}>
               <Button
                 danger
                 ghost
@@ -132,17 +115,9 @@ const TableHeaderOperation: FC<TableHeaderOperationProps> = ({
       <Popover
         placement="bottomRight"
         trigger="click"
-        content={
-          <DragContent
-            columns={columns}
-            setColumnChecks={setColumnChecks}
-          />
-        }
+        content={<DragContent columns={columns} setColumnChecks={setColumnChecks} />}
       >
-        <Button
-          icon={<IconAntDesignSettingOutlined />}
-          size="small"
-        >
+        <Button icon={<IconAntDesignSettingOutlined />} size="small">
           {t('common.columnSetting')}
         </Button>
       </Popover>

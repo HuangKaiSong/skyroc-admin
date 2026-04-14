@@ -1,7 +1,7 @@
-import { useImperativeHandle } from 'react';
-import { Text, View } from 'react-native';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
+import { useImperativeHandle } from 'react';
+import { Text, View } from 'react-native';
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
 import { passwordInputVariants } from './password-input-variants';
 import type { PasswordInputProps } from './types';
@@ -54,13 +54,7 @@ const PasswordInput = (props: PasswordInputProps) => {
 
   return (
     <View className={cn(slots.root(), className, classNames?.root)}>
-      <View
-        className={cn(
-          slots.security(),
-          !gutter && 'border border-border',
-          classNames?.security
-        )}
-      >
+      <View className={cn(slots.security(), !gutter && 'border border-border', classNames?.security)}>
         <CodeField
           ref={blurOnFulfillRef}
           {...codeFieldProps}
@@ -85,25 +79,19 @@ const PasswordInput = (props: PasswordInputProps) => {
                 )}
                 onLayout={getCellOnLayoutHandler(index)}
               >
-                <Text
-                  className='text-center text-xl text-foreground'
-              >
-                {symbol && mask ? '●' : null}
-                {symbol && !mask ? symbol : null}
-                {!symbol && isFocused ? <Cursor /> : null}
-              </Text>
-          </View>
+                <Text className="text-center text-xl text-foreground">
+                  {symbol && mask ? '●' : null}
+                  {symbol && !mask ? symbol : null}
+                  {!symbol && isFocused ? <Cursor /> : null}
+                </Text>
+              </View>
             );
           }}
         />
       </View>
 
-      {info && !errorInfo ? (
-        <Text className={cn(slots.info(), classNames?.info)}>{info}</Text>
-      ) : null}
-      {errorInfo ? (
-        <Text className={cn(slots.errorInfo(), classNames?.errorInfo)}>{errorInfo}</Text>
-      ) : null}
+      {info && !errorInfo ? <Text className={cn(slots.info(), classNames?.info)}>{info}</Text> : null}
+      {errorInfo ? <Text className={cn(slots.errorInfo(), classNames?.errorInfo)}>{errorInfo}</Text> : null}
     </View>
   );
 };

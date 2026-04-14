@@ -38,7 +38,7 @@ export const skyrocUIPlugin = plugin.withOptions(
       return `${Number.parseFloat(Math.max(0, value).toFixed(3))}rem`;
     }
 
-    /** web: hsl(var(--xxx))，native: var(--xxx) */
+    /** Web: hsl(var(--xxx))，native: var(--xxx) */
     function c(name: string) {
       return isNative ? `var(--${name})` : `hsl(var(--${name}))`;
     }

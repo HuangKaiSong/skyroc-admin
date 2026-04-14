@@ -3,7 +3,7 @@ import type { SlotClassNames } from '../../types/shared';
 
 /** 单个 tab 项配置 */
 interface TabItem {
-  /** tab 面板内容 */
+  /** Tab 面板内容 */
   children?: ReactNode;
 
   /** 是否禁用该 tab */
@@ -12,14 +12,14 @@ interface TabItem {
   /** 唯一标识 */
   key: string;
 
-  /** tab 标签标题 */
+  /** Tab 标签标题 */
   title: ReactNode;
 }
 
-/** tabs 类型风格 */
+/** Tabs 类型风格 */
 type TabsType = 'line' | 'pill';
 
-/** tabs 插槽名称 */
+/** Tabs 插槽名称 */
 type TabsSlots = 'content' | 'indicator' | 'pager' | 'root' | 'tab' | 'tabBar' | 'tabBarContent' | 'tabText';
 
 /** Tabs 组件属性 */
@@ -36,19 +36,19 @@ interface TabsProps {
   /** 非受控默认激活索引 */
   defaultActiveIndex?: number;
 
-  /** tab 项数据 */
+  /** Tab 项数据 */
   items: TabItem[];
 
   /** 是否懒加载面板内容 */
   lazy?: boolean;
 
-  /** lazy 开启时，预加载当前 tab 前后 N 个面板，默认 0 */
+  /** Lazy 开启时，预加载当前 tab 前后 N 个面板，默认 0 */
   lazyPreloadDistance?: number;
 
   /** 激活索引变化回调 */
   onIndexChange?: (index: number) => void;
 
-  /** lazy 开启时，未加载面板的占位内容 */
+  /** Lazy 开启时，未加载面板的占位内容 */
   renderLazyPlaceholder?: () => ReactNode;
 
   /** 是否开启手势滑动切换 */
@@ -66,10 +66,10 @@ interface TabBarProps {
   /** 各插槽自定义 className */
   classNames?: SlotClassNames<TabsSlots>;
 
-  /** tab 项数据 */
+  /** Tab 项数据 */
   items: TabItem[];
 
-  /** tab 点击回调 */
+  /** Tab 点击回调 */
   onTabPress: (index: number) => void;
 
   /** 类型风格 */
@@ -84,7 +84,7 @@ interface PagerProps {
   /** 各插槽自定义 className */
   classNames?: SlotClassNames<TabsSlots>;
 
-  /** tab 项数据 */
+  /** Tab 项数据 */
   items: TabItem[];
 
   /** 是否懒加载 */

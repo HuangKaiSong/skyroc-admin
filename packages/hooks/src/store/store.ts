@@ -1,21 +1,12 @@
-/**
- * 状态更新器类型
- * 支持直接传值或传入 updater 函数
- */
+/** 状态更新器类型 支持直接传值或传入 updater 函数 */
 type StateUpdater<S> = S | ((prev: S) => S);
 
 /**
  * 通用状态引擎基类
  *
- * 职责：
- * - 状态保存与更新（统一入口）
- * - 订阅 / 通知（Observer 模式）
- * - 提供 `subscribe` + `getSnapshot` 给 `useSyncExternalStore`
+ * 职责： - 状态保存与更新（统一入口） - 订阅 / 通知（Observer 模式） - 提供 `subscribe` + `getSnapshot` 给 `useSyncExternalStore`
  *
- * 设计原则：
- * - 普通基类而非抽象类，保留最大灵活性
- * - 所有状态更新必须走 `setState`，禁止直接 `this.state = ...`
- * - `emit` 私有，杜绝"忘记通知"的问题
+ * 设计原则： - 普通基类而非抽象类，保留最大灵活性 - 所有状态更新必须走 `setState`，禁止直接 `this.state = ...` - `emit` 私有，杜绝"忘记通知"的问题
  */
 export class Store<S> {
   /** 当前状态 */

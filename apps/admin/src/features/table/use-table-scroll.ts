@@ -14,9 +14,7 @@ export function useTableScroll(scrollX: number = 702) {
 
   const size = useSize(tableWrapperRef);
 
-  /**
-   * 获取表格滚动的Y轴高度
-   */
+  /** 获取表格滚动的Y轴高度 */
   function getTableScrollY() {
     const height = size?.height;
 

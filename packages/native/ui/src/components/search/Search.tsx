@@ -1,7 +1,7 @@
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { cn } from '@skyroc/utils';
 import type { NativeSyntheticEvent, TextInputSubmitEditingEventData } from 'react-native';
 import { Pressable, View } from 'react-native';
-import { cn } from '@skyroc/utils';
-import AntDesign from '@expo/vector-icons/AntDesign';
 import { Input } from '../input';
 import { Text } from '../text/Typography';
 import { searchVariants } from './search-variants';
@@ -43,13 +43,7 @@ const Search = (props: SearchProps) => {
 
     const iconSize = size === 'sm' ? 14 : size === 'lg' ? 18 : 16;
 
-    return (
-      <AntDesign
-        color="#9ca3af"
-        name="search"
-        size={iconSize}
-      />
-    );
+    return <AntDesign color="#9ca3af" name="search" size={iconSize} />;
   }
 
   return (
@@ -68,10 +62,7 @@ const Search = (props: SearchProps) => {
         {...rest}
       />
       {showAction ? (
-        <Pressable
-          className={slots.action()}
-          onPress={handleCancel}
-        >
+        <Pressable className={slots.action()} onPress={handleCancel}>
           <Text className={slots.actionText()}>{actionText}</Text>
         </Pressable>
       ) : null}

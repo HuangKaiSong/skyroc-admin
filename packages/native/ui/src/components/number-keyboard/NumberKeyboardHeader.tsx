@@ -1,5 +1,5 @@
-import { Text, View } from 'react-native';
 import { cn } from '@skyroc/utils';
+import { Text, View } from 'react-native';
 import type { SlotClassNames } from '../../types/shared';
 import { Button } from '../button';
 import { numberKeyboardVariants } from './number-keyboard-variants';
@@ -36,11 +36,7 @@ const NumberKeyboardHeader = (props: NumberKeyboardHeaderProps) => {
   return (
     <View className={cn(slots.header(), classNames?.header)}>
       <View className="w-16" />
-      {title ? (
-        <Text className={cn(slots.title(), classNames?.title)}>{title}</Text>
-      ) : (
-        <View className="flex-1" />
-      )}
+      {title ? <Text className={cn(slots.title(), classNames?.title)}>{title}</Text> : <View className="flex-1" />}
       {showClose ? (
         <Button
           color="primary"

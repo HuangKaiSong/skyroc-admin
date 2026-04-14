@@ -1,10 +1,8 @@
-/**
- * @vitest-environment node
- */
+/** @vitest-environment node */
 import type { AxiosError } from 'axios';
-import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { HttpResponse, delay, http } from 'msw';
 import { setupServer } from 'msw/node';
+import { afterAll, afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 import { BACKEND_ERROR_CODE, REQUEST_ID_KEY, createFlatRequest, createRequest } from '../src';
 
 // ==================== 类型定义 ====================
@@ -22,9 +20,8 @@ const BASE_URL = 'http://localhost:3000';
 /**
  * 使用 fetch adapter 而非默认的 http adapter。
  *
- * 原因：msw v2 的 @mswjs/interceptors 与 axios 默认 http adapter（follow-redirects）
- * 存在已知兼容性问题（Invalid URL），而 fetch adapter 与 msw 完全兼容。
- * 集成测试验证的是包装器逻辑（拦截器、hooks、transform），这些行为与 adapter 无关。
+ * 原因：msw v2 的 @mswjs/interceptors 与 axios 默认 http adapter（follow-redirects） 存在已知兼容性问题（Invalid URL），而 fetch adapter 与
+ * msw 完全兼容。 集成测试验证的是包装器逻辑（拦截器、hooks、transform），这些行为与 adapter 无关。
  */
 const TEST_AXIOS_CONFIG = { baseURL: BASE_URL, adapter: 'fetch' as const };
 

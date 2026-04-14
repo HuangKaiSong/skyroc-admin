@@ -1,5 +1,5 @@
-import { tv } from 'tailwind-variants';
 import type { ThemeSize } from '@skyroc/ui-types';
+import { tv } from 'tailwind-variants';
 
 /** Maps size preset to track dimensions */
 export const SIZE_TRACK_MAP: Record<ThemeSize, { height: number; width: number }> = {

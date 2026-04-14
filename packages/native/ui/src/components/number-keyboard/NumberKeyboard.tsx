@@ -1,12 +1,12 @@
+import { cn } from '@skyroc/utils';
 import { useEffect, useMemo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { cn } from '@skyroc/utils';
+import { numberKeyboardVariants } from './number-keyboard-variants';
 import { NumberKeyboardHeader } from './NumberKeyboardHeader';
 import { NumberKeyboardKey } from './NumberKeyboardKey';
 import { NumberKeyboardSidebar } from './NumberKeyboardSidebar';
-import { numberKeyboardVariants } from './number-keyboard-variants';
 import type { KeyConfig, KeyType, NumberKeyboardProps } from './types';
 
 /** 键盘滑出距离（足够大确保完全隐藏） */
@@ -43,31 +43,21 @@ function genDefaultKeys(
     ...genBasicKeys(randomKeyOrder),
     { text: extra, type: 'extra' },
     { text: '0', type: '' },
-    { text: showDeleteKey ? (deleteButtonText || '') : '', type: showDeleteKey ? 'delete' as KeyType : '' as KeyType }
+    { text: showDeleteKey ? deleteButtonText || '' : '', type: showDeleteKey ? ('delete' as KeyType) : ('' as KeyType) }
   ];
 }
 
 /** 生成自定义主题按键（3×4 网格，无删除键） */
-function genCustomKeys(
-  randomKeyOrder: boolean,
-  extraKey: string | [string, string]
-): KeyConfig[] {
+function genCustomKeys(randomKeyOrder: boolean, extraKey: string | [string, string]): KeyConfig[] {
   const keys = genBasicKeys(randomKeyOrder);
   const extras = Array.isArray(extraKey) ? extraKey : [extraKey].filter(Boolean);
 
   if (extras.length === 0) {
     keys.push({ text: '0', type: '', wider: true });
   } else if (extras.length === 1) {
-    keys.push(
-      { text: '0', type: '', wider: true },
-      { text: extras[0], type: 'extra' }
-    );
+    keys.push({ text: '0', type: '', wider: true }, { text: extras[0], type: 'extra' });
   } else {
-    keys.push(
-      { text: extras[0], type: 'extra' },
-      { text: '0', type: '' },
-      { text: extras[1], type: 'extra' }
-    );
+    keys.push({ text: extras[0], type: 'extra' }, { text: '0', type: '' }, { text: extras[1], type: 'extra' });
   }
 
   return keys;
@@ -139,24 +129,17 @@ const NumberKeyboard = (props: NumberKeyboardProps) => {
   }
 
   const keys = useMemo(
-    () => theme === 'custom'
-      ? genCustomKeys(randomKeyOrder, extraKey)
-      : genDefaultKeys(randomKeyOrder, extraKey, showDeleteKey, deleteButtonText),
+    () =>
+      theme === 'custom'
+        ? genCustomKeys(randomKeyOrder, extraKey)
+        : genDefaultKeys(randomKeyOrder, extraKey, showDeleteKey, deleteButtonText),
     [visible, theme, extraKey, randomKeyOrder, showDeleteKey, deleteButtonText]
   );
 
   return (
     <>
-      {visible && hideOnClickOutside ? (
-        <Pressable style={StyleSheet.absoluteFill} onPress={handleBlur} />
-      ) : null}
-      <Animated.View
-        style={[
-          { bottom: 0, left: 0, position: 'absolute', right: 0, zIndex: 100 },
-          animatedStyle
-        ]}
-
-      >
+      {visible && hideOnClickOutside ? <Pressable style={StyleSheet.absoluteFill} onPress={handleBlur} /> : null}
+      <Animated.View style={[{ bottom: 0, left: 0, position: 'absolute', right: 0, zIndex: 100 }, animatedStyle]}>
         <View className={cn(slots.root(), className, classNames?.root)}>
           <NumberKeyboardHeader
             classNames={classNames}
@@ -190,9 +173,7 @@ const NumberKeyboard = (props: NumberKeyboardProps) => {
               />
             ) : null}
           </View>
-          {safeAreaInsetBottom && insets.bottom > 0 ? (
-            <View style={{ height: insets.bottom }} />
-          ) : null}
+          {safeAreaInsetBottom && insets.bottom > 0 ? <View style={{ height: insets.bottom }} /> : null}
         </View>
       </Animated.View>
     </>

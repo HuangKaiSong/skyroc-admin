@@ -9,8 +9,8 @@ import LangSwitch from '@/features/lang/LangSwitch';
 import MenuToggler from '../../state/menus/MenuToggler';
 import { useAdminMenus } from '../../state/menus/use-admin-menus';
 import { useAdminState } from '../../state/use-admin-state';
-import AdminLogo from '../AdminLogo';
 import AdminSearch from '../admin-search/AdminSearch';
+import AdminLogo from '../AdminLogo';
 
 import AdminBreadcrumb from './components/Breadcrumb';
 import ThemeButton from './components/ThemeButton';
@@ -68,19 +68,11 @@ const GlobalHeader = memo(() => {
 
   return (
     <DarkModeContainer className="h-full flex-y-center px-12px shadow-header">
-      {showLogo && (
-        <AdminLogo
-          className="h-full"
-          style={{ width: `${siderWidth}px` }}
-        />
-      )}
+      {showLogo && <AdminLogo className="h-full" style={{ width: `${siderWidth}px` }} />}
 
       {showMenuToggler && <MenuToggler />}
 
-      <div
-        className="h-full flex-y-center flex-1-hidden"
-        id={GLOBAL_HEADER_MENU_ID}
-      >
+      <div className="h-full flex-y-center flex-1-hidden" id={GLOBAL_HEADER_MENU_ID}>
         {!isMobile && !showMenu && <AdminBreadcrumb />}
       </div>
 
@@ -101,10 +93,7 @@ const GlobalHeader = memo(() => {
 
         <NotificationButton className="px-12px" />
 
-        <ThemeSchemaSwitch
-          className="px-12px"
-          tooltipContent={t('icon.themeSchema')}
-        />
+        <ThemeSchemaSwitch className="px-12px" tooltipContent={t('icon.themeSchema')} />
 
         <ThemeButton />
 

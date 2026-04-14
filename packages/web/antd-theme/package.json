@@ -2,18 +2,20 @@
   "name": "@skyroc/adapter-antd-theme",
   "version": "1.0.0",
   "description": "Ant Design theme adapter - custom theme algorithm using OKLCH color space",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*"
+      ]
+    }
+  },
   "exports": {
     ".": "./src/index.ts"
   },
-  "typesVersions": {
-    "*": {
-      "*": ["./src/*"]
-    }
+  "dependencies": {
+    "@skyroc/color": "workspace:*"
   },
   "peerDependencies": {
     "antd": ">=5.0.0"
-  },
-  "dependencies": {
-    "@skyroc/color": "workspace:*"
   }
 }

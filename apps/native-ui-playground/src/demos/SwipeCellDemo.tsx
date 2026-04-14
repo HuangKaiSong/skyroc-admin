@@ -1,7 +1,7 @@
-import { useRef } from 'react';
-import { Alert, ScrollView, View } from 'react-native';
 import { Button, Cell, SwipeCell, Text } from '@skyroc/native-ui';
 import type { SwipeCellBeforeCloseParams, SwipeCellInstance } from '@skyroc/native-ui';
+import { useRef } from 'react';
+import { Alert, ScrollView, View } from 'react-native';
 
 const SwipeCellDemo = () => {
   const swipeCellRef = useRef<SwipeCellInstance>(null);

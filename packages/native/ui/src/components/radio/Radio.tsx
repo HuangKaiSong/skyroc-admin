@@ -1,12 +1,12 @@
-/* eslint-disable complexity */
-import { useContext } from 'react';
-import { Pressable, View } from 'react-native';
 import Feather from '@expo/vector-icons/Feather';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn, isString } from '@skyroc/utils';
+/* eslint-disable complexity */
+import { useContext } from 'react';
+import { Pressable, View } from 'react-native';
 import { Text } from '../text/Typography';
-import { RadioGroupContext } from './RadioGroupContext';
 import { SIZE_CONTROL_MAP, SIZE_DOT_MAP, SIZE_INNER_ICON_MAP, radioVariants } from './radio-variants';
+import { RadioGroupContext } from './RadioGroupContext';
 import type { RadioProps } from './types';
 
 const INDICATOR_COLOR = '#fff';
@@ -90,13 +90,7 @@ const Radio = (props: RadioProps) => {
     }
 
     if (resolvedShape === 'square') {
-      return (
-        <Feather
-          color={INDICATOR_COLOR}
-          name="check"
-          size={innerIconSize}
-        />
-      );
+      return <Feather color={INDICATOR_COLOR} name="check" size={innerIconSize} />;
     }
 
     // round shape: render dot
@@ -119,10 +113,7 @@ const Radio = (props: RadioProps) => {
       </Pressable>
 
       {children ? (
-        <Pressable
-          disabled={disabled || labelDisabled}
-          onPress={handleLabelPress}
-        >
+        <Pressable disabled={disabled || labelDisabled} onPress={handleLabelPress}>
           {isString(children) ? <Text className={labelCls()}>{children}</Text> : <View>{children}</View>}
         </Pressable>
       ) : null}

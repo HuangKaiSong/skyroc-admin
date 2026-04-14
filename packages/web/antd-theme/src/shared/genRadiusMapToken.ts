@@ -3,21 +3,20 @@ import type { MapToken } from 'antd/lib/theme/interface';
 /**
  * Radius configuration
  *
- * Based on UnoCSS radius rules, using base radius value
- * Default borderRadius = 6px
+ * Based on UnoCSS radius rules, using base radius value Default borderRadius = 6px
  *
- * | Name    | Calculation          | px (radius=6) |
- * |---------|---------------------|---------------|
- * | none    | 0                   | 0             |
- * | xs      | radius / 3          | 2             |
- * | sm      | radius * 2/3        | 4             |
- * | md      | radius              | 6 (default)   |
- * | lg      | radius * 4/3        | 8             |
- * | xl      | radius * 2          | 12            |
- * | 2xl     | radius * 8/3        | 16            |
- * | 3xl     | radius * 4          | 24            |
- * | 4xl     | radius * 16/3       | 32            |
- * | full    | 9999                | 9999          |
+ * | Name | Calculation   | px (radius=6) |
+ * | ---- | ------------- | ------------- |
+ * | none | 0             | 0             |
+ * | xs   | radius / 3    | 2             |
+ * | sm   | radius * 2/3  | 4             |
+ * | md   | radius        | 6 (default)   |
+ * | lg   | radius * 4/3  | 8             |
+ * | xl   | radius * 2    | 12            |
+ * | 2xl  | radius * 8/3  | 16            |
+ * | 3xl  | radius * 4    | 24            |
+ * | 4xl  | radius * 16/3 | 32            |
+ * | full | 9999          | 9999          |
  */
 
 /** Radius multipliers (based on borderRadius) */
@@ -38,6 +37,7 @@ export type RadiusSizeKey = keyof typeof RADIUS_MULTIPLIERS;
 
 /**
  * Calculate radius size
+ *
  * @param multiplier Multiplier
  * @param borderRadius Base radius (default 6)
  */
@@ -57,12 +57,9 @@ export type RadiusMapToken = Pick<
  *
  * Based on base radius value, generate Ant Design style radius tokens
  *
- * Mapping (borderRadius = 6):
- * - borderRadiusXS: xs (2px) = radius / 3
- * - borderRadiusSM: sm (4px) = radius * 2/3
- * - borderRadius: md (6px) = radius
- * - borderRadiusLG: lg (8px) = radius * 4/3
- * - borderRadiusOuter: sm (4px) = radius * 2/3
+ * Mapping (borderRadius = 6): - borderRadiusXS: xs (2px) = radius / 3 - borderRadiusSM: sm (4px) = radius * 2/3 -
+ * borderRadius: md (6px) = radius - borderRadiusLG: lg (8px) = radius * 4/3 - borderRadiusOuter: sm (4px) = radius *
+ * 2/3
  *
  * @param borderRadius Base radius value (px), default 6
  */
@@ -84,9 +81,9 @@ export interface ExtendedRadiusToken extends RadiusMapToken {
   borderRadius3XL: number;
   /** 4xl - 32px */
   borderRadius4XL: number;
-  /** full - 9999px */
+  /** Full - 9999px */
   borderRadiusFull: number;
-  /** xl - 12px */
+  /** Xl - 12px */
   borderRadiusXL: number;
 }
 
@@ -110,6 +107,7 @@ export function genExtendedRadiusToken(borderRadius = 6): ExtendedRadiusToken {
 
 /**
  * Generate complete radius table
+ *
  * @param borderRadius Base radius value (px), default 6
  */
 export function genRadiusSizes(borderRadius = 6): Record<RadiusSizeKey, number> {
@@ -124,6 +122,7 @@ export function genRadiusSizes(borderRadius = 6): Record<RadiusSizeKey, number> 
 
 /**
  * Generate radius CSS variables
+ *
  * @param borderRadius Base radius value (px), default 6
  */
 export function genRadiusVars(borderRadius = 6): Record<string, string> {

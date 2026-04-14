@@ -38,16 +38,10 @@ const ConfigOperation = () => {
 
   return (
     <div className="flex justify-between">
-      <AButton
-        danger
-        onClick={handleReset}
-      >
+      <AButton danger onClick={handleReset}>
         {t('theme.configOperation.resetConfig')}
       </AButton>
-      <AButton
-        type="primary"
-        onClick={handleCopy}
-      >
+      <AButton type="primary" onClick={handleCopy}>
         {t('theme.configOperation.copyConfig')}
       </AButton>
     </div>

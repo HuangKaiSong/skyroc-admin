@@ -8,5 +8,5 @@ export type {
   CollapseItemRef,
   CollapseProps,
   CollapseRef,
-  CollapseToggleAllOptions,
+  CollapseToggleAllOptions
 } from './types';

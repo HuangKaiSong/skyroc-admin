@@ -1,6 +1,6 @@
-import { View } from 'react-native';
 import { IndexBar, Tabs } from '@skyroc/native-ui';
 import type { IndexBarItem, TabItem } from '@skyroc/native-ui';
+import { View } from 'react-native';
 
 /** 中国城市数据（真实 A-Z 分组） */
 const CITY_DATA: Record<string, string[]> = {
@@ -56,7 +56,6 @@ function buildAlphabetItems(): IndexBarItem[] {
 const CITY_ITEMS = buildCityItems();
 const ALPHABET_ITEMS = buildAlphabetItems();
 
-
 const TAB_ITEMS: TabItem[] = [
   {
     key: 'city',
@@ -90,7 +89,7 @@ const TAB_ITEMS: TabItem[] = [
 const IndexBarDemo = () => {
   return (
     <View className="flex-1 bg-background">
-      <Tabs lazy items={TAB_ITEMS}/>
+      <Tabs lazy items={TAB_ITEMS} />
     </View>
   );
 };

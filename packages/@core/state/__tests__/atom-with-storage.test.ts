@@ -1,9 +1,9 @@
-import { describe, expect, it } from 'vitest';
 import { createStore } from 'jotai';
 import { RESET } from 'jotai/utils';
+import { describe, expect, it } from 'vitest';
 import type { AtomStorage } from '../src/types';
-import { registerStorage } from '../src/utils/storage-registry';
 import { createAtomWithStorage } from '../src/utils/atom-with-storage';
+import { registerStorage } from '../src/utils/storage-registry';
 
 function createMockStorage(initial?: Record<string, unknown>): AtomStorage {
   const store = new Map<string, unknown>(Object.entries(initial ?? {}));

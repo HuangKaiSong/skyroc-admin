@@ -1,12 +1,12 @@
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { cn } from '@skyroc/utils';
 import { useContext, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import type { LayoutChangeEvent } from 'react-native';
 import { View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
-import { cn } from '@skyroc/utils';
-import AntDesign from '@expo/vector-icons/AntDesign';
 import { Cell } from '../cell';
-import { CollapseContext } from './CollapseContext';
 import { collapseItemVariants } from './collapse-variants';
+import { CollapseContext } from './CollapseContext';
 import type { CollapseItemProps } from './types';
 
 /** 动画时长 */
@@ -16,10 +16,9 @@ const DURATION = 300;
 let globalIndex = 0;
 
 /**
- * animatedHeight 约定：
- *  -1 = 测量阶段（不限高、opacity 0，等 onLayout 测量）
- *   0 = 折叠态
- *  >0 = 展开中 / 已展开
+ * AnimatedHeight 约定： -1 = 测量阶段（不限高、opacity 0，等 onLayout 测量） 0 = 折叠态
+ *
+ * > 0 = 展开中 / 已展开
  */
 
 const CollapseItem = (props: CollapseItemProps) => {
@@ -152,11 +151,7 @@ const CollapseItem = (props: CollapseItemProps) => {
     if (!showArrow) return undefined;
     return (
       <Animated.View style={arrowStyle}>
-        <AntDesign
-          color="#6b7280"
-          name="down"
-          size={12}
-        />
+        <AntDesign color="#6b7280" name="down" size={12} />
       </Animated.View>
     );
   }
@@ -176,10 +171,7 @@ const CollapseItem = (props: CollapseItemProps) => {
         onPress={handlePress}
       />
 
-      <Animated.View
-        className={slots.wrapper()}
-        style={wrapperStyle}
-      >
+      <Animated.View className={slots.wrapper()} style={wrapperStyle}>
         {shouldRender ? (
           <View onLayout={handleContentLayout}>
             <View className={slots.content()}>{children}</View>

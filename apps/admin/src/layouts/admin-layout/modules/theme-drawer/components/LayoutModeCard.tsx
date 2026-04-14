@@ -74,10 +74,7 @@ const LayoutModeCard: FC<Props> = ({ ...rest }: Props) => {
           key={key}
           onClick={() => handleChangeMode(key as UnionKey.ThemeLayoutMode)}
         >
-          <Tooltip
-            placement={item.placement}
-            title={t(`theme.layout.layoutMode.${key}_detail`)}
-          >
+          <Tooltip placement={item.placement} title={t(`theme.layout.layoutMode.${key}_detail`)}>
             <div
               className={clsx(
                 'h-64px w-96px gap-6px rd-4px p-6px shadow ring-2 ring-transparent transition-all hover:ring-primary',

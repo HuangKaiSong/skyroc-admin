@@ -9,9 +9,9 @@ import type {
 } from '../types';
 
 /**
- * get recommended color palette by provided color
+ * Get recommended color palette by provided color
  *
- * @param color the provided color
+ * @param color The provided color
  */
 export function getRecommendedColorPalette(color: string) {
   const colorPaletteFamily = getRecommendedColorPaletteFamily(color);
@@ -36,10 +36,10 @@ export function getRecommendedColorPalette(color: string) {
 }
 
 /**
- * get recommended palette color by provided color
+ * Get recommended palette color by provided color
  *
- * @param color the provided color
- * @param number the color palette number
+ * @param color The provided color
+ * @param number The color palette number
  */
 export function getRecommendedPaletteColorByNumber(color: string, number: ColorPaletteNumber) {
   const colorPalette = getRecommendedColorPalette(color);
@@ -50,9 +50,9 @@ export function getRecommendedPaletteColorByNumber(color: string, number: ColorP
 }
 
 /**
- * get color palette family by provided color and color name
+ * Get color palette family by provided color and color name
  *
- * @param color the provided color
+ * @param color The provided color
  */
 export function getRecommendedColorPaletteFamily(color: string) {
   if (!isValidColor(color)) {
@@ -106,10 +106,10 @@ export function getRecommendedColorPaletteFamily(color: string) {
 }
 
 /**
- * get nearest color palette family
+ * Get nearest color palette family
  *
- * @param color color
- * @param families color palette families
+ * @param color Color
+ * @param families Color palette families
  */
 function getNearestColorPaletteFamily(color: string, families: ColorPaletteFamily[]) {
   const familyWithConfig = families.map(family => {

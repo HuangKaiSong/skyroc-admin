@@ -1,10 +1,5 @@
 import { DEFAULT_UPLOAD_BATCH_SIZE } from '../constants';
-import type {
-  IStorageAdapter,
-  LogUploadRequest,
-  LogUploadResponse,
-  UploadResult,
-} from '../types';
+import type { IStorageAdapter, LogUploadRequest, LogUploadResponse, UploadResult } from '../types';
 
 interface UploadManagerConfig {
   /** 设备 ID */
@@ -17,10 +12,7 @@ interface UploadManagerConfig {
   batchSize?: number;
 }
 
-/**
- * 日志上传管理器
- * 负责批量上传历史日志到远程服务器
- */
+/** 日志上传管理器 负责批量上传历史日志到远程服务器 */
 export class UploadManager {
   /** 设备 ID */
   private deviceId: string;
@@ -77,7 +69,7 @@ export class UploadManager {
           deviceId: this.deviceId,
           logs: batch,
           batchIndex: i,
-          totalBatches,
+          totalBatches
         };
 
         const success = await this.uploadBatch(request);
@@ -109,9 +101,9 @@ export class UploadManager {
       const response = await fetch(this.endpoint, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(request),
+        body: JSON.stringify(request)
       });
 
       if (!response.ok) {
@@ -130,7 +122,7 @@ export class UploadManager {
   getStatus(): { isUploading: boolean; lastUploadedTimestamp: number } {
     return {
       isUploading: this.isUploading,
-      lastUploadedTimestamp: this.lastUploadedTimestamp,
+      lastUploadedTimestamp: this.lastUploadedTimestamp
     };
   }
 }

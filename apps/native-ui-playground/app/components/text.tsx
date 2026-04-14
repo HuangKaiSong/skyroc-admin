@@ -1,6 +1,6 @@
+import { NavBar } from '@skyroc/native-ui';
 import { useRouter } from 'expo-router';
 import { View } from 'react-native';
-import { NavBar } from '@skyroc/native-ui';
 import { TextDemo } from '@/src/demos/TextDemo';
 
 const TextPage = () => {

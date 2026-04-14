@@ -29,23 +29,19 @@ interface SetupThemeOptions {
 /**
  * 一次调用完成主题初始化
  *
- * 在 app 入口或 AntdProvider 之前调用，自动处理：
- * - 默认配置加载
- * - localStorage 缓存读取（生产环境）
- * - 版本覆盖检测
- * - Jotai atom 初始化
+ * 在 app 入口或 AntdProvider 之前调用，自动处理： - 默认配置加载 - localStorage 缓存读取（生产环境） - 版本覆盖检测 - Jotai atom 初始化
  *
  * @example
- * ```ts
- * import { setupTheme } from '@skyroc/web-admin-theme';
- * import { localStg } from '@/utils/storage';
+ *   ```ts
+ *   import { setupTheme } from '@skyroc/web-admin-theme';
+ *   import { localStg } from '@/utils/storage';
  *
- * setupTheme({
- *   isProd: import.meta.env.PROD,
- *   buildTime: BUILD_TIME,
- *   storage: localStg,
- * });
- * ```
+ *   setupTheme({
+ *     isProd: import.meta.env.PROD,
+ *     buildTime: BUILD_TIME,
+ *     storage: localStg
+ *   });
+ *   ```
  */
 export function setupTheme(options: SetupThemeOptions) {
   const { buildTime, isProd = false, overrides, storage } = options;
@@ -76,12 +72,12 @@ export function setupTheme(options: SetupThemeOptions) {
  * 类型安全的主题覆盖配置定义辅助函数
  *
  * @example
- * ```ts
- * export const themeOverrides = defineThemeOverrides({
- *   themeColor: '#6366F1',
- *   themeScheme: 'dark',
- * });
- * ```
+ *   ```ts
+ *   export const themeOverrides = defineThemeOverrides({
+ *     themeColor: '#6366F1',
+ *     themeScheme: 'dark'
+ *   });
+ *   ```
  */
 export function defineThemeOverrides(overrides: Partial<Theme.ThemeSetting>): Partial<Theme.ThemeSetting> {
   return overrides;

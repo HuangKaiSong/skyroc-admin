@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { RequestAdapter, ServiceCodes } from '../src/request/types';
 import { createAppRequest } from '../src/request/create-request';
+import type { RequestAdapter, ServiceCodes } from '../src/request/types';
 
 function createMockAdapter(overrides: Partial<RequestAdapter> = {}): RequestAdapter {
   return {

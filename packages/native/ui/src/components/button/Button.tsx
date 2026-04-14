@@ -1,6 +1,6 @@
+import { cn, isString } from '@skyroc/utils';
 /* eslint-disable complexity */
 import { ActivityIndicator, Pressable } from 'react-native';
-import { cn, isString } from '@skyroc/utils';
 import { Text, TextClassContext } from '../text/Typography';
 import { buttonTextVariants, buttonVariants } from './button-variants';
 import type { ButtonProps } from './types';
@@ -36,12 +36,7 @@ const Button = (props: ButtonProps) => {
         role="button"
         {...rest}
       >
-        {loading && (
-          <ActivityIndicator
-            className={cn(textClass)}
-            size="small"
-          />
-        )}
+        {loading && <ActivityIndicator className={cn(textClass)} size="small" />}
         {leading}
         {isString(children) ? <Text className={textClass}>{children}</Text> : children}
         {trailing}

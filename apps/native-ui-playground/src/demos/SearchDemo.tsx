@@ -1,6 +1,6 @@
+import { Search, Text } from '@skyroc/native-ui';
 import { useState } from 'react';
 import { Alert, ScrollView, View } from 'react-native';
-import { Search, Text } from '@skyroc/native-ui';
 
 const SearchDemo = () => {
   const [basic, setBasic] = useState('');
@@ -27,20 +27,11 @@ const SearchDemo = () => {
     <ScrollView className="flex-1 bg-muted" contentContainerClassName="pb-20" showsVerticalScrollIndicator={false}>
       {/* Basic */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">基础用法</Text>
-      <Search
-        placeholder="请输入搜索关键词"
-        value={basic}
-        onChangeText={setBasic}
-      />
+      <Search placeholder="请输入搜索关键词" value={basic} onChangeText={setBasic} />
 
       {/* Round Shape */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">圆角搜索框</Text>
-      <Search
-        placeholder="请输入搜索关键词"
-        shape="round"
-        value={round}
-        onChangeText={setRound}
-      />
+      <Search placeholder="请输入搜索关键词" shape="round" value={round} onChangeText={setRound} />
 
       {/* Show Action */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">搜索框 + 取消按钮</Text>
@@ -72,30 +63,15 @@ const SearchDemo = () => {
 
       {/* With Label */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">显示标签</Text>
-      <Search
-        label="地址"
-        placeholder="请输入搜索关键词"
-        value={label}
-        onChangeText={setLabel}
-      />
+      <Search label="地址" placeholder="请输入搜索关键词" value={label} onChangeText={setLabel} />
 
       {/* Custom Background */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">自定义背景色</Text>
-      <Search
-        background="#4fc08d"
-        placeholder="请输入搜索关键词"
-        shape="round"
-        value={bg}
-        onChangeText={setBg}
-      />
+      <Search background="#4fc08d" placeholder="请输入搜索关键词" shape="round" value={bg} onChangeText={setBg} />
 
       {/* Disabled */}
       <Text className="px-4 py-3 text-sm text-muted-foreground">禁用状态</Text>
-      <Search
-        disabled
-        placeholder="请输入搜索关键词"
-        value={disabled}
-      />
+      <Search disabled placeholder="请输入搜索关键词" value={disabled} />
     </ScrollView>
   );
 };

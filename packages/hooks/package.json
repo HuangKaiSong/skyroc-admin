@@ -3,21 +3,20 @@
   "version": "1.0.0",
   "description": "React hooks - platform-agnostic core with ./web subpath for browser hooks",
   "sideEffects": false,
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./src/*"
+      ]
+    }
+  },
   "exports": {
     ".": "./src/index.ts",
     "./web": "./src/web/index.ts"
   },
-  "typesVersions": {
-    "*": {
-      "*": ["./src/*"]
-    }
-  },
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest"
-  },
-  "peerDependencies": {
-    "react": ">=18.0.0"
   },
   "dependencies": {
     "ahooks": "catalog:utils"
@@ -27,5 +26,8 @@
     "@skyroc/tsconfig": "workspace:*",
     "react": "catalog:core",
     "react-dom": "catalog:core"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
   }
 }

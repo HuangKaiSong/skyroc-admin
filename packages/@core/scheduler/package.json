@@ -2,16 +2,25 @@
   "name": "@skyroc/scheduler",
   "version": "1.0.0",
   "description": "Cooperative task scheduler - unified init, periodic tasks, and listener management",
-  "author": "",
+  "keywords": [
+    "cross-platform",
+    "init",
+    "lifecycle",
+    "scheduler",
+    "task",
+    "timer"
+  ],
   "license": "MIT",
-  "keywords": ["scheduler", "task", "timer", "init", "lifecycle", "cross-platform"],
-  "exports": {
-    ".": "./src/index.ts"
-  },
+  "author": "",
   "typesVersions": {
     "*": {
-      "*": ["./src/*"]
+      "*": [
+        "./src/*"
+      ]
     }
+  },
+  "exports": {
+    ".": "./src/index.ts"
   },
   "scripts": {
     "test": "vitest run",

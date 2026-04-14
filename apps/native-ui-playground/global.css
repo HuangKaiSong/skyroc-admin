@@ -5,9 +5,7 @@
 @import 'nativewind/theme';
 
 @plugin "@skyroc/tailwind-plugin" {
-  platform: "native";
+  platform: 'native';
 }
 
 @source "./node_modules/@skyroc/native-ui/src";
-
-

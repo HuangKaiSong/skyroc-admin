@@ -75,7 +75,7 @@ export interface ActionSheetResult {
   index: number;
 }
 
-/** showActionSheet 函数调用选项 */
+/** ShowActionSheet 函数调用选项 */
 export interface ActionSheetOptions extends Omit<ActionSheetProps, 'onUpdateShow' | 'show'> {
   /** 选项选中或取消后的通用回调 */
   callback?: (result: ActionSheetResult | null) => void;

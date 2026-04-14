@@ -15,7 +15,7 @@ export type FieldInputAlign = 'center' | 'left' | 'right';
 /** Field 格式化触发时机 */
 export type FieldFormatTrigger = 'onBlur' | 'onChange';
 
-/** textarea 自适应高度配置 */
+/** Textarea 自适应高度配置 */
 export interface FieldAutosizeConfig {
   /** 最大高度 */
   maxHeight?: number;
@@ -36,7 +36,7 @@ export type FieldSlots =
 
 /** Field 组件属性 */
 export interface FieldProps extends Omit<TextInputProps, 'editable' | 'style'>, FieldVariantProps {
-  /** textarea 自适应高度，true 为默认配置，对象可指定最小/最大高度 */
+  /** Textarea 自适应高度，true 为默认配置，对象可指定最小/最大高度 */
   autosize?: boolean | FieldAutosizeConfig;
 
   /** 覆盖各 slot 的 className */
@@ -93,7 +93,7 @@ export interface FieldProps extends Omit<TextInputProps, 'editable' | 'style'>, 
   /** 右侧图标 */
   rightIcon?: ReactNode;
 
-  /** textarea 行数 */
+  /** Textarea 行数 */
   rows?: number;
 
   /** 是否显示字数统计（需配合 maxLength 使用） */

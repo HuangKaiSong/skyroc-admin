@@ -15,6 +15,7 @@
 ## 🎯 职责定位
 
 **核心职责**:
+
 - 提供常用表单验证规则
 - 国际化错误提示
 - 自定义验证器
@@ -37,8 +38,8 @@
 ## 🔌 API 设计
 
 ```ts
-export { useFormRules } from './hooks/use-rules'
-export * from './validators/custom'
+export { useFormRules } from './hooks/use-rules';
+export * from './validators/custom';
 ```
 
 ## 🔨 核心实现
@@ -47,18 +48,12 @@ export * from './validators/custom'
 
 ```ts
 // src/hooks/use-rules.ts
-import type { FormInstance, FormRule } from 'antd'
-import { useTranslation } from 'react-i18next'
-import {
-  REG_CODE_SIX,
-  REG_EMAIL,
-  REG_PHONE,
-  REG_PWD,
-  REG_USER_NAME
-} from '@skyroc/core-constants'
+import type { FormInstance, FormRule } from 'antd';
+import { useTranslation } from 'react-i18next';
+import { REG_CODE_SIX, REG_EMAIL, REG_PHONE, REG_PWD, REG_USER_NAME } from '@skyroc/core-constants';
 
 export function useFormRules() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   // 模式规则
   const patternRules = {
@@ -82,7 +77,7 @@ export function useFormRules() {
       message: t('form.userName.invalid'),
       pattern: REG_USER_NAME
     }
-  } satisfies Record<string, FormRule>
+  } satisfies Record<string, FormRule>;
 
   // 表单规则
   const formRules = {
@@ -91,12 +86,12 @@ export function useFormRules() {
     phone: [createRequiredRule(t('form.phone.required')), patternRules.phone],
     pwd: [createRequiredRule(t('form.pwd.required')), patternRules.pwd],
     userName: [createRequiredRule(t('form.userName.required')), patternRules.userName]
-  } satisfies Record<string, FormRule[]>
+  } satisfies Record<string, FormRule[]>;
 
-  const defaultRequiredRule = createRequiredRule(t('form.required'))
+  const defaultRequiredRule = createRequiredRule(t('form.required'));
 
   function createRequiredRule(message: string): FormRule {
-    return { required: true, message }
+    return { required: true, message };
   }
 
   // 确认密码规则
@@ -106,14 +101,14 @@ export function useFormRules() {
       {
         message: t('form.confirmPwd.invalid'),
         validator: (rule, value) => {
-          const pwd = form.getFieldValue('password')
+          const pwd = form.getFieldValue('password');
           if (value.trim() !== '' && value !== pwd) {
-            return Promise.reject(rule.message)
+            return Promise.reject(rule.message);
           }
-          return Promise.resolve()
+          return Promise.resolve();
         }
       }
-    ]
+    ];
   }
 
   return {
@@ -122,19 +117,19 @@ export function useFormRules() {
     defaultRequiredRule,
     formRules,
     patternRules
-  }
+  };
 }
 ```
 
 ## 💡 使用示例
 
 ```tsx
-import { Form, Input, Button } from 'antd'
-import { useFormRules } from '@skyroc/web-form'
+import { Form, Input, Button } from 'antd';
+import { useFormRules } from '@skyroc/web-form';
 
 function LoginForm() {
-  const { formRules } = useFormRules()
-  const [form] = Form.useForm()
+  const { formRules } = useFormRules();
+  const [form] = Form.useForm();
 
   return (
     <Form form={form}>
@@ -152,7 +147,7 @@ function LoginForm() {
         </Button>
       </Form.Item>
     </Form>
-  )
+  );
 }
 ```
 

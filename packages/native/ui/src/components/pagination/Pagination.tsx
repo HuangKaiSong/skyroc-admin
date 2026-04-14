@@ -1,7 +1,7 @@
-import { useMemo } from 'react';
-import { View } from 'react-native';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
+import { useMemo } from 'react';
+import { View } from 'react-native';
 import type { SlotClassNames } from '../../types/shared';
 import { Button } from '../button/Button';
 import { Text } from '../text/Typography';
@@ -30,10 +30,7 @@ function renderPageItem(item: PaginationPageItem, idx: number, ctx: PageItemRend
   if (item.type === 'ellipsis') {
     const slots = paginationVariants();
     return (
-      <View
-        key={`ellipsis-${String(idx)}`}
-        className={cn(slots.ellipsis(), classNames?.ellipsis)}
-      >
+      <View key={`ellipsis-${String(idx)}`} className={cn(slots.ellipsis(), classNames?.ellipsis)}>
         <Text className={cn(slots.desc(), classNames?.desc)}>...</Text>
       </View>
     );

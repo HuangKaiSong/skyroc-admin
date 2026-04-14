@@ -1,6 +1,6 @@
+import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { useEffect, useState } from 'react';
 import { Pressable } from 'react-native';
-import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { Sheet } from '../sheet/Sheet';
 import { PickerView } from './PickerView';
 import type { PickerProps } from './types';
@@ -79,12 +79,7 @@ const Picker = (props: PickerProps) => {
     <>
       {renderTrigger()}
 
-      <Sheet
-        closeable={false}
-        show={show}
-        showHandle={false}
-        onUpdateShow={onUpdateShow}
-      >
+      <Sheet closeable={false} show={show} showHandle={false} onUpdateShow={onUpdateShow}>
         <PickerView
           cancelText={cancelText}
           className={className}

@@ -14,8 +14,8 @@ export type LocationQueryRaw = Record<string | number, LocationQueryValueRaw | L
  * Transforms a queryString into a {@link LocationQuery} object. Accept both, a version with the leading `?` and without
  * Should work as URLSearchParams
  *
- * @param search - search string to parse
- * @returns a query object
+ * @param search - Search string to parse
+ * @returns A query object
  * @internal
  */
 

@@ -6,9 +6,7 @@ import { StorageTransport } from './transports';
 import type { IStorageAdapter, LoggerConfig, LoggerInstance, Platform } from './types';
 import { getOrCreateDeviceId } from './utils';
 
-/**
- * 创建平台对应的存储适配器
- */
+/** 创建平台对应的存储适配器 */
 function createStorageAdapter(platform: Platform): IStorageAdapter {
   switch (platform) {
     case 'web':
@@ -22,6 +20,7 @@ function createStorageAdapter(platform: Platform): IStorageAdapter {
 
 /**
  * 创建日志实例
+ *
  * @param config 配置项
  * @returns 日志实例及辅助方法
  */
@@ -153,9 +152,7 @@ export async function createLogger(config: LoggerConfig = {}): Promise<LoggerIns
   };
 }
 
-/**
- * 创建简单的控制台日志实例（不带存储功能）
- */
+/** 创建简单的控制台日志实例（不带存储功能） */
 export function createConsoleLogger(): LogLayer {
   return new LogLayer({
     transport: new ConsoleTransport({ id: 'console' })

@@ -1,6 +1,6 @@
+import { cn } from '@skyroc/utils';
 import { useEffect, useRef } from 'react';
 import { ActivityIndicator, View } from 'react-native';
-import { cn } from '@skyroc/utils';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { Text } from '../text/Typography';
 import { toastVariants } from './toast-variants';
@@ -107,10 +107,7 @@ const Toast = (props: ToastProps) => {
       case 'loading': {
         return (
           <View className={cn(iconCls(), 'p-1')}>
-            <ActivityIndicator
-              color="#fff"
-              size="large"
-            />
+            <ActivityIndicator color="#fff" size="large" />
           </View>
         );
       }
@@ -124,10 +121,7 @@ const Toast = (props: ToastProps) => {
 
   return (
     <Animated.View style={animatedStyle}>
-      <View
-        className={rootCls()}
-        onTouchEnd={handlePress}
-      >
+      <View className={rootCls()} onTouchEnd={handlePress}>
         {renderIcon()}
         {message ? <Text className={messageCls()}>{message}</Text> : null}
       </View>

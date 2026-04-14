@@ -1,5 +1,5 @@
-import { mergeDeep } from '@unocss/core';
 import { colord, getColorPalette } from '@skyroc/color';
+import { mergeDeep } from '@unocss/core';
 import themes from './theme.json';
 import type {
   ColorOptions,

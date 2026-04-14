@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { ScrollView } from 'react-native';
 import { Sidebar, Text } from '@skyroc/native-ui';
 import type { SidebarItem } from '@skyroc/native-ui';
+import { useState } from 'react';
+import { ScrollView } from 'react-native';
 
 const BASIC_ITEMS: SidebarItem[] = [
   { key: 'label1', title: 'Label 1' },
@@ -38,34 +38,22 @@ const SidebarDemo = () => {
       {/* Basic */}
       <Text className="mb-4 text-lg font-semibold">Basic</Text>
 
-        <Sidebar items={BASIC_ITEMS} />
-
-
+      <Sidebar items={BASIC_ITEMS} />
 
       {/* With Badge */}
       <Text className="mb-4 text-lg font-semibold">Badge</Text>
 
-        <Sidebar items={BADGE_ITEMS} />
-
-
+      <Sidebar items={BADGE_ITEMS} />
 
       {/* Disabled */}
       <Text className="mb-4 text-lg font-semibold">Disabled</Text>
 
-        <Sidebar items={DISABLED_ITEMS} />
-
-
+      <Sidebar items={DISABLED_ITEMS} />
 
       {/* Controlled with content */}
       <Text className="mb-4 text-lg font-semibold">Controlled</Text>
 
-        <Sidebar
-          activeIndex={activeIndex}
-          items={BASIC_ITEMS}
-          onIndexChange={setActiveIndex}
-        />
-
-
+      <Sidebar activeIndex={activeIndex} items={BASIC_ITEMS} onIndexChange={setActiveIndex} />
 
       {/* Many items (scrollable) */}
       <Text className="mb-4 text-lg font-semibold">Scrollable (10 items)</Text>

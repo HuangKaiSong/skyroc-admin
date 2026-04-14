@@ -1,3 +1,4 @@
+import { cn, isNumber } from '@skyroc/utils';
 import { useEffect } from 'react';
 import { View, useWindowDimensions } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -9,7 +10,6 @@ import Animated, {
   withTiming
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { cn, isNumber } from '@skyroc/utils';
 import { floatingButtonVariants } from './floating-button-variants';
 import type { FloatingButtonProps } from './types';
 

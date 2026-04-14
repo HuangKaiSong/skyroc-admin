@@ -1,8 +1,8 @@
 import { useAtom, useAtomValue } from 'jotai';
 import { langAtom, currentLangOptionAtom } from '../atoms/lang';
 import { defaultLangConfig } from '../config/default';
-import { saveLangToStorage } from '../utils/helpers';
 import type { LangType } from '../types';
+import { saveLangToStorage } from '../utils/helpers';
 
 export interface UseLangReturn {
   // State
@@ -21,16 +21,12 @@ export interface UseLangReturn {
   isCurrentLang: (lang: LangType) => boolean;
 }
 
-/**
- * Hook for language management
- */
+/** Hook for language management */
 export function useLang(): UseLangReturn {
   const [locale, setLocale] = useAtom(langAtom);
   const currentOption = useAtomValue(currentLangOptionAtom);
 
-  /**
-   * Change language
-   */
+  /** Change language */
   function changeLocale(lang: LangType) {
     // Update state
     setLocale(lang);

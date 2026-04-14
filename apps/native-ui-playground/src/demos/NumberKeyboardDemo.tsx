@@ -1,6 +1,6 @@
+import { NumberKeyboard, Text } from '@skyroc/native-ui';
 import { useState } from 'react';
 import { ScrollView, View } from 'react-native';
-import { NumberKeyboard, Text } from '@skyroc/native-ui';
 
 const NumberKeyboardDemo = () => {
   const [defaultVisible, setDefaultVisible] = useState(false);
@@ -44,7 +44,10 @@ const NumberKeyboardDemo = () => {
           <View className="rounded-lg bg-background p-3">
             <Text
               className="text-base text-primary"
-              onPress={() => { closeAll(); setDefaultVisible(true); }}
+              onPress={() => {
+                closeAll();
+                setDefaultVisible(true);
+              }}
             >
               弹出默认键盘
             </Text>
@@ -58,7 +61,10 @@ const NumberKeyboardDemo = () => {
           <View className="rounded-lg bg-background p-3">
             <Text
               className="text-base text-primary"
-              onPress={() => { closeAll(); setTitleVisible(true); }}
+              onPress={() => {
+                closeAll();
+                setTitleVisible(true);
+              }}
             >
               弹出带标题键盘
             </Text>
@@ -72,7 +78,10 @@ const NumberKeyboardDemo = () => {
           <View className="rounded-lg bg-background p-3">
             <Text
               className="text-base text-primary"
-              onPress={() => { closeAll(); setExtraVisible(true); }}
+              onPress={() => {
+                closeAll();
+                setExtraVisible(true);
+              }}
             >
               弹出带小数点键盘
             </Text>
@@ -86,7 +95,10 @@ const NumberKeyboardDemo = () => {
           <View className="rounded-lg bg-background p-3">
             <Text
               className="text-base text-primary"
-              onPress={() => { closeAll(); setCustomVisible(true); }}
+              onPress={() => {
+                closeAll();
+                setCustomVisible(true);
+              }}
             >
               弹出自定义主题键盘
             </Text>
@@ -100,7 +112,10 @@ const NumberKeyboardDemo = () => {
           <View className="rounded-lg bg-background p-3">
             <Text
               className="text-base text-primary"
-              onPress={() => { closeAll(); setDoubleExtraVisible(true); }}
+              onPress={() => {
+                closeAll();
+                setDoubleExtraVisible(true);
+              }}
             >
               弹出双额外按键键盘
             </Text>
@@ -114,7 +129,10 @@ const NumberKeyboardDemo = () => {
           <View className="rounded-lg bg-background p-3">
             <Text
               className="text-base text-primary"
-              onPress={() => { closeAll(); setRandomVisible(true); }}
+              onPress={() => {
+                closeAll();
+                setRandomVisible(true);
+              }}
             >
               弹出随机排序键盘
             </Text>
@@ -128,7 +146,10 @@ const NumberKeyboardDemo = () => {
           <View className="rounded-lg bg-background p-3">
             <Text
               className="text-base text-primary"
-              onPress={() => { closeAll(); setMaxVisible(true); }}
+              onPress={() => {
+                closeAll();
+                setMaxVisible(true);
+              }}
             >
               弹出限制长度键盘
             </Text>

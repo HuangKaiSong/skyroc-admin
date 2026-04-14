@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { formatDate, formatDateTime, formatDuration, formatTime, fromTimestamp, humanizeDuration } from '../../src/date/format';
+import {
+  formatDate,
+  formatDateTime,
+  formatDuration,
+  formatTime,
+  fromTimestamp,
+  humanizeDuration
+} from '../../src/date/format';
 
 // ==================== formatDate ====================
 

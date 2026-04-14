@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import { Store } from '@skyroc/hooks';
+import type { ReactNode } from 'react';
 
 /** Portal 状态管理器，管理所有通过 mountPortal 挂载的节点 */
 class PortalStore extends Store<Map<string, ReactNode>> {

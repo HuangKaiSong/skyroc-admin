@@ -1,7 +1,7 @@
+import { cn } from '@skyroc/utils';
 import { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import PagerView from 'react-native-pager-view';
-import { cn } from '@skyroc/utils';
 import { tabsVariants } from './tabs-variants';
 import type { PagerProps } from './types';
 
@@ -87,10 +87,7 @@ const Pager = (props: PagerProps) => {
         style={{ flex: 1 }}
       >
         {items.map((item, index) => (
-          <View
-            key={item.key}
-            className={cn(slots.content(), classNames?.content)}
-          >
+          <View key={item.key} className={cn(slots.content(), classNames?.content)}>
             {renderScene(index, item.children)}
           </View>
         ))}
@@ -99,10 +96,7 @@ const Pager = (props: PagerProps) => {
   }
 
   return (
-    <View
-      className={cn(slots.pager(), classNames?.pager)}
-      style={{ flex: 1 }}
-    >
+    <View className={cn(slots.pager(), classNames?.pager)} style={{ flex: 1 }}>
       {items.map((item, index) => (
         <View
           key={item.key}

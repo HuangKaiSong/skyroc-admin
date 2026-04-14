@@ -15,8 +15,7 @@ interface PasswordInputRef {
 
 /** 密码输入框组件属性，继承 TextInputProps 以支持透传底层属性 */
 interface PasswordInputProps
-  extends Omit<TextInputProps, 'defaultValue' | 'onChangeText' | 'ref' | 'style' | 'value'>,
-    PasswordInputVariantProps {
+  extends Omit<TextInputProps, 'defaultValue' | 'onChangeText' | 'ref' | 'style' | 'value'>, PasswordInputVariantProps {
   /** NativeWind 类名 */
   className?: string;
 

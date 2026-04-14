@@ -39,7 +39,7 @@ export interface DialogProps {
   showConfirmButton?: boolean;
   /** 按钮主题，默认 'default' */
   theme?: DialogTheme;
-  /** round-button 主题下的按钮排列方向，默认 'vertical' */
+  /** Round-button 主题下的按钮排列方向，默认 'vertical' */
   themeDirection?: 'horizontal' | 'vertical';
   /** 标题 */
   title?: string;

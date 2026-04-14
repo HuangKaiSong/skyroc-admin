@@ -1,6 +1,6 @@
-import { View } from 'react-native';
 import { AnchorNav } from '@skyroc/native-ui';
 import type { AnchorNavSection } from '@skyroc/native-ui';
+import { View } from 'react-native';
 
 const MENU_DATA: AnchorNavSection[] = [
   {

@@ -31,7 +31,12 @@ function getPageCount(total: number, itemsPerPage: number): number {
  * @param siblingCount - 当前页左右兄弟数
  * @param showEdges - 是否始终显示首尾页码
  */
-function getRange(currentPage: number, pageCount: number, siblingCount: number, showEdges: boolean): (number | string)[] {
+function getRange(
+  currentPage: number,
+  pageCount: number,
+  siblingCount: number,
+  showEdges: boolean
+): (number | string)[] {
   const firstPageIndex = 1;
   const lastPageIndex = pageCount;
 
