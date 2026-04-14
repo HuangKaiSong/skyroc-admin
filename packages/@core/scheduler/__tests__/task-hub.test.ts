@@ -59,6 +59,14 @@ describe('TaskHub - 注册', () => {
     }).toThrow('name is required');
   });
 
+  it('缺少 run 函数抛错', () => {
+    const hub = new TaskHub();
+
+    expect(() => {
+      hub.register({ name: 'a', type: 'init', run: undefined as any });
+    }).toThrow('must have a run function');
+  });
+
   it('periodic interval <= 0 抛错', () => {
     const hub = new TaskHub();
 
@@ -224,6 +232,36 @@ describe('TaskHub - 依赖解析', () => {
 });
 
 describe('TaskHub - periodic 任务', () => {
+  it('执行中时跳过本次 tick', async () => {
+    let running = false;
+    const hub = new TaskHub({ tickInterval: 50 });
+
+    hub.register({
+      name: 'slow',
+      type: 'periodic',
+      interval: 50,
+      run: () =>
+        new Promise<void>(resolve => {
+          running = true;
+          setTimeout(() => {
+            running = false;
+            resolve();
+          }, 150) // 150ms > tickInterval=50ms，下一 tick 触发时仍在执行中
+        })
+    });
+
+    hub.start();
+    // t=0: 立即执行，status='running'
+    // t=50: 第二次 tick，status=running，命中 line 202 的 return
+    await vi.advanceTimersByTimeAsync(80);
+
+    expect(hub.getTask('slow')?.status).toBe('running');
+
+    await vi.advanceTimersByTimeAsync(200);
+
+    hub.stop();
+  });
+
   it('按间隔重复执行', async () => {
     const run = vi.fn();
     const hub = new TaskHub({ tickInterval: 100 });
@@ -268,6 +306,31 @@ describe('TaskHub - periodic 任务', () => {
 });
 
 describe('TaskHub - listener 任务', () => {
+  it('依赖未满足时不注册', async () => {
+    const run = vi.fn();
+    const hub = new TaskHub({ tickInterval: 100 });
+
+    hub.register({
+      name: 'auth',
+      type: 'init',
+      run: () => new Promise(resolve => setTimeout(resolve, 500))
+    });
+    hub.register({
+      name: 'ws',
+      type: 'listener',
+      deps: ['auth'],
+      run
+    });
+
+    hub.start();
+    await vi.advanceTimersByTimeAsync(200);
+
+    expect(run).not.toHaveBeenCalled();
+    expect(hub.getTask('ws')?.status).toBe('pending');
+
+    hub.stop();
+  });
+
   it('注册一次，stop 时 cleanup', async () => {
     const run = vi.fn();
     const cleanup = vi.fn();
@@ -284,6 +347,69 @@ describe('TaskHub - listener 任务', () => {
     hub.stop();
 
     expect(cleanup).toHaveBeenCalledOnce();
+  });
+
+  it('失败后自动重试直到成功', async () => {
+    let callCount = 0;
+    const hub = new TaskHub({ tickInterval: 100, maxRetries: 3, baseRetryDelay: 100 });
+
+    hub.register({
+      name: 'watch',
+      type: 'listener',
+      run: () => {
+        callCount += 1;
+        if (callCount < 2) throw new Error('fail');
+      }
+    });
+
+    hub.start();
+    await vi.advanceTimersByTimeAsync(2000);
+
+    expect(callCount).toBeGreaterThanOrEqual(2);
+    expect(hub.getTask('watch')?.status).toBe('done');
+
+    hub.stop();
+  });
+
+  it('失败且重试次数耗尽后保持 failed', async () => {
+    const hub = new TaskHub({ tickInterval: 100, maxRetries: 1, baseRetryDelay: 100 });
+
+    hub.register({
+      name: 'watch',
+      type: 'listener',
+      run: () => {
+        throw new Error('always fail');
+      }
+    });
+
+    hub.start();
+    await vi.advanceTimersByTimeAsync(3000);
+
+    expect(hub.getTask('watch')?.status).toBe('failed');
+
+    hub.stop();
+  });
+
+  it('失败后等待重试延迟未到不重试', async () => {
+    const run = vi.fn().mockImplementation(() => {
+      throw new Error('fail');
+    });
+    const hub = new TaskHub({ tickInterval: 50, maxRetries: 3, baseRetryDelay: 1000 });
+
+    hub.register({ name: 'watch', type: 'listener', run });
+
+    hub.start();
+    await vi.advanceTimersByTimeAsync(100);
+
+    // 首次失败
+    expect(run).toHaveBeenCalledTimes(1);
+    expect(hub.getTask('watch')?.status).toBe('failed');
+
+    // 等待 200ms，延迟未到（baseRetryDelay=1000ms），不重试
+    await vi.advanceTimersByTimeAsync(200);
+    expect(run).toHaveBeenCalledTimes(1);
+
+    hub.stop();
   });
 });
 
@@ -372,6 +498,34 @@ describe('TaskHub - 生命周期', () => {
     expect(hub.snapshot()).toHaveLength(0);
   });
 
+  it('未启动时调用 stop 无副作用', () => {
+    const hub = new TaskHub();
+    expect(() => hub.stop()).not.toThrow();
+    expect(hub.running).toBe(false);
+  });
+
+  it('未启动时调用 resume 无副作用', () => {
+    const hub = new TaskHub();
+    expect(() => hub.resume()).not.toThrow();
+    expect(hub.running).toBe(false);
+  });
+
+  it('已有 timer 时 resume 不重复创建', () => {
+    const hub = new TaskHub();
+    hub.start();
+    hub.resume(); // timer 已存在，应为 no-op
+    expect(hub.running).toBe(true);
+    hub.stop();
+  });
+
+  it('已暂停时再次 pause 无副作用', () => {
+    const hub = new TaskHub();
+    hub.start();
+    hub.pause();
+    expect(() => hub.pause()).not.toThrow(); // tickTimer 已为 null
+    hub.stop();
+  });
+
   it('pause/resume', async () => {
     const run = vi.fn();
     const hub = new TaskHub({ tickInterval: 100 });
@@ -423,6 +577,31 @@ describe('TaskHub - 生命周期', () => {
 
     hub.stop();
   });
+
+  it('无 init 任务时 onReady 不触发', async () => {
+    const onReady = vi.fn();
+    const hub = new TaskHub({ tickInterval: 50, onReady });
+
+    hub.register({ name: 'poll', type: 'periodic', interval: 100, run: vi.fn() });
+
+    hub.start();
+    await vi.advanceTimersByTimeAsync(300);
+
+    expect(onReady).not.toHaveBeenCalled();
+
+    hub.stop();
+  });
+
+  it('未设置 onReady 时 checkReady 不报错', async () => {
+    const hub = new TaskHub({ tickInterval: 50 }); // 无 onReady
+
+    hub.register({ name: 'a', type: 'init', run: vi.fn() });
+
+    hub.start();
+    await expect(vi.advanceTimersByTimeAsync(200)).resolves.not.toThrow();
+
+    hub.stop();
+  });
 });
 
 describe('TaskHub - 动态增删', () => {
@@ -464,6 +643,105 @@ describe('TaskHub - 动态增删', () => {
   });
 });
 
+describe('TaskHub - 边界场景', () => {
+  it('periodic 任务不指定 interval 使用默认 5000ms', async () => {
+    const run = vi.fn();
+    const hub = new TaskHub({ tickInterval: 100 });
+
+    hub.register({ name: 'poll', type: 'periodic', run }); // 不指定 interval
+
+    hub.start();
+    // t=0 firstTick: lastRun=0, now-0 >> 5000, 执行第一次
+    await vi.advanceTimersByTimeAsync(100);
+    expect(run).toHaveBeenCalledTimes(1);
+
+    // 再等 100ms，now - lastRun = ~100ms < 5000ms，不再执行
+    await vi.advanceTimersByTimeAsync(100);
+    expect(run).toHaveBeenCalledTimes(1);
+
+    hub.stop();
+  });
+
+  it('priority/deps 空值合并默认分支覆盖', async () => {
+    const hub = new TaskHub({ tickInterval: 100 });
+    hub.register({ name: 'a', type: 'init', run: vi.fn() });
+    hub.register({ name: 'b', type: 'init', run: vi.fn() });
+
+    // 直接清除内部 priority，触发排序中 ?? 10 右侧分支（需要至少 2 个任务使比较器被调用）
+    const stateA = (hub as any).tasks.get('a');
+    const stateB = (hub as any).tasks.get('b');
+    stateA.def.priority = undefined;
+    stateB.def.priority = undefined;
+
+    // 直接清除 deps，触发 depsResolved 和 getTask 中 ?? [] 右侧分支
+    stateA.def.deps = undefined;
+
+    hub.start();
+    await vi.advanceTimersByTimeAsync(200);
+
+    const snap = hub.snapshot();
+    expect(snap).toHaveLength(2);
+
+    const task = hub.getTask('a');
+    expect(task?.deps).toEqual([]);
+
+    hub.stop(); // stop 内部排序也会触发 ?? 10
+  });
+
+  it('依赖不存在的任务时不执行', async () => {
+    const run = vi.fn();
+    const hub = new TaskHub({ tickInterval: 100 });
+
+    hub.register({ name: 'a', type: 'init', deps: ['nonexistent'], run });
+
+    hub.start();
+    await vi.advanceTimersByTimeAsync(300);
+
+    expect(run).not.toHaveBeenCalled();
+
+    hub.stop();
+  });
+
+  it('未知类型任务 tick 中走 default 分支不执行', async () => {
+    const run = vi.fn();
+    const hub = new TaskHub({ tickInterval: 100 });
+
+    hub.register({ name: 'a', type: 'init', run });
+
+    // 强制修改内部 type 为未知值
+    const state = (hub as any).tasks.get('a');
+    state.def.type = 'unknown';
+
+    hub.start();
+    await vi.advanceTimersByTimeAsync(300);
+
+    expect(run).not.toHaveBeenCalled();
+
+    hub.stop();
+  });
+
+  it('init 任务失败后 retryDelay 未到不重试', async () => {
+    const run = vi.fn().mockImplementation(() => {
+      throw new Error('fail');
+    });
+    const hub = new TaskHub({ tickInterval: 50, maxRetries: 3, baseRetryDelay: 2000 });
+
+    hub.register({ name: 'a', type: 'init', run });
+
+    hub.start();
+    await vi.advanceTimersByTimeAsync(100);
+
+    // 首次失败
+    expect(run).toHaveBeenCalledTimes(1);
+
+    // 等待 500ms，延迟未到（baseRetryDelay=2000ms），不重试
+    await vi.advanceTimersByTimeAsync(500);
+    expect(run).toHaveBeenCalledTimes(1);
+
+    hub.stop();
+  });
+});
+
 describe('TaskHub - snapshot', () => {
   it('返回按优先级排序的快照', () => {
     const hub = new TaskHub();
@@ -493,5 +771,28 @@ describe('TaskHub - snapshot', () => {
   it('getTask 不存在返回 undefined', () => {
     const hub = new TaskHub();
     expect(hub.getTask('nope')).toBeUndefined();
+  });
+
+  it('snapshot 和 getTask 包含失败任务的错误信息', async () => {
+    const hub = new TaskHub({ tickInterval: 100, maxRetries: 0 });
+
+    hub.register({
+      name: 'broken',
+      type: 'init',
+      run: () => {
+        throw new Error('test error msg');
+      }
+    });
+
+    hub.start();
+    await vi.advanceTimersByTimeAsync(200);
+
+    const snap = hub.snapshot();
+    expect(snap[0].error).toContain('test error msg');
+
+    const task = hub.getTask('broken');
+    expect(task?.error).toContain('test error msg');
+
+    hub.stop();
   });
 });
