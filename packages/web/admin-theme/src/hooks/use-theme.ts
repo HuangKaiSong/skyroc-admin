@@ -141,7 +141,7 @@ export function useTheme() {
 
     if (settings.recommendColor) {
       // get a color palette by provided color and color name, and use the suitable color
-      colorValue = getPaletteColorByNumber(color, 500, true);
+      colorValue = getPaletteColorByNumber(color, 500, 'recommended');
     }
 
     if (key === 'primary') {

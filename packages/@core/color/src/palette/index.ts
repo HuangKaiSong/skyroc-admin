@@ -1,7 +1,8 @@
 import type { AnyColor } from 'colord';
 import { getHex } from '../shared';
-import type { ColorPaletteNumber } from '../types';
+import type { ColorPaletteNumber, PaletteAlgorithm } from '../types';
 import { getAntDColorPalette } from './antd';
+import { generateOklchPalette } from './oklch';
 import { getRecommendedColorPalette } from './recommend';
 
 export * from './oklch';
@@ -9,15 +10,20 @@ export * from './oklch';
 /**
  * Get color palette by provided color
  *
- * @param color
- * @param recommended Whether to get recommended color palette (the provided color may not be the main color)
+ * @param color Any valid color value
+ * @param algorithm The palette generation algorithm (default: 'antd')
  */
-export function getColorPalette(color: AnyColor, recommended = false) {
+export function getColorPalette(color: AnyColor, algorithm: PaletteAlgorithm = 'antd') {
   const colorMap = new Map<ColorPaletteNumber, string>();
 
-  if (recommended) {
+  if (algorithm === 'recommended') {
     const colorPalette = getRecommendedColorPalette(getHex(color));
     colorPalette.palettes.forEach(palette => {
+      colorMap.set(palette.number, palette.hex);
+    });
+  } else if (algorithm === 'oklch') {
+    const family = generateOklchPalette(getHex(color));
+    family.palettes.forEach(palette => {
       colorMap.set(palette.number, palette.hex);
     });
   } else {
@@ -38,10 +44,14 @@ export function getColorPalette(color: AnyColor, recommended = false) {
  *
  * @param color The provided color
  * @param number The color palette number
- * @param recommended Whether to get recommended color palette (the provided color may not be the main color)
+ * @param algorithm The palette generation algorithm (default: 'antd')
  */
-export function getPaletteColorByNumber(color: AnyColor, number: ColorPaletteNumber, recommended = false) {
-  const colorMap = getColorPalette(color, recommended);
+export function getPaletteColorByNumber(
+  color: AnyColor,
+  number: ColorPaletteNumber,
+  algorithm: PaletteAlgorithm = 'antd'
+) {
+  const colorMap = getColorPalette(color, algorithm);
 
   return colorMap.get(number as ColorPaletteNumber)!;
 }

@@ -56,3 +56,12 @@ export type ColorPaletteMatch = ColorPaletteFamily & {
  * From left to right, the color is from light to dark, 6 is main color
  */
 export type ColorIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
+
+/**
+ * The palette generation algorithm
+ *
+ * - antd: Ant Design HSV algorithm (classic, index 6 = main color)
+ * - recommended: deltaE nearest-family matching against built-in Tailwind palettes
+ * - oklch: OKLCH perceptually uniform algorithm with chroma compensation and hue rotation
+ */
+export type PaletteAlgorithm = 'antd' | 'oklch' | 'recommended';
