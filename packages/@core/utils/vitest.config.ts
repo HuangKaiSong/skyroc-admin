@@ -1,4 +1,4 @@
-import { baseCoverageConfig, baseTestConfig } from '@skyroc/config/vitest';
+import { COVERAGE_EXCLUDE, baseCoverageConfig, baseTestConfig } from '@skyroc/config/vitest';
 import { defineConfig } from 'vitest/config';
 
 /**
@@ -10,6 +10,9 @@ export default defineConfig({
   test: {
     ...baseTestConfig,
     setupFiles: ['./vitest.setup.ts'],
-    coverage: baseCoverageConfig
+    coverage: {
+      ...baseCoverageConfig,
+      exclude: [...COVERAGE_EXCLUDE, '**/klona.ts', '**/nanoid.ts']
+    }
   }
 });
