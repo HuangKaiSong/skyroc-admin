@@ -24,14 +24,13 @@
     "test": "vitest",
     "test:watch": "vitest"
   },
-  "dependencies": {
-    "jotai": "catalog:core"
-  },
   "devDependencies": {
     "@skyroc/tsconfig": "workspace:*",
+    "jotai": "catalog:core",
     "react": "catalog:core"
   },
   "peerDependencies": {
+    "jotai": ">=2.0.0",
     "react": ">=18.0.0"
   }
 }

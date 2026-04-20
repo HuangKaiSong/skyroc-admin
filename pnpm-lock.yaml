@@ -1334,14 +1334,13 @@ importers:
         version: link:../../../internal/tsconfig
 
   packages/@core/state:
-    dependencies:
-      jotai:
-        specifier: catalog:core
-        version: 2.18.0(@babel/core@7.29.0)(@babel/template@7.28.6)(@types/react@19.2.14)(react@19.1.0)
     devDependencies:
       '@skyroc/tsconfig':
         specifier: workspace:*
         version: link:../../../internal/tsconfig
+      jotai:
+        specifier: catalog:core
+        version: 2.18.0(@babel/core@7.29.0)(@babel/template@7.28.6)(@types/react@19.2.14)(react@19.1.0)
       react:
         specifier: catalog:core
         version: 19.1.0
