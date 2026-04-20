@@ -1,6 +1,7 @@
 {
   "name": "@skyroc/axios",
   "version": "2.0.1",
+  "type": "module",
   "description": "Type-safe Axios HTTP client with retry, transform pipeline, abort control, and pluggable backend response handling",
   "keywords": [
     "axios",
@@ -17,11 +18,24 @@
   "bugs": {
     "url": "https://github.com/Ohh-889/skyroc-admin/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ohh-889/skyroc-admin.git",
+    "directory": "packages/@core/axios"
+  },
   "author": {
     "name": "Ohh",
     "email": "1509326266@qq.com",
     "url": "https://github.com/Ohh-889"
   },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
   "typesVersions": {
     "*": {
       "*": [
@@ -32,12 +46,31 @@
   "exports": {
     ".": "./src/index.ts"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "import": {
+          "types": "./dist/index.d.ts",
+          "default": "./dist/index.js"
+        }
+      }
+    }
+  },
   "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist",
+    "dev": "tsdown --watch",
     "lint": "oxlint --fix",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
     "@skyroc/utils": "workspace:*",
@@ -49,6 +82,8 @@
     "@skyroc/config": "workspace:*",
     "@skyroc/tsconfig": "workspace:*",
     "@types/qs": "catalog:dev",
-    "oxlint": "catalog:dev"
+    "oxlint": "catalog:dev",
+    "rimraf": "catalog:dev",
+    "tsdown": "catalog:dev"
   }
 }
