@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import type { AtomStorage } from '../src/types';
-import { getStorage, registerStorage } from '../src/utils/storage-registry';
+import {
+  __clearStorageRegistry,
+  getStorage,
+  hasStorage,
+  registerStorage,
+  unregisterStorage
+} from '../src/utils/storage-registry';
 
 function createMockStorage(): AtomStorage {
   const store = new Map<string, unknown>();
@@ -38,5 +44,29 @@ describe('storage-registry', () => {
     expect(getStorage('iso-a')).toBe(a);
     expect(getStorage('iso-b')).toBe(b);
     expect(getStorage('iso-a')).not.toBe(b);
+  });
+
+  it('hasStorage 返回是否已注册', () => {
+    registerStorage('has-test', createMockStorage());
+    expect(hasStorage('has-test')).toBe(true);
+    expect(hasStorage('not-registered-yet')).toBe(false);
+  });
+
+  it('unregisterStorage 移除注册并返回是否存在', () => {
+    registerStorage('un-test', createMockStorage());
+    expect(unregisterStorage('un-test')).toBe(true);
+    expect(hasStorage('un-test')).toBe(false);
+    expect(unregisterStorage('un-test')).toBe(false);
+  });
+
+  it('__clearStorageRegistry 清空全部', () => {
+    registerStorage('clear-1', createMockStorage());
+    registerStorage('clear-2', createMockStorage());
+    __clearStorageRegistry();
+    expect(hasStorage('clear-1')).toBe(false);
+    expect(hasStorage('clear-2')).toBe(false);
+
+    // 重新注册其它测试需要的名字（避免顺序敏感）
+    registerStorage('reg-get-test', createMockStorage());
   });
 });

@@ -9,8 +9,12 @@ function createMockStorage(initial?: Record<string, unknown>): AtomStorage {
   const store = new Map<string, unknown>(Object.entries(initial ?? {}));
   return {
     getItem: key => store.get(key) ?? null,
-    setItem: (key, value) => store.set(key, value),
-    removeItem: key => store.delete(key)
+    removeItem: key => {
+      store.delete(key);
+    },
+    setItem: (key, value) => {
+      store.set(key, value);
+    }
   };
 }
 
@@ -58,32 +62,6 @@ describe('createAtomWithStorage', () => {
     }).toThrowError('[core-state] Storage "nonexistent-storage" is not registered');
   });
 
-  it('自定义 deserialize 反序列化读取值', () => {
-    const mock = createMockStorage({ 'de-key': '{"v":100}' });
-    registerStorage('aws-deser', mock);
-
-    const store = createStore();
-    const testAtom = createAtomWithStorage('de-key', 0, {
-      storageName: 'aws-deser',
-      deserialize: str => JSON.parse(str).v as number
-    });
-    expect(store.get(testAtom)).toBe(100);
-  });
-
-  it('自定义 serialize 序列化写入值', () => {
-    const mock = createMockStorage();
-    registerStorage('aws-ser', mock);
-
-    const store = createStore();
-    const testAtom = createAtomWithStorage('ser-key', 0, {
-      storageName: 'aws-ser',
-      serialize: value => JSON.stringify({ v: value })
-    });
-
-    store.set(testAtom, 42);
-    expect(mock.getItem('ser-key')).toBe('{"v":42}');
-  });
-
   it('removeItem 从 storage 中删除键', () => {
     const mock = createMockStorage({ 'rm-key': 'to-delete' });
     registerStorage('aws-rm', mock);
@@ -94,5 +72,77 @@ describe('createAtomWithStorage', () => {
     // jotai atomWithStorage uses RESET symbol to trigger removeItem
     store.set(testAtom, RESET as any);
     expect(mock.getItem('rm-key')).toBeNull();
+  });
+
+  it('storage 适配器返回 object 时直接使用，不做二次反序列化', () => {
+    const objectMock: AtomStorage = {
+      getItem: () => ({ deep: { nested: 'value' } }),
+      removeItem: () => {},
+      setItem: () => {}
+    };
+    registerStorage('aws-object', objectMock);
+
+    const store = createStore();
+    const testAtom = createAtomWithStorage<{ deep: { nested: string } }>(
+      'obj-key',
+      { deep: { nested: 'fallback' } },
+      { storageName: 'aws-object' }
+    );
+    expect(store.get(testAtom)).toEqual({ deep: { nested: 'value' } });
+  });
+
+  it('storage.subscribe 接通：外部变更可推送到 atom', () => {
+    let listener: ((value: unknown) => void) | undefined;
+    const subMock: AtomStorage = {
+      getItem: () => null,
+      removeItem: () => {},
+      setItem: () => {},
+      subscribe: (_key, callback) => {
+        listener = callback;
+        return () => {
+          listener = undefined;
+        };
+      }
+    };
+    registerStorage('aws-sub', subMock);
+
+    const store = createStore();
+    const testAtom = createAtomWithStorage('sub-key', 'init', { storageName: 'aws-sub' });
+
+    const seen: string[] = [];
+    const unsubscribe = store.sub(testAtom, () => {
+      seen.push(store.get(testAtom));
+    });
+
+    expect(listener).toBeTypeOf('function');
+    listener?.('externally-changed');
+    expect(seen).toContain('externally-changed');
+
+    unsubscribe();
+  });
+
+  it('storage.subscribe 收到 null 时回退到 initialValue', () => {
+    let listener: ((value: unknown) => void) | undefined;
+    const subMock: AtomStorage = {
+      getItem: () => 'stored',
+      removeItem: () => {},
+      setItem: () => {},
+      subscribe: (_key, callback) => {
+        listener = callback;
+        return () => {};
+      }
+    };
+    registerStorage('aws-sub-null', subMock);
+
+    const store = createStore();
+    const testAtom = createAtomWithStorage('sub-null-key', 'fallback', { storageName: 'aws-sub-null' });
+
+    const seen: string[] = [];
+    store.sub(testAtom, () => {
+      seen.push(store.get(testAtom));
+    });
+
+    listener?.(null);
+    expect(seen).toContain('fallback');
   });
 });

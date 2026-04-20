@@ -26,14 +26,30 @@ describe('atomWithPartial', () => {
     expect(store.get(testAtom)).toEqual({ a: 10, b: 2, c: 30 });
   });
 
-  it('空更新不改变引用值', () => {
+  it('空更新保持引用相等（避免无意义重渲染）', () => {
     const store = createStore();
     const testAtom = atomWithPartial({ foo: 'bar' });
 
     const before = store.get(testAtom);
     store.set(testAtom, {});
-    const after = store.get(testAtom);
+    expect(store.get(testAtom)).toBe(before);
+  });
 
-    expect(after).toEqual(before);
+  it('值未变更新保持引用相等', () => {
+    const store = createStore();
+    const testAtom = atomWithPartial({ foo: 'bar', n: 1 });
+
+    const before = store.get(testAtom);
+    store.set(testAtom, { foo: 'bar' });
+    expect(store.get(testAtom)).toBe(before);
+  });
+
+  it('支持 updater function 形式', () => {
+    const store = createStore();
+    const testAtom = atomWithPartial({ count: 5 });
+
+    store.set(testAtom, prev => ({ count: prev.count + 1 }));
+    store.set(testAtom, prev => ({ count: prev.count * 2 }));
+    expect(store.get(testAtom)).toEqual({ count: 12 });
   });
 });
