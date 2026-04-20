@@ -1,8 +1,17 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["node", "import", "unicorn"],
+  "plugins": [
+    "node",
+    "import",
+    "unicorn",
+    "typescript",
+    "eslint",
+    "oxc",
+    "vitest"
+  ],
   "categories": {
-    "correctness": "off"
+    "correctness": "off",
+    "suspicious": "error"
   },
   "env": {
     "builtin": true,
@@ -313,7 +322,10 @@
     "require-yield": "error",
     "sort-vars": "error",
     "symbol-description": "error",
-    "unicode-bom": ["error", "never"],
+    "unicode-bom": [
+      "error",
+      "never"
+    ],
     "use-isnan": "error",
     "valid-typeof": "error",
     "vars-on-top": "error",
@@ -337,14 +349,20 @@
     "unicorn/prefer-string-starts-ends-with": "error",
     "unicorn/prefer-type-error": "error",
     "unicorn/throw-new-error": "error",
-    "node/handle-callback-err": ["error", "^(err|error)$"],
+    "node/handle-callback-err": [
+      "error",
+      "^(err|error)$"
+    ],
     "node/no-exports-assign": "error",
     "node/no-new-require": "error",
     "node/no-path-concat": "error"
   },
   "overrides": [
     {
-      "files": ["**/scripts/**/*.?([cm])[jt]s?(x)", "**/cli.?([cm])[jt]s?(x)"],
+      "files": [
+        "**/scripts/**/*.?([cm])[jt]s?(x)",
+        "**/cli.?([cm])[jt]s?(x)"
+      ],
       "rules": {
         "no-console": "off"
       }
@@ -362,7 +380,9 @@
       }
     },
     {
-      "files": ["**/*.?([cm])[jt]s?(x)"],
+      "files": [
+        "**/*.?([cm])[jt]s?(x)"
+      ],
       "rules": {
         "constructor-super": "off",
         "no-class-assign": "off",
@@ -449,15 +469,22 @@
         "typescript/ban-types": "off",
         "typescript/consistent-type-definitions": "off"
       },
-      "plugins": ["typescript"]
+      "plugins": [
+        "typescript"
+      ]
     },
     {
-      "files": ["**/*.js", "**/*.cjs"],
+      "files": [
+        "**/*.js",
+        "**/*.cjs"
+      ],
       "rules": {
         "typescript/no-require-imports": "off",
         "typescript/no-var-requires": "off"
       },
-      "plugins": ["typescript"]
+      "plugins": [
+        "typescript"
+      ]
     }
   ]
 }
