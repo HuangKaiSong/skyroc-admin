@@ -3,6 +3,12 @@ import type { AxiosResponse } from 'axios';
 import { describe, expect, it } from 'vitest';
 import { createAxiosConfig, createDefaultOptions, createRetryOptions } from '../src/options';
 
+// ==================== 测试辅助函数 ====================
+
+const customCheck = (response: AxiosResponse) => response.data.code === 0;
+const customTransform = async (response: AxiosResponse) => response.data.inner;
+const deprecatedTransform = async (response: AxiosResponse) => response.data.legacy;
+
 // ==================== createDefaultOptions ====================
 
 describe('createDefaultOptions', () => {
@@ -27,7 +33,6 @@ describe('createDefaultOptions', () => {
   });
 
   it('传入 transform 时应使用自定义 transform', async () => {
-    const customTransform = async (response: AxiosResponse) => response.data.inner;
     const opts = createDefaultOptions({ transform: customTransform });
 
     const mockResponse = { data: { inner: 'extracted' } } as AxiosResponse;
@@ -37,8 +42,7 @@ describe('createDefaultOptions', () => {
   });
 
   it('未传 transform 但传了 transformBackendResponse 时应回退使用 transformBackendResponse', async () => {
-    const deprecated = async (response: AxiosResponse) => response.data.legacy;
-    const opts = createDefaultOptions({ transformBackendResponse: deprecated });
+    const opts = createDefaultOptions({ transformBackendResponse: deprecatedTransform });
 
     const mockResponse = { data: { legacy: 'old-style' } } as AxiosResponse;
     const result = await opts.transform(mockResponse);
@@ -59,7 +63,6 @@ describe('createDefaultOptions', () => {
   });
 
   it('自定义选项应覆盖默认值', () => {
-    const customCheck = (response: AxiosResponse) => response.data.code === 0;
     const opts = createDefaultOptions({ isBackendSuccess: customCheck });
 
     expect(opts.isBackendSuccess({ data: { code: 0 } } as AxiosResponse)).toBe(true);
