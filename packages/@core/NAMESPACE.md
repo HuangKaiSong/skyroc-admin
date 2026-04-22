@@ -2,7 +2,7 @@
 
 ## 定位
 
-`@core` 是项目的**基础设施层**，存放框架无关或轻度依赖 React 的核心能力包。
+`@core` 是项目的**基础设施层**，存放框架无关或轻度依赖 React 的核心能力包，以及独立发布的 CLI 工具。
 
 放在这里的标准：
 
@@ -16,42 +16,56 @@
 
 ```text
 packages/@core/
-├── types/       @skyroc/core-types    全局类型定义（零运行时依赖）
-├── utils/       @skyroc/utils         通用工具函数（纯函数集合）
-├── color/       @skyroc/color         颜色处理工具
-├── axios/       @skyroc/axios         HTTP 客户端封装
+├── types/       @skyroc/types         全局类型定义（零运行时依赖）
+├── utils/       @skyroc/utils         通用工具函数（含 ./web 子入口）
+├── color/       @skyroc/color         颜色处理 & 调色板生成
+├── axios/       @skyroc/axios         类型安全的 HTTP 客户端
 ├── state/       @skyroc/core-state    Jotai 状态管理封装（依赖 React）
 ├── logger/      @skyroc/logger        跨平台日志系统
-├── scheduler/   @skyroc/scheduler     协作式任务调度（初始化、定时器、监听器统一管理）
-├── service/     @skyroc/service       平台无关请求 & 查询基础设施（Adapter 模式）
-└── scripts/     内部构建脚本
+├── scheduler/   @skyroc/scheduler     协作式任务调度
+├── service/     @skyroc/service       请求 & 查询基础设施（含 ./query 子入口）
+└── scripts/     @skyroc/scripts       项目自动化 CLI（bin: sa）
 ```
 
 ### 各包简述
 
-| 包          | 说明                                                                                           | React 依赖 |
-| ----------- | ---------------------------------------------------------------------------------------------- | ---------- |
-| `types`     | `.d.ts` 全局类型声明，零依赖，所有包均可引用                                                   | 无         |
-| `utils`     | 日期、加密、数组/对象操作、正则等纯函数，主入口 + `./web` 子路径                               | 无         |
-| `color`     | 颜色转换、混合、主题色生成                                                                     | 无         |
-| `axios`     | 基于 axios 的请求/响应拦截器、实例创建工具                                                     | 无         |
-| `state`     | Jotai 原子状态封装、全局 store、持久化 atom、storage registry                                  | 是         |
-| `logger`    | 基于 LogLayer 的日志系统，适配 Web / RN / 小程序，含上传、清理、白名单管理                     | 无         |
-| `scheduler` | 协作式任务调度中枢，统一管理 init / periodic / listener 三类任务，支持依赖 DAG、重试、暂停恢复 | 无         |
-| `service`   | 平台无关的请求 & 查询基础设施，通过 Adapter 模式注入 UI / Auth / 导航等平台差异                | 无         |
+| 文件夹      | 包名                | 版本  | 说明                                                                                | 子入口    | React 依赖 |
+| ----------- | ------------------- | ----- | ----------------------------------------------------------------------------------- | --------- | ---------- |
+| `types`     | `@skyroc/types`     | 1.0.0 | `.d.ts` 全局类型声明，零依赖，所有包均可引用                                        | —         | 无         |
+| `utils`     | `@skyroc/utils`     | 2.0.1 | 日期、加密、数组/对象、storage、emitter、priority-queue 等纯函数                    | `./web`   | 无         |
+| `color`     | `@skyroc/color`     | 2.5.0 | 基于 colord / culori，提供 Ant Design / OKLCH 调色板生成                            | —         | 无         |
+| `axios`     | `@skyroc/axios`     | 2.0.1 | 类型安全 axios 封装：重试、transform 流水线、abort 控制、可插拔后端响应             | —         | 无         |
+| `state`     | `@skyroc/core-state`| 1.0.0 | Jotai 原子状态封装、全局 store、持久化 atom、storage registry                       | —         | 是         |
+| `logger`    | `@skyroc/logger`    | 1.0.0 | 基于 LogLayer 的日志系统，适配 Web / RN / 小程序，含上传、清理、白名单管理          | —         | 无         |
+| `scheduler` | `@skyroc/scheduler` | 1.0.0 | 协作式任务调度中枢，统一管理 init / periodic / listener 三类任务，支持 DAG、重试    | —         | 无         |
+| `service`   | `@skyroc/service`   | 1.0.0 | 平台无关的请求 & 查询基础设施，通过 Adapter 注入 UI / Auth / 导航；集成 React Query | `./query` | 是         |
+| `scripts`   | `@skyroc/scripts`   | 2.5.0 | 项目自动化 CLI（changelog / release / git-commit / cleanup），可执行命令 `sa`       | —         | 无         |
 
 ## 依赖方向
 
 ```text
-types（零依赖）
+types（零依赖，类型声明）
   ↑
-utils / color / axios（基础工具，互不依赖）
+utils（零 @core 依赖）       logger / scheduler / state / scripts（互相独立）
   ↑
-state / logger / scheduler / service（运行时系统，可依赖上层基础工具）
+color / axios（依赖 utils）
+  ↑
+service（依赖 axios）
 ```
 
-箭头表示"被依赖"方向。禁止同层或反向依赖。
+> 箭头表示"被依赖"方向。禁止同层或反向依赖。
+>
+> `state` 通过 `peerDependencies` 依赖 `jotai >= 2.0.0` 与 `react >= 18.0.0`，不在内部依赖图里。
+
+## 已知问题 / TODO
+
+- ⚠️ **架构债**：`@core/types/src/app/storage.d.ts` 中 `themeSettings: Theme.ThemeSetting` 引用了 `Theme` 全局命名空间，而该命名空间真正定义在 `packages/web/admin-theme/src/types/theme.d.ts`（依赖 `antd` + `@skyroc/color`）。
+  目前靠 `@core/types/tsconfig.json` 的 `include` 把 `admin-theme/src/types/theme.d.ts` 拽进来才能编译，本质仍是反向依赖。
+  推荐方向（任选其一）：
+  1. 把 `storage.d.ts` 中与 theme 相关的字段类型改为 `unknown` / `Record<string, unknown>`，由消费方自行收窄；
+  2. 把 `themeSettings` 这条 storage key 的声明搬到 `admin-theme` 内部用 `declare global` 增量扩展 `StorageType.Local`。
+- `scheduler` 的 `package.json` 未声明任何 `dependencies`，需确认其内部是否完全自包含。
 
 ---
 
-**最后更新**: 2026-02-13
+**最后更新**: 2026-04-22
