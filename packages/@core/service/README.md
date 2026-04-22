@@ -242,21 +242,52 @@ request.state.errMsgStack;
 
 ```ts
 interface CreateQueryClientOptions {
-  onError?: (error: unknown) => void; // 全局错误回调
+  /** 覆盖默认 defaultOptions（会与内置默认值浅合并） */
+  defaultOptions?: DefaultOptions;
+  /** MutationCache 配置（onError / onSuccess / onSettled / onMutate） */
+  mutationCache?: MutationCacheConfig;
+  /** QueryCache 配置（onError / onSuccess / onSettled） */
+  queryCache?: QueryCacheConfig;
 }
 ```
 
-#### 默认配置
+可通过 `defaultOptions` 覆盖任意配置项：
 
-| 配置项                 | Query 默认值         | Mutation 默认值      |
-| ---------------------- | -------------------- | -------------------- |
-| `gcTime`               | 10 分钟              | —                    |
-| `staleTime`            | 30 秒                | —                    |
-| `retry`                | 2 次                 | 1 次                 |
-| `retryDelay`           | 指数退避（上限 30s） | 指数退避（上限 10s） |
-| `refetchOnWindowFocus` | `false`              | —                    |
-| `refetchOnReconnect`   | `true`               | —                    |
-| `networkMode`          | `'online'`           | `'online'`           |
+```ts
+const queryClient = createQueryClient({
+  defaultOptions: {
+    queries: { staleTime: 60_000, retry: 3 },
+    mutations: { retry: 2 },
+  },
+  queryCache: {
+    onError: (error) => console.error('Query error:', error),
+  },
+});
+```
+
+#### 默认 Query 配置
+
+| 配置项                 | 默认值 | 说明 |
+| ---------------------- | ------ | ---- |
+| `gcTime`               | `600000`（10 分钟） | 垃圾回收时间 |
+| `staleTime`            | `30000`（30 秒） | 数据过期时间 |
+| `retry`                | `2` | 失败重试次数 |
+| `retryDelay`           | 指数退避，上限 30 秒 | `min(1000 × 2^n, 30000)` |
+| `refetchOnMount`       | `true` | 组件挂载时重新获取 |
+| `refetchOnReconnect`   | `true` | 网络恢复时重新获取 |
+| `refetchOnWindowFocus` | `false` | 窗口聚焦时不重新获取 |
+| `throwOnError`         | `false` | 不向上抛出错误 |
+| `networkMode`          | `'online'` | 仅在线时发起请求 |
+
+#### 默认 Mutation 配置
+
+| 配置项       | 默认值 | 说明 |
+| ------------ | ------ | ---- |
+| `gcTime`     | `60000`（1 分钟） | 垃圾回收时间 |
+| `retry`      | `1` | 失败重试次数 |
+| `retryDelay` | 指数退避，上限 10 秒 | `min(1000 × 2^n, 10000)` |
+| `throwOnError` | `false` | 不向上抛出错误 |
+| `networkMode` | `'online'` | 仅在线时发起请求 |
 
 ### 内部工具函数（按需导出）
 
@@ -272,6 +303,34 @@ import {
 ```
 
 这些函数全部接收 `adapter` 参数，不依赖任何全局状态，可独立调用和测试。
+
+## Token 刷新机制
+
+并发的 Token 过期请求只触发一次 `fetchRefreshToken`，其余请求等待同一个 Promise 的结果后重试：
+
+```
+请求 A ─┐                      ┌─ 带新 Token 重试 A
+请求 B ─┤  共享同一个            ├─ 带新 Token 重试 B
+请求 C ─┤  refreshTokenPromise  ├─ 带新 Token 重试 C
+        └──────────────────────┘
+                  │
+     1 秒后清除 promise，下次过期重新刷新
+```
+
+刷新成功后 1 秒清除缓存的 Promise，避免长时间持有过期引用。
+
+## 错误消息去重
+
+`showErrorMsg` 维护一个消息栈，同一条消息在展示期间不会重复弹出：
+
+```
+showErrorMsg("网络异常")  → 展示 ✅
+showErrorMsg("网络异常")  → 跳过（栈中已存在）
+       ↓ 用户关闭消息
+showErrorMsg("网络异常")  → 展示 ✅（已从栈移除）
+       ↓ 5 秒后
+消息栈自动清空
+```
 
 ## 适用场景
 
@@ -356,6 +415,9 @@ npx vitest run packages/@core/service/__tests__
 
 # 或在包目录内
 cd packages/@core/service && pnpm test
+
+# 含覆盖率报告
+pnpm test --coverage
 ```
 
-21 个测试用例，覆盖：token 构造、刷新与并发防护、错误消息去重、后端业务码分流（登出 / 弹窗 / 过期刷新）、网络错误处理、工厂函数初始化。
+52 个测试用例，覆盖率：Statements 100% / Branches 95% / Functions 100% / Lines 100%，覆盖：请求实例创建与默认回调、业务状态码（登出 / 弹窗登出 / Token 过期）处理、Token 刷新与并发共享、错误消息去重、QueryClient 配置合并、指数退避重试延迟。
