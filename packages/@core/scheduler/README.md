@@ -206,7 +206,7 @@ hub.registerAll([taskA, taskB, taskC]);
 // 进入某页面时追加
 hub.add({ name: 'page-poll', type: 'periodic', interval: 5000, run: pollData });
 
-// 离开时移除（自动调用 cleanup）
+// 离开时移除（自动调用 cleanup），返回 boolean，任务不存在时返回 false
 hub.remove('page-poll');
 ```
 
@@ -216,14 +216,17 @@ hub.remove('page-poll');
 
 ```ts
 hub.snapshot();
+// 返回值按 priority 升序排列：
 // [
-//   { name: 'auth',        type: 'init',     status: 'done',    lastRun: 1707820800000, deps: [],       retryCount: 0 },
-//   { name: 'permissions', type: 'init',     status: 'done',    lastRun: 1707820800100, deps: ['auth'], retryCount: 0 },
-//   { name: 'heartbeat',   type: 'periodic', status: 'done',    lastRun: 1707820830000, deps: ['auth'], retryCount: 0 },
+//   { name: 'auth',        type: 'init',     status: 'done',    lastRun: 1707820800000, deps: [],         retryCount: 0 },
+//   { name: 'permissions', type: 'init',     status: 'done',    lastRun: 1707820800100, deps: ['auth'],   retryCount: 0 },
+//   { name: 'heartbeat',   type: 'periodic', status: 'done',    lastRun: 1707820830000, deps: ['auth'],   retryCount: 0 },
+//   { name: 'routes',      type: 'init',     status: 'failed',  lastRun: 1707820800200, deps: ['perm..'], retryCount: 3, error: 'Error: timeout' },
 // ]
 
 hub.getTask('auth');
-// { name: 'auth', type: 'init', status: 'done', ... }
+// { name: 'auth', type: 'init', status: 'done', lastRun: 1707820800000, deps: [], retryCount: 0 }
+// 任务不存在时返回 undefined
 ```
 
 ### `.running`
@@ -263,14 +266,42 @@ hub.register({ name: 'heartbeat', type: 'periodic', interval: 30000, deps: ['aut
 
 ## 与传统方式对比
 
-| N 个 setInterval     | TaskHub                 |
-| -------------------- | ----------------------- |
-| 各自独立，互不感知   | 中枢统一感知所有任务    |
-| 清理困难，容易遗漏   | `stop()` 一次清理全部   |
-| 无法表达依赖关系     | `deps` 天然支持 DAG     |
-| 无法暂停/恢复        | `pause()` / `resume()`  |
-| 无法观测状态         | `snapshot()` 随时看全貌 |
-| 定时器数量随业务膨胀 | 永远只有 1 个 timer     |
+| 维度             | N 个 `setInterval`       | `TaskHub`               |
+| ---------------- | ------------------------ | ----------------------- |
+| 依赖关系         | 无法表达                 | `deps` 天然支持 DAG     |
+| 执行顺序         | 靠代码位置，容易出错     | `priority` + 依赖自动保证 |
+| 清理             | 逐一保存 timer id，容易遗漏 | `stop()` 一次清理全部 |
+| 暂停/恢复        | 需自行维护状态           | `pause()` / `resume()`  |
+| 状态观测         | 无                       | `snapshot()` 随时看全貌 |
+| Timer 数量       | 随业务线性膨胀           | 永远只有 1 个           |
+| 错误处理         | 各自为政                 | 统一 `onTaskError`      |
+| 重试             | 需手动实现               | 指数退避，开箱即用      |
+
+## 在 React 中使用
+
+将 `TaskHub` 的生命周期绑定到应用根组件。在**模块作用域**创建单例，避免 React StrictMode 双调用的干扰：
+
+```ts
+import { useEffect } from 'react';
+import { TaskHub } from '@skyroc/scheduler';
+
+const hub = new TaskHub({
+  tickInterval: 1000,
+  onReady: () => store.dispatch(setAppReady(true)),
+  onTaskError: (name, err) => logger.error(name, err)
+});
+
+hub.registerAll([authTask, permissionTask, heartbeatTask, networkTask]);
+
+export function AppScheduler() {
+  useEffect(() => {
+    hub.start();
+    return () => hub.stop();
+  }, []);
+
+  return null;
+}
+```
 
 ## 设计原则
 
@@ -287,6 +318,9 @@ npx vitest run packages/@core/scheduler/__tests__/task-hub.test.ts
 
 # 或在包目录内
 cd packages/@core/scheduler && pnpm test
+
+# 含覆盖率报告
+pnpm test --coverage
 ```
 
-28 个测试用例，覆盖：注册校验、init/periodic/listener 调度、依赖解析、重试与指数退避、生命周期管理、动态增删、快照查询。
+46 个测试用例，覆盖率 100%（Statements / Branches / Functions / Lines），覆盖：注册校验、三种任务类型调度、依赖解析、失败重试与指数退避、生命周期边界（`start` / `stop` / `pause` / `resume`）、`onReady` 触发条件、动态增删、快照查询及错误字段。
