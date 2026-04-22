@@ -257,7 +257,7 @@ function App() {
 
 ```ts
 // packages/core-auth/src/atoms/auth.ts
-import { atom } from '@skyroc/core-state';
+import { atom } from 'jotai';
 
 const authAtom = atom({
   token: '',
