@@ -7,6 +7,7 @@ packages:
   - 'packages/web/ui/*'
   - 'packages/native/*'
   - 'packages/native/ui/*'
+  - 'packages/primitives/*'
   # 预留:小程序端按 web/native 同样的"平台优先"布局展开
   - 'packages/miniapp/*'
   - 'packages/miniapp/ui/*'
@@ -171,6 +172,7 @@ catalogs:
   ui-shared:
     # Radix UI
     '@radix-ui/react-scroll-area': 1.2.10
+    '@radix-ui/react-slot': 1.2.3
     '@radix-ui/react-tooltip': 1.2.7
     # 动画
     motion: ^12.23.26

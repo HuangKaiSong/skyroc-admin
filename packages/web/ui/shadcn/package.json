@@ -125,6 +125,7 @@
     "react-dom": "catalog:core",
     "react-resizable-panels": "^4.10.0",
     "sonner": "^2.0.7",
+    "@skyroc/form": "workspace:*",
     "tailwind-variants": "catalog:utils",
     "vaul": "^1.1.2"
   },
