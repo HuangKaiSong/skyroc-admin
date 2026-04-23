@@ -1,5 +1,5 @@
 {
-  "name": "@skyroc/ui",
+  "name": "@skyroc/web-ui",
   "version": "0.1.0",
   "private": false,
   "description": "A modern React UI component library for SoybeanAdmin",

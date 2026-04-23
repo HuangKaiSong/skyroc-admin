@@ -1,5 +1,5 @@
 {
-  "name": "@skyroc/ui-compose",
+  "name": "@skyroc/web-ui-compose",
   "version": "0.1.0",
   "private": false,
   "description": "Composite stateless UI components built on @skyroc/ui primitives",
@@ -48,7 +48,7 @@
     "@better-scroll/core": "catalog:web",
     "@iconify/react": "catalog:ui-shared",
     "@skyroc/color": "workspace:*",
-    "@skyroc/ui": "workspace:*",
+    "@skyroc/web-ui": "workspace:*",
     "@skyroc/utils": "workspace:*",
     "ahooks": "catalog:utils",
     "clsx": "catalog:utils",

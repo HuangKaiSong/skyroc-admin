@@ -10,7 +10,7 @@ export default defineConfig({
   external: [...Object.keys(pkg.dependencies || {}), 'react/jsx-runtime'],
   hooks: {
     'build:before': () => {
-      console.log('📦 Building @skyroc/ui-compose with Tsdown...');
+      console.log('📦 Building @skyroc/web-ui-compose with Tsdown...');
     },
     'build:done': () => {
       console.log('✅ Build completed successfully!');
