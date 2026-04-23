@@ -1,6 +1,9 @@
 import { colord, getColorPalette } from '@skyroc/color';
-import { defaultFeedbackColorsHsl } from '@skyroc/ui-tokens';
+import { defaultFeedbackColorsHsl, defaultSidebarColorsHsl } from '@skyroc/ui-tokens';
 import { mergeDeep } from '@unocss/core';
+// Hand-picked shadcn-style design presets (13 themes). Surface colors (background/card/foreground/...) are
+// chosen per theme by designers and CANNOT be derived from `primary` — keep this file manually maintained.
+// See README "关于 theme.json" for details.
 import themes from './theme.json';
 import type {
   ColorOptions,
@@ -157,31 +160,8 @@ function getColorCSSVars(color: FeedbackColorOfThemeCssVars, native = false): Re
   return result;
 }
 
-function createBuiltinSidebarColorTheme() {
-  const sidebarColor: SidebarColorOfThemeCssVarsVariant = {
-    dark: {
-      'sidebar-accent': '240 3.7% 15.9%',
-      'sidebar-accent-foreground': '240 4.8% 95.9%',
-      'sidebar-background': '240 5.9% 10%',
-      'sidebar-border': '240 3.7% 15.9%',
-      'sidebar-foreground': '240 4.8% 95.9%',
-      'sidebar-primary': '236.9 100% 69.61%',
-      'sidebar-primary-foreground': '0 0% 100%',
-      'sidebar-ring': '217.2 91.2% 59.8%'
-    },
-    light: {
-      'sidebar-accent': '240 4.8% 95.9%',
-      'sidebar-accent-foreground': '240 5.9% 10%',
-      'sidebar-background': '0 0% 98%',
-      'sidebar-border': '220 13% 91%',
-      'sidebar-foreground': '240 5.3% 26.1%',
-      'sidebar-primary': '236.9 100% 69.61%',
-      'sidebar-primary-foreground': '0 0% 98%',
-      'sidebar-ring': '217.2 91.2% 59.8%'
-    }
-  };
-
-  return sidebarColor;
+function createBuiltinSidebarColorTheme(): SidebarColorOfThemeCssVarsVariant {
+  return defaultSidebarColorsHsl as SidebarColorOfThemeCssVarsVariant;
 }
 
 export function generateCSSVars(theme: ThemeOptions, onlyOne = true, native = false): object {

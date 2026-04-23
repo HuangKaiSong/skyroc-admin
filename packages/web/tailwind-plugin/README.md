@@ -105,7 +105,7 @@ src/
 ├── presets.ts            presetSkyrocUI()：flex-* / animate-* utility
 ├── themePresets.ts       skyrocUITheme()：base 样式（CSS 变量 + keyframes + html.size-* 字号档）
 ├── generate.ts           generateCSSVars / generateGlobalStyles + 色板生成
-├── theme.json            12 套内置颜色主题的亮暗 CSS 变量
+├── theme.json            12 套内置颜色主题的亮暗 CSS 变量（详见下方说明）
 └── types.ts              类型定义（HslColorString / ThemeOptions ...）
 ```
 
@@ -132,6 +132,16 @@ src/
 **语义（含 50–950 色阶）**：`primary` / `destructive` / `warning` / `success` / `info` / `carbon`
 
 **Sidebar**：`sidebar-background` / `sidebar-foreground` / `sidebar-primary[-foreground]` / `sidebar-accent[-foreground]` / `sidebar-border` / `sidebar-ring`
+
+## 关于 `theme.json`
+
+`theme.json` 是 **shadcn 风格的 13 套内置主题预设**（`default` + 12 套配色），里面的 `background` / `card` / `foreground` / `muted` / `accent` / `border` 等 surface 色由设计师为每套主题独立挑选，**不是**从某个基础色 (`primary`) 用算法预计算出来的缓存。
+
+因此：
+
+- 这份文件需要**手工维护**，不要尝试用脚本基于 `@skyroc/color` 重新生成（surface 色无法从 primary 推导）
+- 运行时 `primary` / `destructive` / `success` / `warning` / `info` / `carbon` 的 50–950 色阶仍然通过 `@skyroc/color` 的 `getColorPalette` 实时算出（见 [generate.ts](src/generate.ts)）
+- 如果只想增删一套配色，按现有 JSON 结构追加/删除即可；建议参考 shadcn/ui 的同名主题保持视觉一致
 
 ## 设计要点
 

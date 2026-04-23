@@ -2,7 +2,10 @@
   "compilerOptions": {
     "target": "ESNext",
     "jsx": "react-jsx",
-    "lib": ["DOM", "ESNext"],
+    "lib": [
+      "DOM",
+      "ESNext"
+    ],
     "useDefineForClassFields": true,
     "baseUrl": ".",
     "module": "ESNext",
@@ -14,11 +17,24 @@
     "noImplicitThis": true,
     "noUnusedLocals": false,
     "noEmit": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
 }

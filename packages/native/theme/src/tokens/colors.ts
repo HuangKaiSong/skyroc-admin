@@ -4,7 +4,13 @@ import type { ThemeColor } from '@skyroc/ui-types';
  * Default brand-color hex values are shared cross-platform via `@skyroc/ui-tokens`.
  * Platform-specific bindings (CSS-var driven `semanticColors` / `surfaceColors`) stay here.
  */
-export { defaultDarkColors, defaultLightColors } from '@skyroc/ui-tokens';
+export {
+  defaultBrandColors,
+  /** @deprecated Use `defaultBrandColors.dark` instead. */
+  defaultDarkColors,
+  /** @deprecated Use `defaultBrandColors.light` instead. */
+  defaultLightColors
+} from '@skyroc/ui-tokens';
 
 /**
  * Semantic color definitions aligned with ThemeColor.
