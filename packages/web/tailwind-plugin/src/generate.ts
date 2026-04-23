@@ -1,4 +1,5 @@
 import { colord, getColorPalette } from '@skyroc/color';
+import { defaultFeedbackColorsHsl } from '@skyroc/ui-tokens';
 import { mergeDeep } from '@unocss/core';
 import themes from './theme.json';
 import type {
@@ -116,31 +117,8 @@ function getColorTheme(color: ColorOptions): ThemeCSSVarsVariant {
   return { dark, light, name };
 }
 
-function createBuiltinFeedbackColorTheme() {
-  const feedbackColor: FeedbackColorOfThemeCssVarsVariant = {
-    dark: {
-      carbon: '220 14.3% 95.9%',
-      'carbon-foreground': '220.9 39.3% 11%',
-      info: '215 100% 54%',
-      'info-foreground': '0 0% 100%',
-      success: '140 79% 45%',
-      'success-foreground': '0 0% 100%',
-      warning: '37 91% 55%',
-      'warning-foreground': '0 0% 100%'
-    },
-    light: {
-      carbon: '240 4% 16%',
-      'carbon-foreground': '0 0% 98%',
-      info: '215 100% 54%',
-      'info-foreground': '0 0% 100%',
-      success: '140 79% 45%',
-      'success-foreground': '0 0% 100%',
-      warning: '37 91% 55%',
-      'warning-foreground': '0 0% 100%'
-    }
-  };
-
-  return feedbackColor;
+function createBuiltinFeedbackColorTheme(): FeedbackColorOfThemeCssVarsVariant {
+  return defaultFeedbackColorsHsl as FeedbackColorOfThemeCssVarsVariant;
 }
 
 function hslToHex(hslValue: string) {
