@@ -1,4 +1,4 @@
-import { SvgIcon } from '@skyroc/ui-compose';
+import { SvgIcon } from '@skyroc/web-ui-compose';
 import type { SegmentedOptions } from 'antd/es/segmented';
 import Segmented from 'antd/es/segmented';
 import { useTheme } from '../hooks/use-theme';

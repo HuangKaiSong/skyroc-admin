@@ -1,4 +1,4 @@
-import { ButtonIcon } from '@skyroc/ui-antd';
+import { ButtonIcon } from '@skyroc/web-ui-antd';
 import type { ButtonProps, TooltipProps } from 'antd';
 import type { CSSProperties } from 'react';
 import { memo } from 'react';

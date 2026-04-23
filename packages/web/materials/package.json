@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@skyroc/color": "workspace:*",
-    "@skyroc/ui": "workspace:*",
+    "@skyroc/web-ui": "workspace:*",
     "@skyroc/utils": "workspace:*"
   },
   "devDependencies": {
