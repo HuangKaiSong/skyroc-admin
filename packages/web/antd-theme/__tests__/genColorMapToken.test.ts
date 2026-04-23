@@ -12,7 +12,7 @@ import type { ColorMap } from '../src/types';
 /** 构造测试用 ColorMap（antd 1-10 + tailwind 50-950） */
 function makeColorMap(): ColorMap {
   const map: ColorMap = {};
-  ANTD_INDEXES.forEach((i, idx) => {
+  ANTD_INDEXES.forEach((i, _idx) => {
     map[i] = `#color-${i}` as string;
     // 对应的 tailwind 索引
   });

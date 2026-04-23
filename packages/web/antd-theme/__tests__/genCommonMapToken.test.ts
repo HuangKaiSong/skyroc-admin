@@ -24,9 +24,9 @@ describe('genCommonMapToken', () => {
 
     it('fast < mid < slow', () => {
       const result = genCommonMapToken(makeToken());
-      const fast = parseFloat(result.motionDurationFast);
-      const mid = parseFloat(result.motionDurationMid);
-      const slow = parseFloat(result.motionDurationSlow);
+      const fast = Number.parseFloat(result.motionDurationFast);
+      const mid = Number.parseFloat(result.motionDurationMid);
+      const slow = Number.parseFloat(result.motionDurationSlow);
 
       expect(fast).toBeLessThan(mid);
       expect(mid).toBeLessThan(slow);
