@@ -103,14 +103,11 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
 
 ```tsx
 import { ThemeEffect } from '@skyroc/web-admin-theme';
-import { localStg } from '@/utils/storage';
 
-const GlobalEffect = () => (
-  <ThemeEffect setStorage={localStg.set} />
-);
+const GlobalEffect = () => <ThemeEffect />;
 ```
 
-`ThemeEffect` 渲染为 `null`，只负责副作用：监听 `darkMode` 变化写 DOM class、监听主题色变化存 storage、在页面卸载前持久化完整配置。
+`ThemeEffect` 渲染为 `null`，只负责副作用：监听 `darkMode` 变化写 DOM class、监听主题色变化存 storage、在页面卸载前持久化完整配置。storage 适配器由 `setupTheme` 统一注入，无需重复传入。
 
 ---
 
@@ -366,14 +363,10 @@ function getAntdTheme(
 ### ThemeEffect
 
 ```tsx
-interface ThemeEffectProps {
-  setStorage: (key: any, value: any) => void;
-}
-
-const ThemeEffect: React.FC<ThemeEffectProps>
+const ThemeEffect: React.FC
 ```
 
-渲染为 `null`，管理以下副作用：
+渲染为 `null`，无需任何 props。storage 适配器通过 `setupTheme` 注入，包内部统一使用，不向外暴露。管理以下副作用：
 
 | 监听值 | 副作用 |
 |--------|--------|
@@ -757,6 +750,8 @@ const defaultThemeSettings: Theme.ThemeSetting = {
 - 组件树中挂载一次 `ThemeEffect` 即可
 - 副作用可观测、可调试，不隐藏在 hook 深处
 - 测试 `useTheme` 时无需 mock DOM 操作
+
+storage 适配器在 `setupTheme` 调用时注入到包内部，`ThemeEffect` 直接使用，无需从外部 prop 传入。调用方不需要关心存储细节，也不会出现同一个 storage 对象被拆成两半传给两个入口的问题。
 
 ### userName 通过 atom 传递
 
