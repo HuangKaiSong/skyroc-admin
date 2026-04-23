@@ -20,7 +20,15 @@ This is an internal workspace package. Add it via:
 ## Usage
 
 ```ts
-import { spacing, borderRadius, fontSize, fontWeight, defaultLightColors, defaultDarkColors } from '@skyroc/ui-tokens';
+import {
+  borderRadius,
+  defaultBrandColors,
+  defaultFeedbackColorsHsl,
+  defaultSidebarColorsHsl,
+  fontSize,
+  fontWeight,
+  spacing
+} from '@skyroc/ui-tokens';
 
 // Tailwind config
 export default {
@@ -39,14 +47,27 @@ Sub-path imports are also supported:
 
 ```ts
 import { spacing } from '@skyroc/ui-tokens/spacing';
-import { defaultLightColors } from '@skyroc/ui-tokens/colors';
+import { defaultBrandColors } from '@skyroc/ui-tokens/colors';
 ```
+
+## Color tokens
+
+Three default color sets are exported, all with a symmetric `{ light, dark }` shape:
+
+| Export | Format | Used by |
+|---|---|---|
+| `defaultBrandColors` | hex | Native / cross-platform brand palette |
+| `defaultFeedbackColorsHsl` | HSL string | Web `tailwind-plugin` CSS-vars |
+| `defaultSidebarColorsHsl` | HSL string | Web `tailwind-plugin` CSS-vars |
+
+> `defaultLightColors` / `defaultDarkColors` are kept as deprecated aliases of `defaultBrandColors.light` / `defaultBrandColors.dark` and will be removed in the next major.
 
 ## What goes here / what doesn't
 
 Goes here:
 
 - Plain TS objects for design variables (numbers, strings)
+- Default color palettes (brand / feedback / sidebar) in hex or HSL string form
 - Type definitions for token names
 
 Does NOT go here:
@@ -54,3 +75,4 @@ Does NOT go here:
 - Any React component or hook
 - Any platform API (DOM / React Native / Taro)
 - Any non-trivial runtime dependency
+- Any color algorithm (palette generation, WCAG, etc. — those live in `@skyroc/color`)

@@ -9,7 +9,7 @@ import AccordionTrigger from './AccordionTrigger';
 import type { AccordionProps } from './types';
 
 const AccordionUI = forwardRef<ComponentRef<typeof Root>, AccordionProps>((props, ref) => {
-  const { className, classNames, dir, items, size, triggerIcon, triggerLeading, triggerTrailing, headerProps, contentProps, triggerProps, itemProps, ...rest } = props;
+  const { className, classNames, contentProps, dir, headerProps, itemProps, items, size, triggerIcon, triggerLeading, triggerProps, triggerTrailing, ...rest } = props;
 
   return (
     <AccordionRoot
