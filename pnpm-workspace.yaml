@@ -2,10 +2,14 @@ packages:
   - 'apps/*'
   - 'packages/*'
   - 'packages/@core/*'
+  - 'packages/shared/*'
   - 'packages/web/*'
   - 'packages/web/ui/*'
   - 'packages/native/*'
-  - 'packages/shared/*'
+  - 'packages/native/ui/*'
+  # 预留:小程序端按 web/native 同样的"平台优先"布局展开
+  - 'packages/miniapp/*'
+  - 'packages/miniapp/ui/*'
   - 'internal/*'
 
 strictPeerDependencies: false

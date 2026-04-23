@@ -508,21 +508,21 @@ importers:
       '@skyroc/materials':
         specifier: workspace:*
         version: link:../../packages/web/materials
-      '@skyroc/ui':
-        specifier: workspace:*
-        version: link:../../packages/web/ui/primitives
-      '@skyroc/ui-antd':
-        specifier: workspace:*
-        version: link:../../packages/web/ui/antd
-      '@skyroc/ui-compose':
-        specifier: workspace:*
-        version: link:../../packages/web/ui/compose
       '@skyroc/utils':
         specifier: workspace:*
         version: link:../../packages/@core/utils
       '@skyroc/web-admin-theme':
         specifier: workspace:*
         version: link:../../packages/web/admin-theme
+      '@skyroc/web-ui':
+        specifier: workspace:*
+        version: link:../../packages/web/ui/shadcn
+      '@skyroc/web-ui-antd':
+        specifier: workspace:*
+        version: link:../../packages/web/ui/antd
+      '@skyroc/web-ui-compose':
+        specifier: workspace:*
+        version: link:../../packages/web/ui/compose
       '@tanstack/react-query':
         specifier: catalog:core
         version: 5.90.21(react@19.1.0)
@@ -1566,6 +1566,9 @@ importers:
       '@skyroc/color':
         specifier: workspace:*
         version: link:../../@core/color
+      '@skyroc/ui-tokens':
+        specifier: workspace:*
+        version: link:../../shared/ui-tokens
       '@skyroc/ui-types':
         specifier: workspace:*
         version: link:../../shared/ui-types
@@ -1662,6 +1665,12 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@19.1.0)
 
+  packages/shared/ui-tokens:
+    devDependencies:
+      '@skyroc/tsconfig':
+        specifier: workspace:*
+        version: link:../../../internal/tsconfig
+
   packages/shared/ui-types:
     dependencies:
       clsx:
@@ -1683,15 +1692,15 @@ importers:
       '@skyroc/hooks':
         specifier: workspace:*
         version: link:../../hooks
-      '@skyroc/ui-antd':
-        specifier: workspace:*
-        version: link:../ui/antd
-      '@skyroc/ui-compose':
-        specifier: workspace:*
-        version: link:../ui/compose
       '@skyroc/utils':
         specifier: workspace:*
         version: link:../../@core/utils
+      '@skyroc/web-ui-antd':
+        specifier: workspace:*
+        version: link:../ui/antd
+      '@skyroc/web-ui-compose':
+        specifier: workspace:*
+        version: link:../ui/compose
       antd:
         specifier: catalog:web
         version: 6.3.0(date-fns@4.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1748,12 +1757,12 @@ importers:
       '@skyroc/color':
         specifier: workspace:*
         version: link:../../@core/color
-      '@skyroc/ui':
-        specifier: workspace:*
-        version: link:../ui/primitives
       '@skyroc/utils':
         specifier: workspace:*
         version: link:../../@core/utils
+      '@skyroc/web-ui':
+        specifier: workspace:*
+        version: link:../ui/shadcn
     devDependencies:
       typed-css-modules:
         specifier: 0.9.1
@@ -1764,6 +1773,9 @@ importers:
       '@skyroc/color':
         specifier: workspace:*
         version: link:../../@core/color
+      '@skyroc/ui-tokens':
+        specifier: workspace:*
+        version: link:../../shared/ui-tokens
       '@unocss/core':
         specifier: catalog:dev
         version: 66.6.0
@@ -1792,15 +1804,15 @@ importers:
       '@iconify/react':
         specifier: catalog:ui-shared
         version: 6.0.2(react@19.1.0)
-      '@skyroc/ui':
-        specifier: workspace:*
-        version: link:../primitives
-      '@skyroc/ui-compose':
-        specifier: workspace:*
-        version: link:../compose
       '@skyroc/utils':
         specifier: workspace:*
         version: link:../../../@core/utils
+      '@skyroc/web-ui':
+        specifier: workspace:*
+        version: link:../shadcn
+      '@skyroc/web-ui-compose':
+        specifier: workspace:*
+        version: link:../compose
       '@tanstack/react-router':
         specifier: catalog:web
         version: 1.162.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1844,12 +1856,12 @@ importers:
       '@skyroc/color':
         specifier: workspace:*
         version: link:../../../@core/color
-      '@skyroc/ui':
-        specifier: workspace:*
-        version: link:../primitives
       '@skyroc/utils':
         specifier: workspace:*
         version: link:../../../@core/utils
+      '@skyroc/web-ui':
+        specifier: workspace:*
+        version: link:../shadcn
       ahooks:
         specifier: catalog:utils
         version: 3.9.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1888,7 +1900,7 @@ importers:
         specifier: catalog:dev
         version: 1.60.0
 
-  packages/web/ui/primitives:
+  packages/web/ui/shadcn:
     dependencies:
       '@radix-ui/react-scroll-area':
         specifier: catalog:ui-shared
@@ -3088,10 +3100,6 @@ packages:
   '@eslint/core@0.17.0':
     resolution: {integrity: sha512-yL/sLrpmtDaFEiUj1osRP4TI2MDz1AddJL+jZ7KSqvBuliN4xqYY54IfdN8qD8Toa6g1iloph1fxQNkjOxrrpQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@eslint/core@1.1.0':
-    resolution: {integrity: sha512-/nr9K9wkr3P1EzFTdFdMoLuo1PmIxjmwvPozwoSodjNBdefGujXQUF93u1DDZpEaTuDvMsIQddsd35BwtrW9Xw==}
-    engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
   '@eslint/core@1.2.1':
     resolution: {integrity: sha512-MwcE1P+AZ4C6DWlpin/OmOA54mmIZ/+xZuJiQd4SyB29oAJjN30UW9wkKNptW2ctp4cEsvhlLY/CsQ1uoHDloQ==}
@@ -14210,7 +14218,7 @@ snapshots:
 
   '@eslint/compat@2.0.2(eslint@10.2.0(jiti@2.6.1))':
     dependencies:
-      '@eslint/core': 1.1.0
+      '@eslint/core': 1.2.1
     optionalDependencies:
       eslint: 10.2.0(jiti@2.6.1)
 
@@ -14239,10 +14247,6 @@ snapshots:
       '@eslint/core': 1.2.1
 
   '@eslint/core@0.17.0':
-    dependencies:
-      '@types/json-schema': 7.0.15
-
-  '@eslint/core@1.1.0':
     dependencies:
       '@types/json-schema': 7.0.15
 
@@ -18373,8 +18377,7 @@ snapshots:
 
   '@typescript-eslint/types@8.56.1': {}
 
-  '@typescript-eslint/types@8.58.2':
-    optional: true
+  '@typescript-eslint/types@8.58.2': {}
 
   '@typescript-eslint/typescript-estree@8.56.1(typescript@5.9.3)':
     dependencies:
@@ -20518,13 +20521,13 @@ snapshots:
 
   eslint-plugin-import-x@4.16.1(@typescript-eslint/utils@8.58.2(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.3))(eslint-import-resolver-node@0.3.9)(eslint@10.2.0(jiti@2.6.1)):
     dependencies:
-      '@typescript-eslint/types': 8.56.1
+      '@typescript-eslint/types': 8.58.2
       comment-parser: 1.4.5
       debug: 4.4.3
       eslint: 10.2.0(jiti@2.6.1)
       eslint-import-context: 0.1.9(unrs-resolver@1.11.1)
       is-glob: 4.0.3
-      minimatch: 10.2.2
+      minimatch: 10.2.5
       semver: 7.7.4
       stable-hash-x: 0.2.0
       unrs-resolver: 1.11.1
@@ -20536,13 +20539,13 @@ snapshots:
 
   eslint-plugin-import-x@4.16.1(@typescript-eslint/utils@8.58.2(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint-import-resolver-node@0.3.9)(eslint@9.39.3(jiti@2.6.1)):
     dependencies:
-      '@typescript-eslint/types': 8.56.1
+      '@typescript-eslint/types': 8.58.2
       comment-parser: 1.4.5
       debug: 4.4.3
       eslint: 9.39.3(jiti@2.6.1)
       eslint-import-context: 0.1.9(unrs-resolver@1.11.1)
       is-glob: 4.0.3
-      minimatch: 10.2.2
+      minimatch: 10.2.5
       semver: 7.7.4
       stable-hash-x: 0.2.0
       unrs-resolver: 1.11.1
