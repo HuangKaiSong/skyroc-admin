@@ -57,9 +57,8 @@ const AppProvider = ({ children }) => (
 
 ```tsx
 import { ThemeEffect } from '@skyroc/web-admin-theme';
-import { localStg } from '@/utils/storage';
 
-const GlobalEffect = () => <ThemeEffect setStorage={localStg.set} />;
+const GlobalEffect = () => <ThemeEffect />;
 ```
 
 ### 4. 在组件中使用 useTheme

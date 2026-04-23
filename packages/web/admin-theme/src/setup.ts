@@ -26,6 +26,12 @@ interface SetupThemeOptions {
   storage: ThemeStorage;
 }
 
+let _storage: ThemeStorage | null = null;
+
+export function getInternalStorage(): ThemeStorage | null {
+  return _storage;
+}
+
 /**
  * 一次调用完成主题初始化
  *
@@ -45,6 +51,8 @@ interface SetupThemeOptions {
  */
 export function setupTheme(options: SetupThemeOptions) {
   const { buildTime, isProd = false, overrides, storage } = options;
+
+  _storage = storage;
 
   // 开发环境：直接使用默认配置
   if (!isProd) {
