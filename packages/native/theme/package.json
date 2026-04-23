@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@skyroc/color": "workspace:*",
+    "@skyroc/ui-tokens": "workspace:*",
     "@skyroc/ui-types": "workspace:*"
   },
   "devDependencies": {
