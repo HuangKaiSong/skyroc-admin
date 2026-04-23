@@ -1,4 +1,4 @@
-export { default as Slider } from './Slider';
+export { default as Slider } from './SliderUI';
 
 export { default as SliderRange } from './SliderRange';
 export { default as SliderRoot } from './SliderRoot';

@@ -1,8 +1,9 @@
+export { default as BottomSheet } from './BottomSheetUI';
+
 export { Root as BottomSheetRoot } from 'vaul';
 
 export { DialogFooter as BottomSheetFooter, DialogHeader as BottomSheetHeader, DialogTrigger as BottomSheetTrigger } from '../dialog';
 
-export { default as BottomSheet } from './BottomSheet';
 
 export { default as BottomSheetClose } from './BottomSheetClose';
 export { default as BottomSheetContent } from './BottomSheetContent';

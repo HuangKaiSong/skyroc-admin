@@ -1,4 +1,5 @@
-export { default as Alert } from './Alert';
+export { default as Alert } from './AlertUI';
+
 export { default as AlertDescription } from './AlertDescription';
 export { default as AlertRoot } from './AlertRoot';
 export { default as AlertTitle } from './AlertTitle';

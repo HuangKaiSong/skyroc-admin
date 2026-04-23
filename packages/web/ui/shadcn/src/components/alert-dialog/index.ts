@@ -1,4 +1,4 @@
-export { default as AlertDialog } from './AlertDialog';
+export { default as AlertDialog } from './AlertDialogUI';
 
 export { default as AlertDialogAction } from './AlertDialogAction';
 export { default as AlertDialogCancel } from './AlertDialogCancel';

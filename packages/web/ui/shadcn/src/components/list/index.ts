@@ -1,4 +1,5 @@
-export { default as List } from './List';
+export { ListUI as List } from './ListUI';
+
 export * from './ListContent';
 export * from './ListDescription';
 export * from './ListItem';

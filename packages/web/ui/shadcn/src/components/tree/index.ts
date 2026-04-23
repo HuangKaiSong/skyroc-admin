@@ -1,4 +1,5 @@
-export { default as Tree } from './Tree';
+export { default as Tree } from './TreeUI';
+
 export { default as TreeRoot } from './TreeRoot';
 export { default as TreeItem } from './TreeItem';
 export { default as TreeVirtualizer } from './TreeVirtualizer';

@@ -1,3 +1,3 @@
-export { default as Tag } from './Tag';
+export { default as Tag } from './TagUI';
 
 export * from './types';

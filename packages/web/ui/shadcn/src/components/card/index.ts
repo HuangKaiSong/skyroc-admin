@@ -1,4 +1,5 @@
-export { default as Card } from './Card';
+export { CardUI as Card } from './CardUI';
+
 export * from './CardContent';
 export * from './CardFooter';
 export * from './CardHeader';

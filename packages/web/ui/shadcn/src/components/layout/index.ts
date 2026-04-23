@@ -1,4 +1,5 @@
-export { default as Layout } from './Layout';
+export { default as Layout } from './LayoutUI';
+
 export { default as LayoutFooter } from './LayoutFooter';
 export { default as LayoutHeader } from './LayoutHeader';
 export { default as LayoutMain } from './LayoutMain';

@@ -1,4 +1,4 @@
-export { default as DropdownMenu } from './DropdownMenu';
+export { default as DropdownMenu } from './DropdownMenuUI';
 
 export { default as DropdownMenuArrow } from './DropdownMenuArrow';
 

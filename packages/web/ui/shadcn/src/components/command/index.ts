@@ -1,6 +1,7 @@
+export { default as Command } from './CommandUI';
+
 export { CommandLoading } from 'cmdk';
 
-export { default as Command } from './Command';
 export { default as CommandDialog } from './CommandDialog';
 export { default as CommandEmpty } from './CommandEmpty';
 export { default as CommandGroup } from './CommandGroup';

@@ -1,4 +1,4 @@
-export { default as Kbd } from './KeyboardKey';
+export { default as KeyboardKey } from './KeyboardKeyUI';
 
 export type { KbdKey, KbdValue, KbdVariant, KbdSize, KeyboardKeyProps, KeyboardKeyGroupProps } from './types';
 

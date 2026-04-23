@@ -1,4 +1,5 @@
-export { default as Pagination } from './Pagination';
+export { default as Pagination } from './PaginationUI';
+
 export { default as PaginationContent } from './PaginationContent';
 export { default as PaginationEllipsis } from './PaginationEllipsis';
 export { default as PaginationFirst } from './PaginationFirst';

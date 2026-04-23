@@ -1,3 +1,3 @@
-export { default as Segment } from './Segment';
+export { default as Segment } from './SegmentUI';
 
 export type { SegmentOptionData, SegmentProps } from './types';

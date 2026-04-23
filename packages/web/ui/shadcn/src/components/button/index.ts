@@ -1,4 +1,4 @@
-export { default as Button } from './Button';
+export { default as Button } from './ButtonUI';
 
 export { default as ButtonGroup } from './ButtonGroup';
 

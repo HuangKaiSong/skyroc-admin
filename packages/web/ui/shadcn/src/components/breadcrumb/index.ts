@@ -1,4 +1,5 @@
-export { default as Breadcrumb } from './Breadcrumb';
+export { default as Breadcrumb } from './BreadcrumbUI';
+
 export { default as BreadcrumbEllipsis } from './BreadcrumbEllipsis';
 export { default as BreadcrumbItemContent } from './BreadcrumbItem';
 export { default as BreadcrumbLink } from './BreadcrumbLink';

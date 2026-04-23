@@ -1,4 +1,4 @@
-export { default as ContextMenu } from './ContextMenu';
+export { default as ContextMenu } from './ContextMenuUI';
 
 export { default as ContextMenuArrow } from './ContextMenuArrow';
 

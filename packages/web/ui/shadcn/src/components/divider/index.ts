@@ -1,4 +1,5 @@
-export { default as Divider } from './Divider';
+export { default as Divider } from './DividerUI';
+
 export { default as DividerLabel } from './DividerLabel';
 export { default as DividerRoot } from './DividerRoot';
 

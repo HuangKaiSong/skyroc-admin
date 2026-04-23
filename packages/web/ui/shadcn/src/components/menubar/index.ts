@@ -1,3 +1,5 @@
+export { default as Menubar } from './MenubarUI';
+
 export { default as Menubar } from './Menubar';
 
 export { default as MenubarCheckboxGroup } from './MenubarCheckboxGroup';

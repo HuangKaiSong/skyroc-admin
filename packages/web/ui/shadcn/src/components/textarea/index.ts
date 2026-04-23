@@ -1,4 +1,4 @@
-export { default as Textarea } from './Textarea';
+export { default as Textarea } from './TextareaUI';
 
 export { default as TextareaContent } from './TextareaContent';
 export { default as TextareaCount } from './TextareaCount';

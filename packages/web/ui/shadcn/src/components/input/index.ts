@@ -1,3 +1,3 @@
-export { default as Input } from './Input';
+export { default as Input } from './InputUI';
 
 export * from './types';

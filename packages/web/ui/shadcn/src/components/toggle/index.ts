@@ -1,3 +1,3 @@
-export { default as Toggle } from './Toggle';
+export { default as Toggle } from './ToggleUI';
 
 export * from './types';

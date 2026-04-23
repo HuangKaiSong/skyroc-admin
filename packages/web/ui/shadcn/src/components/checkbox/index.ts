@@ -1,4 +1,5 @@
-export { default as Checkbox } from './Checkbox';
+export { default as Checkbox } from './CheckboxUI';
+
 export { default as CheckboxCard } from './CheckboxCard';
 export { default as CheckboxControl } from './CheckboxControl';
 export { default as CheckboxGroup } from './CheckboxGroup';

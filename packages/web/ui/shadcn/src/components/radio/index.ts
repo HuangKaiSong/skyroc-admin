@@ -1,4 +1,5 @@
-export { default as Radio } from './Radio';
+export { default as Radio } from './RadioUI';
+
 export { default as RadioCard } from './RadioCard';
 export { default as RadioCardGroup } from './RadioCardGroup';
 export { default as RadioGroup } from './RadioGroup';

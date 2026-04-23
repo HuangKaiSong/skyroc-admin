@@ -1,4 +1,5 @@
-export { default as Carousel } from './Carousel';
+export { default as Carousel } from './CarouselUI';
+
 export { default as CarouselContent } from './CarouselContent';
 export { default as CarouselItem } from './CarouselItem';
 export { default as CarouselNext } from './CarouselNext';
