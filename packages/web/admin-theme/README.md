@@ -161,7 +161,7 @@ src/
 
 - [`@skyroc/adapter-antd-theme`](../antd-theme) — Ant Design 主题算法适配（OKLCH 色板）
 - [`@skyroc/color`](../../@core/color) — 核心色板生成
-- [`@skyroc/ui-antd`](../ui-antd) — Ant Design 业务组件封装
+- [`@skyroc/web-ui-antd`](../ui-antd) — Ant Design 业务组件封装
 - [`@skyroc/hooks`](../../hooks) — 通用 hooks 集合
 
 ## License
