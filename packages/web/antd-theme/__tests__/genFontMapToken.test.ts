@@ -51,7 +51,7 @@ describe('genFontSizes', () => {
 
   it('字体大小应从小到大单调递增', () => {
     const result = genFontSizes();
-    for (let i = 1; i < result.length; i++) {
+    for (let i = 1; i < result.length; i += 1) {
       expect(result[i].size).toBeGreaterThan(result[i - 1].size);
     }
   });
