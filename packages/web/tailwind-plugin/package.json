@@ -19,7 +19,7 @@
     }
   },
   "scripts": {
-    "build": "tsup",
+    "build": "tsdown",
     "lint": "oxlint --fix",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
@@ -35,6 +35,7 @@
     "@skyroc/config": "workspace:*",
     "@skyroc/tsconfig": "workspace:*",
     "oxlint": "catalog:dev",
-    "rimraf": "catalog:dev"
+    "rimraf": "catalog:dev",
+    "tsdown": "catalog:dev"
   }
 }
