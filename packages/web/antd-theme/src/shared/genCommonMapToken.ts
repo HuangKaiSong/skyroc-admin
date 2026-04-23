@@ -1,6 +1,6 @@
 import type { CommonMapToken } from 'antd/es/theme/interface';
 import type { SeedToken } from 'antd/es/theme/internal';
-import genRadiusMapToken from './genRadiusMapToken';
+import { genRadiusMapToken } from './genRadiusMapToken';
 
 export default function genCommonMapToken(token: SeedToken): CommonMapToken {
   const { borderRadius, lineWidth, motionBase, motionUnit } = token;

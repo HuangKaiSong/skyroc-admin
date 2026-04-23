@@ -9,7 +9,7 @@ import genColorMapToken, {
 import genCommonMapToken from '../../shared/genCommonMapToken';
 import genControlHeight from '../../shared/genControlHeight';
 import { genFontMapToken } from '../../shared/genFontMapToken';
-import genSizeMapToken from '../../shared/genSizeMapToken';
+import { genSizeMapToken } from '../../shared/genSizeMapToken';
 import { generateColorPalettes, generateNeutralColorPalettes } from './colors';
 
 // Export generator functions for external use
