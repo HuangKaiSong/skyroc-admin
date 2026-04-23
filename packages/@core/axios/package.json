@@ -82,6 +82,7 @@
     "@skyroc/config": "workspace:*",
     "@skyroc/tsconfig": "workspace:*",
     "@types/qs": "catalog:dev",
+    "msw": "catalog:dev",
     "oxlint": "catalog:dev",
     "rimraf": "catalog:dev",
     "tsdown": "catalog:dev"
