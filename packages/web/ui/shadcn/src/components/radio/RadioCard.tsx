@@ -4,7 +4,7 @@ import { forwardRef, useId } from 'react';
 import { Item } from '@radix-ui/react-radio-group';
 import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@skyroc/utils';
-import RadioLabel from '../label/Label';
+import RadioLabel from '../label/LabelUI';
 import { radioVariants } from './radio-variants';
 import RadioIndicator from './RadioIndicator';
 import type { RadioCardProps } from './types';

@@ -1,7 +1,7 @@
 'use client';
 
 import { ComputedField } from '@skyroc/form';
-import FormField from './FormField';
+import FormField from './FormFieldUI';
 import type { FormComputedFieldProps } from './types';
 
 const FormComputedField = <Values = any,>(props: FormComputedFieldProps<Values>) => {

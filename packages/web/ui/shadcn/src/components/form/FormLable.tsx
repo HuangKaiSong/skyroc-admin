@@ -1,5 +1,5 @@
 import { cn } from '@skyroc/utils';
-import Label from '../label/Label';
+import Label from '../label/LabelUI';
 import { formVariants } from './form-variants';
 import type { FormLabelProps } from './types';
 

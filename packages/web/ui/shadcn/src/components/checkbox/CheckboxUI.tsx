@@ -2,7 +2,7 @@
 
 import { forwardRef, useId } from 'react';
 import { Check, Minus } from 'lucide-react';
-import CheckboxLabel from '../label/Label';
+import CheckboxLabel from '../label/LabelUI';
 import CheckboxControl from './CheckboxControl';
 import CheckboxIndicator from './CheckboxIndicator';
 import CheckboxRoot from './CheckboxRoot';

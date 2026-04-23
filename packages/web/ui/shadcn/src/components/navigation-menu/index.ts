@@ -1,7 +1,5 @@
 export { default as NavigationMenu } from './NavigationMenuUI';
 
-export { default as NavigationMenu } from './NavigationMenu';
-
 export { default as NavigationMenuChildLink } from './NavigationMenuChildLink';
 
 export { default as NavigationMenuChildList } from './NavigationMenuChildList';

@@ -1,7 +1,7 @@
 'use client';
 
 import { useId } from 'react';
-import RadioLabel from '../label/Label';
+import RadioLabel from '../label/LabelUI';
 import RadioGroupItem from './RadioGroupItem';
 import RadioIndicator from './RadioIndicator';
 import RadioRoot from './RadioRoot';

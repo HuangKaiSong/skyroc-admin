@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { Icon } from '../icon';
-import Button from './Button';
+import Button from './ButtonUI';
 import type { ButtonIconProps } from './types';
 
 const ButtonIcon = forwardRef<HTMLButtonElement, ButtonIconProps>((props, ref) => {

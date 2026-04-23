@@ -1,22 +1,18 @@
 'use client';
 
-import { Icon as IconifyIcon } from '@iconify/react';
 import { useComponentConfig } from '../config-provider/context';
+import IconUI from '../../components/icon/IconUI';
 import type { IconProps } from '../../components/icon/types';
 
 const Icon = (props: IconProps) => {
-  const contextConfig = useComponentConfig('icon');
-
-  const { height = contextConfig?.height ?? '1.25em', width = contextConfig?.width ?? '1.25em', ...rest } = props;
+  const config = useComponentConfig('icon');
 
   const mergedProps = {
-    ...contextConfig,
-    height,
-    width,
-    ...rest
+    ...config,
+    ...props
   };
 
-  return <IconifyIcon {...mergedProps} />;
+  return <IconUI {...mergedProps} />;
 };
 
 Icon.displayName = 'Icon';

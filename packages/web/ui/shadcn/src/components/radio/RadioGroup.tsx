@@ -1,6 +1,6 @@
 import { Root } from '@radix-ui/react-radio-group';
 import { cn } from '@skyroc/utils';
-import Radio from './Radio';
+import Radio from './RadioUI';
 import { radioVariants } from './radio-variants';
 import type { RadioGroupProps } from './types';
 

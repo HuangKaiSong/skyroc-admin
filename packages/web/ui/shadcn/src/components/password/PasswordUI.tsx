@@ -8,12 +8,12 @@ import type { PasswordProps } from './types';
 
 const PasswordUI = forwardRef<HTMLInputElement, PasswordProps>((props, ref) => {
   const {
+    defaultVisible = false,
+    hiddenIcon,
+    onVisibleChange,
     trailing,
     visible: visibleProp,
-    defaultVisible = false,
-    onVisibleChange,
     visibleIcon,
-    hiddenIcon,
     ...rest
   } = props;
 

@@ -1,6 +1,6 @@
 import { cn } from '@/lib';
 import type { KbdValue } from '../keyboard-key';
-import { Kbd } from '../keyboard-key';
+import { KeyboardKey } from '../keyboard-key';
 import { menuVariants } from './menu-variants';
 import type { MenuShortcutProps } from './types';
 
@@ -16,7 +16,7 @@ const MenuShortcut = (props: MenuShortcutProps) => {
       className={mergedCls}
       {...rest}
     >
-      <Kbd
+      <KeyboardKey
         size={size}
         value={value as KbdValue}
       />

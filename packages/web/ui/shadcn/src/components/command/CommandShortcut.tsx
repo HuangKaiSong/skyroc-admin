@@ -1,5 +1,5 @@
 import { cn } from '@skyroc/utils';
-import KeyboardKey from '../keyboard-key/KeyboardKey';
+import KeyboardKey from '../keyboard-key/KeyboardKeyUI';
 import type { KbdValue } from '../keyboard-key/types';
 import { commandVariants } from './command-variants';
 import type { CommandShortcutProps } from './types';

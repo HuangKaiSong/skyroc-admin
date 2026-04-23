@@ -4,25 +4,25 @@ import { useCallback, useMemo } from 'react';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
 import type { Value } from '@/types/shared';
-import Checkbox from './Checkbox';
+import Checkbox from './CheckboxUI';
 import { CheckboxGroupProvider } from './CheckboxGroupContext';
 import type { CheckboxGroupProps } from './types';
 import { checkboxVariants } from './checkbox-variants';
 
 const CheckboxGroup = (props: CheckboxGroupProps) => {
   const {
+    checkedIcon,
     className,
     classNames,
     color,
     defaultValue,
     disabled,
-    checkedIcon,
+    indeterminateIcon,
     items,
     onValueChange,
     orientation = 'horizontal',
     size,
-    value: controlledValue,
-    indeterminateIcon
+    value: controlledValue
   } = props;
 
   const [uncontrolledValue, setUncontrolledValue] = useControllableState({
