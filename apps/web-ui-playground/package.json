@@ -1,0 +1,77 @@
+{
+  "name": "skyroc-ui-playground",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "skyroc-ui is an ui library like shadcn for React.",
+  "author": {
+    "name": "Ohh",
+    "email": "15093262@qq.com",
+    "url": "https://github.com/Ohh-889"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/Ohh-889/skyroc-ui",
+  "repository": {
+    "url": "https://github.com/Ohh-889/skyroc-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ohh-889/skyroc-ui/issues"
+  },
+  "keywords": [
+    "UI",
+    "tailwind-css",
+    "shadcn-ui",
+    "react"
+  ],
+  "scripts": {
+    "build": "next build",
+    "build:ui": "pnpm --filter skyroc-ui build",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "deploy": "pnpm run build:ui && pnpm run lint:registry && pnpm run worker:build && opennextjs-cloudflare deploy",
+    "dev": "pnpm run predev && next dev --turbopack",
+    "lint": "eslint . --fix",
+    "lint:pkg": "eslint ./package.json --fix",
+    "lint:registry": "eslint public/r --fix",
+    "predev": "tsx scripts/generate-demo-list.ts && eslint component-list.json --fix",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "start": "next start",
+    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "worker:build": "opennextjs-cloudflare build"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.1.0",
+    "async-validator": "^4.2.5",
+    "embla-carousel-autoplay": "8.6.0",
+    "grapheme-splitter": "1.0.4",
+    "lucide-react": "catalog:",
+    "next": "catalog:",
+    "next-intl": "^4.5.6",
+    "next-themes": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-hotkeys-hook": "5.1.0",
+    "skyroc-ui": "workspace:*",
+    "zod": "4.0.17"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "catalog:",
+    "@next/eslint-plugin-next": "catalog:",
+    "@opennextjs/cloudflare": "1.13.1",
+    "@skyroc/tailwind-plugin": "workspace:*",
+    "@tailwindcss/postcss": "catalog:",
+    "@typescript-eslint/eslint-plugin": "catalog:",
+    "@typescript-eslint/parser": "catalog:",
+    "eslint": "catalog:",
+    "eslint-plugin-react": "catalog:",
+    "eslint-plugin-react-hooks": "catalog:",
+    "eslint-plugin-react-native": "catalog:",
+    "eslint-plugin-react-refresh": "catalog:",
+    "eslint-plugin-tailwindcss": "catalog:",
+    "tailwindcss": "catalog:",
+    "tailwindcss-animate": "catalog:",
+    "tsx": "catalog:",
+    "tw-animate-css": "catalog:",
+    "typescript": "catalog:",
+    "wrangler": "4.51.0"
+  }
+}
