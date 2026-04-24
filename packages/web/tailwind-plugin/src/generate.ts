@@ -146,7 +146,7 @@ function getColorCSSVars(color: FeedbackColorOfThemeCssVars, native = false): Re
 
       const colorPalette = getColorPalette(hsl);
 
-      for (const [num, hex] of Object.entries(colorPalette)) {
+      for (const [num, hex] of colorPalette) {
         if (native) {
           result[`--${key}-${num}`] = hex;
         } else {
