@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { RadioGroup } from 'skyroc-ui';
-import type { RadioGroupProps } from 'skyroc-ui';
+import { RadioGroup } from '@skyroc/web-ui';
+import type { RadioGroupProps } from '@skyroc/web-ui';
 
 const items: RadioGroupProps['items'] = [
   { label: 'Apple', value: 'apple' },

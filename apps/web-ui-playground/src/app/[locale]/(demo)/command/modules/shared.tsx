@@ -1,5 +1,5 @@
 import { Calendar, HelpCircle, Mail, Rocket, Settings, Smile, User } from 'lucide-react';
-import type { CommandProps } from 'skyroc-ui';
+import type { CommandProps } from '@skyroc/web-ui';
 
 export const items: CommandProps['items'] = [
   {

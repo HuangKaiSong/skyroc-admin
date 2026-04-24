@@ -1,4 +1,4 @@
-import { Accordion } from 'skyroc-ui';
+import { Accordion } from '@skyroc/web-ui';
 import { items } from './shared';
 
 const AccordionSlot = () => {

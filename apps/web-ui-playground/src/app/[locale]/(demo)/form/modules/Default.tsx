@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Checkbox, Form, FormField, Input, RadioGroup, Select, Switch, useForm } from 'skyroc-ui';
+import { Button, Checkbox, Form, FormField, Input, RadioGroup, Select, Switch, useForm } from '@skyroc/web-ui';
 import { showToastCode } from './toast';
 
 const genderItems = [

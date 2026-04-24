@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Folder, FolderOpen } from 'lucide-react';
-import { Icon, Tree } from 'skyroc-ui';
+import { Icon, Tree } from '@skyroc/web-ui';
 
 const items = [
   {

@@ -1,4 +1,4 @@
-import { Progress } from 'skyroc-ui';
+import { Progress } from '@skyroc/web-ui';
 
 const ProgressBasic = () => {
   return (

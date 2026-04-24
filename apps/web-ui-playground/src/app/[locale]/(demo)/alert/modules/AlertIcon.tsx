@@ -1,5 +1,5 @@
 import { Rocket } from 'lucide-react';
-import { Alert } from 'skyroc-ui';
+import { Alert } from '@skyroc/web-ui';
 
 const AlertWithIcon = () => {
   return (

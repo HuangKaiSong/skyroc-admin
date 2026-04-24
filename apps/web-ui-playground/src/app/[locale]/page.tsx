@@ -9,7 +9,7 @@ import {
   Input,
   ScrollArea,
   Tag
-} from 'skyroc-ui';
+} from '@skyroc/web-ui';
 import { Link } from '../../i18n/navigation';
 
 // 组件键名列表

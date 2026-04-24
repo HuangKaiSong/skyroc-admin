@@ -2,7 +2,7 @@
 
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
-import { Card } from 'skyroc-ui';
+import { Card } from '@skyroc/web-ui';
 const RowVirtualizerDynamic = dynamic(() => import('./VirtualListDynamic'), {
   ssr: false
 });

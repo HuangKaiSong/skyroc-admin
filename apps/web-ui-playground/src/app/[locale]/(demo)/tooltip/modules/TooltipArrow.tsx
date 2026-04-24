@@ -1,4 +1,4 @@
-import { Button, Card, Tooltip } from 'skyroc-ui';
+import { Button, Card, Tooltip } from '@skyroc/web-ui';
 
 const TooltipArrow = () => {
   return (

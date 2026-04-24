@@ -1,4 +1,4 @@
-import { Tag } from 'skyroc-ui';
+import { Tag } from '@skyroc/web-ui';
 
 const shapes = ['auto', 'rounded'] as const;
 

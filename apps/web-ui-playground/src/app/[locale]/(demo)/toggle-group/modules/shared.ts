@@ -1,4 +1,4 @@
-import type { ToggleGroupProps } from 'skyroc-ui';
+import type { ToggleGroupProps } from '@skyroc/web-ui';
 
 export const items: ToggleGroupProps['items'] = [
   { disabled: false, label: 'Top', value: 'top' },

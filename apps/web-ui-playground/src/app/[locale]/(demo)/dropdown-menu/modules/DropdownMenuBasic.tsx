@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, DropdownMenu } from 'skyroc-ui';
+import { Button, DropdownMenu } from '@skyroc/web-ui';
 
 const menus = [
   {

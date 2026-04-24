@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import type { FormAction } from 'skyroc-ui';
-import { Button, Form, FormField, Input, useForm } from 'skyroc-ui';
+import type { FormAction } from '@skyroc/web-ui';
+import { Button, Form, FormField, Input, useForm } from '@skyroc/web-ui';
 
 // ============ Analytics Middleware (logging/tracking) ============
 function analyticsMiddleware({ getState }: { dispatch: (a: FormAction) => void; getState: () => any }) {

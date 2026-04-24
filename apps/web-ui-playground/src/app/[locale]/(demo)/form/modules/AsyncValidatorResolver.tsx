@@ -2,7 +2,7 @@
 
 import Schema from 'async-validator';
 import type { RuleItem } from 'async-validator';
-import { Button, Form, FormField, Input, useForm } from 'skyroc-ui';
+import { Button, Form, FormField, Input, useForm } from '@skyroc/web-ui';
 
 // 定义 async-validator 规则
 const descriptor: Record<string, RuleItem | RuleItem[]> = {

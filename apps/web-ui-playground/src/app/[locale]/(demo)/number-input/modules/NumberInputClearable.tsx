@@ -1,4 +1,4 @@
-import { NumberInput } from 'skyroc-ui';
+import { NumberInput } from '@skyroc/web-ui';
 
 const NumberInputClearable = () => {
   return (

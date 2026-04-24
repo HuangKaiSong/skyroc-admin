@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, VirtualGrid } from 'skyroc-ui';
+import { Card, VirtualGrid } from '@skyroc/web-ui';
 
 interface GridItem {
   id: number;

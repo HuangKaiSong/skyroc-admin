@@ -1,4 +1,4 @@
-import { Card, Label, ToggleGroup } from 'skyroc-ui';
+import { Card, Label, ToggleGroup } from '@skyroc/web-ui';
 import { items } from './shared';
 
 const ToggleGroupMulti = () => {

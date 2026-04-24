@@ -1,4 +1,4 @@
-import { Button, Badge } from 'skyroc-ui';
+import { Button, Badge } from '@skyroc/web-ui';
 
 const positions = ['top-right', 'bottom-right', 'top-left', 'bottom-left'] as const;
 

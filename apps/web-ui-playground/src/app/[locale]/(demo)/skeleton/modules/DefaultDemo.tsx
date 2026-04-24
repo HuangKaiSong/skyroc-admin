@@ -1,4 +1,4 @@
-import { Skeleton } from 'skyroc-ui';
+import { Skeleton } from '@skyroc/web-ui';
 
 const DefaultDemo = () => {
   return (

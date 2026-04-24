@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertDialog, Button } from 'skyroc-ui';
+import { AlertDialog, Button } from '@skyroc/web-ui';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
 

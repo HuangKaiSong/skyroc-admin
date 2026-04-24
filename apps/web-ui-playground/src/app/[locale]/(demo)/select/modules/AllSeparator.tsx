@@ -1,5 +1,5 @@
-import type { SelectProps } from 'skyroc-ui';
-import { Select } from 'skyroc-ui';
+import type { SelectProps } from '@skyroc/web-ui';
+import { Select } from '@skyroc/web-ui';
 
 const fruits: SelectProps['items'] = [
   { label: 'Apple', value: 'apple' },

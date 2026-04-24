@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { Form, FormField, Input, useForm, useWatch } from 'skyroc-ui';
+import { Form, FormField, Input, useForm, useWatch } from '@skyroc/web-ui';
 import { showToastCode } from './toast';
 
 interface Inputs {

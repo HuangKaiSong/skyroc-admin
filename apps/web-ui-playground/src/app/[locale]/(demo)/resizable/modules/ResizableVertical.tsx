@@ -1,6 +1,6 @@
 'use client';
 
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from 'skyroc-ui';
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@skyroc/web-ui';
 
 const ResizableVertical = () => {
   return (

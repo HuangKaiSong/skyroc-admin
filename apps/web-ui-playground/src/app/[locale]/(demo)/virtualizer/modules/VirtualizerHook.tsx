@@ -1,8 +1,8 @@
 'use client';
 
 import { useRef } from 'react';
-import type { VirtualizerList } from 'skyroc-ui';
-import { Button, Card, VirtualList } from 'skyroc-ui';
+import type { VirtualizerList } from '@skyroc/web-ui';
+import { Button, Card, VirtualList } from '@skyroc/web-ui';
 
 interface ListItem {
   id: number;

@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Button, Icon } from 'skyroc-ui';
+import { Button, Icon } from '@skyroc/web-ui';
 import { Link } from '../i18n/navigation';
 
 const NotFoundClient = () => {

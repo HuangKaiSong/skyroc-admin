@@ -1,7 +1,7 @@
 'use client';
 
 import { Lock, LockOpen } from 'lucide-react';
-import { Password } from 'skyroc-ui';
+import { Password } from '@skyroc/web-ui';
 
 const PasswordIcon = () => {
   return (

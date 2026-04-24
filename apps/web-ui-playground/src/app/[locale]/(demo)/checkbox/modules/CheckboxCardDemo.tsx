@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { Palette, Sparkles, Zap } from 'lucide-react';
-import { CheckboxCard } from 'skyroc-ui';
-import type { CheckedState } from 'skyroc-ui';
+import { CheckboxCard } from '@skyroc/web-ui';
+import type { CheckedState } from '@skyroc/web-ui';
 
 const CheckboxCardDemo = () => {
   const [checked1, setChecked1] = useState<CheckedState>(false);

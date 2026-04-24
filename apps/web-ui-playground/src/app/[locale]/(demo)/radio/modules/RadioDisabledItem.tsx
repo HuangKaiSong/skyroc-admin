@@ -1,5 +1,5 @@
-import type { RadioGroupProps } from 'skyroc-ui';
-import { RadioGroup } from 'skyroc-ui';
+import type { RadioGroupProps } from '@skyroc/web-ui';
+import { RadioGroup } from '@skyroc/web-ui';
 
 const items: RadioGroupProps['items'] = [
   { label: 'A', value: '1' },

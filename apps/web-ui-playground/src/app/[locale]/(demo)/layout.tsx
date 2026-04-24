@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, ScrollArea } from 'skyroc-ui';
+import { Card, ScrollArea } from '@skyroc/web-ui';
 import { Link } from '../../../i18n/navigation';
 import COMPONENT_DIRS from '../../../../component-list.json';
 import DemoTabs from './modules/DemoTabs';

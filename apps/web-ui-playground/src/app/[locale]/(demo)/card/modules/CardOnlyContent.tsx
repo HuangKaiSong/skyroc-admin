@@ -1,4 +1,4 @@
-import { Card } from 'skyroc-ui';
+import { Card } from '@skyroc/web-ui';
 
 const CardOnlyContent = () => {
   return (

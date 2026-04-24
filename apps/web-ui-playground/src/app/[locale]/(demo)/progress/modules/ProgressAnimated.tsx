@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Progress } from 'skyroc-ui';
+import { Progress } from '@skyroc/web-ui';
 
 const ProgressAnimated = () => {
   const [progress, setProgress] = useState(0);

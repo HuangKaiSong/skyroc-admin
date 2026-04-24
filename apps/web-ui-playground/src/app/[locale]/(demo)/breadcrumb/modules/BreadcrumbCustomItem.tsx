@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Breadcrumb } from 'skyroc-ui';
+import { Breadcrumb } from '@skyroc/web-ui';
 import { items4 } from './shared';
 
 const BreadcrumbCustomItem = () => {

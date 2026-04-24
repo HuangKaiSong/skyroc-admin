@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Card } from 'skyroc-ui';
+import { Card } from '@skyroc/web-ui';
 import { generateComponentMetadata } from '../components-meta';
 import ButtonColor from './modules/ButtonColor';
 import ButtonDisabled from './modules/ButtonDisabled';

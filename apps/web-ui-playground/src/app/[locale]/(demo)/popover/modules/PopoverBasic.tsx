@@ -1,4 +1,4 @@
-import { Button, Popover } from 'skyroc-ui';
+import { Button, Popover } from '@skyroc/web-ui';
 
 const PopoverBasic = () => {
   return (

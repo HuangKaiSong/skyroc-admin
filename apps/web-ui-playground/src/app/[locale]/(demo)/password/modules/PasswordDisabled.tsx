@@ -1,6 +1,6 @@
 'use client';
 
-import { Password } from 'skyroc-ui';
+import { Password } from '@skyroc/web-ui';
 
 const PasswordDisabled = () => {
   return (

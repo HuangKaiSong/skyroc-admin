@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { TreeRoot, TreeItem, Icon } from 'skyroc-ui';
+import { TreeRoot, TreeItem, Icon } from '@skyroc/web-ui';
 import type { DemoTreeItem } from './shared';
 import { generateLargeTreeData } from './shared';
 

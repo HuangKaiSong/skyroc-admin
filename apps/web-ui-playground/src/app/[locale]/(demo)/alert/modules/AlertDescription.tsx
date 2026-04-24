@@ -1,4 +1,4 @@
-import { Alert } from 'skyroc-ui';
+import { Alert } from '@skyroc/web-ui';
 
 const AlertWithDescription = () => {
   return (

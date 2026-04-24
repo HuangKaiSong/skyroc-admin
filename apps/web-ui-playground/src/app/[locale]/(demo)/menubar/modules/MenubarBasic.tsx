@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Menubar } from 'skyroc-ui';
+import { Menubar } from '@skyroc/web-ui';
 
 const fileMenu = [
   { label: 'New Tab', shortcut: '⌘T' },

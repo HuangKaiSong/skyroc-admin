@@ -1,7 +1,7 @@
 'use client';
 
 import { z } from 'zod';
-import { Button, Form, FormField, Input, useForm } from 'skyroc-ui';
+import { Button, Form, FormField, Input, useForm } from '@skyroc/web-ui';
 
 // Define Zod Schema
 const zodSchema = z.object({

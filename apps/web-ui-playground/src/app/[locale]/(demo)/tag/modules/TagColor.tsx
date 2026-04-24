@@ -1,4 +1,4 @@
-import { Tag } from 'skyroc-ui';
+import { Tag } from '@skyroc/web-ui';
 
 const colors = ['primary', 'destructive', 'success', 'warning', 'info', 'carbon', 'secondary', 'accent'] as const;
 

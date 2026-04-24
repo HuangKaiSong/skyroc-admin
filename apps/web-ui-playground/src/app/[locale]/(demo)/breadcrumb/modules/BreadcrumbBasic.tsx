@@ -1,7 +1,7 @@
 'use client';
 
-import { Breadcrumb, toast } from 'skyroc-ui';
-import type { BreadcrumbItem } from 'skyroc-ui';
+import { Breadcrumb, toast } from '@skyroc/web-ui';
+import type { BreadcrumbItem } from '@skyroc/web-ui';
 import { items } from './shared';
 
 const BreadcrumbBasic = () => {

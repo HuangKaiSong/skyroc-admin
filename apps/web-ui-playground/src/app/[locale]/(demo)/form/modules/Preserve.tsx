@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Form, FormField, Input, useForm } from 'skyroc-ui';
+import { Button, Form, FormField, Input, useForm } from '@skyroc/web-ui';
 import { showToastCode } from './toast';
 
 const Preserve = () => {

@@ -1,5 +1,5 @@
 import { Pause, SkipBack, SkipForward } from 'lucide-react';
-import { Button, ButtonGroup } from 'skyroc-ui';
+import { Button, ButtonGroup } from '@skyroc/web-ui';
 
 const ButtonGroupHorizontal = () => {
   return (

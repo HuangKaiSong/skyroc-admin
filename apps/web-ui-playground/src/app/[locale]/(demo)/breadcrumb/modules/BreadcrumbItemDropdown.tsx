@@ -1,6 +1,6 @@
 'use client';
 
-import { Breadcrumb, BreadcrumbPage, DropdownMenu } from 'skyroc-ui';
+import { Breadcrumb, BreadcrumbPage, DropdownMenu } from '@skyroc/web-ui';
 import { dropdownItems, type BreadcrumbItemWithDropdown } from './shared';
 
 const BreadcrumbItemDropdown = () => {

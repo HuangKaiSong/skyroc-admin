@@ -22,7 +22,7 @@ export function useGenerateSentences(count: number) {
     worker.postMessage({ count });
 
     return () => worker.terminate();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return sentences; // null = loading

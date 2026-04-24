@@ -1,5 +1,5 @@
-import type { ThemeSize } from 'skyroc-ui';
-import { Input, Label } from 'skyroc-ui';
+import type { ThemeSize } from '@skyroc/web-ui';
+import { Input, Label } from '@skyroc/web-ui';
 
 const sizes: ThemeSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
 

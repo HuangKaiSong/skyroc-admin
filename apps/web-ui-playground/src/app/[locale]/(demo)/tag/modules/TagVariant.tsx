@@ -1,4 +1,4 @@
-import { Tag } from 'skyroc-ui';
+import { Tag } from '@skyroc/web-ui';
 
 const variants = ['solid', 'pure', 'outline', 'soft', 'ghost', 'raw'] as const;
 

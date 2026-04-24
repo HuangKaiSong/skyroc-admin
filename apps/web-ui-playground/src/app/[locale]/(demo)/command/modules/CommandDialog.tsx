@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
-import { Card, Command, CommandDialog, Kbd } from 'skyroc-ui';
+import { Card, Command, CommandDialog, Kbd } from '@skyroc/web-ui';
 import { items } from './shared';
 
 const CommandDialogDemo = () => {

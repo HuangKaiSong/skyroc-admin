@@ -1,4 +1,4 @@
-import { Button } from 'skyroc-ui';
+import { Button } from '@skyroc/web-ui';
 
 const shadows = ['none', 'sm', 'md', 'lg'] as const;
 const colors = ['primary', 'destructive', 'success', 'warning'] as const;

@@ -1,5 +1,5 @@
 import { Loader } from 'lucide-react';
-import { Button } from 'skyroc-ui';
+import { Button } from '@skyroc/web-ui';
 
 const ButtonLoading = () => {
   return (

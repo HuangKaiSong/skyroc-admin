@@ -1,4 +1,4 @@
-import { Button } from 'skyroc-ui';
+import { Button } from '@skyroc/web-ui';
 
 const ButtonDisabled = () => {
   return (

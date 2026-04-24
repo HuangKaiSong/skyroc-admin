@@ -1,5 +1,5 @@
-import type { ToggleProps } from 'skyroc-ui';
-import { Card, Toggle } from 'skyroc-ui';
+import type { ToggleProps } from '@skyroc/web-ui';
+import { Card, Toggle } from '@skyroc/web-ui';
 
 const sizes: ToggleProps['size'][] = ['sm', 'md', 'lg', 'xl', '2xl'];
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Password } from 'skyroc-ui';
+import { Password } from '@skyroc/web-ui';
 
 const PasswordBase = () => {
   const [value, setValue] = useState('abc123');

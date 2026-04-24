@@ -1,6 +1,6 @@
 'use client';
 
-import { ButtonIcon, Form, FormField, FormList, Input, useForm } from 'skyroc-ui';
+import { ButtonIcon, Form, FormField, FormList, Input, useForm } from '@skyroc/web-ui';
 
 interface FormValues {
   users: {

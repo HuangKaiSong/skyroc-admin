@@ -1,5 +1,5 @@
 'use client';
-import { AlertDialog, Button } from 'skyroc-ui';
+import { AlertDialog, Button } from '@skyroc/web-ui';
 import { Heart } from 'lucide-react';
 
 const AlertDialogCustomIcon = () => {

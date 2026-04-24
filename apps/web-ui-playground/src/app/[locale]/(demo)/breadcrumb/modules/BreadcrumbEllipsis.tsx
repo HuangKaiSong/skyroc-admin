@@ -1,13 +1,13 @@
 'use client';
 
-import { Breadcrumb } from 'skyroc-ui';
+import { Breadcrumb } from '@skyroc/web-ui';
 import { items3 } from './shared';
 
 const BreadcrumbEllipsisDemo = () => {
   return (
     <Breadcrumb
       ellipsis
-      // eslint-disable-next-line no-console
+      // oxlint-disable-next-line no-console
       handleItemClick={item => console.log('Clicked:', item.value)}
       items={items3}
     />

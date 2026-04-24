@@ -1,4 +1,4 @@
-import { Kbd } from 'skyroc-ui';
+import { Kbd } from '@skyroc/web-ui';
 
 const KeyboardKeyBase = () => {
   return (

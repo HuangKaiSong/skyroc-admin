@@ -1,4 +1,4 @@
-import { AspectRatio } from 'skyroc-ui';
+import { AspectRatio } from '@skyroc/web-ui';
 
 const AspectRatioVideo = () => {
   return (

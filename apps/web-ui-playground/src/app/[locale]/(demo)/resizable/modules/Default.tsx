@@ -1,7 +1,7 @@
 'use client';
 
 import { CircleDashed } from 'lucide-react';
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from 'skyroc-ui';
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@skyroc/web-ui';
 
 const Default = () => {
   return (

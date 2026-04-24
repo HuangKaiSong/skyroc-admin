@@ -1,12 +1,11 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-@import "tw-animate-css";
-
+@import 'tw-animate-css';
 
 @plugin "@skyroc/tailwind-plugin" {
 }
 
-@source "../../../packages/ui/src/**/*.{ts,tsx}";
+@source "../../../packages/web/ui/shadcn/src/**/*.{ts,tsx}";
 
 html,
 body,

@@ -1,5 +1,5 @@
 import { TriangleAlert, X } from 'lucide-react';
-import { Alert, ButtonIcon } from 'skyroc-ui';
+import { Alert, ButtonIcon } from '@skyroc/web-ui';
 
 const AlertComplete = () => {
   return (

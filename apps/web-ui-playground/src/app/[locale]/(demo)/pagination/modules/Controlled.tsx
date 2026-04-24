@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, Pagination } from 'skyroc-ui';
+import { Card, Pagination } from '@skyroc/web-ui';
 
 const Controlled = () => {
   const [page, setPage] = useState(5);

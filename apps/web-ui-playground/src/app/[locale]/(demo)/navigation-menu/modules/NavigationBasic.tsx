@@ -1,6 +1,6 @@
 'use client';
 
-import { NavigationMenu } from 'skyroc-ui';
+import { NavigationMenu } from '@skyroc/web-ui';
 import { BookOpen, Box, CircleHelp, Database, Github, FileText, House, CloudDownload, Smile, Palette, SwatchBook } from 'lucide-react';
 import Link from 'next/link';
 

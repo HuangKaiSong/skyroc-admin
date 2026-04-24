@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Form, FormField, FormList, Input, useForm, useUndoRedo } from 'skyroc-ui';
+import { Button, Form, FormField, FormList, Input, useForm, useUndoRedo } from '@skyroc/web-ui';
 
 interface Inputs {
   email: string;

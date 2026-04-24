@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Tree } from 'skyroc-ui';
+import { Tree } from '@skyroc/web-ui';
 import { treeData } from './shared';
 
 const TreeMultiple = () => {

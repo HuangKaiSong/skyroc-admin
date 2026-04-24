@@ -1,4 +1,4 @@
-import { Divider } from 'skyroc-ui';
+import { Divider } from '@skyroc/web-ui';
 
 const aligns = ['start', 'center', 'end'] as const;
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, toast } from 'skyroc-ui';
+import { Button, toast } from '@skyroc/web-ui';
 
 const Toast = () => {
   return (

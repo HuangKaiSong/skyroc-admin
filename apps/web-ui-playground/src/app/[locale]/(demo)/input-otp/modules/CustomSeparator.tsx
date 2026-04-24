@@ -1,4 +1,4 @@
-import { InputOTP } from 'skyroc-ui';
+import { InputOTP } from '@skyroc/web-ui';
 
 const CustomSeparator = () => {
   return <InputOTP separator="-" />;

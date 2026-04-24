@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Check, ChevronsUpDown } from 'lucide-react';
-import { Button, Command, Popover, cn } from 'skyroc-ui';
+import { Button, Command, Popover, cn } from '@skyroc/web-ui';
 
 const ComboboxDemo = () => {
   const [value, setValue] = useState('');

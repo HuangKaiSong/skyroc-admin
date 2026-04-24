@@ -1,5 +1,5 @@
-import type { KbdSize } from 'skyroc-ui';
-import { Kbd } from 'skyroc-ui';
+import type { KbdSize } from '@skyroc/web-ui';
+import { Kbd } from '@skyroc/web-ui';
 
 const sizes: KbdSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
 

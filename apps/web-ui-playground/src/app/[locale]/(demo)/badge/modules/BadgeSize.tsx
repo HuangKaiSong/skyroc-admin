@@ -1,4 +1,4 @@
-import { Button, Badge } from 'skyroc-ui';
+import { Button, Badge } from '@skyroc/web-ui';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
 

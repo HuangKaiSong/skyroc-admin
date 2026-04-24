@@ -1,4 +1,4 @@
-import { Tag } from 'skyroc-ui';
+import { Tag } from '@skyroc/web-ui';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
 

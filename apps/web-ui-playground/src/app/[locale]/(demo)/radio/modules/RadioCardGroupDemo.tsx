@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { Apple, Banana, Cherry, Grape } from 'lucide-react';
-import { RadioCardGroup } from 'skyroc-ui';
-import type { RadioCardGroupProps } from 'skyroc-ui';
+import { RadioCardGroup } from '@skyroc/web-ui';
+import type { RadioCardGroupProps } from '@skyroc/web-ui';
 
 const items: RadioCardGroupProps['items'] = [
   { icon: <Apple className="size-5" />, label: 'Apple', value: 'apple', description: 'This is an apple' },

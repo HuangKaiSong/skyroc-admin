@@ -1,4 +1,4 @@
-import { SkeletonContainer, Button, Badge } from 'skyroc-ui';
+import { SkeletonContainer, Button, Badge } from '@skyroc/web-ui';
 
 const CustomSize = () => {
   return (

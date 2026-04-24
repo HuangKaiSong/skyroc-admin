@@ -1,4 +1,4 @@
-import { Button, Dialog } from 'skyroc-ui';
+import { Button, Dialog } from '@skyroc/web-ui';
 
 const DialogBasic = () => {
   return (

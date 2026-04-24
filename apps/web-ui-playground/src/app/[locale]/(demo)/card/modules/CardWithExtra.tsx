@@ -1,5 +1,5 @@
 import { X } from 'lucide-react';
-import { ButtonIcon, Card } from 'skyroc-ui';
+import { ButtonIcon, Card } from '@skyroc/web-ui';
 
 const CardWithExtra = () => {
   return (

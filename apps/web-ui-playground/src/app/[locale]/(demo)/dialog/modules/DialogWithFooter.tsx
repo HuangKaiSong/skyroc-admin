@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogClose } from 'skyroc-ui';
+import { Button, Dialog, DialogClose } from '@skyroc/web-ui';
 
 const DialogWithFooter = () => {
   return (

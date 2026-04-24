@@ -1,5 +1,5 @@
 import { type ComponentProps, memo } from 'react';
-import { useFieldState } from 'skyroc-ui';
+import { useFieldState } from '@skyroc/web-ui';
 
 export const DemoInput = memo(
   (props: ComponentProps<'input'> & { name: string }) => {

@@ -1,5 +1,5 @@
 'use client';
-import { VirtualList } from 'skyroc-ui';
+import { VirtualList } from '@skyroc/web-ui';
 import { useGenerateSentences } from './useWorkerVirtualizer';
 
 const VirtualListDynamic = () => {

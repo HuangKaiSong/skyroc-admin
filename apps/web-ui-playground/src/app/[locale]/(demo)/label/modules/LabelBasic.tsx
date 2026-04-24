@@ -1,4 +1,4 @@
-import { Input, Label } from 'skyroc-ui';
+import { Input, Label } from '@skyroc/web-ui';
 
 const LabelBasic = () => {
   return (

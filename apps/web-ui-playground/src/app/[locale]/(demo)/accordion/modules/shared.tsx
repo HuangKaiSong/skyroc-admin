@@ -1,6 +1,6 @@
 import { Earth, Info, Rocket } from 'lucide-react';
-import type { AccordionItemData, ThemeSize } from 'skyroc-ui';
-import { Tag } from 'skyroc-ui';
+import type { AccordionItemData, ThemeSize } from '@skyroc/web-ui';
+import { Tag } from '@skyroc/web-ui';
 
 export const items: AccordionItemData[] = [
   {

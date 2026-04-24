@@ -1,4 +1,4 @@
-import { Button } from 'skyroc-ui';
+import { Button } from '@skyroc/web-ui';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
 const colors = ['primary', 'destructive', 'success', 'warning', 'info', 'carbon'] as const;

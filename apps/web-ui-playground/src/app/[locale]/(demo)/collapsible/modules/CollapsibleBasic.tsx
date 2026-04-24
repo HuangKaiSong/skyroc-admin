@@ -1,5 +1,5 @@
 import { ChevronsUpDown } from 'lucide-react';
-import { ButtonIcon, Collapsible, CollapsibleTrigger } from 'skyroc-ui';
+import { ButtonIcon, Collapsible, CollapsibleTrigger } from '@skyroc/web-ui';
 
 const CollapsibleBasic = () => {
   return (

@@ -1,4 +1,4 @@
-import { Breadcrumb } from 'skyroc-ui';
+import { Breadcrumb } from '@skyroc/web-ui';
 import { items } from './shared';
 
 const BreadcrumbCustomSeparator = () => {

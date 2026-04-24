@@ -1,4 +1,4 @@
-import { Command } from 'skyroc-ui';
+import { Command } from '@skyroc/web-ui';
 import { items } from './shared';
 
 const CommandBasic = () => {

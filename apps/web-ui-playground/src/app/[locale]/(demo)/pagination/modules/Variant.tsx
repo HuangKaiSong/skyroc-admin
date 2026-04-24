@@ -1,7 +1,7 @@
 'use client';
 
-import type { PaginationProps } from 'skyroc-ui';
-import { Card, Pagination } from 'skyroc-ui';
+import type { PaginationProps } from '@skyroc/web-ui';
+import { Card, Pagination } from '@skyroc/web-ui';
 
 const variants: PaginationProps['variant'][] = ['pure', 'solid', 'outline', 'soft'];
 

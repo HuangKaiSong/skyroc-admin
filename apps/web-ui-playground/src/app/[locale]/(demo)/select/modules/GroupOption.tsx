@@ -1,5 +1,5 @@
-import type { SelectOptionData } from 'skyroc-ui';
-import { Select } from 'skyroc-ui';
+import type { SelectOptionData } from '@skyroc/web-ui';
+import { Select } from '@skyroc/web-ui';
 
 const fruits = ['apple', 'banana', 'cherry', 'orange', 'pear', 'plum', 'strawberry', 'watermelon'];
 

@@ -1,4 +1,4 @@
-import { Avatar } from 'skyroc-ui';
+import { Avatar } from '@skyroc/web-ui';
 
 const AvatarBasic = () => {
   return (

@@ -1,5 +1,5 @@
 import { Terminal } from 'lucide-react';
-import { Alert, type ThemeColor } from 'skyroc-ui';
+import { Alert, type ThemeColor } from '@skyroc/web-ui';
 
 const colors: ThemeColor[] = ['primary', 'destructive', 'success', 'warning', 'info', 'carbon', 'secondary', 'accent'];
 

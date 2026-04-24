@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { Card, Divider, ScrollArea } from 'skyroc-ui';
+import { Card, Divider, ScrollArea } from '@skyroc/web-ui';
 import { generateComponentMetadata } from '../components-meta';
 
 export async function generateMetadata(): Promise<Metadata> {

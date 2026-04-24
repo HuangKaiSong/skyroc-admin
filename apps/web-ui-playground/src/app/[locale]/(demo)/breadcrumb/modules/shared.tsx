@@ -1,5 +1,5 @@
 import { AlertCircle, Component, Dock, Home } from 'lucide-react';
-import type { BreadcrumbItem, ThemeSize, DropdownMenuOptionProps } from 'skyroc-ui';
+import type { BreadcrumbItem, ThemeSize, DropdownMenuOptionProps } from '@skyroc/web-ui';
 
 export interface BreadcrumbItemWithDropdown extends BreadcrumbItem {
   items?: DropdownMenuOptionProps['item'][];
@@ -46,7 +46,7 @@ export const items2: BreadcrumbItem[] = [
     href: 'https://ui-play.skyroc.me',
     label: 'SkyrocUI',
     target: '_blank',
-    value: 'skyroc-ui'
+    value: '@skyroc/web-ui'
   }
 ];
 

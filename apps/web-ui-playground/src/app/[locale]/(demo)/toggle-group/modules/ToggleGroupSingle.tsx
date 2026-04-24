@@ -1,4 +1,4 @@
-import { Card, ToggleGroup } from 'skyroc-ui';
+import { Card, ToggleGroup } from '@skyroc/web-ui';
 import { items } from './shared';
 
 const ToggleGroupSingle = () => {

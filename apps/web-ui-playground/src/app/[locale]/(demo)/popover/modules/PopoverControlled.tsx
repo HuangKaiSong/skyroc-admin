@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, Popover } from 'skyroc-ui';
+import { Button, Popover } from '@skyroc/web-ui';
 
 const PopoverControlled = () => {
   const [open, setOpen] = useState(false);

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { Tag } from 'skyroc-ui';
+import { Tag } from '@skyroc/web-ui';
 
 const BrandLogo = () => {
   return (

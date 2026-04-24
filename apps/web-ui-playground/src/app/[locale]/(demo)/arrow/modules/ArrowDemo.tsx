@@ -1,4 +1,4 @@
-import { Arrow } from 'skyroc-ui';
+import { Arrow } from '@skyroc/web-ui';
 
 const ArrowDemo = () => {
   return (

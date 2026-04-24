@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ContextMenu } from 'skyroc-ui';
+import { ContextMenu } from '@skyroc/web-ui';
 
 const checkboxItems = [
   { type: 'label' as const, label: 'JS Frameworks' },

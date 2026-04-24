@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Pagination } from 'skyroc-ui';
+import { Card, Pagination } from '@skyroc/web-ui';
 
 const ActionAsSelected = () => {
   return (

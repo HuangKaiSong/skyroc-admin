@@ -1,4 +1,4 @@
-import { Card, Toggle } from 'skyroc-ui';
+import { Card, Toggle } from '@skyroc/web-ui';
 
 const ToggleDisabled = () => {
   return (

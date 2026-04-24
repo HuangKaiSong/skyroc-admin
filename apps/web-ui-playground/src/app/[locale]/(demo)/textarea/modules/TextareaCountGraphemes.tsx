@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import GraphemeSplitter from 'grapheme-splitter';
-import { Card, Textarea } from 'skyroc-ui';
-import type { TextareaProps } from 'skyroc-ui';
+import { Card, Textarea } from '@skyroc/web-ui';
+import type { TextareaProps } from '@skyroc/web-ui';
 
 const splitter = new GraphemeSplitter();
 

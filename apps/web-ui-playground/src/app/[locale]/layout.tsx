@@ -1,6 +1,6 @@
 import { setRequestLocale, getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { Card, Sonner, TooltipProvider } from 'skyroc-ui';
+import { Card, Sonner, TooltipProvider } from '@skyroc/web-ui';
 import { NextIntlClientProvider } from 'next-intl';
 import { ThemeProvider } from 'next-themes';
 import { routing } from '../../i18n/routing';

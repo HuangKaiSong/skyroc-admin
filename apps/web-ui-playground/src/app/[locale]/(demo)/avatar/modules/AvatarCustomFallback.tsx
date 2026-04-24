@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Avatar } from 'skyroc-ui';
+import { Avatar } from '@skyroc/web-ui';
 import { User } from 'lucide-react';
 
 const AvatarCustomFallback = () => {

@@ -1,4 +1,4 @@
-import { Card, Slider } from 'skyroc-ui';
+import { Card, Slider } from '@skyroc/web-ui';
 
 const SliderVertical = () => {
   return (

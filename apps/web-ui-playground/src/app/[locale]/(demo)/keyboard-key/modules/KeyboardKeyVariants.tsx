@@ -1,5 +1,5 @@
-import type { KbdVariant } from 'skyroc-ui';
-import { Kbd } from 'skyroc-ui';
+import type { KbdVariant } from '@skyroc/web-ui';
+import { Kbd } from '@skyroc/web-ui';
 
 const variants: KbdVariant[] = ['solid', 'outline', 'ghost'];
 

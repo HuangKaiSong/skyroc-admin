@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { ButtonIcon, DropdownMenu, Icon } from 'skyroc-ui';
+import { ButtonIcon, DropdownMenu, Icon } from '@skyroc/web-ui';
 import { useRouter, usePathname } from '../i18n/navigation';
 import { locales, localeNames, type Locale } from '../i18n/config';
 

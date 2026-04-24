@@ -1,4 +1,4 @@
-import { toast } from 'skyroc-ui';
+import { toast } from '@skyroc/web-ui';
 
 export function showToastCode(title: string, values: any) {
   toast(title, {

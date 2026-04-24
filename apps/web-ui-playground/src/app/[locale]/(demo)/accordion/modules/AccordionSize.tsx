@@ -1,4 +1,4 @@
-import { Card, Accordion } from 'skyroc-ui';
+import { Card, Accordion } from '@skyroc/web-ui';
 import { items, sizes } from './shared';
 
 const AccordionSize = () => {

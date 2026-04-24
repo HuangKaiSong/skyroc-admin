@@ -1,5 +1,5 @@
 import { Pause, SkipBack, SkipForward } from 'lucide-react';
-import { ButtonGroup, ButtonIcon } from 'skyroc-ui';
+import { ButtonGroup, ButtonIcon } from '@skyroc/web-ui';
 
 const ButtonGroupVertical = () => {
   return (

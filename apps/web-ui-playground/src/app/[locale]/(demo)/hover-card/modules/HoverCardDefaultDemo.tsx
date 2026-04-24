@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, HoverCard } from 'skyroc-ui';
+import { Avatar, Button, Card, HoverCard } from '@skyroc/web-ui';
 
 const HoverCardDefaultDemo = () => {
   return (

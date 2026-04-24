@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { Component, Dock, Home } from 'lucide-react';
-import type { BreadcrumbItem, SelectProps, ThemeSize } from 'skyroc-ui';
-import { Breadcrumb, Button, ButtonGroup, Layout, LayoutTrigger, Select } from 'skyroc-ui';
+import type { BreadcrumbItem, SelectProps, ThemeSize } from '@skyroc/web-ui';
+import { Breadcrumb, Button, ButtonGroup, Layout, LayoutTrigger, Select } from '@skyroc/web-ui';
 import type { LayoutCollapsible, LayoutSide, LayoutVariant } from '@/components/layout/layout-variants';
 
 const DemoLayout = () => {

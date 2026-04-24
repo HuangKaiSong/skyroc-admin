@@ -1,4 +1,4 @@
-import { Icon, NumberInput } from 'skyroc-ui';
+import { Icon, NumberInput } from '@skyroc/web-ui';
 
 const NumberInputSlot = () => {
   return (

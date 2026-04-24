@@ -1,4 +1,4 @@
-import { Icon } from 'skyroc-ui';
+import { Icon } from '@skyroc/web-ui';
 
 const IconColor = () => {
   return (

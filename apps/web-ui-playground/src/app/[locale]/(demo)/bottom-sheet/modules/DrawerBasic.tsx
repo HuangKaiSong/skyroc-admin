@@ -1,4 +1,4 @@
-import { Button, BottomSheet, BottomSheetClose } from 'skyroc-ui';
+import { Button, BottomSheet, BottomSheetClose } from '@skyroc/web-ui';
 
 const BottomSheetBasic = () => {
   return (

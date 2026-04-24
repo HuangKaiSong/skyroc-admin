@@ -1,5 +1,5 @@
 'use client';
-import { Card, Carousel } from 'skyroc-ui';
+import { Card, Carousel } from '@skyroc/web-ui';
 
 const CarouselVertical = () => {
   return (

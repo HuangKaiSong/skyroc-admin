@@ -1,4 +1,4 @@
-import { Checkbox } from 'skyroc-ui';
+import { Checkbox } from '@skyroc/web-ui';
 
 const CheckboxDisabled = () => {
   return (

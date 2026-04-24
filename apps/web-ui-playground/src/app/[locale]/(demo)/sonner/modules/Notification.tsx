@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, message, notification } from 'skyroc-ui';
+import { Button, message, notification } from '@skyroc/web-ui';
 
 const Notification = () => {
   return (

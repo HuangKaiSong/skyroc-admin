@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, VirtualList } from 'skyroc-ui';
+import { Card, VirtualList } from '@skyroc/web-ui';
 
 interface ListItem {
   id: number;

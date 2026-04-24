@@ -1,5 +1,5 @@
 import { Pause, SkipBack, SkipForward } from 'lucide-react';
-import { ButtonIcon } from 'skyroc-ui';
+import { ButtonIcon } from '@skyroc/web-ui';
 
 const ButtonIconFitContent = () => {
   return (

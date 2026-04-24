@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, DropdownMenu } from 'skyroc-ui';
+import { Button, DropdownMenu } from '@skyroc/web-ui';
 
 const checkboxItems = [
   { type: 'label' as const, label: 'JS Frameworks' },

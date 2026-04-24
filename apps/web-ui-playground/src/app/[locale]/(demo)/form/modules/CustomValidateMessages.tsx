@@ -1,7 +1,7 @@
-/* eslint-disable no-template-curly-in-string */
+/* oxlint-disable no-template-curly-in-string */
 'use client';
 
-import { Button, Form, FormField, Input, useForm } from 'skyroc-ui';
+import { Button, Form, FormField, Input, useForm } from '@skyroc/web-ui';
 
 // Form field types
 interface Inputs {

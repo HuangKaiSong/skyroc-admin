@@ -1,4 +1,4 @@
-import { TooltipProvider } from 'skyroc-ui';
+import { TooltipProvider } from '@skyroc/web-ui';
 import type { Metadata } from 'next';
 import { generateComponentMetadata } from '../components-meta';
 import TooltipArrow from './modules/TooltipArrow';

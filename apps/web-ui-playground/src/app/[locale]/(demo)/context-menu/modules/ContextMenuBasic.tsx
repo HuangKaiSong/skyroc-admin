@@ -1,6 +1,6 @@
 'use client';
 
-import { ContextMenu } from 'skyroc-ui';
+import { ContextMenu } from '@skyroc/web-ui';
 
 const menus = [
   {

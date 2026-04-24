@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Form, FormComputedField, FormField, Input, useForm } from 'skyroc-ui';
+import { Button, Form, FormComputedField, FormField, Input, useForm } from '@skyroc/web-ui';
 
 interface FormValues {
   price: number;

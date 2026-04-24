@@ -1,4 +1,4 @@
-import { Checkbox } from 'skyroc-ui';
+import { Checkbox } from '@skyroc/web-ui';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;
 

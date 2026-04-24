@@ -1,4 +1,4 @@
-import { Divider } from 'skyroc-ui';
+import { Divider } from '@skyroc/web-ui';
 
 const DividerVertical = () => {
   return (

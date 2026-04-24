@@ -1,5 +1,5 @@
-import type { ThemeSize } from 'skyroc-ui';
-import { Card, Textarea } from 'skyroc-ui';
+import type { ThemeSize } from '@skyroc/web-ui';
+import { Card, Textarea } from '@skyroc/web-ui';
 
 const sizes: ThemeSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
 

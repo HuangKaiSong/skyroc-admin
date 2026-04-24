@@ -1,5 +1,5 @@
-import type { TooltipAlign, TooltipSide } from 'skyroc-ui';
-import { Button, Card, Tooltip } from 'skyroc-ui';
+import type { TooltipAlign, TooltipSide } from '@skyroc/web-ui';
+import { Button, Card, Tooltip } from '@skyroc/web-ui';
 
 const sides: TooltipSide[] = ['top', 'right', 'bottom', 'left'];
 

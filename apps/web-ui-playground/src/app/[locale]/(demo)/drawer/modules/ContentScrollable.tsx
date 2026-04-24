@@ -1,4 +1,4 @@
-import { Button, Drawer } from 'skyroc-ui';
+import { Button, Drawer } from '@skyroc/web-ui';
 
 const ContentScrollable = () => {
   return (

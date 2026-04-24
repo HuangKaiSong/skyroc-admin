@@ -1,7 +1,7 @@
 'use client';
 
-import type { FormInstance } from 'skyroc-ui';
-import { Button, Form, FormField, Input, useFieldState, useForm } from 'skyroc-ui';
+import type { FormInstance } from '@skyroc/web-ui';
+import { Button, Form, FormField, Input, useFieldState, useForm } from '@skyroc/web-ui';
 import { showToastCode } from './toast';
 
 interface Inputs {

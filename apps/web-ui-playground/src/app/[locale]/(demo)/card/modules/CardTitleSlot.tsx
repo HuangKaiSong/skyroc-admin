@@ -1,5 +1,5 @@
 import { Rocket } from 'lucide-react';
-import { Tag, Card } from 'skyroc-ui';
+import { Tag, Card } from '@skyroc/web-ui';
 
 const CardTitleSlot = () => {
   return (

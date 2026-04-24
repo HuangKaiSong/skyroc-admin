@@ -1,7 +1,7 @@
 'use client';
 
 import Autoplay from 'embla-carousel-autoplay';
-import { Card, Carousel } from 'skyroc-ui';
+import { Card, Carousel } from '@skyroc/web-ui';
 
 const CarouselAutoplay = () => {
   return (

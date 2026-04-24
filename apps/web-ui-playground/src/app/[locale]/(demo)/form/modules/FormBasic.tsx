@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, FormField, Input, Form, useForm } from 'skyroc-ui';
+import { Button, FormField, Input, Form, useForm } from '@skyroc/web-ui';
 
 const FormBasic = () => {
   const [form] = useForm();

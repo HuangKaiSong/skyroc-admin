@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { AArrowDownIcon, Minus, Plus } from 'lucide-react';
-import { Accordion } from 'skyroc-ui';
+import { Accordion } from '@skyroc/web-ui';
 import { items2 } from './shared';
 
 const AccordionCustomIcon = () => {

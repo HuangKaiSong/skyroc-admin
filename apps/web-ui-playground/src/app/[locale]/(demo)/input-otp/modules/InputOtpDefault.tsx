@@ -1,6 +1,6 @@
 'use client';
 
-import { InputOTP, toast } from 'skyroc-ui';
+import { InputOTP, toast } from '@skyroc/web-ui';
 
 const InputOtpDefault = () => {
   const handleComplete = (value: string[]) => {

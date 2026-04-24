@@ -1,4 +1,4 @@
-import { Card, Textarea } from 'skyroc-ui';
+import { Card, Textarea } from '@skyroc/web-ui';
 
 const TextareaDemo = () => {
   return (

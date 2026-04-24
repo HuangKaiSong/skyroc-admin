@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Card } from 'skyroc-ui';
+import { Card } from '@skyroc/web-ui';
 import { generateComponentMetadata } from '../components-meta';
 import AvatarBasic from './modules/AvatarBasic';
 import AvatarGroup from './modules/AvatarGroup';

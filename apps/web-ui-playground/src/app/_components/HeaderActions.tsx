@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { ButtonIcon, Icon, Popover, Tooltip } from 'skyroc-ui';
+import { ButtonIcon, Icon, Popover, Tooltip } from '@skyroc/web-ui';
 import LocaleSwitcher from '../../components/LocaleSwitcher';
 import ThemeCustomize from '../../components/ThemeCustomize';
 import ThemeSchemaToggler from '../../components/ThemeSchemaToggler';

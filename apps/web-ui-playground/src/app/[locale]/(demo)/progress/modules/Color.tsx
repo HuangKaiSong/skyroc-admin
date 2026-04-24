@@ -1,5 +1,5 @@
-import type { ProgressProps } from 'skyroc-ui';
-import { Progress } from 'skyroc-ui';
+import type { ProgressProps } from '@skyroc/web-ui';
+import { Progress } from '@skyroc/web-ui';
 
 const colors: ProgressProps['color'][] = [
   'primary',

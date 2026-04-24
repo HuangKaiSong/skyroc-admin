@@ -1,5 +1,5 @@
-import type { RadioGroupProps, ThemeColor } from 'skyroc-ui';
-import { RadioGroup } from 'skyroc-ui';
+import type { RadioGroupProps, ThemeColor } from '@skyroc/web-ui';
+import { RadioGroup } from '@skyroc/web-ui';
 
 const colors: ThemeColor[] = ['primary', 'destructive', 'success', 'warning', 'info', 'carbon', 'secondary', 'accent'];
 

@@ -1,4 +1,4 @@
-import { Button } from 'skyroc-ui';
+import { Button } from '@skyroc/web-ui';
 
 const colors = ['primary', 'destructive', 'success', 'warning', 'info', 'carbon', 'secondary', 'accent'] as const;
 const variants = ['solid', 'pure', 'plain', 'outline', 'dashed', 'soft', 'ghost', 'link'] as const;

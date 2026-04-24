@@ -1,4 +1,4 @@
-import { Input } from 'skyroc-ui';
+import { Input } from '@skyroc/web-ui';
 
 const InputClearable = () => {
   return (
