@@ -3,7 +3,7 @@
 import type { ComponentRef } from 'react';
 import { forwardRef } from 'react';
 import { Group as _Group } from '@radix-ui/react-menu';
-import { cn } from '@/lib';
+import { cn } from '@skyroc/utils';
 import _MenuCheckboxItem from './MenuCheckboxItem';
 import MenuLabel from './MenuLabel';
 import MenuSeparator from './MenuSeparator';

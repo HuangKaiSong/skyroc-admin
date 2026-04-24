@@ -5,3 +5,5 @@ export * from './class';
 export * from './window';
 
 export * from './input';
+
+export * from './compose-props';

@@ -1,5 +1,5 @@
 import { Children, forwardRef } from 'react';
-import { isFunction } from '@/lib/typed';
+import { isFunction } from '@skyroc/utils';
 import CarouselContent from './CarouselContent';
 import CarouselItem from './CarouselItem';
 import CarouselNext from './CarouselNext';

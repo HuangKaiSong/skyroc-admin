@@ -1,4 +1,4 @@
-import { cn } from '@/lib';
+import { cn } from '@skyroc/utils';
 import type { KbdValue } from '../keyboard-key';
 import { KeyboardKey } from '../keyboard-key';
 import { menuVariants } from './menu-variants';

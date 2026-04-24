@@ -1,8 +1,8 @@
 import { isValidElement } from 'react';
 import { NavigationMenuLink } from '@radix-ui/react-navigation-menu';
 import { ArrowUpRight } from 'lucide-react';
-import { withClassName } from '@/lib/compose-props';
 import { cn } from '@skyroc/utils';
+import { withClassName } from '@skyroc/utils/web';
 import { navigationMenuVariants } from './navigation-menu';
 import type { NavigationMenuChildLinkProps } from './types';
 

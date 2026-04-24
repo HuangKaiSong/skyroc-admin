@@ -1,7 +1,7 @@
 import type { ComponentRef } from 'react';
 import { forwardRef } from 'react';
 import { Group as _Group, Portal as _Portal, SubContent as _SubContent } from '@radix-ui/react-menu';
-import { cn } from '@/lib';
+import { cn } from '@skyroc/utils';
 import { menuVariants } from './menu-variants';
 import type { MenuSubContentProps } from './types';
 

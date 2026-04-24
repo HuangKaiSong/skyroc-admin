@@ -25,8 +25,6 @@ export interface NotificationConfig {
   icon?: ReactNode;
   /** Unique key for the notification */
   key?: string | number;
-  /** Callback when notification is clicked */
-  onClick?: () => void;
   /** Callback when notification closes */
   onClose?: () => void;
   /** Display position. Default: top-right */
@@ -124,7 +122,6 @@ function showNotification(
     duration = globalConfig.duration,
     icon,
     key,
-    onClick,
     onClose,
     position = globalConfig.position,
     style,
@@ -158,7 +155,6 @@ function showNotification(
       description: '!mt-1.5',
       icon: '!mt-1'
     },
-    onClick,
     onDismiss: () => {
       if (key) {
         activeNotifications.delete(key);

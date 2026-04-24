@@ -1,8 +1,8 @@
 import type { ComponentRef } from 'react';
 import { forwardRef, isValidElement } from 'react';
 import { Trigger } from '@radix-ui/react-menubar';
-import { withClassName } from '@/lib/compose-props';
 import { cn } from '@skyroc/utils';
+import { withClassName } from '@skyroc/utils/web';
 import MenuShortcut from '../menu/MenuShortcut';
 import { menuVariants } from '../menu/menu-variants';
 import type { MenubarTriggerProps } from './types';

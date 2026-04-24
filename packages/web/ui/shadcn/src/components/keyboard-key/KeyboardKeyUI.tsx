@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/lib';
+import { cn } from '@skyroc/utils';
 import { kbdVariants } from './kbd-variants';
 import type { KeyboardKeyProps } from './types';
 import { useKeyboardKey } from './use-keyboard-key';

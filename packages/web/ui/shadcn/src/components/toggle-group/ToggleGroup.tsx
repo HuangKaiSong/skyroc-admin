@@ -1,4 +1,4 @@
-import { isFunction } from '@/lib/typed';
+import { isFunction } from '@skyroc/utils';
 import ToggleGroupItem from './ToggleGroupItem';
 import ToggleGroupRoot from './ToggleGroupRoot';
 import type { ToggleGroupProps } from './types';
