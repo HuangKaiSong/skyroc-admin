@@ -1,18 +1,65 @@
-// Pure primitives (no config-aware wrapper) re-exported from components
-export * from '../components/arrow';
+// ---------------------------------------------------------------------------
+// Composed components without a config-aware wrapper.
+// Re-exported by name to avoid leaking internal sub-parts (Root / Trigger /
+// Item / Indicator ...). Internal sub-parts remain reachable via the
+// `@skyroc/web-ui/primitives` subpath.
+// ---------------------------------------------------------------------------
 
-export * from '../components/if';
-export * from '../components/menu';
-export * from '../components/menubar';
-export * from '../components/navigation-menu';
-export * from '../components/resizable';
-export * from '../components/skeleton';
-export * from '../components/toggle-group';
-export * from '../components/virtualizer';
+export { Arrow, type ArrowProps } from '../components/arrow';
+export { If, type IfProps } from '../components/if';
+export { Menubar, type MenubarOption, type MenubarProps } from '../components/menubar';
+export {
+  NavigationMenu,
+  type NavigationMenuItemBaseOption,
+  type NavigationMenuItemChildOption,
+  type NavigationMenuItemOption,
+  type NavigationMenuLinkBaseOption,
+  type NavigationMenuProps
+} from '../components/navigation-menu';
+export {
+  type ResizableClassNames,
+  ResizableHandle,
+  type ResizableHandleProps,
+  ResizablePanel,
+  ResizablePanelGroup,
+  type ResizablePanelGroupProps
+} from '../components/resizable';
+export {
+  Skeleton,
+  type SkeletonAnimation,
+  SkeletonContainer,
+  type SkeletonContainerProps,
+  type SkeletonProps
+} from '../components/skeleton';
+export {
+  ToggleGroup,
+  type ToggleGroupClassNames,
+  type ToggleGroupItemData,
+  type ToggleGroupProps
+} from '../components/toggle-group';
+export {
+  useVirtualizer,
+  useWindowVirtualizer,
+  VirtualGrid,
+  type VirtualGridProps,
+  type VirtualizerBaseOptions,
+  type VirtualizerClassNames,
+  type VirtualizerGrid,
+  type VirtualizerList,
+  type VirtualizerProps,
+  VirtualList,
+  type VirtualListItem,
+  type VirtualListProps
+} from '../components/virtualizer';
+
+// ---------------------------------------------------------------------------
+// Config-aware preset wrappers
+// ---------------------------------------------------------------------------
 
 export * from './accordion';
 export * from './alert';
 export * from './alert-dialog';
+export * from './aspect-ratio';
 export * from './avatar';
 export * from './badge';
 export * from './bottom-sheet';
