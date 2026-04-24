@@ -1,3 +1,5 @@
+'use client';
+
 import NavigationMenuChildLink from './NavigationMenuChildLink';
 import NavigationMenuChildList from './NavigationMenuChildList';
 import NavigationMenuChildListItem from './NavigationMenuChildListItem';

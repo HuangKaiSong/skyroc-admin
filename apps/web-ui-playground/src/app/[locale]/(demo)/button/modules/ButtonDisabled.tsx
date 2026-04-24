@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@skyroc/web-ui';
 
 const ButtonDisabled = () => {

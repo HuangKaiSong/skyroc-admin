@@ -1,3 +1,5 @@
+'use client';
+
 import { Root } from '@radix-ui/react-toggle';
 import { cn } from '@skyroc/utils';
 import { toggleVariants } from './toggle-variants';

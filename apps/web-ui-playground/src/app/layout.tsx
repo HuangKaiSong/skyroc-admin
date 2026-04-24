@@ -106,8 +106,8 @@ const RootLayout = async ({
 
   return (
     <html
+      suppressHydrationWarning
       lang={locale}
-      suppressHydrationWarning={!config.isDev}
     >
       <head>
         <script

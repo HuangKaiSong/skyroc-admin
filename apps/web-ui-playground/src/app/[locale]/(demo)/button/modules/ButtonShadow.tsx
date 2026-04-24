@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from '@skyroc/web-ui';
 
 const shadows = ['none', 'sm', 'md', 'lg'] as const;

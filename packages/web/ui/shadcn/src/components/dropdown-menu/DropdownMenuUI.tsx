@@ -1,3 +1,5 @@
+'use client';
+
 import { Root, Trigger } from '@radix-ui/react-dropdown-menu';
 import DropdownMenuCheckboxGroup from './DropdownMenuCheckboxGroup';
 import DropdownMenuContent from './DropdownMenuContent';

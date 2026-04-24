@@ -1,3 +1,5 @@
+'use client';
+
 /* oxlint-disable no-template-curly-in-string */
 'use client';
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, Textarea } from '@skyroc/web-ui';
 
 const TextareaDemo = () => {

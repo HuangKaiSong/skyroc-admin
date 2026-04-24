@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, Slider } from '@skyroc/web-ui';
 
 const SliderVertical = () => {

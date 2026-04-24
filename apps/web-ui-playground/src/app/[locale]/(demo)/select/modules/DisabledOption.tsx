@@ -1,3 +1,5 @@
+'use client';
+
 import { Apple, Banana, Cherry, Ear, Link2Icon } from 'lucide-react';
 import type { SelectProps } from '@skyroc/web-ui';
 import { Select } from '@skyroc/web-ui';

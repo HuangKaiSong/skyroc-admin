@@ -1,3 +1,5 @@
+'use client';
+
 import { Progress } from '@skyroc/web-ui';
 
 const ProgressBasic = () => {

@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, Accordion } from '@skyroc/web-ui';
 import { items, sizes } from './shared';
 

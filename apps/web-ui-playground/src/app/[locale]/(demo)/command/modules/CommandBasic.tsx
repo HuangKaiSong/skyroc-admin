@@ -1,3 +1,5 @@
+'use client';
+
 import { Command } from '@skyroc/web-ui';
 import { items } from './shared';
 

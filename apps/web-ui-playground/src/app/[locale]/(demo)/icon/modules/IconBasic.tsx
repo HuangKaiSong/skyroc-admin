@@ -1,3 +1,5 @@
+'use client';
+
 import { Icon } from '@skyroc/web-ui';
 
 const IconBasic = () => {

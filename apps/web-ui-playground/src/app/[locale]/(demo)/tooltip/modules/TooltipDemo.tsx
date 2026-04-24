@@ -1,3 +1,5 @@
+'use client';
+
 import type { TooltipAlign, TooltipSide } from '@skyroc/web-ui';
 import { Button, Card, Tooltip } from '@skyroc/web-ui';
 

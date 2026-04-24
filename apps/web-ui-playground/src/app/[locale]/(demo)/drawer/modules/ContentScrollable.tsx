@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, Drawer } from '@skyroc/web-ui';
 
 const ContentScrollable = () => {

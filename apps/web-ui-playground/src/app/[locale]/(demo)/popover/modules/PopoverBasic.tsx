@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, Popover } from '@skyroc/web-ui';
 
 const PopoverBasic = () => {

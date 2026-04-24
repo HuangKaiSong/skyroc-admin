@@ -1,3 +1,5 @@
+'use client';
+
 import { TriangleAlert, X } from 'lucide-react';
 import { Alert, ButtonIcon } from '@skyroc/web-ui';
 

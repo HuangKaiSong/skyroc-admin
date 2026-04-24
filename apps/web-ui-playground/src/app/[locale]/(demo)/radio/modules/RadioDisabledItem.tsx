@@ -1,3 +1,5 @@
+'use client';
+
 import type { RadioGroupProps } from '@skyroc/web-ui';
 import { RadioGroup } from '@skyroc/web-ui';
 

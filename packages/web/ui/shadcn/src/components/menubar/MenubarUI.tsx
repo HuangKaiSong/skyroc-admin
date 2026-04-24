@@ -1,3 +1,5 @@
+'use client';
+
 import MenubarCheckboxGroup from './MenubarCheckboxGroup';
 import MenubarMenuComposed from './MenubarMenuComposed';
 import MenubarOption from './MenubarOption';

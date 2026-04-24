@@ -1,3 +1,5 @@
+'use client';
+
 import type { DrawerSide } from '@skyroc/web-ui';
 import { Button, Drawer } from '@skyroc/web-ui';
 

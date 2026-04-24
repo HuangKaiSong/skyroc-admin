@@ -1,3 +1,5 @@
+'use client';
+
 import { Skeleton } from '@skyroc/web-ui';
 
 const DefaultDemo = () => {

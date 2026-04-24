@@ -1,3 +1,5 @@
+'use client';
+
 import { Earth, Info, Rocket } from 'lucide-react';
 import type { AccordionItemData, ThemeSize } from '@skyroc/web-ui';
 import { Tag } from '@skyroc/web-ui';

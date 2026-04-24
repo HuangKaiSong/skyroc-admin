@@ -1,3 +1,5 @@
+'use client';
+
 import type { ComponentRef } from 'react';
 import { forwardRef } from 'react';
 import type { Image } from '@radix-ui/react-avatar';

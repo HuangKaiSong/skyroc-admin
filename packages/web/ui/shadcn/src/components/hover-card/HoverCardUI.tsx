@@ -1,3 +1,5 @@
+'use client';
+
 import type { ComponentRef } from 'react';
 import { forwardRef } from 'react';
 import { Root, Trigger } from '@radix-ui/react-hover-card';

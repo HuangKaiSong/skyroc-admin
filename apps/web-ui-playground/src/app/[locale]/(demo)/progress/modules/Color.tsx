@@ -1,3 +1,5 @@
+'use client';
+
 import type { ProgressProps } from '@skyroc/web-ui';
 import { Progress } from '@skyroc/web-ui';
 

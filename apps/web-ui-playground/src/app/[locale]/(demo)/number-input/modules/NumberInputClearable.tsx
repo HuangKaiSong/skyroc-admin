@@ -1,3 +1,5 @@
+'use client';
+
 import { NumberInput } from '@skyroc/web-ui';
 
 const NumberInputClearable = () => {

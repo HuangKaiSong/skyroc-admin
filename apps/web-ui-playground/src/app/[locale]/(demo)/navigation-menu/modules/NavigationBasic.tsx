@@ -1,7 +1,7 @@
 'use client';
 
 import { NavigationMenu } from '@skyroc/web-ui';
-import { BookOpen, Box, CircleHelp, Database, Github, FileText, House, CloudDownload, Smile, Palette, SwatchBook } from 'lucide-react';
+import { BookOpen, Box, CircleHelp, Database, Code2, FileText, House, CloudDownload, Smile, Palette, SwatchBook } from 'lucide-react';
 import Link from 'next/link';
 
 const menus = [
@@ -137,7 +137,7 @@ const menus = [
     value: 'github',
     target: '_blank',
     rel: 'noopener noreferrer',
-    leading: <Github className="h-4 w-4" />
+    leading: <Code2 className="h-4 w-4" />
   },
   {
     label: 'Help',

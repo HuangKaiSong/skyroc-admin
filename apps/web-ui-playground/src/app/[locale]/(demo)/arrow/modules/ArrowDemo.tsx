@@ -1,3 +1,5 @@
+'use client';
+
 import { Arrow } from '@skyroc/web-ui';
 
 const ArrowDemo = () => {

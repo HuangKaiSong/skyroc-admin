@@ -1,3 +1,5 @@
+'use client';
+
 import { AlertCircle, Component, Dock, Home } from 'lucide-react';
 import type { BreadcrumbItem, ThemeSize, DropdownMenuOptionProps } from '@skyroc/web-ui';
 

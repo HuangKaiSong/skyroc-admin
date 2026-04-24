@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import { Avatar } from '@skyroc/web-ui';
 import { User } from 'lucide-react';

@@ -1,3 +1,5 @@
+'use client';
+
 import type { SelectProps } from '@skyroc/web-ui';
 import { Select } from '@skyroc/web-ui';
 

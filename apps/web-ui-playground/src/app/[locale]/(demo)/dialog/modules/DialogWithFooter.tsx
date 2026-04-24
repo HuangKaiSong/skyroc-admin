@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, Dialog, DialogClose } from '@skyroc/web-ui';
 
 const DialogWithFooter = () => {

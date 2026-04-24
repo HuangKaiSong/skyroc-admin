@@ -1,3 +1,5 @@
+'use client';
+
 import { ScrollAreaCorner } from '@radix-ui/react-scroll-area';
 import { cn } from '@skyroc/utils';
 

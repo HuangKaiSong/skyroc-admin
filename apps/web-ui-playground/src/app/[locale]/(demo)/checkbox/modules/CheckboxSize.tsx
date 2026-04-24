@@ -1,3 +1,5 @@
+'use client';
+
 import { Checkbox } from '@skyroc/web-ui';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;

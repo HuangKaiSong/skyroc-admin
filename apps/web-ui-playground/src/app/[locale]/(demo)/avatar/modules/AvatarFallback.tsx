@@ -1,3 +1,5 @@
+'use client';
+
 import { Avatar } from '@skyroc/web-ui';
 
 const AvatarFallbackDemo = () => {

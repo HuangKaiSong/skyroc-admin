@@ -1,3 +1,5 @@
+'use client';
+
 import { Breadcrumb } from '@skyroc/web-ui';
 import { items } from './shared';
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { Avatar, Button, Card, HoverCard } from '@skyroc/web-ui';
 
 const HoverCardDefaultDemo = () => {

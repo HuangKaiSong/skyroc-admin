@@ -1,3 +1,5 @@
+'use client';
+
 import { Terminal } from 'lucide-react';
 import { Alert, type AlertVariant, type ThemeColor } from '@skyroc/web-ui';
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { Input, Label } from '@skyroc/web-ui';
 
 const LabelRequired = () => {

@@ -1,3 +1,5 @@
+'use client';
+
 import type { TreeItemData } from '@skyroc/web-ui';
 
 export interface DemoTreeItem extends TreeItemData {

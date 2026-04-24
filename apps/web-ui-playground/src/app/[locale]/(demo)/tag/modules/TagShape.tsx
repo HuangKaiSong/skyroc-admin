@@ -1,3 +1,5 @@
+'use client';
+
 import { Tag } from '@skyroc/web-ui';
 
 const shapes = ['auto', 'rounded'] as const;

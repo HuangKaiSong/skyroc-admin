@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { AlertDialog, Button } from '@skyroc/web-ui';
 

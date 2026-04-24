@@ -1,3 +1,5 @@
+'use client';
+
 import { Children, forwardRef } from 'react';
 import { isFunction } from '@skyroc/utils';
 import CarouselContent from './CarouselContent';

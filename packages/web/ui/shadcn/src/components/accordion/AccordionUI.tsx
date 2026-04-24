@@ -1,3 +1,5 @@
+'use client';
+
 import type { ComponentRef } from 'react';
 import { forwardRef } from 'react';
 import type { Root } from '@radix-ui/react-accordion';

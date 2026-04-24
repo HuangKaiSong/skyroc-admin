@@ -1,3 +1,5 @@
+'use client';
+
 import { ChevronsLeftRightEllipsis } from 'lucide-react';
 import { Breadcrumb } from '@skyroc/web-ui';
 import { items3 } from './shared';

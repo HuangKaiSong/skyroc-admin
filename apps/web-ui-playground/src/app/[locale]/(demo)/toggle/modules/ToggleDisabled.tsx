@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, Toggle } from '@skyroc/web-ui';
 
 const ToggleDisabled = () => {

@@ -1,3 +1,5 @@
+'use client';
+
 import { Divider } from '@skyroc/web-ui';
 
 const DividerVertical = () => {

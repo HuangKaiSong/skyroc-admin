@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, Dialog } from '@skyroc/web-ui';
 
 const DialogBasic = () => {

@@ -1,3 +1,5 @@
+'use client';
+
 import { Alert, type ThemeColor, type ThemeSize } from '@skyroc/web-ui';
 
 const colors: ThemeColor[] = ['primary', 'destructive', 'success', 'warning', 'info', 'carbon', 'secondary', 'accent'];

@@ -1,3 +1,5 @@
+'use client';
+
 import { toast } from '@skyroc/web-ui';
 
 export function showToastCode(title: string, values: any) {

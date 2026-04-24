@@ -1,3 +1,5 @@
+'use client';
+
 import type { ThemeColor } from '@skyroc/web-ui';
 import { Card, Slider } from '@skyroc/web-ui';
 

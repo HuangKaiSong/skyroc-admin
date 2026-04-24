@@ -1,3 +1,5 @@
+'use client';
+
 import type { ComponentRef } from 'react';
 import { Fragment, forwardRef } from 'react';
 import InputOTPGroup from './InputOTPGroup';

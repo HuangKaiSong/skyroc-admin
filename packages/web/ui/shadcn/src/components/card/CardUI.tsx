@@ -1,4 +1,6 @@
-import React, { isValidElement } from 'react';
+'use client';
+
+import React from 'react';
 import { If } from '../if';
 import { CardContent } from './CardContent';
 import { CardFooter } from './CardFooter';
@@ -62,10 +64,7 @@ export const CardUI = React.forwardRef<HTMLDivElement, CardProps>((props, ref) =
               >
                 {titleLeading}
 
-                <If
-                  condition={!isValidElement(title)}
-                  fallback={title}
-                >
+                {typeof title === 'string' || typeof title === 'number' ? (
                   <CardTitle
                     className={classNames?.title}
                     size={size}
@@ -73,7 +72,9 @@ export const CardUI = React.forwardRef<HTMLDivElement, CardProps>((props, ref) =
                   >
                     {title}
                   </CardTitle>
-                </If>
+                ) : (
+                  title
+                )}
 
                 {titleTrailing}
               </CardTitleRoot>
@@ -93,10 +94,7 @@ export const CardUI = React.forwardRef<HTMLDivElement, CardProps>((props, ref) =
         {children}
       </CardContent>
 
-      <If
-        condition={!isValidElement(footer) && Boolean(footer)}
-        fallback={footer}
-      >
+      {typeof footer === 'string' || typeof footer === 'number' ? (
         <CardFooter
           className={classNames?.footer}
           size={size}
@@ -104,7 +102,9 @@ export const CardUI = React.forwardRef<HTMLDivElement, CardProps>((props, ref) =
         >
           {footer}
         </CardFooter>
-      </If>
+      ) : (
+        footer
+      )}
     </CardRoot>
   );
 });

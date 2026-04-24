@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@skyroc/utils';
 import { tagVariants } from './tag-variants';
 import type { TagProps } from './types';

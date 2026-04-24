@@ -1,3 +1,5 @@
+'use client';
+
 import { Root, Trigger } from '@radix-ui/react-context-menu';
 import ContextMenuCheckboxGroup from './ContextMenuCheckboxGroup';
 import ContextMenuContent from './ContextMenuContent';

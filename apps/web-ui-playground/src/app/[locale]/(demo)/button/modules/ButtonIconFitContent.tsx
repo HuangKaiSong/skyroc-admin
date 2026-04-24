@@ -1,3 +1,5 @@
+'use client';
+
 import { Pause, SkipBack, SkipForward } from 'lucide-react';
 import { ButtonIcon } from '@skyroc/web-ui';
 

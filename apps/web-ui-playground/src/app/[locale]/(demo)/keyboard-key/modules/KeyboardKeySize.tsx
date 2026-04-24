@@ -1,3 +1,5 @@
+'use client';
+
 import type { KbdSize } from '@skyroc/web-ui';
 import { Kbd } from '@skyroc/web-ui';
 

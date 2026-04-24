@@ -1,3 +1,5 @@
+'use client';
+
 import { InputOTP } from '@skyroc/web-ui';
 
 const InputOtpCustomCount = () => {

@@ -1,3 +1,5 @@
+'use client';
+
 import { Icon, NumberInput } from '@skyroc/web-ui';
 
 const NumberInputSlot = () => {

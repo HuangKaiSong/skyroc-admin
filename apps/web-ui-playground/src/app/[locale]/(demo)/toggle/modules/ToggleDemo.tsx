@@ -1,3 +1,5 @@
+'use client';
+
 import type { ToggleProps } from '@skyroc/web-ui';
 import { Card, Toggle } from '@skyroc/web-ui';
 

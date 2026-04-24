@@ -1,3 +1,5 @@
+'use client';
+
 import { Card } from '@skyroc/web-ui';
 
 const CardWithFooter = () => {

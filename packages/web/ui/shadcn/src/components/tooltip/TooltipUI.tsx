@@ -1,3 +1,5 @@
+'use client';
+
 import { Root, Trigger } from '@radix-ui/react-tooltip';
 
 import TooltipArrow from './TooltipArrow';

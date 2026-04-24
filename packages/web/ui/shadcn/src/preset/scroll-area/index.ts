@@ -1,3 +1,4 @@
+export * from '../../components/scroll-area';
 export { default as ScrollAreaRoot } from '../../components/scroll-area/ScrollAreaRoot';
 export { default as ScrollAreaScrollbar } from '../../components/scroll-area/ScrollAreaScrollbar';
 export { default as ScrollAreaThumb } from '../../components/scroll-area/ScrollAreaThumb';

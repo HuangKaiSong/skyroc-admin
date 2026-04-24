@@ -1,3 +1,5 @@
+'use client';
+
 import { Alert } from '@skyroc/web-ui';
 
 const AlertWithDescription = () => {

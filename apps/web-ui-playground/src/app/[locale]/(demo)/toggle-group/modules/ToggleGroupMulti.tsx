@@ -1,3 +1,5 @@
+'use client';
+
 import { Card, Label, ToggleGroup } from '@skyroc/web-ui';
 import { items } from './shared';
 

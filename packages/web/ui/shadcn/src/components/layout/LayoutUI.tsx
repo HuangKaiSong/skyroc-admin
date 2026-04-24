@@ -1,3 +1,5 @@
+'use client';
+
 import LayoutFooter from './LayoutFooter';
 import LayoutHeader from './LayoutHeader';
 import LayoutMain from './LayoutMain';

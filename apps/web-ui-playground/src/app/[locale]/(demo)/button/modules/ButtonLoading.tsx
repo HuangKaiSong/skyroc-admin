@@ -1,3 +1,5 @@
+'use client';
+
 import { Loader } from 'lucide-react';
 import { Button } from '@skyroc/web-ui';
 

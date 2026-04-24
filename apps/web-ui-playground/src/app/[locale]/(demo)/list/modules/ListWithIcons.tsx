@@ -1,3 +1,5 @@
+'use client';
+
 import { List } from '@skyroc/web-ui';
 import { Bell, ChevronRight, MessageCircle, Settings } from 'lucide-react';
 

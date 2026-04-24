@@ -1,3 +1,5 @@
+'use client';
+
 import type { ThemeSize } from '@skyroc/web-ui';
 import { Card, Textarea } from '@skyroc/web-ui';
 

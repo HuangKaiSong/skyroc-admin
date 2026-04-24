@@ -1,3 +1,5 @@
+'use client';
+
 import { forwardRef } from 'react';
 import BadgeContent from './BadgeContent';
 import BadgeRoot from './BadgeRoot';

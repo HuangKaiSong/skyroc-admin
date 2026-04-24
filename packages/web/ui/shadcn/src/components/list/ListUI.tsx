@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ListRoot } from './ListRoot';
 import type { ListProps } from './types';

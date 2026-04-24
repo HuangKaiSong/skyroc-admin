@@ -1,3 +1,5 @@
+'use client';
+
 import { Rocket } from 'lucide-react';
 import { Tag, Card } from '@skyroc/web-ui';
 

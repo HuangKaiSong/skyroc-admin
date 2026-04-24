@@ -1,3 +1,5 @@
+'use client';
+
 import { type ComponentRef, forwardRef } from 'react';
 import type { Content } from 'vaul';
 import { Root as _Root } from 'vaul';

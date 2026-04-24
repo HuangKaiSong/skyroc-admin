@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, BottomSheet, BottomSheetClose } from '@skyroc/web-ui';
 
 const BottomSheetBasic = () => {

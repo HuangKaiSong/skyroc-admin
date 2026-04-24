@@ -1,3 +1,5 @@
+'use client';
+
 import { Avatar } from '@skyroc/web-ui';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'] as const;

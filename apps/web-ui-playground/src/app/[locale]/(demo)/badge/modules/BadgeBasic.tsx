@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, Badge } from '@skyroc/web-ui';
 
 const BadgeBasic = () => {

@@ -1,3 +1,5 @@
+'use client';
+
 import type { KbdVariant } from '@skyroc/web-ui';
 import { Kbd } from '@skyroc/web-ui';
 

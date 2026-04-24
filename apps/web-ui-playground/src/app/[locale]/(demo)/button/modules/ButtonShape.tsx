@@ -1,3 +1,5 @@
+'use client';
+
 import { Minus, Plus } from 'lucide-react';
 import { Button, ButtonIcon } from '@skyroc/web-ui';
 

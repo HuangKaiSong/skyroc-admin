@@ -1,3 +1,5 @@
+'use client';
+
 import { AspectRatio } from '@skyroc/web-ui';
 
 const AspectRatioVideo = () => {
