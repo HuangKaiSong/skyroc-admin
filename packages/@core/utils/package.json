@@ -1,6 +1,6 @@
 {
   "name": "@skyroc/utils",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "type": "module",
   "description": "Platform-agnostic utility functions with ./web subpath for browser-only utilities (download, window, BOM helpers)",
   "keywords": [
