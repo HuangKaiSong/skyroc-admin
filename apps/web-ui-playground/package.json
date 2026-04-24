@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "^10.1.0",
+    "@skyroc/utils": "workspace:*",
     "@skyroc/web-ui": "workspace:*",
     "async-validator": "^4.2.5",
     "embla-carousel-autoplay": "8.6.0",

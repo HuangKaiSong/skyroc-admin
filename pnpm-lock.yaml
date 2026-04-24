@@ -1244,6 +1244,9 @@ importers:
       '@faker-js/faker':
         specifier: ^10.1.0
         version: 10.4.0
+      '@skyroc/utils':
+        specifier: workspace:*
+        version: link:../../packages/@core/utils
       '@skyroc/web-ui':
         specifier: workspace:*
         version: link:../../packages/web/ui/shadcn
