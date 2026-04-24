@@ -1,9 +1,14 @@
-import plugin from 'tailwindcss/plugin';
+import plugin, { type Config, type PluginCreator } from 'tailwindcss/plugin';
 import { generateCSSVars } from './generate';
 import { presetSkyrocUI } from './presets';
 import themes from './theme.json';
 import { skyrocUITheme } from './themePresets';
 import type { SkyrocUIPluginOptions, ThemeColorKey, ThemeConfig, ThemeConfigColor, ThemeOptions } from './types';
+
+type SkyrocUIPlugin = {
+  (options?: SkyrocUIPluginOptions): { config?: Partial<Config>; handler: PluginCreator };
+  __isOptionsFunction: true;
+};
 
 function toRem(value: number) {
   return `${Number.parseFloat(Math.max(0, value).toFixed(3))}rem`;
@@ -27,7 +32,7 @@ export const builtinRadiuses = [0, 0.3, 0.5, 0.75, 1] as const;
  * @param options - The options for the preset.
  * @param globals - Whether to generate global variables, like *.border-color, body.color, body.background.
  */
-export const skyrocUIPlugin = plugin.withOptions(
+export const skyrocUIPlugin: SkyrocUIPlugin = plugin.withOptions(
   (options: SkyrocUIPluginOptions = {}) =>
     ({ addBase, addUtilities }) => {
       addUtilities(presetSkyrocUI());
