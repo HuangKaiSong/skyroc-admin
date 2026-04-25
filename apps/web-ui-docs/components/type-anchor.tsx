@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { TYPE_REGISTRY } from './type-registry';
 
 export function toTypeAnchorId(typeName: string) {
   const normalized = typeName
@@ -71,6 +72,13 @@ function splitTypeParts(typeText: string): TypePart[] {
   return parts.length ? parts : [{ text: typeText }];
 }
 
+function resolveTypeHref(typeName: string): string {
+  if (typeName in TYPE_REGISTRY) {
+    return TYPE_REGISTRY[typeName];
+  }
+  return `#${toTypeAnchorId(typeName)}`;
+}
+
 export function typeToReactNode(type?: string): ReactNode {
   if (!type) return <>-</>;
 
@@ -80,7 +88,7 @@ export function typeToReactNode(type?: string): ReactNode {
         part.isLink ? (
           <a
             key={idx}
-            href={`#${toTypeAnchorId(part.text)}`}
+            href={resolveTypeHref(part.text)}
             className="text-fd-primary border-b-2 border-dashed border-fd-primary/30 hover:border-fd-primary duration-200 cursor-pointer no-underline"
           >
             {part.text}
