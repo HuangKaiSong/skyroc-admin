@@ -1,16 +1,35 @@
 'use client';
 
 import { useState } from 'react';
-import { AArrowDownIcon, Minus, Plus } from 'lucide-react';
+import { AArrowDownIcon, Earth, Minus, Plus } from 'lucide-react';
 import { Accordion } from '@skyroc/web-ui';
-import { items2 } from './shared';
+import type { AccordionItemData } from '@skyroc/web-ui';
+
+const items: AccordionItemData[] = [
+  {
+    children: 'Yes. It adheres to the WAI-ARIA design pattern.',
+    title: 'Is it accessible?',
+    value: '1'
+  },
+  {
+    children: 'Yes. It adheres to the WAI-ARIA design pattern.',
+    title: 'Is it accessible?',
+    value: '2'
+  },
+  {
+    children: 'Yes. It adheres to the WAI-ARIA design pattern.',
+    leading: <Earth />,
+    title: 'Is it accessible?',
+    value: '3'
+  }
+];
 
 const AccordionCustomIcon = () => {
   const [value, setValue] = useState('1');
 
   return (
     <Accordion
-      items={items2}
+      items={items}
       triggerIcon={<AArrowDownIcon />}
       triggerLeading={<Minus />}
       triggerTrailing={<Plus />}
