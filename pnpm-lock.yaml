@@ -1253,6 +1253,9 @@ importers:
       '@radix-ui/react-presence':
         specifier: ^1.1.5
         version: 1.1.5(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      '@skyroc/web-ui':
+        specifier: workspace:*
+        version: link:../../packages/web/ui/shadcn
       ai:
         specifier: ^6.0.168
         version: 6.0.168(zod@4.3.6)
@@ -1286,6 +1289,9 @@ importers:
       react-dom:
         specifier: ^19.2.5
         version: 19.2.5(react@19.2.5)
+      react-live:
+        specifier: ^4.1.8
+        version: 4.1.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       remark:
         specifier: ^15.0.1
         version: 15.0.1
@@ -1305,6 +1311,9 @@ importers:
         specifier: ^4.3.6
         version: 4.3.6
     devDependencies:
+      '@skyroc/tailwind-plugin':
+        specifier: workspace:*
+        version: link:../../packages/web/tailwind-plugin
       '@tailwindcss/postcss':
         specifier: ^4.2.4
         version: 4.2.4
@@ -1332,6 +1341,9 @@ importers:
       tailwindcss:
         specifier: ^4.2.4
         version: 4.2.4
+      tw-animate-css:
+        specifier: ^1.4.0
+        version: 1.4.0
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
@@ -1650,6 +1662,9 @@ importers:
 
   packages/@core/type-utils:
     devDependencies:
+      rimraf:
+        specifier: catalog:dev
+        version: 6.1.3
       tsdown:
         specifier: catalog:dev
         version: 0.18.4(synckit@0.11.12)(typescript@5.9.3)
@@ -1874,6 +1889,9 @@ importers:
         specifier: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
         version: 19.2.5(react@19.2.5)
     devDependencies:
+      rimraf:
+        specifier: catalog:dev
+        version: 6.1.3
       tsdown:
         specifier: catalog:dev
         version: 0.18.4(synckit@0.11.12)(typescript@5.9.3)
@@ -1889,6 +1907,12 @@ importers:
       '@skyroc/tsconfig':
         specifier: workspace:*
         version: link:../../../internal/tsconfig
+      rimraf:
+        specifier: catalog:dev
+        version: 6.1.3
+      tsdown:
+        specifier: catalog:dev
+        version: 0.18.4(synckit@0.11.12)(typescript@5.9.3)
 
   packages/shared/ui-types:
     dependencies:
@@ -1899,6 +1923,12 @@ importers:
       '@skyroc/tsconfig':
         specifier: workspace:*
         version: link:../../../internal/tsconfig
+      rimraf:
+        specifier: catalog:dev
+        version: 6.1.3
+      tsdown:
+        specifier: catalog:dev
+        version: 0.18.4(synckit@0.11.12)(typescript@5.9.3)
 
   packages/web/admin-theme:
     dependencies:
@@ -8187,6 +8217,9 @@ packages:
   '@types/nprogress@0.2.3':
     resolution: {integrity: sha512-k7kRA033QNtC+gLc4VPlfnue58CM1iQLgn1IMAU8VPHGOj7oIHPp9UlhedEnD/Gl8evoCjwkZjlBORtZ3JByUA==}
 
+  '@types/prismjs@1.26.6':
+    resolution: {integrity: sha512-vqlvI7qlMvcCBbVe0AKAb4f97//Hy0EBTaiW8AalRnG/xAN5zOiWWyrNqNXeq8+KAuvRewjCVY1+IPxk4RdNYw==}
+
   '@types/qs@6.14.0':
     resolution: {integrity: sha512-eOunJqu0K1923aExK6y8p6fsihYEn/BYuQ4g0CxAAgFc4b/ZLN4CrsRZ55srTdqoiLzU2B2evC+apEIxprEzkQ==}
 
@@ -13489,6 +13522,11 @@ packages:
     resolution: {integrity: sha512-gjVS5hOP+M3wMm5nmNOucbIrqudzs9v/57bWRHQWLYklXqoXKrVfYW2W9+glfGsqtPgpiz5WwyEEB+ksXIx3gQ==}
     engines: {node: '>=18'}
 
+  prism-react-renderer@2.4.1:
+    resolution: {integrity: sha512-ey8Ls/+Di31eqzUxC46h8MksNuGx/n0AAC8uKpwFau4RPDYLuE3EXTp8N8G2vX2N7UC/+IXeNUnlWBGGcAG+Ig==}
+    peerDependencies:
+      react: '>=16.0.0'
+
   proc-log@4.2.0:
     resolution: {integrity: sha512-g8+OnU/L2v+wyiVK+D5fA34J7EH8jZ8DDlvwhRCMxmMj7UCBvxiO1mGeN+36JXIKF4zevU4kRBd8lVgG9vLelA==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
@@ -13652,6 +13690,13 @@ packages:
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
+
+  react-live@4.1.8:
+    resolution: {integrity: sha512-B2SgNqwPuS2ekqj4lcxi5TibEcjWkdVyYykBEUBshPAPDQ527x2zPEZg560n8egNtAjUpwXFQm7pcXV65aAYmg==}
+    engines: {node: '>= 0.12.0', npm: '>= 2.0.0'}
+    peerDependencies:
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
 
   react-medium-image-zoom@5.4.1:
     resolution: {integrity: sha512-DD2iZYaCfAwiQGR8AN62r/cDJYoXhezlYJc5HY4TzBUGuGge43CptG0f7m0PEIM72aN6GfpjohvY1yYdtCJB7g==}
@@ -15260,6 +15305,11 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  use-editable@2.3.3:
+    resolution: {integrity: sha512-7wVD2JbfAFJ3DK0vITvXBdpd9JAz5BcKAAolsnLBuBn6UDDwBGuCIAGvR3yA2BNKm578vAMVHFCWaOcA+BhhiA==}
+    peerDependencies:
+      react: '>= 16.8.0'
 
   use-intl@4.9.1:
     resolution: {integrity: sha512-iGVV/xFYlhe3btafRlL8RPLD2Jsuet4yqn9DR6LWWbMhULsJnXgLonDkzDmsAIBIwFtk02oJuX/Ox2vwHKF+UQ==}
@@ -23158,6 +23208,8 @@ snapshots:
 
   '@types/nprogress@0.2.3': {}
 
+  '@types/prismjs@1.26.6': {}
+
   '@types/qs@6.14.0': {}
 
   '@types/react-dom@19.2.3(@types/react@19.2.14)':
@@ -23818,7 +23870,7 @@ snapshots:
       sirv: 3.0.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vitest: 4.0.18(@opentelemetry/api@1.9.0)(@types/node@25.6.0)(@vitest/ui@4.0.18)(happy-dom@20.6.1)(jiti@2.6.1)(lightningcss@1.30.1)(msw@2.12.10(@types/node@25.6.0)(typescript@6.0.3))(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
+      vitest: 4.0.18(@opentelemetry/api@1.9.0)(@types/node@25.6.0)(@vitest/ui@4.0.18)(happy-dom@20.6.1)(jiti@2.6.1)(lightningcss@1.30.1)(msw@2.12.10(@types/node@25.6.0)(typescript@5.9.3))(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
 
   '@vitest/utils@4.0.18':
     dependencies:
@@ -30279,6 +30331,12 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
+  prism-react-renderer@2.4.1(react@19.2.5):
+    dependencies:
+      '@types/prismjs': 1.26.6
+      clsx: 2.1.1
+      react: 19.2.5
+
   proc-log@4.2.0: {}
 
   progress@2.0.3: {}
@@ -30448,6 +30506,14 @@ snapshots:
       '@types/react': 19.2.14
       react: 19.1.0
       react-base16-styling: 0.9.1
+
+  react-live@4.1.8(react-dom@19.2.5(react@19.2.5))(react@19.2.5):
+    dependencies:
+      prism-react-renderer: 2.4.1(react@19.2.5)
+      react: 19.2.5
+      react-dom: 19.2.5(react@19.2.5)
+      sucrase: 3.35.1
+      use-editable: 2.3.3(react@19.2.5)
 
   react-medium-image-zoom@5.4.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
@@ -32620,6 +32686,10 @@ snapshots:
       react: 19.1.0
     optionalDependencies:
       '@types/react': 19.2.14
+
+  use-editable@2.3.3(react@19.2.5):
+    dependencies:
+      react: 19.2.5
 
   use-intl@4.9.1(react@19.1.0):
     dependencies:

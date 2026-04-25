@@ -15,7 +15,7 @@
     "jsx": "react-jsx",
     "incremental": true,
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["./*", "../../packages/web/ui/shadcn/src/*"],
       "collections/*": ["./.source/*"]
     },
     "plugins": [

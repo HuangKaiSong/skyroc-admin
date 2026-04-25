@@ -1,12 +1,92 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
+
+@plugin "@skyroc/tailwind-plugin" {
+}
+
+@source "../../../packages/web/ui/shadcn/src/**/*.{ts,tsx}";
+@source "../../../apps/web-ui-playground/src/app/**/*.{ts,tsx}";
 
 html {
   scrollbar-gutter: stable;
 }
 
+/* Demo live editor */
+.demo-live-editor {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.demo-live-editor pre {
+  margin: 0 !important;
+  padding: 0.75rem 1rem !important;
+}
+
+.demo-live-editor textarea {
+  outline: none !important;
+  padding: 0.75rem 1rem !important;
+}
+
 html > body[data-scroll-locked] {
   margin-right: 0px !important;
   --removed-body-scroll-bar-size: 0px !important;
+}
+
+/* ─── MDX table refinements ─── */
+.prose table {
+  font-size: 14px;
+}
+
+.prose table th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.prose table td,
+.prose table th {
+  padding: 10px 16px 10px 0;
+}
+
+.prose table td:last-child,
+.prose table th:last-child {
+  padding-right: 0;
+}
+
+.prose table thead tr,
+.prose table tbody tr {
+  background: transparent !important;
+}
+
+/* Softer inline code inside tables */
+.prose table code {
+  background: transparent;
+  border: 1px solid var(--color-fd-border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: 12px;
+  color: var(--color-fd-primary);
+}
+
+/* ─── PropsTable custom styles ─── */
+.props-table-name {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.props-table-type {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  color: var(--color-fd-primary);
+  word-break: break-word;
+}
+
+.props-table-default {
+  background: transparent !important;
+  border: 1px solid var(--color-fd-border) !important;
+  border-radius: 4px !important;
+  padding: 1px 6px !important;
 }
