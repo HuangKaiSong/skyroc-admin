@@ -1,0 +1,223 @@
+---
+title: Accordion
+description: 可折叠的内容面板，用于在有限空间内展示和隐藏分组信息
+---
+
+手风琴（Accordion）将大段内容分组为可折叠的面板，让用户按需展开感兴趣的部分，适合在有限空间内组织层级信息。
+
+```tsx
+import { Accordion, AccordionRoot, AccordionItem, AccordionHeader, AccordionTrigger, AccordionContent } from '@skyroc/web-ui';
+```
+
+## 何时使用
+
+- 页面信息量较大，需要分组折叠展示时（如 FAQ、设置面板）。
+- 用户只需关注部分内容，无需一次性浏览全部信息。
+- 相比 Tab 组件，Accordion 更适合各分组内容长度差异较大的场景。
+
+## 单选模式
+
+设置 `type="single"` 时，同一时间只能展开一个面板。默认展开后不可再折叠（始终保持一个面板打开）。
+
+<Demo src="@playground/accordion/modules/AccordionSingle" />
+
+## 可折叠
+
+在单选模式下，设置 `collapsible` 允许用户折叠所有面板（点击已展开的面板可将其收起）。
+
+<Demo src="@playground/accordion/modules/AccordionSingleCollapsible" />
+
+## 多选模式
+
+设置 `type="multiple"` 时，可以同时展开多个面板，彼此互不影响。
+
+<Demo src="@playground/accordion/modules/AccordionMultiple" />
+
+## 尺寸
+
+通过 `size` 调整手风琴的字号与间距，从 `xs` 到 `2xl` 共 6 个尺寸。
+
+| 尺寸   | 字号   | 触发器间距 | 适用场景             |
+| ------ | ------ | ---------- | -------------------- |
+| `xs`   | 10px   | py-3       | 紧凑嵌套、辅助信息   |
+| `sm`   | 12px   | py-3.5     | 侧边栏、次级面板     |
+| `md`   | 14px   | py-4       | 常规场景（默认）     |
+| `lg`   | 16px   | py-4.5     | 强调内容、表单分组   |
+| `xl`   | 18px   | py-5       | 重要信息面板         |
+| `2xl`  | 20px   | py-6       | 首屏 FAQ、大幅展示   |
+
+<Demo src="@playground/accordion/modules/AccordionSize" />
+
+## 插槽
+
+每个条目支持 `leading` 和 `trailing` 插槽，可在标题前后放置图标、标签或其他内容。插槽通过 `items` 数据中的 `leading` / `trailing` 字段配置。
+
+<Demo src="@playground/accordion/modules/AccordionSlot" />
+
+## 自定义图标
+
+通过 `triggerIcon` 替换默认的展开/折叠箭头图标，`triggerLeading` 和 `triggerTrailing` 可以在所有触发器前后统一添加内容。
+
+<Demo src="@playground/accordion/modules/AccordionCustomIcon" />
+
+## 自定义样式
+
+通过 `classNames` 对手风琴的各个 slot（`root`、`item`、`header`、`trigger`、`content`、`triggerIcon`、`triggerLeadingIcon`）分别自定义样式。
+
+<Demo src="@playground/accordion/modules/AccordionCustom" />
+
+## API
+
+### Accordion
+
+通用属性参考：基于 Radix UI Accordion，支持原生 `div` 元素的所有属性。
+
+<PropsTable
+  data={[
+    {
+      name: 'type',
+      description: '选择模式，single 同时只展开一个，multiple 可展开多个',
+      type: "'single' | 'multiple'",
+      required: true
+    },
+    {
+      name: 'items',
+      description: '数据驱动的条目列表，每项需包含唯一 value',
+      type: 'AccordionItemData[]',
+      required: true
+    },
+    {
+      name: 'collapsible',
+      description: '单选模式下是否允许全部折叠',
+      type: 'boolean',
+      default: 'false'
+    },
+    {
+      name: 'size',
+      description: '尺寸，影响字号与间距',
+      type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
+      default: "'md'"
+    },
+    {
+      name: 'value',
+      description: '受控模式下当前展开的面板值',
+      type: "string | string[]"
+    },
+    {
+      name: 'onValueChange',
+      description: '展开面板变化时的回调',
+      type: "(value: string | string[]) => void"
+    },
+    {
+      name: 'defaultValue',
+      description: '非受控模式下默认展开的面板值',
+      type: "string | string[]"
+    },
+    {
+      name: 'classNames',
+      description: '各 slot 的自定义 class（root / item / header / trigger / content / triggerIcon / triggerLeadingIcon）',
+      type: 'AccordionClassNames'
+    },
+    {
+      name: 'triggerIcon',
+      description: '自定义触发器展开/折叠图标，替换默认箭头',
+      type: 'ReactNode'
+    },
+    {
+      name: 'triggerLeading',
+      description: '所有触发器的全局前置内容',
+      type: 'ReactNode'
+    },
+    {
+      name: 'triggerTrailing',
+      description: '所有触发器的全局后置内容',
+      type: 'ReactNode'
+    },
+    {
+      name: 'disabled',
+      description: '禁用整个手风琴',
+      type: 'boolean',
+      default: 'false'
+    },
+    {
+      name: 'dir',
+      description: '文本方向',
+      type: "'ltr' | 'rtl'"
+    }
+  ]}
+/>
+
+### AccordionItemData
+
+每个条目的数据结构，通过 `items` 数组传入：
+
+<PropsTable
+  data={[
+    {
+      name: 'value',
+      description: '条目的唯一标识',
+      type: 'string',
+      required: true
+    },
+    {
+      name: 'title',
+      description: '触发器中显示的标题',
+      type: 'ReactNode',
+      required: true
+    },
+    {
+      name: 'children',
+      description: '展开后显示的内容',
+      type: 'ReactNode',
+      required: true
+    },
+    {
+      name: 'leading',
+      description: '标题前的插槽内容（图标、标签等）',
+      type: 'ReactNode'
+    },
+    {
+      name: 'trailing',
+      description: '标题后的插槽内容（图标、标签等）',
+      type: 'ReactNode'
+    },
+    {
+      name: 'disabled',
+      description: '是否禁用该条目',
+      type: 'boolean',
+      default: 'false'
+    }
+  ]}
+/>
+
+## 类型
+
+<TypeTable data={[
+  {
+    name: 'AccordionClassNames',
+    description: '各 slot 的自定义 class，用于精细化控制手风琴各部分的样式。',
+    fields: [
+      { name: 'root', type: 'ClassValue', description: '根容器的 class。' },
+      { name: 'item', type: 'ClassValue', description: '每个条目的 class。' },
+      { name: 'header', type: 'ClassValue', description: '条目头部的 class。' },
+      { name: 'trigger', type: 'ClassValue', description: '触发器按钮的 class。' },
+      { name: 'content', type: 'ClassValue', description: '展开内容区域的 class。' },
+      { name: 'triggerIcon', type: 'ClassValue', description: '触发器图标的 class。' },
+      { name: 'triggerLeadingIcon', type: 'ClassValue', description: '触发器前置图标的 class。' }
+    ]
+  },
+  {
+    name: 'AccordionItemData',
+    description: '数据驱动模式下每个条目的数据结构。',
+    fields: [
+      { name: 'value', type: 'string', required: true, description: '条目的唯一标识。' },
+      { name: 'title', type: 'ReactNode', required: true, description: '触发器中显示的标题。' },
+      { name: 'children', type: 'ReactNode', required: true, description: '展开后显示的内容。' },
+      { name: 'leading', type: 'ReactNode', description: '标题前的插槽内容。' },
+      { name: 'trailing', type: 'ReactNode', description: '标题后的插槽内容。' },
+      { name: 'disabled', type: 'boolean', description: '是否禁用该条目。' }
+    ]
+  }
+]} />
+
+<UnionType name="ClassValue" description="CSS 类名类型" type="string | null | undefined | Record<string, boolean> | ClassValue[]" />
