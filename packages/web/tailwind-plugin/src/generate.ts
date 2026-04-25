@@ -73,18 +73,20 @@ function getRadiusCSSVarsStyles(radius: number) {
   return radiusCSS;
 }
 
-export function generateGlobalStyles() {
+export function generateGlobalStyles(native = false) {
+  const c = (name: string) => (native ? `var(--${name})` : `hsl(var(--${name}))`);
+
   return {
     '*': {
-      borderColor: 'hsl(var(--border))'
+      borderColor: c('border')
     },
     '.lucide': {
       height: '1.25em',
       width: '1.25em'
     },
     body: {
-      background: 'hsl(var(--background))',
-      color: 'hsl(var(--foreground))'
+      background: c('background'),
+      color: c('foreground')
     }
   };
 }

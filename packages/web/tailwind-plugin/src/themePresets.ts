@@ -4,9 +4,11 @@ import type { SkyrocUIPluginOptions } from './types';
 export function skyrocUITheme(options: SkyrocUIPluginOptions) {
   const { globals = true, platform = 'web', ...theme } = options;
 
-  const cssVars = generateCSSVars(theme || {}, true, platform === 'native');
+  const isNative = platform === 'native';
 
-  const baseStyles = globals ? generateGlobalStyles() : '';
+  const cssVars = generateCSSVars(theme || {}, true, isNative);
+
+  const baseStyles = globals ? generateGlobalStyles(isNative) : '';
 
   return {
     ...cssVars,
