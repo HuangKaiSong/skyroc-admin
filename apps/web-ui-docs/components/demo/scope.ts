@@ -71,8 +71,8 @@ function safeAssign(target: Record<string, unknown>, source: Record<string, unkn
 const scope: Record<string, unknown> = { React };
 
 safeAssign(scope, React as unknown as Record<string, unknown>);
-safeAssign(scope, WebUI as unknown as Record<string, unknown>);
 safeAssign(scope, Lucide as unknown as Record<string, unknown>);
+safeAssign(scope, WebUI as unknown as Record<string, unknown>);
 
 export const demoScope = scope;
 
