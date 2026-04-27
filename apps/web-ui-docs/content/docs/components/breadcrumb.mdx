@@ -1,0 +1,320 @@
+---
+title: Breadcrumb
+description: 展示当前位置层级并支持跳转的面包屑导航组件
+---
+
+面包屑（Breadcrumb）用于展示当前页面在信息架构中的位置，帮助用户理解路径并快速返回上级页面。
+
+```tsx
+import {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItemContent,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbRoot,
+  BreadcrumbSeparator
+} from '@skyroc/web-ui';
+```
+
+## 架构说明
+
+Breadcrumb 是数据驱动组件，主组件接收 `items` 并自动渲染根导航、列表、条目、链接、当前页和分隔符。
+
+- `BreadcrumbRoot`：语义化 `nav` 容器，默认带 `aria-label="breadcrumb"`。
+- `BreadcrumbList`：有序列表容器。
+- `BreadcrumbItemContent`：单个路径节点容器。
+- `BreadcrumbLink`：可点击链接；当 item 有 `href` 时使用。
+- `BreadcrumbPage`：当前页展示；当 item 没有 `href` 时使用。
+- `BreadcrumbEllipsis`：折叠路径项的省略入口，可配合 DropdownMenu 展示隐藏项。
+
+## 何时使用
+
+- 页面存在明确层级路径，需要告诉用户当前位置。
+- 用户需要从详情页、设置页或深层页面快速返回上级。
+- 路径较长时需要折叠中间层级，并通过下拉菜单访问隐藏项。
+- 需要在路径节点中加入图标、状态标签或自定义渲染内容。
+
+## 基础用法
+
+通过 `items` 传入路径数据。没有 `href` 的节点会渲染为当前页样式；有 `href` 的节点会渲染为链接。
+
+<Demo src="@playground/breadcrumb/modules/BreadcrumbBasic" />
+
+## 自定义条目
+
+通过 `renderItem` 自定义每个路径节点的渲染内容，适合接入路由组件或复杂节点。
+
+<Demo src="@playground/breadcrumb/modules/BreadcrumbCustomItem" />
+
+## 自定义分隔符
+
+通过 `separator` 替换默认的右箭头分隔符。
+
+<Demo src="@playground/breadcrumb/modules/BreadcrumbCustomSeparator" />
+
+## 链接
+
+当 item 中包含 `href` 时，组件会使用 `BreadcrumbLink` 渲染该节点。
+
+<Demo src="@playground/breadcrumb/modules/BreadcrumbLink" />
+
+## 折叠
+
+设置 `ellipsis` 后，当条目数量大于 4 时，组件会折叠中间项，并用 DropdownMenu 展示被折叠的路径。
+
+<Demo src="@playground/breadcrumb/modules/BreadcrumbEllipsis" />
+
+## 自定义折叠
+
+通过 `ellipsisIcon` 替换省略图标；通过 `renderEllipsis` 可以完全自定义折叠入口。
+
+<Demo src="@playground/breadcrumb/modules/BreadcrumbCustomEllipsis" />
+
+## 下拉条目
+
+通过 `renderItem` 结合 DropdownMenu，可以让某个路径节点本身成为下拉入口。
+
+<Demo src="@playground/breadcrumb/modules/BreadcrumbItemDropdown" />
+
+## 尺寸
+
+通过 `size` 控制整体字号和间距，从 `xs` 到 `2xl` 共 6 个尺寸。
+
+<Demo src="@playground/breadcrumb/modules/BreadcrumbSize" />
+
+## 自定义样式
+
+通过 `classNames` 控制 `root`、`list`、`item`、`separator`、`ellipsis` 等 slot。主组件的 `classNames` 不包含 `link` 和 `page`，这两个 slot 通过 `linkProps` 和 `pageProps` 单独传入。
+
+## API
+
+### Breadcrumb
+
+通用属性参考：根容器基于 `nav` 元素，支持原生 `nav` 属性、`size` 和 `className`。
+
+<PropsTable
+  data={[
+    { name: 'items', description: '面包屑数据列表', type: 'BreadcrumbItem[]', required: true },
+    {
+      name: 'size',
+      description: '尺寸，影响字号与间距',
+      type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
+      default: "'md'"
+    },
+    {
+      name: 'ellipsis',
+      description: '折叠配置；true 时条目数大于 4 自动折叠中间项',
+      type: 'true | [number, number] | null'
+    },
+    {
+      name: 'ellipsisDropdownProps',
+      description: '折叠项下拉菜单属性，不包含 children 和 items',
+      type: "Omit<DropdownMenuProps, 'children' | 'items'>"
+    },
+    { name: 'ellipsisIcon', description: '自定义折叠入口图标', type: 'ReactNode' },
+    { name: 'ellipsisProps', description: '传递给 BreadcrumbEllipsis 的额外 props', type: 'BreadcrumbEllipsisProps' },
+    { name: 'handleItemClick', description: '点击路径项时触发', type: '(item: BreadcrumbItem) => void' },
+    { name: 'renderEllipsis', description: '自定义折叠入口渲染', type: '(items: BreadcrumbItem[]) => ReactNode' },
+    { name: 'renderItem', description: '自定义路径项内容渲染', type: '(item: BreadcrumbItem) => ReactNode' },
+    { name: 'separator', description: '自定义分隔符', type: 'ReactNode' },
+    { name: 'className', description: '根容器 class', type: 'ClassValue' },
+    {
+      name: 'classNames',
+      description: '各 slot 的自定义 class（不含 link / page）',
+      type: "Omit<BreadcrumbUi, 'link' | 'page'>"
+    },
+    { name: 'itemProps', description: '传递给 BreadcrumbItemContent 的额外 props', type: 'BreadcrumbItemProps' },
+    { name: 'linkProps', description: '传递给 BreadcrumbLink 的额外 props', type: 'BreadcrumbLinkProps' },
+    { name: 'listProps', description: '传递给 BreadcrumbList 的额外 props', type: 'BreadcrumbListProps' },
+    { name: 'pageProps', description: '传递给 BreadcrumbPage 的额外 props', type: 'BreadcrumbPageProps' },
+    {
+      name: 'separatorProps',
+      description: '传递给 BreadcrumbSeparator 的额外 props',
+      type: 'BreadcrumbSeparatorProps'
+    },
+    { name: 'ref', description: '指向底层 nav 元素的 ref', type: 'Ref<HTMLElement>' }
+  ]}
+/>
+
+### 子组件
+
+<PropsTable
+  data={[
+    { name: 'BreadcrumbRoot', description: '根导航容器', type: 'BreadcrumbRootProps' },
+    { name: 'BreadcrumbList', description: '有序列表容器', type: 'BreadcrumbListProps' },
+    { name: 'BreadcrumbItemContent', description: '单个路径项容器', type: 'BreadcrumbItemProps' },
+    { name: 'BreadcrumbLink', description: '路径链接，支持 asChild', type: 'BreadcrumbLinkProps' },
+    { name: 'BreadcrumbPage', description: '当前页节点', type: 'BreadcrumbPageProps' },
+    { name: 'BreadcrumbSeparator', description: '分隔符节点', type: 'BreadcrumbSeparatorProps' },
+    { name: 'BreadcrumbEllipsis', description: '折叠入口节点', type: 'BreadcrumbEllipsisProps' }
+  ]}
+/>
+
+## 类型
+
+<TypeTable
+  data={[
+    {
+      name: 'BreadcrumbProps<T extends BreadcrumbItem>',
+      description: '主组件属性。继承 BreadcrumbRootProps，并增加数据、折叠、渲染和 slot 配置。',
+      fields: [
+        { name: 'className', type: 'ClassValue', description: '根容器 class。来自 BreadcrumbRootProps。' },
+        { name: 'classNames', type: "Omit<BreadcrumbUi, 'link' | 'page'>", description: '主组件可配置 slot class。' },
+        {
+          name: 'ellipsis',
+          type: 'true | [number, number] | null',
+          description: '折叠配置。true 时条目数大于 4 折叠中间项。'
+        },
+        {
+          name: 'ellipsisDropdownProps',
+          type: "Omit<DropdownMenuProps, 'children' | 'items'>",
+          description: '折叠下拉菜单属性。'
+        },
+        { name: 'ellipsisIcon', type: 'React.ReactNode', description: '折叠入口图标。' },
+        { name: 'ellipsisProps', type: 'BreadcrumbEllipsisProps', description: '折叠入口组件属性。' },
+        { name: 'handleItemClick', type: '(item: T) => void', description: '点击路径项时触发。' },
+        { name: 'itemProps', type: 'BreadcrumbItemProps', description: '路径项容器属性。' },
+        { name: 'items', type: 'T[]', required: true, description: '路径数据列表。' },
+        { name: 'linkProps', type: 'BreadcrumbLinkProps', description: '链接组件属性。' },
+        { name: 'listProps', type: 'BreadcrumbListProps', description: '列表容器属性。' },
+        { name: 'pageProps', type: 'BreadcrumbPageProps', description: '当前页组件属性。' },
+        { name: 'renderEllipsis', type: '(items: T[]) => React.ReactNode', description: '自定义折叠入口渲染。' },
+        { name: 'renderItem', type: '(item: T) => React.ReactNode', description: '自定义路径项内容渲染。' },
+        { name: 'separator', type: 'React.ReactNode', description: '分隔符内容。' },
+        { name: 'separatorProps', type: 'BreadcrumbSeparatorProps', description: '分隔符组件属性。' },
+        {
+          name: 'size',
+          type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
+          description: '尺寸。来自 BreadcrumbRootProps。'
+        }
+      ]
+    },
+    {
+      name: 'BreadcrumbItem',
+      description: '路径项数据结构。继承 BreadcrumbLinkProps 和 SlotProps。',
+      fields: [
+        { name: 'asChild', type: 'boolean', description: '链接渲染时是否使用 asChild。来自 BreadcrumbLinkProps。' },
+        { name: 'className', type: 'ClassValue', description: '该路径项自定义 class。' },
+        { name: 'href', type: 'string', description: '链接地址。存在 href 时渲染为 BreadcrumbLink。' },
+        { name: 'label', type: 'React.ReactNode', required: true, description: '显示内容。' },
+        { name: 'leading', type: 'React.ReactNode', description: '前置插槽内容。' },
+        { name: 'target', type: 'HTMLAttributeAnchorTarget', description: '链接打开方式。来自 a 元素属性。' },
+        { name: 'trailing', type: 'React.ReactNode', description: '后置插槽内容。' },
+        { name: 'value', type: 'string', required: true, description: '唯一标识。' },
+        {
+          name: '...React.AnchorHTMLAttributes<HTMLAnchorElement>',
+          type: 'React.AnchorHTMLAttributes<HTMLAnchorElement>',
+          description: '支持其余 a 元素属性。'
+        }
+      ]
+    },
+    {
+      name: 'BreadcrumbUi',
+      description: 'Breadcrumb 全部 slot 的 class 配置。',
+      fields: [
+        { name: 'ellipsis', type: 'ClassValue', description: '折叠入口 class。' },
+        { name: 'item', type: 'ClassValue', description: '路径项容器 class。' },
+        { name: 'link', type: 'ClassValue', description: '链接 class。主组件 classNames 不直接接收该字段。' },
+        { name: 'list', type: 'ClassValue', description: '列表容器 class。' },
+        { name: 'page', type: 'ClassValue', description: '当前页 class。主组件 classNames 不直接接收该字段。' },
+        { name: 'root', type: 'ClassValue', description: '根容器 class。' },
+        { name: 'separator', type: 'ClassValue', description: '分隔符 class。' }
+      ]
+    },
+    {
+      name: 'BreadcrumbRootProps',
+      description: '根容器属性，等价于 HTMLComponentProps<\"nav\">。',
+      fields: [
+        { name: 'children', type: 'React.ReactNode', description: '子节点。' },
+        { name: 'className', type: 'ClassValue', description: '根容器 class。' },
+        { name: 'id', type: 'string', description: 'DOM id。' },
+        { name: 'ref', type: 'Ref<HTMLElement>', description: 'nav 元素 ref。' },
+        { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'", description: '尺寸，影响整体字号。' }
+      ]
+    },
+    {
+      name: 'BreadcrumbListProps',
+      description: '列表容器属性，等价于 HTMLComponentProps<\"ol\">。',
+      fields: [
+        { name: 'children', type: 'React.ReactNode', description: '列表内容。' },
+        { name: 'className', type: 'ClassValue', description: '列表 class。' },
+        { name: 'ref', type: 'Ref<HTMLOListElement>', description: 'ol 元素 ref。' },
+        { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'", description: '尺寸，影响列表间距。' }
+      ]
+    },
+    {
+      name: 'BreadcrumbItemProps',
+      description: '路径项容器属性，等价于 HTMLComponentProps<\"li\">。',
+      fields: [
+        { name: 'children', type: 'React.ReactNode', description: '路径项内容。' },
+        { name: 'className', type: 'ClassValue', description: '路径项 class。' },
+        { name: 'ref', type: 'Ref<HTMLLIElement>', description: 'li 元素 ref。' },
+        { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'", description: '尺寸，影响路径项间距。' }
+      ]
+    },
+    {
+      name: 'BreadcrumbLinkProps',
+      description: '链接属性。继承 HTMLComponentProps<\"a\"> 并额外支持 asChild。',
+      fields: [
+        { name: 'asChild', type: 'boolean', description: '使用 Radix Slot 将链接行为合并到子元素。' },
+        { name: 'children', type: 'React.ReactNode', description: '链接内容。' },
+        { name: 'className', type: 'ClassValue', description: '链接 class。' },
+        { name: 'href', type: 'string', description: '链接地址。' },
+        { name: 'ref', type: 'Ref<HTMLAnchorElement>', description: 'a 元素 ref。' },
+        { name: 'target', type: 'HTMLAttributeAnchorTarget', description: '链接打开方式。' }
+      ]
+    },
+    {
+      name: 'BreadcrumbPageProps',
+      description: '当前页节点属性，等价于 HTMLComponentProps<\"span\">。',
+      fields: [
+        { name: 'children', type: 'React.ReactNode', description: '当前页内容。' },
+        { name: 'className', type: 'ClassValue', description: '当前页 class。' },
+        { name: 'ref', type: 'Ref<HTMLSpanElement>', description: 'span 元素 ref。' },
+        { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'", description: '尺寸属性。' }
+      ]
+    },
+    {
+      name: 'BreadcrumbSeparatorProps',
+      description: '分隔符属性，等价于 HTMLComponentProps<\"li\">。',
+      fields: [
+        { name: 'children', type: 'React.ReactNode', description: '自定义分隔符内容。默认使用 ChevronRight。' },
+        { name: 'className', type: 'ClassValue', description: '分隔符 class。' },
+        { name: 'ref', type: 'Ref<HTMLLIElement>', description: 'li 元素 ref。' },
+        { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'", description: '尺寸属性。' }
+      ]
+    },
+    {
+      name: 'BreadcrumbEllipsisProps',
+      description: '折叠入口属性，等价于 HTMLComponentProps<\"span\">。',
+      fields: [
+        { name: 'children', type: 'React.ReactNode', description: '自定义折叠图标。默认使用 Ellipsis。' },
+        { name: 'className', type: 'ClassValue', description: '折叠入口 class。' },
+        { name: 'ref', type: 'Ref<HTMLSpanElement>', description: 'span 元素 ref。' },
+        { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'", description: '尺寸属性。' }
+      ]
+    },
+    {
+      name: 'SlotProps',
+      description: '路径项前后插槽类型。',
+      fields: [
+        { name: 'leading', type: 'ReactNode', description: '前置插槽内容。' },
+        { name: 'trailing', type: 'ReactNode', description: '后置插槽内容。' }
+      ]
+    }
+  ]}
+/>
+
+<UnionType
+  name="BreadcrumbSlots"
+  description="Breadcrumb 可配置 classNames 的 slot"
+  type="'ellipsis' | 'item' | 'link' | 'list' | 'page' | 'root' | 'separator'"
+/>
+
+<UnionType
+  name="ClassValue"
+  description="CSS 类名类型"
+  type="string | null | undefined | Record<string, boolean> | ClassValue[]"
+/>
