@@ -1,0 +1,176 @@
+---
+title: Arrow
+description: 用于浮层指向触发元素的 SVG 箭头组件
+---
+
+箭头（Arrow）用于在 Tooltip、Popover、HoverCard 等浮层组件中绘制指向触发元素的箭头。它本身是一个 SVG 基础组件，不包含定位逻辑，通常配合浮层内容的定位结果一起使用。
+
+```tsx
+import { Arrow, type ArrowProps } from '@skyroc/web-ui';
+```
+
+## 架构说明
+
+`Arrow` 直接从 `@radix-ui/react-arrow` 导出，项目没有额外封装样式、尺寸或行为。
+
+- 组件职责：渲染一个可自定义尺寸、填充色和描边色的 SVG 箭头。
+- 样式职责：通过 `className`、`fill`、`stroke` 或 CSS 控制视觉表现。
+- 定位职责：由使用它的浮层组件负责，Arrow 不自行计算方向或位置。
+
+## 何时使用
+
+- 浮层需要明确指向触发元素时。
+- 需要复用 Radix Arrow 的 SVG 结构，同时使用项目主题色控制 `fill` / `stroke` 时。
+- 自定义 Tooltip、Popover、Dropdown 等浮层内容，并希望箭头和浮层背景保持一致时。
+
+## 基础用法
+
+通过 `width` 和 `height` 控制箭头尺寸，通过 `className` 设置填充色和描边色。
+
+<Demo src="@playground/arrow/modules/ArrowDemo" />
+
+## 尺寸与颜色
+
+`Arrow` 不提供项目级 `size` 属性，尺寸由 SVG 的 `width` 和 `height` 决定。
+
+| 属性        | 说明                     | 示例                         |
+| ----------- | ------------------------ | ---------------------------- |
+| `width`     | SVG 宽度                 | `24`                         |
+| `height`    | SVG 高度                 | `12`                         |
+| `className` | 控制填充色、描边色等样式 | `fill-popover stroke-border` |
+| `fill`      | 直接设置 SVG 填充色      | `"currentColor"`             |
+| `stroke`    | 直接设置 SVG 描边色      | `"currentColor"`             |
+
+## API
+
+### Arrow
+
+通用属性参考：基于 Radix UI Arrow，支持 SVG 元素的所有属性，并额外支持 `asChild`。
+
+<PropsTable
+  data={[
+    {
+      name: 'asChild',
+      description: '将渲染委托给子元素，合并 props 和行为',
+      type: 'boolean',
+      default: 'false'
+    },
+    {
+      name: 'children',
+      description: '子节点；通常不需要传入',
+      type: 'ReactNode'
+    },
+    {
+      name: 'className',
+      description: 'SVG 的 class，用于控制 fill、stroke、尺寸等样式',
+      type: 'string'
+    },
+    {
+      name: 'width',
+      description: 'SVG 宽度',
+      type: 'number | string'
+    },
+    {
+      name: 'height',
+      description: 'SVG 高度',
+      type: 'number | string'
+    },
+    {
+      name: 'fill',
+      description: 'SVG 填充色',
+      type: 'string'
+    },
+    {
+      name: 'stroke',
+      description: 'SVG 描边色',
+      type: 'string'
+    },
+    {
+      name: 'viewBox',
+      description: 'SVG 视口',
+      type: 'string'
+    },
+    {
+      name: 'style',
+      description: '行内样式',
+      type: 'CSSProperties'
+    },
+    {
+      name: 'ref',
+      description: '指向底层 SVG 元素的 ref',
+      type: 'Ref<SVGSVGElement>'
+    }
+  ]}
+/>
+
+## 类型
+
+<TypeTable
+  data={[
+    {
+      name: 'ArrowProps',
+      description: 'Arrow 组件属性，完全来自 Radix Arrow。',
+      fields: [
+        {
+          name: '...PrimitiveSvgProps',
+          type: 'PrimitiveSvgProps',
+          description: '继承 Radix Primitive svg 的全部属性。'
+        }
+      ]
+    },
+    {
+      name: 'PrimitiveSvgProps',
+      description: 'Radix Primitive svg 属性。',
+      fields: [
+        {
+          name: '...React.ComponentPropsWithoutRef<typeof Primitive.svg>',
+          type: 'React.ComponentPropsWithoutRef<typeof Primitive.svg>',
+          description: '继承 Primitive.svg 的无 ref 属性。'
+        }
+      ]
+    },
+    {
+      name: 'Primitive.svg',
+      description: 'Radix Primitive 中的 svg 元素封装。',
+      fields: [
+        { name: 'props', type: 'PrimitivePropsWithRef<\"svg\">', description: 'SVG 元素属性，并额外支持 asChild。' },
+        { name: 'ref', type: 'Ref<SVGSVGElement>', description: '转发到底层 SVG 元素的 ref。' }
+      ]
+    },
+    {
+      name: 'PrimitivePropsWithRef<E>',
+      description: 'Radix Primitive 通用属性类型。',
+      fields: [
+        {
+          name: '...React.ComponentPropsWithRef<E>',
+          type: 'React.ComponentPropsWithRef<E>',
+          description: '继承指定元素的原生属性和 ref。'
+        },
+        { name: 'asChild', type: 'boolean', description: '将渲染委托给子元素。' }
+      ]
+    },
+    {
+      name: 'React.ComponentPropsWithRef<\"svg\">',
+      description: 'React SVG 元素属性集合。',
+      fields: [
+        { name: 'children', type: 'ReactNode', description: 'SVG 子节点。' },
+        { name: 'className', type: 'string', description: 'SVG class。' },
+        { name: 'fill', type: 'string', description: 'SVG 填充色。' },
+        { name: 'height', type: 'number | string', description: 'SVG 高度。' },
+        { name: 'onClick', type: 'MouseEventHandler<SVGSVGElement>', description: '点击事件。' },
+        { name: 'ref', type: 'Ref<SVGSVGElement>', description: 'SVG 元素 ref。' },
+        { name: 'stroke', type: 'string', description: 'SVG 描边色。' },
+        { name: 'style', type: 'CSSProperties', description: '行内样式。' },
+        { name: 'viewBox', type: 'string', description: 'SVG 视口。' },
+        { name: 'width', type: 'number | string', description: 'SVG 宽度。' },
+        {
+          name: '...SVGAttributes<SVGSVGElement>',
+          type: 'SVGAttributes<SVGSVGElement>',
+          description: '支持其余标准 SVG 属性与事件。'
+        }
+      ]
+    }
+  ]}
+/>
+
+<UnionType name="ArrowRef" description="Arrow 组件 ref 指向的元素" type="SVGSVGElement" />
