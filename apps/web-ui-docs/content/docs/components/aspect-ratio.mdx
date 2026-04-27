@@ -1,0 +1,71 @@
+---
+title: AspectRatio
+description: 按指定宽高比约束子元素尺寸的布局组件
+---
+
+宽高比（AspectRatio）用于将内容限定在固定的宽高比容器中，确保图片、视频等媒体元素在不同屏幕尺寸下保持一致的比例。
+
+```tsx
+import { AspectRatio } from '@skyroc/web-ui';
+```
+
+## 何时使用
+
+- 展示图片、视频等媒体内容时，需要保持固定比例避免变形。
+- 响应式布局中，希望容器随宽度变化而自动调整高度。
+- 卡片、缩略图、封面等场景需要统一的视觉比例。
+
+## 基本用法
+
+通过 `ratio` 设置宽高比，子元素会自动填充整个容器。常用于图片展示场景。
+
+<Demo src="@playground/aspect-ratio/modules/AspectRatioBasic" />
+
+## 常见比例
+
+不同场景适用不同的宽高比：
+
+| 比例   | 值       | 适用场景                     |
+| ------ | -------- | ---------------------------- |
+| `1:1`  | `1`      | 头像、正方形缩略图、社交媒体 |
+| `4:3`  | `4 / 3`  | 传统显示器、文档预览         |
+| `16:9` | `16 / 9` | 视频播放器、宽屏封面（默认） |
+| `21:9` | `21 / 9` | 超宽屏 Banner、电影画幅      |
+
+<Demo src="@playground/aspect-ratio/modules/AspectRatioVariants" />
+
+## 视频嵌入
+
+AspectRatio 同样适用于 iframe 嵌入的视频内容，确保视频在任意容器宽度下都保持正确比例。
+
+<Demo src="@playground/aspect-ratio/modules/AspectRatioVideo" />
+
+## API
+
+### AspectRatio
+
+通用属性参考：基于 Radix UI AspectRatio，支持原生 `div` 元素的所有属性。
+
+<PropsTable
+  data={[
+    {
+      name: 'ratio',
+      description: '宽高比，值为宽度除以高度的结果',
+      type: 'number',
+      default: '1'
+    },
+    {
+      name: 'className',
+      description: '自定义 class',
+      type: 'ClassValue'
+    }
+  ]}
+/>
+
+## 类型
+
+<UnionType
+  name="ClassValue"
+  description="CSS 类名类型"
+  type="string | null | undefined | Record<string, boolean> | ClassValue[]"
+/>
