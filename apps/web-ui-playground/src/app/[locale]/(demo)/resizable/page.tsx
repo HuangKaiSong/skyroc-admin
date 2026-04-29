@@ -3,6 +3,7 @@ import { Card } from '@skyroc/web-ui';
 import { generateComponentMetadata } from '../components-meta';
 import Default from './modules/Default';
 import ResizableHorizontal from './modules/ResizableHorizontal';
+import ResizableSize from './modules/ResizableSize';
 import ResizableVertical from './modules/ResizableVertical';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -24,6 +25,13 @@ const ResizablePage = () => {
         title="Vertical"
       >
         <ResizableVertical />
+      </Card>
+
+      <Card
+        split
+        title="Size"
+      >
+        <ResizableSize />
       </Card>
 
       <Card
