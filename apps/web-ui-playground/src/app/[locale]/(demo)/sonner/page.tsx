@@ -3,6 +3,7 @@ import { Card } from '@skyroc/web-ui';
 import { generateComponentMetadata } from '../components-meta';
 import Message from './modules/Message';
 import Notification from './modules/Notification';
+import SonnerConfig from './modules/SonnerConfig';
 import Toast from './modules/Toast';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -31,6 +32,13 @@ const SonnerPage = () => {
         title="Toast"
       >
         <Toast />
+      </Card>
+
+      <Card
+        split
+        title="Config"
+      >
+        <SonnerConfig />
       </Card>
     </div>
   );
