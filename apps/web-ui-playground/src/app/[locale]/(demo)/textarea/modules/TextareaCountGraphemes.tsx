@@ -1,33 +1,24 @@
 'use client';
 
-import { useState } from 'react';
-import GraphemeSplitter from 'grapheme-splitter';
 import { Card, Textarea } from '@skyroc/web-ui';
 import type { TextareaProps } from '@skyroc/web-ui';
-
-const splitter = new GraphemeSplitter();
+import { useState } from 'react';
 
 const countGraphemes = (text: TextareaProps['value']) => {
   if (!text) {
     return 0;
   }
-  return splitter.countGraphemes(String(text));
+
+  const segmenter = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+  return Array.from(segmenter.segment(String(text))).length;
 };
 
 const TextareaCountGraphemes = () => {
   const [value, setValue] = useState<TextareaProps['value']>('🌷🇨🇳');
 
   return (
-    <Card
-      split
-      title="Count graphemes"
-    >
-      <Textarea
-        showCount
-        countGraphemes={countGraphemes}
-        value={value}
-        onTextChange={setValue}
-      />
+    <Card split title="Count graphemes">
+      <Textarea showCount countGraphemes={countGraphemes} value={value} onTextChange={setValue} />
     </Card>
   );
 };
