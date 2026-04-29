@@ -4,6 +4,9 @@ import { generateComponentMetadata } from '../components-meta';
 import Custom from './modules/Custom';
 import Fill from './modules/Fill';
 import Horizontal from './modules/Horizontal';
+import Render from './modules/Render';
+import Shape from './modules/Shape';
+import Size from './modules/Size';
 import Vertical from './modules/Vertical';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -36,9 +39,30 @@ const TabsPage = () => {
 
       <Card
         split
+        title="Shape"
+      >
+        <Shape />
+      </Card>
+
+      <Card
+        split
+        title="Size"
+      >
+        <Size />
+      </Card>
+
+      <Card
+        split
         title="Line Type"
       >
         <Custom />
+      </Card>
+
+      <Card
+        split
+        title="Render"
+      >
+        <Render />
       </Card>
     </div>
   );
