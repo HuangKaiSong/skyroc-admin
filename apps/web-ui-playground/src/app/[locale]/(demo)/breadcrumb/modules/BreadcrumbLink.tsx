@@ -1,10 +1,31 @@
 'use client';
 
+import { Home } from 'lucide-react';
 import { Breadcrumb } from '@skyroc/web-ui';
-import { items2 } from './shared';
+import type { BreadcrumbItem } from '@skyroc/web-ui';
 
-const BreadcrumbLink = () => {
-  return <Breadcrumb items={items2} />;
+const items: BreadcrumbItem[] = [
+  {
+    label: 'Home',
+    leading: <Home />,
+    value: 'home'
+  },
+  {
+    href: 'https://react.dev',
+    label: 'React',
+    target: '_blank',
+    value: 'react'
+  },
+  {
+    href: 'https://ui-play.skyroc.me',
+    label: 'SkyrocUI',
+    target: '_blank',
+    value: '@skyroc/web-ui'
+  }
+];
+
+const BreadcrumbLinkDemo = () => {
+  return <Breadcrumb items={items} />;
 };
 
-export default BreadcrumbLink;
+export default BreadcrumbLinkDemo;

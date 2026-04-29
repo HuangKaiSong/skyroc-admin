@@ -1,7 +1,39 @@
 'use client';
 
+import { Component, Dock, Home } from 'lucide-react';
 import { Breadcrumb, BreadcrumbPage, DropdownMenu } from '@skyroc/web-ui';
-import { dropdownItems, type BreadcrumbItemWithDropdown } from './shared';
+import type { BreadcrumbItem, DropdownMenuOptionProps } from '@skyroc/web-ui';
+
+interface BreadcrumbItemWithDropdown extends BreadcrumbItem {
+  items?: DropdownMenuOptionProps['item'][];
+}
+
+const dropdownItems: BreadcrumbItemWithDropdown[] = [
+  {
+    label: 'Home',
+    leading: <Home />,
+    value: 'home'
+  },
+  {
+    label: 'Dropdown',
+    value: 'dropdown',
+    items: [
+      { label: 'Documentation' },
+      { label: 'Themes' },
+      { label: 'Github' }
+    ]
+  },
+  {
+    label: 'Components',
+    leading: <Component />,
+    value: 'components'
+  },
+  {
+    label: 'Breadcrumb',
+    leading: <Dock />,
+    value: 'breadcrumb'
+  }
+];
 
 const BreadcrumbItemDropdown = () => {
   return (

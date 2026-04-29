@@ -1,13 +1,37 @@
 'use client';
 
 import Link from 'next/link';
+import { AlertCircle } from 'lucide-react';
 import { Breadcrumb } from '@skyroc/web-ui';
-import { items4 } from './shared';
+import type { BreadcrumbItem } from '@skyroc/web-ui';
+
+const items: BreadcrumbItem[] = [
+  {
+    label: 'Alert',
+    leading: <AlertCircle />,
+    value: '/alert'
+  },
+  {
+    label: 'Button',
+    leading: <AlertCircle />,
+    value: '/button'
+  },
+  {
+    label: 'Card',
+    leading: <AlertCircle />,
+    value: '/card'
+  },
+  {
+    label: 'divider',
+    leading: <AlertCircle />,
+    value: '/divider'
+  }
+];
 
 const BreadcrumbCustomItem = () => {
   return (
     <Breadcrumb
-      items={items4}
+      items={items}
       renderItem={item => <Link href={item.value}>{item.label}</Link>}
     />
   );
