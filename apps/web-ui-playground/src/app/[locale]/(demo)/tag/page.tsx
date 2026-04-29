@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Card } from '@skyroc/web-ui';
 import { generateComponentMetadata } from '../components-meta';
+import TagBasic from './modules/TagBasic';
 import TagColor from './modules/TagColor';
 import TagShape from './modules/TagShape';
 import TagSize from './modules/TagSize';
@@ -14,6 +15,13 @@ export async function generateMetadata(): Promise<Metadata> {
 const TagPage = () => {
   return (
     <div className="flex-c gap-4">
+      <Card
+        split
+        title="Basic"
+      >
+        <TagBasic />
+      </Card>
+
       <Card
         split
         title="Color"
