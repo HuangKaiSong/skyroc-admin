@@ -5,6 +5,8 @@ import SegmentBasic from './modules/SegmentBasic';
 import SegmentDisabled from './modules/SegmentDisabled';
 import SegmentOrientation from './modules/SegmentOrientation';
 import SegmentShape from './modules/SegmentShape';
+import SegmentSize from './modules/SegmentSize';
+import SegmentType from './modules/SegmentType';
 
 export async function generateMetadata(): Promise<Metadata> {
   return await generateComponentMetadata('segment');
@@ -32,6 +34,20 @@ const SegmentPage = () => {
         title="Shape"
       >
         <SegmentShape />
+      </Card>
+
+      <Card
+        split
+        title="Size"
+      >
+        <SegmentSize />
+      </Card>
+
+      <Card
+        split
+        title="Type"
+      >
+        <SegmentType />
       </Card>
 
       <Card
