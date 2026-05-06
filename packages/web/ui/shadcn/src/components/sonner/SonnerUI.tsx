@@ -46,7 +46,9 @@ const SonnerUI = (props: ToasterProps) => {
       style={style}
       theme={theme as ToasterProps['theme']}
       toastOptions={{
+        ...toastOptions,
         classNames: {
+          ...toastOptions?.classNames,
           actionButton: cn(actionButton, toastOptions?.classNames?.actionButton),
           cancelButton: cn(cancelButton, toastOptions?.classNames?.cancelButton),
           description: cn(description, toastOptions?.classNames?.description),
