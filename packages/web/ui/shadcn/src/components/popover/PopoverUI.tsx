@@ -22,6 +22,8 @@ const PopoverUI = forwardRef<ComponentRef<typeof Content>, PopoverProps>((props,
     container,
     contentProps,
     defaultOpen,
+    disabledPortal,
+    forceMount,
     forceMountPortal,
     modal,
     onOpenChange,
@@ -31,6 +33,31 @@ const PopoverUI = forwardRef<ComponentRef<typeof Content>, PopoverProps>((props,
     trigger,
     ...rest
   } = props;
+
+  const content = (
+    <PopoverContent
+      {...rest}
+      {...contentProps}
+      className={className || classNames?.content || contentProps?.className}
+      ref={ref}
+      size={size}
+    >
+      {children}
+      {closeIcon ? <Close asChild>{closeIcon}</Close> : null}
+
+      {showArrow
+        ? (
+          <PopoverArrow
+            className={classNames?.arrow}
+            height={arrowHeight}
+            size={size}
+            width={arrowWidth}
+            {...arrowProps}
+          />
+        )
+        : null}
+    </PopoverContent>
+  );
 
   return (
     <Root
@@ -43,34 +70,17 @@ const PopoverUI = forwardRef<ComponentRef<typeof Content>, PopoverProps>((props,
         <Trigger asChild>{trigger}</Trigger>
       </PopoverAnchor>
 
-      <Portal
-        container={container}
-        data-slot="popover-portal"
-        forceMount={forceMountPortal}
-      >
-        <PopoverContent
-          {...rest}
-          {...contentProps}
-          className={className || classNames?.content}
-          ref={ref}
-          size={size}
-        >
-          {children}
-          {closeIcon ? <Close asChild>{closeIcon}</Close> : null}
-
-          {showArrow
-            ? (
-              <PopoverArrow
-                className={classNames?.arrow}
-                height={arrowHeight}
-                size={size}
-                width={arrowWidth}
-                {...arrowProps}
-              />
-            )
-            : null}
-        </PopoverContent>
-      </Portal>
+      {disabledPortal
+        ? content
+        : (
+          <Portal
+            container={container}
+            data-slot="popover-portal"
+            forceMount={forceMountPortal || forceMount}
+          >
+            {content}
+          </Portal>
+        )}
     </Root>
   );
 });
