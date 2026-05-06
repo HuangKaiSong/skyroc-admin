@@ -2,9 +2,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createLocalforage, createStorage } from '../src/storage';
 
 interface TestStorage {
-  token: string;
   count: number;
   flag: boolean;
+  token: string;
 }
 
 const PREFIX = 'test_';

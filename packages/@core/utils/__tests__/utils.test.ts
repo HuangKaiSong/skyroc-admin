@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { isHttpUrl, isNil, isMacOs, isPC, isWindow, isWindowsOs, noop } from '../src/utils';
+import { isHttpUrl, isMacOs, isNil, isPC, isWindow, isWindowsOs, noop } from '../src/utils';
 
 // ==================== noop ====================
 

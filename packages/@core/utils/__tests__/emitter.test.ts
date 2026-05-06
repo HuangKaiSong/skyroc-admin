@@ -2,9 +2,9 @@ import { describe, expect, it, vi } from 'vitest';
 import { Emitter } from '../src/emitter';
 
 type TestEvents = {
+  data: [payload: { id: number }];
   login: [user: string];
   logout: [];
-  data: [payload: { id: number }];
 };
 
 // ==================== emit / on ====================

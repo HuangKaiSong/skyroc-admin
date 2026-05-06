@@ -44,18 +44,18 @@
  */
 export type QueueConfig<T> = {
   /**
-   * 从 item 中提取唯一标识
-   *
-   * 用于入队去重（同 id 不重复）和定向移除。
-   */
-  getId: (item: T) => string;
-
-  /**
    * 排序比较器
    *
    * 遵循 Array.prototype.sort 惯例： 返回负数 → a 排在 b 前面（优先级更高） 返回正数 → b 排在 a 前面 返回 0 → 保持原序
    */
   compare: (a: T, b: T) => number;
+
+  /**
+   * 从 item 中提取唯一标识
+   *
+   * 用于入队去重（同 id 不重复）和定向移除。
+   */
+  getId: (item: T) => string;
 };
 
 type Listener<T> = (queue: readonly T[]) => void;

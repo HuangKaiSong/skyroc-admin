@@ -1,9 +1,9 @@
-export * from './download';
-
 export * from './class';
 
-export * from './window';
+export * from './compose-props';
+
+export * from './download';
 
 export * from './input';
 
-export * from './compose-props';
+export * from './window';

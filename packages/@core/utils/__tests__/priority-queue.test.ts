@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { PriorityQueue } from '../src/priority-queue';
 
-type Task = { taskId: string; priority: number; createdAt: number };
+type Task = { createdAt: number; priority: number; taskId: string };
 
 function createQueue() {
   return new PriorityQueue<Task>({

@@ -2,18 +2,18 @@
 
 export interface OpenWindowOptions {
   /**
-   * 打开目标
-   *
-   * @default '_blank'
-   */
-  target?: '_blank' | '_parent' | '_self' | '_top' | string;
-
-  /**
    * 是否启用安全策略（noopener + noreferrer）
    *
    * @default true
    */
   secure?: boolean;
+
+  /**
+   * 打开目标
+   *
+   * @default '_blank'
+   */
+  target?: '_blank' | '_parent' | '_self' | '_top' | string;
 }
 
 /**
@@ -26,7 +26,7 @@ export interface OpenWindowOptions {
 export function openWindow(url: string, options: OpenWindowOptions = {}): void {
   if (typeof window === 'undefined') return;
 
-  const { target = '_blank', secure = true } = options;
+  const { secure = true, target = '_blank' } = options;
 
   const features = secure ? 'noopener,noreferrer' : undefined;
 

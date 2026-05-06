@@ -3,7 +3,7 @@ import { Crypto } from '../src/crypto';
 
 describe('Crypto', () => {
   const secret = 'test-secret-key';
-  const crypto = new Crypto<{ name: string; age: number }>(secret);
+  const crypto = new Crypto<{ age: number; name: string }>(secret);
 
   it('加密后应返回非空字符串', () => {
     const encrypted = crypto.encrypt({ name: 'Alice', age: 30 });
@@ -22,7 +22,7 @@ describe('Crypto', () => {
     const data = { name: 'Charlie', age: 20 };
     const encrypted = crypto.encrypt(data);
 
-    const wrongCrypto = new Crypto<{ name: string; age: number }>('wrong-key');
+    const wrongCrypto = new Crypto<{ age: number; name: string }>('wrong-key');
     const decrypted = wrongCrypto.decrypt(encrypted);
     expect(decrypted).toBeNull();
   });

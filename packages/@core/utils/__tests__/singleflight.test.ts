@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { createSingleflight, Singleflight } from '../src/singleflight';
+import { Singleflight, createSingleflight } from '../src/singleflight';
 
 // ==================== Singleflight 类 ====================
 
