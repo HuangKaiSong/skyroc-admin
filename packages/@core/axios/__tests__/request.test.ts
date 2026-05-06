@@ -481,7 +481,7 @@ describe('createFlatRequest', () => {
   });
 
   it('state 应使用 defaultState 初始化', () => {
-    const request = createFlatRequest<BackendResponse, any, { token: string; retryCount: number }>(TEST_AXIOS_CONFIG, {
+    const request = createFlatRequest<BackendResponse, any, { retryCount: number; token: string }>(TEST_AXIOS_CONFIG, {
       defaultState: { token: 'initial-token', retryCount: 0 },
       isBackendSuccess: response => response.data.code === 200
     });

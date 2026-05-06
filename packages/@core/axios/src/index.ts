@@ -100,6 +100,8 @@ function createCommonRequest<
 
 export type * from './type';
 
+export * from './type';
+
 /**
  * Create a request instance
  *
@@ -132,7 +134,6 @@ export function createRequest<ResponseData, ApiData, State extends Record<string
 
   return request;
 }
-
 /**
  * Create a flat request instance
  *
@@ -177,4 +178,3 @@ export function createFlatRequest<ResponseData, ApiData, State extends Record<st
 }
 export { BACKEND_ERROR_CODE, REQUEST_ID_KEY };
 export type { AxiosError, CreateAxiosDefaults };
-export * from './type';
