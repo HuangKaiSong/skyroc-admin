@@ -39,6 +39,7 @@ const BottomSheetUI = forwardRef<ComponentRef<typeof Content>, BottomSheetProps>
       <BottomSheetContent
         classNames={classNames}
         ref={ref}
+        size={size}
         {...contentProps}
       >
         <DialogHeader
@@ -78,7 +79,7 @@ const BottomSheetUI = forwardRef<ComponentRef<typeof Content>, BottomSheetProps>
         {footer
           ? (
             <DialogFooter
-              className={classNames?.footer || '!flex-col-reverse'}
+              className={classNames?.footer || 'flex-col-reverse!'}
               size={size}
               {...footerProps}
             >
