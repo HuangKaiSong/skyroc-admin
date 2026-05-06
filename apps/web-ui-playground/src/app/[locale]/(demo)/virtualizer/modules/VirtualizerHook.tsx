@@ -1,8 +1,8 @@
 'use client';
 
-import { useRef } from 'react';
 import type { VirtualizerList } from '@skyroc/web-ui';
 import { Button, Card, VirtualList } from '@skyroc/web-ui';
+import { useRef } from 'react';
 
 interface ListItem {
   id: number;
@@ -22,36 +22,19 @@ const VirtualizerHook = () => {
   }
 
   return (
-    <Card
-      split
-      title="使用 Hook"
-    >
-      <p className="text-muted-foreground mb-4 text-sm">
-        直接使用 useVirtualizer hook，获得更多控制能力
-      </p>
+    <Card split title="使用 Hook">
+      <p className="text-muted-foreground mb-4 text-sm">直接使用 useVirtualizer hook，获得更多控制能力</p>
 
       <div className="mb-4 flex gap-2">
-        <Button
-          size="sm"
-          variant="outline"
-          onClick={() => scrollToIndex(0, { align: 'start' })}
-        >
+        <Button size="sm" variant="outline" onClick={() => scrollToIndex(0, { align: 'start' })}>
           滚动到顶部
         </Button>
 
-        <Button
-          size="sm"
-          variant="outline"
-          onClick={() => scrollToIndex(4999, { align: 'center' })}
-        >
+        <Button size="sm" variant="outline" onClick={() => scrollToIndex(4999, { align: 'center' })}>
           滚动到中间 (5000)
         </Button>
 
-        <Button
-          size="sm"
-          variant="outline"
-          onClick={() => scrollToIndex(9999, { align: 'end' })}
-        >
+        <Button size="sm" variant="outline" onClick={() => scrollToIndex(9999, { align: 'end' })}>
           滚动到底部
         </Button>
       </div>

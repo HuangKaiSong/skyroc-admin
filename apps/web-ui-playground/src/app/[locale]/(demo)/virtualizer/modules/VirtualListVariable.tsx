@@ -16,13 +16,8 @@ const data: ListItem[] = Array.from({ length: 5000 }, (_, i) => ({
 
 const VirtualListVariable = () => {
   return (
-    <Card
-      split
-      title="可变高度列表"
-    >
-      <p className="text-muted-foreground mb-4 text-sm">
-        每个项目的高度可以不同，支持动态计算
-      </p>
+    <Card split title="可变高度列表">
+      <p className="text-muted-foreground mb-4 text-sm">每个项目的高度可以不同，支持动态计算</p>
 
       <VirtualList
         data={data}
@@ -34,9 +29,7 @@ const VirtualListVariable = () => {
           root: 'border rounded-lg'
         }}
         renderItem={({ index, item }) => (
-          <div
-            className="hover:bg-accent flex flex-col justify-center border-b px-4 transition-colors"
-          >
+          <div className="hover:bg-accent flex flex-col justify-center border-b px-4 transition-colors">
             <div className="flex items-center justify-between">
               <span className="font-medium">
                 Row
@@ -44,9 +37,7 @@ const VirtualListVariable = () => {
               </span>
 
               <span className="text-muted-foreground font-mono text-xs">
-                height:
-                {' '}
-                {item.height}
+                height: {item.height}
                 px
               </span>
             </div>
@@ -55,7 +46,6 @@ const VirtualListVariable = () => {
           </div>
         )}
       />
-
     </Card>
   );
 };

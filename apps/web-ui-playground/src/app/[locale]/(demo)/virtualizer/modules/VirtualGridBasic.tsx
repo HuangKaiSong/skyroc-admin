@@ -14,13 +14,8 @@ const data: GridItem[] = Array.from({ length: 10000 }, (_, i) => ({
 
 const VirtualGridBasic = () => {
   return (
-    <Card
-      split
-      title="虚拟网格"
-    >
-      <p className="text-muted-foreground mb-4 text-sm">
-        渲染 10,000 个单元格的虚拟网格，支持行列虚拟化
-      </p>
+    <Card split title="虚拟网格">
+      <p className="text-muted-foreground mb-4 text-sm">渲染 10,000 个单元格的虚拟网格，支持行列虚拟化</p>
 
       <VirtualGrid
         columns={10}
@@ -41,12 +36,7 @@ const VirtualGridBasic = () => {
             <span className="text-sm font-medium">{item.content}</span>
 
             <span className="text-muted-foreground mt-1 text-xs">
-              [
-              {rowIndex}
-              ,
-              {' '}
-              {colIndex}
-              ]
+              [{rowIndex}, {colIndex}]
             </span>
           </div>
         )}
