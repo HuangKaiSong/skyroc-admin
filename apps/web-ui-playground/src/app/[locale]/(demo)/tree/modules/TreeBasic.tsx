@@ -1,8 +1,9 @@
+// oxlint-disable no-nested-ternary
 'use client';
 
-import { useState } from 'react';
+import { Card, Icon, Tree } from '@skyroc/web-ui';
 import { Folder, FolderOpen } from 'lucide-react';
-import { Icon, Tree } from '@skyroc/web-ui';
+import { useState } from 'react';
 
 const items = [
   {
@@ -36,44 +37,49 @@ const items = [
 
 const TreeBasic = () => {
   const [value, setValue] = useState<string>('');
-  const [expanded, setExpanded] = useState<string[]>(['documents']);
+  const [expanded, setExpanded] = useState<string[]>(['composables', 'components', 'home']);
 
   return (
-    <div className="w-full max-w-[320px]">
-      <Tree
-        className="w-56 list-none rounded-lg border bg-white p-2 text-sm font-medium text-stone-700 shadow-sm select-none"
-        expanded={expanded}
-        items={items}
-        top={<h2 className="px-2 pt-1 pb-3 text-sm font-semibold text-stone-400">Directory Structure</h2>}
-        value={value}
-        classNames={{
-          item: 'flex items-center py-1 px-2 my-0.5 rounded outline-none focus:ring-primary/50 focus:ring-2 data-[selected]:bg-primary/15'
-        }}
-        renderItem={({ item, isExpanded, hasChildren }) => {
-          return (
-            <>
-              {hasChildren ? isExpanded ? <FolderOpen /> : <Folder /> : <Icon icon={item.data.icon || 'lucide:file'} />}
+    <Card split title="Basic">
+      <div className="w-full max-w-[320px]">
+        <Tree
+          className="w-56 list-none rounded-lg border bg-white p-2 text-sm font-medium text-stone-700 shadow-sm select-none"
+          expanded={expanded}
+          items={items}
+          top={<h2 className="px-2 pt-1 pb-3 text-sm font-semibold text-stone-400">Directory Structure</h2>}
+          value={value}
+          classNames={{
+            item: 'flex items-center py-1 px-2 my-0.5 rounded outline-none focus:ring-primary/50 focus:ring-2 data-[selected]:bg-primary/15'
+          }}
+          renderItem={({ item, isExpanded, hasChildren }) => {
+            return (
+              <>
+                {hasChildren ? (
+                  isExpanded ? (
+                    <FolderOpen />
+                  ) : (
+                    <Folder />
+                  )
+                ) : (
+                  <Icon icon={item.data.icon || 'lucide:file'} />
+                )}
 
-              <div className="pl-2">
-                {item.data.label}
-              </div>
-            </>
+                <div className="pl-2">{item.data.label}</div>
+              </>
+            );
+          }}
+          onExpandedChange={setExpanded}
+          onValueChange={v => setValue(v as string)}
+        />
 
-          );
-        }}
-        onExpandedChange={setExpanded}
-        onValueChange={v => setValue(v as string)}
-      />
-
-      {value
-        ? (
+        {value ? (
           <div className="text-muted-foreground mt-4 text-sm">
             Selected:
             {value}
           </div>
-        )
-        : null}
-    </div>
+        ) : null}
+      </div>
+    </Card>
   );
 };
 
