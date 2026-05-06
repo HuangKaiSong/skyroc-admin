@@ -1,15 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
-import type { CSSProperties, ComponentRef } from 'react';
-import { forwardRef, useEffect, useRef, useState } from 'react';
 import { useComposedRefs } from '@radix-ui/react-compose-refs';
 import { List } from '@radix-ui/react-tabs';
 import { cn } from '@skyroc/utils';
-import { If } from '../if';
+import type { CSSProperties, ComponentRef } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
 import { tabsVariants } from './tabs-variants';
 import type { IndicatorStyle, TabsListProps } from './types';
 
 const TabsList = forwardRef<ComponentRef<typeof List>, TabsListProps>((props, ref) => {
-  const { children, className, classNames, dir, enableIndicator, orientation, shape, size, type, value, ...rest } = props;
+  const { children, className, classNames, dir, enableIndicator, orientation, shape, size, type, value, ...rest } =
+    props;
 
   const tabsListRef = useRef<HTMLDivElement>(null);
 
@@ -31,16 +32,14 @@ const TabsList = forwardRef<ComponentRef<typeof List>, TabsListProps>((props, re
   function updateIndicatorStyle() {
     const activeTab = tabsListRef.current?.querySelector<HTMLButtonElement>('[role="tab"][data-state="active"]');
 
-    if (!activeTab)
-      return;
+    if (!activeTab) return;
 
     if (orientation === 'horizontal') {
       setIndicatorStyle({
         position: activeTab.offsetLeft,
         size: activeTab.offsetWidth
       });
-    }
-    else {
+    } else {
       setIndicatorStyle({
         position: activeTab.offsetTop,
         size: activeTab.offsetHeight
@@ -48,20 +47,15 @@ const TabsList = forwardRef<ComponentRef<typeof List>, TabsListProps>((props, re
     }
   }
 
+  // Indicator measurement is intentionally tied to active value and direction changes.
   useEffect(() => {
     updateIndicatorStyle();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, dir]);
   return (
-    <List
-      className={mergedCls}
-      dir={dir}
-      {...rest}
-      ref={mergedRef}
-    >
+    <List className={mergedCls} dir={dir} {...rest} ref={mergedRef}>
       {children}
 
-      <If condition={Boolean(enableIndicator)}>
+      {enableIndicator ? (
         <div
           className={mergedRootCls}
           style={
@@ -73,7 +67,7 @@ const TabsList = forwardRef<ComponentRef<typeof List>, TabsListProps>((props, re
         >
           <div className={mergedIndicatorCls} />
         </div>
-      </If>
+      ) : null}
     </List>
   );
 });

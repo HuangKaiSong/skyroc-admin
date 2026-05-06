@@ -1491,31 +1491,6 @@
     {
       "files": [
         {
-          "path": "src/components/if/If.tsx",
-          "target": "components/if/If.tsx",
-          "type": "registry:ui"
-        },
-        {
-          "path": "src/components/if/index.ts",
-          "target": "components/if/index.ts",
-          "type": "registry:ui"
-        },
-        {
-          "path": "src/components/if/type.ts",
-          "target": "components/if/type.ts",
-          "type": "registry:ui"
-        }
-      ],
-      "name": "if",
-      "registryDependencies": [
-        "https://ui-play.skyroc.me/r/style.json"
-      ],
-      "title": "If",
-      "type": "registry:block"
-    },
-    {
-      "files": [
-        {
           "path": "src/components/input/Input.tsx",
           "target": "components/input/Input.tsx",
           "type": "registry:ui"

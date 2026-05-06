@@ -6,7 +6,6 @@
 // ---------------------------------------------------------------------------
 
 export { Arrow, type ArrowProps } from '../components/arrow';
-export { If, type IfProps } from '../components/if';
 export { Menubar, type MenubarOption, type MenubarProps } from '../components/menubar';
 export {
   NavigationMenu,

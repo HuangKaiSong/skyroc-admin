@@ -21,7 +21,6 @@ export * from './dropdown-menu';
 export * from './form';
 export * from './hover-card';
 export * from './icon';
-export * from './if';
 export * from './input';
 export * from './input-otp';
 export * from './keyboard-key';
