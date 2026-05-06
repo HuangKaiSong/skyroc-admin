@@ -7,6 +7,8 @@ import { getRecommendedColorPalette } from './recommend';
 
 export * from './oklch';
 
+export { getRecommendedColorPalette, getRecommendedPaletteColorByNumber } from './recommend';
+
 /**
  * Get color palette by provided color
  *
@@ -55,5 +57,3 @@ export function getPaletteColorByNumber(
 
   return colorMap.get(number as ColorPaletteNumber)!;
 }
-
-export { getRecommendedColorPalette, getRecommendedPaletteColorByNumber } from './recommend';

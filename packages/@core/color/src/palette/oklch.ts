@@ -315,8 +315,6 @@ export interface OklchPaletteOptions {
    * @default true
    */
   chromaCompensation?: boolean;
-  /** Custom lightness curve (11 values from light to dark) */
-  lightnessCurve?: number[];
   /** Force the input color to be placed at this step If not specified, the closest step by lightness is used */
   forceStep?: ColorPaletteNumber;
   /**
@@ -325,25 +323,27 @@ export interface OklchPaletteOptions {
    * @default false
    */
   includeOklch?: boolean;
+  /** Custom lightness curve (11 values from light to dark) */
+  lightnessCurve?: number[];
 }
 
 /** Extended color palette with OKLCH values */
 export interface ColorPaletteWithOklch extends ColorPalette {
   /** OKLCH values as numbers */
-  oklch: { l: number; c: number; h: number };
+  oklch: { c: number; h: number; l: number };
   /** CSS oklch() string, e.g. "oklch(58.5% 0.204 277.1)" */
   oklchCss: string;
 }
 
 /** Extended palette family with OKLCH values */
 export interface ColorPaletteFamilyWithOklch extends Omit<ColorPaletteFamily, 'palettes'> {
-  palettes: ColorPaletteWithOklch[];
-  /** The step that best matches the input color */
-  matchedStep: ColorPaletteNumber;
   /** Input color's OKLCH values */
-  inputOklch: { l: number; c: number; h: number };
+  inputOklch: { c: number; h: number; l: number };
   /** Input color's CSS oklch() string */
   inputOklchCss: string;
+  /** The step that best matches the input color */
+  matchedStep: ColorPaletteNumber;
+  palettes: ColorPaletteWithOklch[];
 }
 
 /** Format OKLCH values to CSS string e.g. oklch(58.5% 0.204 277.1) */
@@ -567,22 +567,22 @@ export function generateOklchPaletteEx(color: string, forceStep?: ColorPaletteNu
 export type WcagLevel = 'AA' | 'AAA';
 
 /** Text size for WCAG contrast calculation */
-export type TextSize = 'normal' | 'large';
+export type TextSize = 'large' | 'normal';
 
 /** Contrast check result for a palette */
 export interface PaletteContrastInfo {
-  /** The palette with contrast information */
-  palette: ColorPaletteFamily;
-  /** Contrast ratios for each step against white (#ffffff) */
-  contrastVsWhite: Map<ColorPaletteNumber, number>;
   /** Contrast ratios for each step against black (#000000) */
   contrastVsBlack: Map<ColorPaletteNumber, number>;
-  /** Steps that pass WCAG AA for normal text on white */
-  passAAonWhite: ColorPaletteNumber[];
+  /** Contrast ratios for each step against white (#ffffff) */
+  contrastVsWhite: Map<ColorPaletteNumber, number>;
+  /** The palette with contrast information */
+  palette: ColorPaletteFamily;
   /** Steps that pass WCAG AA for normal text on black */
   passAAonBlack: ColorPaletteNumber[];
+  /** Steps that pass WCAG AA for normal text on white */
+  passAAonWhite: ColorPaletteNumber[];
   /** Recommended text color (white or black) for each step */
-  recommendedTextColor: Map<ColorPaletteNumber, '#ffffff' | '#000000'>;
+  recommendedTextColor: Map<ColorPaletteNumber, '#000000' | '#ffffff'>;
 }
 
 /**
@@ -628,7 +628,7 @@ export function generateOklchPaletteWithContrast(color: string): PaletteContrast
   const contrastVsBlack = new Map<ColorPaletteNumber, number>();
   const passAAonWhite: ColorPaletteNumber[] = [];
   const passAAonBlack: ColorPaletteNumber[] = [];
-  const recommendedTextColor = new Map<ColorPaletteNumber, '#ffffff' | '#000000'>();
+  const recommendedTextColor = new Map<ColorPaletteNumber, '#000000' | '#ffffff'>();
 
   for (const { hex, number } of palette.palettes) {
     const vsWhite = getContrastRatio(hex, '#ffffff');
