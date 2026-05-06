@@ -1,11 +1,11 @@
-import i18n from 'i18next';
+import { use as useI18n } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 import { globalConfig } from '@/config';
 
 import locales from './locale';
 
-export const reactI18nextInstance = i18n.use(initReactI18next);
+export const reactI18nextInstance = useI18n(initReactI18next);
 
 /** Setup plugin i18n */
 export async function setupI18n() {

@@ -1,6 +1,6 @@
 import { transformColorWithOpacity } from '@skyroc/color';
 import { useSettingsTheme } from '@skyroc/web-admin-theme';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { cloneElement } from 'react';
 
 import MenuToggler from '@/layouts/admin-layout/state/menus/MenuToggler';

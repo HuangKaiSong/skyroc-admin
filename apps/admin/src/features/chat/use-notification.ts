@@ -95,14 +95,13 @@ export function useNotification() {
           body: notification.content
         });
 
-        // 点击通知时的处理
-        browserNotification.onclick = () => {
+        browserNotification.addEventListener('click', () => {
           window.focus();
           if (notification.link) {
             window.location.href = notification.link;
           }
           browserNotification.close();
-        };
+        });
       } catch (error) {
         // eslint-disable-next-line no-console
         console.warn('显示浏览器通知失败:', error);

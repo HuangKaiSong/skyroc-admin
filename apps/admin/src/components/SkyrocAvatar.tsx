@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import skyrocAvatar from '@/assets/imgs/skyroc.jpg';
 

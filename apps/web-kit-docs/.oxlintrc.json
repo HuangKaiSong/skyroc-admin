@@ -1,15 +1,8 @@
 {
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "typescript",
-    "react",
-    "import",
-    "nextjs"
+  "$schema": "../../node_modules/oxlint/configuration_schema.json",
+  "extends": [
+    "../../internal/config/oxlint/next.json"
   ],
-  "categories": {},
-  "env": {
-    "builtin": true
-  },
   "settings": {
     "react": {
       "version": "19.2.5"

@@ -1,7 +1,7 @@
 import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import type { TooltipProps } from 'antd';
 import { Tooltip } from 'antd';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { themeLayoutModeRecord } from '@/constants/app';
 import { useAdminState } from '@/layouts/admin-layout/state/use-admin-state';

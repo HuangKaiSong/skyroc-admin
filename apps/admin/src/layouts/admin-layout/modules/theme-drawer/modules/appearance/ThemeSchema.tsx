@@ -1,5 +1,5 @@
+// oxlint-disable import/no-unassigned-import
 import { ThemeSchemaSegmented, useSettingsTheme } from '@skyroc/web-admin-theme';
-
 import SettingItem from '../../components/SettingItem';
 import '@/styles/css/darkMode.css';
 

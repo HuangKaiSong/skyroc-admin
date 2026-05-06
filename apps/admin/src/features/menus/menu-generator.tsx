@@ -9,7 +9,7 @@ import { routeTree } from '@/features/router/routeTree.gen';
 import { extras } from './extras';
 import type { MenuCategoryKey } from './menu-category';
 import { getMenuCategoryKey, menuCategory } from './menu-category';
-import menuNodeCallback from './menu-config';
+import { menuNodeCallback } from './menu-config';
 /**
  * 菜单节点回调函数类型 用于在特定路由节点添加额外菜单
  *
@@ -129,7 +129,7 @@ class MenuGenerator {
 
     // Sort top-level menus by order
     // 对顶层菜单按 order 排序
-    return menuList.sort((a, b) => {
+    return menuList.toSorted((a, b) => {
       const orderA = a.order ?? 0;
       const orderB = b.order ?? 0;
       return orderA - orderB;
@@ -230,7 +230,7 @@ class MenuGenerator {
       // Sort children by order at current level
       // 在当前层级按 order 排序
       if (childMenus.length > 0) {
-        menu.children = childMenus.sort((a, b) => {
+        menu.children = childMenus.toSorted((a, b) => {
           const orderA = a.order ?? 0;
           const orderB = b.order ?? 0;
           return orderA - orderB;

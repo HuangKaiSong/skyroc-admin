@@ -3,7 +3,7 @@ import { PageTab } from '@skyroc/materials';
 import { FullScreen, ReloadButton } from '@skyroc/web-ui-antd';
 import { BetterScroll, DarkModeContainer, SvgIcon } from '@skyroc/web-ui-compose';
 import { useSettingsTheme } from '@skyroc/web-admin-theme';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { useEffect } from 'react';
 
 import { isPC } from '@/utils/agent';
@@ -13,6 +13,10 @@ import { useAdminState } from '../../state/use-admin-state';
 
 import { TabContextMenu } from './components/TabContextMenu';
 import { useTabScroll } from './hooks/useTabScroll';
+
+function removeFocus() {
+  (document.activeElement as HTMLElement)?.blur();
+}
 
 const AdminTab = () => {
   const { t } = useTranslation();
@@ -30,10 +34,6 @@ const AdminTab = () => {
   const handleReloadPage = () => {
     reloadPage();
   };
-
-  function removeFocus() {
-    (document.activeElement as HTMLElement)?.blur();
-  }
 
   function getContextMenuDisabledKeys(tabId: string, index: number) {
     const disabledKeys: App.Global.DropdownKey[] = [];

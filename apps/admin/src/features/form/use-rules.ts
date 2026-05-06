@@ -1,6 +1,13 @@
 import { REG_CODE_SIX, REG_EMAIL, REG_PHONE, REG_PWD, REG_USER_NAME } from '@skyroc/utils';
 import type { FormInstance, FormRule } from 'antd';
 
+function createRequiredRule(message: string): FormRule {
+  return {
+    message,
+    required: true
+  };
+}
+
 export function useFormRules() {
   const { t } = useTranslation();
   const patternRules = {
@@ -41,13 +48,6 @@ export function useFormRules() {
 
   /** The default required rule */
   const defaultRequiredRule = createRequiredRule(t('form.required'));
-
-  function createRequiredRule(message: string): FormRule {
-    return {
-      message,
-      required: true
-    };
-  }
 
   /** Create a rule for confirming the password */
   function createConfirmPwdRule(from: FormInstance) {

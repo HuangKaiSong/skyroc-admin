@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import type { LinkProps } from '@tanstack/react-router';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 interface Props extends Omit<LinkProps, 'to'> {
   className?: string;

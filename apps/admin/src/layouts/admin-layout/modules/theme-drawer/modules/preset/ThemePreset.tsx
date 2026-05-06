@@ -1,5 +1,5 @@
 import { defaultThemeSettings, getAllPresets, useSettingsTheme } from '@skyroc/web-admin-theme';
-import defu from 'defu';
+import { defu } from 'defu';
 import { useMemo } from 'react';
 
 const ThemePreset = () => {

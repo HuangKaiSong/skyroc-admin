@@ -1,7 +1,7 @@
 import { ButtonIcon } from '@skyroc/web-ui-antd';
 import { DarkModeContainer } from '@skyroc/web-ui-compose';
 import { Empty, List, Tag } from 'antd';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 

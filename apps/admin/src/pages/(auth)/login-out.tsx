@@ -1,5 +1,5 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
-import z from 'zod';
+import { z } from 'zod';
 
 const LoginOut = () => {
   return null;

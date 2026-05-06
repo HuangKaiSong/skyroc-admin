@@ -1,11 +1,12 @@
+// oxlint-disable import/no-unassigned-import
 import { ButtonIcon } from '@skyroc/web-ui-antd';
 import { Dropdown } from 'antd';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import type { CSSProperties } from 'react';
 
 import './notification.css';
 import NotificationPanel from './NotificationPanel';
-import { useNotificationContext } from './NotificationProvider';
+import { useNotificationContext } from './useNotificationContext';
 
 interface Props {
   className?: string;

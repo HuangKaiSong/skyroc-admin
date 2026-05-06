@@ -1,3 +1,4 @@
+// oxlint-disable import/no-unassigned-import
 import { locale } from 'dayjs';
 
 import 'dayjs/locale/zh-cn';

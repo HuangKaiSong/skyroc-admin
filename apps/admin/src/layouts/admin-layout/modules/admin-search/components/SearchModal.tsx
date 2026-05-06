@@ -1,7 +1,7 @@
 import { useNavigate } from '@tanstack/react-router';
 import { useDebounceFn, useKeyPress } from 'ahooks';
 import type { InputRef } from 'antd';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { useAdminMenus } from '@/layouts/admin-layout/state/menus/use-admin-menus';
 import { useAdminState } from '@/layouts/admin-layout/state/use-admin-state';

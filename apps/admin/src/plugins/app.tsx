@@ -92,7 +92,8 @@ async function getHtmlBuildTime(): Promise<string | null> {
     const match = html.match(/<meta name="buildTime" content="(.*)">/);
     return match?.[1] || null;
   } catch (error) {
-    window.console.error('getHtmlBuildTime error:', error);
+    // oxlint-disable-next-line no-console
+    console.error('Failed to get HTML build time:', error);
     return null;
   }
 }

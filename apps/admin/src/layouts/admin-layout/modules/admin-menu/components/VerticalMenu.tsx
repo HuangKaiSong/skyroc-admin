@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import type { MenuProps } from 'antd';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 
 import { useAdminMenus } from '@/layouts/admin-layout/state/menus/use-admin-menus';
 import { useAdminState } from '@/layouts/admin-layout/state/use-admin-state';
