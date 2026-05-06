@@ -1,7 +1,6 @@
 'use client';
 
-import type { AnimationController, AutoAnimateOptions } from '@formkit/auto-animate';
-import autoAnimate from '@formkit/auto-animate';
+import { type AnimationController, type AutoAnimateOptions, autoAnimate } from '@formkit/auto-animate';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 export function useAutoAnimate(

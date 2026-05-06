@@ -1,5 +1,5 @@
-export * from '../../components/tooltip';
 export { Tooltip as TooltipRoot, TooltipProvider, TooltipTrigger } from '@radix-ui/react-tooltip';
+export * from '../../components/tooltip';
 
 export { default as TooltipArrow } from '../../components/tooltip/TooltipArrow';
 export { default as TooltipContent } from '../../components/tooltip/TooltipContent';

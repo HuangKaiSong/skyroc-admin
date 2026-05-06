@@ -1,7 +1,7 @@
 'use client';
 
 import { useComponentConfig } from '../config-provider/context';
-import KeyboardKeyUI from '../../components/keyboard-key/KeyboardKeyUI';
+import { KeyboardKeyUI } from '../../components/keyboard-key/KeyboardKeyUI';
 import type { KeyboardKeyProps } from '../../components/keyboard-key/types';
 
 const KeyboardKey = (props: KeyboardKeyProps) => {

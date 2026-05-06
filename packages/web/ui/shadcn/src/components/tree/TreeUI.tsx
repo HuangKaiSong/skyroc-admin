@@ -8,7 +8,7 @@ import type { FlattenedItem, TreeItemData, TreeProps } from './types';
 const DefaultIndicator = ({ isExpanded }: { isExpanded: boolean }) => {
   return (
     <span
-      className="flex shrink-0 items-center justify-center transition-transform duration-200 data-[expanded]:rotate-90"
+      className="flex shrink-0 items-center justify-center transition-transform duration-200 data-expanded:rotate-90"
       data-expanded={isExpanded ? '' : undefined}
     >
       <Icon
@@ -20,29 +20,29 @@ const DefaultIndicator = ({ isExpanded }: { isExpanded: boolean }) => {
   );
 };
 
+// eslint-disable-next-line max-params
+function defaultRenderItemContent<T extends TreeItemData>(item: FlattenedItem<T>, isExpanded: boolean, hasChildren: boolean, isSelected: boolean) {
+  const indicator = hasChildren
+    ? (
+      <DefaultIndicator
+        isExpanded={isExpanded}
+      />
+    )
+    : <span className="w-4" />;
+  const label = 'label' in item.data ? (item.data).label : item.value;
+  return (
+    <div
+      className="hover:bg-muted focus-visible:ring-primary data-[selected]:bg-primary/10 data-selected:text-primary flex size-full items-center gap-2 rounded-md py-2 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:outline-none data-[disabled]:hover:bg-transparent"
+      data-selected={isSelected ? '' : undefined}
+    >
+      {indicator}
+      <span className="flex-1 truncate">{label}</span>
+    </div>
+  );
+}
+
 const TreeUI = <T extends TreeItemData = TreeItemData>(props: TreeProps<T>) => {
   const { className, classNames, disabledSelect, disabledToggle, indentSize, items, onSelect, onToggle, ref, renderItem, size, ...rest } = props;
-
-  // eslint-disable-next-line max-params
-  const defaultRenderItemContent = (item: FlattenedItem<T>, isExpanded: boolean, hasChildren: boolean, isSelected: boolean) => {
-    const indicator = hasChildren
-      ? (
-        <DefaultIndicator
-          isExpanded={isExpanded}
-        />
-      )
-      : <span className="w-4" />;
-    const label = 'label' in item.data ? (item.data).label : item.value;
-    return (
-      <div
-        className="hover:bg-muted focus-visible:ring-primary data-[selected]:bg-primary/10 data-[selected]:text-primary flex size-full items-center gap-2 rounded-md py-2 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:outline-none data-[disabled]:hover:bg-transparent"
-        data-selected={isSelected ? '' : undefined}
-      >
-        {indicator}
-        <span className="flex-1 truncate">{label}</span>
-      </div>
-    );
-  };
 
   return (
     <TreeRoot

@@ -88,6 +88,21 @@ const DefaultIndicator = ({ isExpanded }: { isExpanded: boolean }) => {
   );
 };
 
+function defaultRenderItemContent<T extends TreeItemData>(item: FlattenedItem<T>, isExpanded: boolean, hasChildren: boolean) {
+  const indicator = hasChildren
+    ? (
+      <DefaultIndicator isExpanded={isExpanded} />
+    )
+    : <span className="w-4" />;
+  const label = 'label' in item.data ? (item.data).label : item.value;
+  return (
+    <>
+      {indicator}
+      <span className="flex-1 truncate">{label}</span>
+    </>
+  );
+}
+
 const TreeVirtualizer = <T extends TreeItemData = TreeItemData>(props: TreeVirtualizerProps<T>) => {
   const {
     allowParentSelect,
@@ -313,21 +328,6 @@ const TreeVirtualizer = <T extends TreeItemData = TreeItemData>(props: TreeVirtu
     height: totalSize,
     width: '100%',
     position: 'relative'
-  };
-
-  const defaultRenderItemContent = (item: FlattenedItem<T>, isExpanded: boolean, hasChildren: boolean) => {
-    const indicator = hasChildren
-      ? (
-        <DefaultIndicator isExpanded={isExpanded} />
-      )
-      : <span className="w-4" />;
-    const label = 'label' in item.data ? (item.data).label : item.value;
-    return (
-      <>
-        {indicator}
-        <span className="flex-1 truncate">{label}</span>
-      </>
-    );
   };
 
   const renderProps: TreeRootRenderProps<T> = {

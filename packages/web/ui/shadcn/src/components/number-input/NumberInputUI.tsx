@@ -9,6 +9,13 @@ import { numberInputVariants } from './number-input-variants';
 import NumberInputControl from './NumberInputControl';
 import type { NumberInputProps } from './types';
 
+function parseNumberValue(v: string): number | undefined {
+  if (v === '' || v === '-')
+    return undefined;
+  const n = Number(v);
+  return Number.isNaN(n) ? undefined : n;
+}
+
 // eslint-disable-next-line complexity
 const NumberInputUI = forwardRef<HTMLInputElement, NumberInputProps>((props, ref) => {
   const {
@@ -53,13 +60,6 @@ const NumberInputUI = forwardRef<HTMLInputElement, NumberInputProps>((props, ref
   // Tools
   // ---------------------------
 
-  const parse = (v: string): number | undefined => {
-    if (v === '' || v === '-')
-      return undefined;
-    const n = Number(v);
-    return Number.isNaN(n) ? undefined : n;
-  };
-
   const clamp = (n: number) => {
     let x = n;
     if (min !== undefined)
@@ -82,7 +82,7 @@ const NumberInputUI = forwardRef<HTMLInputElement, NumberInputProps>((props, ref
   // Common reusable boolean flags
   // ---------------------------
 
-  const numericValue = parse(displayValue);
+  const numericValue = parseNumberValue(displayValue);
 
   const isInteractable = !disabled && !readOnly;
   const hasValue = numericValue !== undefined;
@@ -103,7 +103,7 @@ const NumberInputUI = forwardRef<HTMLInputElement, NumberInputProps>((props, ref
     const raw = e.target.value;
 
     if (raw === '' || raw === '-' || /^-?\d*(?:\.\d*)?$/.test(raw)) {
-      updateValue(parse(raw));
+      updateValue(parseNumberValue(raw));
       onChange?.(e);
     }
   };

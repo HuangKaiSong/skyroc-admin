@@ -25,6 +25,8 @@ function buildQuery({ maxWidth, minWidth }: UseMediaQueryOptions): string {
 
 const noop = () => () => {};
 
+const getServerSnapshot = () => false;
+
 export function useMediaQuery(options: UseMediaQueryOptions | string): boolean {
   const query = typeof options === 'string' ? options : buildQuery(options);
 
@@ -51,8 +53,6 @@ export function useMediaQuery(options: UseMediaQueryOptions | string): boolean {
 
     return window.matchMedia(query).matches;
   };
-
-  const getServerSnapshot = () => false;
 
   return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }
