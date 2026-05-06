@@ -24,7 +24,7 @@ const ScrollAreaUI = (props: ScrollAreaProps) => {
   } = props;
 
   return (
-    <ScrollAreaRoot className={className} {...rest}>
+    <ScrollAreaRoot className={className || classNames?.root} {...rest}>
       <ScrollAreaViewport className={classNames?.viewport} nonce={nonce} {...viewportProps}>
         {children}
       </ScrollAreaViewport>
