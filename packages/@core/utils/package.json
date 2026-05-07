@@ -34,38 +34,23 @@
     "dist",
     "README.md"
   ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
   "typesVersions": {
     "*": {
       "path": [
-        "./dist/path.d.ts"
+        "./src/path.ts"
       ],
       "web": [
-        "./dist/web/index.d.ts"
+        "./src/web/index.ts"
       ]
     }
   },
   "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
-    "./path": {
-      "import": {
-        "types": "./dist/path.d.ts",
-        "default": "./dist/path.js"
-      }
-    },
-    "./web": {
-      "import": {
-        "types": "./dist/web/index.d.ts",
-        "default": "./dist/web/index.js"
-      }
-    }
+    ".": "./src/index.ts",
+    "./path": "./src/path.ts",
+    "./web": "./src/web/index.ts"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

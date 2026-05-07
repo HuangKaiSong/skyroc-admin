@@ -34,23 +34,18 @@
     "dist",
     "README.md"
   ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.ts",
+  "module": "./src/index.ts",
+  "types": "./src/index.ts",
   "typesVersions": {
     "*": {
       "*": [
-        "./dist/*"
+        "./src/*"
       ]
     }
   },
   "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    }
+    ".": "./src/index.ts"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
