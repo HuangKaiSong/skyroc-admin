@@ -1,6 +1,6 @@
 export * from './fn';
 
-export * from './form';
+export type * from './form';
 
 export * from './utility-types';
 

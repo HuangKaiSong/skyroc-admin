@@ -1,5 +1,4 @@
-import { ConsoleTransport } from '@loglayer/transport';
-import { LogLayer } from 'loglayer';
+import { ConsoleTransport, LogLayer } from 'loglayer';
 import { RNStorageAdapter, WebStorageAdapter } from './adapters';
 import { CleanupManager, UploadManager, WhitelistManager } from './managers';
 import { StorageTransport } from './transports';
@@ -53,7 +52,7 @@ export async function createLogger(config: LoggerConfig = {}): Promise<LoggerIns
 
   // 开发模式添加控制台传输器
   if (isDev) {
-    transports.push(new ConsoleTransport({ id: 'console' }));
+    transports.push(new ConsoleTransport({ id: 'console', logger: console }));
   }
 
   // 创建存储传输器
@@ -155,6 +154,6 @@ export async function createLogger(config: LoggerConfig = {}): Promise<LoggerIns
 /** 创建简单的控制台日志实例（不带存储功能） */
 export function createConsoleLogger(): LogLayer {
   return new LogLayer({
-    transport: new ConsoleTransport({ id: 'console' })
+    transport: new ConsoleTransport({ id: 'console', logger: console })
   });
 }

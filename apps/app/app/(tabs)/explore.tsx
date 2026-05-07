@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<WebBrowser.WebBrowserResult | null>(null);
 
   const _handlePressButtonAsync = async () => {
-    const result = await WebBrowser.openBrowserAsync('https://expo.dev');
-    setResult(result);
+    const result2 = await WebBrowser.openBrowserAsync('https://expo.dev');
+    setResult(result2);
   };
   return (
     <View style={styles.container}>

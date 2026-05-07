@@ -108,6 +108,7 @@
   "devDependencies": {
     "@skyroc/tsconfig": "workspace:*",
     "rimraf": "catalog:dev",
-    "tsdown": "catalog:dev"
+    "tsdown": "catalog:dev",
+    "typescript": "catalog:core"
   }
 }

@@ -81,6 +81,7 @@
     "@skyroc/tsconfig": "workspace:*",
     "oxlint": "catalog:dev",
     "rimraf": "catalog:dev",
-    "tsdown": "catalog:dev"
+    "tsdown": "catalog:dev",
+    "typescript": "catalog:core"
   }
 }

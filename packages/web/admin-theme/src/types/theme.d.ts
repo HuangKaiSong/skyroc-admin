@@ -21,19 +21,17 @@ declare global {
      *
      * - Vertical: the vertical menu in left
      * - Horizontal: the horizontal menu in top
-     * - Horizontal-mix: horizontal mixed layout
-     * - Reversed-horizontal-mix: reversed horizontal mixed layout
      * - Vertical-mix: two vertical mixed menus in left
+     * - Vertical-hybrid-header-first: vertical mixed menus with header first-level menu
      * - Top-hybrid-sidebar-first: vertical first level menus in left and horizontal child level menus in top
      * - Top-hybrid-header-first: horizontal first level menus in top and vertical child level menus in left
      */
     type ThemeLayoutMode =
       | 'horizontal'
-      | 'horizontal-mix'
-      | 'reversed-horizontal-mix'
       | 'top-hybrid-header-first'
       | 'top-hybrid-sidebar-first'
       | 'vertical'
+      | 'vertical-hybrid-header-first'
       | 'vertical-mix';
 
     /**
@@ -60,7 +58,7 @@ declare global {
      * - Chrome: chrome style
      * - Button: button style
      */
-    type ThemeTabMode = 'button' | 'chrome';
+    type ThemeTabMode = 'button' | 'chrome' | 'slider';
 
     /** Theme color key */
     type ThemeColorKey = 'error' | 'info' | 'primary' | 'success' | 'warning';

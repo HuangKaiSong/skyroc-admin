@@ -1,3 +1,4 @@
+// oxlint-disable unicorn/require-module-specifiers
 /** The menu namespace */
 declare global {
   namespace Menu {

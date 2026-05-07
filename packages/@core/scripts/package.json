@@ -62,6 +62,7 @@
     "oxlint": "catalog:dev",
     "rimraf": "catalog:dev",
     "tsdown": "catalog:dev",
-    "tsx": "catalog:dev"
+    "tsx": "catalog:dev",
+    "typescript": "catalog:core"
   }
 }

@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@loglayer/transport": "^2.3.13",
+    "@react-native-async-storage/async-storage": "^3.0.2",
     "idb": "^8.0.0",
     "loglayer": "^8.4.0",
     "nanoid": "catalog:utils",

@@ -3,6 +3,8 @@ import { semanticColors, surfaceColors } from '../tokens/colors';
 import { borderRadius, spacing } from '../tokens/spacing';
 import { fontSize, fontWeight } from '../tokens/typography';
 
+type ThemeExtend = NonNullable<NonNullable<Config['theme']>['extend']>;
+
 /**
  * NativeWind v4 preset that injects design tokens into Tailwind config.
  *
@@ -25,7 +27,7 @@ export const nativewindPreset: Config = {
         foreground: surfaceColors.foreground,
         input: surfaceColors.input
       },
-      fontSize,
+      fontSize: fontSize as unknown as ThemeExtend['fontSize'],
       fontWeight,
       spacing
     }

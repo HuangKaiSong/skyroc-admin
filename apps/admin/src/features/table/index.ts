@@ -1,7 +1,6 @@
 // 导出组件
 export { default as DragContent } from './DragContent';
 export * from './hooks';
-export { default as TableColumnSetting } from './TableColumnSetting';
 export { default as TableHeaderOperation } from './TableHeaderOperation';
 
 /**

@@ -5,7 +5,7 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "lib": ["ESNext"],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "verbatimModuleSyntax": false,
     "allowSyntheticDefaultImports": true,
     "declaration": false,

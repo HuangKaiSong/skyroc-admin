@@ -10,12 +10,22 @@
   ],
   "type": "module",
   "sideEffects": false,
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./src/index.ts",
-    "./preset": "./src/presets/nativewind-preset.ts",
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./preset": {
+      "import": {
+        "types": "./dist/presets/nativewind-preset.d.ts",
+        "default": "./dist/presets/nativewind-preset.js"
+      }
+    },
     "./tailwind": "./tailwind.config.ts"
   },
   "scripts": {
@@ -29,7 +39,8 @@
     "@skyroc/ui-types": "workspace:*"
   },
   "devDependencies": {
-    "@skyroc/tsconfig": "workspace:*"
+    "@skyroc/tsconfig": "workspace:*",
+    "typescript": "catalog:core"
   },
   "peerDependencies": {
     "nativewind": "^4.1.0",

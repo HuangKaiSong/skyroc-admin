@@ -24,6 +24,7 @@ declare namespace I18n {
       dropdown: Record<App.Global.DropdownKey, string>;
       form: Form;
       icon: Icon;
+      notification: Notification;
       page: Page;
       request: Request;
       route: Route;

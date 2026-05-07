@@ -34,19 +34,29 @@
     "dist",
     "README.md"
   ],
-  "main": "./src/index.ts",
-  "module": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
       "web": [
-        "./src/web/index.ts"
+        "./dist/web/index.d.ts"
       ]
     }
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./web": "./src/web/index.ts"
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./web": {
+      "import": {
+        "types": "./dist/web/index.d.ts",
+        "default": "./dist/web/index.js"
+      }
+    }
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
@@ -96,6 +106,7 @@
     "@types/crypto-js": "catalog:dev",
     "oxlint": "catalog:dev",
     "rimraf": "catalog:dev",
-    "tsdown": "catalog:dev"
+    "tsdown": "catalog:dev",
+    "typescript": "catalog:core"
   }
 }

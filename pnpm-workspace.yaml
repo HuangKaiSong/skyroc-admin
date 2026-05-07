@@ -8,7 +8,6 @@ packages:
   - 'packages/native/*'
   - 'packages/native/ui/*'
   - 'packages/primitives/*'
-  # 预留:小程序端按 web/native 同样的"平台优先"布局展开
   - 'packages/miniapp/*'
   - 'packages/miniapp/ui/*'
   - 'internal/*'
@@ -20,7 +19,7 @@ overrides:
   # 确保类型一致性
   '@types/react': ^19.2.7
   '@types/react-dom': ^19.2.3
-  typescript: ^5.9.3
+  typescript: ^6.0.3
 
 catalogs:
   # ==================== 核心基础依赖 ====================
@@ -31,7 +30,7 @@ catalogs:
     'react-error-boundary': 6.0.0
 
     # TypeScript 和构建工具
-    typescript: ^5.9.3
+    typescript: ^6.0.3
     vite: ^7.2.7
 
     # 状态管理

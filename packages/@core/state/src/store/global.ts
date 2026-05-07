@@ -1,5 +1,6 @@
 import { createStore } from 'jotai';
 import type { Atom, WritableAtom } from 'jotai';
+import type { SetStateAction } from 'jotai/vanilla';
 
 /**
  * Global Jotai store.
@@ -39,7 +40,7 @@ export function setAtomValue<Value, Args extends unknown[], Result>(
  * atoms with a custom write signature (e.g. `atomWithPartial`), call {@link setAtomValue} directly.
  */
 export function updateAtomValue<Value, Result = unknown>(
-  atom: WritableAtom<Value, [Value], Result>,
+  atom: WritableAtom<Value, [SetStateAction<Value>], Result>,
   updater: (prev: Value) => Value
 ): Result {
   const currentValue = globalStore.get(atom);

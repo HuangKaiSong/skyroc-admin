@@ -20,7 +20,7 @@ interface Props {
  * @param menus - Menus
  * @param treeMap
  */
-function transformMenuToSearchMenus(menus: Menu.Menus[], treeMap: Menu.Menus[] = []) {
+function transformMenuToSearchMenus(menus: Menu.CommonMenu[], treeMap: Menu.CommonMenu[] = []) {
   if (menus && menus.length === 0) return [];
   return menus.reduce((acc, cur) => {
     acc.push(cur);
@@ -33,7 +33,7 @@ function transformMenuToSearchMenus(menus: Menu.Menus[], treeMap: Menu.Menus[] =
 }
 
 const SearchModal = ({ onClose, show }: Props) => {
-  const [resultOptions, setResultOptions] = useState<Menu.Menus[]>([]);
+  const [resultOptions, setResultOptions] = useState<Menu.CommonMenu[]>([]);
 
   const [activeRoute, setActiveRoute] = useState<string>('');
 
@@ -63,7 +63,7 @@ const SearchModal = ({ onClose, show }: Props) => {
       return trimKeyword && menu.title?.includes(trimKeyword);
     });
 
-    const activeName = result[0]?.path || '';
+    const activeName = result[0]?.key || '';
 
     setResultOptions(result);
 
@@ -95,7 +95,7 @@ const SearchModal = ({ onClose, show }: Props) => {
 
     const activeIndex = (index + direction + length) % length; // 确保 index 在范围内循环
 
-    const activeKey = resultOptions[activeIndex].path as unknown as string;
+    const activeKey = resultOptions[activeIndex].key;
 
     setActiveRoute(activeKey);
   }
@@ -146,7 +146,7 @@ const SearchModal = ({ onClose, show }: Props) => {
         ) : (
           resultOptions.map(item => (
             <SearchResult
-              active={item.keys === activeRoute}
+              active={item.key === activeRoute}
               enter={handleEnter}
               key={item.key}
               menu={item}

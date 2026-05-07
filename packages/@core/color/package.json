@@ -82,6 +82,7 @@
     "@types/culori": "^4.0.1",
     "oxlint": "catalog:dev",
     "rimraf": "catalog:dev",
-    "tsdown": "catalog:dev"
+    "tsdown": "catalog:dev",
+    "typescript": "catalog:core"
   }
 }

@@ -25,7 +25,8 @@ const route: I18n.Schema['translation']['route'] = {
   manage_user: '用户管理',
   manage_user_$id: '用户详情',
   manage_role: '角色管理',
-  manage_menu: '菜单管理'
+  manage_menu: '菜单管理',
+  'user-center': '用户中心'
 };
 
 export default route;

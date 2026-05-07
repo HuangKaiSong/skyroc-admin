@@ -2,6 +2,28 @@ import { nanoid } from 'nanoid';
 import { DEVICE_ID_STORAGE_KEY } from '../constants';
 import type { Platform } from '../types';
 
+interface AliStorage {
+  getStorageSync?: (options: { key: string }) => { data?: string } | null;
+  setStorageSync?: (options: { data: string; key: string }) => void;
+}
+
+interface WechatStorage {
+  getStorageSync?: (key: string) => string | null;
+  setStorageSync?: (key: string, value: string) => void;
+}
+
+function getMiniProgramStorage() {
+  const runtime = globalThis as typeof globalThis & {
+    my?: AliStorage;
+    wx?: WechatStorage;
+  };
+
+  return {
+    my: runtime.my,
+    wx: runtime.wx
+  };
+}
+
 /** 获取或生成设备 ID 根据不同平台使用相应的存储方式持久化设备 ID */
 export async function getOrCreateDeviceId(platform: Platform): Promise<string> {
   const storedId = await getStoredDeviceId(platform);
@@ -25,7 +47,6 @@ async function getStoredDeviceId(platform: Platform): Promise<string | null> {
     }
     case 'react-native': {
       try {
-        // @ts-expect-error - AsyncStorage 需要动态导入
         const AsyncStorage = await import('@react-native-async-storage/async-storage');
         return await AsyncStorage.default.getItem(DEVICE_ID_STORAGE_KEY);
       } catch {
@@ -34,12 +55,14 @@ async function getStoredDeviceId(platform: Platform): Promise<string | null> {
     }
     case 'mini-program': {
       try {
+        const { my, wx } = getMiniProgramStorage();
+
         // 微信小程序
-        if (typeof wx !== 'undefined' && wx.getStorageSync) {
+        if (wx?.getStorageSync) {
           return wx.getStorageSync(DEVICE_ID_STORAGE_KEY) || null;
         }
         // 支付宝小程序
-        if (typeof my !== 'undefined' && my.getStorageSync) {
+        if (my?.getStorageSync) {
           const res = my.getStorageSync({ key: DEVICE_ID_STORAGE_KEY });
           return res?.data || null;
         }
@@ -64,7 +87,6 @@ async function storeDeviceId(platform: Platform, deviceId: string): Promise<void
     }
     case 'react-native': {
       try {
-        // @ts-expect-error - AsyncStorage 需要动态导入
         const AsyncStorage = await import('@react-native-async-storage/async-storage');
         await AsyncStorage.default.setItem(DEVICE_ID_STORAGE_KEY, deviceId);
       } catch {
@@ -74,12 +96,14 @@ async function storeDeviceId(platform: Platform, deviceId: string): Promise<void
     }
     case 'mini-program': {
       try {
+        const { my, wx } = getMiniProgramStorage();
+
         // 微信小程序
-        if (typeof wx !== 'undefined' && wx.setStorageSync) {
+        if (wx?.setStorageSync) {
           wx.setStorageSync(DEVICE_ID_STORAGE_KEY, deviceId);
         }
         // 支付宝小程序
-        if (typeof my !== 'undefined' && my.setStorageSync) {
+        if (my?.setStorageSync) {
           my.setStorageSync({ key: DEVICE_ID_STORAGE_KEY, data: deviceId });
         }
       } catch {

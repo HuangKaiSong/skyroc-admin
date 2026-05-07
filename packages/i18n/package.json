@@ -27,7 +27,8 @@
   },
   "devDependencies": {
     "@skyroc/tsconfig": "workspace:*",
-    "react": "catalog:core"
+    "react": "catalog:core",
+    "typescript": "catalog:core"
   },
   "peerDependencies": {
     "react": ">=18.0.0"

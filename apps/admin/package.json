@@ -106,6 +106,7 @@
     "oxlint": "catalog:dev",
     "sass": "catalog:web",
     "tsx": "catalog:dev",
+    "typescript": "catalog:core",
     "unocss": "^66.5.11",
     "unplugin-auto-import": "catalog:dev",
     "unplugin-icons": "catalog:dev",

@@ -5,6 +5,7 @@ declare namespace I18n {
     fullscreen: string;
     fullscreenExit: string;
     lang: string;
+    notification: string;
     pin: string;
     reload: string;
     themeConfig: string;

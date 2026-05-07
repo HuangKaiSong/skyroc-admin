@@ -47,7 +47,7 @@ export class StorageTransport extends LoggerlessTransport {
   }
 
   /** 接收日志消息 */
-  shipToLogger(params: LogLayerTransportParams): LogLayerTransportParams {
+  shipToLogger(params: LogLayerTransportParams): any[] {
     const { logLevel, messages, data, hasData } = params;
 
     const record = this.createLogRecord(logLevel as LogLevel, messages, hasData ? data : undefined);
@@ -59,7 +59,7 @@ export class StorageTransport extends LoggerlessTransport {
       void this.flush();
     }
 
-    return params;
+    return messages;
   }
 
   /** 创建日志记录 */

@@ -79,7 +79,8 @@
     "react": "catalog:core",
     "react-dom": "catalog:core",
     "rimraf": "catalog:dev",
-    "tsdown": "catalog:dev"
+    "tsdown": "catalog:dev",
+    "typescript": "catalog:core"
   },
   "peerDependencies": {
     "jotai": ">=2.0.0",

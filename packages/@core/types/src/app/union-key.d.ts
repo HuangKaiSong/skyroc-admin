@@ -1,6 +1,9 @@
 /** The union key namespace */
 declare global {
   namespace UnionKey {
+    /** Login module */
+    type LoginModule = 'bind-wechat' | 'code-login' | 'pwd-login' | 'register' | 'reset-pwd';
+
     /**
      * The layout mode
      *
