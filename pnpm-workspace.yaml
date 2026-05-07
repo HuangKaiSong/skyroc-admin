@@ -10,6 +10,7 @@ packages:
   - 'packages/primitives/*'
   - 'packages/miniapp/*'
   - 'packages/miniapp/ui/*'
+  - 'docs/*'
   - 'internal/*'
 
 strictPeerDependencies: false
