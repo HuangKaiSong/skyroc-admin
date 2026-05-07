@@ -2,7 +2,7 @@
 
 import { InputOTP } from '@skyroc/web-ui';
 
-const Password = () => {
+const InputOtpPasswordDemo = () => {
   return (
     <InputOTP
       mask
@@ -12,4 +12,4 @@ const Password = () => {
   );
 };
 
-export default Password;
+export default InputOtpPasswordDemo;
