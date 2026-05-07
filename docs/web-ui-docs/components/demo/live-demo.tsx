@@ -16,12 +16,12 @@ function stableTransformCode(src: string) {
 }
 
 interface LiveDemoProps {
-  source: string;
-  fileName: string;
-  title?: string;
-  description?: string;
   defaultExpanded?: boolean;
+  description?: string;
+  fileName: string;
   playgroundUrl?: string | null;
+  source: string;
+  title?: string;
 }
 
 type TabValue = 'code' | 'preview';
@@ -43,10 +43,9 @@ function useIsDark(): boolean {
 
 export function LiveDemo(props: LiveDemoProps) {
   const {
-    source,
-    fileName,
     defaultExpanded = false,
     playgroundUrl,
+    source,
   } = props;
 
   const isDark = useIsDark();
@@ -186,11 +185,11 @@ function TabButton(props: {
   return (
     <button
       className={
-        'cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium transition-colors duration-200' +
-        ' focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring' +
-        (active
+        `cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium transition-colors duration-200` +
+        ` focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring${ 
+        active
           ? ' text-fd-foreground'
-          : ' text-fd-muted-foreground hover:bg-fd-accent/50 hover:text-fd-foreground')
+          : ' text-fd-muted-foreground hover:bg-fd-accent/50 hover:text-fd-foreground'}`
       }
       onClick={onClick}
       type="button"
@@ -202,15 +201,15 @@ function TabButton(props: {
 
 function ActionButton(props: {
   children: React.ReactNode;
+  href?: string;
   onClick?: () => void;
   title: string;
-  href?: string;
 }) {
   const {
     children,
+    href,
     onClick,
     title,
-    href,
   } = props;
 
   const cls =

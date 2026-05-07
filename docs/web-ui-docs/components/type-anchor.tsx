@@ -15,8 +15,8 @@ export function toTypeAnchorId(typeName: string) {
 }
 
 interface TypePart {
-  text: string;
   isLink?: boolean;
+  text: string;
 }
 
 const BUILTIN_TYPE_NAMES = new Set([

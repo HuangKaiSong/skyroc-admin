@@ -3,6 +3,9 @@ import path from 'node:path';
 import { LiveDemo } from './live-demo';
 
 interface DemoProps {
+  /** 默认是否展开代码区 */
+  defaultExpanded?: boolean;
+  description?: string;
   /**
    * Demo 源码定位：
    * - "@playground/button/modules/ButtonColor"
@@ -12,9 +15,6 @@ interface DemoProps {
    */
   src: string;
   title?: string;
-  description?: string;
-  /** 默认是否展开代码区 */
-  defaultExpanded?: boolean;
 }
 
 const REPO_ROOT = path.resolve(process.cwd(), '../../');
@@ -23,7 +23,7 @@ const PLAYGROUND_BASE = path.join(REPO_ROOT, 'apps/web-ui-playground/src/app/[lo
 function resolveSrc(src: string): { filePath: string; playgroundRoute: string | null } {
   if (src.startsWith('@playground/')) {
     const rel = src.slice('@playground/'.length);
-    const route = '/' + rel.replace(/\/modules\/[^/]+$/, '').replace(/\\/g, '/');
+    const route = `/${  rel.replace(/\/modules\/[^/]+$/, '').replace(/\\/g, '/')}`;
     return { filePath: path.join(PLAYGROUND_BASE, rel), playgroundRoute: route };
   }
   if (src.startsWith('@/')) {
@@ -41,7 +41,7 @@ function ensureExt(p: string): string {
 
 const PLAYGROUND_DEV_BASE = process.env.NEXT_PUBLIC_PLAYGROUND_URL ?? 'http://localhost:3000/zh';
 
-export async function Demo({ src, title, description, defaultExpanded }: DemoProps) {
+export async function Demo({ defaultExpanded, description, src, title }: DemoProps) {
   const { filePath, playgroundRoute } = resolveSrc(src);
   const finalPath = ensureExt(filePath);
 

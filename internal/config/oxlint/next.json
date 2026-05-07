@@ -38,6 +38,7 @@
     "nextjs/no-sync-scripts": "warn",
     "nextjs/no-title-in-document-head": "warn",
     "nextjs/no-typos": "warn",
-    "nextjs/no-unwanted-polyfillio": "warn"
+    "nextjs/no-unwanted-polyfillio": "warn",
+    "react/only-export-components": "off"
   }
 }

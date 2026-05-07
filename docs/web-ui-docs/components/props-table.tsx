@@ -2,16 +2,16 @@ import type { ReactNode } from 'react';
 import { typeToReactNode } from './type-anchor';
 
 interface PropItem {
-  /** 属性名 */
-  name: string;
-  /** 说明 */
-  description: ReactNode;
-  /** 类型 */
-  type: ReactNode;
   /** 默认值 */
   default?: string;
+  /** 说明 */
+  description: ReactNode;
+  /** 属性名 */
+  name: string;
   /** 是否必填 */
   required?: boolean;
+  /** 类型 */
+  type: ReactNode;
 }
 
 interface PropsTableProps {

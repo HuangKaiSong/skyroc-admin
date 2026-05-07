@@ -23,16 +23,16 @@ const EXPORT_DEFAULT_IDENT_RE = /^\s*export\s+default\s+([\w$]+)\s*;?\s*$/m;
 const EXPORT_NAMED_DECL_RE = /export\s+(const|let|var|function|class)\s+([\w$]+)/g;
 
 export interface TransformResult {
+  /** 主组件名 */
+  componentName: string;
   /** 原汁原味（剥 use client）— 给 LiveEditor 显示 */
   display: string;
   /** 喂给 react-live 的代码 — 已剥 import / export，末尾有 render(...) */
   executable: string;
-  /** 主组件名 */
-  componentName: string;
-  /** demo 里 import 但 scope 没提供的标识符 */
-  missingIdentifiers: string[];
   /** demo 里 import 的所有非相对模块 */
   externalModules: string[];
+  /** demo 里 import 但 scope 没提供的标识符 */
+  missingIdentifiers: string[];
 }
 
 function collectImportedIdentifiers(src: string): { idents: Set<string>; modules: Set<string> } {

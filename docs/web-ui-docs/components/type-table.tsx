@@ -1,24 +1,23 @@
-import type { ReactNode } from 'react';
 import { toTypeAnchorId, typeToReactNode } from './type-anchor';
 
 interface TypeFieldDef {
+  /** 说明 */
+  description?: string;
   /** 字段名 */
   name: string;
   /** 是否必填 */
   required?: boolean;
   /** 类型 */
   type: string;
-  /** 说明 */
-  description?: string;
 }
 
 interface TypeDataDef {
-  /** 类型名 */
-  name: string;
   /** 说明 */
   description?: string;
   /** 字段列表 */
   fields: TypeFieldDef[];
+  /** 类型名 */
+  name: string;
 }
 
 interface TypeTableProps {
@@ -27,7 +26,7 @@ interface TypeTableProps {
 }
 
 const TypeData = (props: TypeDataDef) => {
-  const { name, description, fields } = props;
+  const { description, fields, name } = props;
 
   const anchorId = toTypeAnchorId(name);
 
@@ -93,16 +92,16 @@ const TypeTable = (props: TypeTableProps) => {
 };
 
 interface UnionTypeProps {
-  /** 类型名 */
-  name: string;
   /** 说明 */
   description?: string;
+  /** 类型名 */
+  name: string;
   /** 联合类型字符串 */
   type: string;
 }
 
 const UnionType = (props: UnionTypeProps) => {
-  const { name, description, type } = props;
+  const { description, name, type } = props;
 
   const anchorId = toTypeAnchorId(name);
 

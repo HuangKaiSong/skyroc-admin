@@ -44,8 +44,6 @@ const Page = async (props: PageProps<'/[...slug]'>) => {
   );
 };
 
-export default Page;
-
 export async function generateStaticParams() {
   return source.generateParams();
 }
@@ -63,3 +61,5 @@ export async function generateMetadata(props: PageProps<'/[...slug]'>): Promise<
     },
   };
 }
+
+export default Page;

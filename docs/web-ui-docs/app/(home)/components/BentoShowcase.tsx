@@ -48,12 +48,34 @@ const notifications = [
   { name: '王五', message: '完成了部署任务', time: '1 小时前', color: 'success' as const }
 ];
 
+const notificationTagLabels = {
+  primary: 'PR',
+  info: '评论',
+  success: '部署'
+} satisfies Record<(typeof notifications)[number]['color'], string>;
+
+const tabMeta = {
+  overview: {
+    indicatorClassName: 'bg-primary',
+    label: '概览'
+  },
+  analytics: {
+    indicatorClassName: 'bg-info',
+    label: '分析'
+  },
+  reports: {
+    indicatorClassName: 'bg-success',
+    label: '报表'
+  }
+} satisfies Record<string, { indicatorClassName: string; label: string }>;
+
 export const BentoShowcase = () => {
   const [framework, setFramework] = useState('react');
   const [tabValue, setTabValue] = useState('overview');
   const [volume, setVolume] = useState(68);
   const [darkMode, setDarkMode] = useState(false);
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const activeTabMeta = tabMeta[tabValue] ?? tabMeta.overview;
 
   return (
     <div className="grid gap-4 md:grid-cols-3 auto-rows-auto">
@@ -154,7 +176,7 @@ export const BentoShowcase = () => {
                 <span className="text-xs text-muted-foreground">{item.time}</span>
               </div>
               <Tag color={item.color} variant="pure" className="text-xs shrink-0">
-                {item.color === 'primary' ? 'PR' : item.color === 'info' ? '评论' : '部署'}
+                {notificationTagLabels[item.color]}
               </Tag>
             </div>
           ))}
@@ -217,9 +239,9 @@ export const BentoShowcase = () => {
           />
           <div className="rounded-lg border border-border bg-muted/30 p-3">
             <div className="flex items-center gap-2">
-              <div className={`size-2 rounded-full ${tabValue === 'overview' ? 'bg-primary' : tabValue === 'analytics' ? 'bg-info' : 'bg-success'}`} />
+              <div className={`size-2 rounded-full ${activeTabMeta.indicatorClassName}`} />
               <span className="text-xs text-muted-foreground">
-                当前面板：{tabValue === 'overview' ? '概览' : tabValue === 'analytics' ? '分析' : '报表'}
+                当前面板：{activeTabMeta.label}
               </span>
             </div>
           </div>
