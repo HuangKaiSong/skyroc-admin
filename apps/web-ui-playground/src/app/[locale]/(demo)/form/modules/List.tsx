@@ -9,7 +9,7 @@ interface FormValues {
   }[];
 }
 
-const List = () => {
+const FormListDemo = () => {
   const [form] = useForm<FormValues>();
 
   return (
@@ -130,4 +130,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default FormListDemo;
