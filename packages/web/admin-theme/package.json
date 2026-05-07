@@ -43,9 +43,11 @@
     "./types": "./src/types/theme.d.ts"
   },
   "scripts": {
+    "lint": "oxlint --fix",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
     "@skyroc/adapter-antd-theme": "workspace:*",
@@ -64,10 +66,13 @@
   },
   "devDependencies": {
     "@skyroc/config": "workspace:*",
+    "@skyroc/tsconfig": "workspace:*",
     "@testing-library/jest-dom": "catalog:dev",
     "@testing-library/react": "catalog:dev",
+    "oxlint": "catalog:dev",
     "react": "catalog:core",
-    "react-dom": "catalog:core"
+    "react-dom": "catalog:core",
+    "typescript": "catalog:core"
   },
   "engines": {
     "node": ">=20"

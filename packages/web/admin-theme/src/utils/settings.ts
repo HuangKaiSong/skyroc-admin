@@ -1,4 +1,4 @@
-import defu from 'defu';
+import { defu } from 'defu';
 import { defaultThemeSettings } from '../config/default';
 import type { ThemeColor } from '../types';
 

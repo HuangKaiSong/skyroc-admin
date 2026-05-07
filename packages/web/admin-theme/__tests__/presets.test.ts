@@ -4,7 +4,7 @@ import { azir, compact, dark, defaultPreset, getAllPresets, getPreset, presets, 
 
 describe('presets', () => {
   it('包含 5 个内置预设', () => {
-    expect(Object.keys(presets).sort()).toEqual(['azir', 'compact', 'dark', 'default', 'shadcn']);
+    expect(Object.keys(presets).toSorted()).toEqual(['azir', 'compact', 'dark', 'default', 'shadcn']);
   });
 
   it('每个预设有 name / order 字段', () => {

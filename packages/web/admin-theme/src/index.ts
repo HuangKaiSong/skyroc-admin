@@ -31,9 +31,6 @@ export { default as ThemeSchemaSwitch } from './components/ThemeSchemaSwitch';
 // Config
 export { defaultThemeSettings, themeSchemeIcons } from './config';
 
-// Setup
-export { defineThemeOverrides, setupTheme } from './setup';
-
 // Hooks
 export { themeSettingsAtom, themeUserNameAtom, useTheme, useTheme as useSettingsTheme } from './hooks';
 export type { UseThemeReturn } from './hooks';
@@ -41,6 +38,9 @@ export type { UseThemeReturn } from './hooks';
 // Presets
 export { azir, compact, dark, defaultPreset, getAllPresets, getPreset, presets, shadcn } from './presets';
 export type { PresetName } from './presets';
+
+// Setup
+export { defineThemeOverrides, setupTheme } from './setup';
 
 // Types
 export type {

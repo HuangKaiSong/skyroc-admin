@@ -23,7 +23,7 @@ export function getPreset(name: PresetName): Theme.ThemePreset {
 
 /** Get all presets sorted by order */
 export function getAllPresets(): Theme.ThemePreset[] {
-  return Object.values(presets).sort((a, b) => (a.order ?? 0) - (b.order ?? 0)) as Theme.ThemePreset[];
+  return Object.values(presets).toSorted((a, b) => (a.order ?? 0) - (b.order ?? 0)) as Theme.ThemePreset[];
 }
 
 export { azir, compact, dark, defaultPreset, shadcn };
