@@ -1435,6 +1435,18 @@ importers:
       '@skyroc/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
+      oxlint:
+        specifier: catalog:dev
+        version: 1.60.0
+      rimraf:
+        specifier: catalog:dev
+        version: 6.1.3
+      tsdown:
+        specifier: catalog:dev
+        version: 0.18.4(synckit@0.11.12)(typescript@6.0.3)
+      typescript:
+        specifier: catalog:core
+        version: 6.0.3
       vitest:
         specifier: catalog:dev
         version: 4.0.18(@opentelemetry/api@1.9.0)(@types/node@25.6.0)(@vitest/ui@4.0.18)(happy-dom@20.6.1)(jiti@2.6.1)(lightningcss@1.30.1)(msw@2.12.10(@types/node@25.6.0)(typescript@6.0.3))(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
