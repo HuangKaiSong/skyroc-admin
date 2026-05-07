@@ -107,17 +107,19 @@ export function urlToBase64(url: string, mineType?: string): Promise<string> {
     // 更明确：匿名跨域（前提是图片响应带 Access-Control-Allow-Origin）
     img.crossOrigin = 'anonymous';
 
-    const controller = new AbortController();
-    const { signal } = controller;
+    function cleanup() {
+      img.removeEventListener('load', handleLoad);
+      img.removeEventListener('error', handleError);
+    }
 
-    const cleanup = () => {
-      controller.abort();
-    };
+    function handleLoad() {
+      if (!ctx) {
+        cleanup();
+        reject(new Error('Failed to get canvas context.'));
+        return;
+      }
 
-    img.addEventListener('load', () => {
       try {
-        if (!ctx) throw new Error('Failed to get canvas context.');
-
         canvas.width = img.naturalWidth || img.width;
         canvas.height = img.naturalHeight || img.height;
 
@@ -126,16 +128,19 @@ export function urlToBase64(url: string, mineType?: string): Promise<string> {
         const dataURL = canvas.toDataURL(mineType || 'image/png');
         cleanup();
         resolve(dataURL);
-      } catch (e) {
+      } catch {
         cleanup();
-        reject(e instanceof Error ? e : new Error('Failed to convert image to base64.'));
+        reject(new Error('Failed to convert image to base64.'));
       }
-    }, { signal });
+    }
 
-    img.addEventListener('error', () => {
+    function handleError() {
       cleanup();
       reject(new Error('Failed to load image (CORS or network error).'));
-    }, { signal });
+    }
+
+    img.addEventListener('load', handleLoad);
+    img.addEventListener('error', handleError);
 
     img.src = normalizeUrl(url);
   });

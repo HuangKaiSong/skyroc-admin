@@ -35,6 +35,13 @@ describe('createStorage - localStorage', () => {
     expect(storage.get('token')).toBeNull();
   });
 
+  it('get 读取到 JSON null 时应清理并返回 null', () => {
+    window.localStorage.setItem('test_token', 'null');
+
+    expect(storage.get('token')).toBeNull();
+    expect(window.localStorage.getItem('test_token')).toBeNull();
+  });
+
   it('remove 应删除指定 key', () => {
     storage.set('token', 'abc');
     storage.remove('token');

@@ -1,5 +1,10 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { openWindow } from '../../src/web/window';
+
+afterEach(() => {
+  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
+});
 
 describe('openWindow', () => {
   it('应调用 window.open 打开 URL', () => {
@@ -8,7 +13,6 @@ describe('openWindow', () => {
     openWindow('https://example.com');
 
     expect(spy).toHaveBeenCalledWith('https://example.com', '_blank', 'noopener,noreferrer');
-    spy.mockRestore();
   });
 
   it('应支持自定义 target', () => {
@@ -17,7 +21,6 @@ describe('openWindow', () => {
     openWindow('https://example.com', { target: '_self' });
 
     expect(spy).toHaveBeenCalledWith('https://example.com', '_self', 'noopener,noreferrer');
-    spy.mockRestore();
   });
 
   it('secure 为 false 时不应设置安全特性', () => {
@@ -26,6 +29,11 @@ describe('openWindow', () => {
     openWindow('https://example.com', { secure: false });
 
     expect(spy).toHaveBeenCalledWith('https://example.com', '_blank', undefined);
-    spy.mockRestore();
+  });
+
+  it('非浏览器环境应直接返回', () => {
+    vi.stubGlobal('window', undefined);
+
+    expect(() => openWindow('https://example.com')).not.toThrow();
   });
 });

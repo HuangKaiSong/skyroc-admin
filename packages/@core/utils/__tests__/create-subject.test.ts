@@ -95,7 +95,8 @@ describe('createSubject', () => {
     subject.complete();
 
     const fn = vi.fn();
-    subject.subscribe(fn);
+    const sub = subject.subscribe(fn);
+    sub.unsubscribe();
     subject.next('msg');
 
     expect(fn).not.toHaveBeenCalled();

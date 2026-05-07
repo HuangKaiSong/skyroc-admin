@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { isHttpUrl, isMacOs, isNil, isPC, isWindow, isWindowsOs, noop } from '../src/utils';
+import { isHttpUrl, isMacOs, isNil, isPC, isWindow, isWindowsOs, noop, omitUndefined } from '../src/utils';
 
 // ==================== noop ====================
 
@@ -148,5 +148,24 @@ describe('isPC', () => {
     vi.spyOn(navigator, 'userAgent', 'get').mockReturnValue('Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36');
     expect(isPC()).toBe(false);
     vi.restoreAllMocks();
+  });
+});
+
+describe('omitUndefined', () => {
+  it('应只移除值为 undefined 的字段', () => {
+    expect(
+      omitUndefined({
+        empty: '',
+        falseValue: false,
+        nil: null,
+        skip: undefined,
+        zero: 0
+      })
+    ).toEqual({
+      empty: '',
+      falseValue: false,
+      nil: null,
+      zero: 0
+    });
   });
 });

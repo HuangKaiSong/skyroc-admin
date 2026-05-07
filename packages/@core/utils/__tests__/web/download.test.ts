@@ -31,19 +31,52 @@ function setupLinkMock() {
   return link;
 }
 
+type MockImageInstance = Record<string, any> & {
+  __listeners: Map<string, Set<(event: Event) => void>>;
+};
+
+function emitMockImageEvent(image: MockImageInstance, type: string) {
+  const listeners = image.__listeners.get(type);
+
+  listeners?.forEach(listener => {
+    listener.call(image, new Event(type));
+  });
+}
+
+function addMockImageEventListener(
+  this: MockImageInstance,
+  type: string,
+  listener: (event: Event) => void
+) {
+  const listeners = this.__listeners.get(type) ?? new Set();
+
+  listeners.add(listener);
+  this.__listeners.set(type, listeners);
+}
+
+function removeMockImageEventListener(
+  this: MockImageInstance,
+  type: string,
+  listener: (event: Event) => void
+) {
+  this.__listeners.get(type)?.delete(listener);
+}
+
 function createMockImage(overrides: Record<string, any> = {}) {
   const img: Record<string, any> = {
     crossOrigin: '',
     naturalHeight: 100,
     naturalWidth: 200,
-    onerror: null,
-    onload: null,
     ...overrides,
   };
 
-  function MockImage(this: any) {
+  function MockImage(this: MockImageInstance) {
     Object.assign(this, img);
+    this.__listeners = new Map();
   }
+
+  MockImage.prototype.addEventListener = addMockImageEventListener;
+  MockImage.prototype.removeEventListener = removeMockImageEventListener;
 
   Object.defineProperty(MockImage.prototype, 'src', {
     get() {
@@ -53,9 +86,9 @@ function createMockImage(overrides: Record<string, any> = {}) {
       const self = this;
       setTimeout(() => {
         if (overrides.failOnLoad) {
-          self.onerror?.();
+          emitMockImageEvent(self, 'error');
         } else {
-          self.onload?.();
+          emitMockImageEvent(self, 'load');
         }
       }, 0);
     },
@@ -66,6 +99,7 @@ function createMockImage(overrides: Record<string, any> = {}) {
 
 afterEach(() => {
   vi.restoreAllMocks();
+  vi.unstubAllGlobals();
 });
 
 // ==================== triggerDownload ====================
@@ -502,6 +536,12 @@ describe('downloadFileFromImageUrl', () => {
 // ==================== urlToBase64 ====================
 
 describe('urlToBase64', () => {
+  it('非浏览器环境应 reject', async () => {
+    vi.stubGlobal('window', undefined);
+
+    await expect(urlToBase64('https://example.com/img.png')).rejects.toThrow('Not in browser environment.');
+  });
+
   it('图片加载成功应返回 dataURL', async () => {
     const fakeDataURL = 'data:image/png;base64,ABC123';
 
@@ -586,6 +626,39 @@ describe('urlToBase64', () => {
 // ==================== 边界分支覆盖 ====================
 
 describe('download 边界分支', () => {
+  it('downloadFileFromUrl 在 URL 规范化失败时应继续使用原始地址', async () => {
+    const link = setupLinkMock();
+    const originalURL = globalThis.URL;
+    const fetchMock = vi.fn().mockResolvedValue({
+      blob: () => Promise.resolve(new Blob(['content'])),
+      headers: new Headers(),
+      ok: true,
+      type: 'cors',
+    });
+
+    vi.stubGlobal('fetch', fetchMock);
+    vi.stubGlobal(
+      'URL',
+      class extends originalURL {
+        constructor(input: string | URL, base?: string | URL) {
+          if (typeof input === 'string' && input.includes('bad-normalize')) {
+            throw new Error('Invalid URL');
+          }
+
+          super(input, base);
+        }
+
+        static override createObjectURL = vi.fn(() => 'blob:http://localhost/mock');
+        static override revokeObjectURL = originalURL.revokeObjectURL;
+      }
+    );
+
+    await downloadFileFromUrl({ source: 'bad-normalize/file.txt' });
+
+    expect(fetchMock).toHaveBeenCalledWith('bad-normalize/file.txt', { mode: 'cors' });
+    expect(link.download).toBe('file.txt');
+  });
+
   it('downloadFileFromUrl 传含编码异常字符的 URL 应走 resolveFileName catch 分支', async () => {
     const link = setupLinkMock();
     vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:http://localhost/mock');
