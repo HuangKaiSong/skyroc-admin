@@ -26,7 +26,7 @@ type SetPatch = {
 /** Patch type for array operations Extends ArrayOpAction with inverse operation for undo functionality */
 type ArrayPatch = ArrayOpAction & {
   /** The inverse operation needed to undo this array operation */
-  inverse: ArrayOpAction;
+  inverse: ArrayOpAction['args'];
 };
 
 /** Union type representing all possible patch types Used to track changes that can be undone or redone */
@@ -146,23 +146,23 @@ export function useUndoRedo<Values = any>(form?: FormInstance<Values>) {
           switch (args.op) {
             case 'insert':
               // Inverse of insert is remove at the same index
-              inverse = { args: { index: args.index }, op: 'remove' };
+              inverse = { index: args.index, op: 'remove' };
               break;
             case 'remove':
               // Inverse of remove is insert the removed item back at the same index
-              inverse = { args: { index: args.index, item: arr[args.index] }, op: 'insert' };
+              inverse = { index: args.index, item: arr[args.index], op: 'insert' };
               break;
             case 'move':
               // Inverse of move is move back from destination to source
-              inverse = { args: { from: args.to, to: args.from }, op: 'move' };
+              inverse = { from: args.to, op: 'move', to: args.from };
               break;
             case 'swap':
               // Inverse of swap is swap back (same operation)
-              inverse = { args: { from: args.to, to: args.from }, op: 'swap' };
+              inverse = { from: args.to, op: 'swap', to: args.from };
               break;
             case 'replace':
               // Inverse of replace is replace with the original item
-              inverse = { args: { index: args.index, item: arr[args.index] }, op: 'replace' };
+              inverse = { index: args.index, item: arr[args.index], op: 'replace' };
               break;
             default:
               break;
@@ -205,9 +205,9 @@ export function useUndoRedo<Values = any>(form?: FormInstance<Values>) {
           setFieldValue(p.name as string, dir === 'undo' ? p.prev : p.next);
         } else {
           // Apply array operations
-          const use = dir === 'undo' ? p.inverse : { args: p.args, op: p.args.op };
+          const use = dir === 'undo' ? p.inverse : p.args;
 
-          arrayOp(p.name as string, use.args);
+          arrayOp(p.name as string, use);
         }
       }
     });

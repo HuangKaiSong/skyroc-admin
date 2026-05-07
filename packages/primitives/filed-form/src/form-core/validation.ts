@@ -135,13 +135,15 @@ function formatMessage(template: string | undefined, rule: Rule, ctx: { label?: 
     .replace(/\$\{label\}/g, ctx.label ?? '')
     .replace(/\$\{min\}/g, String(rule.min ?? ''))
     .replace(/\$\{max\}/g, String(rule.max ?? ''))
+    .replace(/\$\{minLength\}/g, String(rule.minLength ?? ''))
+    .replace(/\$\{maxLength\}/g, String(rule.maxLength ?? ''))
     .replace(/\$\{len\}/g, String(rule.len ?? ''))
     .replace(/\$\{value\}/g, String(ctx.value ?? ''));
 }
 
 /** Picks a message from the ValidateMessages object using dot notation */
 function pickMsg(messages: ValidateMessages, key: string): string | undefined {
-  // Support nested keys: 'string.min' / 'number.max' / 'types.email'
+  // Support nested keys: 'string.minLength' / 'number.max' / 'date.invalid'
   const parts = key.split('.');
   let cur: any = messages;
   for (const p of parts) cur = cur?.[p];
@@ -151,7 +153,7 @@ function pickMsg(messages: ValidateMessages, key: string): string | undefined {
 /** Creates a failure result with appropriate message resolution */
 function failWithMessages(
   r: Rule,
-  key: string, // e.g. 'required' | 'string.min' | 'types.number'
+  key: string, // e.g. 'required' | 'string.minLength' | 'email'
   ctx: { label?: string; value?: any },
   messages: ValidateMessages
 ): Res {
@@ -192,6 +194,8 @@ class RuleChecker {
     const r = rule || {};
     // Apply transform function if provided
     const v = typeof r.transform === 'function' ? r.transform(value) : value;
+
+    if (!r.required && r.skipIfEmpty !== false && isEmpty(v)) return ok();
 
     // Run base checks first
     for (const c of this.baseChecks) {
@@ -234,8 +238,6 @@ export function createRuleChecker(messages: ValidateMessages = {}) {
       if (isEmpty(v)) return failWithMessages(r, 'required', { value: v }, checker.msg);
       if (r.whitespace && typeof v === 'string' && onlyWhitespace(v))
         return failWithMessages(r, 'whitespace', { value: v }, checker.msg);
-    } else if (r.skipIfEmpty !== false && isEmpty(v)) {
-      return ok();
     }
     return ok();
   });
@@ -243,9 +245,9 @@ export function createRuleChecker(messages: ValidateMessages = {}) {
   // String validation
   checker.registerType('string', ({ rule: r, value: v }) => {
     if (!isNil(r.minLength) && (v as string)?.length < r.minLength)
-      return failWithMessages(r, 'string.min', { value: v }, checker.msg);
+      return failWithMessages(r, 'string.minLength', { value: v }, checker.msg);
     if (!isNil(r.maxLength) && (v as string)?.length > r.maxLength)
-      return failWithMessages(r, 'string.max', { value: v }, checker.msg);
+      return failWithMessages(r, 'string.maxLength', { value: v }, checker.msg);
     if (!isNil(r.len) && (v as string)?.length !== r.len)
       return failWithMessages(r, 'string.len', { value: v }, checker.msg);
     if (r.pattern && !r.pattern.test(v as string))
@@ -256,7 +258,7 @@ export function createRuleChecker(messages: ValidateMessages = {}) {
   // Number validation
   checker.registerType('number', ({ rule: r, value: v }) => {
     const num = Number(v);
-    if (!Number.isFinite(num)) return failWithMessages(r, 'types.number', { value: v }, checker.msg);
+    if (!Number.isFinite(num)) return failWithMessages(r, 'number.invalid', { value: v }, checker.msg);
 
     if (!isNil(r.min) && num < (r.min as number)) return failWithMessages(r, 'number.min', { value: v }, checker.msg);
     if (!isNil(r.max) && num > (r.max as number)) return failWithMessages(r, 'number.max', { value: v }, checker.msg);
@@ -267,7 +269,7 @@ export function createRuleChecker(messages: ValidateMessages = {}) {
   // Integer validation
   checker.registerType('integer', ({ rule: r, value: v }) => {
     const num = Number(v);
-    if (!Number.isInteger(num)) return failWithMessages(r, 'types.integer', { value: v }, checker.msg);
+    if (!Number.isInteger(num)) return failWithMessages(r, 'integer.invalid', { value: v }, checker.msg);
     if (!isNil(r.min) && num < (r.min as number)) return failWithMessages(r, 'number.min', { value: v }, checker.msg);
     if (!isNil(r.max) && num > (r.max as number)) return failWithMessages(r, 'number.max', { value: v }, checker.msg);
     return ok();
@@ -277,14 +279,14 @@ export function createRuleChecker(messages: ValidateMessages = {}) {
   checker.registerType('float', ({ rule: r, value: v }) => {
     const num = Number(v);
     if (!Number.isFinite(num) || Number.isInteger(num))
-      return failWithMessages(r, 'types.float', { value: v }, checker.msg);
+      return failWithMessages(r, 'float', { value: v }, checker.msg);
     return ok();
   });
 
   // Date validation
   checker.registerType('date', ({ rule: r, value: v }) => {
     const ms = v instanceof Date ? v.getTime() : toDateMs(v);
-    if (ms === null) return failWithMessages(r, 'types.date', { value: v }, checker.msg);
+    if (ms === null) return failWithMessages(r, 'date.invalid', { value: v }, checker.msg);
     if (!isNil(r.min) && ms < toDateMs(r.min as any)!)
       return failWithMessages(r, 'date.min', { value: v }, checker.msg);
     if (!isNil(r.max) && ms > toDateMs(r.max as any)!)
@@ -300,18 +302,18 @@ export function createRuleChecker(messages: ValidateMessages = {}) {
 
   // Boolean validation
   checker.registerType('boolean', ({ rule: r, value: v }) => {
-    if (typeof v !== 'boolean') return failWithMessages(r, 'types.boolean', { value: v }, checker.msg);
+    if (typeof v !== 'boolean') return failWithMessages(r, 'boolean', { value: v }, checker.msg);
     return ok();
   });
 
   // Email validation
   checker.registerType('email', ({ rule: r, value: v }) =>
-    isEmail(v as string) ? ok() : failWithMessages(r, 'types.email', { value: v }, checker.msg)
+    isEmail(v as string) ? ok() : failWithMessages(r, 'email', { value: v }, checker.msg)
   );
 
   // Hex color validation
   checker.registerType('hex', ({ rule: r, value: v }) =>
-    isHexColor(v as string) ? ok() : failWithMessages(r, 'types.hex', { value: v }, checker.msg)
+    isHexColor(v as string) ? ok() : failWithMessages(r, 'hex', { value: v }, checker.msg)
   );
 
   // RegExp validation
@@ -323,15 +325,15 @@ export function createRuleChecker(messages: ValidateMessages = {}) {
         new RegExp(v);
         return ok();
       } catch {
-        return failWithMessages(r, 'types.regexp', { value: v }, checker.msg);
+        return failWithMessages(r, 'regexp', { value: v }, checker.msg);
       }
     }
-    return failWithMessages(r, 'types.regexp', { value: v }, checker.msg);
+    return failWithMessages(r, 'regexp', { value: v }, checker.msg);
   });
 
   // URL validation
   checker.registerType('url', ({ rule: r, value: v }) =>
-    isURL(v as string) ? ok() : failWithMessages(r, 'types.url', { value: v }, checker.msg)
+    isURL(v as string) ? ok() : failWithMessages(r, 'url', { value: v }, checker.msg)
   );
 
   // Custom validation

@@ -17,8 +17,9 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "types": ["vitest/globals"]
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./__tests__/**/*.ts", "./__tests__/**/*.tsx", "./vitest.config.ts", "./vitest.setup.ts"]
 }

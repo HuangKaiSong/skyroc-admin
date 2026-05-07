@@ -82,7 +82,7 @@ function useFieldState<Values = any>(
     warnings: true
   };
 
-  const includeChildren = opts?.includeChildren ?? isFormInstance;
+  const includeChildren = opts?.includeChildren ?? (isFormInstance || !subscribeNames);
 
   const [_, forceUpdate] = useState({});
 

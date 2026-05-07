@@ -1,8 +1,9 @@
 'use client';
 
 import type { AllPathsKeys, PathToDeepType, ShapeFromPaths } from '@skyroc/type-utils';
-import { isString } from '@skyroc/utils';
+import { isObject, isString } from '@skyroc/utils';
 import type { FormInstance } from './FieldContext';
+import { useFieldContext } from './FieldContext';
 import { useFieldState } from './useFieldState';
 
 /**
@@ -136,14 +137,18 @@ function useWatch<Values = any, T extends AllPathsKeys<Values> = AllPathsKeys<Va
 ) {
   // Check if watching a single field (string parameter)
   const isSingleField = isString(names);
+  const isFormInstance = isObject(names) && 'getFieldsValue' in names;
+  const contextForm = useFieldContext<Values>();
+  const form = isFormInstance ? names : (opts?.form ?? contextForm);
 
   // Use useFieldState to subscribe to field value changes only
   const state = useFieldState<Values>(names as any, { ...opts, mask: { value: true } });
 
   // Return single field value or object of field values
-  return isSingleField
-    ? state.value // For single field, return the value directly
-    : Object.fromEntries(Object.entries(state).map(([key, value]) => [key, value.value])); // For multiple fields, extract values from state objects
+  if (isSingleField) return state.value; // For single field, return the value directly
+  if (isFormInstance || names === undefined) return form?.getFieldsValue();
+
+  return Object.fromEntries(Object.entries(state).map(([key, value]) => [key, value.value])); // For multiple fields, extract values from state objects
 }
 
 export { useWatch };

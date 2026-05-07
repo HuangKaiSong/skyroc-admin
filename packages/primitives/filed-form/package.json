@@ -83,6 +83,9 @@
     "clean": "rimraf dist",
     "dev": "tsdown --watch",
     "lint": "oxlint --fix",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest",
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "peerDependencies": {
@@ -105,6 +108,9 @@
     "@skyroc/utils": "workspace:*"
   },
   "devDependencies": {
+    "@skyroc/config": "workspace:*",
+    "@testing-library/jest-dom": "catalog:dev",
+    "@testing-library/react": "catalog:dev",
     "@types/react": "catalog:dev",
     "@types/react-dom": "catalog:dev",
     "oxlint": "catalog:dev",

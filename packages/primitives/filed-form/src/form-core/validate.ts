@@ -39,12 +39,14 @@ export interface ValidateMessages {
 
   /** Error messages for integer type validation */
   integer?: {
+    invalid?: ValidateMessage;
     max?: ValidateMessage;
     min?: ValidateMessage;
   };
 
   /** Error messages for number type validation */
   number?: {
+    invalid?: ValidateMessage;
     len?: ValidateMessage;
     max?: ValidateMessage;
     min?: ValidateMessage;
@@ -88,10 +90,12 @@ export const defaultValidateMessages: ValidateMessages = {
   float: 'Must be a float',
   hex: 'Must be a valid hex color',
   integer: {
+    invalid: 'Must be an integer',
     max: 'Max is ${max}',
     min: 'Min is ${min}'
   },
   number: {
+    invalid: 'Must be a number',
     len: 'Must equal ${len}',
     max: 'Max is ${max}',
     min: 'Min is ${min}'

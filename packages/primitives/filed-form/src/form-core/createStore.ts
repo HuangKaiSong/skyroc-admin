@@ -267,27 +267,21 @@ class FormStore {
   private baseDispatch = (a: Action) => {
     switch (a.type) {
       case 'setFieldValue':
-        this.setFieldValue(a.name, a.value, a.validate);
-        break;
+        return this.setFieldValue(a.name, a.value, a.validate);
       case 'setFieldsValue':
-        this.setFieldsValue(a.values, a.validate);
-        break;
+        return this.setFieldsValue(a.values, a.validate);
       case 'reset':
-        this.resetFields(a.names || []);
-        break;
+        return this.resetFields(a.names || []);
       case 'validateField':
-        this.validateField(a.name, a.opts);
-        break;
+        return this.validateField(a.name, a.opts);
       case 'validateFields':
-        this.validateFields(a.name, a.opts);
-        break;
+        return this.validateFields(a.name, a.opts);
       case 'arrayOp':
-        this.arrayOp(a.name, a.args);
-        break;
+        return this.arrayOp(a.name, a.args);
       case 'setExternalErrors': {
         const { entries } = a;
 
-        this.transaction(() => {
+        return this.transaction(() => {
           if (entries.length === 0) {
             // ✅ Empty array means all validation passed, clear all errors
             this._errors.clear();
@@ -311,12 +305,11 @@ class FormStore {
           }
         });
 
-        break;
       }
 
       default:
         // No action matched, skip processing
-        break;
+        return undefined;
     }
   };
 
@@ -349,7 +342,7 @@ class FormStore {
   /**
    * Gets current form state including validation status
    */
-  private getFormState() {
+  private getFormState = () => {
     const errors = Object.fromEntries(this._errors);
     const warnings = Object.fromEntries(this._warnings);
 
@@ -385,7 +378,7 @@ class FormStore {
 
       warnings
     };
-  }
+  };
 
   /**
    * Gets initial value for a field
@@ -415,7 +408,7 @@ class FormStore {
     }
 
     const keys: string[] = [];
-    let resetValue: Store = {};
+    let nextStore = this._store;
 
     for (const n of names) {
       const key = keyOfName(n);
@@ -437,11 +430,11 @@ class FormStore {
         keys.push(subKey);
       }
 
-      // Update parent field value (collectDeepKeys already expands child fields)
-      resetValue = set(resetValue, key, initialValue);
+      // Update only the requested parent field while keeping unrelated values intact.
+      nextStore = set(nextStore, key, initialValue);
     }
 
-    this.updateStore(resetValue);
+    this.updateStore(nextStore);
 
     this.enqueueNotify(keys, masks);
   };
@@ -595,12 +588,12 @@ class FormStore {
    * - Does not write to the store.
    * - Returns an unregister function to remove this effect and its dependency links.
    */
-  private registerEffect(deps: NamePath[], effect: (get: (n: NamePath) => any, all: Store) => void) {
+  private registerEffect = (deps: NamePath[], effect: (get: (n: NamePath) => any, all: Store) => void) => {
     const id = `__effect_${Math.random().toString(36).slice(2)}`;
     return this._registerReactive(id, deps, (getKey, all) => {
       effect(getKey, all); // effect does not write to the store
     });
-  }
+  };
 
   /**
    * Finds all computed fields affected by changes in source fields
@@ -1088,7 +1081,7 @@ class FormStore {
   /**
    * Performs array operations on form fields (insert, remove, move, swap, replace)
    */
-  private arrayOp(name: NamePath, args: ArrayOpArgs): void {
+  private arrayOp = (name: NamePath, args: ArrayOpArgs): void => {
     const arr = this.getFieldValue(name);
     if (!Array.isArray(arr)) return;
     const next = arr.slice();
@@ -1152,7 +1145,7 @@ class FormStore {
       default:
         break;
     }
-  }
+  };
 
   private getArrayFields = (name: NamePath, initialValue?: StoreValue[], disabled?: boolean) => {
     const arr = (this.getFieldValue(name) as any[]) || initialValue || [];
