@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, DropdownMenu } from '@skyroc/web-ui';
+import { Button, DropdownMenuRadio } from '@skyroc/web-ui';
 
 const placements = [
   { type: 'label' as const, label: 'Tooltip Placement' },
@@ -19,21 +19,16 @@ const placements = [
   { label: 'Left End', value: 'left-end' }
 ];
 
-const DropdownMenuRadio = () => {
+const DropdownMenuRadioDemo = () => {
   const [placement, setPlacement] = useState('top-start');
 
-  const activeLabel = placements.find(item => item.value === placement)?.label;
+  const activeLabel = placements.find(item => 'value' in item && item.value === placement)?.label;
 
   return (
-    <DropdownMenu
-      items={[
-        {
-          type: 'radio',
-          value: placement,
-          onValueChange: setPlacement,
-          children: placements
-        }
-      ]}
+    <DropdownMenuRadio
+      items={placements}
+      value={placement}
+      onValueChange={setPlacement}
     >
       <Button
         className="w-30"
@@ -41,8 +36,8 @@ const DropdownMenuRadio = () => {
       >
         {activeLabel}
       </Button>
-    </DropdownMenu>
+    </DropdownMenuRadio>
   );
 };
 
-export default DropdownMenuRadio;
+export default DropdownMenuRadioDemo;

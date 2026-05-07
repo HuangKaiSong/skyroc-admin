@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Button, DropdownMenu } from '@skyroc/web-ui';
+import { Button, DropdownMenuCheckbox } from '@skyroc/web-ui';
 
 const checkboxItems = [
   { type: 'label' as const, label: 'JS Frameworks' },
@@ -13,23 +13,18 @@ const checkboxItems = [
   { label: 'Preact', value: 'preact' }
 ];
 
-const DropdownMenuCheckbox = () => {
+const DropdownMenuCheckboxDemo = () => {
   const [checks, setChecks] = useState<string[]>(['vue', 'solid']);
 
   return (
-    <DropdownMenu
-      items={[
-        {
-          type: 'checkbox',
-          checks,
-          onChecksChange: setChecks,
-          children: checkboxItems
-        }
-      ]}
+    <DropdownMenuCheckbox
+      checks={checks}
+      items={checkboxItems}
+      onChecksChange={setChecks}
     >
       <Button variant="plain">Checkbox</Button>
-    </DropdownMenu>
+    </DropdownMenuCheckbox>
   );
 };
 
-export default DropdownMenuCheckbox;
+export default DropdownMenuCheckboxDemo;
