@@ -3,13 +3,13 @@
 /* eslint-disable react/hook-use-state */
 import type { AllPathsKeys, PathToDeepType } from '@skyroc/type-utils';
 import { isArray, isNil, isObject } from '@skyroc/utils';
+import { get } from '@skyroc/utils/path';
 import { useEffect, useState } from 'react';
 import { flushSync } from 'react-dom';
 
 import type { SubscribeMaskOptions } from '../../form-core/event';
 import { toMask } from '../../form-core/event';
 import type { Meta } from '../../form-core/types';
-import { get } from '../../utils/get';
 
 import type { FormInstance, InternalFormInstance, MetaShapeFromPaths } from './FieldContext';
 import { useFieldContext } from './FieldContext';

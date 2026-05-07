@@ -6,11 +6,25 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable no-bitwise */
 
-import { assign, isArray, isEqual, isNil, toArray } from '@skyroc/utils';
-import { get } from '../utils/get';
-import { set, unset } from '../utils/set';
-import type { NamePath, PathTuple } from '../utils/util';
-import { anyOn, collectDeepKeys, isOn, isUnderPrefix, keyOfName, microtask } from '../utils/util';
+import type { NamePath, PathTuple } from '@skyroc/utils/path';
+import {
+  anyOn,
+  collectDeepKeys,
+  get,
+  isOn,
+  isUnderPrefix,
+  keyOfName,
+  microtask,
+  set,
+  unset
+} from '@skyroc/utils/path';
+import {
+  assign,
+  isArray,
+  isEqual,
+  isNil,
+  toArray
+} from '@skyroc/utils';
 import { type ChangeMask, ChangeTag } from './event';
 import type { Action, ArrayOpArgs, Middleware, ValidateFieldsOptions } from './middleware';
 import { compose } from './middleware';

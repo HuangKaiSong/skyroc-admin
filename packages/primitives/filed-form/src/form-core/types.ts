@@ -1,27 +1,17 @@
-/**
- * Core type definitions for the form system
- * Contains fundamental types used throughout the form implementation
- */
+// oxlint-disable max-params
+/** Core type definitions for the form system Contains fundamental types used throughout the form implementation */
 
-import type { NamePath } from '../utils/util';
+import type { NamePath } from '@skyroc/utils/path';
 
 import type { ChangeMask } from './event';
 
-/**
- * Type representing the form's data store
- * A record where keys are field names and values are field values
- */
+/** Type representing the form's data store A record where keys are field names and values are field values */
 export type Store = Record<string, any>;
 
-/**
- * Type representing any value that can be stored in a form field
- */
+/** Type representing any value that can be stored in a form field */
 export type StoreValue = any;
 
-/**
- * Interface representing a registered field entity in the form
- * Contains metadata and callbacks for field management
- */
+/** Interface representing a registered field entity in the form Contains metadata and callbacks for field management */
 export interface FieldEntity {
   /** Callback function triggered when field value changes */
   changeValue: (value: StoreValue, key: string, all: Store, fired: ChangeMask) => void;
@@ -33,10 +23,7 @@ export interface FieldEntity {
   preserve?: boolean;
 }
 
-/**
- * Interface defining form lifecycle callbacks
- * These callbacks are triggered at various points during form operations
- */
+/** Interface defining form lifecycle callbacks These callbacks are triggered at various points during form operations */
 export interface Callbacks<Values = any> {
   /** Called when field metadata changes (errors, validation state, etc.) */
   onFieldsChange?: (changedFields: Meta<NamePath, StoreValue>[], allFields: Meta<NamePath, StoreValue>[]) => void;
@@ -48,15 +35,10 @@ export interface Callbacks<Values = any> {
   onValuesChange?: (changed: Partial<Values>, all: Values) => void;
 }
 
-/**
- * Type for event arguments passed to form event handlers
- */
+/** Type for event arguments passed to form event handlers */
 export type EventArgs = any[];
 
-/**
- * Interface representing field metadata and state
- * Contains all information about a field's current state
- */
+/** Interface representing field metadata and state Contains all information about a field's current state */
 export interface Meta<T extends NamePath, V extends StoreValue> {
   /** Array of validation error messages */
   errors: string[];
@@ -74,10 +56,7 @@ export interface Meta<T extends NamePath, V extends StoreValue> {
   warnings: string[];
 }
 
-/**
- * String-based change tags for field state changes
- * Used for categorizing different types of field changes
- */
+/** String-based change tags for field state changes Used for categorizing different types of field changes */
 export type ChangeTag =
   | 'errors' // Validation errors changed
   | 'meta' // Field metadata changed (touched/dirty)

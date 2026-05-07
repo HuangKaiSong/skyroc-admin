@@ -1,9 +1,10 @@
+// oxlint-disable max-params
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-new */
 /* eslint-disable no-await-in-loop */
 /**
- * Form validation system with rule-based validation
- * Supports synchronous and asynchronous validation with customizable messages
+ * Form validation system with rule-based validation Supports synchronous and asynchronous validation with customizable
+ * messages
  */
 
 import { isEqual, isNil } from '@skyroc/utils';
@@ -11,9 +12,7 @@ import { isEqual, isNil } from '@skyroc/utils';
 import type { StoreValue } from './types';
 import type { ValidateMessages } from './validate';
 
-/**
- * Supported validation rule types
- */
+/** Supported validation rule types */
 export type RuleType =
   | 'boolean'
   | 'date'
@@ -129,9 +128,7 @@ const isURL = (s: string) => {
 };
 
 /* -------------------- Message Template System -------------------- */
-/**
- * Formats a message template by replacing placeholders with actual values
- */
+/** Formats a message template by replacing placeholders with actual values */
 function formatMessage(template: string | undefined, rule: Rule, ctx: { label?: string; value?: any }): string {
   if (!template) return '';
   return template
@@ -142,9 +139,7 @@ function formatMessage(template: string | undefined, rule: Rule, ctx: { label?: 
     .replace(/\$\{value\}/g, String(ctx.value ?? ''));
 }
 
-/**
- * Picks a message from the ValidateMessages object using dot notation
- */
+/** Picks a message from the ValidateMessages object using dot notation */
 function pickMsg(messages: ValidateMessages, key: string): string | undefined {
   // Support nested keys: 'string.min' / 'number.max' / 'types.email'
   const parts = key.split('.');
@@ -153,9 +148,7 @@ function pickMsg(messages: ValidateMessages, key: string): string | undefined {
   return typeof cur === 'string' ? cur : undefined;
 }
 
-/**
- * Creates a failure result with appropriate message resolution
- */
+/** Creates a failure result with appropriate message resolution */
 function failWithMessages(
   r: Rule,
   key: string, // e.g. 'required' | 'string.min' | 'types.number'
@@ -169,8 +162,8 @@ function failWithMessages(
 
 /* -------------------- RuleChecker (with messages) -------------------- */
 /**
- * Rule-based validation checker with customizable message templates
- * Supports base checks, type-specific checks, and custom validation
+ * Rule-based validation checker with customizable message templates Supports base checks, type-specific checks, and
+ * custom validation
  */
 class RuleChecker {
   private baseChecks: Check[] = [];
@@ -231,9 +224,7 @@ class RuleChecker {
 }
 
 /* -------------------- Factory: Create checker with messages -------------------- */
-/**
- * Creates a rule checker with all built-in validation types and custom message support
- */
+/** Creates a rule checker with all built-in validation types and custom message support */
 export function createRuleChecker(messages: ValidateMessages = {}) {
   const checker = new RuleChecker(messages);
 
@@ -358,9 +349,7 @@ export function createRuleChecker(messages: ValidateMessages = {}) {
 }
 
 /* -------------------- Export API -------------------- */
-/**
- * Check a single rule against a value using the provided checker
- */
+/** Check a single rule against a value using the provided checker */
 export async function checkOneRule(
   checker: ReturnType<typeof createRuleChecker>,
   value: any,
@@ -370,9 +359,7 @@ export async function checkOneRule(
   return checker.check(value, rule, allValues);
 }
 
-/**
- * Main entry point: Run a set of rules with specified mode and messages
- */
+/** Main entry point: Run a set of rules with specified mode and messages */
 export async function runRulesWithMode(
   value: any,
   rules: Rule[],

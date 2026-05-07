@@ -1,21 +1,17 @@
 'use client';
 /**
- * Form undo/redo functionality hook
- * Provides undo and redo capabilities for form operations including field value changes and array operations
+ * Form undo/redo functionality hook Provides undo and redo capabilities for form operations including field value
+ * changes and array operations
  */
 import { useEffect, useState } from 'react';
 
+import type { NamePath } from '@skyroc/utils/path';
+import { get as getPath, keyOfName } from '@skyroc/utils/path';
 import type { ArrayOpAction, Middleware } from '../../form-core/middleware';
-import { get as getPath } from '../../utils/get';
-import type { NamePath } from '../../utils/util';
-import { keyOfName } from '../../utils/util';
 
 import { type FormInstance, type InternalFormInstance, useFieldContext } from './FieldContext';
 
-/**
- * Patch type for field value changes
- * Records the field name, previous value, and new value for undo/redo operations
- */
+/** Patch type for field value changes Records the field name, previous value, and new value for undo/redo operations */
 type SetPatch = {
   /** The field name path */
   name: NamePath;
@@ -27,90 +23,73 @@ type SetPatch = {
   type: 'set';
 };
 
-/**
- * Patch type for array operations
- * Extends ArrayOpAction with inverse operation for undo functionality
- */
+/** Patch type for array operations Extends ArrayOpAction with inverse operation for undo functionality */
 type ArrayPatch = ArrayOpAction & {
   /** The inverse operation needed to undo this array operation */
   inverse: ArrayOpAction;
 };
 
-/**
- * Union type representing all possible patch types
- * Used to track changes that can be undone or redone
- */
+/** Union type representing all possible patch types Used to track changes that can be undone or redone */
 type Patch = SetPatch | ArrayPatch;
 
 /**
- * Hook to provide undo/redo functionality for form operations
- * Tracks form changes and allows users to undo/redo field value changes and array operations
+ * Hook to provide undo/redo functionality for form operations Tracks form changes and allows users to undo/redo field
+ * value changes and array operations
  *
  * @example
- * ```tsx
- * // Basic usage with undo/redo buttons
- * function EditableForm() {
- *   const [form] = useForm();
- *   const { canUndo, canRedo, undo, redo } = useUndoRedo(form);
+ *   ```tsx
+ *   // Basic usage with undo/redo buttons
+ *   function EditableForm() {
+ *     const [form] = useForm();
+ *     const { canUndo, canRedo, undo, redo } = useUndoRedo(form);
  *
- *   return (
- *     <Form
- *       form={form}
- *       initialValues={{
- *         title: 'Document Title',
- *         content: 'Document content...',
- *         tags: ['react', 'form']
- *       }}
- *     >
- *       <div className="toolbar">
- *         <button
- *           type="button"
- *           onClick={undo}
- *           disabled={!canUndo}
- *           className={`btn ${!canUndo ? 'disabled' : ''}`}
- *         >
- *           ↶ Undo
- *         </button>
- *         <button
- *           type="button"
- *           onClick={redo}
- *           disabled={!canRedo}
- *           className={`btn ${!canRedo ? 'disabled' : ''}`}
- *         >
- *           ↷ Redo
- *         </button>
- *       </div>
+ *     return (
+ *       <Form
+ *         form={form}
+ *         initialValues={{
+ *           title: 'Document Title',
+ *           content: 'Document content...',
+ *           tags: ['react', 'form']
+ *         }}
+ *       >
+ *         <div className="toolbar">
+ *           <button type="button" onClick={undo} disabled={!canUndo} className={`btn ${!canUndo ? 'disabled' : ''}`}>
+ *             ↶ Undo
+ *           </button>
+ *           <button type="button" onClick={redo} disabled={!canRedo} className={`btn ${!canRedo ? 'disabled' : ''}`}>
+ *             ↷ Redo
+ *           </button>
+ *         </div>
  *
- *       <Field name="title" rules={[{ required: true }]}>
- *         <Input placeholder="Document title" />
- *       </Field>
+ *         <Field name="title" rules={[{ required: true }]}>
+ *           <Input placeholder="Document title" />
+ *         </Field>
  *
- *       <Field name="content">
- *         <TextArea rows={6} placeholder="Document content" />
- *       </Field>
+ *         <Field name="content">
+ *           <TextArea rows={6} placeholder="Document content" />
+ *         </Field>
  *
- *       <List name="tags">
- *         {(fields, { add, remove }) => (
- *           <>
- *             {fields.map((field) => (
- *               <div key={field.key} className="tag-item">
- *                 <Field name={field.name}>
- *                   <Input placeholder="Tag" />
- *                 </Field>
- *                 <button onClick={() => remove(field.name)}>Remove</button>
- *               </div>
- *             ))}
- *             <button onClick={() => add('')}>Add Tag</button>
- *           </>
- *         )}
- *       </List>
+ *         <List name="tags">
+ *           {(fields, { add, remove }) => (
+ *             <>
+ *               {fields.map(field => (
+ *                 <div key={field.key} className="tag-item">
+ *                   <Field name={field.name}>
+ *                     <Input placeholder="Tag" />
+ *                   </Field>
+ *                   <button onClick={() => remove(field.name)}>Remove</button>
+ *                 </div>
+ *               ))}
+ *               <button onClick={() => add('')}>Add Tag</button>
+ *             </>
+ *           )}
+ *         </List>
  *
- *       <button type="submit">Save Document</button>
- *     </Form>
- *   );
- * }
- * ```
- *
+ *         <button type="submit">Save Document</button>
+ *       </Form>
+ *     );
+ *   }
+ *   ```
  */
 export function useUndoRedo<Values = any>(form?: FormInstance<Values>) {
   // Stack to store batches of patches for undo operations
@@ -210,9 +189,7 @@ export function useUndoRedo<Values = any>(form?: FormInstance<Values>) {
       return ret;
     };
 
-  /**
-   * Applies a batch of patches in the specified direction (undo or redo)
-   */
+  /** Applies a batch of patches in the specified direction (undo or redo) */
   const applyBatch = (batch: Patch[], dir: 'redo' | 'undo') => {
     const context = formInstance as InternalFormInstance;
 
@@ -221,7 +198,7 @@ export function useUndoRedo<Values = any>(form?: FormInstance<Values>) {
     // Use transaction to batch all changes together for better performance
     transaction(() => {
       // For undo, reverse the order of patches to apply them in reverse
-      const iterate = dir === 'undo' ? [...batch].reverse() : batch;
+      const iterate = dir === 'undo' ? [...batch].toReversed() : batch;
       for (const p of iterate) {
         if (p.type === 'set') {
           // Apply field value changes
@@ -236,10 +213,7 @@ export function useUndoRedo<Values = any>(form?: FormInstance<Values>) {
     });
   };
 
-  /**
-   * Undoes the last batch of changes
-   * Moves the most recent batch from undo stack to redo stack
-   */
+  /** Undoes the last batch of changes Moves the most recent batch from undo stack to redo stack */
   const undo = () => {
     setUndoStack(prev => {
       if (prev.length === 0) return prev;
@@ -255,10 +229,7 @@ export function useUndoRedo<Values = any>(form?: FormInstance<Values>) {
     });
   };
 
-  /**
-   * Redoes the last undone batch of changes
-   * Moves the most recent batch from redo stack to undo stack
-   */
+  /** Redoes the last undone batch of changes Moves the most recent batch from redo stack to undo stack */
   const redo = () => {
     setRedoStack(prev => {
       if (prev.length === 0) return prev;

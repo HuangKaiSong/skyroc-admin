@@ -35,7 +35,7 @@ export enum ChangeTag {
   /** Combination of all validation status flags */
   Status = Errors | Warnings | Validated | Validating | Disabled | Hidden,
   /** All possible change flags */
-  All = 0x7fffffff
+  All = 0x7FFFFFFF
 }
 
 /**

@@ -4,8 +4,7 @@
  */
 
 import type { AllPathsKeys, PathToDeepType } from '@skyroc/type-utils';
-
-import type { NamePath } from '../utils/util';
+import type { NamePath } from '@skyroc/utils/path';
 
 import type { ValidateOptions } from './validation';
 
