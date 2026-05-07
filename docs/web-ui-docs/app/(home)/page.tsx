@@ -15,15 +15,15 @@ import {
   Sparkles,
   Zap
 } from 'lucide-react';
-import { Button, Card, Icon, Progress, Slider, Switch, Tag } from '@skyroc/web-ui';
+import { Button, Icon, Progress, Slider, Switch, Tag } from '@skyroc/web-ui';
 
 import { BentoShowcase } from './components/BentoShowcase';
 
-const COLOR_STYLE_MAP: Record<string, { bg: string; text: string; iconBg: string }> = {
-  primary: { bg: 'bg-primary/10', text: 'text-primary', iconBg: 'bg-primary/10' },
-  success: { bg: 'bg-success/10', text: 'text-success', iconBg: 'bg-success/10' },
-  warning: { bg: 'bg-warning/10', text: 'text-warning', iconBg: 'bg-warning/10' },
-  info: { bg: 'bg-info/10', text: 'text-info', iconBg: 'bg-info/10' }
+const COLOR_STYLE_MAP: Record<string, { bg: string; iconBg: string; text: string }> = {
+  primary: { bg: 'bg-primary/10', iconBg: 'bg-primary/10', text: 'text-primary' },
+  success: { bg: 'bg-success/10', iconBg: 'bg-success/10', text: 'text-success' },
+  warning: { bg: 'bg-warning/10', iconBg: 'bg-warning/10', text: 'text-warning' },
+  info: { bg: 'bg-info/10', iconBg: 'bg-info/10', text: 'text-info' }
 };
 
 const COMPONENT_CATEGORIES = [
@@ -31,7 +31,7 @@ const COMPONENT_CATEGORIES = [
     title: '输入控件',
     description: '表单元素与用户输入',
     components: ['Button', 'Input', 'Textarea', 'Select', 'Checkbox', 'Radio', 'Slider', 'Switch'],
-    href: '/docs/components/button',
+    href: '/components/button',
     icon: 'lucide:text-cursor-input',
     color: 'primary'
   },
@@ -39,7 +39,7 @@ const COMPONENT_CATEGORIES = [
     title: '数据展示',
     description: '内容呈现与数据可视化',
     components: ['Card', 'Badge', 'Tag', 'Avatar', 'List', 'Tree', 'Carousel', 'Progress'],
-    href: '/docs/components/card',
+    href: '/components/card',
     icon: 'lucide:layers',
     color: 'success'
   },
@@ -47,7 +47,7 @@ const COMPONENT_CATEGORIES = [
     title: '弹层覆盖',
     description: '模态框、弹出层与提示',
     components: ['Dialog', 'Drawer', 'Popover', 'Tooltip', 'Hover Card', 'Alert Dialog'],
-    href: '/docs/components/dialog',
+    href: '/components/dialog',
     icon: 'lucide:panel-top',
     color: 'warning'
   },
@@ -55,9 +55,44 @@ const COMPONENT_CATEGORIES = [
     title: '导航组件',
     description: '菜单、选项卡与路由导航',
     components: ['Tabs', 'Breadcrumb', 'Pagination', 'Navigation Menu', 'Menubar', 'Segment'],
-    href: '/docs/components/tabs',
+    href: '/components/tabs',
     icon: 'lucide:compass',
     color: 'info'
+  }
+];
+
+const DOC_MODULES = [
+  {
+    title: '设计系统',
+    description: '颜色语义、尺寸体系、设计令牌与暗色模式，帮助团队建立一致的视觉语言。',
+    href: '/overview/design-system',
+    icon: 'lucide:swatch-book',
+    color: 'primary',
+    items: ['语义颜色', '尺寸体系', '设计令牌']
+  },
+  {
+    title: '使用指南',
+    description: '表单、弹层、导航和反馈组件的组合原则，补齐组件之间的协作方式。',
+    href: '/overview/usage-guides',
+    icon: 'lucide:map',
+    color: 'info',
+    items: ['表单组织', '弹层原则', '组件选择']
+  },
+  {
+    title: '场景示例',
+    description: '官网首页、注册登录、内容筛选、订阅表单和确认流程，用真实 C 端页面理解组件组合。',
+    href: '/overview/examples',
+    icon: 'lucide:layout-template',
+    color: 'success',
+    items: ['官网首页', '内容筛选', '订阅表单']
+  },
+  {
+    title: '迁移与约定',
+    description: '从 shadcn 或自定义 Tailwind 组件迁移时，统一 className、asChild 和受控约定。',
+    href: '/overview/migration',
+    icon: 'lucide:route',
+    color: 'warning',
+    items: ['迁移边界', '样式覆盖', '受控约定']
   }
 ];
 
@@ -178,7 +213,7 @@ const ComposablePreview = () => (
   </div>
 );
 
-export default function HomePage() {
+const HomePage = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -214,7 +249,7 @@ export default function HomePage() {
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
                 <Button asChild color="primary" size="lg" shape="rounded">
-                  <Link href="/docs">
+                  <Link href="/overview/introduction">
                     快速开始
                     <ArrowRight className="ml-2 size-4" />
                   </Link>
@@ -258,6 +293,58 @@ export default function HomePage() {
             </p>
           </div>
           <BentoShowcase />
+        </div>
+      </section>
+
+      {/* 文档模块 */}
+      <section className="relative border-t border-border/50">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-muted/20 to-background" />
+        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <div className="mb-14 flex flex-col items-center text-center">
+            <Tag color="primary" variant="pure" className="mb-4">体系文档</Tag>
+            <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
+              不止组件 API
+            </h2>
+            <p className="mt-4 max-w-xl text-muted-foreground">
+              从设计系统、使用原则到真实场景，帮助团队在 Next.js 的 C 端业务和官网中建立稳定的 UI 体系。
+            </p>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {DOC_MODULES.map((module, idx) => {
+              const styles = COLOR_STYLE_MAP[module.color]!;
+
+              return (
+                <Link
+                  key={module.title}
+                  href={module.href}
+                  className={`group flex min-h-60 flex-col rounded-2xl border border-border/60 bg-card/70 p-6 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 ${idx === 0 ? 'lg:col-span-2' : ''}`}
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div className={`inline-flex size-12 items-center justify-center rounded-xl ${styles.iconBg}`}>
+                      <Icon icon={module.icon} className={`size-6 ${styles.text}`} />
+                    </div>
+                    <ChevronRight className="size-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
+                  </div>
+
+                  <div className="mt-6">
+                    <h3 className="text-xl font-semibold text-foreground">{module.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                      {module.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-auto flex flex-wrap gap-1.5 pt-6">
+                    {module.items.map((item) => (
+                      <Tag key={item} variant="pure" className="text-xs">
+                        {item}
+                      </Tag>
+                    ))}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -417,7 +504,7 @@ export default function HomePage() {
 
             <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row">
               <Button asChild color="primary" size="lg" shape="rounded">
-                <Link href="/docs">
+                <Link href="/overview/introduction">
                   <BookOpen className="mr-2 size-4" />
                   阅读文档
                 </Link>
@@ -438,4 +525,6 @@ export default function HomePage() {
       </section>
     </div>
   );
-}
+};
+
+export default HomePage;

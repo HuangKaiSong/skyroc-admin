@@ -118,7 +118,7 @@ export function transformDemo(rawSrc: string, scopeKeys: ReadonlySet<string>): T
   const missingIdentifiers = [...idents].filter(name => !scopeKeys.has(name));
   const externalModules = [...modules].filter(m => !m.startsWith('.') && !m.startsWith('/'));
 
-  const executable = `${code}\n\nrender(<${componentName} />);\n`;
+  const executable = `{\n${code}\n\nrender(<${componentName} />);\n}\n`;
 
   return {
     display,
