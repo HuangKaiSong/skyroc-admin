@@ -1,7 +1,7 @@
 import type { Preset, PresetWind3Theme, Rule } from 'unocss';
 import { allShortcuts } from './shortcuts';
 
-export const builtinRadiuses = [0, 0.3, 0.5, 0.75, 1] as const;
+export { allShortcuts, flexShortcuts, positionShortcuts, textShortcuts } from './shortcuts';
 
 /** Theme color keys */
 const themeColorKeys = [
@@ -134,6 +134,8 @@ const textVariantsRules = textVariants.map(variant => {
   }
   return [`text-${variant}`, { color: `var(--color-text-${variant})` }];
 }) as Rule[];
+
+export const builtinRadiuses = [0, 0.3, 0.5, 0.75, 1] as const;
 
 /**
  * The UnoCSS preset for Soybean Admin.
@@ -446,7 +448,5 @@ export function presetSoybeanAdmin(): Preset<PresetWind3Theme> {
 export { colorPaletteNumbers, colorPaletteVars, createColorPaletteVars, createColorsPalette, themeColorKeys };
 
 export { textVariants };
-
-export { allShortcuts, flexShortcuts, positionShortcuts, textShortcuts } from './shortcuts';
 
 export default presetSoybeanAdmin;
