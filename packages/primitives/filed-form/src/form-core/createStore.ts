@@ -1304,7 +1304,11 @@ class FormStore {
 
   // ===== Batch processing notification =====
 
-  private subscribe = (name: NamePath, cb: Listener['cb'], opt?: { includeChildren?: boolean; mask?: ChangeMask }) => {
+  private subscribe = (
+    name: NamePath,
+    cb: Listener['cb'],
+    opt?: { includeChildren?: boolean; mask?: ChangeMask; notifyCurrent?: boolean }
+  ) => {
     const key = keyOfName(name);
 
     const bucket = opt?.includeChildren ? this._prefixListeners : this._exactListeners;
@@ -1333,7 +1337,7 @@ class FormStore {
   private subscribeField = (
     names: NamePath | NamePath[] | undefined,
     cb: Listener['cb'],
-    opt?: { includeChildren?: boolean; mask?: ChangeMask }
+    opt?: { includeChildren?: boolean; mask?: ChangeMask; notifyCurrent?: boolean }
   ) => {
     let arr: NamePath[];
 
@@ -1345,9 +1349,24 @@ class FormStore {
       arr = [names];
     }
 
+    let active = true;
     const unsubs = arr.map(n => this.subscribe(n, cb, opt));
 
+    if (opt?.notifyCurrent) {
+      const currentName = arr[0] ?? '*';
+
+      microtask(() => {
+        if (!active) return;
+
+        const currentKey = keyOfName(currentName);
+        const currentValue = currentKey === '*' ? this._store : get(this._store, currentKey);
+
+        cb(currentValue, currentKey, this._store, opt.mask ?? ChangeTag.All);
+      });
+    }
+
     return () => {
+      active = false;
       unsubs.forEach(fn => fn());
     };
   };

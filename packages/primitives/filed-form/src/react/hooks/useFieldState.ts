@@ -94,9 +94,11 @@ function useFieldState<Values = any>(
       },
       {
         includeChildren,
-        mask: toMask(mask)
+        mask: toMask(mask),
+        notifyCurrent: isFormInstance || Boolean(opts?.form)
       }
     );
+
     return unregister;
   }, []);
 

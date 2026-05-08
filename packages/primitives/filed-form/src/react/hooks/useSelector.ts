@@ -108,7 +108,7 @@ export function useSelector<Values = any, R = unknown>(
   // Set up subscription to form field changes
   useEffect(() => {
     // Change handler that recomputes and updates state if value changed
-    const onChange = () => {
+    function updateSelectedValue() {
       const next = compute();
       // Only update if the selected value has actually changed
       if (!eq(prevRef.current, next)) {
@@ -116,13 +116,16 @@ export function useSelector<Values = any, R = unknown>(
         // Use flushSync to ensure synchronous updates and reduce visual flicker
         flushSync(() => setVal(next));
       }
-    };
+    }
 
     // Subscribe to field changes and return cleanup function
-    return subscribeField(deps, onChange, {
+    const unregister = subscribeField(deps, () => updateSelectedValue(), {
       includeChildren,
-      mask
+      mask,
+      notifyCurrent: Boolean(opts?.form)
     });
+
+    return unregister;
   }, []);
 
   // Return the current selected value

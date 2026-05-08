@@ -300,7 +300,7 @@ export interface InternalFieldHooks<Values = any> {
   subscribeField: <T extends AllPathsKeys<Values>>(
     name: T | T[] | undefined,
     cb: (value: PathToDeepType<Values, T>, name: T, values: Values, mask: ChangeMask) => void,
-    opt?: { includeChildren?: boolean; mask?: ChangeMask }
+    opt?: { includeChildren?: boolean; mask?: ChangeMask; notifyCurrent?: boolean }
   ) => () => void;
   /** Execute function within a transaction for batched updates */
   transaction: <T>(fn: () => T) => T;

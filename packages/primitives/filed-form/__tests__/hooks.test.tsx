@@ -136,6 +136,44 @@ const ExternalWatchPanel = () => {
   );
 };
 
+const ExternalInitialValuesObserver = () => {
+  const [form] = useForm<HookValues>();
+  const name = useWatch<HookValues, 'name'>('name', { form });
+  const values = useWatch<HookValues>(form);
+  const total = useSelector<HookValues, number>(
+    get => Number(get('quantity') || 0) * Number(get('unitPrice') || 0),
+    { deps: ['quantity', 'unitPrice'], form }
+  );
+
+  return (
+    <>
+      <Form
+        form={form}
+        initialValues={{
+          email: 'ada@example.com',
+          errorEmail: '',
+          errorName: '',
+          items: [],
+          name: 'Ada',
+          quantity: 2,
+          unitPrice: 5
+        }}
+      >
+        <Field name="name">
+          <input aria-label="External initial name input" />
+        </Field>
+        <Field name="quantity">
+          <input aria-label="External initial quantity input" />
+        </Field>
+      </Form>
+
+      <output aria-label="External initial name">{name || ''}</output>
+      <output aria-label="External initial values">{JSON.stringify(values || {})}</output>
+      <output aria-label="External initial total">{total}</output>
+    </>
+  );
+};
+
 const NamedErrors = () => {
   const errors = useFieldError<HookValues, 'errorEmail' | 'errorName'>(['errorEmail', 'errorName']);
 
@@ -453,6 +491,25 @@ describe('form hooks', () => {
       expect(screen.getByLabelText('External touched')).toHaveTextContent('true');
     });
     expect(screen.getByLabelText('Stable selected name')).toHaveTextContent('Ada');
+  });
+
+  it('should resync external watch and selector values after form initial values are mounted', async () => {
+    render(<ExternalInitialValuesObserver />);
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('External initial name')).toHaveTextContent('Ada');
+      expect(screen.getByLabelText('External initial values')).toHaveTextContent('"name":"Ada"');
+      expect(screen.getByLabelText('External initial total')).toHaveTextContent('10');
+    });
+
+    fireEvent.change(screen.getByLabelText('External initial quantity input'), { target: { value: '3' } });
+    fireEvent.change(screen.getByLabelText('External initial name input'), { target: { value: 'Grace' } });
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('External initial name')).toHaveTextContent('Grace');
+      expect(screen.getByLabelText('External initial values')).toHaveTextContent('"name":"Grace"');
+      expect(screen.getByLabelText('External initial total')).toHaveTextContent('15');
+    });
   });
 
   it('should return named, contextual, and external field errors', async () => {

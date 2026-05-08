@@ -19,6 +19,7 @@ const FormFieldUI = <Values = any,>(props: FormFieldProps<Values>) => {
     label,
     name,
     size,
+    valuePropName = 'value',
     ...rest
   } = props;
 
@@ -28,9 +29,9 @@ const FormFieldUI = <Values = any,>(props: FormFieldProps<Values>) => {
 
   const hasError = errors.length > 0;
 
-  const formItemId = `${id}-form-item`;
   const formDescriptionId = `${id}-form-item-description`;
   const formMessageId = `${id}-form-item-message`;
+  const shouldLinkLabel = valuePropName === 'value';
 
   return (
     <FormItem
@@ -40,7 +41,7 @@ const FormFieldUI = <Values = any,>(props: FormFieldProps<Values>) => {
       <FormLabel
         className={classNames?.label}
         error={hasError}
-        htmlFor={formItemId}
+        htmlFor={shouldLinkLabel ? id : undefined}
         size={size}
       >
         {label}
@@ -52,6 +53,7 @@ const FormFieldUI = <Values = any,>(props: FormFieldProps<Values>) => {
         aria-invalid={hasError}
         id={id}
         name={name}
+        valuePropName={valuePropName}
       >
         {children}
       </Component>
