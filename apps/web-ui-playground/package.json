@@ -35,6 +35,8 @@
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "start": "next start",
     "test:e2e": "playwright test",
+    "test:e2e:debug": "playwright test --debug --project=chromium --workers=1",
+    "test:e2e:headed": "playwright test --headed --project=chromium --workers=1",
     "test:e2e:ui": "playwright test --ui",
     "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
     "worker:build": "opennextjs-cloudflare build"
