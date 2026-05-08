@@ -32,6 +32,7 @@ const COMPONENT_KEYS = [
   'keyboardKey',
   'label',
   'layout',
+  'list',
   'numberInput',
   'pagination',
   'popover',
@@ -45,9 +46,11 @@ const COMPONENT_KEYS = [
   'sonner',
   'switch',
   'tabs',
+  'tag',
   'textarea',
   'toggle',
-  'tooltip'
+  'tooltip',
+  'tree'
 ] satisfies (keyof ComponentConfig)[];
 
 const ConfigProvider = (props: ConfigProviderProps) => {
