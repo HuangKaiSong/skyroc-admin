@@ -6,7 +6,7 @@ import { AUTH_QUERY_KEYS, queryUserInfoOptions } from '@/service/api';
 import { queryClient } from '@/service/queryClient';
 import { localStg } from '@/utils/storage';
 
-import { globalStore } from '../jotai/store';
+import { globalStore } from '@skyroc/core-state';
 import { useMenus } from '../menus/use-menus';
 
 import { clearAuthStorage, getToken } from './shared';
