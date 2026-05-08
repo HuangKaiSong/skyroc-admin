@@ -1,5 +1,5 @@
 import type { AspectRatioProps as _AspectRatioProps } from '@radix-ui/react-aspect-ratio';
-import type { StyledComponentProps } from '@/types/shared';
+import type { StyledComponentProps } from '../../types/shared';
 
 /**
  * Props for the aspect ratio component.

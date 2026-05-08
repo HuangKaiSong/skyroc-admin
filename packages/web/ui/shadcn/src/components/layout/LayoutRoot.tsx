@@ -3,8 +3,8 @@
 import type { CSSProperties } from 'react';
 import { useMemo, useState } from 'react';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
-import { themeSizeRatio } from '@/constants/theme';
-import { useMediaQuery } from '@/hooks/use-media-query';
+import { themeSizeRatio } from '../../constants/theme';
+import { useMediaQuery } from '../../hooks/use-media-query';
 import { cn } from '@skyroc/utils';
 import { LayoutContext } from './context';
 import { layoutVariants } from './layout-variants';

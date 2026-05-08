@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ClassValue, StyledComponentProps, ThemeSize } from '@/types/shared';
+import type { ClassValue, StyledComponentProps, ThemeSize } from '../../types/shared';
 import type { PaginationShape, PaginationSlots, PaginationVariant } from './pagination-variants';
 
 // ==================== Page Types ====================

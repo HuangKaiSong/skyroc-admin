@@ -4,7 +4,7 @@ import type {
   RadioGroupItemProps as _RadioGroupItemProps,
   RadioGroupProps as _RadioGroupProps
 } from '@radix-ui/react-radio-group';
-import type { ClassValue, HTMLComponentProps, StyledComponentProps, ThemeColor, ThemeSize } from '@/types/shared';
+import type { ClassValue, HTMLComponentProps, StyledComponentProps, ThemeColor, ThemeSize } from '../../types/shared';
 import type { RadioSlots, radioVariants } from './radio-variants';
 
 type RadioVariant = NonNullable<Parameters<typeof radioVariants>[0]>['variant'];

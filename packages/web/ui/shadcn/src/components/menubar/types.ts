@@ -9,7 +9,7 @@ import type {
   MenubarSubProps as _MenubarSubProps,
   MenubarTriggerProps as _MenubarTriggerProps
 } from '@radix-ui/react-menubar';
-import type { ClassValue, StyledComponentProps, ThemeSize } from '@/types/shared';
+import type { ClassValue, StyledComponentProps, ThemeSize } from '../../types/shared';
 import type {
   MenuCheckboxGroupItemProps,
   MenuCheckboxGroupProps,

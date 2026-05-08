@@ -1,5 +1,5 @@
 import type { DialogContentProps } from '@radix-ui/react-dialog';
-import type { ClassValue, StyledComponentProps } from '@/types/shared';
+import type { ClassValue, StyledComponentProps } from '../../types/shared';
 import type { DialogSlots as DrawerSlots } from '../dialog/dialog-variants';
 import type { DialogProps } from '../dialog/types';
 import type { DrawerSide } from './drawer-variants';
@@ -60,4 +60,4 @@ export interface DrawerProps extends Omit<DialogProps<DrawerContentProps>, 'cont
   scrollable?: boolean;
 }
 
-export { DrawerSide };
+export type { DrawerSide };

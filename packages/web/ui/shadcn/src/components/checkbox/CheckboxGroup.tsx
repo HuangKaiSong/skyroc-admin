@@ -3,7 +3,7 @@
 import { useCallback, useMemo } from 'react';
 import { useControllableState } from '@radix-ui/react-use-controllable-state';
 import { cn } from '@skyroc/utils';
-import type { Value } from '@/types/shared';
+import type { Value } from '../../types/shared';
 import Checkbox from './CheckboxUI';
 import { CheckboxGroupProvider } from './CheckboxGroupContext';
 import type { CheckboxGroupProps } from './types';

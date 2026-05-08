@@ -1,5 +1,5 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
-import type { StyledComponentProps } from '@/types/shared';
+import type { StyledComponentProps } from '../../types/shared';
 
 /**
  * Props for the Skeleton component.

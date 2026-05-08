@@ -1,5 +1,5 @@
 import type { ComponentPropsWithRef, ComponentPropsWithoutRef, ReactNode } from 'react';
-import type { ClassValue, MaybeArray, StyledComponentProps } from '@/types/shared';
+import type { ClassValue, MaybeArray, StyledComponentProps } from '../../types/shared';
 import type { TreeSlots } from './tree-variants';
 
 /** Custom class names for tree component slots */

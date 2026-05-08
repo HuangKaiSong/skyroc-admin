@@ -3,7 +3,7 @@ import type {
   AvatarImageProps as _AvatarImageProps,
   AvatarProps as _AvatarRootProps
 } from '@radix-ui/react-avatar';
-import type { ClassValue, StyledComponentProps } from '@/types/shared';
+import type { ClassValue, StyledComponentProps } from '../../types/shared';
 import type { AvatarSlots } from './avatar-variants';
 
 /**

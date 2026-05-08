@@ -1,5 +1,5 @@
 import type { ComponentProps } from 'react';
-import type { PrimitiveProps, StyledComponentProps, ThemeColor, ThemeOrientation } from '@/types/shared';
+import type { PrimitiveProps, StyledComponentProps, ThemeColor, ThemeOrientation } from '../../types/shared';
 import type { IconProps } from '../icon';
 import type { ButtonShadow, ButtonShape, ButtonVariant } from './button-variants';
 

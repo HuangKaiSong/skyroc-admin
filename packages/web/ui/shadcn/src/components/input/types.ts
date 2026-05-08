@@ -1,5 +1,5 @@
 import type { ComponentPropsWithRef } from 'react';
-import type { ClassValue, SlotProps, StyledComponentProps } from '@/types/shared';
+import type { ClassValue, SlotProps, StyledComponentProps } from '../../types/shared';
 import type { InputSlots } from './input-variants';
 
 /**

@@ -1,6 +1,6 @@
 import type { ThemeOptions } from '@skyroc/tailwind-plugin';
 import type { ToasterProps } from 'sonner';
-import type { ThemeSize } from '@/types/shared';
+import type { ThemeSize } from '../../types/shared';
 import type { AccordionProps } from '../../components/accordion/types';
 import type { AlertProps } from '../../components/alert';
 import type { AlertDialogProps } from '../../components/alert-dialog';

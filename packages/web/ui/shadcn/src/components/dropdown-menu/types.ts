@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type {
   DropdownMenuProps as _DropdownMenuProps
 } from '@radix-ui/react-dropdown-menu';
-import type { StyledComponentProps } from '@/types/shared';
+import type { StyledComponentProps } from '../../types/shared';
 import type {
   MenuArrowProps,
   MenuCheckboxGroupItemProps,

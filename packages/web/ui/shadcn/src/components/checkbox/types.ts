@@ -11,7 +11,7 @@ import type {
   ThemeColor,
   ThemeSize,
   Value
-} from '@/types/shared';
+} from '../../types/shared';
 import type { CheckboxSlots, checkboxVariants } from './checkbox-variants';
 
 type CheckboxOrientation = NonNullable<Parameters<typeof checkboxVariants>[0]>['orientation'];

@@ -4,7 +4,7 @@ import type {
   ToggleGroupMultipleProps,
   ToggleGroupSingleProps
 } from '@radix-ui/react-toggle-group';
-import type { ClassValue, StyledComponentProps } from '@/types/shared';
+import type { ClassValue, StyledComponentProps } from '../../types/shared';
 import type { ToggleProps } from '../toggle';
 import type { ToggleSlots } from '../toggle/toggle-variants';
 

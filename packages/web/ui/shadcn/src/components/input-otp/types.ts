@@ -1,5 +1,5 @@
 import type { RenderProps } from 'input-otp';
-import type { ClassValue, HTMLComponentProps, ThemeSize } from '@/types/shared';
+import type { ClassValue, HTMLComponentProps, ThemeSize } from '../../types/shared';
 import type { InputOTPSlots } from './input-otp-variants';
 
 /**

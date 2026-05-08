@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import type {
   ContextMenuProps as _ContextMenuProps
 } from '@radix-ui/react-context-menu';
-import type { StyledComponentProps } from '@/types/shared';
+import type { StyledComponentProps } from '../../types/shared';
 import type {
   MenuArrowProps,
   MenuCheckboxGroupItemProps,

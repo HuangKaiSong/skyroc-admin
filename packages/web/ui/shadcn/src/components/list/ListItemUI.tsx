@@ -1,6 +1,7 @@
 'use client';
 
-import { ReactNode, isValidElement } from 'react';
+import { isValidElement } from 'react';
+import type { ReactNode } from 'react';
 import { cn } from '@skyroc/utils';
 import { Divider } from '../divider';
 import { ListContent } from './ListContent';

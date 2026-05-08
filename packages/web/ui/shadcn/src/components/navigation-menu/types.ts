@@ -9,7 +9,7 @@ import type {
   NavigationMenuTriggerProps as _NavigationMenuTriggerProps,
   NavigationMenuViewportProps as _NavigationMenuViewportProps
 } from '@radix-ui/react-navigation-menu';
-import type { ClassValue, HTMLComponentProps, SlotProps, StyledComponentProps } from '@/types/shared';
+import type { ClassValue, HTMLComponentProps, SlotProps, StyledComponentProps } from '../../types/shared';
 import type { NavigationMenuSlots } from './navigation-menu';
 
 /**

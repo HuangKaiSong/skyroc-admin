@@ -8,7 +8,7 @@ import type {
   DialogProps as _DialogProps,
   DialogTitleProps as _DialogTitleProps
 } from '@radix-ui/react-dialog';
-import type { ClassValue, StyledComponentProps } from '@/types/shared';
+import type { ClassValue, StyledComponentProps } from '../../types/shared';
 import type { ButtonProps } from '../button';
 import type { DialogSlots } from './dialog-variants';
 
@@ -213,4 +213,4 @@ export interface DialogProps<T extends DialogContentProps = DialogContentProps> 
   trigger?: React.ReactNode;
 }
 
-export { DialogPortalProps };
+export type { DialogPortalProps };

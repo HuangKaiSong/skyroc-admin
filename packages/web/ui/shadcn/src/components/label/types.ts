@@ -1,5 +1,5 @@
 import type { LabelProps as _LabelProps } from '@radix-ui/react-label';
-import type { StyledComponentProps } from '@/types/shared';
+import type { StyledComponentProps } from '../../types/shared';
 
 /**
  * Props for the Label component.

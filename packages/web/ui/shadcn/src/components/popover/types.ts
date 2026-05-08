@@ -5,7 +5,7 @@ import type {
   PopoverPortalProps,
   PopoverProps as _PopoverProps
 } from '@radix-ui/react-popover';
-import type { ClassValue, StyledComponentProps } from '@/types/shared';
+import type { ClassValue, StyledComponentProps } from '../../types/shared';
 import type { PopoverSlots } from './popover-varianst';
 
 /**

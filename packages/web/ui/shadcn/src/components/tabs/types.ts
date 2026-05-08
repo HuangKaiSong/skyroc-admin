@@ -4,7 +4,7 @@ import type {
   TabsProps as _TabsRootProps,
   TabsTriggerProps as _TabsTriggerProps
 } from '@radix-ui/react-tabs';
-import type { ClassValue, StyledComponentProps, ThemeOrientation } from '@/types/shared';
+import type { ClassValue, StyledComponentProps, ThemeOrientation } from '../../types/shared';
 import type { TabsFill, TabsSlots, TabsType } from './tabs-variants';
 
 export type TabsShape = 'rounded' | 'square';

@@ -1,5 +1,5 @@
 import type { ContentProps, DialogProps } from 'vaul';
-import type { ClassValue, HTMLComponentProps, StyledComponentProps, ThemeSize } from '@/types/shared';
+import type { ClassValue, HTMLComponentProps, StyledComponentProps, ThemeSize } from '../../types/shared';
 import type {
   DialogCloseProps,
   DialogDescriptionProps,

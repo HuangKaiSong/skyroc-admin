@@ -6,7 +6,7 @@ import type {
   AlertDialogProps as _AlertDialogProps,
   AlertDialogTitleProps as _AlertDialogTitleProps
 } from '@radix-ui/react-alert-dialog';
-import type { ClassValue, HTMLComponentProps, StyledComponentProps, ThemeColor } from '@/types/shared';
+import type { ClassValue, HTMLComponentProps, StyledComponentProps, ThemeColor } from '../../types/shared';
 import type { ButtonProps } from '../button';
 import type { DialogSlots } from './alert-dialog-variants';
 

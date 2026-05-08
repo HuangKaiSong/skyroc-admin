@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react';
 import type { GroupProps as _PanelGroupProps, Separator as PanelResizeHandle } from 'react-resizable-panels';
-import type { ClassValue, StyledComponentProps } from '@/types/shared';
+import type { ClassValue, StyledComponentProps } from '../../types/shared';
 import type { ResizableSlots } from './resizable-variants';
 
 /**

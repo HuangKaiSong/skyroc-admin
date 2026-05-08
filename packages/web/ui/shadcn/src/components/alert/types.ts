@@ -1,4 +1,4 @@
-import type { ClassValue, SlotProps, StyledComponentProps, ThemeColor } from '@/types/shared';
+import type { ClassValue, SlotProps, StyledComponentProps, ThemeColor } from '../../types/shared';
 import type { AlertSlots, AlertVariant } from './alert-variants';
 
 /**

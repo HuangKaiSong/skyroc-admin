@@ -1,4 +1,4 @@
-import type { ClassValue, HTMLComponentProps, ThemeColor, ThemeSize } from '@/types/shared';
+import type { ClassValue, HTMLComponentProps, ThemeColor, ThemeSize } from '../../types/shared';
 import type { BadgePosition, BadgeSlots } from './badge-variants';
 
 /**
@@ -74,4 +74,4 @@ export interface BadgeProps
   open?: boolean;
 }
 
-export { BadgePosition };
+export type { BadgePosition };

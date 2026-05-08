@@ -1,4 +1,4 @@
-import type { StyledComponentProps, ThemeColor } from '@/types/shared';
+import type { StyledComponentProps, ThemeColor } from '../../types/shared';
 import type { TagShape, TagVariant } from './tag-variants';
 
 /**

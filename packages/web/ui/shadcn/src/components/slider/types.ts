@@ -4,7 +4,7 @@ import type {
   SliderThumbProps as _SliderThumbProps,
   SliderTrackProps as _SliderTrackProps
 } from '@radix-ui/react-slider';
-import type { ClassValue, StyledComponentProps, ThemeColor } from '@/types/shared';
+import type { ClassValue, StyledComponentProps, ThemeColor } from '../../types/shared';
 import type { SliderSlots } from './slider-variants';
 
 /**

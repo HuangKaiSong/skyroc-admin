@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ClassValue, ThemeSize, WithClassName } from '@/types/shared';
+import type { ClassValue, ThemeSize, WithClassName } from '../../types/shared';
 import type { CardSlots } from './card-variants';
 
 /**

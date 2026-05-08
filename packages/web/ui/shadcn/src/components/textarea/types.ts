@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { ClassValue, HTMLComponentProps } from '@/types/shared';
+import type { ClassValue, HTMLComponentProps } from '../../types/shared';
 import type { TextareaSlots } from './textarea-variants';
 
 /**

@@ -6,7 +6,7 @@ import type {
   AccordionSingleProps,
   AccordionTriggerProps as _AccordionTriggerProps
 } from '@radix-ui/react-accordion';
-import type { ClassValue, SlotProps, StyledComponentProps, ThemeSize } from '@/types/shared';
+import type { ClassValue, SlotProps, StyledComponentProps, ThemeSize } from '../../types/shared';
 import type { AccordionSlots } from './accordion-variants';
 
 /**

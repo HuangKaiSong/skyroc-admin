@@ -138,8 +138,7 @@ const TreeVirtualizer = <T extends TreeItemData = TreeItemData>(props: TreeVirtu
     top,
     value: controlledValue,
     virtualizerRef,
-    width,
-    ..._rest
+    width
   } = props;
 
   const { virtualContainer, virtualContent } = treeVariants();

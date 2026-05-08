@@ -1,5 +1,5 @@
 import type { ComponentPropsWithRef, ReactNode } from 'react';
-import type { ClassValue, SlotProps, StyledComponentProps, ThemeSize } from '@/types/shared';
+import type { ClassValue, SlotProps, StyledComponentProps, ThemeSize } from '../../types/shared';
 import type { ListSlots } from './list-variants';
 
 /**

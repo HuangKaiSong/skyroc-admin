@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { HTMLComponentProps } from '@/types/shared';
+import type { HTMLComponentProps } from '../../types/shared';
 import type { KbdSize, KbdVariant } from './kbd-variants';
 
 /**

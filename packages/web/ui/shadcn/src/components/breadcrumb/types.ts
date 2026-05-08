@@ -1,4 +1,4 @@
-import type { ClassValue, HTMLComponentProps, SlotProps } from '@/types/shared';
+import type { ClassValue, HTMLComponentProps, SlotProps } from '../../types/shared';
 import type { DropdownMenuProps } from '../dropdown-menu';
 import type { BreadcrumbSlots } from './breadcrumb-variants';
 
