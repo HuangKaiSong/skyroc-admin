@@ -1,5 +1,5 @@
 import { useArray } from '@skyroc/hooks';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 
 import SkyrocAvatar from '@/components/SkyrocAvatar';
 
