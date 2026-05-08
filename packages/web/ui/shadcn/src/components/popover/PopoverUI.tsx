@@ -66,9 +66,9 @@ const PopoverUI = forwardRef<ComponentRef<typeof Content>, PopoverProps>((props,
       open={open}
       onOpenChange={onOpenChange}
     >
-      <PopoverAnchor {...anchorProps}>
-        <Trigger asChild>{trigger}</Trigger>
-      </PopoverAnchor>
+      {anchorProps ? <PopoverAnchor {...anchorProps} /> : null}
+
+      <Trigger asChild>{trigger}</Trigger>
 
       {disabledPortal
         ? content
