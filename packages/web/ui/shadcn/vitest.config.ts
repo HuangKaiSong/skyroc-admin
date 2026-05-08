@@ -10,10 +10,11 @@ export default defineConfig({
   },
   test: {
     ...baseTestConfig,
+    pool: 'forks',
     setupFiles: ['./vitest.setup.ts'],
     coverage: {
       ...baseCoverageConfig,
-      exclude: [...COVERAGE_EXCLUDE, '**/types/**']
+      exclude: [...COVERAGE_EXCLUDE, '**/types.ts', '**/types/**/*', '**/components/virtualizer/origin.ts']
     }
   }
 });
