@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
-import '../css/globals.css';
 import { getLocale } from 'next-intl/server';
+// oxlint-disable-next-line import/no-unassigned-import
+import '../css/globals.css';
+import Script from 'next/script';
 import config from '../config';
 import type { Locale } from '../i18n/config';
 
@@ -31,8 +33,27 @@ const descriptions: Record<Locale, string> = {
   zh: 'Skyroc UI 是一个现代化的 React UI 组件库，提供丰富的可定制组件。支持 CLI 一键复制源码和 NPM 包引入两种使用方式。'
 };
 
+const themeColorScript = `
+  try {
+    const themeColorElement = document.querySelector('meta[name="theme-color"]');
+
+    if (
+      themeColorElement
+      && (
+        localStorage.theme === 'dark'
+        || (
+          (!('theme' in localStorage) || localStorage.theme === 'system')
+          && window.matchMedia('(prefers-color-scheme: dark)').matches
+        )
+      )
+    ) {
+      themeColorElement.setAttribute('content', '${config.META_THEME_COLORS.dark}');
+    }
+  } catch (_) {}
+`;
+
 export async function generateMetadata(): Promise<Metadata> {
-  const locale = await getLocale() as Locale;
+  const locale = (await getLocale()) as Locale;
   const description = descriptions[locale] || descriptions.en;
 
   return {
@@ -50,8 +71,8 @@ export async function generateMetadata(): Promise<Metadata> {
       index: true,
       follow: true,
       googleBot: {
-        'index': true,
-        'follow': true,
+        index: true,
+        follow: true,
         'max-video-preview': -1,
         'max-image-preview': 'large',
         'max-snippet': -1
@@ -96,39 +117,25 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 interface Props {
+  /** Page content rendered inside the global document shell. */
   children: React.ReactNode;
 }
 
-const RootLayout = async ({
-  children
-}: Props) => {
+const RootLayout = async (props: Props) => {
+  const { children } = props;
+
   const locale = await getLocale();
 
   return (
-    <html
-      suppressHydrationWarning
-      lang={locale}
-    >
+    <html suppressHydrationWarning lang={locale}>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                  document.querySelector('meta[name="theme-color"]').setAttribute('content', '${config.META_THEME_COLORS.dark}')
-                }
-              } catch (_) {}
-            `
-          }}
-        />
-
+        <meta content={config.META_THEME_COLORS.light} name="theme-color" />
+        <Script id="theme-color" strategy="beforeInteractive">
+          {themeColorScript}
+        </Script>
       </head>
 
-      <body
-        id="app"
-      >
-        {children}
-      </body>
+      <body id="app">{children}</body>
     </html>
   );
 };

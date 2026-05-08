@@ -1,7 +1,7 @@
 'use client';
 
 import { Component, Dock, Home } from 'lucide-react';
-import { Breadcrumb, BreadcrumbPage, DropdownMenu } from '@skyroc/web-ui';
+import { Breadcrumb, BreadcrumbLink, BreadcrumbPage, DropdownMenu } from '@skyroc/web-ui';
 import type { BreadcrumbItem, DropdownMenuOptionProps } from '@skyroc/web-ui';
 
 interface BreadcrumbItemWithDropdown extends BreadcrumbItem {
@@ -46,9 +46,9 @@ const BreadcrumbItemDropdown = () => {
               items={item.items}
               modal={false}
             >
-              <BreadcrumbPage className="cursor-pointer">
+              <BreadcrumbLink className="cursor-pointer">
                 {item.label}
-              </BreadcrumbPage>
+              </BreadcrumbLink>
             </DropdownMenu>
           );
         }
