@@ -3,9 +3,9 @@
 import { Card, VirtualList } from '@skyroc/web-ui';
 
 interface ListItem {
-  id: number;
   content: string;
   height: number;
+  id: number;
 }
 
 const data: ListItem[] = Array.from({ length: 5000 }, (_, i) => ({

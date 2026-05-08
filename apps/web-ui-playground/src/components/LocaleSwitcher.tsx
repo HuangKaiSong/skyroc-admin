@@ -2,8 +2,8 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import { ButtonIcon, DropdownMenu, Icon } from '@skyroc/web-ui';
-import { useRouter, usePathname } from '../i18n/navigation';
-import { locales, localeNames, type Locale } from '../i18n/config';
+import { usePathname, useRouter } from '../i18n/navigation';
+import { type Locale, localeNames, locales } from '../i18n/config';
 
 const LocaleSwitcher = () => {
   const t = useTranslations('header');

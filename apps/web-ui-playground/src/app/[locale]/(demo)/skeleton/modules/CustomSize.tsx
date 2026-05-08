@@ -1,6 +1,6 @@
 'use client';
 
-import { SkeletonContainer, Button, Badge } from '@skyroc/web-ui';
+import { Badge, Button, SkeletonContainer } from '@skyroc/web-ui';
 
 const CustomSize = () => {
   return (

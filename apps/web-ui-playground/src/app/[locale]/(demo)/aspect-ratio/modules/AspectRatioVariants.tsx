@@ -12,7 +12,7 @@ const AspectRatioVariants = () => {
 
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-      {ratios.map(({ ratio, label }) => (
+      {ratios.map(({ label, ratio }) => (
         <div key={label}>
           <AspectRatio
             className="bg-muted overflow-hidden rounded-md"

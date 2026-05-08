@@ -1,7 +1,7 @@
 'use client';
 
 import { Earth, Info, Rocket } from 'lucide-react';
-import { Card, Accordion, Tag } from '@skyroc/web-ui';
+import { Accordion, Card, Tag } from '@skyroc/web-ui';
 import type { AccordionItemData, ThemeSize } from '@skyroc/web-ui';
 
 const items: AccordionItemData[] = [

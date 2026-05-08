@@ -51,7 +51,7 @@ const TreeBasic = () => {
           classNames={{
             item: 'flex items-center py-1 px-2 my-0.5 rounded outline-none focus:ring-primary/50 focus:ring-2 data-[selected]:bg-primary/15'
           }}
-          renderItem={({ item, isExpanded, hasChildren }) => {
+          renderItem={({ hasChildren, isExpanded, item }) => {
             return (
               <>
                 {hasChildren ? (

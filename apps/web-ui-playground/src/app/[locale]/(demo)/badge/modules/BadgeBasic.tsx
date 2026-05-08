@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Badge } from '@skyroc/web-ui';
+import { Badge, Button } from '@skyroc/web-ui';
 
 const BadgeBasic = () => {
   return (

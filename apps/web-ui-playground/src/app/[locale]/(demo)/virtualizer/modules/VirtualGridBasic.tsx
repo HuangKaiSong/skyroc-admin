@@ -3,8 +3,8 @@
 import { Card, VirtualGrid } from '@skyroc/web-ui';
 
 interface GridItem {
-  id: number;
   content: string;
+  id: number;
 }
 
 const data: GridItem[] = Array.from({ length: 10000 }, (_, i) => ({

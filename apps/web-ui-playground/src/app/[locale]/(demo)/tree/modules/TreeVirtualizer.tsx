@@ -60,7 +60,7 @@ const TreeVirtualizerDemo = () => {
           classNames={{
             item: 'flex items-center gap-2 px-2 py-1.5 outline-none data-[selected]:bg-primary/15'
           }}
-          renderItem={({ item, isExpanded, hasChildren }) => {
+          renderItem={({ hasChildren, isExpanded, item }) => {
             const data = item.data as DemoTreeItem;
             return (
               <>

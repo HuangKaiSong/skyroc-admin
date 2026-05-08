@@ -17,7 +17,7 @@ const data: ListItem[] = Array.from({ length: 10000 }, (_, i) => ({
 const VirtualizerHook = () => {
   const parentRef = useRef<VirtualizerList>(null);
 
-  function scrollToIndex(index: number, { align = 'start' }: { align?: 'start' | 'center' | 'end' }) {
+  function scrollToIndex(index: number, { align = 'start' }: { align?: 'center' | 'end' | 'start' }) {
     parentRef.current?.scrollToIndex(index, { align });
   }
 
@@ -45,7 +45,7 @@ const VirtualizerHook = () => {
         itemSize={40}
         ref={parentRef}
         width={300}
-        renderItem={({ item, index }) => (
+        renderItem={({ index, item }) => (
           <div className="hover:bg-accent absolute top-0 left-0 flex w-full items-center border-b px-4 transition-colors">
             <span className="text-muted-foreground font-mono text-xs">{String(index + 1).padStart(5, '0')}</span>
             <span className="ml-4">{item.name}</span>
