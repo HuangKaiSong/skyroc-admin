@@ -14,6 +14,7 @@ const DividerRoot = React.forwardRef<HTMLDivElement, DividerRootProps>((props, r
   return (
     <Root
       className={mergedCls}
+      orientation={orientation}
       {...rest}
       ref={ref}
     />
