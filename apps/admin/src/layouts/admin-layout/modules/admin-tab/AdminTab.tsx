@@ -6,7 +6,7 @@ import { useSettingsTheme } from '@skyroc/web-admin-theme';
 import { clsx } from 'clsx';
 import { useEffect } from 'react';
 
-import { isPC } from '@/utils/agent';
+import { isPC } from '@skyroc/utils';
 
 import { useAdminTab } from '../../state/tabs/use-admin-tab';
 import { useAdminState } from '../../state/use-admin-state';

@@ -1,4 +1,4 @@
-import { parseQuery } from '@skyroc/utils/query';
+import { parseQuery } from '@skyroc/utils';
 import { Form } from 'antd';
 import type { TablePaginationConfig } from 'antd';
 

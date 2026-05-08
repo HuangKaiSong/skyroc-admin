@@ -1,4 +1,4 @@
-import { stringifyQuery } from '@skyroc/utils/query';
+import { stringifyQuery } from '@skyroc/utils';
 import { useChildMatches } from '@tanstack/react-router';
 
 import { normalizePath } from '../menus/menu-generator';

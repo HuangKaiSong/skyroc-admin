@@ -1,4 +1,4 @@
-import { parseQuery, stringifyQuery } from '@skyroc/utils/query';
+import { parseQuery, stringifyQuery } from '@skyroc/utils';
 import { createRouter } from '@tanstack/react-router';
 
 import { queryClient } from '@/service/queryClient';
