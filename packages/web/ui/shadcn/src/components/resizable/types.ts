@@ -39,7 +39,7 @@ export interface ResizableHandleProps extends StyledComponentProps<ComponentProp
  *
  * @example
  * ```tsx
- * <ResizablePanelGroup direction="horizontal">
+ * <ResizablePanelGroup orientation="horizontal">
  *   <Panel defaultSize={50}>Left Panel</Panel>
  *   <ResizableHandle withHandle />
  *   <Panel defaultSize={50}>Right Panel</Panel>
