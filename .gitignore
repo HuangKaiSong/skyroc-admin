@@ -80,7 +80,7 @@ yarn-error.log*
 /.next/
 /out/
 .vercel
-/.source/
+.source/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
