@@ -15,6 +15,7 @@ const TabRoot = forwardRef<ComponentRef<typeof Root>, TabsRootProps>((props, ref
   return (
     <Root
       className={mergedCls}
+      orientation={orientation}
       {...rest}
       ref={ref}
     />
