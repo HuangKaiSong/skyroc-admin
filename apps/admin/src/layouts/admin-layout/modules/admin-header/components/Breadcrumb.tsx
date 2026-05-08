@@ -10,9 +10,10 @@ const itemRender: BreadcrumbProps['itemRender'] = (currentRoute, _, items) => {
   return isLast ? (
     <div className="flex-y-center text-base-text">{currentRoute.title}</div>
   ) : (
-    <Link className="flex-y-center hover:text-base-text!" to={currentRoute.path}>
+    <Link className="inline-flex! items-center whitespace-nowrap hover:text-base-text!" to={currentRoute.path}>
       {currentRoute.title}
     </Link>
+
   );
 };
 
