@@ -25,12 +25,12 @@ const InputUI = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const isDisabled = disabled || readOnly;
 
   function handleClear() {
-    if (interRef.current) {
-      interRef.current.value = '';
-      // Trigger onChange event
-      const event = new Event('input', { bubbles: true });
-      interRef.current.dispatchEvent(event);
-    }
+    const input = interRef.current!;
+
+    input.value = '';
+    // Trigger onChange event
+    const event = new Event('input', { bubbles: true });
+    input.dispatchEvent(event);
   }
 
   return (
