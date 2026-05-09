@@ -1,8 +1,7 @@
+import { useNotificationContext } from '@skyroc/web-admin-notification';
+import { useMockNotifications } from '@skyroc/web-admin-notification/mock';
 import { createFileRoute } from '@tanstack/react-router';
 import { Card, Space, Tooltip } from 'antd';
-
-import { useNotificationContext } from '@/features/chat';
-import { useMockNotifications } from '@/features/chat/use-mock-notifications';
 
 export const Route = createFileRoute('/(admin)/manage/user/')({
   component: RouteComponent,
