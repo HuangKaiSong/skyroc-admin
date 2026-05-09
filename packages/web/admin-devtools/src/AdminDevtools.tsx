@@ -1,14 +1,40 @@
+// oxlint-disable import/no-unassigned-import
 import type { TanStackDevtoolsReactInit, TanStackDevtoolsReactPlugin } from '@tanstack/react-devtools';
 import type { QueryClient } from '@tanstack/react-query';
 import type { AnyRouter } from '@tanstack/react-router';
 import type { DevToolsProps } from 'jotai-devtools';
 import type { Store } from 'jotai/vanilla/store';
+import type { CSSProperties } from 'react';
 
 import { useAtomsDevtools } from 'jotai-devtools/utils';
 import { Suspense, lazy, useMemo } from 'react';
 
+import './AdminDevtools.css';
+
 type TanStackDevtoolsConfig = NonNullable<TanStackDevtoolsReactInit['config']>;
 type AdminDevtoolsTheme = DevToolsProps['theme'];
+type AdminDevtoolsTriggerOffsetValue = number | string;
+
+export interface AdminJotaiDevtoolsTriggerOffset {
+  /** Distance from the bottom viewport edge for the floating trigger. */
+  bottom?: AdminDevtoolsTriggerOffsetValue;
+
+  /** Distance from the left viewport edge for the floating trigger. */
+  left?: AdminDevtoolsTriggerOffsetValue;
+
+  /** Distance from the right viewport edge for the floating trigger. */
+  right?: AdminDevtoolsTriggerOffsetValue;
+
+  /** Distance from the top viewport edge for the floating trigger. */
+  top?: AdminDevtoolsTriggerOffsetValue;
+}
+
+type JotaiDevtoolsTriggerOffsetStyle = CSSProperties & {
+  '--skyroc-jotai-devtools-trigger-bottom'?: string;
+  '--skyroc-jotai-devtools-trigger-left'?: string;
+  '--skyroc-jotai-devtools-trigger-right'?: string;
+  '--skyroc-jotai-devtools-trigger-top'?: string;
+};
 
 export interface AdminJotaiDevtoolsConfig {
   /** Redux DevTools connection name for the atom timeline. */
@@ -22,6 +48,9 @@ export interface AdminJotaiDevtoolsConfig {
 
   /** Whether to record atom changes in the Redux DevTools timeline. */
   timeline?: boolean;
+
+  /** Fixed trigger offsets for avoiding app chrome such as the admin sider. */
+  triggerOffset?: AdminJotaiDevtoolsTriggerOffset;
 }
 
 export interface AdminDevtoolsConfig {
@@ -115,6 +144,7 @@ const JotaiDevtools = (props: JotaiDevtoolsProps) => {
   const jotaiConfig = typeof config === 'object' ? config : {};
   const showPanel = jotaiConfig.panel !== false;
   const showTimeline = jotaiConfig.timeline !== false;
+  const triggerOffsetStyle = createJotaiDevtoolsTriggerOffsetStyle(jotaiConfig.triggerOffset);
 
   if (!showPanel && !showTimeline) {
     return null;
@@ -123,13 +153,46 @@ const JotaiDevtools = (props: JotaiDevtoolsProps) => {
   return (
     <>
       {showTimeline ? <JotaiAtomsDevtools name={jotaiConfig.name ?? 'skyroc-admin'} store={store} /> : null}
-      {showPanel ? <JotaiDevTools position={jotaiConfig.position} store={store} theme={theme} /> : null}
+      {showPanel ? (
+        <span
+          className="skyroc-admin-jotai-devtools"
+          data-position={jotaiConfig.position ?? 'bottom-left'}
+          style={triggerOffsetStyle}
+        >
+          <JotaiDevTools position={jotaiConfig.position} store={store} theme={theme} />
+        </span>
+      ) : null}
     </>
   );
 };
 
 function isEnabled(value: boolean | undefined) {
   return value !== false;
+}
+
+function formatCssSize(value: AdminDevtoolsTriggerOffsetValue | undefined) {
+  if (typeof value === 'number') {
+    return `${value}px`;
+  }
+
+  return value;
+}
+
+function createJotaiDevtoolsTriggerOffsetStyle(
+  offset: AdminJotaiDevtoolsTriggerOffset | undefined
+): JotaiDevtoolsTriggerOffsetStyle | undefined {
+  if (!offset) {
+    return undefined;
+  }
+
+  const { bottom, left, right, top } = offset;
+
+  return {
+    '--skyroc-jotai-devtools-trigger-bottom': formatCssSize(bottom),
+    '--skyroc-jotai-devtools-trigger-left': formatCssSize(left),
+    '--skyroc-jotai-devtools-trigger-right': formatCssSize(right),
+    '--skyroc-jotai-devtools-trigger-top': formatCssSize(top)
+  } satisfies JotaiDevtoolsTriggerOffsetStyle;
 }
 
 const AdminDevtools = (props: AdminDevtoolsProps) => {
