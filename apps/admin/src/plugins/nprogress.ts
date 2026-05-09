@@ -1,10 +1,13 @@
-import NProgress from 'nprogress';
+import { setupNProgress as setupRuntimeNProgress } from '@skyroc/web-admin-runtime';
+
+import { initNProgress } from '@/config';
 
 /** Setup plugin NProgress */
 export function setupNProgress() {
-  NProgress.configure({ easing: 'ease', speed: 500, parent: '.root' });
-
-  // mount on window
-
-  initNProgress(NProgress);
+  setupRuntimeNProgress({
+    easing: 'ease',
+    onReady: initNProgress,
+    parent: '.root',
+    speed: 500
+  });
 }

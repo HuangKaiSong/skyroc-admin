@@ -1,10 +1,9 @@
-import { extend } from 'dayjs';
-import localeData from 'dayjs/plugin/localeData';
+import { setupDayjs as setupRuntimeDayjs } from '@skyroc/web-admin-runtime';
 
 import { setDayjsLocale } from '../locales/dayjs';
 
 export function setupDayjs() {
-  extend(localeData);
-
-  setDayjsLocale();
+  setupRuntimeDayjs({
+    syncLocale: setDayjsLocale
+  });
 }

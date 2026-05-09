@@ -1,0 +1,76 @@
+// oxlint-disable import/no-unassigned-import
+import { setupAdminLayouts } from '@skyroc/web-admin-layouts';
+import { setupTheme } from '@skyroc/web-admin-theme';
+import { ErrorBoundary as FallbackRender } from '@skyroc/web-ui-antd';
+import { createRoot } from 'react-dom/client';
+import { ErrorBoundary } from 'react-error-boundary';
+
+import { globalConfig } from '@/config';
+import { extras } from '@/features/menus/extras';
+import { menuNodeCallback } from '@/features/menus/menu-config';
+import { routeTree } from '@/features/router/routeTree.gen';
+import { queryMenusOptions } from '@/service/api/route/hooks';
+import { queryClient } from '@/service/queryClient';
+import { localStg } from '@/utils/storage';
+
+import App from './App';
+import { setupI18n } from './locales';
+import { setupAppVersionNotification } from './plugins/app';
+import { setupDayjs } from './plugins/dayjs';
+import { setupIconifyOffline } from './plugins/iconify';
+import { setupNProgress } from './plugins/nprogress';
+import './plugins/assets';
+
+async function setupApp() {
+  const container = document.getElementById('app');
+
+  if (!container) return;
+
+  /**
+   * 主题初始化（模块级别，仅执行一次）
+   *
+   * 在任何组件读取主题 atom 之前完成： - 默认配置加载 - localStorage 缓存读取（生产环境） - 版本覆盖检测
+   */
+  setupTheme({
+    buildTime: BUILD_TIME,
+    isProd: import.meta.env.PROD,
+    storage: localStg
+  });
+
+  setupAdminLayouts({
+    defaultHome: globalConfig.defaultHome,
+    defaultIcon: globalConfig.defaultIcon,
+    extras,
+    loadDynamicRoutes: () => queryClient.ensureQueryData(queryMenusOptions()),
+    menuCategories: {
+      admin: {
+        key: 'admin',
+        layout: '/(admin)'
+      }
+    },
+    menuNodeCallback,
+    permissionSuperRole: import.meta.env.VITE_STATIC_SUPER_ROLE,
+    routeMode: globalConfig.routeMode,
+    routeTree,
+    storage: localStg
+  });
+
+  setupDayjs();
+
+  await setupI18n();
+
+  const root = createRoot(container);
+  root.render(
+    <ErrorBoundary FallbackComponent={FallbackRender}>
+      <App />
+    </ErrorBoundary>
+  );
+
+  setupNProgress();
+
+  setupIconifyOffline();
+
+  setupAppVersionNotification();
+}
+
+setupApp();
