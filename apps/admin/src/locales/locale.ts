@@ -1,3 +1,3 @@
-import { locales } from '@skyroc/i18n';
+import { locales } from '@skyroc/web-admin-i18n';
 
 export default locales;

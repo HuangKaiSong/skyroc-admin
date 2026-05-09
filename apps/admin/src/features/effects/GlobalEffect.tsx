@@ -1,4 +1,4 @@
-import { LangEffect } from '@skyroc/i18n';
+import { LangEffect } from '@skyroc/web-admin-i18n';
 import { ThemeEffect } from '@skyroc/web-admin-theme';
 
 const GlobalEffect = () => {

@@ -39,7 +39,7 @@
     "@skyroc/color": "workspace:*",
     "@skyroc/core-state": "workspace:*",
     "@skyroc/hooks": "workspace:*",
-    "@skyroc/i18n": "workspace:*",
+    "@skyroc/web-admin-i18n": "workspace:*",
     "@skyroc/logger": "workspace:*",
     "@skyroc/materials": "workspace:*",
     "@skyroc/utils": "workspace:*",

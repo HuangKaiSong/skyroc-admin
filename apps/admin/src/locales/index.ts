@@ -3,8 +3,8 @@ import {
   loadLocaleMessages as loadCoreLocaleMessages,
   reactI18nextInstance,
   setupI18n as setupCoreI18n
-} from '@skyroc/i18n';
-import type { LocaleSetupOptions } from '@skyroc/i18n';
+} from '@skyroc/web-admin-i18n';
+import type { LocaleSetupOptions } from '@skyroc/web-admin-i18n';
 
 import { globalConfig } from '@/config';
 import { localStg } from '@/utils/storage';

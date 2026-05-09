@@ -1,4 +1,4 @@
-import { useLang } from '@skyroc/i18n';
+import { useLang } from '@skyroc/web-admin-i18n';
 import { AntdProvider } from '@skyroc/web-admin-theme';
 import type { PropsWithChildren } from 'react';
 

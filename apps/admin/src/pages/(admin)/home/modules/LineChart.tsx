@@ -1,4 +1,4 @@
-import { useLang } from '@skyroc/i18n';
+import { useLang } from '@skyroc/web-admin-i18n';
 import { useEcharts } from '@/hooks/use-echarts';
 
 const LineChart = () => {

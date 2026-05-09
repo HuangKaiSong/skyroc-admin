@@ -2,7 +2,7 @@ import { FlipText } from '@skyroc/web-ui-compose';
 import { ThemeSchemaSwitch, useSettingsTheme } from '@skyroc/web-admin-theme';
 
 import SystemLogo from '@/components/SystemLogo';
-import { LangSwitch } from '@skyroc/i18n';
+import { LangSwitch } from '@skyroc/web-admin-i18n';
 
 const Header = memo(() => {
   const { t } = useTranslation();
