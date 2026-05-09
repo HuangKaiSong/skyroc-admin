@@ -6,14 +6,21 @@ import { useFullscreen } from 'ahooks';
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { GLOBAL_HEADER_MENU_ID } from '../../constant';
+import {
+  GLOBAL_HEADER_MENU_ID,
+  LAYOUT_MODE_HORIZONTAL,
+  LAYOUT_MODE_TOP_HYBRID_HEADER_FIRST,
+  LAYOUT_MODE_TOP_HYBRID_SIDEBAR_FIRST,
+  LAYOUT_MODE_VERTICAL,
+  LAYOUT_MODE_VERTICAL_HYBRID_HEADER_FIRST,
+  LAYOUT_MODE_VERTICAL_MIX
+} from '../../constant';
 import { useAdminLayoutContext } from '../../context';
 import MenuToggler from '../../state/menus/MenuToggler';
 import { useAdminMenus } from '../../state/menus/use-admin-menus';
 import { useAdminState } from '../../state/use-admin-state';
 import AdminSearch from '../admin-search/AdminSearch';
-import AdminLogo from '../AdminLogo';
-import { renderLogoComponent } from '../shared/logo';
+import LayoutLogo from '../shared/logo';
 
 import AdminBreadcrumb from './components/Breadcrumb';
 import ThemeButton from './components/ThemeButton';
@@ -37,32 +44,32 @@ const GlobalHeader = memo(() => {
   const mode = layout.mode;
 
   const HEADER_PROPS_CONFIG: Record<UnionKey.ThemeLayoutMode, App.Global.AdminLayout.HeaderProps> = {
-    vertical: {
+    [LAYOUT_MODE_VERTICAL]: {
       showLogo: false,
       showMenu: false,
       showMenuToggler: true
     },
-    'vertical-mix': {
+    [LAYOUT_MODE_VERTICAL_MIX]: {
       showLogo: false,
       showMenu: false,
       showMenuToggler: false
     },
-    'vertical-hybrid-header-first': {
+    [LAYOUT_MODE_VERTICAL_HYBRID_HEADER_FIRST]: {
       showLogo: !isActiveFirstLevelMenuHasChildren,
       showMenu: true,
       showMenuToggler: false
     },
-    horizontal: {
+    [LAYOUT_MODE_HORIZONTAL]: {
       showLogo: true,
       showMenu: true,
       showMenuToggler: false
     },
-    'top-hybrid-sidebar-first': {
+    [LAYOUT_MODE_TOP_HYBRID_SIDEBAR_FIRST]: {
       showLogo: true,
       showMenu: true,
       showMenuToggler: false
     },
-    'top-hybrid-header-first': {
+    [LAYOUT_MODE_TOP_HYBRID_HEADER_FIRST]: {
       showLogo: true,
       showMenu: true,
       showMenuToggler: isActiveFirstLevelMenuHasChildren
@@ -73,17 +80,17 @@ const GlobalHeader = memo(() => {
 
   const hasLogo = Boolean(logo || logoComponent || logoTitle);
 
-  function renderLogo() {
-    if (logoComponent) {
-      return renderLogoComponent(logoComponent, siderWidth);
-    }
-
-    return <AdminLogo logo={logo} title={logoTitle} to={logoTo} style={{ width: `${siderWidth}px` }} />;
-  }
-
   return (
     <DarkModeContainer className="h-full flex-y-center px-12px shadow-header">
-      {showLogo && hasLogo ? renderLogo() : null}
+      {showLogo && hasLogo ? (
+        <LayoutLogo
+          logo={logo}
+          logoComponent={logoComponent}
+          style={{ width: `${siderWidth}px` }}
+          title={logoTitle}
+          to={logoTo}
+        />
+      ) : null}
 
       {showMenuToggler && <MenuToggler />}
 
@@ -92,9 +99,11 @@ const GlobalHeader = memo(() => {
       </div>
 
       <div className="h-full flex-y-center justify-end">
-        <AdminSearch />
 
         {headerLeftActions}
+
+        <AdminSearch />
+
 
         {!isMobile && (
           <FullScreen
