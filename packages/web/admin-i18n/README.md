@@ -1,25 +1,25 @@
-# @skyroc/i18n
+# @skyroc/web-admin-i18n
 
-Internationalization core logic - Cross-platform support (Web + React Native).
+Admin web internationalization runtime and language UI.
 
 ## Features
 
-- Language switching logic
+- Language switching logic for the admin app
 - Language state management with Jotai
-- i18next configuration abstraction
+- i18next runtime setup for admin web
 - Type-safe language definitions
-- Cross-platform support (Web + React Native)
+- Admin language switch and locale side effects
 
 ## Installation
 
 ```bash
-pnpm add @skyroc/i18n
+pnpm add @skyroc/web-admin-i18n
 ```
 
 ## Usage
 
 ```tsx
-import { useLang } from '@skyroc/i18n';
+import { useLang } from '@skyroc/web-admin-i18n';
 
 function LanguageSelector() {
   const { locale, localeOptions, changeLocale } = useLang();
@@ -63,26 +63,18 @@ Hook for language management.
 }
 ```
 
-### initI18n(config)
+### setupI18n(options)
 
 Initialize i18next with configuration.
 
 ```typescript
-import { initI18n } from '@skyroc/i18n';
+import { setupI18n } from '@skyroc/web-admin-i18n';
 
-initI18n({
-  lng: 'zh-CN',
-  fallbackLng: 'en-US',
-  resources: {
-    'zh-CN': { translation: { ... } },
-    'en-US': { translation: { ... } }
-  }
+setupI18n({
+  defaultLocale: 'zh-CN',
+  fallbackLocale: 'en-US'
 });
 ```
-
-### storage
-
-Storage utility instance from @skyroc/storage.
 
 ## License
 
