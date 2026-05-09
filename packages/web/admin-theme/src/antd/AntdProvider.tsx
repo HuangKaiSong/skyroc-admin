@@ -52,7 +52,6 @@ const AntdProvider = (props: AntdProviderProps) => {
       button={{ classNames: { icon: 'align-1px  text-icon' } }}
       card={{ styles: { body: { flex: 1, overflow: 'hidden', padding: '12px 16px ' } } }}
       locale={locale}
-      menu={{ classNames: { item: '!items-center !flex' } }}
       modal={{ centered: true }}
       theme={antdTheme}
     >
