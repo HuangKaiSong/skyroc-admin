@@ -1,11 +1,12 @@
 import { FlipText } from '@skyroc/web-ui-compose';
-import { ThemeSchemaSwitch } from '@skyroc/web-admin-theme';
+import { ThemeSchemaSwitch, useSettingsTheme } from '@skyroc/web-admin-theme';
 
 import SystemLogo from '@/components/SystemLogo';
-import LangSwitch from '@/features/lang/LangSwitch';
+import { LangSwitch } from '@skyroc/i18n';
 
 const Header = memo(() => {
   const { t } = useTranslation();
+  const { header } = useSettingsTheme();
 
   return (
     <header className="flex-y-center justify-between">
@@ -15,7 +16,7 @@ const Header = memo(() => {
 
       <div className="i-flex-col">
         <ThemeSchemaSwitch className="text-xl lt-sm:text-lg" showTooltip={false} />
-        <LangSwitch showTooltip={false} />
+        <LangSwitch showTooltip={false} visible={header.multilingual.visible} />
       </div>
     </header>
   );

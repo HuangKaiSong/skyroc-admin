@@ -1,10 +1,9 @@
+import { useLang } from '@skyroc/i18n';
 import { AntdProvider } from '@skyroc/web-admin-theme';
 import type { PropsWithChildren } from 'react';
 
 import { antdLocales } from '@/locales/antd';
 import { useUserInfoQuery } from '@/service/api';
-
-import { useLang } from '../lang/use-lang';
 
 const AppAntdProvider = (props: PropsWithChildren) => {
   const { children } = props;
