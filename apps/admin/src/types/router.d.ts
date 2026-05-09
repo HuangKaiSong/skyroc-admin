@@ -6,4 +6,9 @@ declare namespace Router {
   type RoutePath = keyof import('@/features/router/routeTree.gen').FileRoutesByTo;
 
   type Extra = import('@/features/menus/extras').ExtraKey;
+
+  interface RouterContext {
+    getHomeRoute: () => RoutePath;
+    homeRoute: RoutePath;
+  }
 }

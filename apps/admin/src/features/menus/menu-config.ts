@@ -6,7 +6,7 @@
  * 优势： - 将菜单逻辑从 config.ts 分离，保持配置文件简洁 - 便于维护和扩展菜单配置 - 支持模块化组织菜单
  */
 
-import type { MenuNodeCallback } from './menu-generator';
+import type { MenuNodeCallback } from '@skyroc/web-admin-layouts';
 
 /**
  * 主菜单节点回调函数

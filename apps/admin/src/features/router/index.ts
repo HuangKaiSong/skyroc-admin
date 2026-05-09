@@ -1,6 +1,7 @@
 import { parseQuery, stringifyQuery } from '@skyroc/utils';
 import { createRouter } from '@tanstack/react-router';
 
+import { globalConfig } from '@/config';
 import { queryClient } from '@/service/queryClient';
 
 import { routeTree } from './routeTree.gen';
@@ -17,6 +18,8 @@ export const router = createRouter({
   context: {
     initAuth: () => Promise.resolve(null),
     clearAuth: () => {},
+    getHomeRoute: () => globalConfig.defaultHome,
+    homeRoute: globalConfig.defaultHome,
     isAuthInitialized: false,
     isLoggedIn: false,
     queryClient,

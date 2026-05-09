@@ -16,9 +16,13 @@ const LoginSearchSchema = z.object({
 export const Route = createFileRoute('/(auth)/login')({
   component: LoginLayout,
   validateSearch: LoginSearchSchema,
-  beforeLoad: ({ context, search }) => {
+  beforeLoad: async ({ context, search }) => {
     if (context.isLoggedIn) {
-      throw redirect({ to: search.redirect || globalConfig.defaultHome });
+      if (!context.isAuthInitialized) {
+        await context.initAuth();
+      }
+
+      throw redirect({ to: search.redirect || context.getHomeRoute() });
     }
   },
   staticData: {

@@ -1,9 +1,9 @@
 import { parseQuery } from '@skyroc/utils';
+import { useAdminState } from '@skyroc/web-admin-layouts';
 import { Form } from 'antd';
 import type { TablePaginationConfig } from 'antd';
 
 import { useRoute } from '@/features/router/use-route';
-import { useAdminState } from '@/layouts/admin-layout/state/use-admin-state';
 
 import { useHookTable } from './hooks';
 import type {

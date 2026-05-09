@@ -1,13 +1,12 @@
+import { cacheTabs, useMenus } from '@skyroc/web-admin-layouts';
 import { atom, useAtom } from 'jotai';
 import { flushSync } from 'react-dom';
 
-import { cacheTabs } from '@/layouts/admin-layout/state/tabs/use-admin-tab';
 import { AUTH_QUERY_KEYS, queryUserInfoOptions } from '@/service/api';
 import { queryClient } from '@/service/queryClient';
 import { localStg } from '@/utils/storage';
 
 import { globalStore } from '@skyroc/core-state';
-import { useMenus } from '../menus/use-menus';
 
 import { clearAuthStorage, getToken } from './shared';
 
@@ -38,13 +37,13 @@ export const useAuth = () => {
 
   const userInfo = queryClient.getQueryData<Api.Auth.UserInfo>(AUTH_QUERY_KEYS.USER_INFO);
 
-  const { clearMenus, initMenus } = useMenus();
+  const { clearMenus, getHomeRoute, home, initMenus } = useMenus();
 
   async function initAuth() {
     try {
       const data = await queryClient.ensureQueryData(queryUserInfoOptions());
 
-      await initMenus();
+      await initMenus(data);
 
       flushSync(() => {
         setState({ initialized: true });
@@ -77,6 +76,8 @@ export const useAuth = () => {
     userInfo,
     isLoggedIn,
     clearAuth,
+    getHomeRoute,
+    homeRoute: home,
     initMenus,
     initAuth,
     isAuthInitialized: state.initialized,

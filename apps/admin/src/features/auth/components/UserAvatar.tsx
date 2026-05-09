@@ -1,10 +1,14 @@
+import { showConfirmModal } from '@skyroc/web-admin-theme';
 import { ButtonIcon } from '@skyroc/web-ui-antd';
 import { SvgIcon } from '@skyroc/web-ui-compose';
 import { useLocation, useNavigate } from '@tanstack/react-router';
-import type { MenuProps } from 'antd';
+import { Button as AButton, Dropdown as ADropdown, type MenuProps } from 'antd';
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { useAuth } from '@/features/auth/use-auth';
 import { useUserInfoQuery } from '@/service/api';
+
+import { useAuth } from '../use-auth';
 
 const UserAvatar = memo(() => {
   const { isLoggedIn } = useAuth();

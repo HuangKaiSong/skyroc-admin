@@ -17,7 +17,7 @@ declare namespace Api {
       routes: BackendRoute[];
     }
 
-    interface BackendRoute extends Omit<Router.Meta, 'permissions'> {
+    interface BackendRoute extends Router.Meta {
       children?: BackendRoute[];
 
       id: string;

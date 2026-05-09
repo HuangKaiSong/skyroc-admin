@@ -1,4 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
+import { Badge as ABadge } from 'antd';
 
 const Demo = () => {
   return <ABadge count={25} />;

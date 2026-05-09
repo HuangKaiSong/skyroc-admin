@@ -1,7 +1,6 @@
 import { stringifyQuery } from '@skyroc/utils';
+import { normalizePath } from '@skyroc/web-admin-layouts';
 import { useChildMatches } from '@tanstack/react-router';
-
-import { normalizePath } from '../menus/menu-generator';
 
 export function useRoute() {
   const route = useChildMatches({
