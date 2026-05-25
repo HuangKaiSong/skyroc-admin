@@ -32,7 +32,7 @@ catalogs:
 
     # TypeScript 和构建工具
     typescript: ^6.0.3
-    vite: ^7.2.7
+    vite: ^8.0.14
 
     # 状态管理
     jotai: ^2.16.0
@@ -44,11 +44,14 @@ catalogs:
     '@types/node': ^24.10.2
     '@types/react': ^19.2.7
     '@types/react-dom': ^19.2.3
+    '@types/babel__core': ^7.20.5
     '@types/crypto-js': ^4.2.2
     '@types/nprogress': ^0.2.3
     '@types/qs': ^6.14.0
 
     # 构建和打包工具
+    '@babel/core': ^7.29.0
+    '@babel/template': ^7.28.6
     tsdown: ^0.18.2
     tsx: ^4.21.0
     turbo: ^2.7.1
@@ -87,12 +90,14 @@ catalogs:
     '@unocss/transformer-variant-group': ^66.5.10
 
     # Vite 插件
-    'vite-plugin-inspect': ^11.3.3
+    '@rolldown/plugin-babel': ^0.2.3
+    'vite-plugin-inspect': ^12.0.0-beta.2
     'vite-plugin-remove-console': ^2.2.0
     'vite-plugin-svg-icons': ^2.0.1
 
     # 其他开发工具
     'babel-plugin-react-compiler': ^1.0.0
+    'jotai-babel': ^0.1.0
     'unplugin-auto-import': ^20.3.0
     'unplugin-icons': ^22.5.0
     typed-css-modules: ^0.9.1
@@ -120,7 +125,7 @@ catalogs:
   # ==================== Web 前端专用 ====================
   web:
     # React Web 专用
-    '@vitejs/plugin-react': ^5.1.2
+    '@vitejs/plugin-react': 6.0.2
     '@tanstack/react-router': ^1.140.0
     '@tanstack/router-plugin': ^1.140.0
 
@@ -145,7 +150,7 @@ catalogs:
     'jotai-devtools': ^0.13.0
     '@tanstack/react-query-devtools': ^5.91.1
     '@tanstack/react-devtools': ^0.8.4
-    '@tanstack/devtools-vite': ^0.3.12
+    '@tanstack/devtools-vite': ^0.7.0
     '@tanstack/react-router-devtools': ^1.140.0
 
   # ==================== 共享工具库 ====================
