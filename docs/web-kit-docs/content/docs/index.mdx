@@ -16,6 +16,9 @@ Skyroc Web Kit 面向 Web 后台产品的界面工程层，负责把布局骨架
   <Card title="@skyroc/tailwind-plugin" href="/docs/tailwind-plugin">
     Tailwind CSS 主题插件，通过 CSS 变量注入语义颜色、圆角、字号、动画和高频 utility。
   </Card>
+  <Card title="@skyroc/web-admin-vite" href="/docs/admin-vite">
+    管理后台 Vite 预设包，收口构建产物、开发代理、路由插件、React 插件、图标插件、自动导入和应用级配置入口。
+  </Card>
   <Card title="Theme 系统概述" href="/docs/theme/overview">
     解释 OKLCH 色彩算法、Ant Design token 生成、React 主题状态和应用接入之间的分层关系。
   </Card>
@@ -33,6 +36,7 @@ Skyroc Web Kit 面向 Web 后台产品的界面工程层，负责把布局骨架
 | --- | --- |
 | 搭建后台主框架、固定 Header / Tab / Sider / Footer | `@skyroc/materials` |
 | 需要路由标签页，且要支持 Button / Chrome / Slider 风格 | `@skyroc/materials` 的 `PageTab` |
+| 需要统一 Vite 构建、开发代理、路由插件、图标插件和自动导入 | `@skyroc/web-admin-vite` |
 | 需要把 Skyroc 主题变量注入 Tailwind | `@skyroc/tailwind-plugin` |
 | 只需要 Ant Design 色板算法或 token 生成 | `@skyroc/adapter-antd-theme` |
 | 需要完整应用级主题状态、暗色模式、副作用和 Ant Design Provider | `@skyroc/web-admin-theme` |
@@ -51,4 +55,7 @@ Skyroc Web Kit 面向 Web 后台产品的界面工程层，负责把布局骨架
 
 @skyroc/materials
   在主题与基础 UI 之上沉淀后台布局材料和路由页签。
+
+@skyroc/web-admin-vite
+  收口后台应用的 Vite 配置、插件编排、代理规则和构建产物规则。
 ```
