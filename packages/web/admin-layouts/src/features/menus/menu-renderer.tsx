@@ -1,9 +1,12 @@
 import { BeyondHiding } from '@skyroc/web-ui-antd';
 import { I18nLabel, SvgIcon } from '@skyroc/web-ui-compose';
+import type { MenuProps } from 'antd';
 import { createElement } from 'react';
 
 import { getAdminLayoutsOptions } from '../../setup';
 import type { GeneratedMenu } from './menu-generator';
+
+type AntdMenuItems = NonNullable<MenuProps['items']>;
 
 function createMenuTitle(menu: GeneratedMenu) {
   return <I18nLabel fallback={menu.title} i18nKey={menu.i18nKey} />;
@@ -51,6 +54,19 @@ function renderMenu(menu: GeneratedMenu): Menu.CommonMenu {
   return commonMenu;
 }
 
+function createAntdMenuItem(menu: Menu.CommonMenu): AntdMenuItems[number] {
+  const { children, i18nKey: _, ...rest } = menu;
+
+  return {
+    ...rest,
+    children: children?.map(createAntdMenuItem)
+  } as AntdMenuItems[number];
+}
+
 export function renderCommonMenus(menus: GeneratedMenu[]) {
   return menus.map(renderMenu);
+}
+
+export function renderAntdMenuItems(menus: Menu.CommonMenu[]): AntdMenuItems {
+  return menus.map(createAntdMenuItem);
 }

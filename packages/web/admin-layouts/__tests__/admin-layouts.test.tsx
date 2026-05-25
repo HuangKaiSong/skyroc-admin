@@ -10,6 +10,7 @@ import {
 } from '../src/constant';
 
 vi.mock('@tanstack/react-router', () => ({
+  createLink: <T,>(Component: T) => Component,
   Link: (props: { children?: ReactNode; className?: string; style?: CSSProperties; to?: string }) => {
     const { children, className, style, to = '' } = props;
 
@@ -206,6 +207,40 @@ describe('menu generation', () => {
       title: 'Home'
     });
     expect(result.quickReferenceMenus.get('admin')?.get('/home')?.title).toBe('Home');
+  });
+});
+
+describe('menu rendering', () => {
+  it('strips runtime metadata before passing items to Ant Design Menu', async () => {
+    vi.resetModules();
+
+    const { renderAntdMenuItems } = await import('../src/features/menus/menu-renderer');
+
+    const items = renderAntdMenuItems([
+      {
+        children: [
+          {
+            i18nKey: 'route.manage_user' as I18n.I18nKey,
+            key: '/manage/user',
+            label: <span>User</span>,
+            title: 'User'
+          }
+        ],
+        i18nKey: 'route.manage' as I18n.I18nKey,
+        key: '/manage',
+        label: <span>Manage</span>,
+        title: 'Manage'
+      }
+    ]);
+
+    const [item] = items as unknown as Array<Record<string, unknown> & { children?: Array<Record<string, unknown>> }>;
+
+    expect(item).not.toHaveProperty('i18nKey');
+    expect(item.children?.[0]).not.toHaveProperty('i18nKey');
+    expect(item.children?.[0]).toMatchObject({
+      key: '/manage/user',
+      title: 'User'
+    });
   });
 });
 

@@ -12,6 +12,7 @@ import {
   LAYOUT_MODE_VERTICAL,
   LAYOUT_MODE_VERTICAL_MIX
 } from '../../../constant';
+import { renderAntdMenuItems } from '../../../features/menus/menu-renderer';
 import { useAdminMenus } from '../../../state/menus/use-admin-menus';
 import { useAdminState } from '../../../state/use-admin-state';
 
@@ -58,6 +59,8 @@ const VerticalMenu = memo(() => {
     menus = isTopHybridHeaderFirst ? secondLevelMenus : childLevelMenus;
   }
 
+  const menuItems = renderAntdMenuItems(menus);
+
   function handleClickMenu(menuInfo: Parameters<NonNullable<MenuProps['onSelect']>>[0]) {
     routerPushByKey(menuInfo.key);
   }
@@ -91,7 +94,7 @@ const VerticalMenu = memo(() => {
         className={clsx('h-full transition-300 border-0!', { 'bg-container!': !darkTheme })}
         inlineCollapsed={inlineCollapsed}
         inlineIndent={18}
-        items={menus as MenuProps['items']}
+        items={menuItems}
         mode="inline"
         openKeys={stateOpenKeys}
         selectedKeys={selectedKey}
