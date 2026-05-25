@@ -1,46 +1,47 @@
 import AutoImport from 'unplugin-auto-import/vite';
 import IconsResolver from 'unplugin-icons/resolver';
 
-import type { AdminViteIconEnv, AdminViteIconOptions } from '../types';
+import type { AdminViteIconOptions } from '../types';
 import { resolveAdminIconOptions } from './icon-utils';
 
 type AutoImportOptions = NonNullable<Parameters<typeof AutoImport>[0]>;
 
-export interface SetupAdminAutoImportOptions extends AdminViteIconOptions {
+export interface SetupAdminAutoImportAdminOptions extends AdminViteIconOptions {
   /** Whether Ant Design A-prefixed component auto import is enabled. */
   antd?: boolean;
-
-  /** Directories scanned for local auto imports. */
-  dirs?: AutoImportOptions['dirs'];
-
-  /** Declaration file path, or false to disable dts generation. */
-  dts?: AutoImportOptions['dts'];
-
-  /** Import presets passed to unplugin-auto-import. */
-  imports?: AutoImportOptions['imports'];
-
-  /** Include patterns passed to unplugin-auto-import. */
-  include?: AutoImportOptions['include'];
-
-  /** Extra resolvers appended after the admin defaults. */
-  resolvers?: AutoImportOptions['resolvers'];
 }
+
+export type SetupAdminAutoImportOptions = AutoImportOptions & SetupAdminAutoImportAdminOptions;
+
+export type ResolvedSetupAdminAutoImportOptions = SetupAdminAutoImportOptions;
+
+const ADMIN_AUTO_IMPORT_OPTION_KEYS = new Set([
+  'antd',
+  'collectionName',
+  'iconPrefix',
+  'localIconPath',
+  'localIconPrefix',
+  'scale',
+  'transformSvg'
+]);
 
 const TSR_SPLIT_RE = /\.[tj]sx?(\?.*)?$/;
 
-export function setupAdminAutoImport(env: AdminViteIconEnv, options: SetupAdminAutoImportOptions = {}) {
+export function setupAdminAutoImport(options: ResolvedSetupAdminAutoImportOptions = {}) {
+  const autoImportOptions = createAutoImportOptions(options);
   const {
-    antd = true,
     dirs = ['src/components/**', 'src/config.ts'],
     dts = 'src/types/auto-imports.d.ts',
     imports = ['react', { from: 'react', imports: ['FC'], type: true }, 'react-i18next', 'ahooks'],
     include = [TSR_SPLIT_RE],
     resolvers = []
-  } = options;
+  } = autoImportOptions;
+  const { antd = true } = options;
 
-  const iconOptions = resolveAdminIconOptions(env, options);
+  const iconOptions = resolveAdminIconOptions(options);
 
   return AutoImport({
+    ...autoImportOptions,
     dirs,
     dts,
     imports,
@@ -72,4 +73,10 @@ function normalizeResolvers(resolvers: AutoImportOptions['resolvers'] = []) {
   if (!Array.isArray(resolvers)) return [resolvers];
 
   return resolvers.flat();
+}
+
+function createAutoImportOptions(options: ResolvedSetupAdminAutoImportOptions): AutoImportOptions {
+  return Object.fromEntries(
+    Object.entries(options).filter(([key]) => !ADMIN_AUTO_IMPORT_OPTION_KEYS.has(key))
+  ) as AutoImportOptions;
 }

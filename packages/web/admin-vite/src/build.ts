@@ -68,13 +68,33 @@ export function createAdminBuildOptions(options: CreateAdminBuildOptionsOptions 
 
           return 'js/[name]-[hash].js';
         },
-        manualChunks: {
-          ...DEFAULT_MANUAL_CHUNKS,
-          ...manualChunks
-        }
+        manualChunks: createManualChunks(manualChunks)
       }
     }
   };
+}
+
+function createManualChunks(manualChunks: Record<string, string[]> = {}) {
+  const chunkGroups = {
+    ...DEFAULT_MANUAL_CHUNKS,
+    ...manualChunks
+  };
+
+  return (moduleId: string) => {
+    const normalizedModuleId = moduleId.replaceAll('\\', '/');
+
+    for (const [chunkName, packages] of Object.entries(chunkGroups)) {
+      if (packages.some(packageName => isPackageModule(normalizedModuleId, packageName))) {
+        return chunkName;
+      }
+    }
+
+    return undefined;
+  };
+}
+
+function isPackageModule(moduleId: string, packageName: string) {
+  return moduleId.includes(`/node_modules/${packageName.replaceAll('\\', '/')}/`);
 }
 
 export function createAdminScssPreprocessorOptions(additionalData: string) {

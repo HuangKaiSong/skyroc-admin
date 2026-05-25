@@ -1,13 +1,5 @@
 import type { PluginOption } from 'vite';
 
-export interface AdminViteIconEnv {
-  /** Local icon collection prefix, usually derived from the global icon prefix. */
-  VITE_ICON_LOCAL_PREFIX: string;
-
-  /** Icon component prefix used by unplugin-icons and auto import. */
-  VITE_ICON_PREFIX: string;
-}
-
 export interface AdminViteIconOptions {
   /** Resolved local icon collection name. */
   collectionName?: string;
@@ -36,4 +28,4 @@ export interface AdminVitePluginAppendOptions {
   prependPlugins?: PluginOption[];
 }
 
-export type MaybePluginConfig<T> = boolean | T;
+export type MaybePluginConfig<T> = false | T;

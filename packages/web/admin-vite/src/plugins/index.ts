@@ -3,8 +3,9 @@ import inspect from 'vite-plugin-inspect';
 import removeConsole from 'vite-plugin-remove-console';
 import type { PluginOption } from 'vite';
 
-import type { AdminViteIconEnv, AdminVitePluginAppendOptions, MaybePluginConfig } from '../types';
+import type { AdminVitePluginAppendOptions, MaybePluginConfig } from '../types';
 import { type SetupAdminAutoImportOptions, setupAdminAutoImport } from './auto-import';
+import { type SetupAdminBabelPluginOptions, setupAdminBabelPlugin } from './babel';
 import { type SetupAdminHtmlPluginOptions, setupAdminHtmlPlugin } from './html';
 import { type SetupAdminProjectInfoOptions, setupAdminProjectInfo } from './info';
 import { type SetupAdminReactPluginOptions, setupAdminReactPlugin } from './react';
@@ -16,6 +17,7 @@ type InspectOptions = NonNullable<Parameters<typeof inspect>[0]>;
 type RemoveConsoleOptions = NonNullable<Parameters<typeof removeConsole>[0]>;
 
 export * from './auto-import';
+export * from './babel';
 export * from './html';
 export * from './info';
 export * from './react';
@@ -26,6 +28,9 @@ export * from './unplugin-icon';
 export interface SetupAdminVitePluginsConfig extends AdminVitePluginAppendOptions {
   /** Auto import plugin config. */
   autoImport?: MaybePluginConfig<SetupAdminAutoImportOptions>;
+
+  /** Babel transform config for React Compiler and atom development helpers. */
+  babel?: MaybePluginConfig<SetupAdminBabelPluginOptions>;
 
   /** TanStack DevTools Vite plugin switch. */
   devtools?: boolean;
@@ -59,16 +64,14 @@ export interface SetupAdminVitePluginsOptions {
   /** Build time injected into html when html plugin is enabled. */
   buildTime: string;
 
-  /** Loaded Vite environment used by icon-related plugins. */
-  env: AdminViteIconEnv;
-
   /** Built-in plugin switches, options, and custom plugin insertion points. */
   plugins?: SetupAdminVitePluginsConfig;
 }
 
 export function setupAdminVitePlugins(options: SetupAdminVitePluginsOptions) {
-  const { buildTime, env, plugins: pluginConfig = {} } = options;
+  const { buildTime, plugins: pluginConfig = {} } = options;
   const plugins: PluginOption[] = [...(pluginConfig.prependPlugins ?? [])];
+  const enableReactPlugin = pluginConfig.react !== false;
 
   if (pluginConfig.devtools !== false) {
     plugins.push(devtools());
@@ -78,20 +81,24 @@ export function setupAdminVitePlugins(options: SetupAdminVitePluginsOptions) {
     plugins.push(...setupAdminRouterPlugins(resolvePluginOptions(pluginConfig.router)));
   }
 
-  if (pluginConfig.react !== false) {
+  if (enableReactPlugin) {
     plugins.push(setupAdminReactPlugin(resolvePluginOptions(pluginConfig.react)));
   }
 
+  if (pluginConfig.babel !== false && (enableReactPlugin || pluginConfig.babel)) {
+    plugins.push(setupAdminBabelPlugin(resolvePluginOptions(pluginConfig.babel)));
+  }
+
   if (pluginConfig.unocss !== false) {
-    plugins.push(setupAdminUnocss(env, resolvePluginOptions(pluginConfig.unocss)));
+    plugins.push(setupAdminUnocss(resolvePluginOptions(pluginConfig.unocss)));
   }
 
   if (pluginConfig.unpluginIcon !== false) {
-    plugins.push(...setupAdminUnpluginIcon(env, resolvePluginOptions(pluginConfig.unpluginIcon)));
+    plugins.push(...setupAdminUnpluginIcon(resolvePluginOptions(pluginConfig.unpluginIcon)));
   }
 
   if (pluginConfig.autoImport !== false) {
-    plugins.push(setupAdminAutoImport(env, resolvePluginOptions(pluginConfig.autoImport)));
+    plugins.push(setupAdminAutoImport(resolvePluginOptions(pluginConfig.autoImport)));
   }
 
   if (pluginConfig.html !== false) {
@@ -121,7 +128,7 @@ export function setupAdminVitePlugins(options: SetupAdminVitePluginsOptions) {
 }
 
 function resolvePluginOptions<T>(config: MaybePluginConfig<T> | undefined): T | undefined {
-  if (typeof config === 'object') return config;
+  if (config === false) return undefined;
 
-  return undefined;
+  return config;
 }

@@ -2,7 +2,7 @@ import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders';
 import { presetIcons } from '@unocss/preset-icons';
 import unocss from '@unocss/vite';
 
-import type { AdminViteIconEnv, AdminViteIconOptions } from '../types';
+import type { AdminViteIconOptions } from '../types';
 import { resolveAdminIconOptions } from './icon-utils';
 
 export interface SetupAdminUnocssOptions extends AdminViteIconOptions {
@@ -13,9 +13,11 @@ export interface SetupAdminUnocssOptions extends AdminViteIconOptions {
   warn?: boolean;
 }
 
-export function setupAdminUnocss(env: AdminViteIconEnv, options: SetupAdminUnocssOptions = {}) {
+export type ResolvedSetupAdminUnocssOptions = SetupAdminUnocssOptions;
+
+export function setupAdminUnocss(options: ResolvedSetupAdminUnocssOptions = {}) {
   const { extraProperties = { display: 'inline-block' }, warn = true } = options;
-  const iconOptions = resolveAdminIconOptions(env, options);
+  const iconOptions = resolveAdminIconOptions(options);
 
   return unocss({
     presets: [

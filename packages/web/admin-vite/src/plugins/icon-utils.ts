@@ -1,7 +1,9 @@
 import path from 'node:path';
 import process from 'node:process';
 
-import type { AdminViteIconEnv, AdminViteIconOptions } from '../types';
+import type { AdminViteIconOptions } from '../types';
+
+export type ResolveAdminIconOptions = AdminViteIconOptions;
 
 export interface ResolvedAdminViteIconOptions {
   /** Resolved local icon collection name. */
@@ -23,12 +25,9 @@ export interface ResolvedAdminViteIconOptions {
   transformSvg: (svg: string) => string;
 }
 
-export function resolveAdminIconOptions(
-  env: AdminViteIconEnv,
-  options: AdminViteIconOptions = {}
-): ResolvedAdminViteIconOptions {
-  const iconPrefix = options.iconPrefix ?? env.VITE_ICON_PREFIX;
-  const localIconPrefix = options.localIconPrefix ?? env.VITE_ICON_LOCAL_PREFIX;
+export function resolveAdminIconOptions(options: ResolveAdminIconOptions): ResolvedAdminViteIconOptions {
+  const iconPrefix = options.iconPrefix ?? 'icon';
+  const localIconPrefix = options.localIconPrefix ?? `${iconPrefix}-local`;
 
   return {
     collectionName: options.collectionName ?? localIconPrefix.replace(`${iconPrefix}-`, ''),

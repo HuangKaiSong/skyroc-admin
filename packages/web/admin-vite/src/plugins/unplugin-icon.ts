@@ -3,7 +3,7 @@ import Icons from 'unplugin-icons/vite';
 import type { PluginOption } from 'vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
-import type { AdminViteIconEnv, AdminViteIconOptions } from '../types';
+import type { AdminViteIconOptions } from '../types';
 import { resolveAdminIconOptions } from './icon-utils';
 
 export interface SetupAdminUnpluginIconOptions extends AdminViteIconOptions {
@@ -17,12 +17,11 @@ export interface SetupAdminUnpluginIconOptions extends AdminViteIconOptions {
   inject?: 'body-first' | 'body-last';
 }
 
-export function setupAdminUnpluginIcon(
-  env: AdminViteIconEnv,
-  options: SetupAdminUnpluginIconOptions = {}
-): PluginOption[] {
+export type ResolvedSetupAdminUnpluginIconOptions = SetupAdminUnpluginIconOptions;
+
+export function setupAdminUnpluginIcon(options: ResolvedSetupAdminUnpluginIconOptions = {}): PluginOption[] {
   const { customDomId = '__SVG_ICON_LOCAL__', defaultClass = 'inline-block', inject = 'body-last' } = options;
-  const iconOptions = resolveAdminIconOptions(env, options);
+  const iconOptions = resolveAdminIconOptions(options);
 
   return [
     createSvgIconsPlugin({
