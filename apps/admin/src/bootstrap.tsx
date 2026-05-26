@@ -11,7 +11,7 @@ import { menuNodeCallback } from '@/features/menus/menu-config';
 import { routeTree } from '@/features/router/routeTree.gen';
 import { queryMenusOptions } from '@/service/api/route/hooks';
 import { queryClient } from '@/service/queryClient';
-import { localStg } from '@/utils/storage';
+import { localStg, storagePrefix } from '@/utils/storage';
 
 import App from './App';
 import { setupI18n } from './locales';
@@ -33,8 +33,7 @@ async function setupApp() {
    */
   setupTheme({
     buildTime: BUILD_TIME,
-    isProd: import.meta.env.PROD,
-    storage: localStg
+    storagePrefix
   });
 
   setupAdminLayouts({
