@@ -29,15 +29,14 @@ pnpm add @skyroc/web-admin-theme jotai antd
 
 ```ts
 import { setupTheme } from '@skyroc/web-admin-theme';
-import { localStg } from '@/utils/storage';
+import { storagePrefix } from '@/utils/storage';
 
 setupTheme({
-  isProd: import.meta.env.PROD,
   buildTime: BUILD_TIME,
-  storage: localStg,
   overrides: {
     themeColor: '#6366F1'
-  }
+  },
+  storagePrefix
 });
 ```
 

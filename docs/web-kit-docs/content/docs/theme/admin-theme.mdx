@@ -61,19 +61,18 @@ pnpm add @skyroc/web-admin-theme jotai antd
 
 ```ts
 import { setupTheme } from '@skyroc/web-admin-theme';
-import { localStg } from '@/utils/storage';
+import { storagePrefix } from '@/utils/storage';
 
 setupTheme({
-  isProd: import.meta.env.PROD,
   buildTime: BUILD_TIME,        // vite define 注入的构建时间戳
-  storage: localStg,            // 存储适配器（需有 get / set 方法）
   overrides: {                  // 可选：新版本强制覆盖的配置项
     themeColor: '#6366F1'
-  }
+  },
+  storagePrefix
 });
 ```
 
-开发环境直接使用默认配置；生产环境从 localStorage 读取缓存，并通过 `buildTime` 检测是否需要应用版本覆盖。
+`isProd` 默认读取 `!__DEV__`，`storage` 默认使用带 `storagePrefix` 的 localStorage。`storagePrefix` 可由宿主传入，未传时默认 `SR_`。`buildTime` 仍由宿主传入，用于生产环境版本覆盖检测。开发环境直接使用默认配置；生产环境从 localStorage 读取缓存，并通过 `buildTime` 检测是否需要应用版本覆盖。
 
 ---
 
@@ -195,17 +194,19 @@ showNotification({ message: '任务完成', type: 'success' });
 ### setupTheme
 
 ```ts
-function setupTheme(options: SetupThemeOptions): void
+function setupTheme(options?: SetupThemeOptions): void
 
 interface SetupThemeOptions {
   /** 构建时间戳，用于检测是否需要应用版本覆盖 */
   buildTime?: string;
-  /** 是否生产环境，默认 false */
+  /** 是否生产环境，默认 !__DEV__ */
   isProd?: boolean;
   /** 版本覆盖配置，新版本发布时强制应用到用户缓存上 */
   overrides?: Partial<Theme.ThemeSetting>;
-  /** 存储适配器，需实现 get / set 方法 */
-  storage: { get: (...args: any[]) => any; set: (...args: any[]) => void };
+  /** 存储适配器，需实现 get / set 方法；默认使用 localStorage */
+  storage?: { get: (...args: any[]) => any; set: (...args: any[]) => void };
+  /** 默认 localStorage 适配器的 key 前缀，默认 SR_ */
+  storagePrefix?: string;
 }
 ```
 
