@@ -14,8 +14,7 @@ const ThemeEffect = () => {
     useTheme();
 
   function cacheThemeSettings() {
-    const isProd = import.meta.env.PROD;
-    if (!isProd) return;
+    if (__DEV__) return;
     getInternalStorage()?.set(STORAGE_KEYS.themeSettings, settings);
   }
 

@@ -19,10 +19,15 @@ function createStorageMock(initial: Record<string, unknown> = {}) {
 beforeEach(() => {
   // 重置 atom.init 避免测试间相互污染
   themeSettingsAtom.init = defaultThemeSettings;
+  window.localStorage.clear();
+  vi.stubGlobal('__DEV__', true);
 });
 
 afterEach(() => {
   themeSettingsAtom.init = defaultThemeSettings;
+  window.localStorage.clear();
+  vi.unstubAllEnvs();
+  vi.unstubAllGlobals();
 });
 
 describe('defineThemeOverrides', () => {
@@ -42,9 +47,61 @@ describe('setupTheme - 开发环境', () => {
     expect(storage.get).not.toHaveBeenCalled();
     expect(storage.set).not.toHaveBeenCalled();
   });
+
+  it('未传 isProd 时跟随 __DEV__', () => {
+    const storage = createStorageMock();
+
+    vi.stubGlobal('__DEV__', false);
+
+    setupTheme({
+      buildTime: '2025-01-01',
+      storage
+    });
+
+    expect(storage.get).toHaveBeenCalledWith('themeSettings');
+    expect(storage.set).toHaveBeenCalledWith('overrideThemeFlag', '2025-01-01');
+  });
 });
 
 describe('setupTheme - 生产环境', () => {
+  it('缺少 buildTime 时不写入版本覆盖标记', () => {
+    const storage = createStorageMock();
+
+    setupTheme({
+      isProd: true,
+      storage
+    });
+
+    expect(storage.get).toHaveBeenCalledWith('themeSettings');
+    expect(storage.get).not.toHaveBeenCalledWith('overrideThemeFlag');
+    expect(storage.set).not.toHaveBeenCalled();
+  });
+
+  it('未传 storage 时使用外部传入的 storagePrefix 创建默认 localStorage', () => {
+    vi.stubGlobal('__DEV__', false);
+
+    setupTheme({
+      buildTime: '2025-01-01',
+      overrides: { themeColor: '#ff0000' },
+      storagePrefix: 'skyroc__'
+    });
+
+    expect(window.localStorage.getItem('skyroc__overrideThemeFlag')).toBe(JSON.stringify('2025-01-01'));
+
+    const init = themeSettingsAtom.init as Theme.ThemeSetting;
+    expect(init.themeColor).toBe('#ff0000');
+  });
+
+  it('未传 storagePrefix 时使用默认存储前缀', () => {
+    vi.stubGlobal('__DEV__', false);
+
+    setupTheme({
+      buildTime: '2025-01-01'
+    });
+
+    expect(window.localStorage.getItem('SR_overrideThemeFlag')).toBe(JSON.stringify('2025-01-01'));
+  });
+
   it('无缓存时使用默认配置 + overrides，并写入 buildTime', () => {
     const storage = createStorageMock();
 

@@ -1,11 +1,21 @@
+import { createStorage } from '@skyroc/utils';
 import { defaultThemeSettings } from './config/default';
 import { themeSettingsAtom } from './hooks';
 import { mergeThemeSettings } from './utils/settings';
 
+const DEFAULT_THEME_STORAGE_PREFIX = 'SR_';
+
+interface ThemeStorageSchema {
+  darkMode: boolean;
+  overrideThemeFlag: string;
+  themeColor: string;
+  themeSettings: Theme.ThemeSetting;
+}
+
 /**
  * Storage adapter interface
  *
- * 与 createStorage 返回的对象兼容，直接传 localStg 即可。
+ * 与 createStorage 返回的对象兼容，也可以传宿主自定义 storage。
  */
 interface ThemeStorage {
   get: (...args: any[]) => any;
@@ -16,14 +26,17 @@ interface SetupThemeOptions {
   /** 当前构建时间，用于检测缓存覆盖（生产环境需要） */
   buildTime?: string;
 
-  /** 是否生产环境（默认 false） */
+  /** 是否生产环境（默认 !__DEV__） */
   isProd?: boolean;
 
   /** 主题配置覆盖项，发布新版本时可强制覆盖用户缓存的某些配置 */
   overrides?: Partial<Theme.ThemeSetting>;
 
-  /** 存储适配器，用于读写缓存的主题配置 */
-  storage: ThemeStorage;
+  /** 存储适配器，用于读写缓存的主题配置；传入后会优先于 storagePrefix */
+  storage?: ThemeStorage;
+
+  /** 默认存储适配器的 key 前缀 */
+  storagePrefix?: string;
 }
 
 let _storage: ThemeStorage | null = null;
@@ -40,19 +53,23 @@ export function getInternalStorage(): ThemeStorage | null {
  * @example
  *   ```ts
  *   import { setupTheme } from '@skyroc/web-admin-theme';
- *   import { localStg } from '@/utils/storage';
  *
  *   setupTheme({
- *     isProd: import.meta.env.PROD,
- *     buildTime: BUILD_TIME,
- *     storage: localStg
+ *     buildTime: BUILD_TIME
  *   });
  *   ```
  */
-export function setupTheme(options: SetupThemeOptions) {
-  const { buildTime, isProd = false, overrides, storage } = options;
+export function setupTheme(options: SetupThemeOptions = {}) {
+  const {
+    buildTime,
+    isProd = !__DEV__,
+    overrides,
+    storage,
+    storagePrefix = DEFAULT_THEME_STORAGE_PREFIX
+  } = options;
+  const themeStorage = storage ?? createDefaultStorage(storagePrefix);
 
-  _storage = storage;
+  _storage = themeStorage;
 
   // 开发环境：直接使用默认配置
   if (!isProd) {
@@ -61,19 +78,25 @@ export function setupTheme(options: SetupThemeOptions) {
   }
 
   // 生产环境：从缓存加载 + 版本覆盖检测
-  const cachedSettings = storage.get('themeSettings');
+  const cachedSettings = themeStorage.get('themeSettings');
 
   let settings = mergeThemeSettings(cachedSettings, defaultThemeSettings);
 
-  const isOverride = storage.get('overrideThemeFlag') === buildTime;
+  const isOverride = buildTime ? themeStorage.get('overrideThemeFlag') === buildTime : false;
 
   if (!isOverride) {
     settings = mergeThemeSettings(overrides, settings);
 
-    storage.set('overrideThemeFlag', buildTime);
+    if (buildTime) {
+      themeStorage.set('overrideThemeFlag', buildTime);
+    }
   }
 
   themeSettingsAtom.init = settings;
+}
+
+function createDefaultStorage(storagePrefix: string) {
+  return createStorage<ThemeStorageSchema>('local', storagePrefix);
 }
 
 /**
