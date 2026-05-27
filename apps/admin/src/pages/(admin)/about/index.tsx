@@ -97,6 +97,7 @@ export const Route = createFileRoute('/(admin)/about/')({
     title: 'about',
     i18nKey: 'route.about',
     menu: {
+      extra: 'ReleaseChannel',
       icon: 'fluent:book-information-24-regular',
       order: 22
     }

@@ -1,4 +1,6 @@
+import { useAdminMenuBadges } from '@skyroc/web-admin-layouts';
 import { createFileRoute } from '@tanstack/react-router';
+import { useEffect } from 'react';
 
 import CardData from './modules/CardData';
 import CreativityBanner from './modules/CreativityBanner';
@@ -7,20 +9,17 @@ import LineChart from './modules/LineChart';
 import PieChart from './modules/PieChart';
 import ProjectNews from './modules/ProjectNews';
 
-export const Route = createFileRoute('/(admin)/home/')({
-  component: Home,
-  staticData: {
-    i18nKey: 'route.home',
-    title: 'home',
-    menu: {
-      icon: 'mdi:monitor-dashboard',
-      order: 1,
-      extra: 'Demo'
-    }
-  }
-});
+const HOME_MENU_BADGE_KEY = 'home.updates';
 
-function Home() {
+const HOME_MENU_BADGE_COUNT = 25;
+
+const Home = () => {
+  const { setMenuBadgeValue } = useAdminMenuBadges();
+
+  useEffect(() => {
+    setMenuBadgeValue(HOME_MENU_BADGE_KEY, HOME_MENU_BADGE_COUNT);
+  }, []);
+
   return (
     <ASpace className="w-full" orientation="vertical" size={[16, 16]}>
       <HeaderBanner />
@@ -45,4 +44,20 @@ function Home() {
       </ARow>
     </ASpace>
   );
-}
+};
+
+export const Route = createFileRoute('/(admin)/home/')({
+  component: Home,
+  staticData: {
+    i18nKey: 'route.home',
+    title: 'home',
+    menu: {
+      icon: 'mdi:monitor-dashboard',
+      order: 1,
+      badge: {
+        type: 'normal',
+        valueKey: HOME_MENU_BADGE_KEY
+      }
+    }
+  }
+});
