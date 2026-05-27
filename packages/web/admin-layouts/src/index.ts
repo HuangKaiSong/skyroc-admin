@@ -17,7 +17,8 @@ export type {
   AdminLayoutsDynamicRoutes,
   AdminLayoutsOptions,
   AdminLayoutsStorage,
-  MenuNodeCallback
+  MenuNodeCallback,
+  MenuNodeConfig
 } from './setup';
 export { setupAdminLayouts } from './setup';
 export type { MenuBadgeValues } from './state/menus/use-admin-menu-badges';

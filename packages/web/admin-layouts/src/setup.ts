@@ -24,14 +24,15 @@ export interface AdminLayoutsDynamicRoutes {
   routes: Api.Route.BackendRoute[];
 }
 
+/** 菜单节点扩展配置，用于追加 divider、固定入口或项目级菜单节点。 */
+export type MenuNodeConfig = Partial<Omit<Api.Route.BackendRoute, 'layout' | 'parentId'>>;
+
 /**
  * 菜单节点回调函数类型，用于在特定路由节点添加额外菜单。
  *
  * @param routeId 当前路由 ID
  */
-export type MenuNodeCallback = (
-  routeId: Router.RouteId
-) => Partial<Omit<Api.Route.BackendRoute, 'layout' | 'parentId'>>[] | undefined;
+export type MenuNodeCallback = (routeId: Router.RouteId) => MenuNodeConfig[];
 
 export interface AdminLayoutsOptions {
   /** 默认首页路由。 */

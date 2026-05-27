@@ -268,7 +268,7 @@ describe('menu generation', () => {
     setupAdminLayouts({
       ...createBaseOptions(),
       menuNodeCallback: routeId => {
-        if (routeId !== '/(admin)') return undefined;
+        if (routeId !== '/(admin)') return [];
 
         return [
           {

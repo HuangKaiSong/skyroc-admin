@@ -92,6 +92,12 @@ function createEmptyCategoryMaps() {
   };
 }
 
+function getMenuNodeConfigs(routeId: Router.RouteId) {
+  const { menuNodeCallback } = getAdminLayoutsOptions();
+
+  return menuNodeCallback?.(routeId) ?? [];
+}
+
 /** 菜单生成器 */
 class MenuGenerator {
   generate(options: GenerateMenuOptions = {}): GenerateMenuResult {
@@ -165,7 +171,6 @@ class MenuGenerator {
     quickReferenceMenuMap: Menu.QuickReferenceMenuMap,
     userInfo?: Api.Auth.UserInfo | null
   ) {
-    const { menuNodeCallback } = getAdminLayoutsOptions();
     const children = layoutRoute.children as AnyRoute[] | undefined;
     const menuList = children
       ? children
@@ -173,9 +178,9 @@ class MenuGenerator {
           .filter(isGeneratedMenu)
       : [];
 
-    const extraMenus = menuNodeCallback?.(layoutRoute.id as Router.RouteId);
+    const extraMenus = getMenuNodeConfigs(layoutRoute.id as Router.RouteId);
 
-    if (extraMenus?.length) {
+    if (extraMenus.length) {
       menuList.push(
         ...extraMenus
           .map(menuConfig => this.createExtraMenu({ config: menuConfig, quickReferenceMenuMap }))
@@ -252,7 +257,6 @@ class MenuGenerator {
   }
 
   private generateStaticChildMenus(options: StaticChildMenusOptions) {
-    const { menuNodeCallback } = getAdminLayoutsOptions();
     const { depth, normalizedPath, parentKeys, quickReferenceMenuMap, route, userInfo } = options;
     const childMenus: GeneratedMenu[] = [];
 
@@ -272,9 +276,9 @@ class MenuGenerator {
       });
     }
 
-    const extraMenus = menuNodeCallback?.(route.id as Router.RouteId);
+    const extraMenus = getMenuNodeConfigs(route.id as Router.RouteId);
 
-    if (extraMenus?.length) {
+    if (extraMenus.length) {
       childMenus.push(
         ...extraMenus
           .map(menuConfig =>
@@ -299,7 +303,7 @@ class MenuGenerator {
     parentKeys: string[] = [],
     depth: number = 0
   ): GeneratedMenu | null {
-    const { defaultIcon, menuNodeCallback } = getAdminLayoutsOptions();
+    const { defaultIcon } = getAdminLayoutsOptions();
     const path = normalizePath(route.path) as Router.RoutePath;
     const data: Menu.QuickReferenceMenu = {
       ...route,
@@ -335,9 +339,9 @@ class MenuGenerator {
       .filter(isGeneratedMenu);
     const childMenus = children ?? [];
 
-    const extraMenus = menuNodeCallback?.(route.id as Router.RouteId);
+    const extraMenus = getMenuNodeConfigs(route.id as Router.RouteId);
 
-    if (extraMenus?.length) {
+    if (extraMenus.length) {
       childMenus.push(
         ...extraMenus
           .map(menuConfig =>
