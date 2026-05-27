@@ -65,7 +65,7 @@ setupAdminLayouts({
 | `routeTree` | TanStack Router 生成的静态路由树。 |
 | `routeMode` | `static` 从静态 route meta 生成菜单；`dynamic` 从后端路由数据生成菜单。 |
 | `loadDynamicRoutes` | 动态菜单加载器，仅动态模式需要。 |
-| `menuCategories` | 菜单分类到 layout route id 的映射。 |
+| `menuCategories` | 菜单分类配置。分类 key 标识一组菜单，`layout` 指向承载这组菜单的 TanStack layout route id。 |
 | `menuNodeCallback` | 给特定路由节点追加菜单项或 divider。 |
 | `extras` | 自定义菜单 extra 组件注册表。 |
 | `storage` | tabs、布局状态等本地缓存适配器。 |

@@ -51,6 +51,31 @@ renderCommonMenus(...)
 | `quickReferenceMenus` | `Map<categoryKey, Map<path, routeInfo>>`，用于根据路由快速定位菜单、tab、父级路径和激活项。 |
 | `home` | 当前用户首页。静态模式来自 `defaultHome`，动态模式可以由后端返回值覆盖。 |
 
+## 菜单分类
+
+`menuCategories` 不是业务菜单分组，也不是菜单数据本身。它描述的是“哪一组菜单归哪个后台 layout 管”。
+
+```ts
+setupAdminLayouts({
+  menuCategories: {
+    admin: {
+      key: 'admin',
+      layout: '/(admin)'
+    }
+  }
+});
+```
+
+这组配置有三个用途：
+
+| 场景 | 分类的作用 |
+| --- | --- |
+| 静态模式 | 通过 `layout` 找到 TanStack Router 的 layout route，只扫描该 layout 下的子路由生成菜单。 |
+| 动态模式 | 后端顶层 `BackendRoute.layout` 写分类 key，例如 `admin`，布局包据此把路由放进对应菜单组。 |
+| 渲染布局 | `AdminLayout` 通过 `categoryKey` 选择要读取的菜单组，未传时默认使用第一个分类。 |
+
+单后台应用通常只需要一个 `admin` 分类。只有多后台入口、多工作台，或同一个应用里需要多套独立菜单时，才需要增加第二个分类。
+
 ## GeneratedMenu
 
 ```ts
