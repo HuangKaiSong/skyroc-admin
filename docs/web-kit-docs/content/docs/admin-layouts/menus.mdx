@@ -237,25 +237,69 @@ staticData: {
 
 ## menuNodeCallback
 
-`menuNodeCallback` 用于给特定 route 节点追加额外菜单或 divider。它适合插入分割线、外部链接占位或项目级菜单节点。
+`menuNodeCallback` 是菜单生成阶段的扩展点，用于给某个 route 节点追加“不是 route 文件本身声明出来的菜单节点”。
+
+它适合这些场景：
+
+| 场景 | 说明 |
+| --- | --- |
+| 分割菜单区块 | 在某个 layout 或菜单节点下追加 `type: 'divider'`。 |
+| 追加项目级入口 | 追加由项目配置决定的菜单，例如固定功能入口、聚合入口或手写子菜单。 |
+| 复用同一套扩展逻辑 | 静态路由和动态路由都需要同样的额外节点时，放在一个 callback 里。 |
+
+不要把普通页面菜单写进 `menuNodeCallback`。普通页面应该优先通过静态 route 的 `staticData.menu` 或动态接口返回的 `menu` 声明。`menuNodeCallback` 只处理“路由树之外的补充节点”。
+
+`routeId` 表示当前正在生成菜单的 route 节点：
+
+| 模式 | `routeId` 来源 |
+| --- | --- |
+| 静态模式 | TanStack Router 的 route id，例如 `/(admin)`、`/(admin)/manage`。 |
+| 动态模式 | 后端 `BackendRoute.id`，例如 `system`。 |
+
+没有要追加的节点时返回空数组。
 
 ```ts
 import type { MenuNodeCallback } from '@skyroc/web-admin-layouts';
 
 export const menuNodeCallback: MenuNodeCallback = routeId => {
-  if (routeId === '/(admin)') {
-    return [
-      {
-        id: 'divider-1',
-        menu: {
-          type: 'divider',
-          order: 9
-        }
-      }
-    ];
-  }
+  if (routeId !== '/(admin)') return [];
 
-  return undefined;
+  return [
+    {
+      id: 'admin-feature-divider',
+      menu: {
+        order: 6,
+        type: 'divider'
+      }
+    },
+    {
+      id: 'admin-about-divider',
+      menu: {
+        order: 20,
+        type: 'divider'
+      }
+    }
+  ];
+};
+```
+
+普通扩展菜单需要提供可导航的 `path`，否则不会进入菜单树：
+
+```ts
+export const menuNodeCallback: MenuNodeCallback = routeId => {
+  if (routeId !== '/(admin)') return [];
+
+  return [
+    {
+      id: 'reports-overview',
+      menu: {
+        icon: 'mdi:file-chart-outline',
+        order: 30
+      },
+      path: '/reports',
+      title: 'reports'
+    }
+  ];
 };
 ```
 

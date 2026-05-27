@@ -456,28 +456,30 @@ cacheTabs();
 ## MenuNodeCallback
 
 ```ts
+type MenuNodeConfig = Partial<Omit<Api.Route.BackendRoute, 'layout' | 'parentId'>>;
+
 type MenuNodeCallback = (
   routeId: Router.RouteId
-) => Partial<Omit<Api.Route.BackendRoute, 'layout' | 'parentId'>>[] | undefined;
+) => MenuNodeConfig[];
 ```
+
+`menuNodeCallback` 用于在菜单生成阶段给指定 route 节点追加补充菜单。普通页面菜单优先写在 route `staticData.menu` 或后端 `BackendRoute.menu`；只有 divider、固定入口、聚合入口等“路由树之外的节点”才放在这里。
 
 示例：
 
 ```ts
 export const menuNodeCallback: MenuNodeCallback = routeId => {
-  if (routeId === '/(admin)') {
-    return [
-      {
-        id: 'divider-1',
-        menu: {
-          type: 'divider',
-          order: 9
-        }
-      }
-    ];
-  }
+  if (routeId !== '/(admin)') return [];
 
-  return undefined;
+  return [
+    {
+      id: 'admin-divider',
+      menu: {
+        order: 9,
+        type: 'divider'
+      }
+    }
+  ];
 };
 ```
 

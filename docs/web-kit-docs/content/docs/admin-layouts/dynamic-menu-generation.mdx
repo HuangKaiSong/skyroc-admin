@@ -191,23 +191,21 @@ const categoryKey = route.layout ?? defaultCategoryKey;
 
 后端路由可以通过 `children` 表达层级。每一层子菜单都会递归转换，并按 `menu.order` 升序排序。
 
-动态模式也会对每个 route id 调用 `menuNodeCallback`：
+动态模式也会对每个后端 route id 调用 `menuNodeCallback`。它适合追加后端路由树之外的 divider、固定入口或聚合入口；没有补充节点时返回空数组。
 
 ```ts
 export const menuNodeCallback: MenuNodeCallback = routeId => {
-  if (routeId === 'system') {
-    return [
-      {
-        id: 'system-divider',
-        menu: {
-          order: 50,
-          type: 'divider'
-        }
-      }
-    ];
-  }
+  if (routeId !== 'system') return [];
 
-  return undefined;
+  return [
+    {
+      id: 'system-divider',
+      menu: {
+        order: 50,
+        type: 'divider'
+      }
+    }
+  ];
 };
 ```
 

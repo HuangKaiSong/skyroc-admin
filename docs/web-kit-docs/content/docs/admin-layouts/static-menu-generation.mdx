@@ -166,23 +166,23 @@ hasRoutePermission(staticData, userInfo)
 - layout route 级别：给整个分类追加一级菜单或 divider。
 - 普通 route 级别：给某个菜单节点追加子菜单或 divider。
 
+它只适合追加路由树之外的补充节点。普通页面菜单仍应放在 route 的 `staticData.menu` 中。没有补充节点时返回空数组。
+
 ```ts
 import type { MenuNodeCallback } from '@skyroc/web-admin-layouts';
 
 export const menuNodeCallback: MenuNodeCallback = routeId => {
-  if (routeId === '/(admin)') {
-    return [
-      {
-        id: 'admin-divider',
-        menu: {
-          order: 9,
-          type: 'divider'
-        }
-      }
-    ];
-  }
+  if (routeId !== '/(admin)') return [];
 
-  return undefined;
+  return [
+    {
+      id: 'admin-divider',
+      menu: {
+        order: 9,
+        type: 'divider'
+      }
+    }
+  ];
 };
 ```
 
