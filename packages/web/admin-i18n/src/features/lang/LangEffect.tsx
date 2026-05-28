@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import type { LangType } from '../../types';
 
-import { useLang } from './use-lang';
+import { useLang } from '../../hooks/use-lang';
 
 interface LangEffectProps {
   /** Extra effect that should run after the active admin locale changes. */

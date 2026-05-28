@@ -1,9 +1,9 @@
+import { ButtonIcon } from '@skyroc/web-ui-antd';
 import { Dropdown } from 'antd';
 import type { MenuProps } from 'antd';
-import { ButtonIcon } from '@skyroc/web-ui-antd';
 import { useTranslation } from 'react-i18next';
 
-import { useLang } from './use-lang';
+import { useLang } from '../../hooks/use-lang';
 
 interface LangSwitchProps {
   /** Extra class name applied to the icon button. */
