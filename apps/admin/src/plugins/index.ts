@@ -3,13 +3,12 @@ import type { SetupDayjsOptions, SetupIconifyOfflineOptions, SetupNProgressOptio
 
 import { initNProgress } from '@/config';
 
-import { setDayjsLocale } from '../locales/dayjs';
 import { createAdminAppVersionNotificationPluginOptions } from './app';
 
 export * from './app';
 
 const adminDayjsPluginOptions = {
-  syncLocale: setDayjsLocale
+  withLocaleData: true
 } satisfies SetupDayjsOptions;
 
 const adminIconifyOfflinePluginOptions = {

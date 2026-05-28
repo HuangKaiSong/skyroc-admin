@@ -1,20 +1,10 @@
-import {
-  $t,
-  loadLocaleMessages as loadCoreLocaleMessages,
-  locales,
-  reactI18nextInstance,
-  setupI18n as setupCoreI18n
-} from '@skyroc/web-admin-i18n';
+import { setupI18n as setupCoreI18n } from '@skyroc/web-admin-i18n';
 import type { LocaleSetupOptions } from '@skyroc/web-admin-i18n';
+
 import { globalConfig } from '@/config';
 import { localStg } from '@/utils/storage';
 
-import { setDayjsLocale } from './dayjs';
-
-function syncThirdPartyLocale(lang: I18n.LangType) {
-  document.documentElement.lang = lang;
-  setDayjsLocale(lang);
-}
+export { $t } from '@skyroc/web-admin-i18n';
 
 /** Setup plugin i18n */
 export async function setupI18n(options: LocaleSetupOptions<I18n.LangType> = {}) {
@@ -23,21 +13,10 @@ export async function setupI18n(options: LocaleSetupOptions<I18n.LangType> = {})
     fallbackLocale: 'en-US',
     localeOptions: globalConfig.defaultLangOptions,
     missingWarn: import.meta.env.DEV,
-    onLocaleChange: syncThirdPartyLocale,
     storage: {
-      getLocale() {
-        return localStg.get('lang');
-      },
-      setLocale(lang) {
-        localStg.set('lang', lang);
-      }
+      getLocale: () => localStg.get('lang'),
+      setLocale: lang => localStg.set('lang', lang)
     },
     ...options
   });
 }
-
-export async function loadLocaleMessages(lang: I18n.LangType) {
-  await loadCoreLocaleMessages(lang);
-}
-
-export { $t, locales, reactI18nextInstance };
