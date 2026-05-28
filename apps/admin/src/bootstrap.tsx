@@ -16,10 +16,7 @@ import { localStg } from '@/utils/storage';
 
 import App from './App';
 import { setupI18n } from './locales';
-import { setupAppVersionNotification } from './plugins/app';
-import { setupDayjs } from './plugins/dayjs';
-import { setupIconifyOffline } from './plugins/iconify';
-import { setupNProgress } from './plugins/nprogress';
+import { setupAdminPlugins } from './plugins';
 import './plugins/assets';
 
 async function setupApp() {
@@ -33,7 +30,7 @@ async function setupApp() {
    * 在任何组件读取主题 atom 之前完成： - 默认配置加载 - localStorage 缓存读取（生产环境） - 版本覆盖检测
    */
   setupTheme({
-    buildTime: BUILD_TIME,
+    buildTime: BUILD_TIME
   });
 
   setupAdminLayouts({
@@ -49,7 +46,7 @@ async function setupApp() {
     storage: localStg
   });
 
-  setupDayjs();
+  setupAdminPlugins();
 
   await setupI18n();
 
@@ -59,12 +56,6 @@ async function setupApp() {
       <App />
     </ErrorBoundary>
   );
-
-  setupNProgress();
-
-  setupIconifyOffline();
-
-  setupAppVersionNotification();
 }
 
 setupApp();

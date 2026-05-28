@@ -1,4 +1,4 @@
-import { setupAppVersionNotification as setupRuntimeAppVersionNotification } from '@skyroc/web-admin-runtime';
+import type { SetupAppVersionNotificationOptions } from '@skyroc/web-admin-runtime';
 
 import { destroyNotification, globalConfig, showNotification } from '@/config';
 import { router } from '@/features/router';
@@ -7,8 +7,8 @@ import { $t } from '../locales';
 
 const UPDATE_NOTIFICATION_KEY = 'update-notification';
 
-export function setupAppVersionNotification() {
-  setupRuntimeAppVersionNotification({
+export function createAdminAppVersionNotificationPluginOptions(): SetupAppVersionNotificationOptions {
+  return {
     baseUrl: import.meta.env.VITE_BASE_URL || '/',
     currentBuildTime: BUILD_TIME,
     enabled: globalConfig.automaticallyDetectUpdate && import.meta.env.PROD,
@@ -43,5 +43,5 @@ export function setupAppVersionNotification() {
         title: $t('system.updateTitle')
       });
     }
-  });
+  };
 }
