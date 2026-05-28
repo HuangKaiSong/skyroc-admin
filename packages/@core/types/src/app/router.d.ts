@@ -42,6 +42,12 @@ declare global {
       /** Whether to cache the route */
       keepAlive?: boolean | null;
 
+      /** External link opened when the route is selected */
+      href?: string | null;
+
+      /** External page url rendered inside an iframe route */
+      url?: string | null;
+
       /**
        * Menu configuration of the route
        *
