@@ -1,11 +1,11 @@
 import {
   $t,
   loadLocaleMessages as loadCoreLocaleMessages,
+  locales,
   reactI18nextInstance,
   setupI18n as setupCoreI18n
 } from '@skyroc/web-admin-i18n';
 import type { LocaleSetupOptions } from '@skyroc/web-admin-i18n';
-
 import { globalConfig } from '@/config';
 import { localStg } from '@/utils/storage';
 
@@ -40,4 +40,4 @@ export async function loadLocaleMessages(lang: I18n.LangType) {
   await loadCoreLocaleMessages(lang);
 }
 
-export { $t, reactI18nextInstance };
+export { $t, locales, reactI18nextInstance };
