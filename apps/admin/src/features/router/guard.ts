@@ -1,4 +1,3 @@
-// oxlint-disable no-console
 import {
   hasAuthorizedRoutePath,
   hasMatchedRoutePermission,
@@ -11,6 +10,7 @@ interface AdminRouteGuardOptions {
   context: AdminRouteGuardContext;
   location: ParsedLocation;
   matches: AnyRouteMatch[];
+  preload?: boolean;
 }
 
 interface AdminRouteGuardContext {
@@ -44,6 +44,20 @@ function getCurrentRoutePath(matches: AnyRouteMatch[]) {
   return normalizePath(currentMatch.fullPath);
 }
 
+function getMatchedRouteHref(matches: AnyRouteMatch[]) {
+  return matches.findLast(match => match.staticData?.href)?.staticData?.href || null;
+}
+
+function getRouteSwitchFallbackPath(context: AdminRouteGuardContext, currentRoutePath: string | null) {
+  const homeRoute = normalizePath(context.homeRoute || context.getHomeRoute());
+
+  if (currentRoutePath !== homeRoute) {
+    return homeRoute;
+  }
+
+  return '/404';
+}
+
 async function resolveUserInfo(context: AdminRouteGuardContext) {
   if (context.isAuthInitialized && context.userInfo) {
     return context.userInfo;
@@ -53,9 +67,7 @@ async function resolveUserInfo(context: AdminRouteGuardContext) {
 }
 
 export async function guardAdminRoute(options: AdminRouteGuardOptions) {
-  const { context, location, matches } = options;
-
-  console.log('guardAdminRoute', context, location, matches);
+  const { context, location, matches, preload } = options;
 
   if (!context.isLoggedIn) {
     throw redirect({ to: '/login', search: getLoginRedirectSearch(location, context) });
@@ -77,5 +89,13 @@ export async function guardAdminRoute(options: AdminRouteGuardOptions) {
 
   if (currentRoutePath && !hasAuthorizedRoutePath(currentRoutePath, userInfo)) {
     throw redirect({ to: '/403' });
+  }
+
+  const href = getMatchedRouteHref(matches);
+
+  if (href && !preload) {
+    window.open(href, '_blank', 'noopener,noreferrer');
+
+    throw redirect({ to: getRouteSwitchFallbackPath(context, currentRoutePath), replace: true });
   }
 }

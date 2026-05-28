@@ -16,6 +16,8 @@ import { Route as errors404RouteImport } from './../../pages/(errors)/404'
 import { Route as errors403RouteImport } from './../../pages/(errors)/403'
 import { Route as authLoginOutRouteImport } from './../../pages/(auth)/login-out'
 import { Route as adminUserCenterRouteImport } from './../../pages/(admin)/user-center'
+import { Route as adminSoybeanDocsIframeRouteImport } from './../../pages/(admin)/soybean-docs-iframe'
+import { Route as adminSoybeanDocsRouteImport } from './../../pages/(admin)/soybean-docs'
 import { Route as authLoginLayoutRouteImport } from './../../pages/(auth)/login/layout'
 import { Route as adminMultiMenuLayoutRouteImport } from './../../pages/(admin)/multi-menu/layout'
 import { Route as adminManageLayoutRouteImport } from './../../pages/(admin)/manage/layout'
@@ -41,6 +43,7 @@ import { Route as adminManageRoleIndexRouteImport } from './../../pages/(admin)/
 import { Route as adminManageMenuIndexRouteImport } from './../../pages/(admin)/manage/menu/index'
 import { Route as adminMultiMenuFirstChildRouteImport } from './../../pages/(admin)/multi-menu/first/child'
 import { Route as adminManageUserIdRouteImport } from './../../pages/(admin)/manage/user/$id'
+import { Route as adminBuiltinIframePageUrlRouteImport } from './../../pages/(admin)/_builtin/iframe-page/$url'
 import { Route as adminMultiMenuSecondChildLayoutRouteImport } from './../../pages/(admin)/multi-menu/second/child/layout'
 import { Route as adminMultiMenuSecondChildIndexRouteImport } from './../../pages/(admin)/multi-menu/second/child/index'
 import { Route as adminMultiMenuSecondChildHomeRouteImport } from './../../pages/(admin)/multi-menu/second/child/home'
@@ -77,6 +80,16 @@ const authLoginOutRoute = authLoginOutRouteImport.update({
 const adminUserCenterRoute = adminUserCenterRouteImport.update({
   id: '/user-center',
   path: '/user-center',
+  getParentRoute: () => adminLayoutRoute,
+} as any)
+const adminSoybeanDocsIframeRoute = adminSoybeanDocsIframeRouteImport.update({
+  id: '/soybean-docs-iframe',
+  path: '/soybean-docs-iframe',
+  getParentRoute: () => adminLayoutRoute,
+} as any)
+const adminSoybeanDocsRoute = adminSoybeanDocsRouteImport.update({
+  id: '/soybean-docs',
+  path: '/soybean-docs',
   getParentRoute: () => adminLayoutRoute,
 } as any)
 const authLoginLayoutRoute = authLoginLayoutRouteImport.update({
@@ -209,6 +222,12 @@ const adminManageUserIdRoute = adminManageUserIdRouteImport.update({
   path: '/user/$id',
   getParentRoute: () => adminManageLayoutRoute,
 } as any)
+const adminBuiltinIframePageUrlRoute =
+  adminBuiltinIframePageUrlRouteImport.update({
+    id: '/_builtin/iframe-page/$url',
+    path: '/iframe-page/$url',
+    getParentRoute: () => adminLayoutRoute,
+  } as any)
 const adminMultiMenuSecondChildLayoutRoute =
   adminMultiMenuSecondChildLayoutRouteImport.update({
     id: '/child',
@@ -234,6 +253,8 @@ export interface FileRoutesByFullPath {
   '/manage': typeof adminManageLayoutRouteWithChildren
   '/multi-menu': typeof adminMultiMenuLayoutRouteWithChildren
   '/login': typeof authLoginLayoutRouteWithChildren
+  '/soybean-docs': typeof adminSoybeanDocsRoute
+  '/soybean-docs-iframe': typeof adminSoybeanDocsIframeRoute
   '/user-center': typeof adminUserCenterRoute
   '/login-out': typeof authLoginOutRoute
   '/403': typeof errors403Route
@@ -254,6 +275,7 @@ export interface FileRoutesByFullPath {
   '/multi-menu/': typeof adminMultiMenuIndexRoute
   '/login/': typeof authLoginIndexRoute
   '/multi-menu/second/child': typeof adminMultiMenuSecondChildLayoutRouteWithChildren
+  '/iframe-page/$url': typeof adminBuiltinIframePageUrlRoute
   '/manage/user/$id': typeof adminManageUserIdRoute
   '/multi-menu/first/child': typeof adminMultiMenuFirstChildRoute
   '/manage/menu/': typeof adminManageMenuIndexRoute
@@ -266,6 +288,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/soybean-docs': typeof adminSoybeanDocsRoute
+  '/soybean-docs-iframe': typeof adminSoybeanDocsIframeRoute
   '/user-center': typeof adminUserCenterRoute
   '/login-out': typeof authLoginOutRoute
   '/403': typeof errors403Route
@@ -283,6 +307,7 @@ export interface FileRoutesByTo {
   '/manage': typeof adminManageIndexRoute
   '/multi-menu': typeof adminMultiMenuIndexRoute
   '/login': typeof authLoginIndexRoute
+  '/iframe-page/$url': typeof adminBuiltinIframePageUrlRoute
   '/manage/user/$id': typeof adminManageUserIdRoute
   '/multi-menu/first/child': typeof adminMultiMenuFirstChildRoute
   '/manage/menu': typeof adminManageMenuIndexRoute
@@ -301,6 +326,8 @@ export interface FileRoutesById {
   '/(admin)/manage': typeof adminManageLayoutRouteWithChildren
   '/(admin)/multi-menu': typeof adminMultiMenuLayoutRouteWithChildren
   '/(auth)/login': typeof authLoginLayoutRouteWithChildren
+  '/(admin)/soybean-docs': typeof adminSoybeanDocsRoute
+  '/(admin)/soybean-docs-iframe': typeof adminSoybeanDocsIframeRoute
   '/(admin)/user-center': typeof adminUserCenterRoute
   '/(auth)/login-out': typeof authLoginOutRoute
   '/(errors)/403': typeof errors403Route
@@ -321,6 +348,7 @@ export interface FileRoutesById {
   '/(admin)/multi-menu/': typeof adminMultiMenuIndexRoute
   '/(auth)/login/': typeof authLoginIndexRoute
   '/(admin)/multi-menu/second/child': typeof adminMultiMenuSecondChildLayoutRouteWithChildren
+  '/(admin)/_builtin/iframe-page/$url': typeof adminBuiltinIframePageUrlRoute
   '/(admin)/manage/user/$id': typeof adminManageUserIdRoute
   '/(admin)/multi-menu/first/child': typeof adminMultiMenuFirstChildRoute
   '/(admin)/manage/menu/': typeof adminManageMenuIndexRoute
@@ -339,6 +367,8 @@ export interface FileRouteTypes {
     | '/manage'
     | '/multi-menu'
     | '/login'
+    | '/soybean-docs'
+    | '/soybean-docs-iframe'
     | '/user-center'
     | '/login-out'
     | '/403'
@@ -359,6 +389,7 @@ export interface FileRouteTypes {
     | '/multi-menu/'
     | '/login/'
     | '/multi-menu/second/child'
+    | '/iframe-page/$url'
     | '/manage/user/$id'
     | '/multi-menu/first/child'
     | '/manage/menu/'
@@ -371,6 +402,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/soybean-docs'
+    | '/soybean-docs-iframe'
     | '/user-center'
     | '/login-out'
     | '/403'
@@ -388,6 +421,7 @@ export interface FileRouteTypes {
     | '/manage'
     | '/multi-menu'
     | '/login'
+    | '/iframe-page/$url'
     | '/manage/user/$id'
     | '/multi-menu/first/child'
     | '/manage/menu'
@@ -405,6 +439,8 @@ export interface FileRouteTypes {
     | '/(admin)/manage'
     | '/(admin)/multi-menu'
     | '/(auth)/login'
+    | '/(admin)/soybean-docs'
+    | '/(admin)/soybean-docs-iframe'
     | '/(admin)/user-center'
     | '/(auth)/login-out'
     | '/(errors)/403'
@@ -425,6 +461,7 @@ export interface FileRouteTypes {
     | '/(admin)/multi-menu/'
     | '/(auth)/login/'
     | '/(admin)/multi-menu/second/child'
+    | '/(admin)/_builtin/iframe-page/$url'
     | '/(admin)/manage/user/$id'
     | '/(admin)/multi-menu/first/child'
     | '/(admin)/manage/menu/'
@@ -495,6 +532,20 @@ declare module '@tanstack/react-router' {
       path: '/user-center'
       fullPath: '/user-center'
       preLoaderRoute: typeof adminUserCenterRouteImport
+      parentRoute: typeof adminLayoutRoute
+    }
+    '/(admin)/soybean-docs-iframe': {
+      id: '/(admin)/soybean-docs-iframe'
+      path: '/soybean-docs-iframe'
+      fullPath: '/soybean-docs-iframe'
+      preLoaderRoute: typeof adminSoybeanDocsIframeRouteImport
+      parentRoute: typeof adminLayoutRoute
+    }
+    '/(admin)/soybean-docs': {
+      id: '/(admin)/soybean-docs'
+      path: '/soybean-docs'
+      fullPath: '/soybean-docs'
+      preLoaderRoute: typeof adminSoybeanDocsRouteImport
       parentRoute: typeof adminLayoutRoute
     }
     '/(auth)/login': {
@@ -672,6 +723,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof adminManageUserIdRouteImport
       parentRoute: typeof adminManageLayoutRoute
     }
+    '/(admin)/_builtin/iframe-page/$url': {
+      id: '/(admin)/_builtin/iframe-page/$url'
+      path: '/iframe-page/$url'
+      fullPath: '/iframe-page/$url'
+      preLoaderRoute: typeof adminBuiltinIframePageUrlRouteImport
+      parentRoute: typeof adminLayoutRoute
+    }
     '/(admin)/multi-menu/second/child': {
       id: '/(admin)/multi-menu/second/child'
       path: '/child'
@@ -800,18 +858,24 @@ interface adminLayoutRouteChildren {
   adminExceptionLayoutRoute: typeof adminExceptionLayoutRouteWithChildren
   adminManageLayoutRoute: typeof adminManageLayoutRouteWithChildren
   adminMultiMenuLayoutRoute: typeof adminMultiMenuLayoutRouteWithChildren
+  adminSoybeanDocsRoute: typeof adminSoybeanDocsRoute
+  adminSoybeanDocsIframeRoute: typeof adminSoybeanDocsIframeRoute
   adminUserCenterRoute: typeof adminUserCenterRoute
   adminAboutIndexRoute: typeof adminAboutIndexRoute
   adminHomeIndexRoute: typeof adminHomeIndexRoute
+  adminBuiltinIframePageUrlRoute: typeof adminBuiltinIframePageUrlRoute
 }
 
 const adminLayoutRouteChildren: adminLayoutRouteChildren = {
   adminExceptionLayoutRoute: adminExceptionLayoutRouteWithChildren,
   adminManageLayoutRoute: adminManageLayoutRouteWithChildren,
   adminMultiMenuLayoutRoute: adminMultiMenuLayoutRouteWithChildren,
+  adminSoybeanDocsRoute: adminSoybeanDocsRoute,
+  adminSoybeanDocsIframeRoute: adminSoybeanDocsIframeRoute,
   adminUserCenterRoute: adminUserCenterRoute,
   adminAboutIndexRoute: adminAboutIndexRoute,
   adminHomeIndexRoute: adminHomeIndexRoute,
+  adminBuiltinIframePageUrlRoute: adminBuiltinIframePageUrlRoute,
 }
 
 const adminLayoutRouteWithChildren = adminLayoutRoute._addFileChildren(

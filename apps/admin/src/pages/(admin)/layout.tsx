@@ -34,7 +34,7 @@ const AdminLayout = () => {
 
 export const Route = createFileRoute('/(admin)')({
   component: AdminLayout,
-  beforeLoad: async ({ context, location, matches }) => {
-    await guardAdminRoute({ context, location, matches });
+  beforeLoad: async ({ context, location, matches, preload }) => {
+    await guardAdminRoute({ context, location, matches, preload });
   }
 });
