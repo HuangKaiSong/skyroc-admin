@@ -188,7 +188,9 @@ describe('menu generation', () => {
                       icon: 'mdi:home',
                       order: 1
                     },
-                    title: 'Home'
+                    href: 'https://example.com/home',
+                    title: 'Home',
+                    url: 'https://example.com/embed-home'
                   }
                 }
               }
@@ -215,10 +217,16 @@ describe('menu generation', () => {
         variant: 'primary'
       },
       icon: 'mdi:home',
+      href: 'https://example.com/home',
       key: '/home',
-      title: 'Home'
+      title: 'Home',
+      url: 'https://example.com/embed-home'
     });
-    expect(result.quickReferenceMenus.get('admin')?.get('/home')?.title).toBe('Home');
+    expect(result.quickReferenceMenus.get('admin')?.get('/home')).toMatchObject({
+      href: 'https://example.com/home',
+      title: 'Home',
+      url: 'https://example.com/embed-home'
+    });
   });
 
   it('generates dynamic menus with badge metadata', async () => {
@@ -236,6 +244,7 @@ describe('menu generation', () => {
       backendRoutes: [
         {
           id: 'dynamic-home',
+          href: 'https://example.com/dynamic',
           menu: {
             badge: {
               type: 'dot',
@@ -244,7 +253,8 @@ describe('menu generation', () => {
             icon: 'mdi:home'
           },
           path: '/dynamic',
-          title: 'Dynamic'
+          title: 'Dynamic',
+          url: 'https://example.com/embed-dynamic'
         } as Api.Route.BackendRoute
       ]
     });
@@ -254,8 +264,10 @@ describe('menu generation', () => {
         type: 'dot',
         variant: 'success'
       },
+      href: 'https://example.com/dynamic',
       key: '/dynamic',
-      title: 'Dynamic'
+      title: 'Dynamic',
+      url: 'https://example.com/embed-dynamic'
     });
   });
 

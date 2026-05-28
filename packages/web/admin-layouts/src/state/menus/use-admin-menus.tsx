@@ -79,6 +79,11 @@ export const useAdminMenus = (categoryKey?: string) => {
     const newRoute = quickReferenceMenus?.get(key as Router.RoutePath);
 
     if (newRoute) {
+      if (newRoute.href) {
+        window.open(newRoute.href, '_blank', 'noopener,noreferrer');
+        return;
+      }
+
       navigate({
         to: newRoute.path
       });

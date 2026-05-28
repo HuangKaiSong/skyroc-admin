@@ -7,6 +7,7 @@ export interface GeneratedMenu {
   badge?: Router.MenuBadge | null;
   children?: GeneratedMenu[];
   extra?: Router.Extra | null;
+  href?: string | null;
   i18nKey?: I18n.I18nKey | null;
   icon?: string;
   key: string;
@@ -15,6 +16,7 @@ export interface GeneratedMenu {
   path?: Router.RoutePath;
   title?: string;
   type?: string;
+  url?: string | null;
 }
 
 export type GeneratedMenus = Map<string, GeneratedMenu[]>;
@@ -210,11 +212,13 @@ class MenuGenerator {
       id: route.id,
       i18nKey: staticData.i18nKey,
       key: normalizedPath,
+      href: staticData.href,
       menu: staticData.menu,
       parentKeys,
       path: normalizedPath,
       tab: staticData.tab,
       title: staticData.title,
+      url: staticData.url,
       depth
     };
 
@@ -230,6 +234,7 @@ class MenuGenerator {
     const menu: GeneratedMenu = {
       badge,
       extra,
+      href: staticData.href,
       i18nKey: staticData.i18nKey,
       icon,
       key: normalizedPath,
@@ -237,7 +242,8 @@ class MenuGenerator {
       order: order ?? undefined,
       path: normalizedPath,
       title: staticData.title,
-      type: menuType
+      type: menuType,
+      url: staticData.url
     };
 
     const childMenus = this.generateStaticChildMenus({
@@ -324,6 +330,7 @@ class MenuGenerator {
     const menu: GeneratedMenu = {
       badge,
       extra,
+      href: route.href,
       i18nKey: route.i18nKey,
       icon,
       key: path,
@@ -331,7 +338,8 @@ class MenuGenerator {
       order: order ?? undefined,
       path,
       title: route.title,
-      type: menuType
+      type: menuType,
+      url: route.url
     };
 
     const children = route.children
@@ -393,6 +401,7 @@ class MenuGenerator {
     const menu: GeneratedMenu = {
       badge,
       extra: config.menu?.extra,
+      href: config.href,
       i18nKey: config.i18nKey,
       icon,
       key: path,
@@ -400,7 +409,8 @@ class MenuGenerator {
       order: order ?? undefined,
       path,
       title: config.title,
-      type: menuType
+      type: menuType,
+      url: config.url
     };
 
     const children = config.children
