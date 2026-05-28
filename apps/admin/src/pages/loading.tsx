@@ -1,11 +1,10 @@
 // @unocss-include
 import { getHsl } from '@skyroc/color';
-import { toggleHtmlClass } from '@skyroc/utils/web';
+import { toggleCssDarkMode } from '@skyroc/web-admin-theme';
 import { clsx } from 'clsx';
 
 import SystemLogo from '@/components/SystemLogo';
 import { globalConfig } from '@/config';
-import { DARK_CLASS } from '@/constants/app';
 
 const GlobalLoading = memo(() => {
   const { t } = useTranslation();
@@ -13,7 +12,7 @@ const GlobalLoading = memo(() => {
   const { defaultDarkMode, defaultThemeColor } = globalConfig;
 
   if (defaultDarkMode) {
-    toggleHtmlClass(DARK_CLASS).add();
+    toggleCssDarkMode(true);
   }
 
   const { h, l, s } = getHsl(defaultThemeColor);
