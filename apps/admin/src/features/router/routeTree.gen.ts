@@ -18,6 +18,7 @@ import { Route as authLoginOutRouteImport } from './../../pages/(auth)/login-out
 import { Route as adminUserCenterRouteImport } from './../../pages/(admin)/user-center'
 import { Route as adminSoybeanDocsIframeRouteImport } from './../../pages/(admin)/soybean-docs-iframe'
 import { Route as adminSoybeanDocsRouteImport } from './../../pages/(admin)/soybean-docs'
+import { Route as adminKeepAliveFormRouteImport } from './../../pages/(admin)/keep-alive-form'
 import { Route as authLoginLayoutRouteImport } from './../../pages/(auth)/login/layout'
 import { Route as adminMultiMenuLayoutRouteImport } from './../../pages/(admin)/multi-menu/layout'
 import { Route as adminManageLayoutRouteImport } from './../../pages/(admin)/manage/layout'
@@ -90,6 +91,11 @@ const adminSoybeanDocsIframeRoute = adminSoybeanDocsIframeRouteImport.update({
 const adminSoybeanDocsRoute = adminSoybeanDocsRouteImport.update({
   id: '/soybean-docs',
   path: '/soybean-docs',
+  getParentRoute: () => adminLayoutRoute,
+} as any)
+const adminKeepAliveFormRoute = adminKeepAliveFormRouteImport.update({
+  id: '/keep-alive-form',
+  path: '/keep-alive-form',
   getParentRoute: () => adminLayoutRoute,
 } as any)
 const authLoginLayoutRoute = authLoginLayoutRouteImport.update({
@@ -253,6 +259,7 @@ export interface FileRoutesByFullPath {
   '/manage': typeof adminManageLayoutRouteWithChildren
   '/multi-menu': typeof adminMultiMenuLayoutRouteWithChildren
   '/login': typeof authLoginLayoutRouteWithChildren
+  '/keep-alive-form': typeof adminKeepAliveFormRoute
   '/soybean-docs': typeof adminSoybeanDocsRoute
   '/soybean-docs-iframe': typeof adminSoybeanDocsIframeRoute
   '/user-center': typeof adminUserCenterRoute
@@ -288,6 +295,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/keep-alive-form': typeof adminKeepAliveFormRoute
   '/soybean-docs': typeof adminSoybeanDocsRoute
   '/soybean-docs-iframe': typeof adminSoybeanDocsIframeRoute
   '/user-center': typeof adminUserCenterRoute
@@ -326,6 +334,7 @@ export interface FileRoutesById {
   '/(admin)/manage': typeof adminManageLayoutRouteWithChildren
   '/(admin)/multi-menu': typeof adminMultiMenuLayoutRouteWithChildren
   '/(auth)/login': typeof authLoginLayoutRouteWithChildren
+  '/(admin)/keep-alive-form': typeof adminKeepAliveFormRoute
   '/(admin)/soybean-docs': typeof adminSoybeanDocsRoute
   '/(admin)/soybean-docs-iframe': typeof adminSoybeanDocsIframeRoute
   '/(admin)/user-center': typeof adminUserCenterRoute
@@ -367,6 +376,7 @@ export interface FileRouteTypes {
     | '/manage'
     | '/multi-menu'
     | '/login'
+    | '/keep-alive-form'
     | '/soybean-docs'
     | '/soybean-docs-iframe'
     | '/user-center'
@@ -402,6 +412,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/keep-alive-form'
     | '/soybean-docs'
     | '/soybean-docs-iframe'
     | '/user-center'
@@ -439,6 +450,7 @@ export interface FileRouteTypes {
     | '/(admin)/manage'
     | '/(admin)/multi-menu'
     | '/(auth)/login'
+    | '/(admin)/keep-alive-form'
     | '/(admin)/soybean-docs'
     | '/(admin)/soybean-docs-iframe'
     | '/(admin)/user-center'
@@ -546,6 +558,13 @@ declare module '@tanstack/react-router' {
       path: '/soybean-docs'
       fullPath: '/soybean-docs'
       preLoaderRoute: typeof adminSoybeanDocsRouteImport
+      parentRoute: typeof adminLayoutRoute
+    }
+    '/(admin)/keep-alive-form': {
+      id: '/(admin)/keep-alive-form'
+      path: '/keep-alive-form'
+      fullPath: '/keep-alive-form'
+      preLoaderRoute: typeof adminKeepAliveFormRouteImport
       parentRoute: typeof adminLayoutRoute
     }
     '/(auth)/login': {
@@ -858,6 +877,7 @@ interface adminLayoutRouteChildren {
   adminExceptionLayoutRoute: typeof adminExceptionLayoutRouteWithChildren
   adminManageLayoutRoute: typeof adminManageLayoutRouteWithChildren
   adminMultiMenuLayoutRoute: typeof adminMultiMenuLayoutRouteWithChildren
+  adminKeepAliveFormRoute: typeof adminKeepAliveFormRoute
   adminSoybeanDocsRoute: typeof adminSoybeanDocsRoute
   adminSoybeanDocsIframeRoute: typeof adminSoybeanDocsIframeRoute
   adminUserCenterRoute: typeof adminUserCenterRoute
@@ -870,6 +890,7 @@ const adminLayoutRouteChildren: adminLayoutRouteChildren = {
   adminExceptionLayoutRoute: adminExceptionLayoutRouteWithChildren,
   adminManageLayoutRoute: adminManageLayoutRouteWithChildren,
   adminMultiMenuLayoutRoute: adminMultiMenuLayoutRouteWithChildren,
+  adminKeepAliveFormRoute: adminKeepAliveFormRoute,
   adminSoybeanDocsRoute: adminSoybeanDocsRoute,
   adminSoybeanDocsIframeRoute: adminSoybeanDocsIframeRoute,
   adminUserCenterRoute: adminUserCenterRoute,
