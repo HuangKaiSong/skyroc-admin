@@ -140,6 +140,16 @@ const routes: Api.Route.BackendRoute[] = [ ... ];
 const params: Api.Common.PaginatingCommonParams = { ... };
 ```
 
+#### `Api.SystemManage`
+
+- **文件**: `src/api/system-manage.d.ts`
+- **用途**: 系统管理模块接口类型
+- **访问**: 全局直接使用
+
+```typescript
+const params: Api.SystemManage.UserSearchParams = { ... };
+```
+
 ### 国际化命名空间
 
 #### `I18n`

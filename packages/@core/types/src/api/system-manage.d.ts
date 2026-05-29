@@ -1,15 +1,21 @@
+// oxlint-disable unicorn/require-module-specifiers
 /**
  * 命名空间 Api.SystemManage
  *
  * 后端 API 模块：系统管理模块
  */
-declare namespace Api {
-  namespace SystemManage {
+declare global {
+  namespace Api.SystemManage {
+    /** 将查询表单字段转成可选且允许为空的接口查询参数。 */
+    type NullableSearchRecord<T> = {
+      [K in keyof T]?: T[K] | null;
+    };
+
     /** 通用搜索参数 */
-    type CommonSearchParams = Pick<Common.PaginatingCommonParams, 'current' | 'size'>;
+    type CommonSearchParams = Pick<Api.Common.PaginatingCommonParams, 'current' | 'size'>;
 
     /** 角色 */
-    type Role = Common.CommonRecord<{
+    type Role = Api.Common.CommonRecord<{
       /** 角色编码 */
       roleCode: string;
       /** 角色描述 */
@@ -19,12 +25,10 @@ declare namespace Api {
     }>;
 
     /** 角色搜索参数 */
-    type RoleSearchParams = CommonType.RecordNullable<
-      Pick<Api.SystemManage.Role, 'roleCode' | 'roleName' | 'status'> & CommonSearchParams
-    >;
+    type RoleSearchParams = NullableSearchRecord<Pick<Role, 'roleCode' | 'roleName' | 'status'> & CommonSearchParams>;
 
     /** 角色列表 */
-    type RoleList = Common.PaginatingQueryRecord<Role>;
+    type RoleList = Api.Common.PaginatingQueryRecord<Role>;
 
     /** 所有角色（简化版） */
     type AllRole = Pick<Role, 'id' | 'roleCode' | 'roleName'>;
@@ -35,10 +39,10 @@ declare namespace Api {
      * - "1": 男
      * - "2": 女
      */
-    type UserGender = import('../../enums').UserGenderValue;
+    type UserGender = '1' | '2';
 
     /** 用户 */
-    type User = Common.CommonRecord<{
+    type User = Api.Common.CommonRecord<{
       /** 用户昵称 */
       nickName: string;
       /** 用户邮箱 */
@@ -54,13 +58,12 @@ declare namespace Api {
     }>;
 
     /** 用户搜索参数 */
-    type UserSearchParams = CommonType.RecordNullable<
-      Pick<Api.SystemManage.User, 'nickName' | 'status' | 'userEmail' | 'userGender' | 'userName' | 'userPhone'> &
-        CommonSearchParams
+    type UserSearchParams = NullableSearchRecord<
+      Pick<User, 'nickName' | 'status' | 'userEmail' | 'userGender' | 'userName' | 'userPhone'> & CommonSearchParams
     >;
 
     /** 用户列表 */
-    type UserList = Common.PaginatingQueryRecord<User>;
+    type UserList = Api.Common.PaginatingQueryRecord<User>;
 
     /**
      * 菜单类型
@@ -68,7 +71,7 @@ declare namespace Api {
      * - "1": 目录
      * - "2": 菜单
      */
-    type MenuType = import('../../enums').MenuTypeValue;
+    type MenuType = '1' | '2';
 
     /** 菜单按钮 */
     type MenuButton = {
@@ -88,25 +91,42 @@ declare namespace Api {
      * - "1": iconify 图标
      * - "2": 本地图标
      */
-    type IconType = import('../../enums').IconTypeValue;
+    type IconType = '1' | '2';
+
+    /** 菜单路由参数 */
+    type MenuRouteQuery = {
+      /** 参数 Key */
+      key: string;
+      /** 参数 Value */
+      value: string;
+    };
 
     /** 菜单的路由属性 */
-    type MenuPropsOfRoute = Pick<
-      Router.RouteHandle,
-      | 'activeMenu'
-      | 'constant'
-      | 'fixedIndexInTab'
-      | 'hideInMenu'
-      | 'href'
-      | 'i18nKey'
-      | 'keepAlive'
-      | 'multiTab'
-      | 'order'
-      | 'query'
-    >;
+    interface MenuPropsOfRoute {
+      /** 高亮的菜单路径 */
+      activeMenu?: Router.RoutePath | null;
+      /** 是否为常量路由 */
+      constant?: boolean | null;
+      /** 固定在页签中的序号 */
+      fixedIndexInTab?: number | null;
+      /** 是否隐藏菜单 */
+      hideInMenu?: boolean | null;
+      /** 外链地址 */
+      href?: string | null;
+      /** 国际化键 */
+      i18nKey?: I18n.I18nKey | null;
+      /** 是否缓存路由 */
+      keepAlive?: boolean | null;
+      /** 是否支持多页签 */
+      multiTab?: boolean | null;
+      /** 菜单排序 */
+      order?: number | null;
+      /** 路由参数 */
+      query?: MenuRouteQuery[] | null;
+    }
 
     /** 菜单 */
-    type Menu = Common.CommonRecord<{
+    type Menu = Api.Common.CommonRecord<{
       /** 按钮列表 */
       buttons?: MenuButton[] | null;
       /** 子菜单 */
@@ -131,7 +151,7 @@ declare namespace Api {
       MenuPropsOfRoute;
 
     /** 菜单列表 */
-    type MenuList = Common.PaginatingQueryRecord<Menu>;
+    type MenuList = Api.Common.PaginatingQueryRecord<Menu>;
 
     /** 菜单树 */
     type MenuTree = {
@@ -146,3 +166,5 @@ declare namespace Api {
     };
   }
 }
+
+export {};

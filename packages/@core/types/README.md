@@ -34,7 +34,8 @@
 │   │   ├── auth.d.ts           # 认证相关类型
 │   │   ├── route.d.ts          # 路由相关类型
 │   │   ├── common.d.ts         # API 通用类型
-│   │   └── service.d.ts        # 服务配置类型
+│   │   ├── service.d.ts        # 服务配置类型
+│   │   └── system-manage.d.ts  # 系统管理接口类型
 │   ├── app/
 │   │   ├── common.d.ts         # 通用类型
 │   │   ├── global.d.ts         # 全局类型
@@ -113,6 +114,7 @@ const storage: StorageType.Local = {
 - `Api.Route` - 路由相关类型
 - `Api.Common` - 通用 API 类型
 - `Api.Service` - 服务配置类型
+- `Api.SystemManage` - 系统管理接口类型
 
 ### App 类型
 
