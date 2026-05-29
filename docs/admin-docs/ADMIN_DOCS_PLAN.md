@@ -40,6 +40,7 @@
 | --- | --- | --- | --- | --- |
 | `index.mdx` | 文档首页 | 知道项目是什么、从哪读起 | 定位、技术栈、架构概览、阅读路径 | `apps/admin/package.json`, `apps/admin/src` |
 | `getting-started/quick-start.mdx` | 快速开始 | 跑起来项目 | Node/pnpm、安装、启动、构建、预览、Mock、scripts | `apps/admin/package.json`, `.env*` |
+| `getting-started/editor-setup.mdx` | 开发工具配置 | 对齐编辑器和本地开发体验 | VS Code 推荐插件、OXC/Oxlint、i18n Ally、UnoCSS、生成文件只读约定 | `.vscode/extensions.json`, `.vscode/settings.json`, `apps/admin/package.json` |
 | `getting-started/project-structure.mdx` | 项目结构 | 看懂目录职责 | `src` 目录、`packages/web/*` 与 app 边界 | `apps/admin/src`, `packages/web` |
 | `architecture/bootstrap.mdx` | 启动流程 | 理解应用如何初始化 | `main -> bootstrap -> App`、devtools、theme、layout、i18n、render 顺序 | `main.tsx`, `bootstrap.tsx`, `App.tsx` |
 | `architecture/runtime-providers.mdx` | 运行时 Provider | 理解 React Provider 和全局 effect 顺序 | QueryClient、Jotai、Devtools、Antd、通知、路由、GlobalEffect | `App.tsx`, `queryClient.ts`, `GlobalEffect.tsx` |
@@ -105,7 +106,7 @@
 
 首页至少提供以下阅读路径：
 
-- 第一次跑项目：`getting-started/quick-start.mdx` -> `getting-started/project-structure.mdx`。
+- 第一次跑项目：`getting-started/quick-start.mdx` -> `getting-started/editor-setup.mdx` -> `getting-started/project-structure.mdx`。
 - 看懂启动和应用骨架：`architecture/bootstrap.mdx` -> `layout/overview.mdx` -> `layout/menus-and-tabs.mdx`。
 - 开发页面和路由：`routing/overview.mdx` -> `routing/route-meta.mdx` -> `routing/guards-and-permissions.mdx`。
 - 接接口和数据：`request/overview.mdx` -> `request/service-modules.mdx` -> `request/proxy-and-backend.mdx`。
@@ -139,6 +140,7 @@
 
 - `index.mdx`
 - `getting-started/quick-start.mdx`
+- `getting-started/editor-setup.mdx`
 - `getting-started/project-structure.mdx`
 - `architecture/bootstrap.mdx`
 - `architecture/runtime-providers.mdx`
