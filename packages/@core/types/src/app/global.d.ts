@@ -31,6 +31,8 @@ declare global {
       icon?: string;
       /** The tab id */
       id: string;
+      /** Whether the tab route should keep its page instance alive */
+      keepAlive?: boolean | null;
       /** The tab label */
       label: string;
       /**
