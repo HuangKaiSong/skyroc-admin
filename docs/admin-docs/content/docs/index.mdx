@@ -1,37 +1,52 @@
 ---
-title: Skyroc Admin React
-description: Skyroc Admin React 文档入口，面向 apps/admin 的运行、架构理解和二次开发
+title: 介绍
+description: Skyroc Admin React 文档入口，面向 apps/admin 的运行机制、架构理解和二次开发
 ---
 
-Skyroc Admin React 是一个面向中后台产品的 React 应用模板。这份文档从 `apps/admin` 的实际实现出发，说明应用如何启动、路由如何生成、布局和菜单如何组合、请求与权限如何接入，以及共享包在应用里承担什么职责。
+Skyroc Admin React 是一个面向中后台产品的 React 管理端模板。当前文档以 `apps/admin` 的真实代码为准，解释这个应用如何启动、路由如何生成、菜单和权限如何协作、请求服务如何接入，以及 `packages/web/*`、`packages/@core/*` 中的共享能力在应用侧承担什么职责。
+
+它不是一份从旧文档搬来的功能清单，也不是只描述最终效果的产品介绍。这里更关注二次开发时真正会遇到的问题：新增页面放在哪里、登录后为什么要初始化菜单、动态路由和静态权限如何区分、环境变量如何影响代理和构建、共享包的能力应该在什么边界内使用。
+
+## 适合谁阅读
+
+| 读者                     | 这份文档解决什么问题                                                                |
+| ------------------------ | ----------------------------------------------------------------------------------- |
+| 准备启动项目的开发者     | 快速确认 Node、pnpm、dev/build/preview 命令和 Mock/代理行为。                       |
+| 准备二次开发后台页面的人 | 理解页面目录、路由元信息、菜单、tabs、权限、请求 hooks 和表格表单封装。             |
+| 准备接真实后端的人       | 梳理 env、代理、业务 code、token、refresh token、登录态和 React Query 缓存边界。    |
+| 准备维护共享包的人       | 判断能力应该留在 `apps/admin`，还是沉到 `@skyroc/web-admin-*` 或 `@skyroc/*` 包里。 |
+
+## 当前定位
+
+`apps/admin` 是后台应用的编排层。它负责把主题、布局、路由、认证、菜单、请求、语言、通知和业务页面组合成一个可运行的管理端；共享包提供可复用能力，但不应该隐藏当前应用的启动顺序和业务接入点。
+
+| 能力          | 当前边界                                                                                                                |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| 启动编排      | `main.tsx` 进入 `bootstrap.tsx`，依次初始化主题、后台布局、运行时插件、i18n，再渲染 React 根节点。                      |
+| 应用 Provider | `App.tsx` 组合 React Query、Jotai、Devtools、Ant Design、通知、动画、路由和全局副作用。                                 |
+| 路由系统      | `apps/admin/src/pages` 使用 TanStack Router 约定式路由，由 Vite 插件生成 `routeTree.gen.ts`。                           |
+| 菜单和权限    | `setupAdminLayouts()` 接收 route tree、菜单分类、动态路由加载器和超级角色；后台入口统一走 `guardAdminRoute()`。         |
+| 请求服务      | `apps/admin/src/service` 按 `urls`、`api`、`hooks`、`keys`、`types` 分层，页面优先通过 React Query hooks 使用接口。     |
+| 主题和语言    | `@skyroc/web-admin-theme`、`@skyroc/web-admin-i18n` 提供运行时能力，`apps/admin` 负责默认配置、缓存适配和第三方库同步。 |
+| 构建配置      | `apps/admin/vite.config.ts` 使用 `@skyroc/web-admin-vite`，env、proxy、base、router 插件和产物规则都从这里进入。        |
 
 ## 技术栈
 
-| 范围 | 当前使用 |
-| --- | --- |
-| 应用框架 | React、Vite、TypeScript |
-| 路由 | TanStack Router、约定式路由、`routeTree.gen.ts` |
-| 数据与状态 | React Query、Jotai |
-| UI 与样式 | Ant Design、UnoCSS、Skyroc Web UI |
-| 应用基础能力 | `@skyroc/web-admin-layouts`、`@skyroc/web-admin-theme`、`@skyroc/web-admin-i18n`、`@skyroc/web-admin-notification`、`@skyroc/web-admin-vite` |
-| 工具与服务 | `@skyroc/axios`、`@skyroc/utils`、`@skyroc/core-state`、`@skyroc/scripts` |
+依赖版本以仓库根 `pnpm-workspace.yaml` 的 catalog 和 `apps/admin/package.json` 为准。当前主链路是：
 
-依赖入口以 `apps/admin/package.json` 为准。文档中出现的包名、脚本和能力说明都应能回到这个文件或 `packages/web/*`、`packages/@core/*` 中查证。
+| 范围           | 当前使用                                                                         |
+| -------------- | -------------------------------------------------------------------------------- |
+| 基础框架       | React 19、Vite 8、TypeScript 6                                                   |
+| 路由           | TanStack Router、约定式路由、`routeTree.gen.ts`                                  |
+| 数据与状态     | TanStack Query、Jotai                                                            |
+| UI 与样式      | Ant Design 6、UnoCSS、Skyroc Web UI                                              |
+| 主题与布局     | `@skyroc/web-admin-theme`、`@skyroc/web-admin-layouts`                           |
+| 国际化与运行时 | `@skyroc/web-admin-i18n`、`@skyroc/web-admin-runtime`、Iconify、Dayjs、NProgress |
+| 请求与工具     | `@skyroc/axios`、`@skyroc/utils`、`@skyroc/core-state`、`@skyroc/scripts`        |
 
-## 架构概览
+旧版介绍中出现的 React Router、Redux Toolkit、旧 Ant Design/Vite 版本、完整用户/菜单/角色 CRUD 等描述，不应直接迁移到这份文档。当前页面和能力要以 `apps/admin` 的真实实现为准。
 
-| 层级 | 关键位置 | 职责 |
-| --- | --- | --- |
-| 浏览器入口 | `apps/admin/src/main.tsx` | 开发环境加载 Jotai devtools，再进入应用 bootstrap。 |
-| 启动编排 | `apps/admin/src/bootstrap.tsx` | 初始化主题、后台布局、应用插件和 i18n，最后挂载 React 根节点。 |
-| Provider 组合 | `apps/admin/src/App.tsx` | 组合 React Query、Jotai、开发工具、Ant Design、通知、动画、路由和全局副作用。 |
-| 全局配置 | `apps/admin/src/config.ts` | 收口默认首页、路由模式、菜单图标、语言、主题和 devtools 配置。 |
-| 路由与权限 | `apps/admin/src/features/router`、`apps/admin/src/features/auth` | 创建 TanStack Router，注入登录态、用户信息、首页和鉴权上下文。 |
-| 菜单与布局 | `apps/admin/src/features/menus`、`apps/admin/src/pages/(admin)/layout.tsx` | 将路由、菜单分类、菜单节点转换和布局插槽接入后台应用壳。 |
-| 请求服务 | `apps/admin/src/service` | 按 `urls`、`api`、`hooks`、`keys`、`types` 分层组织接口和 React Query hooks。 |
-| 业务页面 | `apps/admin/src/pages` | 通过约定式目录承载登录页、后台页面、错误页、布局页和具体业务页面。 |
-
-启动顺序可以简化为：
+## 架构速览
 
 ```text
 main.tsx
@@ -41,38 +56,43 @@ main.tsx
     -> setupAdminPlugins
     -> setupI18n
     -> render App
-      -> Provider stack
+      -> QueryClientProvider
+      -> JotaiProvider
+      -> Devtools
+      -> AntdProvider
+      -> NotificationProvider
       -> RouterProvider
       -> GlobalEffect
 ```
 
-这个顺序很重要：主题和布局运行时能力先初始化，应用 Provider 再读取这些状态；路由 Provider 通过 `useAuth` 把登录态、用户信息和权限上下文交给 TanStack Router。
+这个顺序很重要：主题、布局和运行时插件需要先完成一次性初始化，React Provider 才能读取稳定的运行时状态；路由 Provider 会把登录态、用户信息、菜单初始化和权限上下文交给 TanStack Router；`GlobalEffect` 负责把主题和语言变化同步到 DOM、缓存和第三方库。
 
 ## 从哪里读起
 
-| 目标 | 阅读路径 |
-| --- | --- |
-| 先把项目跑起来 | `getting-started/quick-start.mdx`、`getting-started/project-structure.mdx` |
-| 看懂应用怎么启动 | `architecture/bootstrap.mdx`、`layout/overview.mdx`、`layout/menus-and-tabs.mdx` |
-| 新增页面和路由 | `routing/overview.mdx`、`routing/route-meta.mdx`、`routing/guards-and-permissions.mdx` |
-| 接入业务接口 | `request/overview.mdx`、`request/service-modules.mdx`、`request/proxy-and-backend.mdx` |
-| 修改主题、语言和图标 | `theme/overview.mdx`、`theme/i18n-and-icons.mdx` |
-| 写管理页列表和表单 | `features/table-and-form.mdx` |
-| 理解登录和通知 | `features/auth-login.mdx`、`features/notification.mdx` |
-| 构建部署和排错 | `deployment/build-and-deploy.mdx`、`faq.mdx` |
+| 目标                      | 阅读路径                                                                                                                                                          |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 先把项目跑起来            | [快速开始](./getting-started/quick-start)、[项目结构](./getting-started/project-structure)                                                                        |
+| 看懂应用怎么启动          | [启动流程](./architecture/bootstrap)、[运行时 Provider](./architecture/runtime-providers)、[布局系统](./layout/overview)、[菜单与标签页](./layout/menus-and-tabs) |
+| 新增页面和路由            | [路由概览](./routing/overview)、[路由元信息](./routing/route-meta)、[权限守卫](./routing/guards-and-permissions)                                                  |
+| 接入业务接口              | [请求概览](./request/overview)、[服务模块](./request/service-modules)、[代理与后端对接](./request/proxy-and-backend)                                              |
+| 修改主题、语言和图标      | [主题系统](./theme/overview)、[国际化与图标](./theme/i18n-and-icons)、[存储与缓存](./configuration/storage-and-cache)                                             |
+| 写管理页列表和表单        | [表格与表单](./features/table-and-form)、[示例页面边界](./features/demo-pages)                                                                                    |
+| 理解 Dashboard 和图表示例 | [图表与 Dashboard](./features/charts-and-dashboard)、[示例页面边界](./features/demo-pages)                                                                        |
+| 理解登录和通知            | [登录认证](./features/auth-login)、[通知系统](./features/notification)                                                                                            |
+| 构建部署和排错            | [构建部署](./deployment/build-and-deploy)、[常见问题](./faq)                                                                                                      |
 
-首页只提供导读，不在这里展开安装命令、路由写法、接口示例或部署细节。
+首页只提供介绍和导读，不展开安装命令、路由写法、接口示例或部署细节。具体操作应该放到对应专题页，避免入口页变成一篇过长的综合教程。
 
 ## 参考文件
 
 理解或修改 admin 应用时，优先从下面这些文件开始：
 
-| 事实 | 来源 |
-| --- | --- |
-| 应用脚本、技术栈、依赖边界 | `apps/admin/package.json` |
-| 启动顺序 | `apps/admin/src/main.tsx`、`apps/admin/src/bootstrap.tsx`、`apps/admin/src/App.tsx` |
-| 全局配置 | `apps/admin/src/config.ts`、`.env*` |
-| 路由、守卫、权限上下文 | `apps/admin/src/features/router`、`apps/admin/src/features/auth` |
-| 菜单、布局、tabs | `apps/admin/src/features/menus`、`apps/admin/src/pages/(admin)/layout.tsx` |
-| 请求封装和服务模块 | `apps/admin/src/service` |
-| 共享后台能力 | `packages/web/*`、`docs/web-kit-docs` |
+| 事实                       | 来源                                                                                     |
+| -------------------------- | ---------------------------------------------------------------------------------------- |
+| 应用脚本、技术栈、依赖边界 | `apps/admin/package.json`、`pnpm-workspace.yaml`                                         |
+| 启动顺序                   | `apps/admin/src/main.tsx`、`apps/admin/src/bootstrap.tsx`、`apps/admin/src/App.tsx`      |
+| 全局配置                   | `apps/admin/src/config.ts`、`apps/admin/.env*`                                           |
+| 路由、守卫、权限上下文     | `apps/admin/src/pages`、`apps/admin/src/features/router`、`apps/admin/src/features/auth` |
+| 菜单、布局、tabs           | `apps/admin/src/features/menus`、`apps/admin/src/pages/(admin)/layout.tsx`               |
+| 请求封装和服务模块         | `apps/admin/src/service`                                                                 |
+| 共享后台能力               | `packages/web/*`、`packages/@core/*`、`docs/web-kit-docs`                                |

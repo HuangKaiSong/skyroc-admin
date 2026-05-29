@@ -1,0 +1,16 @@
+{
+  "title": "Skyroc Admin React",
+  "pages": [
+    "index",
+    "getting-started",
+    "architecture",
+    "configuration",
+    "routing",
+    "layout",
+    "request",
+    "theme",
+    "features",
+    "deployment",
+    "faq"
+  ]
+}
