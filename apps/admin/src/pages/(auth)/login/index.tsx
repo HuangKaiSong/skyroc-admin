@@ -2,7 +2,7 @@ import { ButtonLink } from '@skyroc/web-ui-antd';
 import { createFileRoute } from '@tanstack/react-router';
 
 import { useInitLogin } from '@/features/auth/use-login';
-import { useFormRules } from '@/features/form/use-rules';
+import { useAuthFormRules } from '@/features/auth/use-auth-form-rules';
 
 type AccountKey = 'admin' | 'super' | 'user';
 
@@ -34,7 +34,7 @@ const Login = () => {
 
   const {
     formRules: { pwd, userName: userNameRules }
-  } = useFormRules();
+  } = useAuthFormRules();
 
   const accounts: Account[] = [
     {

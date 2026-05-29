@@ -8,8 +8,9 @@ function createRequiredRule(message: string): FormRule {
   };
 }
 
-export function useFormRules() {
+export function useAuthFormRules() {
   const { t } = useTranslation();
+
   const patternRules = {
     code: {
       message: t('form.code.invalid'),
@@ -50,22 +51,25 @@ export function useFormRules() {
   const defaultRequiredRule = createRequiredRule(t('form.required'));
 
   /** Create a rule for confirming the password */
-  function createConfirmPwdRule(from: FormInstance) {
+  function createConfirmPwdRule(form: FormInstance) {
     const confirmPwdRule: FormRule[] = [
       { message: t('form.confirmPwd.required'), required: true },
       {
         message: t('form.confirmPwd.invalid'),
         validateTrigger: 'onChange',
         validator: (rule, value) => {
-          const pwd = from.getFieldValue('password');
+          const pwd = form.getFieldValue('password');
+          const confirmPwd = typeof value === 'string' ? value : '';
 
-          if (value.trim() !== '' && value !== pwd) {
+          if (confirmPwd.trim() !== '' && confirmPwd !== pwd) {
             return Promise.reject(rule.message);
           }
+
           return Promise.resolve();
         }
       }
     ];
+
     return confirmPwdRule;
   }
 

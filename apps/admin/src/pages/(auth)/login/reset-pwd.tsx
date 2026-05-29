@@ -1,7 +1,7 @@
 import { ButtonLink } from '@skyroc/web-ui-antd';
 import { createFileRoute } from '@tanstack/react-router';
 
-import { useFormRules } from '@/features/form/use-rules';
+import { useAuthFormRules } from '@/features/auth/use-auth-form-rules';
 
 interface FormModel {
   code: string;
@@ -15,7 +15,7 @@ const ResetPwd = () => {
 
   const [form] = AForm.useForm<FormModel>();
 
-  const { createConfirmPwdRule, formRules } = useFormRules();
+  const { createConfirmPwdRule, formRules } = useAuthFormRules();
 
   function handleSubmit(_params: FormModel) {
     // request to reset password

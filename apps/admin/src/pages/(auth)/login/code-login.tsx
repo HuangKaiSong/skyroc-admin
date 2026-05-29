@@ -3,7 +3,7 @@ import { ButtonLink } from '@skyroc/web-ui-antd';
 import { REG_PHONE } from '@skyroc/utils';
 import { createFileRoute } from '@tanstack/react-router';
 
-import { useFormRules } from '@/features/form/use-rules';
+import { useAuthFormRules } from '@/features/auth/use-auth-form-rules';
 
 type FormValues = {
   code: string;
@@ -17,7 +17,7 @@ const CodeLogin = () => {
 
   const { getCaptcha, isCounting, label, loading } = useCaptcha(t('page.login.codeLogin.getCode'), getCountingLabel);
 
-  const { formRules } = useFormRules();
+  const { formRules } = useAuthFormRules();
 
   const phone = AForm.useWatch('phone', form);
 

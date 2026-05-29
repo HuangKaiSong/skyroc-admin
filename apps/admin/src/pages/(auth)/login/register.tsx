@@ -3,7 +3,7 @@ import { ButtonLink } from '@skyroc/web-ui-antd';
 import { REG_PHONE } from '@skyroc/utils';
 import { createFileRoute } from '@tanstack/react-router';
 
-import { useFormRules } from '@/features/form/use-rules';
+import { useAuthFormRules } from '@/features/auth/use-auth-form-rules';
 
 interface FormModel {
   code: string;
@@ -23,7 +23,7 @@ const Register = () => {
 
   const isValidPhone = REG_PHONE.test(phone);
 
-  const { createConfirmPwdRule, formRules } = useFormRules();
+  const { createConfirmPwdRule, formRules } = useAuthFormRules();
 
   function handleSubmit(_params: FormModel) {
     // request to reset password
