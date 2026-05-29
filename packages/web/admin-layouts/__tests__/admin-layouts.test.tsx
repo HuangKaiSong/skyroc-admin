@@ -9,6 +9,31 @@ import {
   GLOBAL_SIDER_MENU_SELECTOR
 } from '../src/constant';
 
+const routerMocks = vi.hoisted(() => {
+  const state = {
+    location: {
+      hash: '',
+      href: '/home',
+      pathname: '/home',
+      search: {},
+      searchStr: '',
+      state: {}
+    }
+  };
+
+  return {
+    router: {
+      __store: {
+        get: () => state,
+        state,
+        subscribe: () => ({ unsubscribe() {} })
+      },
+      latestLocation: state.location,
+      state
+    }
+  };
+});
+
 vi.mock('@tanstack/react-router', () => ({
   createLink: <T,>(Component: T) => Component,
   Link: (props: { children?: ReactNode; className?: string; style?: CSSProperties; to?: string }) => {
@@ -21,8 +46,14 @@ vi.mock('@tanstack/react-router', () => ({
     );
   },
   Outlet: () => null,
+  RouterContextProvider: (props: { children?: ReactNode }) => {
+    const { children } = props;
+
+    return <>{children}</>;
+  },
   useChildMatches: () => [],
-  useNavigate: () => vi.fn()
+  useNavigate: () => vi.fn(),
+  useRouter: () => routerMocks.router
 }));
 
 interface MockStorage {

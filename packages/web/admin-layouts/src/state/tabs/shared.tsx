@@ -65,6 +65,7 @@ export function getTabByMenuInfo(
     fixedIndex: menuInfo.tab?.fixedIndex,
     i18nKey: menuInfo.i18nKey,
     icon: menuInfo.menu?.icon || defaultIcon,
+    keepAlive: menuInfo.keepAlive,
     localIcon: menuInfo.menu?.localIcon,
     label: menuInfo.title || '',
     oldLabel: menuInfo.title

@@ -213,6 +213,7 @@ class MenuGenerator {
       i18nKey: staticData.i18nKey,
       key: normalizedPath,
       href: staticData.href,
+      keepAlive: staticData.keepAlive,
       menu: staticData.menu,
       parentKeys,
       path: normalizedPath,

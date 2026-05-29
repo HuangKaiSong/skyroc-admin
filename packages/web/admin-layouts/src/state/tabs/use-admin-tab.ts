@@ -13,7 +13,6 @@ import {
   getFixedTabIds,
   getTabByMenuInfo,
   getTabIdByRoute,
-  isTabInTabs,
   reorderFixedTabs
 } from './shared';
 
@@ -135,9 +134,14 @@ export const useAdminTab = () => {
     const isHomeTab = homeTabId && homeTabId === tab.id;
 
     const oldTabs = globalStore.get(tabStateAtom).tabs;
+    const existingTab = oldTabs.find(item => item.id === tab.id);
 
-    if (!isHomeTab && !isTabInTabs(tab.id, oldTabs)) {
+    if (!isHomeTab && !existingTab) {
       setTabState({ tabs: [...oldTabs, tab] });
+    }
+
+    if (!isHomeTab && existingTab) {
+      setTabState({ tabs: oldTabs.map(item => (item.id === tab.id ? { ...item, ...tab } : item)) });
     }
 
     if (active) {
