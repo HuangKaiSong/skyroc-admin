@@ -109,7 +109,7 @@ import '../styles/css/global.css';
 | `defaultHome` | 从 `globalConfig.defaultHome` 读取默认首页。 |
 | `routeMode` | 从 `VITE_AUTH_ROUTE_MODE` 读取静态或动态路由模式。 |
 | `routeTree` | 使用 TanStack Router 生成的 `routeTree.gen.ts`。 |
-| `loadDynamicRoutes` | 通过 `queryClient.ensureQueryData(queryMenusOptions())` 加载动态菜单和路由数据。 |
+| `loadDynamicRoutes` | 通过 `loadAdminDynamicRoutes()` 加载真实后端菜单响应，并适配成布局包动态菜单数据。 |
 | `menuCategories` | 定义菜单分类和 layout route 的关系，当前 `admin` 对应 `/(admin)`。 |
 | `menuNodeCallback` | 为顶层菜单追加 divider 等项目级菜单节点。 |
 | `extras` | 注册标准 badge 之外的菜单扩展 UI，例如 `ReleaseChannel`。 |

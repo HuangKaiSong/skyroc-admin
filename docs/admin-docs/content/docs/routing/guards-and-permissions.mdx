@@ -223,7 +223,7 @@ staticData: {
 
 ```ts
 setupAdminLayouts({
-  loadDynamicRoutes: () => queryClient.ensureQueryData(queryMenusOptions()),
+  loadDynamicRoutes: loadAdminDynamicRoutes,
   routeMode: globalConfig.routeMode
 });
 ```

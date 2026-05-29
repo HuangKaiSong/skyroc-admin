@@ -150,7 +150,7 @@ const HomePage = (props: HomePageProps) => {
 
           <div className="mt-7 inline-flex items-center gap-2 rounded-full border border-[#646cff]/18 bg-white/80 px-3 py-1 text-xs font-medium text-[#646cff] shadow-sm backdrop-blur dark:border-[#646cff]/28 dark:bg-white/8 dark:text-[#b8bcff]">
             <Sparkles className="size-3.5" aria-hidden="true" />
-            为开发者而生 · 优雅设计 · 高效开发
+            源码事实导向 · 二次开发入口
           </div>
 
           <h1 className="mt-6 max-w-5xl text-balance text-5xl font-semibold tracking-normal sm:text-6xl lg:text-7xl">
@@ -160,7 +160,7 @@ const HomePage = (props: HomePageProps) => {
           </h1>
 
           <p className="mt-5 max-w-3xl text-pretty text-xl leading-9 text-slate-600 dark:text-slate-300">
-            清新优雅的 React 中后台管理模板，采用现代前端技术栈，提供开箱即用的路由、权限、请求、主题和工程化能力。
+            面向 apps/admin 的新版开发文档，按真实源码说明启动、路由、权限、请求、主题、通知和部署边界。
           </p>
 
           <div className="mt-7 flex flex-wrap justify-center gap-2">
@@ -193,9 +193,9 @@ const HomePage = (props: HomePageProps) => {
 
           <div className="mt-10 grid w-full max-w-3xl grid-cols-3 gap-3">
             {[
-              ['30+', '页面与示例', 'text-[#646cff]'],
-              ['8+', '核心模块', 'text-[#2080f0]'],
-              ['99%', 'TypeScript', 'text-[#52c41a]']
+              ['29', '正文页面', 'text-[#646cff]'],
+              ['4', '新增专题', 'text-[#2080f0]'],
+              ['1', '源码事实源', 'text-[#52c41a]']
             ].map(item => (
               <div
                 key={item[0]}
@@ -214,7 +214,7 @@ const HomePage = (props: HomePageProps) => {
           <p className="text-sm font-semibold text-[#646cff] dark:text-[#b8bcff]">Core Features</p>
           <h2 className="text-3xl font-semibold tracking-normal text-slate-950 dark:text-white">强大功能，清晰边界</h2>
           <p className="mx-auto max-w-2xl text-sm leading-7 text-slate-600 dark:text-slate-400">
-            首页负责展示能力气质，具体实现细节进入文档后再按源码路径展开。
+            首页只放导读；具体实现进入文档页后按源码路径展开。
           </p>
         </div>
 

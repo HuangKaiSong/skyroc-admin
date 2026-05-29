@@ -95,8 +95,9 @@ export const Route = createFileRoute('/(admin)/demo')({
 | 文件 | 职责 |
 | --- | --- |
 | `apps/admin/src/service/api/route/api.ts` | `fetchGetBackendRoutes()` 请求 `/route/getReactUserRoutes`。 |
-| `apps/admin/src/service/api/route/types.d.ts` | 定义后端路由结构，包含 `path`、`layout`、`permissions`、`children`。 |
-| `apps/admin/src/bootstrap.tsx` | 通过 `loadDynamicRoutes` 把 `queryMenusOptions()` 注入布局运行时。 |
+| `packages/@core/types/src/api/route.d.ts` | 定义后端原始路由响应和适配后的动态路由结构。 |
+| `apps/admin/src/features/menus/dynamic-routes.ts` | 把后端 `name/path/component/handle` 响应适配成布局运行时需要的动态菜单数据。 |
+| `apps/admin/src/bootstrap.tsx` | 通过 `loadDynamicRoutes` 把 `loadAdminDynamicRoutes()` 注入布局运行时。 |
 | `packages/web/admin-layouts/src/features/menus/*` | 根据动态路由、权限和 route tree 生成菜单。 |
 
 后端返回的 `path` 必须能和前端 `apps/admin/src/pages` 生成的 route tree 对上。只返回菜单数据但前端没有对应页面文件，点击后仍然会 404。
@@ -302,4 +303,5 @@ nprogress is not initialized, please call initNProgress function first
 | 路由文件和 route tree | [路由概览](./routing/overview) |
 | 路由元信息和菜单字段 | [路由元信息](./routing/route-meta) |
 | 登录守卫和权限 | [权限守卫](./routing/guards-and-permissions) |
+| 错误页、404 和 loading | [错误与加载页](./routing/error-loading-and-exception) |
 | 部署、base 和 Nginx rewrite | [构建部署](./deployment/build-and-deploy) |
