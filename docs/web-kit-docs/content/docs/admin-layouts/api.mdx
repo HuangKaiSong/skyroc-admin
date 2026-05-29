@@ -82,7 +82,7 @@ import type { AdminLayoutProps, AdminLayoutsOptions } from '@skyroc/web-admin-la
 setupAdminLayouts({
   defaultHome: '/home',
   defaultIcon: 'mdi:menu',
-  loadDynamicRoutes: () => queryClient.ensureQueryData(queryMenusOptions()),
+  loadDynamicRoutes: loadAdminDynamicRoutes,
   menuCategories: {
     admin: {
       key: 'admin',

@@ -27,10 +27,9 @@ import { setupTheme } from '@skyroc/web-admin-theme';
 
 import { globalConfig } from '@/config';
 import { menuExtras } from '@/features/menus/extras';
+import { loadAdminDynamicRoutes } from '@/features/menus/dynamic-routes';
 import { menuNodeCallback } from '@/features/menus/menu-config';
 import { routeTree } from '@/features/router/routeTree.gen';
-import { queryMenusOptions } from '@/service/api/route/hooks';
-import { queryClient } from '@/service/queryClient';
 import { localStg } from '@/utils/storage';
 
 setupTheme({
@@ -41,7 +40,7 @@ setupAdminLayouts({
   defaultHome: globalConfig.defaultHome,
   defaultIcon: globalConfig.defaultIcon,
   extras: menuExtras,
-  loadDynamicRoutes: () => queryClient.ensureQueryData(queryMenusOptions()),
+  loadDynamicRoutes: loadAdminDynamicRoutes,
   menuCategories: {
     admin: {
       key: 'admin',
