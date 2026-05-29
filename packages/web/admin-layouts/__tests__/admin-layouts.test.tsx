@@ -411,15 +411,22 @@ describe('route authorization index', () => {
       await result.current.initMenus(userInfo);
     });
 
+    expect(result.current.menus.get('admin')?.map(menu => menu.key)).toEqual(['/dynamic']);
     expect(hasAuthorizedRoutePath('/dynamic' as Router.RoutePath, userInfo)).toBe(true);
     expect(hasAuthorizedRoutePath('/missing' as Router.RoutePath, userInfo)).toBe(false);
     expect(hasAuthorizedRoutePath('/admin-only' as Router.RoutePath, userInfo)).toBe(false);
-    expect(
-      hasAuthorizedRoutePath('/admin-only' as Router.RoutePath, {
-        ...userInfo,
-        roles: ['R_SUPER']
-      })
-    ).toBe(true);
+
+    const superUserInfo = {
+      ...userInfo,
+      roles: ['R_SUPER']
+    };
+
+    await act(async () => {
+      await result.current.initMenus(superUserInfo);
+    });
+
+    expect(result.current.menus.get('admin')?.map(menu => menu.key)).toEqual(['/dynamic', '/admin-only']);
+    expect(hasAuthorizedRoutePath('/admin-only' as Router.RoutePath, superUserInfo)).toBe(true);
   });
 });
 

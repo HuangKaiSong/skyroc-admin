@@ -148,7 +148,7 @@ class MenuGenerator {
       if (!categoryKey) return;
 
       const quickReferenceMenuMap = quickReferenceMenus.get(categoryKey) ?? new Map();
-      const menu = this.transformBackendRouteToMenu(route, quickReferenceMenuMap);
+      const menu = this.transformBackendRouteToMenu(route, quickReferenceMenuMap, options.userInfo);
 
       if (menu) {
         allMenus.set(categoryKey, [...(allMenus.get(categoryKey) ?? []), menu]);
@@ -307,9 +307,14 @@ class MenuGenerator {
   private transformBackendRouteToMenu(
     route: Api.Route.BackendRoute,
     quickReferenceMenuMap: Menu.QuickReferenceMenuMap,
+    userInfo?: Api.Auth.UserInfo | null,
     parentKeys: string[] = [],
     depth: number = 0
   ): GeneratedMenu | null {
+    if (!hasRoutePermission(route, userInfo)) {
+      return null;
+    }
+
     const { defaultIcon } = getAdminLayoutsOptions();
     const path = normalizePath(route.path) as Router.RoutePath;
     const data: Menu.QuickReferenceMenu = {
@@ -344,7 +349,9 @@ class MenuGenerator {
     };
 
     const children = route.children
-      ?.map(child => this.transformBackendRouteToMenu(child, quickReferenceMenuMap, [...parentKeys, path], depth + 1))
+      ?.map(child =>
+        this.transformBackendRouteToMenu(child, quickReferenceMenuMap, userInfo, [...parentKeys, path], depth + 1)
+      )
       .filter(isGeneratedMenu);
     const childMenus = children ?? [];
 
