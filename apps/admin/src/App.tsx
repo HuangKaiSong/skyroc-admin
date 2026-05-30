@@ -15,24 +15,18 @@ import { router } from './features/router';
 import RouterProvider from './features/router/RouterProvider';
 import { queryClient } from './service/queryClient';
 
-
 interface ProviderProps {
   /** 需要挂载到全局 Provider 下的应用内容。 */
   children: ReactNode;
 }
-
 
 // 开发环境才加载 Devtools，生产环境会被 tree-shaking 移除
 const AdminDevtools = import.meta.env.DEV
   ? lazy(() => import('@skyroc/web-admin-devtools').then(mod => ({ default: mod.AdminDevtools })))
   : (_props: AdminDevtoolsProps) => null;
 
-
 const Devtools = () => {
   const { darkMode } = useSettingsTheme();
-
-  // oxlint-disable-next-line no-console
-  console.log('darkMode', darkMode);
 
   const config = useMemo<AdminDevtoolsProps['config']>(() => {
     return {

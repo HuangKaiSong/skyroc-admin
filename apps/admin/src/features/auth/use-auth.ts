@@ -1,11 +1,12 @@
-import { updateAtomValue} from '@skyroc/core-state';
+import { atomWithPartial, globalStore, setAtomValue } from '@skyroc/core-state';
 import { cacheTabs, useMenus } from '@skyroc/web-admin-layouts';
-import { atom,useAtom } from 'jotai';
-import {useUserInfoQuery} from '@/service/api';
+import type { QueryClient } from '@tanstack/react-query';
+import { useAtom } from 'jotai';
+import { flushSync } from 'react-dom';
+
+import { AUTH_QUERY_KEYS } from '@/service/api/auth/keys';
 import { queryClient } from '@/service/queryClient';
 import { localStg } from '@/utils/storage';
-
-const initToken = getToken();
 
 interface AuthState {
   /** 是否完成首轮认证初始化。 */
@@ -14,13 +15,16 @@ interface AuthState {
   token: string | null;
 }
 
-const initState: AuthState = {
-  token: initToken,
-  initialized: false
-};
+const authAtom = atomWithPartial<AuthState>({
+  initialized: false,
+  token: getToken()
+});
 
-const authAtom = atom(initState)
+async function queryCurrentUserInfoOptions() {
+  const { queryUserInfoOptions } = await import('@/service/api/auth/hooks');
 
+  return queryUserInfoOptions();
+}
 
 export function getToken() {
   return localStg.get('token');
@@ -32,29 +36,30 @@ export function clearAuthStorage() {
 }
 
 export function setAuth(data: Api.Auth.LoginToken) {
-  updateAtomValue(authAtom, prev => ({ ...prev, token: data.token }));
+  setAtomValue(authAtom, { token: data.token });
 
   localStg.set('token', data.token);
   localStg.set('refreshToken', data.refreshToken);
 }
 
 export function useAuth() {
-  const [state, setState] = useAtom(authAtom);
+  const [state, setState] = useAtom(authAtom, { store: globalStore });
   const { clearMenus, getHomeRoute, home, initMenus } = useMenus();
   const isLoggedIn = Boolean(state.token);
-  const { data: userInfo, refetch } = useUserInfoQuery();
+  const userInfo = queryClient.getQueryData<Api.Auth.UserInfo>(AUTH_QUERY_KEYS.USER_INFO);
 
   async function initAuth() {
     try {
-      const { data } = await refetch();
-
-      if (!data) {
-        return null;
-      }
+      const userInfoQueryOptions = await queryCurrentUserInfoOptions();
+      const data = (await queryClient.ensureQueryData(
+        userInfoQueryOptions as Parameters<QueryClient['ensureQueryData']>[0]
+      )) as Api.Auth.UserInfo;
 
       await initMenus(data);
 
-      setState(prev => ({ ...prev, initialized: true }));
+      flushSync(() => {
+        setState({ initialized: true });
+      });
 
       return data;
     } catch {
@@ -69,7 +74,7 @@ export function useAuth() {
 
     queryClient.clear();
 
-    setState(prev => ({ ...prev, token: '' }));
+    setState({ token: '' });
 
     clearAuthStorage();
     clearMenus();
@@ -78,7 +83,7 @@ export function useAuth() {
 
   return {
     token: state.token,
-    userInfo: userInfo || undefined,
+    userInfo,
     isLoggedIn,
     clearAuth,
     getHomeRoute,

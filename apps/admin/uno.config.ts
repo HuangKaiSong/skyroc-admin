@@ -4,7 +4,8 @@ import { defineConfig, presetWind3, transformerDirectives, transformerVariantGro
 export default defineConfig({
   content: {
     pipeline: {
-      include: [/\.tsx($|\?)/]
+      include: [/\.tsx($|\?)/],
+      exclude: ['node_modules', 'dist']
     },
     filesystem: ['../../ui-kit/ui']
   },

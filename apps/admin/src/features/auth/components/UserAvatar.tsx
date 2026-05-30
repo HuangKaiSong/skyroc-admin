@@ -10,7 +10,7 @@ import { useUserInfoQuery } from '@/service/api';
 
 import { useAuth } from '../use-auth';
 
-const UserAvatar = memo(() => {
+const UserAvatar = () => {
   const { isLoggedIn } = useAuth();
 
   const { data: userInfo } = useUserInfoQuery();
@@ -36,10 +36,8 @@ const UserAvatar = memo(() => {
   }
 
   function onClick({ key }: { key: string }) {
-    if (key === '1') {
+    if (key === 'logout') {
       logout();
-    } else {
-      navigate({ to: '/user-center' });
     }
   }
 
@@ -49,19 +47,7 @@ const UserAvatar = memo(() => {
 
   const items: MenuProps['items'] = [
     {
-      key: '0',
-      label: (
-        <div className="flex-center gap-8px">
-          <SvgIcon className="text-lg" icon="ph:user-circle" />
-          {t('common.userCenter')}
-        </div>
-      )
-    },
-    {
-      type: 'divider'
-    },
-    {
-      key: '1',
+      key: 'logout',
       label: (
         <div className="flex-center gap-8px">
           <SvgIcon className="text-lg" icon="ph:sign-out" />
@@ -85,6 +71,6 @@ const UserAvatar = memo(() => {
   }
 
   return <AButton onClick={loginOrRegister}>{t('page.login.common.loginOrRegister')}</AButton>;
-});
+};
 
-export default UserAvatar;
+export default memo(UserAvatar);
