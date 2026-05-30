@@ -66,8 +66,10 @@ declare global {
       config: string;
       confirm: string;
       confirmDelete: string;
+      createTime: string;
       delete: string;
       deleteSuccess: string;
+      detail: string;
       edit: string;
       error: string;
       errorHint: string;
@@ -85,11 +87,13 @@ declare global {
       refresh: string;
       reset: string;
       search: string;
+      selectAll: string;
       switch: string;
       tip: string;
       trigger: string;
       tryAlign: string;
       update: string;
+      updateTime: string;
       updateSuccess: string;
       userCenter: string;
       warning: string;
