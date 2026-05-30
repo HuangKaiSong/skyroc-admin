@@ -64,6 +64,7 @@
   "manage": "System Manage",
   "manage_menu": "Menu Management",
   "manage_role": "Role Management",
+  "manage_role_$id": "Role Detail",
   "manage_user": "User Management",
   "manage_user_$id": "User Detail",
   "projects": "Projects",

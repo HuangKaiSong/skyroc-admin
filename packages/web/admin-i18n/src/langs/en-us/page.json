@@ -220,7 +220,8 @@
     },
     "roleDetail": {
       "content": "This page is solely for displaying all matched multi-level dynamic routes.",
-      "explain": "[...slug] is the syntax for matching all multi-level dynamic routes. The data is random and may not match."
+      "explain": "Current role detail data is prefetched by the TanStack Router loader and reuses the TanStack Query cache.",
+      "title": "Role Detail"
     },
     "user": {
       "addUser": "Add User",
