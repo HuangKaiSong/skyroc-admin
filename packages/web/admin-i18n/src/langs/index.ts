@@ -53,6 +53,8 @@ const zhCN = {
   theme: zhCNTheme
 } satisfies ResourceLanguage;
 
+export type AdminLocaleMessages = typeof zhCN;
+
 export const localeResources: Record<LangType, ResourceLanguage> = {
   'en-US': enUS,
   'zh-CN': zhCN

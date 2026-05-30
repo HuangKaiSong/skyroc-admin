@@ -1,3 +1,5 @@
+import './types/i18n';
+
 // Atoms
 export { currentLangOptionAtom, fallbackLangAtom, langAtom, localeOptionsAtom } from './atoms/lang';
 // Config
