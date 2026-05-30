@@ -1,7 +1,8 @@
+// oxlint-disable import/no-unassigned-import
 import { SvgIcon } from '@skyroc/web-ui-compose';
 import { Button, Tooltip } from 'antd';
 import type { ButtonProps, TooltipProps } from 'antd';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import type { CSSProperties } from 'react';
 
 import type { ButtonLinkComponentProps } from './ButtonLink';
