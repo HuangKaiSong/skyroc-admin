@@ -28,14 +28,16 @@ export function useTableOperate<T extends TableData = TableData>(
   // 表单实例
   const [form] = Form.useForm<T>();
 
+  /** 正在编辑的数据 */
+  const [editingData, setEditingData] = useState<T>();
+
   /** 处理添加操作 */
   function handleAdd() {
     setOperateType('add');
+    setEditingData(undefined);
+    form.resetFields();
     openDrawer();
   }
-
-  /** 正在编辑的数据 */
-  const [editingData, setEditingData] = useState<T>();
 
   /**
    * 处理编辑操作
@@ -79,6 +81,7 @@ export function useTableOperate<T extends TableData = TableData>(
   function onClose() {
     closeDrawer();
     form.resetFields();
+    setEditingData(undefined);
   }
 
   /** 批量删除完成后的回调 */
@@ -104,7 +107,7 @@ export function useTableOperate<T extends TableData = TableData>(
     message.success(t('common.updateSuccess'));
 
     onClose();
-    getData();
+    await getData();
   }
 
   return {

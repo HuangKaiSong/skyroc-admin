@@ -1,193 +1,304 @@
 import { parseQuery } from '@skyroc/utils';
 import { Form } from 'antd';
 import type { TablePaginationConfig } from 'antd';
+import { useTranslation } from 'react-i18next';
 
-import { useHookTable } from './hooks';
+import { formatSearchParams, useHookTable } from './hooks';
 import type {
   CustomTableProps,
   GetTableData,
+  PaginationData,
   TableApiFn,
   TableColumn,
   TableColumnCheck,
+  TableColumnCheckTitle,
+  TableColumnFixed,
   TableConfig,
   TableDataWithIndex,
   TableOnChange
 } from './types';
 
-/**
- * Antd表格Hook
- *
- * 提供完整的表格功能，包括： - 数据获取和分页 - 搜索参数管理 - URL参数同步 - 移动端适配 - 列管理
- */
-export function useTable<A extends TableApiFn>(config: TableConfig<A>) {
+const DEFAULT_PAGE = 1;
+const DEFAULT_PAGE_SIZE = 10;
+const DEFAULT_PAGE_SIZE_OPTIONS = ['10', '15', '20', '25', '30'];
+
+/** Ant Design 表格 Hook，组合查询参数、React Query、Form、分页和列设置。 */
+export function useTable<A extends TableApiFn, T = GetTableData<A>>(config: TableConfig<A, T>) {
   const {
     apiFn,
     apiParams,
     columns: columnsFactory,
+    enabled,
+    getColumnVisible,
     immediate = true,
-    isMobile = false,
     isChangeURL = true,
+    isMobile = false,
     onChange: onChangeCallback,
+    onFetched,
+    onSearchParamsChange,
     pagination: paginationConfig,
-    rowKey = 'id',
+    queryKey,
+    queryOptions,
     routeSearch = '',
+    rowKey = 'id',
+    showTotal = true,
+    transformer,
     transformParams,
     ...rest
   } = config;
 
+  const { t } = useTranslation();
   const [form] = Form.useForm<Parameters<A>[0]>();
+  const routeParams = isChangeURL && routeSearch ? parseQuery(routeSearch) : {};
+  const initialParams = createTableParams<Parameters<A>[0]>({
+    ...(apiParams as Partial<Parameters<A>[0]>),
+    ...(routeParams as Partial<Parameters<A>[0]>)
+  });
+  const resetParams = createTableParams<Parameters<A>[0]>(apiParams);
 
-  // 从URL中解析查询参数
-  const query = isChangeURL ? (parseQuery(routeSearch) as unknown as Parameters<A>[0]) : {};
-
-  // 使用核心Hook处理表格逻辑
-  const {
-    columnChecks,
-    columns,
-    data,
-    empty,
-    getData,
-    loading,
-    pageNum,
-    pageSize,
-    resetSearchParams,
-    searchParams,
-    setColumnChecks,
-    total,
-    updateSearchParams
-  } = useHookTable<A, GetTableData<A>, TableColumn<TableDataWithIndex<GetTableData<A>>>>({
+  const result = useHookTable<A, T, TableColumn<TableDataWithIndex<T>>>({
     apiFn,
-    apiParams: { ...apiParams, ...query },
+    apiParams: initialParams,
     columns: columnsFactory,
-    getColumnChecks: cols => {
-      const checks: TableColumnCheck[] = [];
-
-      cols.forEach(column => {
-        if (column.key) {
-          checks.push({
-            checked: true,
-            key: column.key as string,
-            title: column.title as string
-          });
-        }
-      });
-
-      return checks;
-    },
-    getColumns: (cols, checks) => {
-      const columnMap = new Map<string, TableColumn<TableDataWithIndex<GetTableData<A>>>>();
-
-      cols.forEach(column => {
-        if (column.key) {
-          columnMap.set(column.key as string, column);
-        }
-      });
-
-      const filteredColumns = checks.filter(item => item.checked).map(check => columnMap.get(check.key));
-
-      return filteredColumns as TableColumn<TableDataWithIndex<GetTableData<A>>>[];
-    },
+    enabled,
+    getColumnChecks: columns => getAntdColumnChecks(columns, getColumnVisible),
+    getColumns: getAntdColumns,
     immediate,
     isChangeURL,
-    transformer: res => {
-      const { current = 1, records = [], size = 10, total: totalNum = 0 } = res || {};
-
-      const recordsWithIndex = records.map((item, index) => {
-        return {
-          ...item,
-          index: (current - 1) * size + index + 1
-        };
-      });
-
-      return {
-        data: recordsWithIndex,
-        pageNum: current,
-        pageSize: size,
-        total: totalNum
-      };
-    },
+    onFetched,
+    onSearchParamsChange,
+    queryKey,
+    queryOptions,
+    resetParams,
+    transformer: transformer ?? (defaultTableTransformer as (response: Awaited<ReturnType<A>>) => PaginationData<T>),
     transformParams
   });
 
-  // 分页配置（支持移动端）
-  const pagination: TablePaginationConfig = {
-    current: pageNum,
-    pageSize,
-    pageSizeOptions: ['10', '15', '20', '25', '30'],
-    showSizeChanger: true,
-    simple: isMobile,
-    total,
-    ...paginationConfig
-  };
+  const pagination = createPaginationConfig({
+    isMobile,
+    pageNum: result.pageNum,
+    pageSize: result.pageSize,
+    paginationConfig,
+    showTotal,
+    totalText: total => t('datatable.itemCount', { total }),
+    total: result.total
+  });
 
-  /** 重置搜索 */
+  /** 重置搜索表单和已提交查询参数。 */
   function reset() {
-    form.setFieldsValue(apiParams as NonNullable<Parameters<A>[0]>);
-    resetSearchParams();
+    form.setFieldsValue((apiParams ?? {}) as Parameters<A>[0]);
+    result.resetSearchParams();
   }
 
-  /** 执行搜索 */
+  /** 提交搜索表单。 */
   async function run(isResetCurrent: boolean = true) {
-    const res = await form.validateFields();
+    const values = await form.validateFields();
+    const nextParams = isResetCurrent
+      ? {
+          ...values,
+          current: DEFAULT_PAGE,
+          size: result.pageSize
+        }
+      : values;
 
-    if (res) {
-      if (isResetCurrent) {
-        const { current: _current, ...other } = res;
-        updateSearchParams({ current: 1, ...other });
-      } else {
-        updateSearchParams(res);
-      }
-    }
+    result.updateSearchParams(nextParams as Partial<Parameters<A>[0]>);
   }
 
-  /** 表格变化处理（分页、排序、筛选） */
-  function handleChange(...args: TableOnChange) {
+  /** 同步 Ant Design 表格分页、筛选和排序变化。 */
+  function handleChange(...args: TableOnChange<TableDataWithIndex<T>>) {
     const [paginationContext, ...otherParams] = args;
 
-    let other: Parameters<A>[0] = {
-      current: paginationContext.current,
-      size: paginationContext.pageSize
-    } as Parameters<A>[0];
+    let nextParams = {
+      current: paginationContext.current ?? DEFAULT_PAGE,
+      size: paginationContext.pageSize ?? result.pageSize
+    } as Partial<Parameters<A>[0]>;
 
     if (onChangeCallback) {
-      const params = onChangeCallback(paginationContext, ...otherParams);
-      if (params) {
-        other = params as Parameters<A>[0];
+      const customParams = onChangeCallback(paginationContext, ...otherParams);
+
+      if (customParams) {
+        nextParams = customParams;
       }
     }
 
-    updateSearchParams(other);
+    result.updateSearchParams(nextParams);
   }
 
   return {
-    columnChecks,
-    data,
-    empty,
+    ...result,
     form,
-    getData,
-    loading,
-    pageNum,
-    pageSize,
     pagination,
     reset,
     run,
-    searchParams,
     searchProps: {
       form,
       reset,
       search: run,
-      searchParams: searchParams as NonNullable<Parameters<A>[0]>
+      searchParams: result.searchParams as NonNullable<Parameters<A>[0]>
     },
-    setColumnChecks,
     tableProps: {
-      columns,
-      dataSource: data,
-      loading,
+      columns: result.columns,
+      dataSource: result.data,
+      loading: result.loading,
       onChange: handleChange,
       pagination,
       rowKey,
       ...rest
-    } as CustomTableProps<A>,
-    total
+    } as CustomTableProps<A, T>
   };
+}
+
+/** 默认分页响应转换，适配 current/size/total/records 结构。 */
+export function defaultTableTransformer<T>(response?: {
+  current?: number;
+  records?: T[];
+  size?: number;
+  total?: number;
+}): PaginationData<T> {
+  return {
+    data: response?.records ?? [],
+    pageNum: response?.current ?? DEFAULT_PAGE,
+    pageSize: response?.size ?? DEFAULT_PAGE_SIZE,
+    total: response?.total ?? 0
+  };
+}
+
+/** 从 Ant Design 列定义生成列设置项。 */
+export function getAntdColumnChecks<T>(
+  columns: TableColumn<T>[],
+  getColumnVisible?: (column: TableColumn<T>) => boolean
+) {
+  const checks: TableColumnCheck[] = [];
+
+  columns.forEach(column => {
+    const key = getColumnKey(column);
+
+    if (!key) return;
+
+    checks.push({
+      checked: true,
+      fixed: getColumnFixed(column),
+      key,
+      title: getColumnTitle(column, key),
+      visible: getColumnVisible?.(column) ?? true
+    });
+  });
+
+  return checks;
+}
+
+/** 根据列设置项生成 Ant Design 表格列。 */
+export function getAntdColumns<T>(columns: TableColumn<T>[], checks: TableColumnCheck[]) {
+  const columnMap = new Map<string, TableColumn<T>>();
+  const unmanagedColumns: TableColumn<T>[] = [];
+
+  columns.forEach(column => {
+    const key = getColumnKey(column);
+
+    if (key) {
+      columnMap.set(key, column);
+      return;
+    }
+
+    unmanagedColumns.push(column);
+  });
+
+  const checkedColumns = checks
+    .filter(item => item.checked)
+    .map(check => {
+      const column = columnMap.get(check.key);
+
+      if (!column) return null;
+
+      return {
+        ...column,
+        fixed: check.fixed === 'unFixed' ? undefined : check.fixed
+      } as TableColumn<T>;
+    })
+    .filter(Boolean) as TableColumn<T>[];
+
+  return [...unmanagedColumns, ...checkedColumns];
+}
+
+function createTableParams<T>(params?: Partial<T>) {
+  return formatSearchParams<T>({
+    current: DEFAULT_PAGE,
+    size: DEFAULT_PAGE_SIZE,
+    ...params
+  } as unknown as Partial<T>);
+}
+
+function createPaginationConfig(options: {
+  isMobile: boolean;
+  pageNum: number;
+  pageSize: number;
+  paginationConfig?: false | TablePaginationConfig;
+  showTotal: boolean;
+  total: number;
+  totalText: (total: number) => string;
+}) {
+  const { isMobile, pageNum, pageSize, paginationConfig, showTotal, total, totalText } = options;
+
+  if (paginationConfig === false) {
+    return false;
+  }
+
+  return {
+    current: pageNum,
+    pageSize,
+    pageSizeOptions: DEFAULT_PAGE_SIZE_OPTIONS,
+    showSizeChanger: true,
+    showTotal: showTotal ? totalText : undefined,
+    simple: isMobile,
+    total,
+    ...paginationConfig
+  } satisfies TablePaginationConfig;
+}
+
+function getColumnKey<T>(column: TableColumn<T>) {
+  const key = column.key;
+
+  if (key !== undefined && key !== null) {
+    return String(key);
+  }
+
+  if (!('dataIndex' in column)) {
+    return null;
+  }
+
+  const { dataIndex } = column;
+
+  if (Array.isArray(dataIndex)) {
+    return dataIndex.join('.');
+  }
+
+  if (dataIndex !== undefined && dataIndex !== null) {
+    return String(dataIndex);
+  }
+
+  return null;
+}
+
+function getColumnFixed<T>(column: TableColumn<T>): TableColumnFixed {
+  if (!('fixed' in column)) {
+    return 'unFixed';
+  }
+
+  if (column.fixed === true || column.fixed === 'left') {
+    return 'left';
+  }
+
+  if (column.fixed === 'right') {
+    return 'right';
+  }
+
+  return 'unFixed';
+}
+
+function getColumnTitle<T>(column: TableColumn<T>, key: string): TableColumnCheckTitle {
+  if (!('title' in column)) {
+    return key;
+  }
+
+  return column.title ?? key;
 }

@@ -11,7 +11,7 @@ import type { TableColumnCheck } from './types';
 
 interface TableHeaderOperationProps {
   /** 添加按钮点击事件 */
-  add?: () => void;
+  add?: () => Promise<void> | void;
   /** 自定义操作按钮（会替换默认的添加和批量删除按钮） */
   children?: ReactNode;
   /** 表格列配置 */
@@ -23,11 +23,11 @@ interface TableHeaderOperationProps {
   /** 加载状态（刷新按钮图标会旋转） */
   loading?: boolean;
   /** 批量删除按钮点击事件 */
-  onDelete?: () => void;
+  onDelete?: () => Promise<void> | void;
   /** 前缀内容（显示在最前面） */
   prefix?: ReactNode;
   /** 刷新按钮点击事件 */
-  refresh: () => void;
+  refresh: () => Promise<void> | void;
   /** 更新列配置的回调 */
   setColumnChecks: (checks: TableColumnCheck[]) => void;
   /** 后缀内容（显示在最后面） */
@@ -71,13 +71,10 @@ const TableHeaderOperation = (props: TableHeaderOperationProps) => {
 
   return (
     <Space wrap align={itemAlign} className="lt-sm:w-200px">
-      {/* 前缀内容 */}
       {prefix}
 
-      {/* 自定义操作按钮 或 默认按钮 */}
       {children || (
         <>
-          {/* 添加按钮 */}
           {add && (
             <Button
               ghost
@@ -90,7 +87,6 @@ const TableHeaderOperation = (props: TableHeaderOperationProps) => {
             </Button>
           )}
 
-          {/* 批量删除按钮 */}
           {onDelete && (
             <Popconfirm title={t('common.confirmDelete')} onConfirm={onDelete}>
               <Button
@@ -107,7 +103,6 @@ const TableHeaderOperation = (props: TableHeaderOperationProps) => {
         </>
       )}
 
-      {/* 刷新按钮 */}
       <Button
         size="small"
         icon={
@@ -123,7 +118,6 @@ const TableHeaderOperation = (props: TableHeaderOperationProps) => {
         {t('common.refresh')}
       </Button>
 
-      {/* 列设置 */}
       <Popover
         placement="bottomRight"
         trigger="click"
@@ -134,7 +128,6 @@ const TableHeaderOperation = (props: TableHeaderOperationProps) => {
         </Button>
       </Popover>
 
-      {/* 后缀内容 */}
       {suffix}
     </Space>
   );

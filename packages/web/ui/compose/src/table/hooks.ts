@@ -1,157 +1,213 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useRef, useState } from 'react';
 
 import type {
-  GetTableData,
+  HookTableConfig,
+  HookTableResult,
   PaginationData,
   TableApiFn,
-  TableColumn,
   TableColumnCheck,
   TableDataWithIndex
 } from './types';
 
-/** 核心表格Hook - 处理数据获取、分页、列管理等 */
-export function useHookTable<
-  A extends TableApiFn,
-  T = GetTableData<A>,
-  Column = TableColumn<TableDataWithIndex<T>>
->(config: {
-  apiFn: A;
-  apiParams?: Partial<Parameters<A>[0]>;
-  columns: () => Column[];
-  getColumnChecks: (cols: Column[]) => TableColumnCheck[];
-  getColumns: (cols: Column[], checks: TableColumnCheck[]) => Column[];
-  immediate?: boolean;
-  isChangeURL?: boolean;
-  transformer: (res: Awaited<ReturnType<A>>) => PaginationData<T>;
-  transformParams?: (params: Parameters<A>[0]) => any;
-}) {
+const DEFAULT_PAGE = 1;
+const DEFAULT_PAGE_SIZE = 10;
+
+/** 核心表格 Hook，负责查询参数、React Query 请求、分页结果和列设置状态。 */
+export function useHookTable<A extends TableApiFn, T, Column>(
+  config: HookTableConfig<A, T, Column>
+): HookTableResult<A, T, Column> {
+  type QueryResponse = Awaited<ReturnType<A>>;
+
   const {
     apiFn,
-    apiParams = {},
+    apiParams,
     columns: columnsFactory,
+    enabled = true,
     getColumnChecks,
     getColumns,
     immediate = true,
+    isChangeURL = false,
+    onSearchParamsChange,
+    queryKey,
+    queryOptions,
+    resetParams,
     transformer,
     transformParams
   } = config;
 
-  // 数据状态
-  const [data, setData] = useState<TableDataWithIndex<T>[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [empty, setEmpty] = useState(false);
+  const initialSearchParamsRef = useRef(createSearchParams<Parameters<A>[0]>(apiParams));
+  const resetSearchParamsRef = useRef(createSearchParams<Parameters<A>[0]>(resetParams ?? apiParams));
+  const onFetchedRef = useRef(config.onFetched);
 
-  // 分页状态
-  const [pageNum, setPageNum] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
-  const [total, setTotal] = useState(0);
+  onFetchedRef.current = config.onFetched;
 
-  // 搜索参数
-  const [searchParams, setSearchParams] = useState<Partial<Parameters<A>[0]>>({
-    ...apiParams,
-    current: 1,
-    size: 10
-  } as Partial<Parameters<A>[0]>);
+  const [searchParams, setSearchParams] = useState<Partial<Parameters<A>[0]>>(initialSearchParamsRef.current);
+  const [queryEnabled, setQueryEnabled] = useState(immediate);
+  const [columnChecks, setColumnChecks] = useState<TableColumnCheck[]>(() => getColumnChecks(columnsFactory()));
 
-  // 列管理
-  const allColumns = useMemo(() => columnsFactory(), [columnsFactory]);
-  const [columnChecks, setColumnChecks] = useState<TableColumnCheck[]>(() => getColumnChecks(allColumns));
-  const columns = useMemo(() => getColumns(allColumns, columnChecks), [allColumns, columnChecks, getColumns]);
+  const allColumns = columnsFactory();
+  const columns = getColumns(allColumns, columnChecks);
+  const requestParams = resolveRequestParams(searchParams, transformParams);
+  const currentQueryKey = queryKey(requestParams);
 
-  // 是否是首次加载
-  const isFirstLoad = useRef(true);
+  const query = useQuery<
+    QueryResponse,
+    Error,
+    PaginationData<TableDataWithIndex<T>>,
+    typeof currentQueryKey
+  >({
+    ...queryOptions,
+    enabled: enabled && queryEnabled,
+    queryFn: async (): Promise<QueryResponse> => {
+      const response = await apiFn(requestParams);
 
-  function createInitialSearchParams() {
-    return {
-      ...apiParams,
-      current: 1,
-      size: 10
-    } as Partial<Parameters<A>[0]>;
-  }
-
-  const getDataRef = useRef<() => Promise<void>>(async () => {});
-
-  getDataRef.current = async function getDataImpl() {
-    setLoading(true);
-
-    try {
-      const params = transformParams ? transformParams(searchParams as Parameters<A>[0]) : searchParams;
-      const res = await apiFn(params as Parameters<A>[0]);
-
-      const {
-        data: list,
-        pageNum: current,
-        pageSize: size,
-        total: totalNum
-      } = transformer(res as Awaited<ReturnType<A>>);
-
-      // 为数据添加索引
-      const dataWithIndex = list.map((item, index) => ({
-        ...item,
-        index: (current - 1) * size + index + 1
-      })) as TableDataWithIndex<T>[];
-
-      setData(dataWithIndex);
-      setPageNum(current);
-      setPageSize(size);
-      setTotal(totalNum);
-      setEmpty(dataWithIndex.length === 0);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Failed to fetch table data:', error);
-      setData([]);
-      setEmpty(true);
-    } finally {
-      setLoading(false);
+      return response as QueryResponse;
+    },
+    queryKey: currentQueryKey,
+    select: response => {
+      return withTableIndex(transformer(response));
     }
-  };
+  });
 
-  /** 更新搜索参数 */
-  function updateSearchParams(params: Partial<Parameters<A>[0]>) {
-    setSearchParams(prev => ({ ...prev, ...params }));
-  }
+  const paginationData = query.data ?? createEmptyPaginationData<T>();
+  const empty = !query.isFetching && paginationData.data.length === 0;
+  const loading = query.isFetching;
 
-  /** 重置搜索参数 */
-  function resetSearchParams() {
-    setSearchParams(createInitialSearchParams());
-  }
-
-  /** 重新加载列 */
-  function reloadColumns() {
-    const newColumns = columnsFactory();
-    const newChecks = getColumnChecks(newColumns);
-    setColumnChecks(newChecks);
-  }
-
-  /** 获取表格数据 */
-  async function getData() {
-    await getDataRef.current();
-  }
-
-  // 监听搜索参数变化，自动获取数据
   useEffect(() => {
-    if (isFirstLoad.current && !immediate) {
-      isFirstLoad.current = false;
-      return;
-    }
+    if (!query.data) return;
 
-    getDataRef.current();
-  }, [apiFn, immediate, searchParams, transformParams, transformer]);
+    const onFetched = onFetchedRef.current;
+
+    if (!onFetched) return;
+
+    Promise.resolve(onFetched(query.data)).catch(() => undefined);
+  }, [query.data]);
+
+  /** 重新请求当前查询。 */
+  async function getData() {
+    setQueryEnabled(true);
+    await query.refetch();
+  }
+
+  /** 合并更新查询参数。 */
+  function updateSearchParams(params: Partial<Parameters<A>[0]>) {
+    commitSearchParams({ ...searchParams, ...params });
+  }
+
+  /** 用默认参数重置查询。 */
+  function resetSearchParams() {
+    commitSearchParams(resetSearchParamsRef.current);
+  }
+
+  /** 重新生成列设置，并保留已有显隐、固定和排序偏好。 */
+  function reloadColumns() {
+    const nextChecks = getColumnChecks(columnsFactory());
+    setColumnChecks(mergeColumnChecks(columnChecks, nextChecks));
+  }
+
+  function commitSearchParams(nextParams: Partial<Parameters<A>[0]>) {
+    const formattedParams = formatSearchParams(nextParams);
+
+    setSearchParams(formattedParams);
+    setQueryEnabled(true);
+
+    if (isChangeURL) {
+      onSearchParamsChange?.(formattedParams);
+    }
+  }
 
   return {
     columnChecks,
     columns,
-    data,
+    data: paginationData.data,
     empty,
     getData,
     loading,
-    pageNum,
-    pageSize,
+    pageNum: paginationData.pageNum,
+    pageSize: paginationData.pageSize,
+    query,
     reloadColumns,
     resetSearchParams,
     searchParams,
     setColumnChecks,
-    total,
+    total: paginationData.total,
     updateSearchParams
   };
+}
+
+/** 移除查询参数中的空值，保留 false、0 和空字符串。 */
+export function formatSearchParams<T>(params: Partial<T> = {}) {
+  const entries = Object.entries(params as Record<string, unknown>).filter(([, value]) => {
+    return value !== null && value !== undefined;
+  });
+
+  return Object.fromEntries(entries) as Partial<T>;
+}
+
+function createSearchParams<T>(params?: Partial<T>) {
+  return formatSearchParams<T>({
+    current: DEFAULT_PAGE,
+    size: DEFAULT_PAGE_SIZE,
+    ...params
+  } as unknown as Partial<T>);
+}
+
+function resolveRequestParams<A extends TableApiFn>(
+  searchParams: Partial<Parameters<A>[0]>,
+  transformParams?: (params: Parameters<A>[0]) => Parameters<A>[0]
+) {
+  const formattedParams = formatSearchParams(searchParams) as Parameters<A>[0];
+
+  if (!transformParams) {
+    return formattedParams;
+  }
+
+  return transformParams(formattedParams);
+}
+
+function createEmptyPaginationData<T>(): PaginationData<TableDataWithIndex<T>> {
+  return {
+    data: [],
+    pageNum: DEFAULT_PAGE,
+    pageSize: DEFAULT_PAGE_SIZE,
+    total: 0
+  };
+}
+
+function withTableIndex<T>(data: PaginationData<T>): PaginationData<TableDataWithIndex<T>> {
+  const { data: records, pageNum, pageSize, total } = data;
+
+  return {
+    data: records.map((item, index) => {
+      return {
+        ...item,
+        index: (pageNum - 1) * pageSize + index + 1
+      } as TableDataWithIndex<T>;
+    }),
+    pageNum,
+    pageSize,
+    total
+  };
+}
+
+function mergeColumnChecks(currentChecks: TableColumnCheck[], nextChecks: TableColumnCheck[]) {
+  const currentMap = new Map(currentChecks.map(item => [item.key, item]));
+  const orderMap = new Map(currentChecks.map((item, index) => [item.key, index]));
+  const fallbackOrder = nextChecks.length;
+
+  return nextChecks
+    .map((item, index) => {
+      const current = currentMap.get(item.key);
+
+      return {
+        ...item,
+        checked: current?.checked ?? item.checked,
+        fixed: current?.fixed ?? item.fixed,
+        visible: current?.visible ?? item.visible,
+        __order: orderMap.get(item.key) ?? fallbackOrder + index
+      };
+    })
+    .toSorted((a, b) => a.__order - b.__order)
+    .map(({ __order: _order, ...item }) => item);
 }
