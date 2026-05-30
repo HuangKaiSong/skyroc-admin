@@ -1,38 +1,91 @@
+import { updateAtomValue} from '@skyroc/core-state';
 import { cacheTabs, useMenus } from '@skyroc/web-admin-layouts';
-import {
-  ADMIN_AUTH_QUERY_KEYS,
-  createAdminAuthRuntime
-} from '@skyroc/web-admin-runtime';
-import type { AdminAuthStorage } from '@skyroc/web-admin-runtime';
-
-import { queryUserInfoOptions } from '@/service/api';
+import { atom,useAtom } from 'jotai';
+import {useUserInfoQuery} from '@/service/api';
 import { queryClient } from '@/service/queryClient';
 import { localStg } from '@/utils/storage';
 
-const authStorage: AdminAuthStorage = {
-  get(key) {
-    return localStg.get(key);
-  },
+const initToken = getToken();
 
-  remove(key) {
-    localStg.remove(key);
-  },
+interface AuthState {
+  /** 是否完成首轮认证初始化。 */
+  initialized: boolean;
+  /** 当前 access token，空值表示未登录。 */
+  token: string | null;
+}
 
-  set(key, value) {
-    localStg.set(key, value);
-  }
+const initState: AuthState = {
+  token: initToken,
+  initialized: false
 };
 
-const authRuntime = createAdminAuthRuntime<Router.RoutePath>({
-  cacheTabs,
-  queryClient,
-  queryUserInfoOptions,
-  storage: authStorage,
-  useLayoutRuntime: useMenus,
-  userInfoQueryKey: ADMIN_AUTH_QUERY_KEYS.USER_INFO
-});
+const authAtom = atom(initState)
 
-export const clearAuthStorage = authRuntime.clearAuthStorage;
-export const getToken = authRuntime.getToken;
-export const setAuth = authRuntime.setAuth;
-export const useAuth = authRuntime.useAuth;
+
+export function getToken() {
+  return localStg.get('token');
+}
+
+export function clearAuthStorage() {
+  localStg.remove('token');
+  localStg.remove('refreshToken');
+}
+
+export function setAuth(data: Api.Auth.LoginToken) {
+  updateAtomValue(authAtom, prev => ({ ...prev, token: data.token }));
+
+  localStg.set('token', data.token);
+  localStg.set('refreshToken', data.refreshToken);
+}
+
+export function useAuth() {
+  const [state, setState] = useAtom(authAtom);
+  const { clearMenus, getHomeRoute, home, initMenus } = useMenus();
+  const isLoggedIn = Boolean(state.token);
+  const { data: userInfo, refetch } = useUserInfoQuery();
+
+  async function initAuth() {
+    try {
+      const { data } = await refetch();
+
+      if (!data) {
+        return null;
+      }
+
+      await initMenus(data);
+
+      setState(prev => ({ ...prev, initialized: true }));
+
+      return data;
+    } catch {
+      return null;
+    }
+  }
+
+  function clearAuth() {
+    if (userInfo) {
+      localStg.set('lastLoginUserId', userInfo.userId);
+    }
+
+    queryClient.clear();
+
+    setState(prev => ({ ...prev, token: '' }));
+
+    clearAuthStorage();
+    clearMenus();
+    cacheTabs();
+  }
+
+  return {
+    token: state.token,
+    userInfo,
+    isLoggedIn,
+    clearAuth,
+    getHomeRoute,
+    homeRoute: home,
+    initMenus,
+    initAuth,
+    isAuthInitialized: state.initialized,
+    setAuth
+  };
+}
