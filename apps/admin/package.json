@@ -53,6 +53,7 @@
     "@skyroc/web-admin-layouts": "workspace:*",
     "@skyroc/web-admin-notification": "workspace:*",
     "@skyroc/web-admin-runtime": "workspace:*",
+    "@skyroc/web-admin-styles": "workspace:*",
     "@skyroc/web-admin-theme": "workspace:*",
     "@skyroc/web-ui": "workspace:*",
     "@skyroc/web-ui-antd": "workspace:*",

@@ -562,6 +562,9 @@ importers:
       '@skyroc/web-admin-runtime':
         specifier: workspace:*
         version: link:../../packages/web/admin-runtime
+      '@skyroc/web-admin-styles':
+        specifier: workspace:*
+        version: link:../../packages/web/admin-styles
       '@skyroc/web-admin-theme':
         specifier: workspace:*
         version: link:../../packages/web/admin-theme
@@ -2357,6 +2360,8 @@ importers:
       typescript:
         specifier: catalog:core
         version: 6.0.3
+
+  packages/web/admin-styles: {}
 
   packages/web/admin-theme:
     dependencies:
