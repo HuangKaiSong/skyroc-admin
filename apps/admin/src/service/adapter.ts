@@ -1,4 +1,3 @@
-import { createAdminRequestAdapter } from '@skyroc/web-admin-runtime';
 import type { RequestAdapter } from '@skyroc/service';
 
 import { setAuth } from '@/features/auth/use-auth';
@@ -37,15 +36,30 @@ async function fetchAdminRefreshToken(refreshToken: string) {
   return fetchRefreshToken(refreshToken);
 }
 
-export const antdAdapter: RequestAdapter = createAdminRequestAdapter({
+export const antdAdapter: RequestAdapter = {
   fetchRefreshToken: fetchAdminRefreshToken,
-  getCurrentPath: () => router.state.location.href,
-  redirectToLogin: redirectPath => {
+  getCurrentPath() {
+    return router.state.location.href;
+  },
+  getRefreshToken() {
+    return localStg.get('refreshToken') || null;
+  },
+  getToken() {
+    return localStg.get('token') || null;
+  },
+  redirectToLogin(redirectPath?: string) {
     router.navigate({ search: { redirect: redirectPath }, to: '/login-out' });
   },
-  setAuth: tokens => setAuth(tokens),
+  resetAuth() {
+    localStg.remove('token');
+    localStg.remove('refreshToken');
+  },
+  setAuth(tokens) {
+    setAuth({ refreshToken: tokens.refreshToken, token: tokens.token });
+  },
   showErrorMessage: showRequestErrorMessage,
   showErrorModal: showRequestErrorModal,
-  storage: localStg,
-  t: key => $t(key)
-});
+  t(key: string) {
+    return $t(key);
+  }
+};

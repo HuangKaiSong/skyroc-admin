@@ -1,5 +1,3 @@
-import { createAdminQueryClient } from '@skyroc/web-admin-runtime';
+import { createQueryClient } from '@skyroc/service/query';
 
-export const queryClient = createAdminQueryClient({
-  isDev: import.meta.env.DEV
-});
+export const queryClient = createQueryClient();
