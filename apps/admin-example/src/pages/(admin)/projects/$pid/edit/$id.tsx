@@ -1,4 +1,4 @@
-import { createFileRoute, useParams } from '@tanstack/react-router';
+import { createFileRoute, useNavigate, useParams } from '@tanstack/react-router';
 import { Typography } from 'antd';
 
 interface ProjectEditRouteParams {
@@ -11,6 +11,15 @@ interface ProjectEditRouteParams {
 
 const ProjectsEditId = () => {
   const { id, pid } = useParams({ strict: false }) as ProjectEditRouteParams;
+  const navigate = useNavigate();
+
+  function goProjects() {
+    navigate({ to: '/projects' });
+  }
+
+  function goProjectDetail() {
+    navigate({ params: { pid }, to: '/projects/$pid' });
+  }
 
   return (
     <ACard className="h-full card-wrapper" size="small" variant="borderless">
@@ -48,8 +57,11 @@ const ProjectsEditId = () => {
               </div>
 
               <ASpace className="mt-24px">
-                <AButton>返回</AButton>
-                <AButton type="primary">保存编辑</AButton>
+                <AButton onClick={goProjects}>返回项目入口</AButton>
+                <AButton onClick={goProjectDetail}>返回项目详情</AButton>
+                <AButton type="primary" onClick={goProjectDetail}>
+                  保存并返回详情
+                </AButton>
               </ASpace>
             </div>
           </div>

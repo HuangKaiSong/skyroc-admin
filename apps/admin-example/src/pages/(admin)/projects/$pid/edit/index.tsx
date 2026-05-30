@@ -1,11 +1,9 @@
-import { createFileRoute } from '@tanstack/react-router';
-
-const ProjectEdit = () => {
-  return null;
-};
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/(admin)/projects/$pid/edit/')({
-  component: ProjectEdit,
+  beforeLoad: ({ params }) => {
+    throw redirect({ params: { id: 'release-plan', pid: params.pid }, to: '/projects/$pid/edit/$id' });
+  },
   staticData: {
     i18nKey: 'route.projects_$pid_edit',
     menu: {
