@@ -16,37 +16,96 @@ import { Route as errors404RouteImport } from './../../pages/(errors)/404'
 import { Route as errors403RouteImport } from './../../pages/(errors)/403'
 import { Route as authLoginOutRouteImport } from './../../pages/(auth)/login-out'
 import { Route as adminUserCenterRouteImport } from './../../pages/(admin)/user-center'
-import { Route as adminSoybeanDocsIframeRouteImport } from './../../pages/(admin)/soybean-docs-iframe'
-import { Route as adminSoybeanDocsRouteImport } from './../../pages/(admin)/soybean-docs'
 import { Route as adminKeepAliveFormRouteImport } from './../../pages/(admin)/keep-alive-form'
 import { Route as authLoginLayoutRouteImport } from './../../pages/(auth)/login/layout'
+import { Route as adminProjectsLayoutRouteImport } from './../../pages/(admin)/projects/layout'
+import { Route as adminPluginLayoutRouteImport } from './../../pages/(admin)/plugin/layout'
 import { Route as adminMultiMenuLayoutRouteImport } from './../../pages/(admin)/multi-menu/layout'
 import { Route as adminManageLayoutRouteImport } from './../../pages/(admin)/manage/layout'
+import { Route as adminInteractionLayoutRouteImport } from './../../pages/(admin)/interaction/layout'
+import { Route as adminFunctionLayoutRouteImport } from './../../pages/(admin)/function/layout'
 import { Route as adminExceptionLayoutRouteImport } from './../../pages/(admin)/exception/layout'
+import { Route as adminDocumentLayoutRouteImport } from './../../pages/(admin)/document/layout'
 import { Route as authLoginIndexRouteImport } from './../../pages/(auth)/login/index'
+import { Route as adminProjectsIndexRouteImport } from './../../pages/(admin)/projects/index'
+import { Route as adminPluginIndexRouteImport } from './../../pages/(admin)/plugin/index'
 import { Route as adminMultiMenuIndexRouteImport } from './../../pages/(admin)/multi-menu/index'
 import { Route as adminManageIndexRouteImport } from './../../pages/(admin)/manage/index'
+import { Route as adminInteractionIndexRouteImport } from './../../pages/(admin)/interaction/index'
 import { Route as adminHomeIndexRouteImport } from './../../pages/(admin)/home/index'
+import { Route as adminFunctionIndexRouteImport } from './../../pages/(admin)/function/index'
 import { Route as adminExceptionIndexRouteImport } from './../../pages/(admin)/exception/index'
+import { Route as adminDocumentIndexRouteImport } from './../../pages/(admin)/document/index'
 import { Route as adminAboutIndexRouteImport } from './../../pages/(admin)/about/index'
 import { Route as authLoginResetPwdRouteImport } from './../../pages/(auth)/login/reset-pwd'
 import { Route as authLoginRegisterRouteImport } from './../../pages/(auth)/login/register'
 import { Route as authLoginCodeLoginRouteImport } from './../../pages/(auth)/login/code-login'
+import { Route as adminPluginVideoRouteImport } from './../../pages/(admin)/plugin/video'
+import { Route as adminPluginTypeitRouteImport } from './../../pages/(admin)/plugin/typeit'
+import { Route as adminPluginSwiperRouteImport } from './../../pages/(admin)/plugin/swiper'
+import { Route as adminPluginPrintRouteImport } from './../../pages/(admin)/plugin/print'
+import { Route as adminPluginPinyinRouteImport } from './../../pages/(admin)/plugin/pinyin'
+import { Route as adminPluginPdfRouteImport } from './../../pages/(admin)/plugin/pdf'
+import { Route as adminPluginMapRouteImport } from './../../pages/(admin)/plugin/map'
+import { Route as adminPluginIconRouteImport } from './../../pages/(admin)/plugin/icon'
+import { Route as adminPluginExcelRouteImport } from './../../pages/(admin)/plugin/excel'
+import { Route as adminPluginCopyRouteImport } from './../../pages/(admin)/plugin/copy'
+import { Route as adminPluginBarcodeRouteImport } from './../../pages/(admin)/plugin/barcode'
+import { Route as adminFunctionToggleAuthRouteImport } from './../../pages/(admin)/function/toggle-auth'
+import { Route as adminFunctionTabRouteImport } from './../../pages/(admin)/function/tab'
+import { Route as adminFunctionSuperPageRouteImport } from './../../pages/(admin)/function/super-page'
+import { Route as adminFunctionRequestRouteImport } from './../../pages/(admin)/function/request'
+import { Route as adminFunctionMultiTabRouteImport } from './../../pages/(admin)/function/multi-tab'
+import { Route as adminFunctionEventBusRouteImport } from './../../pages/(admin)/function/event-bus'
 import { Route as adminException500RouteImport } from './../../pages/(admin)/exception/500'
 import { Route as adminException404RouteImport } from './../../pages/(admin)/exception/404'
 import { Route as adminException403RouteImport } from './../../pages/(admin)/exception/403'
+import { Route as adminDocumentWebUiDocsRouteImport } from './../../pages/(admin)/document/web-ui-docs'
+import { Route as adminDocumentWebKitDocsRouteImport } from './../../pages/(admin)/document/web-kit-docs'
+import { Route as adminDocumentViteRouteImport } from './../../pages/(admin)/document/vite'
+import { Route as adminDocumentUnocssRouteImport } from './../../pages/(admin)/document/unocss'
+import { Route as adminDocumentTanstackRouterRouteImport } from './../../pages/(admin)/document/tanstack-router'
+import { Route as adminDocumentTanstackQueryRouteImport } from './../../pages/(admin)/document/tanstack-query'
+import { Route as adminDocumentRepositoryRouteImport } from './../../pages/(admin)/document/repository'
+import { Route as adminDocumentReactRouteImport } from './../../pages/(admin)/document/react'
+import { Route as adminDocumentJotaiRouteImport } from './../../pages/(admin)/document/jotai'
+import { Route as adminDocumentCoreDocsRouteImport } from './../../pages/(admin)/document/core-docs'
+import { Route as adminDocumentAntDesignRouteImport } from './../../pages/(admin)/document/ant-design'
+import { Route as adminDocumentAdminDocsRouteImport } from './../../pages/(admin)/document/admin-docs'
+import { Route as adminPluginTablesLayoutRouteImport } from './../../pages/(admin)/plugin/tables/layout'
+import { Route as adminPluginGanttLayoutRouteImport } from './../../pages/(admin)/plugin/gantt/layout'
+import { Route as adminPluginEditorLayoutRouteImport } from './../../pages/(admin)/plugin/editor/layout'
+import { Route as adminPluginChartsLayoutRouteImport } from './../../pages/(admin)/plugin/charts/layout'
 import { Route as adminMultiMenuSecondLayoutRouteImport } from './../../pages/(admin)/multi-menu/second/layout'
 import { Route as adminMultiMenuFirstLayoutRouteImport } from './../../pages/(admin)/multi-menu/first/layout'
+import { Route as adminFunctionHideChildLayoutRouteImport } from './../../pages/(admin)/function/hide-child/layout'
+import { Route as adminProjectsPidIndexRouteImport } from './../../pages/(admin)/projects/$pid/index'
+import { Route as adminPluginTablesIndexRouteImport } from './../../pages/(admin)/plugin/tables/index'
+import { Route as adminPluginGanttIndexRouteImport } from './../../pages/(admin)/plugin/gantt/index'
+import { Route as adminPluginEditorIndexRouteImport } from './../../pages/(admin)/plugin/editor/index'
+import { Route as adminPluginChartsIndexRouteImport } from './../../pages/(admin)/plugin/charts/index'
 import { Route as adminMultiMenuSecondIndexRouteImport } from './../../pages/(admin)/multi-menu/second/index'
 import { Route as adminMultiMenuFirstIndexRouteImport } from './../../pages/(admin)/multi-menu/first/index'
 import { Route as adminManageUserIndexRouteImport } from './../../pages/(admin)/manage/user/index'
-import { Route as adminManageRoleIndexRouteImport } from './../../pages/(admin)/manage/role/index'
-import { Route as adminManageMenuIndexRouteImport } from './../../pages/(admin)/manage/menu/index'
+import { Route as adminInteractionThemeIndexRouteImport } from './../../pages/(admin)/interaction/theme/index'
+import { Route as adminInteractionNotificationIndexRouteImport } from './../../pages/(admin)/interaction/notification/index'
+import { Route as adminInteractionFeedbackIndexRouteImport } from './../../pages/(admin)/interaction/feedback/index'
+import { Route as adminFunctionHideChildIndexRouteImport } from './../../pages/(admin)/function/hide-child/index'
+import { Route as adminPluginTablesVtableRouteImport } from './../../pages/(admin)/plugin/tables/vtable'
+import { Route as adminPluginGanttDhtmlxRouteImport } from './../../pages/(admin)/plugin/gantt/dhtmlx'
+import { Route as adminPluginEditorQuillRouteImport } from './../../pages/(admin)/plugin/editor/quill'
+import { Route as adminPluginEditorMarkdownRouteImport } from './../../pages/(admin)/plugin/editor/markdown'
+import { Route as adminPluginChartsEchartsRouteImport } from './../../pages/(admin)/plugin/charts/echarts'
 import { Route as adminMultiMenuFirstChildRouteImport } from './../../pages/(admin)/multi-menu/first/child'
 import { Route as adminManageUserIdRouteImport } from './../../pages/(admin)/manage/user/$id'
+import { Route as adminFunctionHideChildTwoRouteImport } from './../../pages/(admin)/function/hide-child/two'
+import { Route as adminFunctionHideChildThreeRouteImport } from './../../pages/(admin)/function/hide-child/three'
+import { Route as adminFunctionHideChildOneRouteImport } from './../../pages/(admin)/function/hide-child/one'
 import { Route as adminBuiltinIframePageUrlRouteImport } from './../../pages/(admin)/_builtin/iframe-page/$url'
 import { Route as adminMultiMenuSecondChildLayoutRouteImport } from './../../pages/(admin)/multi-menu/second/child/layout'
+import { Route as adminProjectsPidEditIndexRouteImport } from './../../pages/(admin)/projects/$pid/edit/index'
 import { Route as adminMultiMenuSecondChildIndexRouteImport } from './../../pages/(admin)/multi-menu/second/child/index'
+import { Route as adminProjectsPidEditIdRouteImport } from './../../pages/(admin)/projects/$pid/edit/$id'
 import { Route as adminMultiMenuSecondChildHomeRouteImport } from './../../pages/(admin)/multi-menu/second/child/home'
 
 const adminLayoutRoute = adminLayoutRouteImport.update({
@@ -83,16 +142,6 @@ const adminUserCenterRoute = adminUserCenterRouteImport.update({
   path: '/user-center',
   getParentRoute: () => adminLayoutRoute,
 } as any)
-const adminSoybeanDocsIframeRoute = adminSoybeanDocsIframeRouteImport.update({
-  id: '/soybean-docs-iframe',
-  path: '/soybean-docs-iframe',
-  getParentRoute: () => adminLayoutRoute,
-} as any)
-const adminSoybeanDocsRoute = adminSoybeanDocsRouteImport.update({
-  id: '/soybean-docs',
-  path: '/soybean-docs',
-  getParentRoute: () => adminLayoutRoute,
-} as any)
 const adminKeepAliveFormRoute = adminKeepAliveFormRouteImport.update({
   id: '/keep-alive-form',
   path: '/keep-alive-form',
@@ -102,6 +151,16 @@ const authLoginLayoutRoute = authLoginLayoutRouteImport.update({
   id: '/(auth)/login',
   path: '/login',
   getParentRoute: () => rootRouteImport,
+} as any)
+const adminProjectsLayoutRoute = adminProjectsLayoutRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => adminLayoutRoute,
+} as any)
+const adminPluginLayoutRoute = adminPluginLayoutRouteImport.update({
+  id: '/plugin',
+  path: '/plugin',
+  getParentRoute: () => adminLayoutRoute,
 } as any)
 const adminMultiMenuLayoutRoute = adminMultiMenuLayoutRouteImport.update({
   id: '/multi-menu',
@@ -113,15 +172,40 @@ const adminManageLayoutRoute = adminManageLayoutRouteImport.update({
   path: '/manage',
   getParentRoute: () => adminLayoutRoute,
 } as any)
+const adminInteractionLayoutRoute = adminInteractionLayoutRouteImport.update({
+  id: '/interaction',
+  path: '/interaction',
+  getParentRoute: () => adminLayoutRoute,
+} as any)
+const adminFunctionLayoutRoute = adminFunctionLayoutRouteImport.update({
+  id: '/function',
+  path: '/function',
+  getParentRoute: () => adminLayoutRoute,
+} as any)
 const adminExceptionLayoutRoute = adminExceptionLayoutRouteImport.update({
   id: '/exception',
   path: '/exception',
+  getParentRoute: () => adminLayoutRoute,
+} as any)
+const adminDocumentLayoutRoute = adminDocumentLayoutRouteImport.update({
+  id: '/document',
+  path: '/document',
   getParentRoute: () => adminLayoutRoute,
 } as any)
 const authLoginIndexRoute = authLoginIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => authLoginLayoutRoute,
+} as any)
+const adminProjectsIndexRoute = adminProjectsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => adminProjectsLayoutRoute,
+} as any)
+const adminPluginIndexRoute = adminPluginIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => adminPluginLayoutRoute,
 } as any)
 const adminMultiMenuIndexRoute = adminMultiMenuIndexRouteImport.update({
   id: '/',
@@ -133,15 +217,30 @@ const adminManageIndexRoute = adminManageIndexRouteImport.update({
   path: '/',
   getParentRoute: () => adminManageLayoutRoute,
 } as any)
+const adminInteractionIndexRoute = adminInteractionIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => adminInteractionLayoutRoute,
+} as any)
 const adminHomeIndexRoute = adminHomeIndexRouteImport.update({
   id: '/home/',
   path: '/home/',
   getParentRoute: () => adminLayoutRoute,
 } as any)
+const adminFunctionIndexRoute = adminFunctionIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => adminFunctionLayoutRoute,
+} as any)
 const adminExceptionIndexRoute = adminExceptionIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => adminExceptionLayoutRoute,
+} as any)
+const adminDocumentIndexRoute = adminDocumentIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => adminDocumentLayoutRoute,
 } as any)
 const adminAboutIndexRoute = adminAboutIndexRouteImport.update({
   id: '/about/',
@@ -163,6 +262,91 @@ const authLoginCodeLoginRoute = authLoginCodeLoginRouteImport.update({
   path: '/code-login',
   getParentRoute: () => authLoginLayoutRoute,
 } as any)
+const adminPluginVideoRoute = adminPluginVideoRouteImport.update({
+  id: '/video',
+  path: '/video',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminPluginTypeitRoute = adminPluginTypeitRouteImport.update({
+  id: '/typeit',
+  path: '/typeit',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminPluginSwiperRoute = adminPluginSwiperRouteImport.update({
+  id: '/swiper',
+  path: '/swiper',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminPluginPrintRoute = adminPluginPrintRouteImport.update({
+  id: '/print',
+  path: '/print',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminPluginPinyinRoute = adminPluginPinyinRouteImport.update({
+  id: '/pinyin',
+  path: '/pinyin',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminPluginPdfRoute = adminPluginPdfRouteImport.update({
+  id: '/pdf',
+  path: '/pdf',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminPluginMapRoute = adminPluginMapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminPluginIconRoute = adminPluginIconRouteImport.update({
+  id: '/icon',
+  path: '/icon',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminPluginExcelRoute = adminPluginExcelRouteImport.update({
+  id: '/excel',
+  path: '/excel',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminPluginCopyRoute = adminPluginCopyRouteImport.update({
+  id: '/copy',
+  path: '/copy',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminPluginBarcodeRoute = adminPluginBarcodeRouteImport.update({
+  id: '/barcode',
+  path: '/barcode',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminFunctionToggleAuthRoute = adminFunctionToggleAuthRouteImport.update({
+  id: '/toggle-auth',
+  path: '/toggle-auth',
+  getParentRoute: () => adminFunctionLayoutRoute,
+} as any)
+const adminFunctionTabRoute = adminFunctionTabRouteImport.update({
+  id: '/tab',
+  path: '/tab',
+  getParentRoute: () => adminFunctionLayoutRoute,
+} as any)
+const adminFunctionSuperPageRoute = adminFunctionSuperPageRouteImport.update({
+  id: '/super-page',
+  path: '/super-page',
+  getParentRoute: () => adminFunctionLayoutRoute,
+} as any)
+const adminFunctionRequestRoute = adminFunctionRequestRouteImport.update({
+  id: '/request',
+  path: '/request',
+  getParentRoute: () => adminFunctionLayoutRoute,
+} as any)
+const adminFunctionMultiTabRoute = adminFunctionMultiTabRouteImport.update({
+  id: '/multi-tab',
+  path: '/multi-tab',
+  getParentRoute: () => adminFunctionLayoutRoute,
+} as any)
+const adminFunctionEventBusRoute = adminFunctionEventBusRouteImport.update({
+  id: '/event-bus',
+  path: '/event-bus',
+  getParentRoute: () => adminFunctionLayoutRoute,
+} as any)
 const adminException500Route = adminException500RouteImport.update({
   id: '/500',
   path: '/500',
@@ -178,6 +362,88 @@ const adminException403Route = adminException403RouteImport.update({
   path: '/403',
   getParentRoute: () => adminExceptionLayoutRoute,
 } as any)
+const adminDocumentWebUiDocsRoute = adminDocumentWebUiDocsRouteImport.update({
+  id: '/web-ui-docs',
+  path: '/web-ui-docs',
+  getParentRoute: () => adminDocumentLayoutRoute,
+} as any)
+const adminDocumentWebKitDocsRoute = adminDocumentWebKitDocsRouteImport.update({
+  id: '/web-kit-docs',
+  path: '/web-kit-docs',
+  getParentRoute: () => adminDocumentLayoutRoute,
+} as any)
+const adminDocumentViteRoute = adminDocumentViteRouteImport.update({
+  id: '/vite',
+  path: '/vite',
+  getParentRoute: () => adminDocumentLayoutRoute,
+} as any)
+const adminDocumentUnocssRoute = adminDocumentUnocssRouteImport.update({
+  id: '/unocss',
+  path: '/unocss',
+  getParentRoute: () => adminDocumentLayoutRoute,
+} as any)
+const adminDocumentTanstackRouterRoute =
+  adminDocumentTanstackRouterRouteImport.update({
+    id: '/tanstack-router',
+    path: '/tanstack-router',
+    getParentRoute: () => adminDocumentLayoutRoute,
+  } as any)
+const adminDocumentTanstackQueryRoute =
+  adminDocumentTanstackQueryRouteImport.update({
+    id: '/tanstack-query',
+    path: '/tanstack-query',
+    getParentRoute: () => adminDocumentLayoutRoute,
+  } as any)
+const adminDocumentRepositoryRoute = adminDocumentRepositoryRouteImport.update({
+  id: '/repository',
+  path: '/repository',
+  getParentRoute: () => adminDocumentLayoutRoute,
+} as any)
+const adminDocumentReactRoute = adminDocumentReactRouteImport.update({
+  id: '/react',
+  path: '/react',
+  getParentRoute: () => adminDocumentLayoutRoute,
+} as any)
+const adminDocumentJotaiRoute = adminDocumentJotaiRouteImport.update({
+  id: '/jotai',
+  path: '/jotai',
+  getParentRoute: () => adminDocumentLayoutRoute,
+} as any)
+const adminDocumentCoreDocsRoute = adminDocumentCoreDocsRouteImport.update({
+  id: '/core-docs',
+  path: '/core-docs',
+  getParentRoute: () => adminDocumentLayoutRoute,
+} as any)
+const adminDocumentAntDesignRoute = adminDocumentAntDesignRouteImport.update({
+  id: '/ant-design',
+  path: '/ant-design',
+  getParentRoute: () => adminDocumentLayoutRoute,
+} as any)
+const adminDocumentAdminDocsRoute = adminDocumentAdminDocsRouteImport.update({
+  id: '/admin-docs',
+  path: '/admin-docs',
+  getParentRoute: () => adminDocumentLayoutRoute,
+} as any)
+const adminPluginTablesLayoutRoute = adminPluginTablesLayoutRouteImport.update({
+  id: '/tables',
+  path: '/tables',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminPluginGanttLayoutRoute = adminPluginGanttLayoutRouteImport.update({
+  id: '/gantt',
+  path: '/gantt',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminPluginEditorLayoutRoute = adminPluginEditorLayoutRouteImport.update({
+  id: '/editor',
+  path: '/editor',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
+const adminPluginChartsLayoutRoute = adminPluginChartsLayoutRouteImport.update({
+  id: '/charts',
+  path: '/charts',
+  getParentRoute: () => adminPluginLayoutRoute,
+} as any)
 const adminMultiMenuSecondLayoutRoute =
   adminMultiMenuSecondLayoutRouteImport.update({
     id: '/second',
@@ -190,6 +456,37 @@ const adminMultiMenuFirstLayoutRoute =
     path: '/first',
     getParentRoute: () => adminMultiMenuLayoutRoute,
   } as any)
+const adminFunctionHideChildLayoutRoute =
+  adminFunctionHideChildLayoutRouteImport.update({
+    id: '/hide-child',
+    path: '/hide-child',
+    getParentRoute: () => adminFunctionLayoutRoute,
+  } as any)
+const adminProjectsPidIndexRoute = adminProjectsPidIndexRouteImport.update({
+  id: '/$pid/',
+  path: '/$pid/',
+  getParentRoute: () => adminProjectsLayoutRoute,
+} as any)
+const adminPluginTablesIndexRoute = adminPluginTablesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => adminPluginTablesLayoutRoute,
+} as any)
+const adminPluginGanttIndexRoute = adminPluginGanttIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => adminPluginGanttLayoutRoute,
+} as any)
+const adminPluginEditorIndexRoute = adminPluginEditorIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => adminPluginEditorLayoutRoute,
+} as any)
+const adminPluginChartsIndexRoute = adminPluginChartsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => adminPluginChartsLayoutRoute,
+} as any)
 const adminMultiMenuSecondIndexRoute =
   adminMultiMenuSecondIndexRouteImport.update({
     id: '/',
@@ -207,16 +504,57 @@ const adminManageUserIndexRoute = adminManageUserIndexRouteImport.update({
   path: '/user/',
   getParentRoute: () => adminManageLayoutRoute,
 } as any)
-const adminManageRoleIndexRoute = adminManageRoleIndexRouteImport.update({
-  id: '/role/',
-  path: '/role/',
-  getParentRoute: () => adminManageLayoutRoute,
+const adminInteractionThemeIndexRoute =
+  adminInteractionThemeIndexRouteImport.update({
+    id: '/theme/',
+    path: '/theme/',
+    getParentRoute: () => adminInteractionLayoutRoute,
+  } as any)
+const adminInteractionNotificationIndexRoute =
+  adminInteractionNotificationIndexRouteImport.update({
+    id: '/notification/',
+    path: '/notification/',
+    getParentRoute: () => adminInteractionLayoutRoute,
+  } as any)
+const adminInteractionFeedbackIndexRoute =
+  adminInteractionFeedbackIndexRouteImport.update({
+    id: '/feedback/',
+    path: '/feedback/',
+    getParentRoute: () => adminInteractionLayoutRoute,
+  } as any)
+const adminFunctionHideChildIndexRoute =
+  adminFunctionHideChildIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => adminFunctionHideChildLayoutRoute,
+  } as any)
+const adminPluginTablesVtableRoute = adminPluginTablesVtableRouteImport.update({
+  id: '/vtable',
+  path: '/vtable',
+  getParentRoute: () => adminPluginTablesLayoutRoute,
 } as any)
-const adminManageMenuIndexRoute = adminManageMenuIndexRouteImport.update({
-  id: '/menu/',
-  path: '/menu/',
-  getParentRoute: () => adminManageLayoutRoute,
+const adminPluginGanttDhtmlxRoute = adminPluginGanttDhtmlxRouteImport.update({
+  id: '/dhtmlx',
+  path: '/dhtmlx',
+  getParentRoute: () => adminPluginGanttLayoutRoute,
 } as any)
+const adminPluginEditorQuillRoute = adminPluginEditorQuillRouteImport.update({
+  id: '/quill',
+  path: '/quill',
+  getParentRoute: () => adminPluginEditorLayoutRoute,
+} as any)
+const adminPluginEditorMarkdownRoute =
+  adminPluginEditorMarkdownRouteImport.update({
+    id: '/markdown',
+    path: '/markdown',
+    getParentRoute: () => adminPluginEditorLayoutRoute,
+  } as any)
+const adminPluginChartsEchartsRoute =
+  adminPluginChartsEchartsRouteImport.update({
+    id: '/echarts',
+    path: '/echarts',
+    getParentRoute: () => adminPluginChartsLayoutRoute,
+  } as any)
 const adminMultiMenuFirstChildRoute =
   adminMultiMenuFirstChildRouteImport.update({
     id: '/child',
@@ -228,6 +566,24 @@ const adminManageUserIdRoute = adminManageUserIdRouteImport.update({
   path: '/user/$id',
   getParentRoute: () => adminManageLayoutRoute,
 } as any)
+const adminFunctionHideChildTwoRoute =
+  adminFunctionHideChildTwoRouteImport.update({
+    id: '/two',
+    path: '/two',
+    getParentRoute: () => adminFunctionHideChildLayoutRoute,
+  } as any)
+const adminFunctionHideChildThreeRoute =
+  adminFunctionHideChildThreeRouteImport.update({
+    id: '/three',
+    path: '/three',
+    getParentRoute: () => adminFunctionHideChildLayoutRoute,
+  } as any)
+const adminFunctionHideChildOneRoute =
+  adminFunctionHideChildOneRouteImport.update({
+    id: '/one',
+    path: '/one',
+    getParentRoute: () => adminFunctionHideChildLayoutRoute,
+  } as any)
 const adminBuiltinIframePageUrlRoute =
   adminBuiltinIframePageUrlRouteImport.update({
     id: '/_builtin/iframe-page/$url',
@@ -240,12 +596,23 @@ const adminMultiMenuSecondChildLayoutRoute =
     path: '/child',
     getParentRoute: () => adminMultiMenuSecondLayoutRoute,
   } as any)
+const adminProjectsPidEditIndexRoute =
+  adminProjectsPidEditIndexRouteImport.update({
+    id: '/$pid/edit/',
+    path: '/$pid/edit/',
+    getParentRoute: () => adminProjectsLayoutRoute,
+  } as any)
 const adminMultiMenuSecondChildIndexRoute =
   adminMultiMenuSecondChildIndexRouteImport.update({
     id: '/',
     path: '/',
     getParentRoute: () => adminMultiMenuSecondChildLayoutRoute,
   } as any)
+const adminProjectsPidEditIdRoute = adminProjectsPidEditIdRouteImport.update({
+  id: '/$pid/edit/$id',
+  path: '/$pid/edit/$id',
+  getParentRoute: () => adminProjectsLayoutRoute,
+} as any)
 const adminMultiMenuSecondChildHomeRoute =
   adminMultiMenuSecondChildHomeRouteImport.update({
     id: '/home',
@@ -255,234 +622,568 @@ const adminMultiMenuSecondChildHomeRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/document': typeof adminDocumentLayoutRouteWithChildren
   '/exception': typeof adminExceptionLayoutRouteWithChildren
+  '/function': typeof adminFunctionLayoutRouteWithChildren
+  '/interaction': typeof adminInteractionLayoutRouteWithChildren
   '/manage': typeof adminManageLayoutRouteWithChildren
   '/multi-menu': typeof adminMultiMenuLayoutRouteWithChildren
+  '/plugin': typeof adminPluginLayoutRouteWithChildren
+  '/projects': typeof adminProjectsLayoutRouteWithChildren
   '/login': typeof authLoginLayoutRouteWithChildren
   '/keep-alive-form': typeof adminKeepAliveFormRoute
-  '/soybean-docs': typeof adminSoybeanDocsRoute
-  '/soybean-docs-iframe': typeof adminSoybeanDocsIframeRoute
   '/user-center': typeof adminUserCenterRoute
   '/login-out': typeof authLoginOutRoute
   '/403': typeof errors403Route
   '/404': typeof errors404Route
   '/500': typeof errors500Route
+  '/function/hide-child': typeof adminFunctionHideChildLayoutRouteWithChildren
   '/multi-menu/first': typeof adminMultiMenuFirstLayoutRouteWithChildren
   '/multi-menu/second': typeof adminMultiMenuSecondLayoutRouteWithChildren
+  '/plugin/charts': typeof adminPluginChartsLayoutRouteWithChildren
+  '/plugin/editor': typeof adminPluginEditorLayoutRouteWithChildren
+  '/plugin/gantt': typeof adminPluginGanttLayoutRouteWithChildren
+  '/plugin/tables': typeof adminPluginTablesLayoutRouteWithChildren
+  '/document/admin-docs': typeof adminDocumentAdminDocsRoute
+  '/document/ant-design': typeof adminDocumentAntDesignRoute
+  '/document/core-docs': typeof adminDocumentCoreDocsRoute
+  '/document/jotai': typeof adminDocumentJotaiRoute
+  '/document/react': typeof adminDocumentReactRoute
+  '/document/repository': typeof adminDocumentRepositoryRoute
+  '/document/tanstack-query': typeof adminDocumentTanstackQueryRoute
+  '/document/tanstack-router': typeof adminDocumentTanstackRouterRoute
+  '/document/unocss': typeof adminDocumentUnocssRoute
+  '/document/vite': typeof adminDocumentViteRoute
+  '/document/web-kit-docs': typeof adminDocumentWebKitDocsRoute
+  '/document/web-ui-docs': typeof adminDocumentWebUiDocsRoute
   '/exception/403': typeof adminException403Route
   '/exception/404': typeof adminException404Route
   '/exception/500': typeof adminException500Route
+  '/function/event-bus': typeof adminFunctionEventBusRoute
+  '/function/multi-tab': typeof adminFunctionMultiTabRoute
+  '/function/request': typeof adminFunctionRequestRoute
+  '/function/super-page': typeof adminFunctionSuperPageRoute
+  '/function/tab': typeof adminFunctionTabRoute
+  '/function/toggle-auth': typeof adminFunctionToggleAuthRoute
+  '/plugin/barcode': typeof adminPluginBarcodeRoute
+  '/plugin/copy': typeof adminPluginCopyRoute
+  '/plugin/excel': typeof adminPluginExcelRoute
+  '/plugin/icon': typeof adminPluginIconRoute
+  '/plugin/map': typeof adminPluginMapRoute
+  '/plugin/pdf': typeof adminPluginPdfRoute
+  '/plugin/pinyin': typeof adminPluginPinyinRoute
+  '/plugin/print': typeof adminPluginPrintRoute
+  '/plugin/swiper': typeof adminPluginSwiperRoute
+  '/plugin/typeit': typeof adminPluginTypeitRoute
+  '/plugin/video': typeof adminPluginVideoRoute
   '/login/code-login': typeof authLoginCodeLoginRoute
   '/login/register': typeof authLoginRegisterRoute
   '/login/reset-pwd': typeof authLoginResetPwdRoute
   '/about/': typeof adminAboutIndexRoute
+  '/document/': typeof adminDocumentIndexRoute
   '/exception/': typeof adminExceptionIndexRoute
+  '/function/': typeof adminFunctionIndexRoute
   '/home/': typeof adminHomeIndexRoute
+  '/interaction/': typeof adminInteractionIndexRoute
   '/manage/': typeof adminManageIndexRoute
   '/multi-menu/': typeof adminMultiMenuIndexRoute
+  '/plugin/': typeof adminPluginIndexRoute
+  '/projects/': typeof adminProjectsIndexRoute
   '/login/': typeof authLoginIndexRoute
   '/multi-menu/second/child': typeof adminMultiMenuSecondChildLayoutRouteWithChildren
   '/iframe-page/$url': typeof adminBuiltinIframePageUrlRoute
+  '/function/hide-child/one': typeof adminFunctionHideChildOneRoute
+  '/function/hide-child/three': typeof adminFunctionHideChildThreeRoute
+  '/function/hide-child/two': typeof adminFunctionHideChildTwoRoute
   '/manage/user/$id': typeof adminManageUserIdRoute
   '/multi-menu/first/child': typeof adminMultiMenuFirstChildRoute
-  '/manage/menu/': typeof adminManageMenuIndexRoute
-  '/manage/role/': typeof adminManageRoleIndexRoute
+  '/plugin/charts/echarts': typeof adminPluginChartsEchartsRoute
+  '/plugin/editor/markdown': typeof adminPluginEditorMarkdownRoute
+  '/plugin/editor/quill': typeof adminPluginEditorQuillRoute
+  '/plugin/gantt/dhtmlx': typeof adminPluginGanttDhtmlxRoute
+  '/plugin/tables/vtable': typeof adminPluginTablesVtableRoute
+  '/function/hide-child/': typeof adminFunctionHideChildIndexRoute
+  '/interaction/feedback/': typeof adminInteractionFeedbackIndexRoute
+  '/interaction/notification/': typeof adminInteractionNotificationIndexRoute
+  '/interaction/theme/': typeof adminInteractionThemeIndexRoute
   '/manage/user/': typeof adminManageUserIndexRoute
   '/multi-menu/first/': typeof adminMultiMenuFirstIndexRoute
   '/multi-menu/second/': typeof adminMultiMenuSecondIndexRoute
+  '/plugin/charts/': typeof adminPluginChartsIndexRoute
+  '/plugin/editor/': typeof adminPluginEditorIndexRoute
+  '/plugin/gantt/': typeof adminPluginGanttIndexRoute
+  '/plugin/tables/': typeof adminPluginTablesIndexRoute
+  '/projects/$pid/': typeof adminProjectsPidIndexRoute
   '/multi-menu/second/child/home': typeof adminMultiMenuSecondChildHomeRoute
+  '/projects/$pid/edit/$id': typeof adminProjectsPidEditIdRoute
   '/multi-menu/second/child/': typeof adminMultiMenuSecondChildIndexRoute
+  '/projects/$pid/edit/': typeof adminProjectsPidEditIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/keep-alive-form': typeof adminKeepAliveFormRoute
-  '/soybean-docs': typeof adminSoybeanDocsRoute
-  '/soybean-docs-iframe': typeof adminSoybeanDocsIframeRoute
   '/user-center': typeof adminUserCenterRoute
   '/login-out': typeof authLoginOutRoute
   '/403': typeof errors403Route
   '/404': typeof errors404Route
   '/500': typeof errors500Route
+  '/document/admin-docs': typeof adminDocumentAdminDocsRoute
+  '/document/ant-design': typeof adminDocumentAntDesignRoute
+  '/document/core-docs': typeof adminDocumentCoreDocsRoute
+  '/document/jotai': typeof adminDocumentJotaiRoute
+  '/document/react': typeof adminDocumentReactRoute
+  '/document/repository': typeof adminDocumentRepositoryRoute
+  '/document/tanstack-query': typeof adminDocumentTanstackQueryRoute
+  '/document/tanstack-router': typeof adminDocumentTanstackRouterRoute
+  '/document/unocss': typeof adminDocumentUnocssRoute
+  '/document/vite': typeof adminDocumentViteRoute
+  '/document/web-kit-docs': typeof adminDocumentWebKitDocsRoute
+  '/document/web-ui-docs': typeof adminDocumentWebUiDocsRoute
   '/exception/403': typeof adminException403Route
   '/exception/404': typeof adminException404Route
   '/exception/500': typeof adminException500Route
+  '/function/event-bus': typeof adminFunctionEventBusRoute
+  '/function/multi-tab': typeof adminFunctionMultiTabRoute
+  '/function/request': typeof adminFunctionRequestRoute
+  '/function/super-page': typeof adminFunctionSuperPageRoute
+  '/function/tab': typeof adminFunctionTabRoute
+  '/function/toggle-auth': typeof adminFunctionToggleAuthRoute
+  '/plugin/barcode': typeof adminPluginBarcodeRoute
+  '/plugin/copy': typeof adminPluginCopyRoute
+  '/plugin/excel': typeof adminPluginExcelRoute
+  '/plugin/icon': typeof adminPluginIconRoute
+  '/plugin/map': typeof adminPluginMapRoute
+  '/plugin/pdf': typeof adminPluginPdfRoute
+  '/plugin/pinyin': typeof adminPluginPinyinRoute
+  '/plugin/print': typeof adminPluginPrintRoute
+  '/plugin/swiper': typeof adminPluginSwiperRoute
+  '/plugin/typeit': typeof adminPluginTypeitRoute
+  '/plugin/video': typeof adminPluginVideoRoute
   '/login/code-login': typeof authLoginCodeLoginRoute
   '/login/register': typeof authLoginRegisterRoute
   '/login/reset-pwd': typeof authLoginResetPwdRoute
   '/about': typeof adminAboutIndexRoute
+  '/document': typeof adminDocumentIndexRoute
   '/exception': typeof adminExceptionIndexRoute
+  '/function': typeof adminFunctionIndexRoute
   '/home': typeof adminHomeIndexRoute
+  '/interaction': typeof adminInteractionIndexRoute
   '/manage': typeof adminManageIndexRoute
   '/multi-menu': typeof adminMultiMenuIndexRoute
+  '/plugin': typeof adminPluginIndexRoute
+  '/projects': typeof adminProjectsIndexRoute
   '/login': typeof authLoginIndexRoute
   '/iframe-page/$url': typeof adminBuiltinIframePageUrlRoute
+  '/function/hide-child/one': typeof adminFunctionHideChildOneRoute
+  '/function/hide-child/three': typeof adminFunctionHideChildThreeRoute
+  '/function/hide-child/two': typeof adminFunctionHideChildTwoRoute
   '/manage/user/$id': typeof adminManageUserIdRoute
   '/multi-menu/first/child': typeof adminMultiMenuFirstChildRoute
-  '/manage/menu': typeof adminManageMenuIndexRoute
-  '/manage/role': typeof adminManageRoleIndexRoute
+  '/plugin/charts/echarts': typeof adminPluginChartsEchartsRoute
+  '/plugin/editor/markdown': typeof adminPluginEditorMarkdownRoute
+  '/plugin/editor/quill': typeof adminPluginEditorQuillRoute
+  '/plugin/gantt/dhtmlx': typeof adminPluginGanttDhtmlxRoute
+  '/plugin/tables/vtable': typeof adminPluginTablesVtableRoute
+  '/function/hide-child': typeof adminFunctionHideChildIndexRoute
+  '/interaction/feedback': typeof adminInteractionFeedbackIndexRoute
+  '/interaction/notification': typeof adminInteractionNotificationIndexRoute
+  '/interaction/theme': typeof adminInteractionThemeIndexRoute
   '/manage/user': typeof adminManageUserIndexRoute
   '/multi-menu/first': typeof adminMultiMenuFirstIndexRoute
   '/multi-menu/second': typeof adminMultiMenuSecondIndexRoute
+  '/plugin/charts': typeof adminPluginChartsIndexRoute
+  '/plugin/editor': typeof adminPluginEditorIndexRoute
+  '/plugin/gantt': typeof adminPluginGanttIndexRoute
+  '/plugin/tables': typeof adminPluginTablesIndexRoute
+  '/projects/$pid': typeof adminProjectsPidIndexRoute
   '/multi-menu/second/child/home': typeof adminMultiMenuSecondChildHomeRoute
+  '/projects/$pid/edit/$id': typeof adminProjectsPidEditIdRoute
   '/multi-menu/second/child': typeof adminMultiMenuSecondChildIndexRoute
+  '/projects/$pid/edit': typeof adminProjectsPidEditIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/(admin)': typeof adminLayoutRouteWithChildren
+  '/(admin)/document': typeof adminDocumentLayoutRouteWithChildren
   '/(admin)/exception': typeof adminExceptionLayoutRouteWithChildren
+  '/(admin)/function': typeof adminFunctionLayoutRouteWithChildren
+  '/(admin)/interaction': typeof adminInteractionLayoutRouteWithChildren
   '/(admin)/manage': typeof adminManageLayoutRouteWithChildren
   '/(admin)/multi-menu': typeof adminMultiMenuLayoutRouteWithChildren
+  '/(admin)/plugin': typeof adminPluginLayoutRouteWithChildren
+  '/(admin)/projects': typeof adminProjectsLayoutRouteWithChildren
   '/(auth)/login': typeof authLoginLayoutRouteWithChildren
   '/(admin)/keep-alive-form': typeof adminKeepAliveFormRoute
-  '/(admin)/soybean-docs': typeof adminSoybeanDocsRoute
-  '/(admin)/soybean-docs-iframe': typeof adminSoybeanDocsIframeRoute
   '/(admin)/user-center': typeof adminUserCenterRoute
   '/(auth)/login-out': typeof authLoginOutRoute
   '/(errors)/403': typeof errors403Route
   '/(errors)/404': typeof errors404Route
   '/(errors)/500': typeof errors500Route
+  '/(admin)/function/hide-child': typeof adminFunctionHideChildLayoutRouteWithChildren
   '/(admin)/multi-menu/first': typeof adminMultiMenuFirstLayoutRouteWithChildren
   '/(admin)/multi-menu/second': typeof adminMultiMenuSecondLayoutRouteWithChildren
+  '/(admin)/plugin/charts': typeof adminPluginChartsLayoutRouteWithChildren
+  '/(admin)/plugin/editor': typeof adminPluginEditorLayoutRouteWithChildren
+  '/(admin)/plugin/gantt': typeof adminPluginGanttLayoutRouteWithChildren
+  '/(admin)/plugin/tables': typeof adminPluginTablesLayoutRouteWithChildren
+  '/(admin)/document/admin-docs': typeof adminDocumentAdminDocsRoute
+  '/(admin)/document/ant-design': typeof adminDocumentAntDesignRoute
+  '/(admin)/document/core-docs': typeof adminDocumentCoreDocsRoute
+  '/(admin)/document/jotai': typeof adminDocumentJotaiRoute
+  '/(admin)/document/react': typeof adminDocumentReactRoute
+  '/(admin)/document/repository': typeof adminDocumentRepositoryRoute
+  '/(admin)/document/tanstack-query': typeof adminDocumentTanstackQueryRoute
+  '/(admin)/document/tanstack-router': typeof adminDocumentTanstackRouterRoute
+  '/(admin)/document/unocss': typeof adminDocumentUnocssRoute
+  '/(admin)/document/vite': typeof adminDocumentViteRoute
+  '/(admin)/document/web-kit-docs': typeof adminDocumentWebKitDocsRoute
+  '/(admin)/document/web-ui-docs': typeof adminDocumentWebUiDocsRoute
   '/(admin)/exception/403': typeof adminException403Route
   '/(admin)/exception/404': typeof adminException404Route
   '/(admin)/exception/500': typeof adminException500Route
+  '/(admin)/function/event-bus': typeof adminFunctionEventBusRoute
+  '/(admin)/function/multi-tab': typeof adminFunctionMultiTabRoute
+  '/(admin)/function/request': typeof adminFunctionRequestRoute
+  '/(admin)/function/super-page': typeof adminFunctionSuperPageRoute
+  '/(admin)/function/tab': typeof adminFunctionTabRoute
+  '/(admin)/function/toggle-auth': typeof adminFunctionToggleAuthRoute
+  '/(admin)/plugin/barcode': typeof adminPluginBarcodeRoute
+  '/(admin)/plugin/copy': typeof adminPluginCopyRoute
+  '/(admin)/plugin/excel': typeof adminPluginExcelRoute
+  '/(admin)/plugin/icon': typeof adminPluginIconRoute
+  '/(admin)/plugin/map': typeof adminPluginMapRoute
+  '/(admin)/plugin/pdf': typeof adminPluginPdfRoute
+  '/(admin)/plugin/pinyin': typeof adminPluginPinyinRoute
+  '/(admin)/plugin/print': typeof adminPluginPrintRoute
+  '/(admin)/plugin/swiper': typeof adminPluginSwiperRoute
+  '/(admin)/plugin/typeit': typeof adminPluginTypeitRoute
+  '/(admin)/plugin/video': typeof adminPluginVideoRoute
   '/(auth)/login/code-login': typeof authLoginCodeLoginRoute
   '/(auth)/login/register': typeof authLoginRegisterRoute
   '/(auth)/login/reset-pwd': typeof authLoginResetPwdRoute
   '/(admin)/about/': typeof adminAboutIndexRoute
+  '/(admin)/document/': typeof adminDocumentIndexRoute
   '/(admin)/exception/': typeof adminExceptionIndexRoute
+  '/(admin)/function/': typeof adminFunctionIndexRoute
   '/(admin)/home/': typeof adminHomeIndexRoute
+  '/(admin)/interaction/': typeof adminInteractionIndexRoute
   '/(admin)/manage/': typeof adminManageIndexRoute
   '/(admin)/multi-menu/': typeof adminMultiMenuIndexRoute
+  '/(admin)/plugin/': typeof adminPluginIndexRoute
+  '/(admin)/projects/': typeof adminProjectsIndexRoute
   '/(auth)/login/': typeof authLoginIndexRoute
   '/(admin)/multi-menu/second/child': typeof adminMultiMenuSecondChildLayoutRouteWithChildren
   '/(admin)/_builtin/iframe-page/$url': typeof adminBuiltinIframePageUrlRoute
+  '/(admin)/function/hide-child/one': typeof adminFunctionHideChildOneRoute
+  '/(admin)/function/hide-child/three': typeof adminFunctionHideChildThreeRoute
+  '/(admin)/function/hide-child/two': typeof adminFunctionHideChildTwoRoute
   '/(admin)/manage/user/$id': typeof adminManageUserIdRoute
   '/(admin)/multi-menu/first/child': typeof adminMultiMenuFirstChildRoute
-  '/(admin)/manage/menu/': typeof adminManageMenuIndexRoute
-  '/(admin)/manage/role/': typeof adminManageRoleIndexRoute
+  '/(admin)/plugin/charts/echarts': typeof adminPluginChartsEchartsRoute
+  '/(admin)/plugin/editor/markdown': typeof adminPluginEditorMarkdownRoute
+  '/(admin)/plugin/editor/quill': typeof adminPluginEditorQuillRoute
+  '/(admin)/plugin/gantt/dhtmlx': typeof adminPluginGanttDhtmlxRoute
+  '/(admin)/plugin/tables/vtable': typeof adminPluginTablesVtableRoute
+  '/(admin)/function/hide-child/': typeof adminFunctionHideChildIndexRoute
+  '/(admin)/interaction/feedback/': typeof adminInteractionFeedbackIndexRoute
+  '/(admin)/interaction/notification/': typeof adminInteractionNotificationIndexRoute
+  '/(admin)/interaction/theme/': typeof adminInteractionThemeIndexRoute
   '/(admin)/manage/user/': typeof adminManageUserIndexRoute
   '/(admin)/multi-menu/first/': typeof adminMultiMenuFirstIndexRoute
   '/(admin)/multi-menu/second/': typeof adminMultiMenuSecondIndexRoute
+  '/(admin)/plugin/charts/': typeof adminPluginChartsIndexRoute
+  '/(admin)/plugin/editor/': typeof adminPluginEditorIndexRoute
+  '/(admin)/plugin/gantt/': typeof adminPluginGanttIndexRoute
+  '/(admin)/plugin/tables/': typeof adminPluginTablesIndexRoute
+  '/(admin)/projects/$pid/': typeof adminProjectsPidIndexRoute
   '/(admin)/multi-menu/second/child/home': typeof adminMultiMenuSecondChildHomeRoute
+  '/(admin)/projects/$pid/edit/$id': typeof adminProjectsPidEditIdRoute
   '/(admin)/multi-menu/second/child/': typeof adminMultiMenuSecondChildIndexRoute
+  '/(admin)/projects/$pid/edit/': typeof adminProjectsPidEditIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/document'
     | '/exception'
+    | '/function'
+    | '/interaction'
     | '/manage'
     | '/multi-menu'
+    | '/plugin'
+    | '/projects'
     | '/login'
     | '/keep-alive-form'
-    | '/soybean-docs'
-    | '/soybean-docs-iframe'
     | '/user-center'
     | '/login-out'
     | '/403'
     | '/404'
     | '/500'
+    | '/function/hide-child'
     | '/multi-menu/first'
     | '/multi-menu/second'
+    | '/plugin/charts'
+    | '/plugin/editor'
+    | '/plugin/gantt'
+    | '/plugin/tables'
+    | '/document/admin-docs'
+    | '/document/ant-design'
+    | '/document/core-docs'
+    | '/document/jotai'
+    | '/document/react'
+    | '/document/repository'
+    | '/document/tanstack-query'
+    | '/document/tanstack-router'
+    | '/document/unocss'
+    | '/document/vite'
+    | '/document/web-kit-docs'
+    | '/document/web-ui-docs'
     | '/exception/403'
     | '/exception/404'
     | '/exception/500'
+    | '/function/event-bus'
+    | '/function/multi-tab'
+    | '/function/request'
+    | '/function/super-page'
+    | '/function/tab'
+    | '/function/toggle-auth'
+    | '/plugin/barcode'
+    | '/plugin/copy'
+    | '/plugin/excel'
+    | '/plugin/icon'
+    | '/plugin/map'
+    | '/plugin/pdf'
+    | '/plugin/pinyin'
+    | '/plugin/print'
+    | '/plugin/swiper'
+    | '/plugin/typeit'
+    | '/plugin/video'
     | '/login/code-login'
     | '/login/register'
     | '/login/reset-pwd'
     | '/about/'
+    | '/document/'
     | '/exception/'
+    | '/function/'
     | '/home/'
+    | '/interaction/'
     | '/manage/'
     | '/multi-menu/'
+    | '/plugin/'
+    | '/projects/'
     | '/login/'
     | '/multi-menu/second/child'
     | '/iframe-page/$url'
+    | '/function/hide-child/one'
+    | '/function/hide-child/three'
+    | '/function/hide-child/two'
     | '/manage/user/$id'
     | '/multi-menu/first/child'
-    | '/manage/menu/'
-    | '/manage/role/'
+    | '/plugin/charts/echarts'
+    | '/plugin/editor/markdown'
+    | '/plugin/editor/quill'
+    | '/plugin/gantt/dhtmlx'
+    | '/plugin/tables/vtable'
+    | '/function/hide-child/'
+    | '/interaction/feedback/'
+    | '/interaction/notification/'
+    | '/interaction/theme/'
     | '/manage/user/'
     | '/multi-menu/first/'
     | '/multi-menu/second/'
+    | '/plugin/charts/'
+    | '/plugin/editor/'
+    | '/plugin/gantt/'
+    | '/plugin/tables/'
+    | '/projects/$pid/'
     | '/multi-menu/second/child/home'
+    | '/projects/$pid/edit/$id'
     | '/multi-menu/second/child/'
+    | '/projects/$pid/edit/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/keep-alive-form'
-    | '/soybean-docs'
-    | '/soybean-docs-iframe'
     | '/user-center'
     | '/login-out'
     | '/403'
     | '/404'
     | '/500'
+    | '/document/admin-docs'
+    | '/document/ant-design'
+    | '/document/core-docs'
+    | '/document/jotai'
+    | '/document/react'
+    | '/document/repository'
+    | '/document/tanstack-query'
+    | '/document/tanstack-router'
+    | '/document/unocss'
+    | '/document/vite'
+    | '/document/web-kit-docs'
+    | '/document/web-ui-docs'
     | '/exception/403'
     | '/exception/404'
     | '/exception/500'
+    | '/function/event-bus'
+    | '/function/multi-tab'
+    | '/function/request'
+    | '/function/super-page'
+    | '/function/tab'
+    | '/function/toggle-auth'
+    | '/plugin/barcode'
+    | '/plugin/copy'
+    | '/plugin/excel'
+    | '/plugin/icon'
+    | '/plugin/map'
+    | '/plugin/pdf'
+    | '/plugin/pinyin'
+    | '/plugin/print'
+    | '/plugin/swiper'
+    | '/plugin/typeit'
+    | '/plugin/video'
     | '/login/code-login'
     | '/login/register'
     | '/login/reset-pwd'
     | '/about'
+    | '/document'
     | '/exception'
+    | '/function'
     | '/home'
+    | '/interaction'
     | '/manage'
     | '/multi-menu'
+    | '/plugin'
+    | '/projects'
     | '/login'
     | '/iframe-page/$url'
+    | '/function/hide-child/one'
+    | '/function/hide-child/three'
+    | '/function/hide-child/two'
     | '/manage/user/$id'
     | '/multi-menu/first/child'
-    | '/manage/menu'
-    | '/manage/role'
+    | '/plugin/charts/echarts'
+    | '/plugin/editor/markdown'
+    | '/plugin/editor/quill'
+    | '/plugin/gantt/dhtmlx'
+    | '/plugin/tables/vtable'
+    | '/function/hide-child'
+    | '/interaction/feedback'
+    | '/interaction/notification'
+    | '/interaction/theme'
     | '/manage/user'
     | '/multi-menu/first'
     | '/multi-menu/second'
+    | '/plugin/charts'
+    | '/plugin/editor'
+    | '/plugin/gantt'
+    | '/plugin/tables'
+    | '/projects/$pid'
     | '/multi-menu/second/child/home'
+    | '/projects/$pid/edit/$id'
     | '/multi-menu/second/child'
+    | '/projects/$pid/edit'
   id:
     | '__root__'
     | '/'
     | '/(admin)'
+    | '/(admin)/document'
     | '/(admin)/exception'
+    | '/(admin)/function'
+    | '/(admin)/interaction'
     | '/(admin)/manage'
     | '/(admin)/multi-menu'
+    | '/(admin)/plugin'
+    | '/(admin)/projects'
     | '/(auth)/login'
     | '/(admin)/keep-alive-form'
-    | '/(admin)/soybean-docs'
-    | '/(admin)/soybean-docs-iframe'
     | '/(admin)/user-center'
     | '/(auth)/login-out'
     | '/(errors)/403'
     | '/(errors)/404'
     | '/(errors)/500'
+    | '/(admin)/function/hide-child'
     | '/(admin)/multi-menu/first'
     | '/(admin)/multi-menu/second'
+    | '/(admin)/plugin/charts'
+    | '/(admin)/plugin/editor'
+    | '/(admin)/plugin/gantt'
+    | '/(admin)/plugin/tables'
+    | '/(admin)/document/admin-docs'
+    | '/(admin)/document/ant-design'
+    | '/(admin)/document/core-docs'
+    | '/(admin)/document/jotai'
+    | '/(admin)/document/react'
+    | '/(admin)/document/repository'
+    | '/(admin)/document/tanstack-query'
+    | '/(admin)/document/tanstack-router'
+    | '/(admin)/document/unocss'
+    | '/(admin)/document/vite'
+    | '/(admin)/document/web-kit-docs'
+    | '/(admin)/document/web-ui-docs'
     | '/(admin)/exception/403'
     | '/(admin)/exception/404'
     | '/(admin)/exception/500'
+    | '/(admin)/function/event-bus'
+    | '/(admin)/function/multi-tab'
+    | '/(admin)/function/request'
+    | '/(admin)/function/super-page'
+    | '/(admin)/function/tab'
+    | '/(admin)/function/toggle-auth'
+    | '/(admin)/plugin/barcode'
+    | '/(admin)/plugin/copy'
+    | '/(admin)/plugin/excel'
+    | '/(admin)/plugin/icon'
+    | '/(admin)/plugin/map'
+    | '/(admin)/plugin/pdf'
+    | '/(admin)/plugin/pinyin'
+    | '/(admin)/plugin/print'
+    | '/(admin)/plugin/swiper'
+    | '/(admin)/plugin/typeit'
+    | '/(admin)/plugin/video'
     | '/(auth)/login/code-login'
     | '/(auth)/login/register'
     | '/(auth)/login/reset-pwd'
     | '/(admin)/about/'
+    | '/(admin)/document/'
     | '/(admin)/exception/'
+    | '/(admin)/function/'
     | '/(admin)/home/'
+    | '/(admin)/interaction/'
     | '/(admin)/manage/'
     | '/(admin)/multi-menu/'
+    | '/(admin)/plugin/'
+    | '/(admin)/projects/'
     | '/(auth)/login/'
     | '/(admin)/multi-menu/second/child'
     | '/(admin)/_builtin/iframe-page/$url'
+    | '/(admin)/function/hide-child/one'
+    | '/(admin)/function/hide-child/three'
+    | '/(admin)/function/hide-child/two'
     | '/(admin)/manage/user/$id'
     | '/(admin)/multi-menu/first/child'
-    | '/(admin)/manage/menu/'
-    | '/(admin)/manage/role/'
+    | '/(admin)/plugin/charts/echarts'
+    | '/(admin)/plugin/editor/markdown'
+    | '/(admin)/plugin/editor/quill'
+    | '/(admin)/plugin/gantt/dhtmlx'
+    | '/(admin)/plugin/tables/vtable'
+    | '/(admin)/function/hide-child/'
+    | '/(admin)/interaction/feedback/'
+    | '/(admin)/interaction/notification/'
+    | '/(admin)/interaction/theme/'
     | '/(admin)/manage/user/'
     | '/(admin)/multi-menu/first/'
     | '/(admin)/multi-menu/second/'
+    | '/(admin)/plugin/charts/'
+    | '/(admin)/plugin/editor/'
+    | '/(admin)/plugin/gantt/'
+    | '/(admin)/plugin/tables/'
+    | '/(admin)/projects/$pid/'
     | '/(admin)/multi-menu/second/child/home'
+    | '/(admin)/projects/$pid/edit/$id'
     | '/(admin)/multi-menu/second/child/'
+    | '/(admin)/projects/$pid/edit/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -546,20 +1247,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof adminUserCenterRouteImport
       parentRoute: typeof adminLayoutRoute
     }
-    '/(admin)/soybean-docs-iframe': {
-      id: '/(admin)/soybean-docs-iframe'
-      path: '/soybean-docs-iframe'
-      fullPath: '/soybean-docs-iframe'
-      preLoaderRoute: typeof adminSoybeanDocsIframeRouteImport
-      parentRoute: typeof adminLayoutRoute
-    }
-    '/(admin)/soybean-docs': {
-      id: '/(admin)/soybean-docs'
-      path: '/soybean-docs'
-      fullPath: '/soybean-docs'
-      preLoaderRoute: typeof adminSoybeanDocsRouteImport
-      parentRoute: typeof adminLayoutRoute
-    }
     '/(admin)/keep-alive-form': {
       id: '/(admin)/keep-alive-form'
       path: '/keep-alive-form'
@@ -573,6 +1260,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/login'
       preLoaderRoute: typeof authLoginLayoutRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/(admin)/projects': {
+      id: '/(admin)/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof adminProjectsLayoutRouteImport
+      parentRoute: typeof adminLayoutRoute
+    }
+    '/(admin)/plugin': {
+      id: '/(admin)/plugin'
+      path: '/plugin'
+      fullPath: '/plugin'
+      preLoaderRoute: typeof adminPluginLayoutRouteImport
+      parentRoute: typeof adminLayoutRoute
     }
     '/(admin)/multi-menu': {
       id: '/(admin)/multi-menu'
@@ -588,11 +1289,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof adminManageLayoutRouteImport
       parentRoute: typeof adminLayoutRoute
     }
+    '/(admin)/interaction': {
+      id: '/(admin)/interaction'
+      path: '/interaction'
+      fullPath: '/interaction'
+      preLoaderRoute: typeof adminInteractionLayoutRouteImport
+      parentRoute: typeof adminLayoutRoute
+    }
+    '/(admin)/function': {
+      id: '/(admin)/function'
+      path: '/function'
+      fullPath: '/function'
+      preLoaderRoute: typeof adminFunctionLayoutRouteImport
+      parentRoute: typeof adminLayoutRoute
+    }
     '/(admin)/exception': {
       id: '/(admin)/exception'
       path: '/exception'
       fullPath: '/exception'
       preLoaderRoute: typeof adminExceptionLayoutRouteImport
+      parentRoute: typeof adminLayoutRoute
+    }
+    '/(admin)/document': {
+      id: '/(admin)/document'
+      path: '/document'
+      fullPath: '/document'
+      preLoaderRoute: typeof adminDocumentLayoutRouteImport
       parentRoute: typeof adminLayoutRoute
     }
     '/(auth)/login/': {
@@ -601,6 +1323,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/login/'
       preLoaderRoute: typeof authLoginIndexRouteImport
       parentRoute: typeof authLoginLayoutRoute
+    }
+    '/(admin)/projects/': {
+      id: '/(admin)/projects/'
+      path: '/'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof adminProjectsIndexRouteImport
+      parentRoute: typeof adminProjectsLayoutRoute
+    }
+    '/(admin)/plugin/': {
+      id: '/(admin)/plugin/'
+      path: '/'
+      fullPath: '/plugin/'
+      preLoaderRoute: typeof adminPluginIndexRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
     }
     '/(admin)/multi-menu/': {
       id: '/(admin)/multi-menu/'
@@ -616,6 +1352,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof adminManageIndexRouteImport
       parentRoute: typeof adminManageLayoutRoute
     }
+    '/(admin)/interaction/': {
+      id: '/(admin)/interaction/'
+      path: '/'
+      fullPath: '/interaction/'
+      preLoaderRoute: typeof adminInteractionIndexRouteImport
+      parentRoute: typeof adminInteractionLayoutRoute
+    }
     '/(admin)/home/': {
       id: '/(admin)/home/'
       path: '/home'
@@ -623,12 +1366,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof adminHomeIndexRouteImport
       parentRoute: typeof adminLayoutRoute
     }
+    '/(admin)/function/': {
+      id: '/(admin)/function/'
+      path: '/'
+      fullPath: '/function/'
+      preLoaderRoute: typeof adminFunctionIndexRouteImport
+      parentRoute: typeof adminFunctionLayoutRoute
+    }
     '/(admin)/exception/': {
       id: '/(admin)/exception/'
       path: '/'
       fullPath: '/exception/'
       preLoaderRoute: typeof adminExceptionIndexRouteImport
       parentRoute: typeof adminExceptionLayoutRoute
+    }
+    '/(admin)/document/': {
+      id: '/(admin)/document/'
+      path: '/'
+      fullPath: '/document/'
+      preLoaderRoute: typeof adminDocumentIndexRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
     }
     '/(admin)/about/': {
       id: '/(admin)/about/'
@@ -658,6 +1415,125 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authLoginCodeLoginRouteImport
       parentRoute: typeof authLoginLayoutRoute
     }
+    '/(admin)/plugin/video': {
+      id: '/(admin)/plugin/video'
+      path: '/video'
+      fullPath: '/plugin/video'
+      preLoaderRoute: typeof adminPluginVideoRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/plugin/typeit': {
+      id: '/(admin)/plugin/typeit'
+      path: '/typeit'
+      fullPath: '/plugin/typeit'
+      preLoaderRoute: typeof adminPluginTypeitRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/plugin/swiper': {
+      id: '/(admin)/plugin/swiper'
+      path: '/swiper'
+      fullPath: '/plugin/swiper'
+      preLoaderRoute: typeof adminPluginSwiperRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/plugin/print': {
+      id: '/(admin)/plugin/print'
+      path: '/print'
+      fullPath: '/plugin/print'
+      preLoaderRoute: typeof adminPluginPrintRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/plugin/pinyin': {
+      id: '/(admin)/plugin/pinyin'
+      path: '/pinyin'
+      fullPath: '/plugin/pinyin'
+      preLoaderRoute: typeof adminPluginPinyinRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/plugin/pdf': {
+      id: '/(admin)/plugin/pdf'
+      path: '/pdf'
+      fullPath: '/plugin/pdf'
+      preLoaderRoute: typeof adminPluginPdfRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/plugin/map': {
+      id: '/(admin)/plugin/map'
+      path: '/map'
+      fullPath: '/plugin/map'
+      preLoaderRoute: typeof adminPluginMapRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/plugin/icon': {
+      id: '/(admin)/plugin/icon'
+      path: '/icon'
+      fullPath: '/plugin/icon'
+      preLoaderRoute: typeof adminPluginIconRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/plugin/excel': {
+      id: '/(admin)/plugin/excel'
+      path: '/excel'
+      fullPath: '/plugin/excel'
+      preLoaderRoute: typeof adminPluginExcelRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/plugin/copy': {
+      id: '/(admin)/plugin/copy'
+      path: '/copy'
+      fullPath: '/plugin/copy'
+      preLoaderRoute: typeof adminPluginCopyRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/plugin/barcode': {
+      id: '/(admin)/plugin/barcode'
+      path: '/barcode'
+      fullPath: '/plugin/barcode'
+      preLoaderRoute: typeof adminPluginBarcodeRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/function/toggle-auth': {
+      id: '/(admin)/function/toggle-auth'
+      path: '/toggle-auth'
+      fullPath: '/function/toggle-auth'
+      preLoaderRoute: typeof adminFunctionToggleAuthRouteImport
+      parentRoute: typeof adminFunctionLayoutRoute
+    }
+    '/(admin)/function/tab': {
+      id: '/(admin)/function/tab'
+      path: '/tab'
+      fullPath: '/function/tab'
+      preLoaderRoute: typeof adminFunctionTabRouteImport
+      parentRoute: typeof adminFunctionLayoutRoute
+    }
+    '/(admin)/function/super-page': {
+      id: '/(admin)/function/super-page'
+      path: '/super-page'
+      fullPath: '/function/super-page'
+      preLoaderRoute: typeof adminFunctionSuperPageRouteImport
+      parentRoute: typeof adminFunctionLayoutRoute
+    }
+    '/(admin)/function/request': {
+      id: '/(admin)/function/request'
+      path: '/request'
+      fullPath: '/function/request'
+      preLoaderRoute: typeof adminFunctionRequestRouteImport
+      parentRoute: typeof adminFunctionLayoutRoute
+    }
+    '/(admin)/function/multi-tab': {
+      id: '/(admin)/function/multi-tab'
+      path: '/multi-tab'
+      fullPath: '/function/multi-tab'
+      preLoaderRoute: typeof adminFunctionMultiTabRouteImport
+      parentRoute: typeof adminFunctionLayoutRoute
+    }
+    '/(admin)/function/event-bus': {
+      id: '/(admin)/function/event-bus'
+      path: '/event-bus'
+      fullPath: '/function/event-bus'
+      preLoaderRoute: typeof adminFunctionEventBusRouteImport
+      parentRoute: typeof adminFunctionLayoutRoute
+    }
     '/(admin)/exception/500': {
       id: '/(admin)/exception/500'
       path: '/500'
@@ -679,6 +1555,118 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof adminException403RouteImport
       parentRoute: typeof adminExceptionLayoutRoute
     }
+    '/(admin)/document/web-ui-docs': {
+      id: '/(admin)/document/web-ui-docs'
+      path: '/web-ui-docs'
+      fullPath: '/document/web-ui-docs'
+      preLoaderRoute: typeof adminDocumentWebUiDocsRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
+    }
+    '/(admin)/document/web-kit-docs': {
+      id: '/(admin)/document/web-kit-docs'
+      path: '/web-kit-docs'
+      fullPath: '/document/web-kit-docs'
+      preLoaderRoute: typeof adminDocumentWebKitDocsRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
+    }
+    '/(admin)/document/vite': {
+      id: '/(admin)/document/vite'
+      path: '/vite'
+      fullPath: '/document/vite'
+      preLoaderRoute: typeof adminDocumentViteRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
+    }
+    '/(admin)/document/unocss': {
+      id: '/(admin)/document/unocss'
+      path: '/unocss'
+      fullPath: '/document/unocss'
+      preLoaderRoute: typeof adminDocumentUnocssRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
+    }
+    '/(admin)/document/tanstack-router': {
+      id: '/(admin)/document/tanstack-router'
+      path: '/tanstack-router'
+      fullPath: '/document/tanstack-router'
+      preLoaderRoute: typeof adminDocumentTanstackRouterRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
+    }
+    '/(admin)/document/tanstack-query': {
+      id: '/(admin)/document/tanstack-query'
+      path: '/tanstack-query'
+      fullPath: '/document/tanstack-query'
+      preLoaderRoute: typeof adminDocumentTanstackQueryRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
+    }
+    '/(admin)/document/repository': {
+      id: '/(admin)/document/repository'
+      path: '/repository'
+      fullPath: '/document/repository'
+      preLoaderRoute: typeof adminDocumentRepositoryRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
+    }
+    '/(admin)/document/react': {
+      id: '/(admin)/document/react'
+      path: '/react'
+      fullPath: '/document/react'
+      preLoaderRoute: typeof adminDocumentReactRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
+    }
+    '/(admin)/document/jotai': {
+      id: '/(admin)/document/jotai'
+      path: '/jotai'
+      fullPath: '/document/jotai'
+      preLoaderRoute: typeof adminDocumentJotaiRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
+    }
+    '/(admin)/document/core-docs': {
+      id: '/(admin)/document/core-docs'
+      path: '/core-docs'
+      fullPath: '/document/core-docs'
+      preLoaderRoute: typeof adminDocumentCoreDocsRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
+    }
+    '/(admin)/document/ant-design': {
+      id: '/(admin)/document/ant-design'
+      path: '/ant-design'
+      fullPath: '/document/ant-design'
+      preLoaderRoute: typeof adminDocumentAntDesignRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
+    }
+    '/(admin)/document/admin-docs': {
+      id: '/(admin)/document/admin-docs'
+      path: '/admin-docs'
+      fullPath: '/document/admin-docs'
+      preLoaderRoute: typeof adminDocumentAdminDocsRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
+    }
+    '/(admin)/plugin/tables': {
+      id: '/(admin)/plugin/tables'
+      path: '/tables'
+      fullPath: '/plugin/tables'
+      preLoaderRoute: typeof adminPluginTablesLayoutRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/plugin/gantt': {
+      id: '/(admin)/plugin/gantt'
+      path: '/gantt'
+      fullPath: '/plugin/gantt'
+      preLoaderRoute: typeof adminPluginGanttLayoutRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/plugin/editor': {
+      id: '/(admin)/plugin/editor'
+      path: '/editor'
+      fullPath: '/plugin/editor'
+      preLoaderRoute: typeof adminPluginEditorLayoutRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
+    '/(admin)/plugin/charts': {
+      id: '/(admin)/plugin/charts'
+      path: '/charts'
+      fullPath: '/plugin/charts'
+      preLoaderRoute: typeof adminPluginChartsLayoutRouteImport
+      parentRoute: typeof adminPluginLayoutRoute
+    }
     '/(admin)/multi-menu/second': {
       id: '/(admin)/multi-menu/second'
       path: '/second'
@@ -692,6 +1680,48 @@ declare module '@tanstack/react-router' {
       fullPath: '/multi-menu/first'
       preLoaderRoute: typeof adminMultiMenuFirstLayoutRouteImport
       parentRoute: typeof adminMultiMenuLayoutRoute
+    }
+    '/(admin)/function/hide-child': {
+      id: '/(admin)/function/hide-child'
+      path: '/hide-child'
+      fullPath: '/function/hide-child'
+      preLoaderRoute: typeof adminFunctionHideChildLayoutRouteImport
+      parentRoute: typeof adminFunctionLayoutRoute
+    }
+    '/(admin)/projects/$pid/': {
+      id: '/(admin)/projects/$pid/'
+      path: '/$pid'
+      fullPath: '/projects/$pid/'
+      preLoaderRoute: typeof adminProjectsPidIndexRouteImport
+      parentRoute: typeof adminProjectsLayoutRoute
+    }
+    '/(admin)/plugin/tables/': {
+      id: '/(admin)/plugin/tables/'
+      path: '/'
+      fullPath: '/plugin/tables/'
+      preLoaderRoute: typeof adminPluginTablesIndexRouteImport
+      parentRoute: typeof adminPluginTablesLayoutRoute
+    }
+    '/(admin)/plugin/gantt/': {
+      id: '/(admin)/plugin/gantt/'
+      path: '/'
+      fullPath: '/plugin/gantt/'
+      preLoaderRoute: typeof adminPluginGanttIndexRouteImport
+      parentRoute: typeof adminPluginGanttLayoutRoute
+    }
+    '/(admin)/plugin/editor/': {
+      id: '/(admin)/plugin/editor/'
+      path: '/'
+      fullPath: '/plugin/editor/'
+      preLoaderRoute: typeof adminPluginEditorIndexRouteImport
+      parentRoute: typeof adminPluginEditorLayoutRoute
+    }
+    '/(admin)/plugin/charts/': {
+      id: '/(admin)/plugin/charts/'
+      path: '/'
+      fullPath: '/plugin/charts/'
+      preLoaderRoute: typeof adminPluginChartsIndexRouteImport
+      parentRoute: typeof adminPluginChartsLayoutRoute
     }
     '/(admin)/multi-menu/second/': {
       id: '/(admin)/multi-menu/second/'
@@ -714,19 +1744,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof adminManageUserIndexRouteImport
       parentRoute: typeof adminManageLayoutRoute
     }
-    '/(admin)/manage/role/': {
-      id: '/(admin)/manage/role/'
-      path: '/role'
-      fullPath: '/manage/role/'
-      preLoaderRoute: typeof adminManageRoleIndexRouteImport
-      parentRoute: typeof adminManageLayoutRoute
+    '/(admin)/interaction/theme/': {
+      id: '/(admin)/interaction/theme/'
+      path: '/theme'
+      fullPath: '/interaction/theme/'
+      preLoaderRoute: typeof adminInteractionThemeIndexRouteImport
+      parentRoute: typeof adminInteractionLayoutRoute
     }
-    '/(admin)/manage/menu/': {
-      id: '/(admin)/manage/menu/'
-      path: '/menu'
-      fullPath: '/manage/menu/'
-      preLoaderRoute: typeof adminManageMenuIndexRouteImport
-      parentRoute: typeof adminManageLayoutRoute
+    '/(admin)/interaction/notification/': {
+      id: '/(admin)/interaction/notification/'
+      path: '/notification'
+      fullPath: '/interaction/notification/'
+      preLoaderRoute: typeof adminInteractionNotificationIndexRouteImport
+      parentRoute: typeof adminInteractionLayoutRoute
+    }
+    '/(admin)/interaction/feedback/': {
+      id: '/(admin)/interaction/feedback/'
+      path: '/feedback'
+      fullPath: '/interaction/feedback/'
+      preLoaderRoute: typeof adminInteractionFeedbackIndexRouteImport
+      parentRoute: typeof adminInteractionLayoutRoute
+    }
+    '/(admin)/function/hide-child/': {
+      id: '/(admin)/function/hide-child/'
+      path: '/'
+      fullPath: '/function/hide-child/'
+      preLoaderRoute: typeof adminFunctionHideChildIndexRouteImport
+      parentRoute: typeof adminFunctionHideChildLayoutRoute
+    }
+    '/(admin)/plugin/tables/vtable': {
+      id: '/(admin)/plugin/tables/vtable'
+      path: '/vtable'
+      fullPath: '/plugin/tables/vtable'
+      preLoaderRoute: typeof adminPluginTablesVtableRouteImport
+      parentRoute: typeof adminPluginTablesLayoutRoute
+    }
+    '/(admin)/plugin/gantt/dhtmlx': {
+      id: '/(admin)/plugin/gantt/dhtmlx'
+      path: '/dhtmlx'
+      fullPath: '/plugin/gantt/dhtmlx'
+      preLoaderRoute: typeof adminPluginGanttDhtmlxRouteImport
+      parentRoute: typeof adminPluginGanttLayoutRoute
+    }
+    '/(admin)/plugin/editor/quill': {
+      id: '/(admin)/plugin/editor/quill'
+      path: '/quill'
+      fullPath: '/plugin/editor/quill'
+      preLoaderRoute: typeof adminPluginEditorQuillRouteImport
+      parentRoute: typeof adminPluginEditorLayoutRoute
+    }
+    '/(admin)/plugin/editor/markdown': {
+      id: '/(admin)/plugin/editor/markdown'
+      path: '/markdown'
+      fullPath: '/plugin/editor/markdown'
+      preLoaderRoute: typeof adminPluginEditorMarkdownRouteImport
+      parentRoute: typeof adminPluginEditorLayoutRoute
+    }
+    '/(admin)/plugin/charts/echarts': {
+      id: '/(admin)/plugin/charts/echarts'
+      path: '/echarts'
+      fullPath: '/plugin/charts/echarts'
+      preLoaderRoute: typeof adminPluginChartsEchartsRouteImport
+      parentRoute: typeof adminPluginChartsLayoutRoute
     }
     '/(admin)/multi-menu/first/child': {
       id: '/(admin)/multi-menu/first/child'
@@ -742,6 +1821,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof adminManageUserIdRouteImport
       parentRoute: typeof adminManageLayoutRoute
     }
+    '/(admin)/function/hide-child/two': {
+      id: '/(admin)/function/hide-child/two'
+      path: '/two'
+      fullPath: '/function/hide-child/two'
+      preLoaderRoute: typeof adminFunctionHideChildTwoRouteImport
+      parentRoute: typeof adminFunctionHideChildLayoutRoute
+    }
+    '/(admin)/function/hide-child/three': {
+      id: '/(admin)/function/hide-child/three'
+      path: '/three'
+      fullPath: '/function/hide-child/three'
+      preLoaderRoute: typeof adminFunctionHideChildThreeRouteImport
+      parentRoute: typeof adminFunctionHideChildLayoutRoute
+    }
+    '/(admin)/function/hide-child/one': {
+      id: '/(admin)/function/hide-child/one'
+      path: '/one'
+      fullPath: '/function/hide-child/one'
+      preLoaderRoute: typeof adminFunctionHideChildOneRouteImport
+      parentRoute: typeof adminFunctionHideChildLayoutRoute
+    }
     '/(admin)/_builtin/iframe-page/$url': {
       id: '/(admin)/_builtin/iframe-page/$url'
       path: '/iframe-page/$url'
@@ -756,12 +1856,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof adminMultiMenuSecondChildLayoutRouteImport
       parentRoute: typeof adminMultiMenuSecondLayoutRoute
     }
+    '/(admin)/projects/$pid/edit/': {
+      id: '/(admin)/projects/$pid/edit/'
+      path: '/$pid/edit'
+      fullPath: '/projects/$pid/edit/'
+      preLoaderRoute: typeof adminProjectsPidEditIndexRouteImport
+      parentRoute: typeof adminProjectsLayoutRoute
+    }
     '/(admin)/multi-menu/second/child/': {
       id: '/(admin)/multi-menu/second/child/'
       path: '/'
       fullPath: '/multi-menu/second/child/'
       preLoaderRoute: typeof adminMultiMenuSecondChildIndexRouteImport
       parentRoute: typeof adminMultiMenuSecondChildLayoutRoute
+    }
+    '/(admin)/projects/$pid/edit/$id': {
+      id: '/(admin)/projects/$pid/edit/$id'
+      path: '/$pid/edit/$id'
+      fullPath: '/projects/$pid/edit/$id'
+      preLoaderRoute: typeof adminProjectsPidEditIdRouteImport
+      parentRoute: typeof adminProjectsLayoutRoute
     }
     '/(admin)/multi-menu/second/child/home': {
       id: '/(admin)/multi-menu/second/child/home'
@@ -772,6 +1886,41 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface adminDocumentLayoutRouteChildren {
+  adminDocumentAdminDocsRoute: typeof adminDocumentAdminDocsRoute
+  adminDocumentAntDesignRoute: typeof adminDocumentAntDesignRoute
+  adminDocumentCoreDocsRoute: typeof adminDocumentCoreDocsRoute
+  adminDocumentJotaiRoute: typeof adminDocumentJotaiRoute
+  adminDocumentReactRoute: typeof adminDocumentReactRoute
+  adminDocumentRepositoryRoute: typeof adminDocumentRepositoryRoute
+  adminDocumentTanstackQueryRoute: typeof adminDocumentTanstackQueryRoute
+  adminDocumentTanstackRouterRoute: typeof adminDocumentTanstackRouterRoute
+  adminDocumentUnocssRoute: typeof adminDocumentUnocssRoute
+  adminDocumentViteRoute: typeof adminDocumentViteRoute
+  adminDocumentWebKitDocsRoute: typeof adminDocumentWebKitDocsRoute
+  adminDocumentWebUiDocsRoute: typeof adminDocumentWebUiDocsRoute
+  adminDocumentIndexRoute: typeof adminDocumentIndexRoute
+}
+
+const adminDocumentLayoutRouteChildren: adminDocumentLayoutRouteChildren = {
+  adminDocumentAdminDocsRoute: adminDocumentAdminDocsRoute,
+  adminDocumentAntDesignRoute: adminDocumentAntDesignRoute,
+  adminDocumentCoreDocsRoute: adminDocumentCoreDocsRoute,
+  adminDocumentJotaiRoute: adminDocumentJotaiRoute,
+  adminDocumentReactRoute: adminDocumentReactRoute,
+  adminDocumentRepositoryRoute: adminDocumentRepositoryRoute,
+  adminDocumentTanstackQueryRoute: adminDocumentTanstackQueryRoute,
+  adminDocumentTanstackRouterRoute: adminDocumentTanstackRouterRoute,
+  adminDocumentUnocssRoute: adminDocumentUnocssRoute,
+  adminDocumentViteRoute: adminDocumentViteRoute,
+  adminDocumentWebKitDocsRoute: adminDocumentWebKitDocsRoute,
+  adminDocumentWebUiDocsRoute: adminDocumentWebUiDocsRoute,
+  adminDocumentIndexRoute: adminDocumentIndexRoute,
+}
+
+const adminDocumentLayoutRouteWithChildren =
+  adminDocumentLayoutRoute._addFileChildren(adminDocumentLayoutRouteChildren)
 
 interface adminExceptionLayoutRouteChildren {
   adminException403Route: typeof adminException403Route
@@ -790,19 +1939,82 @@ const adminExceptionLayoutRouteChildren: adminExceptionLayoutRouteChildren = {
 const adminExceptionLayoutRouteWithChildren =
   adminExceptionLayoutRoute._addFileChildren(adminExceptionLayoutRouteChildren)
 
+interface adminFunctionHideChildLayoutRouteChildren {
+  adminFunctionHideChildOneRoute: typeof adminFunctionHideChildOneRoute
+  adminFunctionHideChildThreeRoute: typeof adminFunctionHideChildThreeRoute
+  adminFunctionHideChildTwoRoute: typeof adminFunctionHideChildTwoRoute
+  adminFunctionHideChildIndexRoute: typeof adminFunctionHideChildIndexRoute
+}
+
+const adminFunctionHideChildLayoutRouteChildren: adminFunctionHideChildLayoutRouteChildren =
+  {
+    adminFunctionHideChildOneRoute: adminFunctionHideChildOneRoute,
+    adminFunctionHideChildThreeRoute: adminFunctionHideChildThreeRoute,
+    adminFunctionHideChildTwoRoute: adminFunctionHideChildTwoRoute,
+    adminFunctionHideChildIndexRoute: adminFunctionHideChildIndexRoute,
+  }
+
+const adminFunctionHideChildLayoutRouteWithChildren =
+  adminFunctionHideChildLayoutRoute._addFileChildren(
+    adminFunctionHideChildLayoutRouteChildren,
+  )
+
+interface adminFunctionLayoutRouteChildren {
+  adminFunctionHideChildLayoutRoute: typeof adminFunctionHideChildLayoutRouteWithChildren
+  adminFunctionEventBusRoute: typeof adminFunctionEventBusRoute
+  adminFunctionMultiTabRoute: typeof adminFunctionMultiTabRoute
+  adminFunctionRequestRoute: typeof adminFunctionRequestRoute
+  adminFunctionSuperPageRoute: typeof adminFunctionSuperPageRoute
+  adminFunctionTabRoute: typeof adminFunctionTabRoute
+  adminFunctionToggleAuthRoute: typeof adminFunctionToggleAuthRoute
+  adminFunctionIndexRoute: typeof adminFunctionIndexRoute
+}
+
+const adminFunctionLayoutRouteChildren: adminFunctionLayoutRouteChildren = {
+  adminFunctionHideChildLayoutRoute:
+    adminFunctionHideChildLayoutRouteWithChildren,
+  adminFunctionEventBusRoute: adminFunctionEventBusRoute,
+  adminFunctionMultiTabRoute: adminFunctionMultiTabRoute,
+  adminFunctionRequestRoute: adminFunctionRequestRoute,
+  adminFunctionSuperPageRoute: adminFunctionSuperPageRoute,
+  adminFunctionTabRoute: adminFunctionTabRoute,
+  adminFunctionToggleAuthRoute: adminFunctionToggleAuthRoute,
+  adminFunctionIndexRoute: adminFunctionIndexRoute,
+}
+
+const adminFunctionLayoutRouteWithChildren =
+  adminFunctionLayoutRoute._addFileChildren(adminFunctionLayoutRouteChildren)
+
+interface adminInteractionLayoutRouteChildren {
+  adminInteractionIndexRoute: typeof adminInteractionIndexRoute
+  adminInteractionFeedbackIndexRoute: typeof adminInteractionFeedbackIndexRoute
+  adminInteractionNotificationIndexRoute: typeof adminInteractionNotificationIndexRoute
+  adminInteractionThemeIndexRoute: typeof adminInteractionThemeIndexRoute
+}
+
+const adminInteractionLayoutRouteChildren: adminInteractionLayoutRouteChildren =
+  {
+    adminInteractionIndexRoute: adminInteractionIndexRoute,
+    adminInteractionFeedbackIndexRoute: adminInteractionFeedbackIndexRoute,
+    adminInteractionNotificationIndexRoute:
+      adminInteractionNotificationIndexRoute,
+    adminInteractionThemeIndexRoute: adminInteractionThemeIndexRoute,
+  }
+
+const adminInteractionLayoutRouteWithChildren =
+  adminInteractionLayoutRoute._addFileChildren(
+    adminInteractionLayoutRouteChildren,
+  )
+
 interface adminManageLayoutRouteChildren {
   adminManageIndexRoute: typeof adminManageIndexRoute
   adminManageUserIdRoute: typeof adminManageUserIdRoute
-  adminManageMenuIndexRoute: typeof adminManageMenuIndexRoute
-  adminManageRoleIndexRoute: typeof adminManageRoleIndexRoute
   adminManageUserIndexRoute: typeof adminManageUserIndexRoute
 }
 
 const adminManageLayoutRouteChildren: adminManageLayoutRouteChildren = {
   adminManageIndexRoute: adminManageIndexRoute,
   adminManageUserIdRoute: adminManageUserIdRoute,
-  adminManageMenuIndexRoute: adminManageMenuIndexRoute,
-  adminManageRoleIndexRoute: adminManageRoleIndexRoute,
   adminManageUserIndexRoute: adminManageUserIndexRoute,
 }
 
@@ -873,13 +2085,140 @@ const adminMultiMenuLayoutRouteChildren: adminMultiMenuLayoutRouteChildren = {
 const adminMultiMenuLayoutRouteWithChildren =
   adminMultiMenuLayoutRoute._addFileChildren(adminMultiMenuLayoutRouteChildren)
 
+interface adminPluginChartsLayoutRouteChildren {
+  adminPluginChartsEchartsRoute: typeof adminPluginChartsEchartsRoute
+  adminPluginChartsIndexRoute: typeof adminPluginChartsIndexRoute
+}
+
+const adminPluginChartsLayoutRouteChildren: adminPluginChartsLayoutRouteChildren =
+  {
+    adminPluginChartsEchartsRoute: adminPluginChartsEchartsRoute,
+    adminPluginChartsIndexRoute: adminPluginChartsIndexRoute,
+  }
+
+const adminPluginChartsLayoutRouteWithChildren =
+  adminPluginChartsLayoutRoute._addFileChildren(
+    adminPluginChartsLayoutRouteChildren,
+  )
+
+interface adminPluginEditorLayoutRouteChildren {
+  adminPluginEditorMarkdownRoute: typeof adminPluginEditorMarkdownRoute
+  adminPluginEditorQuillRoute: typeof adminPluginEditorQuillRoute
+  adminPluginEditorIndexRoute: typeof adminPluginEditorIndexRoute
+}
+
+const adminPluginEditorLayoutRouteChildren: adminPluginEditorLayoutRouteChildren =
+  {
+    adminPluginEditorMarkdownRoute: adminPluginEditorMarkdownRoute,
+    adminPluginEditorQuillRoute: adminPluginEditorQuillRoute,
+    adminPluginEditorIndexRoute: adminPluginEditorIndexRoute,
+  }
+
+const adminPluginEditorLayoutRouteWithChildren =
+  adminPluginEditorLayoutRoute._addFileChildren(
+    adminPluginEditorLayoutRouteChildren,
+  )
+
+interface adminPluginGanttLayoutRouteChildren {
+  adminPluginGanttDhtmlxRoute: typeof adminPluginGanttDhtmlxRoute
+  adminPluginGanttIndexRoute: typeof adminPluginGanttIndexRoute
+}
+
+const adminPluginGanttLayoutRouteChildren: adminPluginGanttLayoutRouteChildren =
+  {
+    adminPluginGanttDhtmlxRoute: adminPluginGanttDhtmlxRoute,
+    adminPluginGanttIndexRoute: adminPluginGanttIndexRoute,
+  }
+
+const adminPluginGanttLayoutRouteWithChildren =
+  adminPluginGanttLayoutRoute._addFileChildren(
+    adminPluginGanttLayoutRouteChildren,
+  )
+
+interface adminPluginTablesLayoutRouteChildren {
+  adminPluginTablesVtableRoute: typeof adminPluginTablesVtableRoute
+  adminPluginTablesIndexRoute: typeof adminPluginTablesIndexRoute
+}
+
+const adminPluginTablesLayoutRouteChildren: adminPluginTablesLayoutRouteChildren =
+  {
+    adminPluginTablesVtableRoute: adminPluginTablesVtableRoute,
+    adminPluginTablesIndexRoute: adminPluginTablesIndexRoute,
+  }
+
+const adminPluginTablesLayoutRouteWithChildren =
+  adminPluginTablesLayoutRoute._addFileChildren(
+    adminPluginTablesLayoutRouteChildren,
+  )
+
+interface adminPluginLayoutRouteChildren {
+  adminPluginChartsLayoutRoute: typeof adminPluginChartsLayoutRouteWithChildren
+  adminPluginEditorLayoutRoute: typeof adminPluginEditorLayoutRouteWithChildren
+  adminPluginGanttLayoutRoute: typeof adminPluginGanttLayoutRouteWithChildren
+  adminPluginTablesLayoutRoute: typeof adminPluginTablesLayoutRouteWithChildren
+  adminPluginBarcodeRoute: typeof adminPluginBarcodeRoute
+  adminPluginCopyRoute: typeof adminPluginCopyRoute
+  adminPluginExcelRoute: typeof adminPluginExcelRoute
+  adminPluginIconRoute: typeof adminPluginIconRoute
+  adminPluginMapRoute: typeof adminPluginMapRoute
+  adminPluginPdfRoute: typeof adminPluginPdfRoute
+  adminPluginPinyinRoute: typeof adminPluginPinyinRoute
+  adminPluginPrintRoute: typeof adminPluginPrintRoute
+  adminPluginSwiperRoute: typeof adminPluginSwiperRoute
+  adminPluginTypeitRoute: typeof adminPluginTypeitRoute
+  adminPluginVideoRoute: typeof adminPluginVideoRoute
+  adminPluginIndexRoute: typeof adminPluginIndexRoute
+}
+
+const adminPluginLayoutRouteChildren: adminPluginLayoutRouteChildren = {
+  adminPluginChartsLayoutRoute: adminPluginChartsLayoutRouteWithChildren,
+  adminPluginEditorLayoutRoute: adminPluginEditorLayoutRouteWithChildren,
+  adminPluginGanttLayoutRoute: adminPluginGanttLayoutRouteWithChildren,
+  adminPluginTablesLayoutRoute: adminPluginTablesLayoutRouteWithChildren,
+  adminPluginBarcodeRoute: adminPluginBarcodeRoute,
+  adminPluginCopyRoute: adminPluginCopyRoute,
+  adminPluginExcelRoute: adminPluginExcelRoute,
+  adminPluginIconRoute: adminPluginIconRoute,
+  adminPluginMapRoute: adminPluginMapRoute,
+  adminPluginPdfRoute: adminPluginPdfRoute,
+  adminPluginPinyinRoute: adminPluginPinyinRoute,
+  adminPluginPrintRoute: adminPluginPrintRoute,
+  adminPluginSwiperRoute: adminPluginSwiperRoute,
+  adminPluginTypeitRoute: adminPluginTypeitRoute,
+  adminPluginVideoRoute: adminPluginVideoRoute,
+  adminPluginIndexRoute: adminPluginIndexRoute,
+}
+
+const adminPluginLayoutRouteWithChildren =
+  adminPluginLayoutRoute._addFileChildren(adminPluginLayoutRouteChildren)
+
+interface adminProjectsLayoutRouteChildren {
+  adminProjectsIndexRoute: typeof adminProjectsIndexRoute
+  adminProjectsPidIndexRoute: typeof adminProjectsPidIndexRoute
+  adminProjectsPidEditIdRoute: typeof adminProjectsPidEditIdRoute
+  adminProjectsPidEditIndexRoute: typeof adminProjectsPidEditIndexRoute
+}
+
+const adminProjectsLayoutRouteChildren: adminProjectsLayoutRouteChildren = {
+  adminProjectsIndexRoute: adminProjectsIndexRoute,
+  adminProjectsPidIndexRoute: adminProjectsPidIndexRoute,
+  adminProjectsPidEditIdRoute: adminProjectsPidEditIdRoute,
+  adminProjectsPidEditIndexRoute: adminProjectsPidEditIndexRoute,
+}
+
+const adminProjectsLayoutRouteWithChildren =
+  adminProjectsLayoutRoute._addFileChildren(adminProjectsLayoutRouteChildren)
+
 interface adminLayoutRouteChildren {
+  adminDocumentLayoutRoute: typeof adminDocumentLayoutRouteWithChildren
   adminExceptionLayoutRoute: typeof adminExceptionLayoutRouteWithChildren
+  adminFunctionLayoutRoute: typeof adminFunctionLayoutRouteWithChildren
+  adminInteractionLayoutRoute: typeof adminInteractionLayoutRouteWithChildren
   adminManageLayoutRoute: typeof adminManageLayoutRouteWithChildren
   adminMultiMenuLayoutRoute: typeof adminMultiMenuLayoutRouteWithChildren
+  adminPluginLayoutRoute: typeof adminPluginLayoutRouteWithChildren
+  adminProjectsLayoutRoute: typeof adminProjectsLayoutRouteWithChildren
   adminKeepAliveFormRoute: typeof adminKeepAliveFormRoute
-  adminSoybeanDocsRoute: typeof adminSoybeanDocsRoute
-  adminSoybeanDocsIframeRoute: typeof adminSoybeanDocsIframeRoute
   adminUserCenterRoute: typeof adminUserCenterRoute
   adminAboutIndexRoute: typeof adminAboutIndexRoute
   adminHomeIndexRoute: typeof adminHomeIndexRoute
@@ -887,12 +2226,15 @@ interface adminLayoutRouteChildren {
 }
 
 const adminLayoutRouteChildren: adminLayoutRouteChildren = {
+  adminDocumentLayoutRoute: adminDocumentLayoutRouteWithChildren,
   adminExceptionLayoutRoute: adminExceptionLayoutRouteWithChildren,
+  adminFunctionLayoutRoute: adminFunctionLayoutRouteWithChildren,
+  adminInteractionLayoutRoute: adminInteractionLayoutRouteWithChildren,
   adminManageLayoutRoute: adminManageLayoutRouteWithChildren,
   adminMultiMenuLayoutRoute: adminMultiMenuLayoutRouteWithChildren,
+  adminPluginLayoutRoute: adminPluginLayoutRouteWithChildren,
+  adminProjectsLayoutRoute: adminProjectsLayoutRouteWithChildren,
   adminKeepAliveFormRoute: adminKeepAliveFormRoute,
-  adminSoybeanDocsRoute: adminSoybeanDocsRoute,
-  adminSoybeanDocsIframeRoute: adminSoybeanDocsIframeRoute,
   adminUserCenterRoute: adminUserCenterRoute,
   adminAboutIndexRoute: adminAboutIndexRoute,
   adminHomeIndexRoute: adminHomeIndexRoute,

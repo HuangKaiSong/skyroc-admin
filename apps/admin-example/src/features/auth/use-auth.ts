@@ -44,6 +44,18 @@ export function useAuth() {
   const isLoggedIn = Boolean(state.token);
   const { data: userInfo, refetch } = useUserInfoQuery();
 
+  function hasAuth(codes: string | string[]) {
+    if (!isLoggedIn || !userInfo) return false;
+
+    const buttons = userInfo.buttons ?? [];
+
+    if (typeof codes === 'string') {
+      return buttons.includes(codes);
+    }
+
+    return codes.some(code => buttons.includes(code));
+  }
+
   async function initAuth() {
     try {
       const { data } = await refetch();
@@ -86,6 +98,7 @@ export function useAuth() {
     initMenus,
     initAuth,
     isAuthInitialized: state.initialized,
+    hasAuth,
     setAuth
   };
 }

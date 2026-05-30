@@ -29,3 +29,7 @@ export function fetchRefreshToken(refreshToken: string) {
     url: AUTH_URLS.REFRESH_TOKEN
   });
 }
+
+export function fetchCustomBackendError(code: string, msg: string) {
+  return request({ params: { code, msg }, url: AUTH_URLS.ERROR });
+}

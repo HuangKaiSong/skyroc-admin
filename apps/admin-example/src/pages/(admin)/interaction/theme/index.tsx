@@ -1,15 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/(admin)/manage/role/')({
+export const Route = createFileRoute('/(admin)/interaction/theme/')({
   component: RouteComponent,
   staticData: {
-    title: 'role',
-    i18nKey: 'route.manage_role',
+    i18nKey: 'route.interaction_theme',
     menu: {
-      icon: 'carbon:user-role',
+      icon: 'carbon:color-palette',
       order: 2
     },
-    permissions: ['R_SUPER']
+    permissions: ['R_SUPER'],
+    title: 'theme'
   }
 });
 

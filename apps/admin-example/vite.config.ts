@@ -4,6 +4,9 @@ export default defineConfig({
   application: {
     css: {
       additionalData: '@use "@/styles/scss/global.scss" as *;'
+    },
+    server: {
+      port: 9528,
     }
   }
 });

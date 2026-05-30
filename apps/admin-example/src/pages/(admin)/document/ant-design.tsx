@@ -2,22 +2,25 @@ import { createFileRoute, useMatch } from '@tanstack/react-router';
 
 import { IframePage } from '@/features/router/components/IframePage';
 
-const ROUTE_PATH = '/(admin)/soybean-docs-iframe';
+import { STACK_DOC_URLS } from './modules/shared';
 
-const SoybeanDocsIframe = () => {
+const ROUTE_PATH = '/(admin)/document/ant-design';
+
+const DocumentAntDesign = () => {
   const { staticData } = useMatch({ from: ROUTE_PATH });
 
   return <IframePage title={staticData.title} url={staticData.url} />;
 };
 
 export const Route = createFileRoute(ROUTE_PATH)({
-  component: SoybeanDocsIframe,
+  component: DocumentAntDesign,
   staticData: {
+    i18nKey: 'route.document_ant-design',
     menu: {
-      icon: 'mdi:book-open-page-variant-outline',
-      order: 31
+      icon: 'logos:ant-design',
+      order: 12
     },
-    title: 'Soybean Docs Iframe',
-    url: 'https://docs.soybeanjs.cn/zh/guide/intro.html'
+    title: 'Ant Design',
+    url: STACK_DOC_URLS.antDesign
   }
 });

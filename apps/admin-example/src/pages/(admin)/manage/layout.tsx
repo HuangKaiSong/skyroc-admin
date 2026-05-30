@@ -1,18 +1,19 @@
 import { Outlet, createFileRoute } from '@tanstack/react-router';
 
+const ManageLayout = () => {
+  return <Outlet />;
+};
+
 export const Route = createFileRoute('/(admin)/manage')({
-  component: RouteComponent,
+  component: ManageLayout,
   staticData: {
-    title: 'manage',
     i18nKey: 'route.manage',
-    permissions: ['R_ADMIN'],
     menu: {
-      order: 9,
-      icon: 'carbon:cloud-service-management'
-    }
+      icon: 'material-symbols:manage-accounts-outline',
+      order: 10,
+      type: 'group'
+    },
+    permissions: ['R_ADMIN'],
+    title: 'system-manage'
   }
 });
-
-function RouteComponent() {
-  return <Outlet />;
-}

@@ -23,16 +23,16 @@ import {
   showWarningNotification
 } from '@/config';
 
-export const Route = createFileRoute('/(admin)/manage/menu/')({
+export const Route = createFileRoute('/(admin)/interaction/feedback/')({
   component: RouteComponent,
   staticData: {
-    title: 'menu',
-    i18nKey: 'route.manage_menu',
+    i18nKey: 'route.interaction_feedback',
     menu: {
-      icon: 'material-symbols:route',
+      icon: 'ant-design:message-outlined',
       order: 3
     },
-    permissions: ['R_ADMIN']
+    permissions: ['R_ADMIN'],
+    title: 'feedback'
   }
 });
 
