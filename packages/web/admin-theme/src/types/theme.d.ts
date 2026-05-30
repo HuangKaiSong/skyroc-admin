@@ -294,6 +294,23 @@ declare global {
       };
     }
   }
+
+  namespace StorageType {
+    interface Local {
+      /** Dark mode snapshot consumed by the admin app bootstrap. */
+      darkMode: boolean;
+      /**
+       * Theme override version flag.
+       *
+       * The value is the build time of the project.
+       */
+      overrideThemeFlag: string;
+      /** Primary theme color cached by the theme package. */
+      themeColor: string;
+      /** Persisted admin theme settings. */
+      themeSettings: Theme.ThemeSetting;
+    }
+  }
 }
 
 export {};
