@@ -306,6 +306,112 @@ describe('menu generation', () => {
     });
   });
 
+  it('normalizes backend route payloads with the consuming route tree', async () => {
+    vi.resetModules();
+
+    const { createAdminDynamicRouteLoader } = await import('../src/features/menus/dynamic-routes');
+    const backendRouteResponse: Api.Route.BackendRouteResponse = {
+      home: '/dashboard',
+      routes: [
+        {
+          children: [
+            {
+              handle: {
+                activeMenu: '/dashboard',
+                fixedIndexInTab: 2,
+                i18nKey: 'route.manage_user',
+                multiTab: true,
+                roles: ['R_ADMIN']
+              },
+              id: 11,
+              parentId: 10,
+              path: '/users/:id'
+            },
+            {
+              id: 'missing-child',
+              path: '/missing-child'
+            }
+          ],
+          handle: {
+            badge: {
+              type: 'dot',
+              variant: 'success'
+            },
+            extra: 'CustomExtra',
+            hideInMenu: false,
+            icon: 'mdi:view-dashboard',
+            keepAlive: true,
+            order: 1,
+            title: 'Dashboard',
+            url: 'https://example.com/dashboard'
+          },
+          id: 10,
+          layout: 'admin',
+          path: '/dashboard'
+        },
+        {
+          id: 'missing',
+          path: '/missing'
+        }
+      ]
+    };
+    const loadBackendRoutes = vi.fn(async () => backendRouteResponse);
+
+    const loadDynamicRoutes = createAdminDynamicRouteLoader({
+      loadBackendRoutes,
+      routeTree: {
+        children: [
+          {
+            fullPath: '/dashboard',
+            children: [
+              {
+                fullPath: '/users/$id'
+              }
+            ]
+          }
+        ]
+      } as any
+    });
+
+    const result = await loadDynamicRoutes();
+
+    expect(result.home).toBe('/dashboard');
+    expect(result.routes).toHaveLength(1);
+    expect(result.routes[0]).toMatchObject({
+      id: '10',
+      keepAlive: true,
+      layout: 'admin',
+      menu: {
+        badge: {
+          type: 'dot',
+          variant: 'success'
+        },
+        extra: 'CustomExtra',
+        icon: 'mdi:view-dashboard',
+        order: 1
+      },
+      path: '/dashboard',
+      title: 'Dashboard',
+      url: 'https://example.com/dashboard'
+    });
+    expect(result.routes[0]?.children).toHaveLength(1);
+    expect(result.routes[0]?.children?.[0]).toMatchObject({
+      id: '11',
+      i18nKey: 'route.manage_user',
+      menu: {
+        activeMenu: '/dashboard'
+      },
+      parentId: '10',
+      path: '/users/$id',
+      permissions: ['R_ADMIN'],
+      tab: {
+        fixedIndex: 2,
+        multi: true
+      }
+    });
+    expect(loadBackendRoutes).toHaveBeenCalledOnce();
+  });
+
   it('generates menuNodeCallback menus with badge metadata', async () => {
     vi.resetModules();
 
