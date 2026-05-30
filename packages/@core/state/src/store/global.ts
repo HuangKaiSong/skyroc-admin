@@ -1,5 +1,5 @@
 import { createStore } from 'jotai';
-import type { Atom, WritableAtom } from 'jotai';
+import type { Atom, PrimitiveAtom, WritableAtom } from 'jotai';
 import type { SetStateAction } from 'jotai/vanilla';
 
 /**
@@ -26,6 +26,11 @@ export function getAtomValue<Value>(atom: Atom<Value>): Value {
  * Generic over the atom's write arguments so it works with any `WritableAtom`, including ones whose write signature
  * differs from their read type (e.g. `atomWithPartial`, derived writers).
  */
+export function setAtomValue<Value>(atom: PrimitiveAtom<Value>, value: SetStateAction<Value>): void;
+export function setAtomValue<Value, Args extends unknown[], Result>(
+  atom: WritableAtom<Value, Args, Result>,
+  ...args: Args
+): Result;
 export function setAtomValue<Value, Args extends unknown[], Result>(
   atom: WritableAtom<Value, Args, Result>,
   ...args: Args

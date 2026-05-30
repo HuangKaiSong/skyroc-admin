@@ -14,6 +14,12 @@ describe('global store', () => {
     expect(getAtomValue(countAtom)).toBe(10);
   });
 
+  it('setAtomValue 支持 primitive atom 函数式更新', () => {
+    const countAtom = atom(1);
+    setAtomValue(countAtom, prev => prev + 1);
+    expect(getAtomValue(countAtom)).toBe(2);
+  });
+
   it('updateAtomValue 基于旧值更新', () => {
     const countAtom = atom(5);
     updateAtomValue(countAtom, prev => prev * 2);
