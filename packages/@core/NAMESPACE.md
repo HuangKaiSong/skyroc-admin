@@ -59,11 +59,6 @@ service（依赖 axios）
 
 ## 已知问题 / TODO
 
-- ⚠️ **架构债**：`@core/types/src/app/storage.d.ts` 中 `themeSettings: Theme.ThemeSetting` 引用了 `Theme` 全局命名空间，而该命名空间真正定义在 `packages/web/admin-theme/src/types/theme.d.ts`（依赖 `antd` + `@skyroc/color`）。
-  目前靠 `@core/types/tsconfig.json` 的 `include` 把 `admin-theme/src/types/theme.d.ts` 拽进来才能编译，本质仍是反向依赖。
-  推荐方向（任选其一）：
-  1. 把 `storage.d.ts` 中与 theme 相关的字段类型改为 `unknown` / `Record<string, unknown>`，由消费方自行收窄；
-  2. 把 `themeSettings` 这条 storage key 的声明搬到 `admin-theme` 内部用 `declare global` 增量扩展 `StorageType.Local`。
 - `scheduler` 的 `package.json` 未声明任何 `dependencies`，需确认其内部是否完全自包含。
 
 ---

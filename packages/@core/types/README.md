@@ -1,10 +1,10 @@
-# @core/types
+# @skyroc/types
 
 > 全局类型定义 - 跨平台支持
 
 ## 📦 包信息
 
-- **包名**: `@core/types`
+- **包名**: `@skyroc/types`
 - **命名空间**: `@core/*`
 - **版本**: `1.0.0`
 - **平台**: Universal (Web)
@@ -28,7 +28,7 @@
 ## 📐 目录结构
 
 ```
-@core/types/
+@skyroc/types/
 ├── src/
 │   ├── api/
 │   │   ├── auth.d.ts           # 认证相关类型
@@ -41,8 +41,7 @@
 │   │   ├── global.d.ts         # 全局类型
 │   │   ├── menu.d.ts           # 菜单类型
 │   │   ├── router.d.ts         # 路由类型
-│   │   ├── storage.d.ts        # 存储类型
-│   │   ├── theme.d.ts          # 主题类型
+│   │   ├── storage.d.ts        # 存储类型扩展点
 │   │   └── union-key.d.ts      # 联合类型key
 │   ├── locales/
 │   │   └── i18n.d.ts           # 国际化类型
@@ -58,36 +57,38 @@
 
 ```ts
 // 在 service 中使用
-import type { Api } from '@core/types';
+import type { Api } from '@skyroc/types';
 
 async function login(params: Api.Auth.LoginParams): Promise<Api.Service.Response<Api.Auth.LoginResponse>> {
   return axios.post('/auth/login', params);
 }
 ```
 
-### 示例 2: 主题类型使用
+### 示例 2: 路由类型扩展
 
 ```ts
-// 在主题包中使用
-import type { Theme } from '@core/types';
+declare global {
+  namespace Router {
+    interface RoutePathRegistry extends Record<keyof import('@/features/router/routeTree.gen').FileRoutesByTo, true> {}
+  }
+}
 
-const themeSettings: Theme.ThemeSetting = {
-  themeScheme: 'light',
-  themeColor: '#1890ff'
-  // ...
-};
+export {};
 ```
 
 ### 示例 3: 存储类型使用
 
 ```ts
-// 在存储包中使用
-import type { StorageType } from '@core/types';
-
-// 扩展存储schema
-declare module '@core/storage' {
-  interface StorageSchema extends StorageType.Local {}
+declare global {
+  namespace StorageType {
+    interface Local {
+      /** The access token owned by the app auth flow. */
+      token: string;
+    }
+  }
 }
+
+export {};
 ```
 
 ### 示例 4: 全局类型使用
@@ -100,8 +101,7 @@ const option: Common.Option = {
 };
 
 const storage: StorageType.Local = {
-  token: 'xxx',
-  themeColor: '#1890ff'
+  token: 'xxx'
   // ...
 };
 ```
@@ -119,7 +119,6 @@ const storage: StorageType.Local = {
 ### App 类型
 
 - `App.Global` - 全局应用类型
-- `Theme` - 主题配置类型
 - `UnionKey` - 联合类型键
 
 ### 全局命名空间
@@ -134,7 +133,7 @@ const storage: StorageType.Local = {
 
 作为 `@core` 命名空间的一部分,相关包:
 
-- `@core/types` - 类型定义(当前包)
+- `@skyroc/types` - 类型定义(当前包)
 - `@core/hooks` - React Hooks(规划中)
 - `@core/store` - 状态管理(规划中)
 - `@core/providers` - Context Providers(规划中)

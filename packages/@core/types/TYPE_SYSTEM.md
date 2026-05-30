@@ -1,4 +1,4 @@
-# @core/types 类型系统说明
+# @skyroc/types 类型系统说明
 
 ## 📦 类型声明格式
 
@@ -38,16 +38,6 @@ export {};
 const option: Common.Option = { label: 'Label', value: 'value' };
 ```
 
-#### `Theme`
-
-- **文件**: `src/app/theme.d.ts`
-- **用途**: 主题配置类型
-- **访问**: 全局直接使用
-
-```typescript
-const themeSettings: Theme.ThemeSetting = { ... };
-```
-
 #### `Menu`
 
 - **文件**: `src/app/menu.d.ts`
@@ -85,18 +75,20 @@ const tab: App.Global.Tab = { ... };
 - **访问**: 全局直接使用
 
 ```typescript
-type ThemeScheme = UnionKey.ThemeScheme; // 'light' | 'dark' | 'auto'
+type ThemeTabMode = UnionKey.ThemeTabMode; // 'button' | 'chrome' | 'slider'
 ```
 
 #### `StorageType`
 
 - **文件**: `src/app/storage.d.ts`
-- **用途**: 存储类型
-- **访问**: 全局直接使用,支持项目扩展
+- **用途**: 存储类型扩展点
+- **访问**: 全局直接使用,具体字段由拥有该缓存键的包或项目扩展
 
 ```typescript
 const storage: StorageType.Local = { ... };
 ```
+
+`@skyroc/types` 只声明空的 `StorageType.Local` / `StorageType.Session` 扩展点。比如 `@skyroc/web-admin-theme` 声明 `themeSettings`，`@skyroc/web-admin-layouts` 声明 `globalTabs`，具体项目声明 `token`、`lang` 等项目级键。
 
 ### API 层命名空间
 
@@ -172,7 +164,6 @@ const key: I18n.I18nKey = 'common.action';
 // ✅ 直接使用,无需导入
 const option: Common.Option = { label: 'Option 1', value: '1' };
 const user: Api.Auth.UserInfo = { ... };
-const theme: Theme.ThemeSetting = { ... };
 ```
 
 ### 2. 显式导入使用(可选)
@@ -180,7 +171,7 @@ const theme: Theme.ThemeSetting = { ... };
 如果需要明确依赖关系,也可以显式导入:
 
 ```typescript
-import type { Common, Api, Theme } from '@core/types';
+import type { Common, Api } from '@skyroc/types';
 
 const option: Common.Option = { label: 'Option 1', value: '1' };
 ```
@@ -208,12 +199,11 @@ export {};
 ```
 global
 ├── Common                    # 通用类型
-├── Theme                     # 主题配置
 ├── Menu                      # 菜单类型
 ├── Router                    # 路由类型
 ├── UnionKey                  # 联合键
 ├── StorageType               # 存储类型
-├── I18n                      # 国际化
+├── I18n                      # 国际化，含 LocaleMessages 扩展点
 ├── App.Global                # 全局应用类型
 │   └── AdminLayout           # 管理布局
 └── Api                       # API 命名空间

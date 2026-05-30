@@ -9,6 +9,7 @@ Admin web internationalization runtime and language UI.
 - i18next runtime setup for admin web
 - Type-safe language definitions
 - Admin language switch and locale side effects
+- Global `I18n.LocaleMessages` extension inferred from bundled locale resources
 
 ## Installation
 
