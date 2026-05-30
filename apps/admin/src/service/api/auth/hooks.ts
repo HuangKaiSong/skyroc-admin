@@ -1,59 +1,24 @@
-import { queryOptions, useMutation, useQuery } from '@tanstack/react-query';
+import { createAdminAuthQueries } from '@skyroc/web-admin-runtime';
 
 import { useAuth } from '@/features/auth/use-auth';
 
-import { fetchGetUserInfo, fetchLogin, fetchRefreshToken } from './api';
-import { AUTH_MUTATION_KEYS, AUTH_QUERY_KEYS } from './keys';
+import { authApi } from './api';
 
-/**
- * Login mutation hook
- *
- * @example
- *   const { mutate: login, isPending } = useLoginMutation();
- *   login({ userName: 'admin', password: '123456' });
- */
+const authQueries = createAdminAuthQueries({
+  authApi,
+  useAuthStatus: () => useAuth()
+});
+
+export const queryUserInfoOptions = authQueries.queryUserInfoOptions;
+
 export function useLoginMutation() {
-  return useMutation({
-    mutationFn: (params: Api.Auth.LoginParams) => fetchLogin(params),
-    retry: false
-  });
+  return authQueries.useLoginMutation();
 }
 
-export const queryUserInfoOptions = (enabled: boolean = true) => {
-  return queryOptions({
-    enabled,
-    gcTime: Infinity,
-    queryFn: fetchGetUserInfo,
-    queryKey: AUTH_QUERY_KEYS.USER_INFO,
-    retry: false,
-    staleTime: Infinity
-  });
-};
-
-/**
- * Get user info query hook
- *
- * @example
- *   const { data: userInfo, isLoading } = useUserInfoQuery();
- */
 export function useUserInfoQuery() {
-  const { isLoggedIn } = useAuth();
-
-  const options = queryUserInfoOptions(isLoggedIn);
-
-  return useQuery(options);
+  return authQueries.useUserInfoQuery();
 }
 
-/**
- * Refresh token mutation hook
- *
- * @example
- *   const { mutate: refreshToken } = useRefreshTokenMutation();
- *   refreshToken('your-refresh-token');
- */
 export function useRefreshTokenMutation() {
-  return useMutation({
-    mutationFn: (refreshToken: string) => fetchRefreshToken(refreshToken),
-    mutationKey: AUTH_MUTATION_KEYS.REFRESH_TOKEN
-  });
+  return authQueries.useRefreshTokenMutation();
 }

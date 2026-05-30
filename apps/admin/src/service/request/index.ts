@@ -1,16 +1,16 @@
 import type { AxiosResponse } from 'axios';
+import { BACKEND_ERROR_CODE, createFlatRequest } from '@skyroc/axios';
+import { createAdminRequest } from '@skyroc/web-admin-runtime';
 
 import { getServiceBaseURL } from '@/utils/service';
 import { localStg } from '@/utils/storage';
 
-import { BACKEND_ERROR_CODE, createFlatRequest } from '../../../../../packages/@core/axios/src';
-import { createAppRequest } from '../../../../../packages/@core/service/src';
 import { antdAdapter } from '../adapter';
 
 const isHttpProxy = import.meta.env.DEV && import.meta.env.VITE_HTTP_PROXY === 'Y';
 const { baseURL, otherBaseURL } = getServiceBaseURL(import.meta.env, isHttpProxy);
 
-export const request = createAppRequest({
+export const request = createAdminRequest({
   adapter: antdAdapter,
   axiosConfig: {
     baseURL,

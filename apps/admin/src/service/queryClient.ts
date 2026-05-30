@@ -1,12 +1,5 @@
-import { createQueryClient } from '../../../../packages/@core/service/src/query';
+import { createAdminQueryClient } from '@skyroc/web-admin-runtime';
 
-function handleError(error: unknown) {
-  if (import.meta.env.DEV) {
-    console.error('Query/Mutation error:', error);
-  }
-}
-
-export const queryClient = createQueryClient({
-  mutationCache: { onError: handleError },
-  queryCache: { onError: handleError }
+export const queryClient = createAdminQueryClient({
+  isDev: import.meta.env.DEV
 });

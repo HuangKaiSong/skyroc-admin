@@ -1,86 +1,38 @@
 import { cacheTabs, useMenus } from '@skyroc/web-admin-layouts';
-import { atom, useAtom } from 'jotai';
-import { flushSync } from 'react-dom';
+import {
+  ADMIN_AUTH_QUERY_KEYS,
+  createAdminAuthRuntime
+} from '@skyroc/web-admin-runtime';
+import type { AdminAuthStorage } from '@skyroc/web-admin-runtime';
 
-import { AUTH_QUERY_KEYS, queryUserInfoOptions } from '@/service/api';
+import { queryUserInfoOptions } from '@/service/api';
 import { queryClient } from '@/service/queryClient';
 import { localStg } from '@/utils/storage';
 
-import { globalStore } from '@skyroc/core-state';
+const authStorage: AdminAuthStorage = {
+  get(key) {
+    return localStg.get(key);
+  },
 
-import { clearAuthStorage, getToken } from './shared';
+  remove(key) {
+    localStg.remove(key);
+  },
 
-const initToken = getToken();
-
-const initState = {
-  token: initToken,
-  initialized: false
+  set(key, value) {
+    localStg.set(key, value);
+  }
 };
 
-const authAtom = atom(initState, (get, set, update: Partial<typeof initState>) => {
-  set(authAtom, { ...get(authAtom), ...update });
+const authRuntime = createAdminAuthRuntime<Router.RoutePath>({
+  cacheTabs,
+  queryClient,
+  queryUserInfoOptions,
+  storage: authStorage,
+  useLayoutRuntime: useMenus,
+  userInfoQueryKey: ADMIN_AUTH_QUERY_KEYS.USER_INFO
 });
 
-/** - 为了在axios的拦截器中使用 单独使用`globalStore`的set方法进行操作 */
-export const setAuth = (data: Api.Auth.LoginToken) => {
-  globalStore.set(authAtom, { token: data.token });
-
-  localStg.set('token', data.token);
-
-  localStg.set('refreshToken', data.refreshToken);
-};
-
-export const useAuth = () => {
-  const [state, setState] = useAtom(authAtom);
-
-  const isLoggedIn = Boolean(state.token);
-
-  const userInfo = queryClient.getQueryData<Api.Auth.UserInfo>(AUTH_QUERY_KEYS.USER_INFO);
-
-  const { clearMenus, getHomeRoute, home, initMenus } = useMenus();
-
-  async function initAuth() {
-    try {
-      const data = await queryClient.ensureQueryData(queryUserInfoOptions());
-
-      await initMenus(data);
-
-      flushSync(() => {
-        setState({ initialized: true });
-      });
-
-      return data;
-    } catch {
-      return null;
-    }
-  }
-
-  function clearAuth() {
-    if (userInfo) {
-      localStg.set('lastLoginUserId', userInfo.userId);
-    }
-
-    queryClient.clear();
-
-    setState({ token: '' });
-
-    clearAuthStorage();
-
-    clearMenus();
-
-    cacheTabs();
-  }
-
-  return {
-    token: state.token,
-    userInfo,
-    isLoggedIn,
-    clearAuth,
-    getHomeRoute,
-    homeRoute: home,
-    initMenus,
-    initAuth,
-    isAuthInitialized: state.initialized,
-    setAuth
-  };
-};
+export const clearAuthStorage = authRuntime.clearAuthStorage;
+export const getToken = authRuntime.getToken;
+export const setAuth = authRuntime.setAuth;
+export const useAuth = authRuntime.useAuth;

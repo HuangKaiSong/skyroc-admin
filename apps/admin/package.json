@@ -47,6 +47,7 @@
     "@skyroc/hooks": "workspace:*",
     "@skyroc/logger": "workspace:*",
     "@skyroc/materials": "workspace:*",
+    "@skyroc/service": "workspace:*",
     "@skyroc/utils": "workspace:*",
     "@skyroc/web-admin-devtools": "workspace:*",
     "@skyroc/web-admin-i18n": "workspace:*",

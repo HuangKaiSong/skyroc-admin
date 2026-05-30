@@ -1,17 +1,13 @@
+import { createAdminRouteApi } from '@skyroc/web-admin-runtime';
+
 import { request } from '../../request';
 
 import { ROUTE_URLS } from './urls';
 
-/** Get backend routes (完整路由结构) */
-export function fetchGetBackendRoutes() {
-  return request<Api.Route.BackendRouteResponse>({ url: ROUTE_URLS.GET_USER_ROUTES });
-}
+export const routeApi = createAdminRouteApi(request, {
+  getConstantRoutes: ROUTE_URLS.GET_CONSTANT_ROUTES,
+  getUserRoutes: ROUTE_URLS.GET_USER_ROUTES,
+  isRouteExist: ROUTE_URLS.IS_ROUTE_EXIST
+});
 
-/**
- * Whether the route is exist
- *
- * @param routeName Route name
- */
-export function fetchIsRouteExist(routeName: string) {
-  return request<boolean>({ params: { routeName }, url: ROUTE_URLS.IS_ROUTE_EXIST });
-}
+export const { fetchGetBackendRoutes, fetchIsRouteExist } = routeApi;
