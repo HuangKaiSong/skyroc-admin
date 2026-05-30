@@ -131,6 +131,14 @@ function getRouteCacheKey(route: ReturnType<typeof useRoute>) {
   return getTabIdByRoute(route.originPath, route.staticData?.tab?.multi ?? false, route.fullPath);
 }
 
+function getRouteContentKey(route: ReturnType<typeof useRoute>) {
+  if (route.staticData?.tab?.multi) {
+    return route.fullPath || route.pathname;
+  }
+
+  return route.pathname || route.originPath;
+}
+
 function createStaticRouterStore(routeState: RouterStateSnapshot): StaticRouterStore {
   return {
     get state() {
@@ -224,7 +232,7 @@ const GlobalContent = () => {
   const keepAliveEntriesRef = useRef<KeepAliveEntry[]>([]);
 
   const animationMode = getPageAnimationMode(page);
-  const contentKey = route.fullPath || route.pathname;
+  const contentKey = getRouteContentKey(route);
   const activeCacheKey = getRouteCacheKey(route) || contentKey;
   const routeKeepAlive = route.staticData?.keepAlive;
   const keepAliveKeys = getKeepAliveKeys({ activeCacheKey, routeKeepAlive, tabs });

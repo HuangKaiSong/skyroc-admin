@@ -569,6 +569,41 @@ describe('menu rendering', () => {
     });
   });
 
+  it('moves submenu extras into the label rendered by Ant Design Menu', async () => {
+    vi.resetModules();
+
+    const { Menu: AMenu } = await import('antd');
+    const { renderAntdMenuItems } = await import('../src/features/menus/menu-renderer');
+
+    const items = renderAntdMenuItems([
+      {
+        children: [
+          {
+            key: '/plugin/icon',
+            label: <span>Icon</span>,
+            title: 'Icon'
+          }
+        ],
+        extra: <span>submenu extra</span>,
+        key: '/plugin',
+        label: <span>Plugin</span>,
+        title: 'Plugin'
+      }
+    ]);
+
+    const [item] = items as unknown as Array<Record<string, unknown> & { label: ReactNode }>;
+
+    expect(item).not.toHaveProperty('extra');
+
+    await act(async () => {
+      render(<AMenu items={items} mode="inline" />);
+    });
+
+    expect(screen.getByText('Plugin')).toBeInTheDocument();
+    expect(screen.getByText('submenu extra')).toBeInTheDocument();
+    expect(screen.getByText('submenu extra').closest('[data-menu-submenu-label]')).toHaveClass('pr-28px');
+  });
+
   it('renders static badges with custom extras', async () => {
     vi.resetModules();
 

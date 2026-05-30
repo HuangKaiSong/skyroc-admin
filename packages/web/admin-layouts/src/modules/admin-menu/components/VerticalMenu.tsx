@@ -51,6 +51,10 @@ const VerticalMenu = memo(() => {
 
   const menuTheme = darkTheme ? 'dark' : 'light';
 
+  const scrollbarClass = 'z-10 w-7px bg-transparent p-0';
+
+  const scrollbarThumbClass = 'rounded-10px bg-[rgba(144,147,153,0.3)] hover:bg-[rgba(144,147,153,0.3)]';
+
   let menus = allMenus;
 
   if (isVerticalMix) {
@@ -89,7 +93,16 @@ const VerticalMenu = memo(() => {
   }, [inlineCollapsed]);
 
   return (
-    <ScrollArea className="h-full" type="always">
+    <ScrollArea
+      className="h-full"
+      classNames={{
+        scrollbar: scrollbarClass,
+        thumb: scrollbarThumbClass
+      }}
+      orientation="vertical"
+      size="sm"
+      type="scroll"
+    >
       <AMenu
         className={clsx('h-full transition-300 border-0!', { 'bg-container!': !darkTheme })}
         inlineCollapsed={inlineCollapsed}

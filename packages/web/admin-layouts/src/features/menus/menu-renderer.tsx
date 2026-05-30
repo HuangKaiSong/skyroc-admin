@@ -1,6 +1,7 @@
 import { BeyondHiding } from '@skyroc/web-ui-antd';
 import { I18nLabel, SvgIcon } from '@skyroc/web-ui-compose';
 import type { MenuProps } from 'antd';
+import type { ReactNode } from 'react';
 import { createElement } from 'react';
 
 import { getAdminLayoutsOptions } from '../../setup';
@@ -71,12 +72,33 @@ function renderMenu(menu: GeneratedMenu): Menu.CommonMenu {
   return commonMenu;
 }
 
+function createSubMenuLabel(label: ReactNode, extra: ReactNode) {
+  return (
+    <span
+      className="box-border flex-y-center min-w-0 w-full justify-between gap-8px pr-28px"
+      data-menu-submenu-label="with-extra"
+    >
+      <span className="min-w-0 flex-1 overflow-hidden">{label}</span>
+      <span className="inline-flex shrink-0 items-center">{extra}</span>
+    </span>
+  );
+}
+
 function createAntdMenuItem(menu: Menu.CommonMenu): AntdMenuItems[number] {
-  const { children, i18nKey: _, ...rest } = menu;
+  const { children, extra, i18nKey: _, label, ...rest } = menu;
+
+  if (children?.length) {
+    return {
+      ...rest,
+      children: children.map(createAntdMenuItem),
+      label: extra ? createSubMenuLabel(label, extra) : label
+    } as AntdMenuItems[number];
+  }
 
   return {
     ...rest,
-    children: children?.map(createAntdMenuItem)
+    extra,
+    label
   } as AntdMenuItems[number];
 }
 
