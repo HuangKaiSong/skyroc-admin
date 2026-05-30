@@ -452,16 +452,6 @@ overrides:
 importers:
 
   .:
-    dependencies:
-      '@dnd-kit/core':
-        specifier: ^6.3.1
-        version: 6.3.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
-      '@dnd-kit/sortable':
-        specifier: ^10.0.0
-        version: 10.0.0(@dnd-kit/core@6.3.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)
-      '@dnd-kit/utilities':
-        specifier: ^3.2.2
-        version: 3.2.2(react@19.2.6)
     devDependencies:
       '@skyroc/config':
         specifier: workspace:*
@@ -544,6 +534,214 @@ importers:
       '@skyroc/materials':
         specifier: workspace:*
         version: link:../../packages/web/materials
+      '@skyroc/service':
+        specifier: workspace:*
+        version: link:../../packages/@core/service
+      '@skyroc/utils':
+        specifier: workspace:*
+        version: link:../../packages/@core/utils
+      '@skyroc/web-admin-devtools':
+        specifier: workspace:*
+        version: link:../../packages/web/admin-devtools
+      '@skyroc/web-admin-i18n':
+        specifier: workspace:*
+        version: link:../../packages/web/admin-i18n
+      '@skyroc/web-admin-layouts':
+        specifier: workspace:*
+        version: link:../../packages/web/admin-layouts
+      '@skyroc/web-admin-notification':
+        specifier: workspace:*
+        version: link:../../packages/web/admin-notification
+      '@skyroc/web-admin-runtime':
+        specifier: workspace:*
+        version: link:../../packages/web/admin-runtime
+      '@skyroc/web-admin-styles':
+        specifier: workspace:*
+        version: link:../../packages/web/admin-styles
+      '@skyroc/web-admin-theme':
+        specifier: workspace:*
+        version: link:../../packages/web/admin-theme
+      '@skyroc/web-ui':
+        specifier: workspace:*
+        version: link:../../packages/web/ui/shadcn
+      '@skyroc/web-ui-antd':
+        specifier: workspace:*
+        version: link:../../packages/web/ui/antd
+      '@skyroc/web-ui-compose':
+        specifier: workspace:*
+        version: link:../../packages/web/ui/compose
+      '@tanstack/react-query':
+        specifier: catalog:core
+        version: 5.90.21(react@19.1.0)
+      '@tanstack/react-router':
+        specifier: catalog:web
+        version: 1.162.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      ahooks:
+        specifier: catalog:utils
+        version: 3.9.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      antd:
+        specifier: catalog:web
+        version: 6.3.0(date-fns@4.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      clsx:
+        specifier: catalog:utils
+        version: 2.1.1
+      date-fns:
+        specifier: catalog:utils
+        version: 4.1.0
+      dayjs:
+        specifier: catalog:utils
+        version: 1.11.19
+      defu:
+        specifier: catalog:utils
+        version: 6.1.4
+      echarts:
+        specifier: catalog:web
+        version: 6.0.0
+      i18next:
+        specifier: catalog:i18n
+        version: 25.7.2(typescript@6.0.3)
+      jotai:
+        specifier: catalog:core
+        version: 2.18.0(@babel/core@7.29.0)(@babel/template@7.28.6)(@types/react@19.2.14)(react@19.1.0)
+      motion:
+        specifier: catalog:ui-shared
+        version: 12.34.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      nprogress:
+        specifier: catalog:ui-shared
+        version: 0.2.0
+      react:
+        specifier: catalog:core
+        version: 19.1.0
+      react-dom:
+        specifier: catalog:core
+        version: 19.1.0(react@19.1.0)
+      react-error-boundary:
+        specifier: catalog:core
+        version: 6.0.0(react@19.1.0)
+      react-i18next:
+        specifier: catalog:i18n
+        version: 16.4.0(i18next@25.7.2(typescript@6.0.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@6.0.3)
+      zod:
+        specifier: catalog:utils
+        version: 4.3.6
+    devDependencies:
+      '@iconify/json':
+        specifier: catalog:ui-shared
+        version: 2.2.442
+      '@iconify/react':
+        specifier: catalog:ui-shared
+        version: 6.0.2(react@19.1.0)
+      '@iconify/types':
+        specifier: catalog:ui-shared
+        version: 2.0.0
+      '@sa/uno-config':
+        specifier: workspace:*
+        version: link:../../internal/uno-config
+      '@skyroc/scripts':
+        specifier: workspace:*
+        version: link:../../packages/@core/scripts
+      '@skyroc/types':
+        specifier: workspace:*
+        version: link:../../packages/@core/types
+      '@skyroc/web-admin-vite':
+        specifier: workspace:*
+        version: link:../../packages/web/admin-vite
+      '@svgr/core':
+        specifier: catalog:web
+        version: 8.1.0(typescript@6.0.3)
+      '@svgr/plugin-jsx':
+        specifier: catalog:web
+        version: 8.1.0(@svgr/core@8.1.0(typescript@6.0.3))
+      '@types/node':
+        specifier: catalog:dev
+        version: 24.10.13
+      '@types/nprogress':
+        specifier: catalog:dev
+        version: 0.2.3
+      '@types/react':
+        specifier: catalog:dev
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: catalog:dev
+        version: 19.2.3(@types/react@19.2.14)
+      '@unocss/eslint-config':
+        specifier: catalog:dev
+        version: 66.6.0(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.3)
+      '@unocss/preset-uno':
+        specifier: catalog:dev
+        version: 66.6.0
+      '@unocss/preset-wind3':
+        specifier: catalog:dev
+        version: 66.6.0
+      '@unocss/transformer-directives':
+        specifier: catalog:dev
+        version: 66.6.0
+      '@unocss/transformer-variant-group':
+        specifier: catalog:dev
+        version: 66.6.0
+      eslint-plugin-react:
+        specifier: catalog:dev
+        version: 7.37.5(eslint@10.2.0(jiti@2.6.1))
+      eslint-plugin-react-hooks:
+        specifier: catalog:dev
+        version: 7.0.1(eslint@10.2.0(jiti@2.6.1))
+      eslint-plugin-react-refresh:
+        specifier: catalog:dev
+        version: 0.4.26(eslint@10.2.0(jiti@2.6.1))
+      eslint-plugin-sort:
+        specifier: catalog:dev
+        version: 4.0.0(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.3)
+      fast-glob:
+        specifier: catalog:dev
+        version: 3.3.3
+      oxlint:
+        specifier: catalog:dev
+        version: 1.60.0
+      sass:
+        specifier: catalog:web
+        version: 1.97.3
+      tsx:
+        specifier: catalog:dev
+        version: 4.21.0
+      typescript:
+        specifier: catalog:core
+        version: 6.0.3
+      unocss:
+        specifier: ^66.5.11
+        version: 66.6.0(postcss@8.5.15)(vite@8.0.14(@types/node@24.10.13)(esbuild@0.28.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))
+      vite:
+        specifier: catalog:core
+        version: 8.0.14(@types/node@24.10.13)(esbuild@0.28.0)(jiti@2.6.1)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
+
+  apps/admin-example:
+    dependencies:
+      '@better-scroll/core':
+        specifier: catalog:web
+        version: 2.5.1
+      '@skyroc/adapter-antd-theme':
+        specifier: workspace:*
+        version: link:../../packages/web/antd-theme
+      '@skyroc/axios':
+        specifier: workspace:*
+        version: link:../../packages/@core/axios
+      '@skyroc/color':
+        specifier: workspace:*
+        version: link:../../packages/@core/color
+      '@skyroc/core-state':
+        specifier: workspace:*
+        version: link:../../packages/@core/state
+      '@skyroc/hooks':
+        specifier: workspace:*
+        version: link:../../packages/hooks
+      '@skyroc/logger':
+        specifier: workspace:*
+        version: link:../../packages/@core/logger
+      '@skyroc/materials':
+        specifier: workspace:*
+        version: link:../../packages/web/materials
+      '@skyroc/service':
+        specifier: workspace:*
+        version: link:../../packages/@core/service
       '@skyroc/utils':
         specifier: workspace:*
         version: link:../../packages/@core/utils
@@ -2326,10 +2524,17 @@ importers:
         version: 6.0.3
 
   packages/web/admin-runtime:
+    dependencies:
+      '@skyroc/core-state':
+        specifier: workspace:*
+        version: link:../../@core/state
+      '@skyroc/service':
+        specifier: workspace:*
+        version: link:../../@core/service
     devDependencies:
       '@iconify/react':
         specifier: catalog:ui-shared
-        version: 6.0.2(react@19.2.6)
+        version: 6.0.2(react@19.1.0)
       '@skyroc/config':
         specifier: workspace:*
         version: link:../../../internal/config
@@ -2339,18 +2544,36 @@ importers:
       '@skyroc/types':
         specifier: workspace:*
         version: link:../../@core/types
+      '@tanstack/react-query':
+        specifier: catalog:core
+        version: 5.90.21(react@19.1.0)
       '@types/nprogress':
         specifier: catalog:dev
         version: 0.2.3
+      '@types/react':
+        specifier: catalog:dev
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: catalog:dev
+        version: 19.2.3(@types/react@19.2.14)
       dayjs:
         specifier: catalog:utils
         version: 1.11.19
+      jotai:
+        specifier: catalog:core
+        version: 2.18.0(@babel/core@7.29.0)(@babel/template@7.28.6)(@types/react@19.2.14)(react@19.1.0)
       nprogress:
         specifier: catalog:ui-shared
         version: 0.2.0
       oxlint:
         specifier: catalog:dev
         version: 1.60.0
+      react:
+        specifier: catalog:core
+        version: 19.1.0
+      react-dom:
+        specifier: catalog:core
+        version: 19.1.0(react@19.1.0)
       rimraf:
         specifier: catalog:dev
         version: 6.1.3
@@ -2360,6 +2583,9 @@ importers:
       typescript:
         specifier: catalog:core
         version: 6.0.3
+      vitest:
+        specifier: catalog:dev
+        version: 4.0.18(@opentelemetry/api@1.9.0)(@types/node@25.9.1)(@vitest/ui@4.0.18)(happy-dom@20.6.1)(jiti@2.6.1)(jsdom@28.1.0(@noble/hashes@1.8.0))(lightningcss@1.30.1)(msw@2.12.10(@types/node@25.9.1)(typescript@6.0.3))(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2)
 
   packages/web/admin-styles: {}
 
@@ -2689,6 +2915,15 @@ importers:
       '@better-scroll/core':
         specifier: catalog:web
         version: 2.5.1
+      '@dnd-kit/core':
+        specifier: ^6.3.1
+        version: 6.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@dnd-kit/sortable':
+        specifier: ^10.0.0
+        version: 10.0.0(@dnd-kit/core@6.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+      '@dnd-kit/utilities':
+        specifier: ^3.2.2
+        version: 3.2.2(react@19.1.0)
       '@iconify/react':
         specifier: catalog:ui-shared
         version: 6.0.2(react@19.1.0)
@@ -2711,6 +2946,9 @@ importers:
       '@skyroc/config':
         specifier: workspace:*
         version: link:../../../../internal/config
+      '@skyroc/types':
+        specifier: workspace:*
+        version: link:../../../@core/types
       '@soybeanjs/eslint-config':
         specifier: catalog:dev
         version: 1.7.5(@typescript-eslint/utils@8.58.2(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.3))(@unocss/eslint-config@66.6.0(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.3))(eslint-import-resolver-node@0.3.9)(eslint-plugin-react-hooks@7.0.1(eslint@10.2.0(jiti@2.6.1)))(eslint-plugin-react-refresh@0.4.26(eslint@10.2.0(jiti@2.6.1)))(eslint-plugin-react@7.37.5(eslint@10.2.0(jiti@2.6.1)))(eslint@10.2.0(jiti@2.6.1))(svelte-eslint-parser@1.5.0)(typescript@6.0.3)
@@ -2726,6 +2964,9 @@ importers:
       '@types/react-dom':
         specifier: catalog:dev
         version: 19.2.3(@types/react@19.2.14)
+      antd:
+        specifier: catalog:web
+        version: 6.3.0(date-fns@4.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       i18next:
         specifier: catalog:i18n
         version: 25.7.2(typescript@6.0.3)
@@ -13798,9 +14039,6 @@ packages:
     resolution: {integrity: sha512-MULkVLfKGYDFYejP07QOurDLLQpcjk7Fw+7jXS2R2czRQzR56yHRveU5NDJEOviH+hETZKSkIk5c+T23GjFUMg==}
     engines: {node: 18 || 20 || >=22}
 
-  minimatch@3.1.3:
-    resolution: {integrity: sha512-M2GCs7Vk83NxkUyQV1bkABc4yxgz9kILhHImZiBPAZ9ybuvCb0/H7lEl5XvIg3g+9d4eNotkZA5IWwYl0tibaA==}
-
   minimatch@3.1.5:
     resolution: {integrity: sha512-VgjWUsnnT6n+NUk6eZq77zeFdpW2LWDzP6zFGrCbHXiYNul5Dzqk2HHQ5uFH2DNW5Xbp8+jVzaeNt94ssEEl4w==}
 
@@ -15407,21 +15645,11 @@ packages:
     resolution: {integrity: sha512-ghgmKt5o4Tly5yEG/UJp8qTd0AN7Xalw4XBtDEKP655B699qMEtra1WlXeE6WIvdEG481JvRxULKsInq/iNysw==}
     engines: {node: '>=0.10.0'}
 
-  seroval-plugins@1.5.0:
-    resolution: {integrity: sha512-EAHqADIQondwRZIdeW2I636zgsODzoBDwb3PT/+7TLDWyw1Dy/Xv7iGUIEXXav7usHDE9HVhOU61irI3EnyyHA==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      seroval: ^1.0
-
   seroval-plugins@1.5.4:
     resolution: {integrity: sha512-S0xQPhUTefAhNvNWFg0c1J8qJArHt5KdtJ/cFAofo06KD1MVSeFWyl4iiu+ApDIuw0WhjpOfCdgConOfAnLgkw==}
     engines: {node: '>=10'}
     peerDependencies:
       seroval: ^1.0
-
-  seroval@1.5.0:
-    resolution: {integrity: sha512-OE4cvmJ1uSPrKorFIH9/w/Qwuvi/IMcGbv5RKgcJ/zjA/IohDLU6SVaxFN9FwajbP7nsX0dQqMDes1whk3y+yw==}
-    engines: {node: '>=10'}
 
   seroval@1.5.4:
     resolution: {integrity: sha512-46uFvgrXTVxZcUorgSSRZ4y+ieqLLQRMlG4bnCZKW3qI6BZm7Rg4ntMW4p1mILEEBZWrFlcpp0AyIIlM6jD9iw==}
@@ -17091,7 +17319,7 @@ snapshots:
   '@ant-design/cssinjs-utils@2.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@ant-design/cssinjs': 2.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -17099,7 +17327,7 @@ snapshots:
   '@ant-design/cssinjs-utils@2.1.1(react-dom@19.2.6(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@ant-design/cssinjs': 2.1.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/util': 1.9.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.2.6(react@19.1.0)
@@ -17107,14 +17335,14 @@ snapshots:
   '@ant-design/cssinjs-utils@2.1.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
       '@ant-design/cssinjs': 2.1.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/util': 1.9.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
 
   '@ant-design/cssinjs@2.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@emotion/hash': 0.8.0
       '@emotion/unitless': 0.7.5
       '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -17126,7 +17354,7 @@ snapshots:
 
   '@ant-design/cssinjs@2.1.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@emotion/hash': 0.8.0
       '@emotion/unitless': 0.7.5
       '@rc-component/util': 1.9.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
@@ -17138,7 +17366,7 @@ snapshots:
 
   '@ant-design/cssinjs@2.1.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@emotion/hash': 0.8.0
       '@emotion/unitless': 0.7.5
       '@rc-component/util': 1.9.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -17181,7 +17409,7 @@ snapshots:
 
   '@ant-design/react-slick@2.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       clsx: 2.1.1
       json2mq: 0.2.0
       react: 19.1.0
@@ -17190,7 +17418,7 @@ snapshots:
 
   '@ant-design/react-slick@2.0.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       clsx: 2.1.1
       json2mq: 0.2.0
       react: 19.1.0
@@ -17199,7 +17427,7 @@ snapshots:
 
   '@ant-design/react-slick@2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       clsx: 2.1.1
       json2mq: 0.2.0
       react: 19.2.6
@@ -18932,29 +19160,29 @@ snapshots:
       nanoid: 5.1.6
       react: 19.1.0
 
-  '@dnd-kit/accessibility@3.1.1(react@19.2.6)':
+  '@dnd-kit/accessibility@3.1.1(react@19.1.0)':
     dependencies:
-      react: 19.2.6
+      react: 19.1.0
       tslib: 2.8.1
 
-  '@dnd-kit/core@6.3.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
+  '@dnd-kit/core@6.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@dnd-kit/accessibility': 3.1.1(react@19.2.6)
-      '@dnd-kit/utilities': 3.2.2(react@19.2.6)
-      react: 19.2.6
-      react-dom: 19.2.6(react@19.2.6)
+      '@dnd-kit/accessibility': 3.1.1(react@19.1.0)
+      '@dnd-kit/utilities': 3.2.2(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
       tslib: 2.8.1
 
-  '@dnd-kit/sortable@10.0.0(@dnd-kit/core@6.3.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(react@19.2.6)':
+  '@dnd-kit/sortable@10.0.0(@dnd-kit/core@6.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@dnd-kit/core': 6.3.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
-      '@dnd-kit/utilities': 3.2.2(react@19.2.6)
-      react: 19.2.6
+      '@dnd-kit/core': 6.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@dnd-kit/utilities': 3.2.2(react@19.1.0)
+      react: 19.1.0
       tslib: 2.8.1
 
-  '@dnd-kit/utilities@3.2.2(react@19.2.6)':
+  '@dnd-kit/utilities@3.2.2(react@19.1.0)':
     dependencies:
-      react: 19.2.6
+      react: 19.1.0
       tslib: 2.8.1
 
   '@dotenvx/dotenvx@1.31.0':
@@ -19744,11 +19972,6 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
       react: 19.1.0
-
-  '@iconify/react@6.0.2(react@19.2.6)':
-    dependencies:
-      '@iconify/types': 2.0.0
-      react: 19.2.6
 
   '@iconify/types@2.0.0': {}
 
@@ -22482,7 +22705,7 @@ snapshots:
 
   '@rc-component/async-validator@5.1.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
 
   '@rc-component/cascader@1.14.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -22534,7 +22757,7 @@ snapshots:
 
   '@rc-component/collapse@1.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/motion': 1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
@@ -22543,7 +22766,7 @@ snapshots:
 
   '@rc-component/collapse@1.2.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/motion': 1.1.6(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
       '@rc-component/util': 1.9.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
@@ -22552,7 +22775,7 @@ snapshots:
 
   '@rc-component/collapse@1.2.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/motion': 1.1.6(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@rc-component/util': 1.9.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       clsx: 2.1.1
@@ -22840,7 +23063,7 @@ snapshots:
 
   '@rc-component/mini-decimal@1.1.0':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
 
   '@rc-component/motion@1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -22907,7 +23130,7 @@ snapshots:
 
   '@rc-component/overflow@1.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/resize-observer': 1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
@@ -22916,7 +23139,7 @@ snapshots:
 
   '@rc-component/overflow@1.0.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/resize-observer': 1.1.1(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
       '@rc-component/util': 1.9.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
@@ -22925,7 +23148,7 @@ snapshots:
 
   '@rc-component/overflow@1.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/resize-observer': 1.1.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@rc-component/util': 1.9.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       clsx: 2.1.1
@@ -23036,19 +23259,19 @@ snapshots:
 
   '@rc-component/qrcode@1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
   '@rc-component/qrcode@1.1.1(react-dom@19.2.6(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       react: 19.1.0
       react-dom: 19.2.6(react@19.1.0)
 
   '@rc-component/qrcode@1.1.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       react: 19.2.6
       react-dom: 19.2.6(react@19.2.6)
 
@@ -23093,7 +23316,7 @@ snapshots:
 
   '@rc-component/segmented@1.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/motion': 1.1.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
@@ -23102,7 +23325,7 @@ snapshots:
 
   '@rc-component/segmented@1.3.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/motion': 1.1.6(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
       '@rc-component/util': 1.9.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
@@ -23111,7 +23334,7 @@ snapshots:
 
   '@rc-component/segmented@1.3.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/motion': 1.1.6(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@rc-component/util': 1.9.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       clsx: 2.1.1
@@ -23480,7 +23703,7 @@ snapshots:
 
   '@rc-component/virtual-list@1.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/resize-observer': 1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/util': 1.9.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
@@ -23489,7 +23712,7 @@ snapshots:
 
   '@rc-component/virtual-list@1.0.2(react-dom@19.2.6(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/resize-observer': 1.1.1(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
       '@rc-component/util': 1.9.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
       clsx: 2.1.1
@@ -23498,7 +23721,7 @@ snapshots:
 
   '@rc-component/virtual-list@1.0.2(react-dom@19.2.6(react@19.2.6))(react@19.2.6)':
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/resize-observer': 1.1.1(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@rc-component/util': 1.9.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       clsx: 2.1.1
@@ -25181,8 +25404,8 @@ snapshots:
       '@tanstack/history': 1.161.4
       '@tanstack/store': 0.9.1
       cookie-es: 2.0.0
-      seroval: 1.5.0
-      seroval-plugins: 1.5.0(seroval@1.5.0)
+      seroval: 1.5.4
+      seroval-plugins: 1.5.4(seroval@1.5.4)
       tiny-invariant: 1.3.3
       tiny-warning: 1.0.3
 
@@ -25661,7 +25884,6 @@ snapshots:
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
-    optional: true
 
   '@typescript-eslint/utils@8.58.2(eslint@9.39.3(jiti@2.6.1))(typescript@6.0.3)':
     dependencies:
@@ -25737,7 +25959,7 @@ snapshots:
 
   '@unocss/eslint-plugin@66.6.0(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/utils': 8.56.1(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.58.2(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.3)
       '@unocss/config': 66.6.0
       '@unocss/core': 66.6.0
       '@unocss/rule-utils': 66.6.0
@@ -26082,7 +26304,7 @@ snapshots:
 
   ahooks@3.9.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@types/js-cookie': 3.0.6
       dayjs: 1.11.19
       intersection-observer: 0.12.2
@@ -26169,7 +26391,7 @@ snapshots:
       '@ant-design/fast-color': 3.0.1
       '@ant-design/icons': 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@ant-design/react-slick': 2.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/cascader': 1.14.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/checkbox': 2.0.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@rc-component/collapse': 1.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -26226,7 +26448,7 @@ snapshots:
       '@ant-design/fast-color': 3.0.1
       '@ant-design/icons': 6.1.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
       '@ant-design/react-slick': 2.0.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/cascader': 1.14.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
       '@rc-component/checkbox': 2.0.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
       '@rc-component/collapse': 1.2.0(react-dom@19.2.6(react@19.1.0))(react@19.1.0)
@@ -26283,7 +26505,7 @@ snapshots:
       '@ant-design/fast-color': 3.0.1
       '@ant-design/icons': 6.1.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@ant-design/react-slick': 2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       '@rc-component/cascader': 1.14.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@rc-component/checkbox': 2.0.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
       '@rc-component/collapse': 1.2.0(react-dom@19.2.6(react@19.2.6))(react@19.2.6)
@@ -27998,8 +28220,8 @@ snapshots:
       '@babel/parser': 7.29.0
       eslint: 10.2.0(jiti@2.6.1)
       hermes-parser: 0.25.1
-      zod: 4.3.6
-      zod-validation-error: 4.0.2(zod@4.3.6)
+      zod: 4.4.3
+      zod-validation-error: 4.0.2(zod@4.4.3)
     transitivePeerDependencies:
       - supports-color
 
@@ -28019,7 +28241,7 @@ snapshots:
       estraverse: 5.3.0
       hasown: 2.0.2
       jsx-ast-utils: 3.3.5
-      minimatch: 3.1.3
+      minimatch: 3.1.5
       object.entries: 1.1.9
       object.fromentries: 2.0.8
       object.values: 1.2.1
@@ -28041,7 +28263,7 @@ snapshots:
       estraverse: 5.3.0
       hasown: 2.0.2
       jsx-ast-utils: 3.3.5
-      minimatch: 3.1.3
+      minimatch: 3.1.5
       object.entries: 1.1.9
       object.fromentries: 2.0.8
       object.values: 1.2.1
@@ -28053,7 +28275,7 @@ snapshots:
 
   eslint-plugin-sort@4.0.0(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.3):
     dependencies:
-      '@typescript-eslint/utils': 8.56.1(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.58.2(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.3)
       eslint: 10.2.0(jiti@2.6.1)
       isomorphic-resolve: 1.0.0
       natural-compare: 1.4.0
@@ -31708,10 +31930,6 @@ snapshots:
     dependencies:
       brace-expansion: 5.0.5
 
-  minimatch@3.1.3:
-    dependencies:
-      brace-expansion: 1.1.12
-
   minimatch@3.1.5:
     dependencies:
       brace-expansion: 1.1.12
@@ -32880,7 +33098,7 @@ snapshots:
 
   react-i18next@16.4.0(i18next@25.7.2(typescript@6.0.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@6.0.3):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       html-parse-stringify: 3.0.1
       i18next: 25.7.2(typescript@6.0.3)
       react: 19.1.0
@@ -32891,7 +33109,7 @@ snapshots:
 
   react-i18next@16.4.0(i18next@25.7.2(typescript@6.0.3))(react-dom@19.2.6(react@19.1.0))(react@19.1.0)(typescript@6.0.3):
     dependencies:
-      '@babel/runtime': 7.28.6
+      '@babel/runtime': 7.29.2
       html-parse-stringify: 3.0.1
       i18next: 25.7.2(typescript@6.0.3)
       react: 19.1.0
@@ -33892,15 +34110,9 @@ snapshots:
 
   serialize-error@2.1.0: {}
 
-  seroval-plugins@1.5.0(seroval@1.5.0):
-    dependencies:
-      seroval: 1.5.0
-
   seroval-plugins@1.5.4(seroval@1.5.4):
     dependencies:
       seroval: 1.5.4
-
-  seroval@1.5.0: {}
 
   seroval@1.5.4: {}
 
@@ -35749,9 +35961,9 @@ snapshots:
       cookie: 1.1.1
       youch-core: 0.3.3
 
-  zod-validation-error@4.0.2(zod@4.3.6):
+  zod-validation-error@4.0.2(zod@4.4.3):
     dependencies:
-      zod: 4.3.6
+      zod: 4.4.3
 
   zod@3.22.3: {}
 
