@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo run build",
     "clean": "turbo run clean",
+    "create:admin": "sa create-admin",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",

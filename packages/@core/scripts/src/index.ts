@@ -4,7 +4,7 @@ import { blue, lightGreen } from 'kolorist';
 
 import { version } from '../package.json';
 
-import { cleanup, genChangelog, gitCommit, gitCommitVerify, release, updatePkg } from './commands';
+import { cleanup, createAdminTemplate, genChangelog, gitCommit, gitCommitVerify, release, updatePkg } from './commands';
 import { loadCliOptions } from './config';
 import type { Lang } from './locales';
 
@@ -35,6 +35,19 @@ interface CommandArg {
   push?: boolean;
   /** Generate changelog by total tags */
   total?: boolean;
+}
+
+interface CreateAdminCommandArg {
+  /** 应用描述，写入 .env 和 package.json。 */
+  description?: string;
+  /** 目标目录存在时先删除再生成。 */
+  force?: boolean;
+  /** 生成后执行 pnpm install。 */
+  install?: boolean;
+  /** 目标目录，默认 apps/<name>。 */
+  target?: string;
+  /** 应用标题，写入 .env。 */
+  title?: string;
 }
 
 export async function setupCli() {
@@ -99,6 +112,17 @@ export async function setupCli() {
   for (const [command, { action, desc }] of Object.entries(commands)) {
     cli.command(command, lightGreen(desc)).action(action);
   }
+
+  cli
+    .command('create-admin <name>', lightGreen('create a new Skyroc admin app from the built-in template'))
+    .option('--target <dir>', 'target directory, defaults to apps/<name>')
+    .option('--title <title>', 'app title written to VITE_APP_TITLE')
+    .option('--description <description>', 'app description written to package.json and VITE_APP_DESC')
+    .option('--force', 'overwrite target directory if it already exists')
+    .option('--install', 'run pnpm install after generation')
+    .action(async (name: string, args: CreateAdminCommandArg) => {
+      await createAdminTemplate(name, args);
+    });
 
   cli.parse();
 }

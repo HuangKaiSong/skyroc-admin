@@ -9,6 +9,7 @@
     "git-commit",
     "release",
     "skyroc-admin",
+    "template",
     "tooling"
   ],
   "license": "MIT",
@@ -28,7 +29,8 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "templates"
   ],
   "main": "./src/index.ts",
   "module": "./src/index.ts",
