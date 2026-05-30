@@ -45,6 +45,9 @@ pnpm sa cleanup
 
 # 生成新的 admin app
 pnpm sa create-admin my-admin
+
+# 从 apps/admin 同步内置 admin 模板
+pnpm sa sync-admin-template
 ```
 
 ## 命令一览
@@ -57,6 +60,7 @@ pnpm sa create-admin my-admin
 | `sa git-commit` | 交互式生成符合 Conventional Commits 规范的提交信息 |
 | `sa git-commit-verify` | 校验当前 git 提交信息是否符合规范（用于 git hook） |
 | `sa release` | 版本发布：升级版本号 → 生成 changelog → commit + tag + push |
+| `sa sync-admin-template` | 从 `apps/admin` 生成内置 admin 模板 |
 | `sa update-pkg` | 检测并升级 package.json 中的依赖版本 |
 
 ## 全局选项
@@ -101,6 +105,20 @@ pnpm install
 
 ```bash
 pnpm sa create-admin my-admin --install
+```
+
+### `sa sync-admin-template`
+
+从 `apps/admin` 生成 `packages/@core/scripts/templates/admin`。`apps/admin` 是唯一源码，模板目录是发布快照，不手工维护。
+
+同步时会跳过 `node_modules`、`dist`、`.turbo`、`.DS_Store`、本地 `.env.*.local` 和 `src/features/router/routeTree.gen.ts`，再根据模板自身的 `src/pages` 重新生成 `routeTree.gen.ts`。
+
+```bash
+# 同步模板
+pnpm sa sync-admin-template
+
+# 只检查模板是否落后，适合 CI
+pnpm sa sync-admin-template --check
 ```
 
 ### `sa git-commit`
@@ -380,6 +398,7 @@ packages/@core/scripts/
 │   │   ├── create-admin.ts   # createAdminTemplate()
 │   │   ├── git-commit.ts     # gitCommit() / gitCommitVerify()
 │   │   ├── release.ts        # release()
+│   │   ├── sync-admin-template.ts # syncAdminTemplate()
 │   │   └── update-pkg.ts     # updatePkg()
 │   ├── config/
 │   │   └── index.ts          # loadCliOptions()：c12 加载配置 + 默认值合并

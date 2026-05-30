@@ -4,7 +4,16 @@ import { blue, lightGreen } from 'kolorist';
 
 import { version } from '../package.json';
 
-import { cleanup, createAdminTemplate, genChangelog, gitCommit, gitCommitVerify, release, updatePkg } from './commands';
+import {
+  cleanup,
+  createAdminTemplate,
+  genChangelog,
+  gitCommit,
+  gitCommitVerify,
+  release,
+  syncAdminTemplate,
+  updatePkg
+} from './commands';
 import { loadCliOptions } from './config';
 import type { Lang } from './locales';
 
@@ -48,6 +57,15 @@ interface CreateAdminCommandArg {
   target?: string;
   /** 应用标题，写入 .env。 */
   title?: string;
+}
+
+interface SyncAdminTemplateCommandArg {
+  /** Check whether the generated template is up to date without writing files. */
+  check?: boolean;
+  /** Source admin app directory. Defaults to apps/admin. */
+  source?: string;
+  /** Target template directory. Defaults to packages/@core/scripts/templates/admin. */
+  target?: string;
 }
 
 export async function setupCli() {
@@ -122,6 +140,15 @@ export async function setupCli() {
     .option('--install', 'run pnpm install after generation')
     .action(async (name: string, args: CreateAdminCommandArg) => {
       await createAdminTemplate(name, args);
+    });
+
+  cli
+    .command('sync-admin-template', lightGreen('sync the built-in admin template from apps/admin'))
+    .option('--check', 'check whether the admin template is up to date without writing files')
+    .option('--source <dir>', 'source admin app directory, defaults to apps/admin')
+    .option('--target <dir>', 'target template directory, defaults to packages/@core/scripts/templates/admin')
+    .action(async (args: SyncAdminTemplateCommandArg) => {
+      await syncAdminTemplate(args);
     });
 
   cli.parse();

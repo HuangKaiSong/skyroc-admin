@@ -127,6 +127,7 @@ catalogs:
     # React Web 专用
     '@vitejs/plugin-react': 6.0.2
     '@tanstack/react-router': ^1.140.0
+    '@tanstack/router-generator': ^1.140.0
     '@tanstack/router-plugin': ^1.140.0
 
     # UI 组件库

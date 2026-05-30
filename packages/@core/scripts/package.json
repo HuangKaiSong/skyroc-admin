@@ -65,6 +65,7 @@
   },
   "dependencies": {
     "@soybeanjs/changelog": "catalog:dev",
+    "@tanstack/router-generator": "catalog:web",
     "bumpp": "catalog:dev",
     "c12": "catalog:dev",
     "cac": "catalog:dev",
