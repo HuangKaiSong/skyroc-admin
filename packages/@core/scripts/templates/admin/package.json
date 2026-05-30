@@ -39,7 +39,6 @@
     "update-pkg": "sa update-pkg"
   },
   "dependencies": {
-    "@better-scroll/core": "catalog:web",
     "@skyroc/adapter-antd-theme": "workspace:*",
     "@skyroc/axios": "workspace:*",
     "@skyroc/color": "workspace:*",
@@ -64,10 +63,8 @@
     "ahooks": "catalog:utils",
     "antd": "catalog:web",
     "clsx": "catalog:utils",
-    "date-fns": "catalog:utils",
     "dayjs": "catalog:utils",
     "defu": "catalog:utils",
-    "echarts": "catalog:web",
     "i18next": "catalog:i18n",
     "jotai": "catalog:core",
     "motion": "catalog:ui-shared",

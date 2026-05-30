@@ -1,13 +1,10 @@
 import { queryOptions, useMutation, useQuery } from '@tanstack/react-query';
 
-import { useAuth } from '@/features/auth/use-auth';
-
 import { fetchGetUserInfo, fetchLogin } from './api';
 import { AUTH_MUTATION_KEYS, AUTH_QUERY_KEYS } from './keys';
 
-export function queryUserInfoOptions(enabled = true) {
+export function queryUserInfoOptions() {
   return queryOptions({
-    enabled,
     gcTime: Infinity,
     queryFn: fetchGetUserInfo,
     queryKey: AUTH_QUERY_KEYS.USER_INFO,
@@ -25,8 +22,7 @@ export function useLoginMutation() {
 }
 
 export function useUserInfoQuery() {
-  const { isLoggedIn } = useAuth();
-  const query = queryUserInfoOptions(isLoggedIn);
+  const query = queryUserInfoOptions();
 
   return useQuery(query);
 }
