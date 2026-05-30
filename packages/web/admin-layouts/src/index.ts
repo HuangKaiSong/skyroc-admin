@@ -31,3 +31,4 @@ export {
 export { useAdminMenus } from './state/menus/use-admin-menus';
 export { cacheTabs, useAdminTab } from './state/tabs/use-admin-tab';
 export { useAdminState } from './state/use-admin-state';
+export * from './types/storage';
