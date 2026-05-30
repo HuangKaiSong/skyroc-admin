@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 interface IframePageProps {
   /** Accessible title for the embedded external page. */
-  title?: string;
+  title?: string | null;
   /** External page address rendered inside the iframe. */
   url?: string | null;
 }
@@ -17,6 +17,7 @@ export const IframePage = (props: IframePageProps) => {
   }
 
   const iframeUrl = url;
+  const iframeTitle = title || 'iframe page';
   const loading = loadedUrl !== iframeUrl;
 
   function handleLoad() {
@@ -32,7 +33,7 @@ export const IframePage = (props: IframePageProps) => {
           id="iframePage"
           sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-scripts"
           src={iframeUrl}
-          title={title}
+          title={iframeTitle}
           onLoad={handleLoad}
         />
       </div>
