@@ -42,6 +42,9 @@ pnpm sa release
 
 # 清理构建产物
 pnpm sa cleanup
+
+# 生成新的 admin app
+pnpm sa create-admin my-admin
 ```
 
 ## 命令一览
@@ -50,6 +53,7 @@ pnpm sa cleanup
 | --- | --- |
 | `sa changelog` | 生成 / 更新 CHANGELOG.md |
 | `sa cleanup` | 删除 dist、node_modules 等构建产物 |
+| `sa create-admin <name>` | 基于内置模板生成新的 admin app |
 | `sa git-commit` | 交互式生成符合 Conventional Commits 规范的提交信息 |
 | `sa git-commit-verify` | 校验当前 git 提交信息是否符合规范（用于 git hook） |
 | `sa release` | 版本发布：升级版本号 → 生成 changelog → commit + tag + push |
@@ -68,6 +72,36 @@ pnpm sa cleanup
 | `--cleanupDir <dir>` | `-c` | cleanup 命令：自定义清理目录的 glob 匹配模式，多个用 `,` 分隔 | 见配置默认值 |
 
 ## 命令详情
+
+### `sa create-admin`
+
+基于内置 admin 模板生成一个新的 Vite + React admin app。默认输出到 `apps/<name>`，并自动写入 `package.json`、`.env` 中的应用名称、描述和 storage prefix。模板只保留最小登录、错误兜底和一个 Home 页面，业务页面由新项目自己添加。
+
+```bash
+# 生成 apps/my-admin
+pnpm sa create-admin my-admin
+
+# 指定目录
+pnpm sa create-admin my-admin --target apps/admin-template
+
+# 覆盖已存在目录
+pnpm sa create-admin my-admin --force
+
+# 自定义应用标题和描述
+pnpm sa create-admin my-admin --title "My Admin" --description "Internal admin console"
+```
+
+生成后如果这是新的 workspace package，需要执行一次：
+
+```bash
+pnpm install
+```
+
+也可以让命令生成后立即安装：
+
+```bash
+pnpm sa create-admin my-admin --install
+```
 
 ### `sa git-commit`
 
@@ -343,6 +377,7 @@ packages/@core/scripts/
 │   ├── commands/
 │   │   ├── changelog.ts      # genChangelog()
 │   │   ├── cleanup.ts        # cleanup()
+│   │   ├── create-admin.ts   # createAdminTemplate()
 │   │   ├── git-commit.ts     # gitCommit() / gitCommitVerify()
 │   │   ├── release.ts        # release()
 │   │   └── update-pkg.ts     # updatePkg()
@@ -354,6 +389,8 @@ packages/@core/scripts/
 │   │   └── index.ts          # execCommand()：execa 封装
 │   └── types/
 │       └── index.ts          # CliOption 类型定义
+├── templates/
+│   └── admin/                # admin app 模板
 └── dist/
     └── index.mjs             # 构建产物（发布时使用）
 ```
