@@ -78,8 +78,8 @@ describe('InputOTP', () => {
     expect(document.querySelector('[data-slot="input-otp-group"]')).toHaveClass('configured-otp-group');
     expect(slots).toHaveLength(4);
     expect(slots[0]).toHaveClass('configured-otp-slot');
-    expect(slots[0]).toHaveTextContent('\u25cf');
-    expect(slots[1]).toHaveTextContent('\u25cf');
+    expect(slots[0]).toHaveTextContent('\u25CF');
+    expect(slots[1]).toHaveTextContent('\u25CF');
     expect(separators).toHaveLength(3);
     expect(separators[0]).toHaveClass('configured-otp-separator');
     expect(screen.getAllByLabelText('Dash separator')).toHaveLength(3);
