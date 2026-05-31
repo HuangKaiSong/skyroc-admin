@@ -7,6 +7,7 @@ import { defaultLangConfig } from './config/default';
 import { localeResources } from './langs';
 import type { LangOption, LangType, LocaleChangeHandler, LocaleSetupOptions, LocaleStorage } from './types';
 
+// oxlint-disable-next-line import/no-named-as-default-member
 export const i18n = i18next.use(initReactI18next);
 
 export const reactI18nextInstance = i18n;

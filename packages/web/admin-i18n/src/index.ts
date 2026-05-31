@@ -1,3 +1,4 @@
+// oxlint-disable-next-line import/no-unassigned-import
 import './types/i18n';
 
 // Atoms
