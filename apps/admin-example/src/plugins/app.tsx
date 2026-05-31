@@ -1,7 +1,7 @@
 import type { SetupAppVersionNotificationOptions } from '@skyroc/web-admin-runtime';
 
 import { destroyNotification, globalConfig, showNotification } from '@/config';
-import { getRouterInstance } from '@/features/router/router-ref';
+import { router } from '@/features/router';
 
 import { $t } from '../locales';
 
@@ -23,13 +23,6 @@ export function createAdminAppVersionNotificationPluginOptions(): SetupAppVersio
       };
 
       const handleOk = () => {
-        const router = getRouterInstance();
-
-        if (!router) {
-          window.location.reload();
-          return;
-        }
-
         router.navigate({ to: '.' });
       };
 

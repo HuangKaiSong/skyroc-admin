@@ -4,7 +4,6 @@ import { createRouter } from '@tanstack/react-router';
 import { globalConfig } from '@/config';
 import { queryClient } from '@/service/queryClient';
 
-import { setRouterInstance } from './router-ref';
 import { routeTree } from './routeTree.gen';
 
 /**
@@ -37,8 +36,6 @@ export const router = createRouter({
   routeTree,
   scrollRestoration: true
 });
-
-setRouterInstance(router);
 
 export type RouterConfig = typeof router;
 
