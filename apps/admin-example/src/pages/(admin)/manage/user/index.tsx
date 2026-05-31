@@ -23,19 +23,12 @@ type UserTableRecord = TableDataWithIndex<Api.SystemManage.User>;
 
 const UserManage = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const navigate = useNavigate({ from: '/manage/user/' });
   const location = useLocation();
   const { isMobile } = useAdminState();
   const { scrollConfig, tableWrapperRef } = useTableScroll(USER_TABLE_SCROLL_X);
 
-  const {
-    columnChecks,
-    data,
-    getData,
-    searchProps,
-    setColumnChecks,
-    tableProps
-  } = useTable({
+  const { columnChecks, data, getData, searchProps, setColumnChecks, tableProps } = useTable({
     apiFn: fetchUserList,
     apiParams: getUserSearchInitialParams(),
     columns: createColumns,
@@ -100,7 +93,11 @@ const UserManage = () => {
         render: (_, record) => {
           if (!record.userGender) return null;
 
-          return <Tag color={userGenderTagColorRecord[record.userGender]}>{t(userStatusRecord.gender[record.userGender])}</Tag>;
+          return (
+            <Tag color={userGenderTagColorRecord[record.userGender]}>
+              {t(userStatusRecord.gender[record.userGender])}
+            </Tag>
+          );
         },
         title: t('page.manage.user.userGender'),
         width: 100
@@ -135,7 +132,9 @@ const UserManage = () => {
         render: (_, record) => {
           if (!record.status) return null;
 
-          return <Tag color={enableStatusTagColorRecord[record.status]}>{t(userStatusRecord.status[record.status])}</Tag>;
+          return (
+            <Tag color={enableStatusTagColorRecord[record.status]}>{t(userStatusRecord.status[record.status])}</Tag>
+          );
         },
         title: t('page.manage.user.userStatus'),
         width: 100
@@ -232,5 +231,19 @@ export const Route = createFileRoute('/(admin)/manage/user/')({
     },
     permissions: ['R_ADMIN'],
     title: 'user'
-  }
+  },
+  validateSearch: validateUserSearch
 });
+
+function validateUserSearch(search: Record<string, unknown>): Partial<Api.SystemManage.UserSearchParams> {
+  return normalizeUserSearchParams({
+    current: search.current as Api.SystemManage.UserSearchParams['current'],
+    nickName: search.nickName as Api.SystemManage.UserSearchParams['nickName'],
+    size: search.size as Api.SystemManage.UserSearchParams['size'],
+    status: search.status as Api.SystemManage.UserSearchParams['status'],
+    userEmail: search.userEmail as Api.SystemManage.UserSearchParams['userEmail'],
+    userGender: search.userGender as Api.SystemManage.UserSearchParams['userGender'],
+    userName: search.userName as Api.SystemManage.UserSearchParams['userName'],
+    userPhone: search.userPhone as Api.SystemManage.UserSearchParams['userPhone']
+  });
+}
