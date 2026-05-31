@@ -22,6 +22,9 @@ export interface PaginatingQueryRecord<T = any> {
 export type GetTableData<A extends TableApiFn> =
   Awaited<ReturnType<A>> extends PaginatingQueryRecord<infer T> ? T : never;
 
+/** 从分页接口响应类型中提取列表项类型。 */
+export type GetTableDataFromResponse<Response> = Response extends PaginatingQueryRecord<infer T> ? T : never;
+
 /** 带序号的表格行数据。 */
 export type TableDataWithIndex<T> = T & {
   /** 当前查询结果中的连续序号。 */
@@ -80,18 +83,28 @@ export type TableOnChange<T = any> = Parameters<NonNullable<TableProps<T>['onCha
 /** 根据请求参数生成 React Query key。 */
 export type TableQueryKeyBuilder<A extends TableApiFn> = (params: Parameters<A>[0]) => QueryKey;
 
-/** React Query 配置，queryKey/queryFn/select 由表格 Hook 接管。 */
-export type TableQueryOptions<A extends TableApiFn, T> = Omit<
-  UseQueryOptions<Awaited<ReturnType<A>>, Error, PaginationData<TableDataWithIndex<T>>, QueryKey>,
+/** 表格查询 Hook 可接收的 React Query 配置。 */
+export type TableQueryHookOptions<Response, Data = Response> = Omit<
+  UseQueryOptions<Response, Error, Data, QueryKey>,
+  'queryFn' | 'queryKey'
+>;
+
+/** 表格查询 Hook 类型，消费侧负责声明 queryKey 和 queryFn。 */
+export type TableQueryHook<Params, Response> = <Data = Response>(
+  params: Params,
+  options?: TableQueryHookOptions<Response, Data>
+) => UseQueryResult<Data, Error>;
+
+/** React Query 配置，enabled/select/queryKey/queryFn 由表格 Hook 和查询 Hook 接管。 */
+export type TableQueryOptions<Response, T> = Omit<
+  TableQueryHookOptions<Response, PaginationData<TableDataWithIndex<T>>>,
   'enabled' | 'queryFn' | 'queryKey' | 'select'
 >;
 
 /** 核心表格 Hook 配置。 */
-export interface HookTableConfig<A extends TableApiFn, T, Column> {
-  /** 表格接口函数。 */
-  apiFn: A;
+export interface HookTableConfig<Params, Response, T, Column> {
   /** 初始查询参数，通常包含分页和查询表单默认值。 */
-  apiParams?: Partial<Parameters<A>[0]>;
+  apiParams?: Partial<Params>;
   /** 表格列工厂，允许消费侧按权限或国际化重新生成列。 */
   columns: () => Column[];
   /** 外部业务是否允许发起查询。 */
@@ -107,21 +120,21 @@ export interface HookTableConfig<A extends TableApiFn, T, Column> {
   /** 查询完成后的业务回调。 */
   onFetched?: (data: PaginationData<TableDataWithIndex<T>>) => Promise<void> | void;
   /** 查询参数变化时的外部同步回调。 */
-  onSearchParamsChange?: (params: Partial<Parameters<A>[0]>) => void;
-  /** 根据请求参数生成 React Query key。 */
-  queryKey: TableQueryKeyBuilder<A>;
+  onSearchParamsChange?: (params: Partial<Params>) => void;
+  /** 根据当前查询参数创建 React Query 查询。 */
+  queryHook: TableQueryHook<Params, Response>;
   /** 透传给 React Query 的附加配置。 */
-  queryOptions?: TableQueryOptions<A, T>;
+  queryOptions?: TableQueryOptions<Response, T>;
   /** 重置查询时使用的参数。 */
-  resetParams?: Partial<Parameters<A>[0]>;
+  resetParams?: Partial<Params>;
   /** 把接口响应转换成标准分页数据。 */
-  transformer: (response: Awaited<ReturnType<A>>) => PaginationData<T>;
+  transformer: (response: Response) => PaginationData<T>;
   /** 接口请求前的参数转换。 */
-  transformParams?: (params: Parameters<A>[0]) => Parameters<A>[0];
+  transformParams?: (params: Params) => Params;
 }
 
 /** 核心表格 Hook 返回值。 */
-export interface HookTableResult<A extends TableApiFn, T, Column> {
+export interface HookTableResult<Params, T, Column> {
   /** 可配置的列设置项。 */
   columnChecks: TableColumnCheck[];
   /** 最终传给表格组件的列。 */
@@ -145,25 +158,23 @@ export interface HookTableResult<A extends TableApiFn, T, Column> {
   /** 用默认参数重置查询。 */
   resetSearchParams: () => void;
   /** 当前已提交的查询参数。 */
-  searchParams: Partial<Parameters<A>[0]>;
+  searchParams: Partial<Params>;
   /** 更新列设置项。 */
   setColumnChecks: (checks: TableColumnCheck[]) => void;
   /** 总条数。 */
   total: number;
   /** 合并更新查询参数。 */
-  updateSearchParams: (params: Partial<Parameters<A>[0]>) => void;
+  updateSearchParams: (params: Partial<Params>) => void;
 }
 
 /** 表格配置。 */
-export interface TableConfig<A extends TableApiFn, T = GetTableData<A>>
+export interface TableConfig<Params, Response, T = GetTableDataFromResponse<Response>>
   extends Omit<
     TableProps<TableDataWithIndex<T>>,
     'columns' | 'dataSource' | 'loading' | 'onChange' | 'pagination' | 'rowKey'
   > {
-  /** 表格接口函数。 */
-  apiFn: A;
   /** 接口默认查询参数。 */
-  apiParams?: Partial<Parameters<A>[0]>;
+  apiParams?: Partial<Params>;
   /** Ant Design 表格列工厂。 */
   columns: () => TableColumn<TableDataWithIndex<T>>[];
   /** 外部业务是否允许发起查询。 */
@@ -177,17 +188,17 @@ export interface TableConfig<A extends TableApiFn, T = GetTableData<A>>
   /** 是否使用移动端简洁分页。 */
   isMobile?: boolean;
   /** 表格分页、筛选、排序变化回调。 */
-  onChange?: (...args: TableOnChange<TableDataWithIndex<T>>) => Partial<Parameters<A>[0]> | void;
+  onChange?: (...args: TableOnChange<TableDataWithIndex<T>>) => Partial<Params> | void;
   /** 查询完成后的业务回调。 */
   onFetched?: (data: PaginationData<TableDataWithIndex<T>>) => Promise<void> | void;
   /** 查询参数变化时的外部路由同步回调。 */
-  onSearchParamsChange?: (params: Partial<Parameters<A>[0]>) => void;
+  onSearchParamsChange?: (params: Partial<Params>) => void;
   /** 分页配置；传 false 可关闭分页。 */
   pagination?: false | TablePaginationConfig;
-  /** 根据请求参数生成 React Query key。 */
-  queryKey: TableQueryKeyBuilder<A>;
+  /** 根据当前查询参数创建 React Query 查询。 */
+  queryHook: TableQueryHook<Params, Response>;
   /** 透传给 React Query 的附加配置。 */
-  queryOptions?: TableQueryOptions<A, T>;
+  queryOptions?: TableQueryOptions<Response, T>;
   /** 当前路由查询字符串，用于初始化查询参数。 */
   routeSearch?: string;
   /** Ant Design 表格行 key。 */
@@ -195,16 +206,13 @@ export interface TableConfig<A extends TableApiFn, T = GetTableData<A>>
   /** 是否展示总数。 */
   showTotal?: boolean;
   /** 把接口响应转换成标准分页数据。 */
-  transformer?: (response: Awaited<ReturnType<A>>) => PaginationData<T>;
+  transformer?: (response: Response) => PaginationData<T>;
   /** 接口请求前的参数转换。 */
-  transformParams?: (params: Parameters<A>[0]) => Parameters<A>[0];
+  transformParams?: (params: Params) => Params;
 }
 
 /** 自定义表格 Props。 */
-export type CustomTableProps<A extends TableApiFn, T = GetTableData<A>> = Omit<
-  TableProps<TableDataWithIndex<T>>,
-  'loading'
-> & {
+export type CustomTableProps<T> = Omit<TableProps<TableDataWithIndex<T>>, 'loading'> & {
   /** 当前表格是否展示加载状态。 */
   loading: boolean;
 };

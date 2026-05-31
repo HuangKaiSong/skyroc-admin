@@ -15,7 +15,7 @@ import type { TableData, TableOperateType } from './types';
 export function useTableOperate<T extends TableData = TableData>(
   data: T[],
   getData: (isResetCurrent?: boolean) => Promise<void>,
-  executeResActions: (res: T, operateType: TableOperateType) => void | Promise<void>
+  executeResActions?: (res: T, operateType: TableOperateType) => void | Promise<void>
 ) {
   const { t } = useTranslation();
 
@@ -101,8 +101,10 @@ export function useTableOperate<T extends TableData = TableData>(
   async function handleSubmit() {
     const res = await form.validateFields();
 
-    // 执行业务逻辑
-    await executeResActions(res, operateType);
+    if (executeResActions) {
+      // 执行业务逻辑
+      await executeResActions(res, operateType);
+    }
 
     message.success(t('common.updateSuccess'));
 

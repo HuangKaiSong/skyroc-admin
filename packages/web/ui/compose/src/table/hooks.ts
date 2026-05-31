@@ -1,11 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
 import { useEffect, useRef, useState } from 'react';
 
 import type {
   HookTableConfig,
   HookTableResult,
   PaginationData,
-  TableApiFn,
   TableColumnCheck,
   TableDataWithIndex
 } from './types';
@@ -14,13 +12,10 @@ const DEFAULT_PAGE = 1;
 const DEFAULT_PAGE_SIZE = 10;
 
 /** 核心表格 Hook，负责查询参数、React Query 请求、分页结果和列设置状态。 */
-export function useHookTable<A extends TableApiFn, T, Column>(
-  config: HookTableConfig<A, T, Column>
-): HookTableResult<A, T, Column> {
-  type QueryResponse = Awaited<ReturnType<A>>;
-
+export function useHookTable<Params, Response, T, Column>(
+  config: HookTableConfig<Params, Response, T, Column>
+): HookTableResult<Params, T, Column> {
   const {
-    apiFn,
     apiParams,
     columns: columnsFactory,
     enabled = true,
@@ -29,42 +24,30 @@ export function useHookTable<A extends TableApiFn, T, Column>(
     immediate = true,
     isChangeURL = false,
     onSearchParamsChange,
-    queryKey,
+    queryHook,
     queryOptions,
     resetParams,
     transformer,
     transformParams
   } = config;
 
-  const initialSearchParamsRef = useRef(createSearchParams<Parameters<A>[0]>(apiParams));
-  const resetSearchParamsRef = useRef(createSearchParams<Parameters<A>[0]>(resetParams ?? apiParams));
+  const initialSearchParamsRef = useRef(createSearchParams<Params>(apiParams));
+  const resetSearchParamsRef = useRef(createSearchParams<Params>(resetParams ?? apiParams));
   const onFetchedRef = useRef(config.onFetched);
 
   onFetchedRef.current = config.onFetched;
 
-  const [searchParams, setSearchParams] = useState<Partial<Parameters<A>[0]>>(initialSearchParamsRef.current);
+  const [searchParams, setSearchParams] = useState<Partial<Params>>(initialSearchParamsRef.current);
   const [queryEnabled, setQueryEnabled] = useState(immediate);
   const [columnChecks, setColumnChecks] = useState<TableColumnCheck[]>(() => getColumnChecks(columnsFactory()));
 
   const allColumns = columnsFactory();
   const columns = getColumns(allColumns, columnChecks);
-  const requestParams = resolveRequestParams(searchParams, transformParams);
-  const currentQueryKey = queryKey(requestParams);
+  const requestParams = resolveRequestParams<Params>(searchParams, transformParams);
 
-  const query = useQuery<
-    QueryResponse,
-    Error,
-    PaginationData<TableDataWithIndex<T>>,
-    typeof currentQueryKey
-  >({
+  const query = queryHook<PaginationData<TableDataWithIndex<T>>>(requestParams, {
     ...queryOptions,
     enabled: enabled && queryEnabled,
-    queryFn: async (): Promise<QueryResponse> => {
-      const response = await apiFn(requestParams);
-
-      return response as QueryResponse;
-    },
-    queryKey: currentQueryKey,
     select: response => {
       return withTableIndex(transformer(response));
     }
@@ -91,7 +74,7 @@ export function useHookTable<A extends TableApiFn, T, Column>(
   }
 
   /** 合并更新查询参数。 */
-  function updateSearchParams(params: Partial<Parameters<A>[0]>) {
+  function updateSearchParams(params: Partial<Params>) {
     commitSearchParams({ ...searchParams, ...params });
   }
 
@@ -106,7 +89,7 @@ export function useHookTable<A extends TableApiFn, T, Column>(
     setColumnChecks(mergeColumnChecks(columnChecks, nextChecks));
   }
 
-  function commitSearchParams(nextParams: Partial<Parameters<A>[0]>) {
+  function commitSearchParams(nextParams: Partial<Params>) {
     const formattedParams = formatSearchParams(nextParams);
 
     setSearchParams(formattedParams);
@@ -153,11 +136,11 @@ function createSearchParams<T>(params?: Partial<T>) {
   } as unknown as Partial<T>);
 }
 
-function resolveRequestParams<A extends TableApiFn>(
-  searchParams: Partial<Parameters<A>[0]>,
-  transformParams?: (params: Parameters<A>[0]) => Parameters<A>[0]
+function resolveRequestParams<Params>(
+  searchParams: Partial<Params>,
+  transformParams?: (params: Params) => Params
 ) {
-  const formattedParams = formatSearchParams(searchParams) as Parameters<A>[0];
+  const formattedParams = formatSearchParams(searchParams) as Params;
 
   if (!transformParams) {
     return formattedParams;

@@ -6,9 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { formatSearchParams, useHookTable } from './hooks';
 import type {
   CustomTableProps,
-  GetTableData,
+  GetTableDataFromResponse,
   PaginationData,
-  TableApiFn,
   TableColumn,
   TableColumnCheck,
   TableColumnCheckTitle,
@@ -23,9 +22,10 @@ const DEFAULT_PAGE_SIZE = 10;
 const DEFAULT_PAGE_SIZE_OPTIONS = ['10', '15', '20', '25', '30'];
 
 /** Ant Design 表格 Hook，组合查询参数、React Query、Form、分页和列设置。 */
-export function useTable<A extends TableApiFn, T = GetTableData<A>>(config: TableConfig<A, T>) {
+export function useTable<Params, Response, T = GetTableDataFromResponse<Response>>(
+  config: TableConfig<Params, Response, T>
+) {
   const {
-    apiFn,
     apiParams,
     columns: columnsFactory,
     enabled,
@@ -37,7 +37,7 @@ export function useTable<A extends TableApiFn, T = GetTableData<A>>(config: Tabl
     onFetched,
     onSearchParamsChange,
     pagination: paginationConfig,
-    queryKey,
+    queryHook,
     queryOptions,
     routeSearch = '',
     rowKey = 'id',
@@ -48,16 +48,15 @@ export function useTable<A extends TableApiFn, T = GetTableData<A>>(config: Tabl
   } = config;
 
   const { t } = useTranslation();
-  const [form] = Form.useForm<Parameters<A>[0]>();
+  const [form] = Form.useForm<Params>();
   const routeParams = isChangeURL && routeSearch ? parseQuery(routeSearch) : {};
-  const initialParams = createTableParams<Parameters<A>[0]>({
-    ...(apiParams as Partial<Parameters<A>[0]>),
-    ...(routeParams as Partial<Parameters<A>[0]>)
+  const initialParams = createTableParams<Params>({
+    ...(apiParams as Partial<Params>),
+    ...(routeParams as Partial<Params>)
   });
-  const resetParams = createTableParams<Parameters<A>[0]>(apiParams);
+  const resetParams = createTableParams<Params>(apiParams);
 
-  const result = useHookTable<A, T, TableColumn<TableDataWithIndex<T>>>({
-    apiFn,
+  const result = useHookTable<Params, Response, T, TableColumn<TableDataWithIndex<T>>>({
     apiParams: initialParams,
     columns: columnsFactory,
     enabled,
@@ -67,10 +66,10 @@ export function useTable<A extends TableApiFn, T = GetTableData<A>>(config: Tabl
     isChangeURL,
     onFetched,
     onSearchParamsChange,
-    queryKey,
+    queryHook,
     queryOptions,
     resetParams,
-    transformer: transformer ?? (defaultTableTransformer as (response: Awaited<ReturnType<A>>) => PaginationData<T>),
+    transformer: transformer ?? (defaultTableTransformer as (response: Response) => PaginationData<T>),
     transformParams
   });
 
@@ -86,7 +85,7 @@ export function useTable<A extends TableApiFn, T = GetTableData<A>>(config: Tabl
 
   /** 重置搜索表单和已提交查询参数。 */
   function reset() {
-    form.setFieldsValue((apiParams ?? {}) as Parameters<A>[0]);
+    form.setFieldsValue((apiParams ?? {}) as unknown as Parameters<typeof form.setFieldsValue>[0]);
     result.resetSearchParams();
   }
 
@@ -101,7 +100,7 @@ export function useTable<A extends TableApiFn, T = GetTableData<A>>(config: Tabl
         }
       : values;
 
-    result.updateSearchParams(nextParams as Partial<Parameters<A>[0]>);
+    result.updateSearchParams(nextParams as unknown as Partial<Params>);
   }
 
   /** 同步 Ant Design 表格分页、筛选和排序变化。 */
@@ -111,7 +110,7 @@ export function useTable<A extends TableApiFn, T = GetTableData<A>>(config: Tabl
     let nextParams = {
       current: paginationContext.current ?? DEFAULT_PAGE,
       size: paginationContext.pageSize ?? result.pageSize
-    } as Partial<Parameters<A>[0]>;
+    } as unknown as Partial<Params>;
 
     if (onChangeCallback) {
       const customParams = onChangeCallback(paginationContext, ...otherParams);
@@ -134,7 +133,7 @@ export function useTable<A extends TableApiFn, T = GetTableData<A>>(config: Tabl
       form,
       reset,
       search: run,
-      searchParams: result.searchParams as NonNullable<Parameters<A>[0]>
+      searchParams: result.searchParams as NonNullable<Params>
     },
     tableProps: {
       columns: result.columns,
@@ -144,7 +143,7 @@ export function useTable<A extends TableApiFn, T = GetTableData<A>>(config: Tabl
       pagination,
       rowKey,
       ...rest
-    } as CustomTableProps<A, T>
+    } as CustomTableProps<T>
   };
 }
 

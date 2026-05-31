@@ -1,10 +1,15 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
 import { getAntdColumns, useTable } from '../src/table/use-table';
-import type { PaginatingQueryRecord, TableColumn, TableDataWithIndex } from '../src/table/types';
+import type {
+  PaginatingQueryRecord,
+  TableColumn,
+  TableDataWithIndex,
+  TableQueryHookOptions
+} from '../src/table/types';
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -71,10 +76,9 @@ describe('table hooks', () => {
     const { result } = renderHook(
       () =>
         useTable({
-          apiFn,
           apiParams: { current: 1, size: 10 },
           columns: createUserColumns,
-          queryKey: params => ['users', params]
+          queryHook: createUserQueryHook(apiFn)
         }),
       {
         wrapper: createWrapper(client)
@@ -107,10 +111,9 @@ describe('table hooks', () => {
     const { result } = renderHook(
       () =>
         useTable({
-          apiFn: createEmptyUserResponse,
           columns: () => columns,
           immediate: false,
-          queryKey: params => ['users', params]
+          queryHook: createUserQueryHook(createEmptyUserResponse)
         }),
       {
         wrapper: createWrapper(client)
@@ -186,5 +189,20 @@ async function createEmptyUserResponse(params: UserSearchParams): Promise<Pagina
     records: [],
     size: params.size,
     total: 0
+  };
+}
+
+function createUserQueryHook(
+  apiFn: (params: UserSearchParams) => Promise<PaginatingQueryRecord<UserRecord>>
+) {
+  return function useUserQuery<Data = PaginatingQueryRecord<UserRecord>>(
+    params: UserSearchParams,
+    options?: TableQueryHookOptions<PaginatingQueryRecord<UserRecord>, Data>
+  ) {
+    return useQuery({
+      ...options,
+      queryFn: () => apiFn(params),
+      queryKey: ['users', params]
+    });
   };
 }
