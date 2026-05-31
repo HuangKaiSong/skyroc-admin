@@ -44,7 +44,7 @@ function toParentId(parentId?: number | string | null) {
 
 function toRouteTab(handle: Api.Route.BackendRouteHandle) {
   return {
-    fixedIndex: handle.fixedIndexInTab ,
+    fixedIndex: handle.fixedIndexInTab,
     multi: handle.multiTab
   };
 }
@@ -81,12 +81,12 @@ export function createBackendRouteNormalizer(routeTree: AnyRoute) {
   function toRouteMenu(handle: Api.Route.BackendRouteHandle) {
     return {
       activeMenu: toAvailableRoutePath(handle.activeMenu),
-      badge: handle.badge ,
-      extra: handle.extra ,
-      hide: handle.hideInMenu ,
-      icon: handle.icon ,
-      localIcon: handle.localIcon ,
-      order: handle.order ,
+      badge: handle.badge,
+      extra: handle.extra,
+      hide: handle.hideInMenu,
+      icon: handle.icon,
+      localIcon: handle.localIcon,
+      order: handle.order,
       type: handle.type
     };
   }
@@ -103,14 +103,15 @@ export function createBackendRouteNormalizer(routeTree: AnyRoute) {
     return {
       id: String(route.id ?? route.name ?? path),
       children: toBackendRouteChildren(route),
-      href: handle.href ,
-      i18nKey: handle.i18nKey ,
-      keepAlive: handle.keepAlive ,
-      layout: route.layout ,
+      href: handle.href,
+      i18nKey: handle.i18nKey,
+      keepAlive: handle.keepAlive,
+      layout: route.layout,
       menu: toRouteMenu(handle),
       parentId: toParentId(route.parentId),
       path,
-      permissions: handle.roles ,
+      permissions: handle.roles,
+      query: handle.query,
       tab: toRouteTab(handle),
       title: handle.title ?? route.name,
       url: handle.url

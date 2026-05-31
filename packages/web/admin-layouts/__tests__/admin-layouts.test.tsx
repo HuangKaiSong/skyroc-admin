@@ -10,6 +10,16 @@ import {
 } from '../src/constant';
 
 const routerMocks = vi.hoisted(() => {
+  const homeMatch = {
+    fullPath: '/home',
+    params: {},
+    pathname: '/home',
+    routeId: '/(admin)/home',
+    search: {},
+    staticData: {
+      title: 'Home'
+    }
+  };
   const state = {
     location: {
       hash: '',
@@ -22,6 +32,8 @@ const routerMocks = vi.hoisted(() => {
   };
 
   return {
+    homeMatch,
+    matches: [homeMatch] as any[],
     router: {
       __store: {
         get: () => state,
@@ -49,9 +61,14 @@ vi.mock('@tanstack/react-router', () => ({
   RouterContextProvider: (props: { children?: ReactNode }) => {
     const { children } = props;
 
-    return <>{children}</>;
+    return children;
   },
   useChildMatches: () => [],
+  useMatches: (opts?: { select?: (matches: any[]) => unknown }) => {
+    const matches = routerMocks.matches;
+
+    return opts?.select ? opts.select(matches) : matches;
+  },
   useNavigate: () => vi.fn(),
   useRouter: () => routerMocks.router
 }));
@@ -195,6 +212,53 @@ describe('admin layouts setup', () => {
   });
 });
 
+describe('route state', () => {
+  it('reads the active route from the full match list when called inside a leaf page', async () => {
+    vi.resetModules();
+
+    routerMocks.matches = [
+      {
+        fullPath: '/',
+        params: {},
+        pathname: '/',
+        routeId: '__root__',
+        search: {},
+        staticData: {
+          title: 'Root'
+        }
+      },
+      {
+        fullPath: '/function/tab',
+        params: {},
+        pathname: '/function/tab',
+        routeId: '/(admin)/function/tab',
+        search: {
+          a: '1'
+        },
+        staticData: {
+          title: 'function_tab'
+        }
+      }
+    ];
+
+    const { useRoute } = await import('../src/features/use-route');
+    const { result } = renderHook(() => useRoute());
+
+    expect(result.current).toMatchObject({
+      fullPath: '/function/tab?a=1',
+      originPath: '/function/tab',
+      pathname: '/function/tab',
+      routeId: '/(admin)/function/tab',
+      search: {
+        a: '1'
+      },
+      searchStr: '?a=1'
+    });
+
+    routerMocks.matches = [routerMocks.homeMatch];
+  });
+});
+
 describe('menu generation', () => {
   it('generates static menus from injected routeTree', async () => {
     vi.resetModules();
@@ -321,6 +385,12 @@ describe('menu generation', () => {
                 fixedIndexInTab: 2,
                 i18nKey: 'route.manage_user',
                 multiTab: true,
+                query: [
+                  {
+                    key: 'mode',
+                    value: 'detail'
+                  }
+                ],
                 roles: ['R_ADMIN']
               },
               id: 11,
@@ -404,6 +474,12 @@ describe('menu generation', () => {
       parentId: '10',
       path: '/users/$id',
       permissions: ['R_ADMIN'],
+      query: [
+        {
+          key: 'mode',
+          value: 'detail'
+        }
+      ],
       tab: {
         fixedIndex: 2,
         multi: true
@@ -783,7 +859,13 @@ describe('menu rendering', () => {
       }
     ]);
 
-    render(<span>{menus.map(menu => <span key={menu.key}>{menu.extra}</span>)}</span>);
+    render(
+      <span>
+        {menus.map(menu => (
+          <span key={menu.key}>{menu.extra}</span>
+        ))}
+      </span>
+    );
 
     expect(screen.queryAllByText('0')).toHaveLength(1);
   });

@@ -217,6 +217,7 @@ class MenuGenerator {
       menu: staticData.menu,
       parentKeys,
       path: normalizedPath,
+      query: staticData.query,
       tab: staticData.tab,
       title: staticData.title,
       url: staticData.url,

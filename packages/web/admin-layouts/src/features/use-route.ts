@@ -1,10 +1,10 @@
 import { stringifyQuery } from '@skyroc/utils';
-import { useChildMatches } from '@tanstack/react-router';
+import { useMatches } from '@tanstack/react-router';
 
 import { normalizePath } from './menus/menu-generator';
 
 export function useRoute() {
-  const route = useChildMatches({
+  const route = useMatches({
     select: matches => {
       const m = matches[matches.length - 1];
 

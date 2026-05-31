@@ -84,6 +84,16 @@ export const useAdminMenus = (categoryKey?: string) => {
         return;
       }
 
+      const search = createRouteSearch(newRoute.query);
+
+      if (search) {
+        navigate({
+          search,
+          to: newRoute.path
+        });
+        return;
+      }
+
       navigate({
         to: newRoute.path
       });
@@ -140,3 +150,17 @@ export const useAdminMenus = (categoryKey?: string) => {
     getMenuInfoByPath
   };
 };
+
+function createRouteSearch(query: Api.Route.BackendRouteQuery[] | null | undefined) {
+  const search: Record<string, string> = {};
+
+  query?.forEach(item => {
+    const key = item.key.trim();
+
+    if (key) {
+      search[key] = item.value;
+    }
+  });
+
+  return Object.keys(search).length ? search : undefined;
+}

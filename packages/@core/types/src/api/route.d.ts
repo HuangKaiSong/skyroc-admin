@@ -18,8 +18,6 @@ declare global {
     interface BackendRoutePayload {
       /** 子路由树。 */
       children?: BackendRoutePayload[] | null;
-      /** 后端保留的组件标识，前端布局不会直接渲染它。 */
-      component?: string | null;
       /** Vue/React 后端菜单常见的 meta/handle 承载字段。 */
       handle?: BackendRouteHandle | null;
       /** 后端菜单 ID。没有时使用 name 或 path 作为运行时 id。 */
@@ -36,6 +34,14 @@ declare global {
       path: string;
       /** 后端重定向字段，布局菜单不会直接消费。 */
       redirect?: string | null;
+    }
+
+    /** 后端动态路由默认携带的 URL search 参数。 */
+    interface BackendRouteQuery {
+      /** 参数 Key。 */
+      key: string;
+      /** 参数 Value。 */
+      value: string;
     }
 
     /** 后端动态路由节点的 meta/handle 字段。 */
@@ -58,8 +64,6 @@ declare global {
       i18nKey?: I18n.I18nKey | null;
       /** Iconify 图标名。 */
       icon?: string | null;
-      /** 后端图标类型。 */
-      iconType?: string | null;
       /** 是否缓存页面。 */
       keepAlive?: boolean | null;
       /** 本地图标名。 */
@@ -68,6 +72,8 @@ declare global {
       multiTab?: boolean | null;
       /** 菜单排序。 */
       order?: number | null;
+      /** 点击菜单进入页面时默认携带的 search 参数。 */
+      query?: BackendRouteQuery[] | null;
       /** 允许访问该路由的角色。 */
       roles?: string[] | null;
       /** 菜单标题。 */
@@ -89,6 +95,8 @@ declare global {
       parentId?: string | null;
 
       path: Router.RoutePath;
+
+      query?: BackendRouteQuery[] | null;
     }
   }
 }

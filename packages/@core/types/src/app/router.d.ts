@@ -133,6 +133,9 @@ declare global {
       /** Required permissions to access the route */
       permissions?: string[] | null;
 
+      /** Default search params carried when this route is opened from a menu. */
+      query?: Api.Route.BackendRouteQuery[] | null;
+
       /**
        * Whether the route is required
        *
