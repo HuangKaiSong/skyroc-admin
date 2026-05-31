@@ -95,7 +95,7 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
-    "package.json": "package-lock.json, pnpm*, .editorconfig,.gitattributes,.gitignore,.npmrc,tsconfig.json,.oxlintrc.json,tsdown.config.ts,vitest.config.ts,vitest.setup.ts",
+    "package.json": "package-lock.json, pnpm*, .editorconfig,.gitattributes,.gitignore,.npmrc,tsconfig.json,.oxlintrc.json,.oxfmtrc.json,tsdown.config.ts,vitest.config.ts,vitest.setup.ts",
     ".env": ".env*",
     "vite.config.ts": "*.config.ts,*.config.js",
     "README.md": "README*,LICENSE,CHANGELOG*,vercel.json"
