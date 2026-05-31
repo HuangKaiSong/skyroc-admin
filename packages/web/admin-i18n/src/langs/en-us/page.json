@@ -124,6 +124,88 @@
       "title": "Reset Password"
     }
   },
+  "userCenter": {
+    "activity": {
+      "currentLogin": "Current session has passed access token validation",
+      "permissionSynced": "Menu and button permissions have been synced",
+      "profileUpdated": "Profile sample information has been loaded",
+      "securityChecked": "Account security status check completed",
+      "title": "Recent Activity"
+    },
+    "emptyUserName": "Unnamed User",
+    "messages": {
+      "profileSaved": "Profile saved",
+      "securityActionTodo": "This is a demo action. Connect it to backend APIs in a real project."
+    },
+    "preferences": {
+      "fullContent": "Full Content",
+      "fullContentDesc": "Hide navigation areas and focus on the current page",
+      "language": "Language",
+      "languageDesc": "Switch the admin display language",
+      "openThemeConfig": "Theme Config",
+      "siderCollapse": "Collapse Menu",
+      "siderCollapseDesc": "Control the left menu expanded state",
+      "themeAuto": "System",
+      "themeDark": "Dark",
+      "themeLight": "Light",
+      "themeScheme": "Theme Mode",
+      "themeSchemeDesc": "Use light, dark, or system mode",
+      "title": "Preferences"
+    },
+    "profile": {
+      "accountId": "Account ID",
+      "buttonPermissionCount": "Button Permissions",
+      "roleCount": "Role Count",
+      "roles": "Role Permissions",
+      "title": "Identity Overview"
+    },
+    "profileForm": {
+      "displayName": "Display Name",
+      "displayNamePlaceholder": "Enter display name",
+      "email": "Email",
+      "emailPlaceholder": "Enter email",
+      "gender": "Gender",
+      "genderFemale": "Female",
+      "genderMale": "Male",
+      "genderPlaceholder": "Select gender",
+      "introduction": "Introduction",
+      "introductionPlaceholder": "Add your position, responsibilities, or personal notes",
+      "phone": "Phone",
+      "phonePlaceholder": "Enter phone number",
+      "saveProfile": "Save Profile",
+      "title": "Basic Profile"
+    },
+    "security": {
+      "device": {
+        "action": "View",
+        "desc": "Review recent login devices for this account",
+        "title": "Login Devices"
+      },
+      "email": {
+        "action": "Change",
+        "desc": "Used for account notifications and security alerts",
+        "title": "Security Email"
+      },
+      "password": {
+        "action": "Change",
+        "desc": "Update your login password regularly",
+        "title": "Login Password"
+      },
+      "phone": {
+        "action": "Change",
+        "desc": "Used for login verification and account recovery",
+        "title": "Security Phone"
+      },
+      "title": "Account Security"
+    },
+    "status": {
+      "bound": "Bound",
+      "enabled": "Enabled",
+      "online": "Online",
+      "trusted": "Trusted"
+    },
+    "subtitle": "Manage your profile, account security, and admin preferences"
+  },
   "manage": {
     "common": {
       "status": {
