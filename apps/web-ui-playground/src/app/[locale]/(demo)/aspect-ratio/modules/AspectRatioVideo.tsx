@@ -12,6 +12,7 @@ const AspectRatioVideo = () => {
         <iframe
           allowFullScreen
           className="h-full w-full"
+          sandbox="allow-scripts allow-presentation"
           src="https://www.youtube.com/embed/dQw4w9WgXcQ"
           title="YouTube video player"
         />

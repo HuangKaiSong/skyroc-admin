@@ -15,13 +15,19 @@ export function useGenerateSentences(count: number) {
 
     workerRef.current = worker;
 
-    worker.onmessage = (event) => {
+    function handleMessage(event: MessageEvent<{ sentences: string[] }>) {
       setSentences(event.data.sentences);
-    };
+    }
 
+    worker.addEventListener('message', handleMessage);
+
+    // oxlint-disable-next-line unicorn/require-post-message-target-origin
     worker.postMessage({ count });
 
-    return () => worker.terminate();
+    return () => {
+      worker.removeEventListener('message', handleMessage);
+      worker.terminate();
+    };
   // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

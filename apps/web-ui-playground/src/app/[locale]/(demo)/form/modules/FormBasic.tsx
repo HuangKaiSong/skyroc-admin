@@ -2,13 +2,12 @@
 
 import { Button, Form, FormField, Input, useForm } from '@skyroc/web-ui';
 
+function handleSubmit(values: any) {
+  console.log('Form values:', values);
+}
+
 const FormBasic = () => {
   const [form] = useForm();
-
-  const handleSubmit = (values: any) => {
-    console.log('Form values:', values);
-  };
-
   return (
     <Form
       className="w-full max-w-sm space-y-4"

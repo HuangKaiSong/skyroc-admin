@@ -120,7 +120,9 @@ const Validate = () => {
           {
             // Async validation with 1000ms delay
             validator: async (_, value) => {
-              await new Promise(r => setTimeout(r, 1000));
+              await new Promise(resolve => {
+                setTimeout(resolve, 1000);
+              });
 
               if (!value) {
                 return 'Username2 is required';

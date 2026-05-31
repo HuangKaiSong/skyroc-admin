@@ -23,7 +23,9 @@ const Toast = () => {
         <Button
           variant="plain"
           onClick={() => toast.promise(
-            new Promise(resolve => setTimeout(resolve, 2000)),
+            new Promise(resolve => {
+              setTimeout(resolve, 2000);
+            }),
             { loading: 'Loading...', success: 'Load succeeded', error: 'Load failed' }
           )}
         >

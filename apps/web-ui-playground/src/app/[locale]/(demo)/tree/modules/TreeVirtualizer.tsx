@@ -42,6 +42,18 @@ function generateLargeTreeData(count: number = 40): DemoTreeItem[] {
 
 const largeData = generateLargeTreeData();
 
+function getTreeItemIcon(hasChildren: boolean, isExpanded: boolean, icon?: string) {
+  if (!hasChildren) {
+    return icon || 'lucide:file';
+  }
+
+  if (isExpanded) {
+    return 'lucide:folder-open';
+  }
+
+  return 'lucide:folder';
+}
+
 const TreeVirtualizerDemo = () => {
   const [value, setValue] = useState<string | undefined>();
   const [expanded, setExpanded] = useState<string[]>(['folder-0', 'folder-1']);
@@ -75,9 +87,7 @@ const TreeVirtualizerDemo = () => {
 
                 <Icon
                   className={`size-4 shrink-0 ${hasChildren ? 'text-amber-500' : 'text-blue-500'}`}
-                  icon={
-                    hasChildren ? (isExpanded ? 'lucide:folder-open' : 'lucide:folder') : data.icon || 'lucide:file'
-                  }
+                  icon={getTreeItemIcon(hasChildren, isExpanded, data.icon)}
                 />
 
                 <span className="truncate">{data.label}</span>
