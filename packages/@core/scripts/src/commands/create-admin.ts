@@ -24,6 +24,17 @@ interface PackageJson {
   [key: string]: unknown;
 }
 
+interface EnvFileUpdate {
+  /** 应用描述，写入 VITE_APP_DESC。 */
+  description: string;
+  /** 本地存储键名前缀，写入 VITE_STORAGE_PREFIX。 */
+  storagePrefix: string;
+  /** 环境文件所在的目标应用目录。 */
+  targetDir: string;
+  /** 应用标题，写入 VITE_APP_TITLE。 */
+  title: string;
+}
+
 const TEMPLATE_NAME = 'admin';
 
 function normalizePackageName(name: string) {
@@ -113,7 +124,8 @@ async function updatePackageJson(targetDir: string, packageName: string, descrip
   await writeFile(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}\n`);
 }
 
-async function updateEnvFile(targetDir: string, title: string, description: string, storagePrefix: string) {
+async function updateEnvFile(options: EnvFileUpdate) {
+  const { description, storagePrefix, targetDir, title } = options;
   const envPath = path.join(targetDir, '.env');
   let env = await readFile(envPath, 'utf8');
 
@@ -155,7 +167,12 @@ export async function createAdminTemplate(name: string, options: CreateAdminTemp
   await mkdir(path.dirname(targetDir), { recursive: true });
   await cp(templateDir, targetDir, { recursive: true });
   await updatePackageJson(targetDir, packageName, description);
-  await updateEnvFile(targetDir, title, description, storagePrefix);
+  await updateEnvFile({
+    description,
+    storagePrefix,
+    targetDir,
+    title
+  });
 
   if (options.install) {
     await installDependencies();

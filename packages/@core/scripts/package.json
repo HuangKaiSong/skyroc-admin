@@ -60,7 +60,7 @@
     "build": "tsdown",
     "clean": "rimraf dist",
     "dev": "tsdown --watch",
-    "lint": "oxlint --fix",
+    "lint": "oxlint --fix --ignore-pattern 'templates/**'",
     "typecheck": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
