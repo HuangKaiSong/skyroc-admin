@@ -1,5 +1,5 @@
 import { act, fireEvent, render, renderHook, screen, waitFor } from '@testing-library/react';
-import type { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties, ReactElement, ReactNode } from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
 import {
@@ -602,6 +602,69 @@ describe('menu rendering', () => {
     expect(screen.getByText('Plugin')).toBeInTheDocument();
     expect(screen.getByText('submenu extra')).toBeInTheDocument();
     expect(screen.getByText('submenu extra').closest('[data-menu-submenu-label]')).toHaveClass('pr-28px');
+  });
+
+  it('uses compact label layout for horizontal submenu extras', async () => {
+    vi.resetModules();
+
+    const { renderAntdMenuItems } = await import('../src/features/menus/menu-renderer');
+
+    const items = renderAntdMenuItems(
+      [
+        {
+          children: [
+            {
+              extra: <span>child extra</span>,
+              key: '/plugin/icon',
+              label: <span>Icon</span>,
+              title: 'Icon'
+            }
+          ],
+          extra: <span>NEW</span>,
+          key: '/plugin',
+          label: <span>Plugin</span>,
+          title: 'Plugin'
+        }
+      ],
+      { mode: 'horizontal' }
+    );
+
+    const [item] = items as unknown as Array<
+      Record<string, unknown> & { children?: Array<Record<string, unknown>>; label: ReactElement }
+    >;
+    const labelProps = item.label.props as Record<string, unknown>;
+
+    expect(item).not.toHaveProperty('extra');
+    expect(item.children?.[0]).toHaveProperty('extra');
+    expect(labelProps['data-menu-horizontal-label']).toBe('with-extra');
+    expect(labelProps.className).toContain('inline-flex');
+    expect(labelProps.className).not.toContain('pr-28px');
+  });
+
+  it('moves horizontal item extras into the label instead of Ant Design extra', async () => {
+    vi.resetModules();
+
+    const { renderAntdMenuItems } = await import('../src/features/menus/menu-renderer');
+
+    const items = renderAntdMenuItems(
+      [
+        {
+          extra: <span>NEW</span>,
+          key: '/plugin',
+          label: <span>Plugin</span>,
+          title: 'Plugin'
+        }
+      ],
+      { mode: 'horizontal' }
+    );
+
+    const [item] = items as unknown as Array<Record<string, unknown> & { label: ReactElement }>;
+    const labelProps = item.label.props as Record<string, unknown>;
+
+    expect(item).not.toHaveProperty('extra');
+    expect(labelProps['data-menu-horizontal-label']).toBe('with-extra');
+    expect(labelProps.className).toContain('inline-flex');
+    expect(labelProps.className).not.toContain('pr-28px');
   });
 
   it('renders static badges with custom extras', async () => {

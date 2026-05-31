@@ -48,7 +48,7 @@ const HorizontalMenu = memo((props: Props) => {
 
   const allMenus = getMenus();
 
-  const menuItems = renderAntdMenuItems(stripRootType(allMenus))
+  const menuItems = renderAntdMenuItems(stripRootType(allMenus), { mode: 'horizontal' });
 
   /** 处理菜单点击 - FirstLevel 模式：选择一级菜单，如果有子菜单且 autoSelectFirstMenu 开启，自动选择最深层级菜单 - 其他模式：直接跳转 */
   function handleClickMenu(menuInfo: Parameters<NonNullable<MenuProps['onSelect']>>[0]) {

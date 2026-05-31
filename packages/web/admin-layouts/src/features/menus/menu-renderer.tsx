@@ -5,10 +5,15 @@ import type { ReactNode } from 'react';
 import { createElement } from 'react';
 
 import { getAdminLayoutsOptions } from '../../setup';
-import MenuBadge from './MenuBadge';
 import type { GeneratedMenu } from './menu-generator';
+import MenuBadge from './MenuBadge';
 
 type AntdMenuItems = NonNullable<MenuProps['items']>;
+
+interface RenderAntdMenuItemsOptions {
+  /** Ant Design 菜单模式，用于区分横向菜单和侧边菜单的 extra 布局。 */
+  mode?: MenuProps['mode'];
+}
 
 function createMenuTitle(menu: GeneratedMenu) {
   return <I18nLabel fallback={menu.title} i18nKey={menu.i18nKey} />;
@@ -84,14 +89,39 @@ function createSubMenuLabel(label: ReactNode, extra: ReactNode) {
   );
 }
 
-function createAntdMenuItem(menu: Menu.CommonMenu): AntdMenuItems[number] {
+function createHorizontalMenuLabel(label: ReactNode, extra: ReactNode) {
+  return (
+    <span className="inline-flex max-w-full min-w-0 items-center gap-6px" data-menu-horizontal-label="with-extra">
+      <span className="min-w-0 overflow-hidden">{label}</span>
+      <span className="inline-flex shrink-0 items-center">{extra}</span>
+    </span>
+  );
+}
+
+function createAntdMenuItem(
+  menu: Menu.CommonMenu,
+  options: RenderAntdMenuItemsOptions = {},
+  level = 0
+): AntdMenuItems[number] {
   const { children, extra, i18nKey: _, label, ...rest } = menu;
+  const isHorizontalRootMenu = options.mode === 'horizontal' && level === 0;
 
   if (children?.length) {
     return {
       ...rest,
-      children: children.map(createAntdMenuItem),
-      label: extra ? createSubMenuLabel(label, extra) : label
+      children: children.map(child => createAntdMenuItem(child, options, level + 1)),
+      label: extra
+        ? isHorizontalRootMenu
+          ? createHorizontalMenuLabel(label, extra)
+          : createSubMenuLabel(label, extra)
+        : label
+    } as AntdMenuItems[number];
+  }
+
+  if (extra && isHorizontalRootMenu) {
+    return {
+      ...rest,
+      label: createHorizontalMenuLabel(label, extra)
     } as AntdMenuItems[number];
   }
 
@@ -106,6 +136,6 @@ export function renderCommonMenus(menus: GeneratedMenu[]) {
   return menus.map(renderMenu);
 }
 
-export function renderAntdMenuItems(menus: Menu.CommonMenu[]): AntdMenuItems {
-  return menus.map(createAntdMenuItem);
+export function renderAntdMenuItems(menus: Menu.CommonMenu[], options: RenderAntdMenuItemsOptions = {}): AntdMenuItems {
+  return menus.map(menu => createAntdMenuItem(menu, options));
 }
