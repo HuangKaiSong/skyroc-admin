@@ -119,7 +119,7 @@ const KeepAliveFormVerify = (props: KeepAliveFormVerifyProps) => {
 
           <Form.Item label="原生草稿">
             <textarea
-              className="min-h-96px w-full resize-y border border-$ant-color-border rounded-6px bg-$ant-color-bg-container px-12px py-8px outline-none transition-colors focus:border-$ant-color-primary"
+              className="min-h-96px w-full resize-y border border-border rounded-6px bg-container px-12px py-8px outline-none transition-colors focus:border-primary"
               data-testid="keep-alive-native-draft"
               placeholder="这里是非受控 DOM 状态"
             />

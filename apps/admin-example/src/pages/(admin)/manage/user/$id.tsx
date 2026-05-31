@@ -28,7 +28,7 @@ const UserDetail = () => {
   return (
     <Card className="h-full card-wrapper" title={t('page.manage.userDetail.title')} variant="borderless">
       <Descriptions bordered column={{ lg: 2, md: 2, sm: 1, xs: 1 }} items={items} />
-      <div className="mt-16px text-center text-16px text-$ant-color-text-secondary">
+      <div className="mt-16px text-center text-16px text-secondary">
         {t('page.manage.userDetail.explain')}
       </div>
     </Card>

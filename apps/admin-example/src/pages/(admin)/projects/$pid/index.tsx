@@ -22,8 +22,8 @@ const ProjectDetail = () => {
     <ACard className="h-full card-wrapper" size="small" variant="borderless">
       <div className="w-full flex justify-center">
         <div className="max-w-2xl w-full px-4">
-          <div className="overflow-hidden border border-$ant-color-border rounded-8px bg-$ant-color-bg-container">
-            <div className="bg-$ant-color-primary px-24px py-20px">
+          <div className="overflow-hidden border border-border rounded-8px bg-container">
+            <div className="bg-primary px-24px py-20px">
               <Typography.Title className="m-0! text-white!" level={4}>
                 项目详情
               </Typography.Title>
@@ -31,9 +31,9 @@ const ProjectDetail = () => {
             </div>
 
             <div className="p-24px">
-              <div className="mb-24px rounded-6px bg-$ant-color-fill-tertiary p-16px">
+              <div className="mb-24px rounded-6px bg-layout p-16px">
                 <Typography.Text type="secondary">项目标识 (PID)</Typography.Text>
-                <div className="mt-8px break-all text-20px text-$ant-color-text font-semibold font-mono">{pid}</div>
+                <div className="mt-8px break-all text-20px font-semibold font-mono">{pid}</div>
               </div>
 
               <ASpace>

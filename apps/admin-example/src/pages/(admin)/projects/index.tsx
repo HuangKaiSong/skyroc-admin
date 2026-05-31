@@ -107,9 +107,9 @@ const Projects = () => {
               {project.summary}
             </Typography.Paragraph>
 
-            <div className="rounded-6px bg-$ant-color-fill-tertiary p-12px text-13px font-mono">
-              <div className="break-all text-$ant-color-text">{detailPath}</div>
-              <div className="mt-6px break-all text-$ant-color-text-secondary">{editPath}</div>
+            <div className="rounded-6px bg-layout p-12px text-13px font-mono">
+              <div className="break-all">{detailPath}</div>
+              <div className="mt-6px break-all text-secondary">{editPath}</div>
             </div>
 
             <ASpace className="mt-auto" wrap>

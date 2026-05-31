@@ -147,7 +147,7 @@ const NotificationDemo = () => {
     <div className="min-h-full p-24px">
       <div className="mb-24px">
         <h1 className="m-0 mb-8px text-24px font-bold">通知系统演示</h1>
-        <p className="m-0 text-$ant-color-text-secondary">
+        <p className="m-0 text-secondary">
           完整展示通知系统的类型、优先级、浏览器通知权限和批量管理能力。
         </p>
       </div>
@@ -155,29 +155,29 @@ const NotificationDemo = () => {
       <Card className="mb-24px" title="当前状态" variant="borderless">
         <Space orientation="vertical" size="middle">
           <div className="flex-y-center gap-16px">
-            <span className="text-$ant-color-text-secondary">总通知数：</span>
+            <span className="text-secondary">总通知数：</span>
             <Tag color="processing">{notifications.length}</Tag>
           </div>
           <div className="flex-y-center gap-16px">
-            <span className="text-$ant-color-text-secondary">未读数量：</span>
+            <span className="text-secondary">未读数量：</span>
             <Tag color="error">{unreadCount}</Tag>
           </div>
           <div className="flex-y-center gap-16px">
-            <span className="text-$ant-color-text-secondary">浏览器通知权限：</span>
+            <span className="text-secondary">浏览器通知权限：</span>
             <Tag color={getPermissionColor()}>{getPermissionText()}</Tag>
           </div>
           <div className="flex-y-center gap-16px">
-            <span className="text-$ant-color-text-secondary">通知声音：</span>
+            <span className="text-secondary">通知声音：</span>
             <Tag color={config.soundEnabled ? 'success' : 'default'}>{config.soundEnabled ? '开启' : '关闭'}</Tag>
           </div>
           <div className="flex-y-center gap-16px">
-            <span className="text-$ant-color-text-secondary">浏览器通知：</span>
+            <span className="text-secondary">浏览器通知：</span>
             <Tag color={config.browserNotificationEnabled ? 'success' : 'default'}>
               {config.browserNotificationEnabled ? '开启' : '关闭'}
             </Tag>
           </div>
           <div className="flex-y-center gap-16px">
-            <span className="text-$ant-color-text-secondary">勿扰模式：</span>
+            <span className="text-secondary">勿扰模式：</span>
             <Tag color={config.doNotDisturb ? 'warning' : 'default'}>{config.doNotDisturb ? '开启' : '关闭'}</Tag>
           </div>
         </Space>

@@ -100,7 +100,7 @@ const VerticalMenu = memo(() => {
         thumb: scrollbarThumbClass
       }}
       orientation="vertical"
-      size="sm"
+      size="xs"
       type="scroll"
     >
       <AMenu

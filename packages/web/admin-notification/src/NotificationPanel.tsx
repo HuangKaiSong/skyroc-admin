@@ -96,8 +96,8 @@ const NotificationItemComponentBase = (props: NotificationItemProps) => {
   return (
     <List.Item
       className={clsx(
-        'cursor-pointer transition-all hover:bg-$ant-color-fill-quaternary px-16px! py-12px!',
-        !item.read && 'bg-$ant-color-primary-bg'
+        'cursor-pointer transition-all hover:bg-layout px-16px! py-12px!',
+        !item.read && 'bg-primary-50'
       )}
       onClick={handleClick}
     >
@@ -111,13 +111,13 @@ const NotificationItemComponentBase = (props: NotificationItemProps) => {
         <div className="min-w-0 flex-1">
           <div className="mb-4px flex-y-center gap-8px">
             <h4 className="m-0 flex-1 truncate text-14px font-semibold">{item.title}</h4>
-            {!item.read && <div className="h-8px w-8px shrink-0 rounded-full bg-$ant-color-primary" title="unread" />}
+            {!item.read && <div className="h-8px w-8px shrink-0 rounded-full bg-primary" title="unread" />}
           </div>
 
-          <p className="line-clamp-2 m-0 text-13px text-$ant-color-text-secondary">{item.content}</p>
+          <p className="line-clamp-2 m-0 text-13px text-secondary">{item.content}</p>
 
           <div className="mt-8px flex-y-center justify-between">
-            <span className="text-12px text-$ant-color-text-tertiary">{dayjs(item.timestamp).fromNow()}</span>
+            <span className="text-12px text-tertiary">{dayjs(item.timestamp).fromNow()}</span>
 
             {item.priority && item.priority !== 'normal' && (
               <Tag bordered={false} color={priorityColor}>
@@ -148,7 +148,7 @@ const NotificationPanelBase = (props: NotificationPanelProps) => {
 
   return (
     <DarkModeContainer className="w-400px rounded-8px shadow-md">
-      <div className="flex-y-center justify-between border-b border-$ant-color-border px-16px py-12px">
+      <div className="flex-y-center justify-between border-b border-border px-16px py-12px">
         <div className="flex-y-center gap-8px">
           <h3 className="m-0 text-16px font-semibold">{t('notification.title')}</h3>
           {unreadCount > 0 && <Badge count={unreadCount} overflowCount={99} showZero={false} />}

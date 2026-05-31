@@ -106,11 +106,11 @@ const UserCenter = () => {
 
     return items.map(item => (
       <div
-        className="flex items-center justify-between gap-16px border-b border-$ant-color-border-secondary py-14px last:border-b-0"
+        className="flex items-center justify-between gap-16px border-b border-border-secondary py-14px last:border-b-0"
         key={item.title}
       >
         <div className="min-w-0 flex items-start gap-12px">
-          <div className="size-36px flex-center shrink-0 rounded-6px bg-$ant-color-fill-secondary text-primary">
+          <div className="size-36px flex-center shrink-0 rounded-6px bg-layout text-primary">
             <SvgIcon className="text-18px" icon={item.icon} />
           </div>
           <div className="min-w-0">
@@ -118,7 +118,7 @@ const UserCenter = () => {
               <span className="font-medium">{item.title}</span>
               <Tag color="success">{item.status}</Tag>
             </div>
-            <p className="mb-0 mt-4px text-12px text-$ant-color-text-secondary">{item.desc}</p>
+            <p className="mb-0 mt-4px text-12px text-secondary">{item.desc}</p>
           </div>
         </div>
         <Button size="small" onClick={handleSecurityAction}>
@@ -169,7 +169,7 @@ const UserCenter = () => {
                   <h1 className="mb-0 text-24px font-semibold lt-sm:text-20px">{userName}</h1>
                   <Tag color="success">{t('page.userCenter.status.online')}</Tag>
                 </div>
-                <p className="mb-0 mt-6px text-$ant-color-text-secondary">{t('page.userCenter.subtitle')}</p>
+                <p className="mb-0 mt-6px text-secondary">{t('page.userCenter.subtitle')}</p>
               </div>
             </div>
             <Space wrap>
@@ -278,7 +278,7 @@ const UserCenter = () => {
                 <div className="flex items-center justify-between gap-16px">
                   <div>
                     <div className="font-medium">{t('page.userCenter.preferences.language')}</div>
-                    <p className="mb-0 mt-4px text-12px text-$ant-color-text-secondary">
+                    <p className="mb-0 mt-4px text-12px text-secondary">
                       {t('page.userCenter.preferences.languageDesc')}
                     </p>
                   </div>
@@ -292,7 +292,7 @@ const UserCenter = () => {
                 <div className="flex items-center justify-between gap-16px">
                   <div>
                     <div className="font-medium">{t('page.userCenter.preferences.themeScheme')}</div>
-                    <p className="mb-0 mt-4px text-12px text-$ant-color-text-secondary">
+                    <p className="mb-0 mt-4px text-12px text-secondary">
                       {t('page.userCenter.preferences.themeSchemeDesc')}
                     </p>
                   </div>
@@ -310,7 +310,7 @@ const UserCenter = () => {
                 <div className="flex items-center justify-between gap-16px">
                   <div>
                     <div className="font-medium">{t('page.userCenter.preferences.siderCollapse')}</div>
-                    <p className="mb-0 mt-4px text-12px text-$ant-color-text-secondary">
+                    <p className="mb-0 mt-4px text-12px text-secondary">
                       {t('page.userCenter.preferences.siderCollapseDesc')}
                     </p>
                   </div>
@@ -319,7 +319,7 @@ const UserCenter = () => {
                 <div className="flex items-center justify-between gap-16px">
                   <div>
                     <div className="font-medium">{t('page.userCenter.preferences.fullContent')}</div>
-                    <p className="mb-0 mt-4px text-12px text-$ant-color-text-secondary">
+                    <p className="mb-0 mt-4px text-12px text-secondary">
                       {t('page.userCenter.preferences.fullContentDesc')}
                     </p>
                   </div>
