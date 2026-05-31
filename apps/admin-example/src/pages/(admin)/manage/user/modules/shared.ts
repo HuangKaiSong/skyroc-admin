@@ -1,4 +1,29 @@
+import { z } from 'zod';
+
 import { transformRecordToOption } from '@/utils/common';
+
+const userNullableStringSearchSchema = z
+  .string()
+  .nullish()
+  .catch(null)
+  .transform(value => value || null);
+
+const userEnableStatusSearchSchema = z
+  .enum(['1', '2'])
+  .nullish()
+  .catch(null)
+  .transform(value => value ?? null);
+
+export const UserSearchSchema = z.object({
+  current: z.coerce.number().positive().catch(1).default(1),
+  nickName: userNullableStringSearchSchema,
+  size: z.coerce.number().positive().catch(10).default(10),
+  status: userEnableStatusSearchSchema,
+  userEmail: userNullableStringSearchSchema,
+  userGender: userEnableStatusSearchSchema,
+  userName: userNullableStringSearchSchema,
+  userPhone: userNullableStringSearchSchema
+});
 
 export const userStatusRecord = {
   gender: {
@@ -41,54 +66,8 @@ export function getUserSearchInitialParams(): Api.SystemManage.UserSearchParams 
   };
 }
 
-export function normalizeUserSearchParams(params: Api.SystemManage.UserSearchParams): Api.SystemManage.UserSearchParams {
-  return {
-    ...params,
-    current: normalizePageParam(params.current, 1),
-    nickName: normalizeNullableString(params.nickName),
-    size: normalizePageParam(params.size, 10),
-    status: normalizeEnableStatus(params.status),
-    userEmail: normalizeNullableString(params.userEmail),
-    userGender: normalizeUserGender(params.userGender),
-    userName: normalizeNullableString(params.userName),
-    userPhone: normalizeNullableString(params.userPhone)
-  };
-}
-
-function normalizePageParam(value: number | string | null | undefined, fallback: number) {
-  const nextValue = Number(value);
-
-  if (!Number.isFinite(nextValue) || nextValue <= 0) {
-    return fallback;
-  }
-
-  return nextValue;
-}
-
-function normalizeNullableString(value: string | null | undefined) {
-  if (value === undefined || value === null || value === '') {
-    return null;
-  }
-
-  return value;
-}
-
-function normalizeUserGender(value: Api.SystemManage.UserGender | string | null | undefined) {
-  const normalized = normalizeNullableString(value);
-
-  if (normalized === '1' || normalized === '2') {
-    return normalized;
-  }
-
-  return null;
-}
-
-function normalizeEnableStatus(value: Api.Common.EnableStatus | string | null | undefined) {
-  const normalized = normalizeNullableString(value);
-
-  if (normalized === '1' || normalized === '2') {
-    return normalized;
-  }
-
-  return null;
+export function normalizeUserSearchParams(
+  params: Partial<Api.SystemManage.UserSearchParams>
+): Api.SystemManage.UserSearchParams {
+  return UserSearchSchema.parse(params);
 }

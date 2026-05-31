@@ -1,4 +1,24 @@
+import { z } from 'zod';
+
 import { transformRecordToOption } from '@/utils/common';
+
+const roleNullableStringSearchSchema = z
+  .string()
+  .nullish()
+  .catch(null)
+  .transform(value => value || null);
+
+export const RoleSearchSchema = z.object({
+  current: z.coerce.number().positive().catch(1).default(1),
+  roleCode: roleNullableStringSearchSchema,
+  roleName: roleNullableStringSearchSchema,
+  size: z.coerce.number().positive().catch(10).default(10),
+  status: z
+    .enum(['1', '2'])
+    .nullish()
+    .catch(null)
+    .transform(value => value ?? null)
+});
 
 export const roleStatusRecord = {
   status: {
@@ -27,42 +47,7 @@ export function getRoleSearchInitialParams(): Api.SystemManage.RoleSearchParams 
 }
 
 export function normalizeRoleSearchParams(
-  params: Api.SystemManage.RoleSearchParams
+  params: Partial<Api.SystemManage.RoleSearchParams>
 ): Api.SystemManage.RoleSearchParams {
-  return {
-    ...params,
-    current: normalizePageParam(params.current, 1),
-    roleCode: normalizeNullableString(params.roleCode),
-    roleName: normalizeNullableString(params.roleName),
-    size: normalizePageParam(params.size, 10),
-    status: normalizeEnableStatus(params.status)
-  };
-}
-
-function normalizePageParam(value: number | string | null | undefined, fallback: number) {
-  const nextValue = Number(value);
-
-  if (!Number.isFinite(nextValue) || nextValue <= 0) {
-    return fallback;
-  }
-
-  return nextValue;
-}
-
-function normalizeNullableString(value: string | null | undefined) {
-  if (value === undefined || value === null || value === '') {
-    return null;
-  }
-
-  return value;
-}
-
-function normalizeEnableStatus(value: Api.Common.EnableStatus | string | null | undefined) {
-  const normalized = normalizeNullableString(value);
-
-  if (normalized === '1' || normalized === '2') {
-    return normalized;
-  }
-
-  return null;
+  return RoleSearchSchema.parse(params);
 }

@@ -6,7 +6,10 @@ import { Button, Card, Collapse, Popconfirm, Table, Tag } from 'antd';
 import { Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { useUserListQuery } from '@/service/api/system-manage/hooks';
+
 import {
+  UserSearchSchema,
   enableStatusTagColorRecord,
   getUserSearchInitialParams,
   normalizeUserSearchParams,
@@ -29,7 +32,6 @@ const UserManage = () => {
   const { scrollConfig, tableWrapperRef } = useTableScroll(USER_TABLE_SCROLL_X);
 
   const { columnChecks, data, getData, searchProps, setColumnChecks, tableProps } = useTable({
-    apiFn: fetchUserList,
     apiParams: getUserSearchInitialParams(),
     columns: createColumns,
     isMobile,
@@ -37,13 +39,13 @@ const UserManage = () => {
     pagination: {
       showQuickJumper: true
     },
-    queryKey: userListQueryKey,
+    queryHook: useUserListQuery,
     routeSearch: location.searchStr,
     transformParams: normalizeUserSearchParams
   });
 
   const { checkedRowKeys, generalPopupOperation, handleAdd, handleEdit, onBatchDeleted, onDeleted, rowSelection } =
-    useTableOperate<UserTableRecord>(data, getData, executeUserAction);
+    useTableOperate<UserTableRecord>(data, getData);
 
   async function handleBatchDelete() {
     await onBatchDeleted();
@@ -207,24 +209,11 @@ const UserManage = () => {
   );
 };
 
-async function executeUserAction() {
-  await Promise.resolve();
-}
-
-async function fetchUserList(params: Api.SystemManage.UserSearchParams) {
-  const { fetchGetUserList } = await import('@/service/api/system-manage/api');
-
-  return fetchGetUserList(params);
-}
-
-function userListQueryKey(params: Api.SystemManage.UserSearchParams) {
-  return ['systemManage', 'userList', params] as const;
-}
-
 export const Route = createFileRoute('/(admin)/manage/user/')({
   component: UserManage,
   staticData: {
     i18nKey: 'route.manage_user',
+    keepAlive: true,
     menu: {
       icon: 'ph:users-three',
       order: 1
@@ -232,18 +221,5 @@ export const Route = createFileRoute('/(admin)/manage/user/')({
     permissions: ['R_ADMIN'],
     title: 'user'
   },
-  validateSearch: validateUserSearch
+  validateSearch: UserSearchSchema
 });
-
-function validateUserSearch(search: Record<string, unknown>): Partial<Api.SystemManage.UserSearchParams> {
-  return normalizeUserSearchParams({
-    current: search.current as Api.SystemManage.UserSearchParams['current'],
-    nickName: search.nickName as Api.SystemManage.UserSearchParams['nickName'],
-    size: search.size as Api.SystemManage.UserSearchParams['size'],
-    status: search.status as Api.SystemManage.UserSearchParams['status'],
-    userEmail: search.userEmail as Api.SystemManage.UserSearchParams['userEmail'],
-    userGender: search.userGender as Api.SystemManage.UserSearchParams['userGender'],
-    userName: search.userName as Api.SystemManage.UserSearchParams['userName'],
-    userPhone: search.userPhone as Api.SystemManage.UserSearchParams['userPhone']
-  });
-}

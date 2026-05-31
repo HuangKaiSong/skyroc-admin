@@ -1,3 +1,4 @@
+import type { QueryKey, UseQueryOptions } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
 import {
@@ -10,6 +11,11 @@ import {
 } from './api';
 import { SYSTEM_MANAGE_QUERY_KEYS } from './keys';
 
+type ServiceQueryOptions<Response, Data = Response> = Omit<
+  UseQueryOptions<Response, Error, Data, QueryKey>,
+  'queryFn' | 'queryKey'
+>;
+
 /**
  * Get role list query hook
  *
@@ -18,8 +24,12 @@ import { SYSTEM_MANAGE_QUERY_KEYS } from './keys';
  *
  * @param params - Search parameters
  */
-export function useRoleListQuery(params: Api.SystemManage.RoleSearchParams) {
+export function useRoleListQuery<Data = Api.SystemManage.RoleList>(
+  params: Api.SystemManage.RoleSearchParams,
+  options?: ServiceQueryOptions<Api.SystemManage.RoleList, Data>
+) {
   return useQuery({
+    ...options,
     queryFn: () => fetchGetRoleList(params),
     queryKey: SYSTEM_MANAGE_QUERY_KEYS.ROLE_LIST(params)
   });
@@ -31,11 +41,14 @@ export function useRoleListQuery(params: Api.SystemManage.RoleSearchParams) {
  * @example
  *   const { data: allRoles, isLoading } = useAllRolesQuery();
  */
-export function useAllRolesQuery() {
+export function useAllRolesQuery<Data = Api.SystemManage.AllRole[]>(
+  options?: ServiceQueryOptions<Api.SystemManage.AllRole[], Data>
+) {
   return useQuery({
+    staleTime: 0,
+    ...options,
     queryFn: fetchGetAllRoles,
-    queryKey: SYSTEM_MANAGE_QUERY_KEYS.ALL_ROLES,
-    staleTime: 0
+    queryKey: SYSTEM_MANAGE_QUERY_KEYS.ALL_ROLES
   });
 }
 
@@ -47,8 +60,12 @@ export function useAllRolesQuery() {
  *
  * @param params - Search parameters
  */
-export function useUserListQuery(params: Api.SystemManage.UserSearchParams) {
+export function useUserListQuery<Data = Api.SystemManage.UserList>(
+  params: Api.SystemManage.UserSearchParams,
+  options?: ServiceQueryOptions<Api.SystemManage.UserList, Data>
+) {
   return useQuery({
+    ...options,
     queryFn: () => fetchGetUserList(params),
     queryKey: SYSTEM_MANAGE_QUERY_KEYS.USER_LIST(params)
   });
@@ -60,8 +77,11 @@ export function useUserListQuery(params: Api.SystemManage.UserSearchParams) {
  * @example
  *   const { data: menuList, isLoading } = useMenuListQuery();
  */
-export function useMenuListQuery() {
+export function useMenuListQuery<Data = Api.SystemManage.MenuList>(
+  options?: ServiceQueryOptions<Api.SystemManage.MenuList, Data>
+) {
   return useQuery({
+    ...options,
     queryFn: fetchGetMenuList,
     queryKey: SYSTEM_MANAGE_QUERY_KEYS.MENU_LIST
   });
@@ -73,11 +93,12 @@ export function useMenuListQuery() {
  * @example
  *   const { data: allPages, isLoading } = useAllPagesQuery();
  */
-export function useAllPagesQuery() {
+export function useAllPagesQuery<Data = string[]>(options?: ServiceQueryOptions<string[], Data>) {
   return useQuery({
+    staleTime: 0,
+    ...options,
     queryFn: fetchGetAllPages,
-    queryKey: SYSTEM_MANAGE_QUERY_KEYS.ALL_PAGES,
-    staleTime: 0
+    queryKey: SYSTEM_MANAGE_QUERY_KEYS.ALL_PAGES
   });
 }
 
@@ -87,8 +108,11 @@ export function useAllPagesQuery() {
  * @example
  *   const { data: menuTree, isLoading } = useMenuTreeQuery();
  */
-export function useMenuTreeQuery() {
+export function useMenuTreeQuery<Data = Api.SystemManage.MenuTree[]>(
+  options?: ServiceQueryOptions<Api.SystemManage.MenuTree[], Data>
+) {
   return useQuery({
+    ...options,
     queryFn: fetchGetMenuTree,
     queryKey: SYSTEM_MANAGE_QUERY_KEYS.MENU_TREE
   });
