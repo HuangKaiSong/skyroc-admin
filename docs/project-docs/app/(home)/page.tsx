@@ -2,14 +2,17 @@ import Link from 'next/link';
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col justify-center text-center flex-1">
-      <h1 className="text-2xl font-bold mb-4">Hello World</h1>
+    <div className="flex flex-col justify-center text-center flex-1 gap-4">
+      <h1 className="text-3xl font-bold">Skyroc Admin 项目文档</h1>
+      <p className="text-fd-muted-foreground">
+        基于 React 19 + TypeScript + Vite 的跨端 monorepo 后台管理系统
+      </p>
       <p>
-        You can open{' '}
+        前往{' '}
         <Link href="/docs" className="font-medium underline">
           /docs
         </Link>{' '}
-        and see the documentation.
+        查看完整文档。
       </p>
     </div>
   );

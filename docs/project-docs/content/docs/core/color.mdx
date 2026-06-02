@@ -1,0 +1,77 @@
+---
+title: "@skyroc/color"
+description: 颜色处理与调色板生成，支持 Ant Design / OKLCH / 推荐三种算法
+---
+
+## 概览
+
+| 项 | 值 |
+| --- | --- |
+| 包名 | `@skyroc/color` |
+| 版本 | 2.5.0 |
+| 依赖 | `@skyroc/utils`、colord、culori |
+| 测试 | ✅ 7 个测试文件 |
+
+提供颜色格式转换、混合、调色板生成与 WCAG 对比度计算，是主题系统的色彩底座（被 [`@skyroc/adapter-antd-theme`](/docs/web/antd-theme)、[`@skyroc/tailwind-plugin`](/docs/web/tailwind-plugin) 等消费）。
+
+## 三种调色板算法
+
+统一入口 `getColorPalette(color, algorithm)` 返回 `Map<ColorPaletteNumber, string>`：
+
+| 算法 | 函数 | 特点 |
+| --- | --- | --- |
+| `'antd'` | `getAntDColorPalette` | Ant Design HSV 11 档色板，兼容 antd 生态 |
+| `'recommended'` | `getRecommendedColorPalette` | deltaE 匹配内置色族 + HSL 比例映射 |
+| `'oklch'` | `getOklchColorPalette` | OKLCH 感知均匀，便于满足无障碍对比度 |
+
+```ts
+import { getColorPalette } from '@skyroc/color';
+
+const palette = getColorPalette('#1677ff', 'oklch');
+palette.get(500); // 主色
+palette.get(50);  // 最浅
+```
+
+## 颜色工具（shared/colord）
+
+```ts
+import { getHex, mixColor, addColorAlpha, lightenColor, darkenColor, isValidColor } from '@skyroc/color';
+```
+
+| 函数 | 用途 |
+| --- | --- |
+| `getHex` / `getRgb` / `getHsl` / `getHsv` | 格式转换 |
+| `mixColor(c1, c2, ratio)` | 混色 |
+| `addColorAlpha` / `transformColorWithOpacity` | 透明度处理 |
+| `lightenColor` / `darkenColor` / `adjustLightness` | 明度调整 |
+| `getDeltaE` | 色差计算 |
+| `isValidColor` / `isWhiteColor` | 校验 |
+| `getColorName(color)` | 从 1500+ 色名表匹配最近色名 |
+
+## OKLCH 高级能力
+
+OKLCH 模块额外提供无障碍与暗色模式支持：
+
+```ts
+import {
+  generateOklchPaletteWithContrast,
+  generateDarkModePalette,
+  getContrastRatio,
+  meetsWcagContrast,
+  findAccessibleTextColor
+} from '@skyroc/color';
+
+getContrastRatio('#fff', '#1677ff');         // 对比度数值
+meetsWcagContrast('#fff', '#1677ff', 'AA');   // 是否满足 WCAG AA
+findAccessibleTextColor('#1677ff');           // 在该背景上可读的文字色
+```
+
+支持 `WcagLevel`（AA / AAA）与 `TextSize` 维度。
+
+## 内置色板预设
+
+`colorPalettes` 导出 22 个色族 × 11 档的 Tailwind 风格预设数据，可直接取用而无需运行时生成。
+
+## 类型
+
+`ColorPaletteNumber`、`ColorPalette`、`ColorPaletteFamily`、`PaletteAlgorithm`、`ColorPaletteMatch` 等，覆盖调色板的各种结构。

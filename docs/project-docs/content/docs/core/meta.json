@@ -1,0 +1,16 @@
+{
+  "title": "@core 基础设施",
+  "pages": [
+    "overview",
+    "types",
+    "type-utils",
+    "utils",
+    "color",
+    "axios",
+    "state",
+    "service",
+    "logger",
+    "scheduler",
+    "scripts"
+  ]
+}
