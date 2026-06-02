@@ -28,7 +28,7 @@ description: 理解 apps/admin 的 TanStack Router 约定式路由、routeTree.g
 | `apps/admin/src/features/router/routeTree.gen.ts` | TanStack Router 自动生成的 route tree。不要手改这个文件。 |
 | `apps/admin/src/features/router/index.ts` | 创建 router 实例，配置 route tree、search 解析、预加载、滚动恢复和初始 context。 |
 | `apps/admin/src/features/router/RouterProvider.tsx` | 从 `useAuth()` 读取认证和菜单上下文，注入 TanStack Router Provider。 |
-| `apps/admin/src/pages/__root.tsx` | 根路由。处理全局 loading、error、notFound 和已登录用户的预初始化。 |
+| `apps/admin/src/pages/__root.tsx` | 根路由。处理全局 loading、error、notFound 和已登录用户的认证预热。 |
 | `apps/admin/src/pages/(admin)/layout.tsx` | 后台 layout route。渲染 `WebAdminLayout`，并在进入后台页面前执行 `guardAdminRoute()`。 |
 | `apps/admin/src/bootstrap.tsx` | 将 `routeTree`、菜单分类、动态路由加载器和权限超级角色交给 `setupAdminLayouts()`。 |
 
@@ -42,7 +42,8 @@ apps/admin/src/pages
   -> apps/admin/src/features/router/routeTree.gen.ts
   -> createRouter({ routeTree })
   -> RouterProvider 注入 auth context
-  -> root/admin layout beforeLoad
+  -> root beforeLoad 做已登录认证预热
+  -> admin layout beforeLoad 做后台进入守卫
   -> WebAdminLayout、菜单、tabs、权限守卫消费路由信息
 ```
 
@@ -116,7 +117,7 @@ setupAdminLayouts({
 
 | 路径 | URL 表现 | 职责 |
 | --- | --- | --- |
-| `__root.tsx` | 根路由，不直接产生业务 URL | 全局 root route，挂载 loading、error、notFound、NProgress 和登录态预初始化。 |
+| `__root.tsx` | 根路由，不直接产生业务 URL | 全局 root route，挂载 loading、error、notFound、NProgress，并只在已有登录态时做认证预热。 |
 | `index.tsx` | `/` | 根路径重定向：已登录去首页，未登录去 `/login`。 |
 | `(admin)/layout.tsx` | 不直接出现在 URL 中 | 后台 layout route，承载登录后的主应用壳和后台守卫。 |
 | `(admin)/home/index.tsx` | `/home` | 后台首页。 |
@@ -143,10 +144,12 @@ setupAdminLayouts({
 
 ### `(auth)` 是认证页面边界
 
-登录、注册、验证码登录、重置密码和退出登录放在 `(auth)` 下。`pages/(auth)/login/layout.tsx` 会在用户已登录时执行：
+登录、注册、验证码登录、重置密码和退出登录放在 `(auth)` 下。`pages/(auth)/login/layout.tsx` 不负责认证初始化，只在用户已登录时做跳转兜底：
 
 ```ts
-throw redirect({ to: search.redirect || context.getHomeRoute() });
+if (context.isLoggedIn) {
+  throw redirect({ to: search.redirect || context.getHomeRoute() });
+}
 ```
 
 因此，访问 `/login` 时如果已有有效 token，会回到 redirect 指定路径或当前用户首页。

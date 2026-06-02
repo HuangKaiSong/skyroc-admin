@@ -34,11 +34,13 @@ description: 理解 guardAdminRoute、登录拦截、用户初始化、静态权
 后台主 layout route 负责统一进入守卫：
 
 ```ts
+function beforeLoadAdminRoute(options: AdminRouteGuardOptions): AdminRouteGuardResult {
+  return guardAdminRoute(options);
+}
+
 export const Route = createFileRoute('/(admin)')({
   component: AdminLayout,
-  beforeLoad: async ({ context, location, matches, preload }) => {
-    await guardAdminRoute({ context, location, matches, preload });
-  }
+  beforeLoad: beforeLoadAdminRoute as any
 });
 ```
 
@@ -106,13 +108,15 @@ const RouterProvider = memo(() => {
 ```ts
 async function initAuth() {
   try {
-    const data = await queryClient.ensureQueryData(queryUserInfoOptions());
+    const { data } = await refetch();
+
+    if (!data) {
+      return null;
+    }
 
     await initMenus(data);
 
-    flushSync(() => {
-      setState({ initialized: true });
-    });
+    setState(prev => ({ ...prev, initialized: true }));
 
     return data;
   } catch {
@@ -123,9 +127,9 @@ async function initAuth() {
 
 | 步骤 | 作用 |
 | --- | --- |
-| `ensureQueryData(queryUserInfoOptions())` | 请求或复用当前用户信息。 |
+| `refetch()` | 通过 `useUserInfoQuery()` 请求或刷新当前用户信息。 |
 | `initMenus(data)` | 根据用户信息和路由模式生成菜单、首页和 quick reference map。 |
-| `setState({ initialized: true })` | 标记 auth 初始化完成，避免每次路由切换都重复初始化。 |
+| `setState(prev => ({ ...prev, initialized: true }))` | 标记 auth 初始化完成，避免每次路由切换都重复初始化。 |
 
 如果用户信息请求失败，`initAuth()` 返回 `null`。守卫会调用 `clearAuth()`，再跳回登录页。
 
@@ -158,14 +162,10 @@ if (!context.isLoggedIn) {
 
 这样用户直接访问 `/manage/user?id=1` 时，登录后能回到原路径；但访问默认首页时不会制造无意义的 `redirect=/home`。
 
-登录页 layout 会消费这个 redirect：
+登录页 layout 只在已有登录态时消费这个 redirect；认证初始化已经由 root 的已登录预热负责：
 
 ```ts
 if (context.isLoggedIn) {
-  if (!context.isAuthInitialized) {
-    await context.initAuth();
-  }
-
   throw redirect({ to: search.redirect || context.getHomeRoute() });
 }
 ```
@@ -321,7 +321,7 @@ if (href && !preload) {
 | 访问后台直接到 `/login` | 本地 token 是否存在，`getToken()` 是否能读到。 |
 | 登录后没有回到原路径 | 登录 URL 是否带 `redirect`，redirect 是否以 `/` 开头。 |
 | 登录后首页不对 | 静态模式看 `VITE_ROUTE_HOME`，动态模式看后端返回的 `home`。 |
-| 已登录访问 `/login` 没有自动跳走 | `context.isLoggedIn` 和 `context.isAuthInitialized` 是否正确注入到 RouterProvider。 |
+| 已登录访问 `/login` 没有自动跳走 | `context.isLoggedIn` 是否正确注入到 RouterProvider，root 的已登录预热是否正常完成。 |
 
 ### 用户初始化异常
 
@@ -349,7 +349,7 @@ if (href && !preload) {
 | 动态模式只要前端页面存在就能访问 | 必须在后端授权路由树中存在当前 path。 |
 | 超级角色只影响菜单显示 | 超级角色在 `hasAnyRoutePermission()` 中统一生效，菜单生成和守卫都会使用。 |
 | 外链点击由菜单组件处理 | 当前外链统一由 `guardAdminRoute()` 处理，避免绕过权限。 |
-| 在页面组件里再请求用户信息更安全 | 当前用户初始化已经在 root/admin guard 链路完成；页面里重复初始化会制造状态竞争。 |
+| 在页面组件里再请求用户信息更安全 | 当前用户初始化已经由 root 的已登录预热和后台 layout 守卫收口；页面里重复初始化会制造状态竞争。 |
 
 ## 相关位置
 
