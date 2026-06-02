@@ -7,6 +7,8 @@ description: 使用 apps/admin 的 AntdProvider、showMessage、showNotification
 
 当前实现把 Ant Design 静态 API 收口到 `@skyroc/web-admin-theme`，再由 `apps/admin/src/config.ts` re-export，页面和请求层统一从应用配置入口使用。
 
+> 只想查 `show*` 系列函数的签名、参数和返回值，直接看 [全局反馈 API](./antd-feedback-api)。
+
 ## 适用场景
 
 | 场景 | 重点位置 |
@@ -149,6 +151,7 @@ setTimeout(() => {
 
 ## 相关链接
 
+- API 速查（签名 / 参数 / 返回值）：[全局反馈 API](./antd-feedback-api)
 - [运行时 Provider](../architecture/runtime-providers)
 - [主题系统](../theme/overview)
 - [通知系统](./notification)

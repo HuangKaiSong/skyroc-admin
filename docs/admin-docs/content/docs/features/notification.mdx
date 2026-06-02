@@ -7,6 +7,8 @@ description: 使用 @skyroc/web-admin-notification 接入后台 header 通知按
 
 当前通知系统是前端内存态能力。刷新页面后，`NotificationProvider` 中的通知列表会重置；如果要做站内消息中心或服务端通知，需要在业务侧接接口，再把接口结果转换成 package 的 `NotificationItem`。
 
+> 只想查 `NotificationProvider` props、`useNotificationContext()` 返回值和类型，直接看 [通知系统 API](./notification-api)。
+
 ## 适用场景
 
 | 场景 | 重点位置 |
@@ -247,6 +249,7 @@ const granted = await requestNotificationPermission();
 
 ## 相关链接
 
+- API 速查（Provider props / context 返回值 / 类型）：[通知系统 API](./notification-api)
 - 布局系统：[布局系统](../layout/overview)
 - 菜单与标签页：[菜单与标签页](../layout/menus-and-tabs)
 - 用户列表写法：[表格与表单](./table-and-form)
