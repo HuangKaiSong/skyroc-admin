@@ -42,7 +42,7 @@ export const Route = createRootRouteWithContext<Router.RouterContext>()({
   component: Root,
   notFoundComponent: NotFound,
   beforeLoad: async ({ context }) => {
-    if (!context.isAuthInitialized && context.isLoggedIn) {
+    if (!context.isAuthInitialized) {
       await context.initAuth();
     }
   },
