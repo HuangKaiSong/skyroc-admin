@@ -4,6 +4,7 @@ import { createRouter } from '@tanstack/react-router';
 import { globalConfig } from '@/config';
 import { queryClient } from '@/service/queryClient';
 
+import { setRouter } from './router-ref';
 import { routeTree } from './routeTree.gen';
 
 /**
@@ -38,6 +39,8 @@ export const router = createRouter({
 });
 
 export type RouterConfig = typeof router;
+
+setRouter(router);
 
 declare module '@tanstack/react-router' {
   interface Register {

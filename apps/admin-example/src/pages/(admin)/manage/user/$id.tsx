@@ -4,6 +4,8 @@ import { Card, Descriptions, Tag } from 'antd';
 import type { DescriptionsProps } from 'antd';
 import { useTranslation } from 'react-i18next';
 
+import { fetchGetUserList } from '@/service/api/system-manage/api';
+
 import { enableStatusTagColorRecord, userGenderTagColorRecord, userStatusRecord } from './modules/shared';
 
 type DescriptionItem = NonNullable<DescriptionsProps['items']>[number];
@@ -40,7 +42,7 @@ export const Route = createFileRoute('/(admin)/manage/user/$id')({
   loader: async ({ context, params }) => {
     const queryParams = { current: 1, size: 1000 };
     const data: Api.SystemManage.UserList = await context.queryClient.ensureQueryData({
-      queryFn: () => fetchUserList(queryParams),
+      queryFn: () => fetchGetUserList(queryParams),
       queryKey: userListQueryKey(queryParams)
     });
 
@@ -56,12 +58,6 @@ export const Route = createFileRoute('/(admin)/manage/user/$id')({
     title: 'user_detail'
   }
 });
-
-async function fetchUserList(params: Api.SystemManage.UserSearchParams) {
-  const { fetchGetUserList } = await import('@/service/api/system-manage/api');
-
-  return fetchGetUserList(params);
-}
 
 function userListQueryKey(params: Api.SystemManage.UserSearchParams) {
   return ['systemManage', 'userList', params] as const;

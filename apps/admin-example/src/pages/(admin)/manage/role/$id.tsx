@@ -4,6 +4,8 @@ import { Card, Descriptions, Tag } from 'antd';
 import type { DescriptionsProps } from 'antd';
 import { useTranslation } from 'react-i18next';
 
+import { fetchGetRoleList } from '@/service/api/system-manage/api';
+
 import { enableStatusTagColorRecord, roleStatusRecord } from './modules/shared';
 
 type DescriptionItem = NonNullable<DescriptionsProps['items']>[number];
@@ -46,7 +48,7 @@ export const Route = createFileRoute('/(admin)/manage/role/$id')({
       status: null
     };
     const data: Api.SystemManage.RoleList = await context.queryClient.ensureQueryData({
-      queryFn: () => fetchRoleList(queryParams),
+      queryFn: () => fetchGetRoleList(queryParams),
       queryKey: roleListQueryKey(queryParams)
     });
 
@@ -62,12 +64,6 @@ export const Route = createFileRoute('/(admin)/manage/role/$id')({
     title: 'role_detail'
   }
 });
-
-async function fetchRoleList(params: Api.SystemManage.RoleSearchParams) {
-  const { fetchGetRoleList } = await import('@/service/api/system-manage/api');
-
-  return fetchGetRoleList(params);
-}
 
 function roleListQueryKey(params: Api.SystemManage.RoleSearchParams) {
   return ['systemManage', 'roleList', params] as const;

@@ -1,9 +1,11 @@
 import type { RequestAdapter } from '@skyroc/service';
 
 import { setAuth } from '@/features/auth/use-auth';
-import { router } from '@/features/router';
+import { getRouter } from '@/features/router/router-ref';
 import { $t } from '@/locales';
 import { localStg } from '@/utils/storage';
+
+import { fetchRefreshToken } from './api/auth/api';
 
 function showRequestErrorMessage(msg: string, onClose?: () => void) {
   if (onClose) {
@@ -30,16 +32,10 @@ function showRequestErrorModal(options: Parameters<RequestAdapter['showErrorModa
   });
 }
 
-async function fetchAdminRefreshToken(refreshToken: string) {
-  const { fetchRefreshToken } = await import('./api/auth/api');
-
-  return fetchRefreshToken(refreshToken);
-}
-
 export const antdAdapter: RequestAdapter = {
-  fetchRefreshToken: fetchAdminRefreshToken,
+  fetchRefreshToken,
   getCurrentPath() {
-    return router.state.location.href;
+    return getRouter().state.location.href;
   },
   getRefreshToken() {
     return localStg.get('refreshToken') || null;
@@ -48,7 +44,7 @@ export const antdAdapter: RequestAdapter = {
     return localStg.get('token') || null;
   },
   redirectToLogin(redirectPath?: string) {
-    router.navigate({ search: { redirect: redirectPath }, to: '/login-out' });
+    getRouter().navigate({ search: { redirect: redirectPath }, to: '/login-out' });
   },
   resetAuth() {
     localStg.remove('token');
