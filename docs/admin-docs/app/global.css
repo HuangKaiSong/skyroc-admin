@@ -10,3 +10,94 @@ html > body[data-scroll-locked] {
   margin-right: 0px !important;
   --removed-body-scroll-bar-size: 0px !important;
 }
+
+/* ===== Home page (Technical Blueprint) animations ===== */
+@keyframes skyroc-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes skyroc-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes skyroc-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes skyroc-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes skyroc-sheen {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.skyroc-home {
+  --sk-brand: #646cff;
+  --sk-brand-soft: #8b90ff;
+  --sk-cyan: #06b6d4;
+  --sk-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+}
+
+.skyroc-home [data-reveal] {
+  opacity: 0;
+  animation: skyroc-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.skyroc-marquee-track {
+  animation: skyroc-marquee 32s linear infinite;
+}
+
+.skyroc-blink {
+  animation: skyroc-blink 1.1s step-end infinite;
+}
+
+.skyroc-float {
+  animation: skyroc-float 7s ease-in-out infinite;
+}
+
+.skyroc-sheen {
+  background-size: 200% auto;
+  animation: skyroc-sheen 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skyroc-home [data-reveal],
+  .skyroc-marquee-track,
+  .skyroc-blink,
+  .skyroc-float,
+  .skyroc-sheen {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
