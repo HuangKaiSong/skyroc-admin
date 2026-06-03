@@ -38,7 +38,7 @@
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "1.13.1",
+    "@opennextjs/cloudflare": "1.19.11",
     "@tailwindcss/postcss": "^4.3.0",
     "@types/mdx": "^2.0.13",
     "@types/node": "^25.9.1",
@@ -49,6 +49,6 @@
     "typescript": "^6.0.3",
     "oxlint": "^1.66.0",
     "@types/hast": "^3.0.4",
-    "wrangler": "4.51.0"
+    "wrangler": "4.96.0"
   }
 }
