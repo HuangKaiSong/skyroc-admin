@@ -1,5 +1,5 @@
 import { useLoading } from '@skyroc/hooks';
-import { useNavigate, useSearch } from '@tanstack/react-router';
+import { useNavigate, useRouter, useSearch } from '@tanstack/react-router';
 
 import { useLoginMutation } from '@/service/api';
 import { localStg } from '@/utils/storage';
@@ -16,6 +16,7 @@ export function useInitLogin() {
   const { initAuth, setAuth } = useAuth();
 
   const navigate = useNavigate();
+  const router = useRouter();
 
   const { mutate: toLogin } = useLoginMutation();
 
@@ -34,6 +35,8 @@ export function useInitLogin() {
         const info = await initAuth();
 
         if (info) {
+          await router.invalidate();
+
           const lastLoginUserId = localStg.get('lastLoginUserId');
 
           let needRedirect = redirect;

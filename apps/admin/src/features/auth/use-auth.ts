@@ -1,7 +1,8 @@
-import { updateAtomValue} from '@skyroc/core-state';
+import { globalStore, updateAtomValue } from '@skyroc/core-state';
 import { cacheTabs, useMenus } from '@skyroc/web-admin-layouts';
-import { atom,useAtom } from 'jotai';
-import {useUserInfoQuery} from '@/service/api';
+import { atom, useAtom } from 'jotai';
+
+import { useUserInfoQuery } from '@/service/api';
 import { queryClient } from '@/service/queryClient';
 import { localStg } from '@/utils/storage';
 
@@ -19,7 +20,7 @@ const initState: AuthState = {
   initialized: false
 };
 
-const authAtom = atom(initState)
+const authAtom = atom(initState);
 
 
 export function getToken() {
@@ -39,7 +40,7 @@ export function setAuth(data: Api.Auth.LoginToken) {
 }
 
 export function useAuth() {
-  const [state, setState] = useAtom(authAtom);
+  const [state, setState] = useAtom(authAtom, { store: globalStore });
   const { clearMenus, getHomeRoute, home, initMenus } = useMenus();
   const isLoggedIn = Boolean(state.token);
   const { data: userInfo, refetch } = useUserInfoQuery();
@@ -78,7 +79,7 @@ export function useAuth() {
 
   return {
     token: state.token,
-    userInfo,
+    userInfo: userInfo || undefined,
     isLoggedIn,
     clearAuth,
     getHomeRoute,

@@ -42,7 +42,7 @@ export function cacheTabs() {
 }
 
 export const useAdminTab = () => {
-  const [tabState, setTabState] = useAtom(tabStateAtom);
+  const [tabState, setTabState] = useAtom(tabStateAtom, { store: globalStore });
 
   const navigate = useNavigate();
 
