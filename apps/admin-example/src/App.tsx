@@ -33,9 +33,6 @@ const AdminDevtools = import.meta.env.DEV
 const Devtools = () => {
   const { darkMode } = useSettingsTheme();
 
-  // oxlint-disable-next-line no-console
-  console.log('darkMode', darkMode);
-
   const config = useMemo<AdminDevtoolsProps['config']>(() => {
     return {
       ...globalConfig.devtools,
