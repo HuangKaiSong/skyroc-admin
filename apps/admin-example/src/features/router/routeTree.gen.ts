@@ -68,6 +68,7 @@ import { Route as adminDocumentTanstackRouterRouteImport } from './../../pages/(
 import { Route as adminDocumentTanstackQueryRouteImport } from './../../pages/(admin)/document/tanstack-query'
 import { Route as adminDocumentRepositoryRouteImport } from './../../pages/(admin)/document/repository'
 import { Route as adminDocumentReactRouteImport } from './../../pages/(admin)/document/react'
+import { Route as adminDocumentProjectDocsRouteImport } from './../../pages/(admin)/document/project-docs'
 import { Route as adminDocumentJotaiRouteImport } from './../../pages/(admin)/document/jotai'
 import { Route as adminDocumentCoreDocsRouteImport } from './../../pages/(admin)/document/core-docs'
 import { Route as adminDocumentAntDesignRouteImport } from './../../pages/(admin)/document/ant-design'
@@ -407,6 +408,12 @@ const adminDocumentReactRoute = adminDocumentReactRouteImport.update({
   path: '/react',
   getParentRoute: () => adminDocumentLayoutRoute,
 } as any)
+const adminDocumentProjectDocsRoute =
+  adminDocumentProjectDocsRouteImport.update({
+    id: '/project-docs',
+    path: '/project-docs',
+    getParentRoute: () => adminDocumentLayoutRoute,
+  } as any)
 const adminDocumentJotaiRoute = adminDocumentJotaiRouteImport.update({
   id: '/jotai',
   path: '/jotai',
@@ -666,6 +673,7 @@ export interface FileRoutesByFullPath {
   '/document/ant-design': typeof adminDocumentAntDesignRoute
   '/document/core-docs': typeof adminDocumentCoreDocsRoute
   '/document/jotai': typeof adminDocumentJotaiRoute
+  '/document/project-docs': typeof adminDocumentProjectDocsRoute
   '/document/react': typeof adminDocumentReactRoute
   '/document/repository': typeof adminDocumentRepositoryRoute
   '/document/tanstack-query': typeof adminDocumentTanstackQueryRoute
@@ -752,6 +760,7 @@ export interface FileRoutesByTo {
   '/document/ant-design': typeof adminDocumentAntDesignRoute
   '/document/core-docs': typeof adminDocumentCoreDocsRoute
   '/document/jotai': typeof adminDocumentJotaiRoute
+  '/document/project-docs': typeof adminDocumentProjectDocsRoute
   '/document/react': typeof adminDocumentReactRoute
   '/document/repository': typeof adminDocumentRepositoryRoute
   '/document/tanstack-query': typeof adminDocumentTanstackQueryRoute
@@ -855,6 +864,7 @@ export interface FileRoutesById {
   '/(admin)/document/ant-design': typeof adminDocumentAntDesignRoute
   '/(admin)/document/core-docs': typeof adminDocumentCoreDocsRoute
   '/(admin)/document/jotai': typeof adminDocumentJotaiRoute
+  '/(admin)/document/project-docs': typeof adminDocumentProjectDocsRoute
   '/(admin)/document/react': typeof adminDocumentReactRoute
   '/(admin)/document/repository': typeof adminDocumentRepositoryRoute
   '/(admin)/document/tanstack-query': typeof adminDocumentTanstackQueryRoute
@@ -959,6 +969,7 @@ export interface FileRouteTypes {
     | '/document/ant-design'
     | '/document/core-docs'
     | '/document/jotai'
+    | '/document/project-docs'
     | '/document/react'
     | '/document/repository'
     | '/document/tanstack-query'
@@ -1045,6 +1056,7 @@ export interface FileRouteTypes {
     | '/document/ant-design'
     | '/document/core-docs'
     | '/document/jotai'
+    | '/document/project-docs'
     | '/document/react'
     | '/document/repository'
     | '/document/tanstack-query'
@@ -1147,6 +1159,7 @@ export interface FileRouteTypes {
     | '/(admin)/document/ant-design'
     | '/(admin)/document/core-docs'
     | '/(admin)/document/jotai'
+    | '/(admin)/document/project-docs'
     | '/(admin)/document/react'
     | '/(admin)/document/repository'
     | '/(admin)/document/tanstack-query'
@@ -1647,6 +1660,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof adminDocumentReactRouteImport
       parentRoute: typeof adminDocumentLayoutRoute
     }
+    '/(admin)/document/project-docs': {
+      id: '/(admin)/document/project-docs'
+      path: '/project-docs'
+      fullPath: '/document/project-docs'
+      preLoaderRoute: typeof adminDocumentProjectDocsRouteImport
+      parentRoute: typeof adminDocumentLayoutRoute
+    }
     '/(admin)/document/jotai': {
       id: '/(admin)/document/jotai'
       path: '/jotai'
@@ -1949,6 +1969,7 @@ interface adminDocumentLayoutRouteChildren {
   adminDocumentAntDesignRoute: typeof adminDocumentAntDesignRoute
   adminDocumentCoreDocsRoute: typeof adminDocumentCoreDocsRoute
   adminDocumentJotaiRoute: typeof adminDocumentJotaiRoute
+  adminDocumentProjectDocsRoute: typeof adminDocumentProjectDocsRoute
   adminDocumentReactRoute: typeof adminDocumentReactRoute
   adminDocumentRepositoryRoute: typeof adminDocumentRepositoryRoute
   adminDocumentTanstackQueryRoute: typeof adminDocumentTanstackQueryRoute
@@ -1965,6 +1986,7 @@ const adminDocumentLayoutRouteChildren: adminDocumentLayoutRouteChildren = {
   adminDocumentAntDesignRoute: adminDocumentAntDesignRoute,
   adminDocumentCoreDocsRoute: adminDocumentCoreDocsRoute,
   adminDocumentJotaiRoute: adminDocumentJotaiRoute,
+  adminDocumentProjectDocsRoute: adminDocumentProjectDocsRoute,
   adminDocumentReactRoute: adminDocumentReactRoute,
   adminDocumentRepositoryRoute: adminDocumentRepositoryRoute,
   adminDocumentTanstackQueryRoute: adminDocumentTanstackQueryRoute,

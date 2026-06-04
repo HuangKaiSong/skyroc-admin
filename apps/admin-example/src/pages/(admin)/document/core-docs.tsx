@@ -1,20 +1,26 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useMatch } from '@tanstack/react-router';
+
+import { IframePage } from '@/features/router/components/IframePage';
 
 import { PROJECT_DOC_URLS } from './modules/shared';
 
+const ROUTE_PATH = '/(admin)/document/core-docs';
+
 const DocumentCoreDocs = () => {
-  return null;
+  const { staticData } = useMatch({ from: ROUTE_PATH });
+
+  return <IframePage title={staticData.title} url={staticData.url} />;
 };
 
-export const Route = createFileRoute('/(admin)/document/core-docs')({
+export const Route = createFileRoute(ROUTE_PATH)({
   component: DocumentCoreDocs,
   staticData: {
-    href: PROJECT_DOC_URLS.coreDocs,
     i18nKey: 'route.document_core-docs',
     menu: {
       icon: 'carbon:assembly',
       order: 4
     },
-    title: 'core-docs'
+    title: 'core-docs',
+    url: PROJECT_DOC_URLS.coreDocs
   }
 });
