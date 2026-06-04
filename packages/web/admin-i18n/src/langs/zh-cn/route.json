@@ -4,6 +4,7 @@
   "500": "服务器错误",
   "about": "关于",
   "document": "文档",
+  "document_project-docs": "项目总览文档",
   "document_admin-docs": "管理端文档",
   "document_ant-design": "Ant Design",
   "document_core-docs": "核心包文档",
