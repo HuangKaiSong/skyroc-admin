@@ -75,6 +75,16 @@ Web 端已成熟稳定，跨端扩展（React Native / Expo、小程序）正在
 
 ---
 
+## 版本历史
+
+| 版本 | 技术栈 | 在线预览 | 文档 | 仓库 |
+|------|--------|---------|------|------|
+| **v3（当前）** | React 19 · Vite 8 · TanStack Router · Jotai · Antd 6 | [skyroc-admin.com](https://skyroc-admin.com/) | [admin-docs.skyroc.me](https://admin-docs.skyroc.me) | [GitHub](https://github.com/Ohh-889/skyroc-admin) · [Gitee](https://gitee.com/sjgk_dl/react-admin) |
+| **v2** | React 19 · Vite 6 · React Router V7 · Redux Toolkit · Antd 5 | [admin-v2.skyroc.me](https://admin-v2.skyroc.me/home) | [admin-v2-docs.skyroc.me](https://admin-v2-docs.skyroc.me) | — |
+| **v1** | React 18 · Vite 5 · React Router V6 · Redux Toolkit · Antd 5 | [admin-v1.skyroc.me](https://admin-v1.skyroc.me/) | [admin-docsv1.skyroc.me](https://admin-docsv1.skyroc.me) | — |
+
+---
+
 ## 文档站点
 
 项目提供 5 个独立文档站点，均位于 `docs/`，基于 Next.js + Fumadocs 构建，部署于 Cloudflare：
